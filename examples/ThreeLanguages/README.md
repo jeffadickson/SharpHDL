@@ -250,3 +250,6 @@ It emits three language DLLs plus the harness. `SDK_ROOT` is the installation
 containing `dotnet`, `sdk` and `packs`, not the versioned SDK subdirectory.
 Generated CIL, graphs, source Verilog, self-checking HDL benches and measured
 latencies are included under `generated/three-languages`.
+
+Try Add two and wrap in the [workbook WASM lab](../../WASM_WORKBOOK.md).
+It runs this generated AddTwo hardware and shows eight-bit wrap at 254 + 2.

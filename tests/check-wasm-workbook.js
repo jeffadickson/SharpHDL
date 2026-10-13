@@ -1,0 +1,49 @@
+const fs=require('fs'),path=require('path'),assert=require('assert'),vm=require('vm');
+const root=path.resolve(__dirname,'..'),Trace=require('../docs/tinyrisc/trace.js');
+const bundle=JSON.parse(fs.readFileSync(path.join(root,'generated/learning/wasm-lessons.json')));
+const html=fs.readFileSync(path.join(root,'docs/interactive/SharpHDL_WASM_Lab.html'),'utf8');
+for(const s of html.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(s[1]);
+assert(!/__DATA__|__TRACE__|__UI__/.test(html));
+for(const [key,l]of Object.entries(bundle.lessons)){
+ const t=Trace.parseVCD(l.vcd,null);
+ for(const n of l.signals)assert(t.signals['tb.'+n],key+' missing '+n);
+ for(const [n,v]of Object.entries(l.expected))assert.equal(Trace.numberAt(t,'tb.'+n,t.end),v,key+' '+n);
+ assert(l.log.includes('PASS VeriSim '+key));
+ const url=new URL(l.url),params=new URLSearchParams(url.hash.slice(1));
+ assert.equal(Buffer.from(params.get('d'),'base64url').toString(),l.design);
+ assert.equal(Buffer.from(params.get('t'),'base64url').toString(),l.testbench);
+}
+const a=Trace.parseVCD(bundle.lessons.addtwo.vcd,null);
+assert.equal(Trace.numberAt(a,'tb.s_a',0),2);assert.equal(Trace.numberAt(a,'tb.s_a',5000),9);assert.equal(Trace.numberAt(a,'tb.s_a',10000),0);
+const c=Trace.parseVCD(bundle.lessons.counter.vcd,null);
+for(const [time,value]of [[2000,0],[6000,1],[10000,2],[14000,3],[18000,3],[22000,3],[26000,4]])assert.equal(Trace.numberAt(c,'tb.s_value',time),value);
+console.log('PASS five workbook RTL fixtures, expected values, counter timing, inline JS and VeriSim payloads');
+if(process.argv.includes('--browser'))(async()=>{
+ const {chromium}=require('playwright'),http=require('http');
+ const docs=path.join(root,'docs');const server=http.createServer((req,res)=>{
+  const file=path.resolve(docs,'.'+new URL(req.url,'http://localhost').pathname);
+  if(!file.startsWith(docs+path.sep)||!fs.existsSync(file)){res.writeHead(404);res.end();return;}
+  res.setHeader('Content-Type',file.endsWith('.js')?'application/javascript':file.endsWith('.wasm')?'application/wasm':'text/html');res.end(fs.readFileSync(file));
+ });await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ let browser;
+ try{
+  browser=await chromium.launch({headless:true,...(process.env.CHROME_BIN?{executablePath:process.env.CHROME_BIN}:{}),args:['--no-sandbox']});const page=await browser.newPage({viewport:{width:1280,height:960}});const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+  if(process.env.VERISIM_ENGINE_DIR)await page.context().route('https://senolgulgonul.github.io/verisim/**',async route=>{const name=new URL(route.request().url()).pathname.split('/').pop();await route.fulfill({status:200,headers:{'access-control-allow-origin':'*','content-type':name.endsWith('.wasm')?'application/wasm':'application/javascript'},body:fs.readFileSync(path.join(process.env.VERISIM_ENGINE_DIR,name))});});
+  await page.goto('http://127.0.0.1:'+server.address().port+'/interactive/SharpHDL_WASM_Lab.html');if(fs.existsSync(path.join(docs,'tinyrisc/verisim/ivl.wasm')))await page.check('#local');
+  for(const [key,l]of Object.entries(bundle.lessons)){
+   await page.selectOption('#lesson',key);assert.equal(await page.locator('#title').innerText(),l.title);
+   await page.click('#next');assert(Number(await page.locator('#cursor').inputValue())>0);
+   await page.click('#run');await page.waitForFunction(()=>!document.getElementById('run').disabled,null,{timeout:75000});
+   assert((await page.locator('#status').innerText()).includes('Fresh WebAssembly simulation passed'),await page.locator('#status').innerText());
+   const observed=await page.evaluate(()=>({signals:trace.signals,end:trace.end}));const reference=Trace.parseVCD(l.vcd,null);
+   assert.equal(observed.end,reference.end);
+   for(const n of l.signals){const name='tb.'+n,actual=observed.signals[name],expected=reference.signals[name];assert.equal(actual.width,expected.width);for(const t of new Set([...actual.events,...expected.events].map(e=>e[0])))assert.equal(Trace.numberAt(observed,name,t),Trace.numberAt(reference,name,t),key+' '+name+' at '+t);}
+   await page.click('#last');if(process.env.QA_DIR&&key==='counter'){await page.screenshot({path:path.join(process.env.QA_DIR,'wasm-desktop.png'),fullPage:true});await page.locator('#wave').screenshot({path:path.join(process.env.QA_DIR,'wasm-counter-wave.png')});}
+   console.log('PASS actual workbook WASM and native trace agreement:',key);
+  }
+  await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));if(process.env.QA_DIR)await page.screenshot({path:path.join(process.env.QA_DIR,'wasm-mobile.png'),fullPage:true});
+  await page.click('#run');await page.click('#cancel');assert((await page.locator('#status').innerText()).includes('cancelled'));
+  await page.click('#recorded');assert((await page.locator('#status').innerText()).includes('Recorded native-Icarus'));
+  assert.deepEqual(errors,[]);console.log('PASS workbook controls, cancellation and mobile layout');
+ }finally{if(browser)await browser.close();await new Promise(resolve=>server.close(resolve));}
+})().catch(e=>{console.error(e);process.exitCode=1;});

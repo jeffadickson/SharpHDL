@@ -343,3 +343,13 @@ Semantic net naming (2026-10-13):
 - TinyRisc Yosys check and post-synthesis Icarus trace: PASS.
 - Updated HTML: 83 VCD/payload assertions; Chromium controls and actual VeriSim
   WASM simulation PASS (verified engine downloads routed locally).
+
+Workbook WebAssembly integration (2026-10-13):
+- Five native self-checking Icarus fixtures and exact VeriSim link payloads PASS.
+- Actual Chromium/WASM runs for add-two, counter, FSM, static loop and sequential
+  loop PASS; selected signals agree with native traces at all event timestamps.
+- Cursor controls, cancellation and mobile overflow checks PASS.
+- TinyRisc shared worker/parser regression: 83 checks and actual WASM run PASS.
+- Existing offline learning graph engine: 11139 comparisons PASS.
+- Generated-document checks PASS; workbook rebuilt and rendered for layout review.
+- This change does not modify compiler lowering or claim new FPGA board testing.

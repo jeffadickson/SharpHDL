@@ -28,6 +28,13 @@ def h(text):d.add_heading(text,2)
 def page(title):d.add_page_break();d.add_heading(title,1)
 def boldline(label,text):
  para=d.add_paragraph();para.add_run(label+' ').bold=True;para.add_run(text);return para
+def lablink(key,label):
+ para=d.add_paragraph()
+ link=OxmlElement('w:hyperlink')
+ link.set(qn('r:id'),d.part.relate_to('http://localhost:8090/interactive/SharpHDL_WASM_Lab.html#'+key,'http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink',is_external=True))
+ run=OxmlElement('w:r');props=OxmlElement('w:rPr');color=OxmlElement('w:color');color.set(qn('w:val'),'075963');props.append(color);run.append(props)
+ text=OxmlElement('w:t');text.text='Browser experiment: '+label;run.append(text);link.append(run);para._p.append(link)
+
 def picture(name,caption,width=7):
  para=d.add_paragraph();para.paragraph_format.space_after=Pt(2);para.alignment=WD_ALIGN_PARAGRAPH.CENTER
  shape=para.add_run().add_picture(str(ART/(name+'.png')),width=Inches(width))
@@ -127,6 +134,8 @@ tryit('Change the final 2 to 3. Predict what happens when B is 3, then rebuild w
 ask('Does changing the input B require compiling the circuit again? Does changing the rule require a new build?')
 note('For a change to add three, the guide uses boards/GoBoard/lesson.sh 3. This checks against the predicted addend, then generates a fresh image. The source variable a is a reference to an expression, not a hardware register. Drive creates a combinational connection.')
 
+lablink('addtwo','Add two and wrap — eight-bit version')
+
 # 6 Lesson 4
 page('Lesson four  What happens when bits run out')
 mission('Discover overflow and learn why a fifth bit can matter.')
@@ -158,6 +167,8 @@ tryit('Choose counter mode with button 4 and press button 3 to Run. Predict the 
 ask('The low LED changes once per second while counting. Why does one complete ON-and-OFF cycle take two seconds?')
 boldline('Clock clue','The board clock is fast: 25 million edges each second. A counting enable lets the stored count change on a much slower tick.')
 note('The divider runs continuously. The first increment after Run may occur in less than one second. The two-digit starter shows hexadecimal and is not a precision stopwatch. No button or divided counter signal is used as a new clock.')
+
+lablink('counter','Count, pause, resume')
 
 # 9 Lesson 7
 page('Lesson seven  A hardware assembly line')
@@ -317,14 +328,16 @@ note('Try it with envelopes and number cards. The simultaneous read/write rule i
 # 22 Interactive companion
 page('Clock lab  Coach the circuit')
 p('Open SharpHDL_Learning_Lab.html in a modern browser. It works offline. This companion is most useful after Lesson 5, when children know that a register changes on a clock edge. Start with the hockey drill; the number shifts and loops are optional extensions.')
-picture('fsm_lab','The controller remembers one state. Start enters Running; four enabled practice ticks reach Done. Stop cancels a running drill. Reset returns to Ready.',width=6.7)
+picture('fsm_lab','The controller remembers one state. Start enters Running; four enabled practice ticks reach Done. Stop cancels a running drill. Reset returns to Ready.',width=6.2)
 h('Predict before you press the clock')
 table([['Try this','Predict and explain'],['Turn Start on and press Clock once','Running begins, but count is still zero. The first practice tick is the next edge.'],['Turn Start off and clock four times','Count reaches four and state becomes Done. One more edge returns to Ready.'],['Pause by turning Practice enabled off','Running and count hold until practice is enabled again.'],['Turn Stop on during a drill','The next edge returns to Ready. Reset also clears the count immediately on its edge.']],[2.9,4.1],10.5)
 h('A coach with a very small memory')
 p('Ready, Running and Done fit in a two-bit state register. The helper generates its next-state choices. The count is a separate four-bit register. Both update together from their old values: writing one does not instantly change the other within the same clock tick.')
 code('var fsm = new StateMachine(m, "drill",\n    "Ready", "Running", "Done");\nfsm.When("Ready", start, "Running")\n   .When("Running", finished, "Done");\nfsm.Build();')
 p('This short extract shows the idea; the HTML includes the full C# with Stop and Done transitions. A missing transition holds the state. When two transitions match, the first listed wins. The helper creates real hardware; it does not automatically schedule an arbitrary while loop.')
-note('The page simulates actual exported graphs, not Verilog. Its engine and the emitted RTL are checked against independent expected traces. Source, tests and the feature roadmap are in the project. Open in VeriSim links launch actual RTL and teacher benches; initial loading needs network access.')
+note('The Clock Lab simulates exported graphs. The linked WASM lab runs generated Verilog with a teacher bench. Both are checked against expected traces. Fresh WASM runs need engine files.')
+
+lablink('fsm','Coach the hockey drill in real RTL')
 
 # 23 Sequential extension
 page('Teacher extension  A loop with a clock')
@@ -333,8 +346,10 @@ code('public static int Sum(int n, int total) {\n    while (n > 0) { total += n;
 table([['BuildModule: unroll','BuildSequential: clocked'],['Known repetitions become a combinational graph.','Runtime conditions choose the next instruction state.'],['No clock for each iteration.','One CIL operation per clock, not one whole iteration.'],['Repeated work may make a long path.','Registers remember work between edges.']],[3.5,3.5],10.5)
 h('Ask the robot to add 3 + 2 + 1')
 table([['Signal card','Child-friendly meaning'],['Start','Please begin! Inputs are copied when the robot is idle.'],['Busy','I am working. Another Start is ignored.'],['Done','Finished! This stays on until reset or another accepted Start.'],['Fault / timeout','Something went wrong, or the instruction budget ran out.']],[1.6,5.4],10.5)
-p('Try seed 10 and n = 3. Predict 16, then open the Clocked while loop link in the HTML. In VeriSim, run the prepared bench and inspect busy, done and result. The adult owns the testbench; children predict and read the waveform.')
+p('Try seed 10 and n = 3. Predict 16, then open A loop that takes clock ticks in the workbook WASM lab. Run the prepared bench and inspect busy, done and result. The adult owns the testbench; children predict and read the waveform.')
 note('Timing depends on compiled CIL: loads, comparisons, branches and stores take separate clocks. This first scheduler does not promise the smallest circuit, automatic pipelining or a particular FPGA frequency. A memory read adds one wait edge.')
+
+lablink('sequential','A loop that takes clock ticks')
 
 # 24 Typed values and safety
 page('Teacher extension  Number boxes and drawers')
@@ -345,7 +360,7 @@ h('Important rules for the adult')
 p('The packet example reads a flat, explicitly laid-out header. The RAM example owns one uint[] memory with a fixed depth. General objects, nested packet records and arbitrary arrays remain outside this first subset.')
 p('Reset stops the robot and clears its control registers, but the memory drawers keep their contents. A fault does not undo earlier writes. Done is a held signal, not a one-clock flash. Read result only when Done is on and Fault is off.')
 h('Two complementary experiments')
-p('The offline Clock Lab evaluates exported circuit graphs. The Open in VeriSim links load actual generated Verilog plus a prepared testbench into the external browser simulator. Its first load needs network access. The exact link payloads pass local Icarus tests; hosted browser UI execution has not been verified here.')
+p('The offline Clock Lab evaluates exported circuit graphs. The separate workbook WASM lab runs actual generated Verilog and prepared testbenches on the page, using the VeriSim Icarus WebAssembly engine. Its five experiments have browser and native-trace agreement tests. Fresh runs need engine files; bundled recorded traces work offline.')
 note('Requirements and exact boundaries: CONSTRUCTS_AND_REQUIREMENTS.md and SEQUENTIAL_CIL.md. Reproducible native-code, graph and RTL checks: tests/run-advanced.sh. These tests establish the included cases; they are not a proof for every program.')
 
 # 25 Traceable generated hardware
@@ -363,6 +378,36 @@ table([['Label','What it tells us'],['n_effective_address','The address calculat
 h('Try a detective experiment')
 p('Open docs/tinyrisc/TinyRisc_Demo.html. Step one instruction at a time and watch the PC, registers and output LEDs. Predict the next value before stepping. The prepared program adds 5 + 4 + 3 + 2 + 1 and leaves 15 on the LEDs. Its bundled trace works offline; the optional fresh VeriSim run needs the simulator engine.')
 note('The source builder supplies application names explicitly with Named. C# local names are not automatically recovered. Duplicate hints receive suffixes; every intermediate wire keeps its width and truncation. The demo steps through a recorded trace. A fresh VeriSim run executes real RTL, but is not a live paused processor. Requirements and examples: NET_NAMING.md.')
+
+# 26 Beginner waveform experiments
+page('Browser lab  Follow the clock')
+p('Open the workbook WASM lab after your guide starts the server described on the next page. WASM means WebAssembly: it lets a simulator run in the browser. You do not need to install FPGA software to explore the recorded traces.')
+h('Predict first and run second')
+p('Choose Add two and wrap. Predict the answers for B = 0, 7 and 254. Press Run RTL with WebAssembly. When it reports a fresh simulation passed, move the cursor and read A. The answers are 2, 9 and 0. This browser example uses eight bits; our starter-board arithmetic lesson uses four.')
+lablink('addtwo','Add two and wrap')
+h('Now give a register a clock')
+p('Choose Count, pause, resume. Look for the upward edges of clk. Enable lets the counter move; a low enable makes it keep its number. The orange line is your viewing cursor, not another signal.')
+picture('wasm_counter_wave','Actual browser simulation: reset to zero, count three, hold for two clocks, then count once more.',width=6.8)
+table([['Rising edge time','What happens','Predict the count'],['2 ns','Reset','0'],['6, 10 and 14 ns','Enable is on','1, 2, 3'],['18 and 22 ns','Enable is off','____, ____'],['26 ns','Enable is on again','____']],[1.7,2.9,2.4],10.5)
+lablink('counter','Count, pause, resume')
+ask('Why does the adder change while clk stays low, but the counter wait for an upward edge?')
+note('Counter answers: 3, 3, 4. Next event may visit a falling edge or an input change; it is not Next clock. First/Next/Last event replay a completed trace. The time labels arrange the test; they are not measurements of FPGA speed.')
+
+# 27 Teacher setup and extensions
+page('Browser lab  Guide and extension cards')
+h('Start the lab on a computer')
+code('python3 -m http.server 8090 --directory docs')
+p('Run that command from the repository root. Open http://localhost:8090/interactive/SharpHDL_WASM_Lab.html on the same computer. Workbook experiment links use this address. For a tablet, replace localhost with the teacher computer’s address.')
+p('The default fresh simulation loads the VeriSim engine from the internet. To prepare offline use, first run the command below while connected, then check Use downloaded engine in the lab. Keep the supplied docs folders together.')
+code('python3 tools/fetch_verisim_runtime.py')
+h('Three extension cards')
+table([['Experiment','Predict before running','Look at these waves'],['Coach the hockey drill','Start begins at zero; four following enabled edges reach Done.','s_ticks, s_phase, s_done'],['Twelve additions, no clocks','2 + 12 × 3 = ____. Does it need clock edges?','s_a, s_b, s_y; clk stays low'],['A loop that takes clock ticks','10 + 3 + 2 + 1 = ____. When is it valid?','s_busy, s_done, s_result, s_fault']],[2.0,3.0,2.0],10.2)
+lablink('fsm','Coach the hockey drill')
+lablink('forloop','Twelve additions, no clocks')
+lablink('sequential','A loop that takes clock ticks')
+h('What the buttons really do')
+p('Run RTL compiles and simulates the generated Verilog in WebAssembly, then replaces the waveform trace. The teacher’s testbench checks the answers. Restore recorded trace returns to the bundled native-Icarus result. Cancel stops a worker; a run also has a 60-second limit. The children can read waves without writing a testbench.')
+note('Extension answers: four enabled ticks; 38 without clock edges; 16 when Done is high and Fault and Timeout are low. Unknown X/Z is not zero. A CIL operation can take a clock; a whole loop iteration usually takes several. Full source, testbenches, requirements and engine attribution: WASM_WORKBOOK.md. TinyRisc_Demo.html is the next PC/register/LED exercise.')
 
 # Remove inherited title rules and keep all headings black.
 for tree in (d.styles.element,d.element):

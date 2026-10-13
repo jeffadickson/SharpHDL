@@ -8,5 +8,5 @@ initial begin rst=1;#2;clk=1;#2;clk=0;rst=0;s_start=1;
 repeat(250) begin #2;clk=1;#2;clk=0;end
 if(s_done!==1 || s_fault!==0 || s_result!==16)$fatal(1,"sequential");
 $display("PASS VeriSim sequential");$finish;end
-initial begin $dumpfile("dump.vcd");$dumpvars(0,tb);end
+initial begin $dumpfile("dump.vcd");$dumpvars(1,tb);end
 endmodule

@@ -169,3 +169,7 @@ See SEQUENTIAL_CIL.md for BuildSequential, runtime loops, one owned uint[] RAM,
 UBits<W> operator semantics, read-only packet records and Hardware.Assert.
 BuildModule now also exposes assertion_failed. Existing combinational methods
 still unroll constant loops and never gain implicit clock boundaries.
+
+The [workbook WebAssembly lab](WASM_WORKBOOK.md) runs the generated adder,
+counter, state machine and loop examples with a waveform viewer and prepared
+student predictions. Fresh runs execute real Verilog in the browser.

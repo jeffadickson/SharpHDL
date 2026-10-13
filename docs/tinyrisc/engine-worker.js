@@ -10,14 +10,14 @@ self.onmessage=async ({data})=>{
   const pre=[];const p=await pp({...opts,print:s=>pre.push(s)});
   p.FS.writeFile('/design.v',data.design+'\n');p.FS.writeFile('/tb.v',data.tb+'\n');
   p.callMain(['-L','/design.v','/tb.v']);
-  self.postMessage({stage:'Compiling generated TinyRisc RTL…'});
+  self.postMessage({stage:'Compiling generated RTL…'});
   const c=await ivl(opts);
   c.FS.writeFile('/ivl.conf','basedir:/\nmodule:system.vpi\ngeneration:2012\ngeneration:no-specify\nout:/out.vvp\niwidth:32\nwidthcap:65536\nfunctor:cprop\nfunctor:nodangle\nflag:DLL=vvp.tgt\n');
   c.FS.writeFile('/src.v',pre.join('\n')+'\n');c.callMain(['-C/ivl.conf','--','/src.v']);
-  const code=c.FS.readFile('/out.vvp');self.postMessage({stage:'Simulating TinyRisc RTL…'});
+  const code=c.FS.readFile('/out.vvp');self.postMessage({stage:'Simulating RTL…'});
   const s=await vvp(opts);s.FS.writeFile('/sim.vvp',code);s.callMain(['/sim.vvp']);
   const vcd=s.FS.readFile('/dump.vcd',{encoding:'utf8'});
-  if(!log.some(x=>x.includes('PASS TinyRisc demo')))throw Error('Simulation did not report PASS');
+  if(!log.some(x=>x.includes(data.passToken||'PASS TinyRisc demo')))throw Error('Simulation did not report PASS');
   self.postMessage({vcd,log:log.join('\n')});
  }catch(e){self.postMessage({error:String(e),log:log.join('\n')});}
 };

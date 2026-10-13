@@ -17,4 +17,9 @@ for path,expected in manifest['sha256'].items():assert hashlib.sha256((r/path).r
 with zipfile.ZipFile(r/'docs/SharpHDL_Classroom_Proposal.docx') as z:
  text=z.read('word/document.xml').decode()
  assert 'Names on the wires' in text and 'n_effective_address' in text
-print('PASS generated net names, actual Verilog excerpts, board hashes and workbook naming section')
+ for title in ['Browser lab  Follow the clock','Browser lab  Guide and extension cards']:
+  assert title in text, title
+ rels=z.read('word/_rels/document.xml.rels').decode()
+ for key in ['addtwo','counter','fsm','forloop','sequential']:
+  assert 'SharpHDL_WASM_Lab.html#'+key in rels,key
+print('PASS generated net names, actual Verilog excerpts, board hashes and workbook naming and WASM sections')

@@ -8,5 +8,5 @@ initial begin rst=1; #2; clk=1; #2; clk=0;rst=0;s_start=1;
 repeat(4) begin #2;clk=1;#2;clk=0;end
 if(s_done!==1 || s_ticks!==4)$fatal(1,"controller");
 $display("PASS VeriSim fsm");$finish;end
-initial begin $dumpfile("dump.vcd");$dumpvars(0,tb);end
+initial begin $dumpfile("dump.vcd");$dumpvars(1,tb);end
 endmodule

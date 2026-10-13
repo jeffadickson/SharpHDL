@@ -15,5 +15,6 @@ for name in FixedShifts DrillController; do
 done
 # Run tests/run-behavioral.sh first to refresh the CIL loop graphs.
 python3 tools/build_verisim.py
+python3 tools/build_wasm_lab.py
 python3 tools/build_learning_html.py
 node tests/check-learning-browser.js

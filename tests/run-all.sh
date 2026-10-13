@@ -26,6 +26,7 @@ done
 run naming python3 tests/check-net-naming.py
 run browser-graph node tests/check-learning-browser.js
 run verisim python3 tests/check-verisim.py
+run wasm-workbook node tests/check-wasm-workbook.js --browser
 for script in synthesize synthesize-numeric synthesize-multiply synthesize-divide synthesize-behavioral synthesize-examples synthesize-tinyrisc; do
   run "$script" bash "tests/$script.sh"
 done

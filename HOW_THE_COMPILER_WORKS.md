@@ -537,3 +537,7 @@ rationale](SYNTHESIS_BOUNDARIES.md), including host loops, muxes and state examp
 [Integer division](INTEGER_DIVISION.md) shows how one ordinary builder call can
 select unrolled combinational logic or an iterative state machine, and how rounding
 and transaction timing become part of that block's contract.
+
+The [workbook WebAssembly lab](WASM_WORKBOOK.md) runs the generated adder,
+counter, state machine and loop examples with a waveform viewer and prepared
+student predictions. Fresh runs execute real Verilog in the browser.

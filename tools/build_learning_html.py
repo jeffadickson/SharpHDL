@@ -54,8 +54,8 @@ def render_reference(text):
 template=(root/'docs/interactive/template.html').read_text().replace('__REQUIREMENTS__',render_reference((root/'CONSTRUCTS_AND_REQUIREMENTS.md').read_text()))
 engine=(root/'docs/interactive/graph-sim.js').read_text()
 links=json.loads((root/'generated/learning/verisim/links.json').read_text())
-launch='<h2>Run real Verilog in VeriSim</h2><p>Open a prepared experiment, then run its teacher-owned testbench. Watch the waveforms: the unrolled adder settles without a clock; the sequential loop stays busy across many edges.</p><div class="controls">'
-for key,label in [('fsm','Hockey controller'),('forloop','Unrolled additions'),('sequential','Clocked while loop')]:
+launch='<h2>Run real Verilog in VeriSim</h2><p><a href="SharpHDL_WASM_Lab.html">Open the workbook WASM lab with built-in waveforms</a></p><p>Open a prepared experiment, then run its teacher-owned testbench. Watch the waveforms: the unrolled adder settles without a clock; the sequential loop stays busy across many edges.</p><div class="controls">'
+for key,label in [('addtwo','Add two and wrap'),('counter','Enabled counter'),('fsm','Hockey controller'),('forloop','Unrolled additions'),('sequential','Clocked while loop')]:
  launch+='<a target="_blank" rel="noopener" href="'+html.escape(links[key]['url'],quote=True)+'">'+label+' · Open in VeriSim</a> '
 launch+='</div><p class="small">VeriSim runs Icarus WebAssembly in a separate browser tab. Initial loading needs network access. RTL and testbench travel in the URL fragment. These exact payloads passed local Icarus; the hosted UI has not been end-to-end verified here. The offline graph lessons above remain separate.</p>'
 template=template.replace('__VERISIM__',launch)

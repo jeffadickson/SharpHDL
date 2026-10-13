@@ -61,3 +61,8 @@ Icarus-derived engine assets retain GPLv2-or-later licensing. Upstream identifie
 Icarus14 development commit c7530db and provides its source/build provenance.
 See upstream README for corresponding-source information and license details.
 This repository does not redistribute those binaries or claim ownership of them.
+
+The worker and VCD parser also power the five smaller workbook experiments in
+`../interactive/SharpHDL_WASM_Lab.html`. See `../../WASM_WORKBOOK.md` for setup,
+lesson predictions and native-versus-WASM waveform comparisons. TinyRisc keeps
+its original required PC signal and testbench PASS marker.

@@ -1,7 +1,7 @@
 /* TinyRisc trace reader. Values come only from VCD, never a second CPU emulator. */
 (function(root){
 'use strict';
-function parseVCD(text){
+function parseVCD(text,requiredSignal="tb.s_pc"){
  if(text.length>8000000)throw Error('VCD exceeds 8 MB limit');
  const signals={},ids={},scope=[],lines=text.split(/\r?\n/);let time=0,header=true,unit='ps';
  for(let i=0;i<lines.length;i++){
@@ -21,7 +21,8 @@ function parseVCD(text){
   if(!/^[01xz]+$/.test(value))throw Error('Invalid bit value');
   for(const s of ids[id]||[])s.events.push([time,value]);
  }
- if(header||!signals['tb.s_pc'])throw Error('Not a TinyRisc VCD: tb.s_pc is missing');
+ if(header||!Object.keys(signals).length)throw Error('No VCD signals');
+ if(requiredSignal&&!signals[requiredSignal])throw Error('Required VCD signal is missing: '+requiredSignal);
  return {signals,end:time,unit};
 }
 function bitsAt(signal,time){if(!signal)return 'x';let a=signal.events,lo=0,hi=a.length;while(lo<hi){let m=(lo+hi)>>1;if(a[m][0]<=time)lo=m+1;else hi=m;}return lo?a[lo-1][1]:'x';}
