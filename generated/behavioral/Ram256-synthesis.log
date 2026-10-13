@@ -360,7 +360,7 @@ Removed a total of 0 cells.
 
 4.6. Executing OPT_DFF pass (perform DFF optimizations).
 Adding SRST signal on $procdff$799 ($dff) from module h_Ram256 (D = $ternary$generated/behavioral/Ram256.v:297$261_Y, Q = \s_storage_read_data, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$804 ($sdff) from module h_Ram256 (D = \n_3, Q = \s_storage_read_data).
+Adding EN signal on $auto$ff.cc:266:slice$804 ($sdff) from module h_Ram256 (D = \n_mux_3, Q = \s_storage_read_data).
 
 4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \h_Ram256..

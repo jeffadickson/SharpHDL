@@ -60,84 +60,84 @@ reg [0:0] s_fir_last;
 // fir: registered TUSER metadata [7:0].
 reg [7:0] s_fir_user;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_not_0;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_or_1;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_and_2;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_3;
+wire [15:0] n_mux_3;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_4;
+wire [0:0] n_and_4;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_5;
+wire [15:0] n_mux_5;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_6;
+wire [0:0] n_and_6;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_7;
+wire [15:0] n_mux_7;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_8;
+wire [0:0] n_mux_8;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_9;
+wire [0:0] n_and_9;
 // Signed two's-complement extension.
-wire [31:0] n_10;
+wire [31:0] n_signextend_10;
 // Operation '*'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_11;
+wire [31:0] n_mul_11;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_12;
+wire [31:0] n_add_12;
 // Signed two's-complement extension.
-wire [31:0] n_13;
+wire [31:0] n_signextend_13;
 // Operation '*'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_14;
+wire [31:0] n_mul_14;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_15;
+wire [31:0] n_add_15;
 // Signed two's-complement extension.
-wire [31:0] n_16;
+wire [31:0] n_signextend_16;
 // Operation '*'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_17;
+wire [31:0] n_mul_17;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_18;
+wire [31:0] n_add_18;
 // Signed two's-complement extension.
-wire [31:0] n_19;
+wire [31:0] n_signextend_19;
 // Operation '*'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_20;
+wire [31:0] n_mul_20;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_21;
+wire [31:0] n_add_21;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_22;
+wire [31:0] n_mux_22;
 // Select true operand when condition is 1; false operand otherwise.
-wire [3:0] n_23;
+wire [3:0] n_mux_23;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_24;
+wire [0:0] n_mux_24;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_25;
-assign n_0 = ~s_fir_valid;
-assign n_1 = n_0 | s_fir_tready;
-assign n_2 = s_s_axis_tvalid & s_s_axis_tready;
-assign n_3 = n_2 ? s_s_axis_tdata : s_delay_1;
-assign n_4 = s_s_axis_tvalid & s_s_axis_tready;
-assign n_5 = n_4 ? s_delay_1 : s_delay_2;
-assign n_6 = s_s_axis_tvalid & s_s_axis_tready;
-assign n_7 = n_6 ? s_delay_2 : s_delay_3;
-assign n_8 = n_1 ? s_s_axis_tvalid : s_fir_valid;
-assign n_9 = n_1 & s_s_axis_tvalid;
-assign n_10 = $signed(s_s_axis_tdata);
-assign n_11 = n_10 * 32'd1;
-assign n_12 = 32'd0 + n_11;
-assign n_13 = $signed(s_delay_1);
-assign n_14 = n_13 * 32'd3;
-assign n_15 = n_12 + n_14;
-assign n_16 = $signed(s_delay_2);
-assign n_17 = n_16 * 32'd3;
-assign n_18 = n_15 + n_17;
-assign n_19 = $signed(s_delay_3);
-assign n_20 = n_19 * 32'd1;
-assign n_21 = n_18 + n_20;
-assign n_22 = n_9 ? n_21 : s_fir_data;
-assign n_23 = n_9 ? 4'd15 : s_fir_keep;
-assign n_24 = n_9 ? s_s_axis_tlast : s_fir_last;
-assign n_25 = n_9 ? s_s_axis_tuser : s_fir_user;
-assign s_s_axis_tready = n_1;
+wire [7:0] n_mux_25;
+assign n_not_0 = ~s_fir_valid;
+assign n_or_1 = n_not_0 | s_fir_tready;
+assign n_and_2 = s_s_axis_tvalid & s_s_axis_tready;
+assign n_mux_3 = n_and_2 ? s_s_axis_tdata : s_delay_1;
+assign n_and_4 = s_s_axis_tvalid & s_s_axis_tready;
+assign n_mux_5 = n_and_4 ? s_delay_1 : s_delay_2;
+assign n_and_6 = s_s_axis_tvalid & s_s_axis_tready;
+assign n_mux_7 = n_and_6 ? s_delay_2 : s_delay_3;
+assign n_mux_8 = n_or_1 ? s_s_axis_tvalid : s_fir_valid;
+assign n_and_9 = n_or_1 & s_s_axis_tvalid;
+assign n_signextend_10 = $signed(s_s_axis_tdata);
+assign n_mul_11 = n_signextend_10 * 32'd1;
+assign n_add_12 = 32'd0 + n_mul_11;
+assign n_signextend_13 = $signed(s_delay_1);
+assign n_mul_14 = n_signextend_13 * 32'd3;
+assign n_add_15 = n_add_12 + n_mul_14;
+assign n_signextend_16 = $signed(s_delay_2);
+assign n_mul_17 = n_signextend_16 * 32'd3;
+assign n_add_18 = n_add_15 + n_mul_17;
+assign n_signextend_19 = $signed(s_delay_3);
+assign n_mul_20 = n_signextend_19 * 32'd1;
+assign n_add_21 = n_add_18 + n_mul_20;
+assign n_mux_22 = n_and_9 ? n_add_21 : s_fir_data;
+assign n_mux_23 = n_and_9 ? 4'd15 : s_fir_keep;
+assign n_mux_24 = n_and_9 ? s_s_axis_tlast : s_fir_last;
+assign n_mux_25 = n_and_9 ? s_s_axis_tuser : s_fir_user;
+assign s_s_axis_tready = n_or_1;
 assign s_m_axis_tdata = s_fir_tdata;
 assign s_m_axis_tkeep = s_fir_tkeep;
 assign s_m_axis_tlast = s_fir_tlast;
@@ -160,14 +160,14 @@ always @(posedge clk) begin
     s_fir_last <= 1'd0;
     s_fir_user <= 8'd0;
   end else begin
-    s_delay_1 <= n_3;
-    s_delay_2 <= n_5;
-    s_delay_3 <= n_7;
-    s_fir_valid <= n_8;
-    s_fir_data <= n_22;
-    s_fir_keep <= n_23;
-    s_fir_last <= n_24;
-    s_fir_user <= n_25;
+    s_delay_1 <= n_mux_3;
+    s_delay_2 <= n_mux_5;
+    s_delay_3 <= n_mux_7;
+    s_fir_valid <= n_mux_8;
+    s_fir_data <= n_mux_22;
+    s_fir_keep <= n_mux_23;
+    s_fir_last <= n_mux_24;
+    s_fir_user <= n_mux_25;
   end
 end
 endmodule

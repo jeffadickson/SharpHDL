@@ -552,7 +552,7 @@ Optimizing module h_CilCsHalf.
 7.13. Executing WREDUCE pass (reducing word size of cells).
 Removed top 31 bits (of 32) from mux cell h_CilCsHalf.$ternary$generated/behavioral/CilCsHalf.v:27$2 ($mux).
 Removed top 31 bits (of 32) from port B of cell h_CilCsHalf.$add$generated/behavioral/CilCsHalf.v:28$3 ($add).
-Removed top 31 bits (of 32) from wire h_CilCsHalf.n_1.
+Removed top 31 bits (of 32) from wire h_CilCsHalf.n_mux_1.
 
 7.14. Executing PEEPOPT pass (run peephole optimizers).
 

@@ -94,243 +94,243 @@ reg [0:0] s_output_cut_valid;
 // Spill occupied. Input ready is its inverse, independent of downstream ready.
 reg [0:0] s_output_cut_spill_valid;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_not_0;
 // Extract source bits [23:0], rebase to bit 0.
-wire [23:0] n_1;
+wire [23:0] n_bits_23_0_1;
 // Extract source bits [26:24], rebase to bit 0.
-wire [2:0] n_2;
+wire [2:0] n_bits_26_24_2;
 // Extract source bits [27:27], rebase to bit 0.
-wire [0:0] n_3;
+wire [0:0] n_bits_27_27_3;
 // Extract source bits [35:28], rebase to bit 0.
-wire [7:0] n_4;
+wire [7:0] n_bits_35_28_4;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_5;
+wire [0:0] n_not_5;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_6;
+wire [0:0] n_or_6;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_7;
+wire [0:0] n_not_7;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_8;
+wire [0:0] n_or_8;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_9;
+wire [0:0] n_or_9;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_10;
+wire [0:0] n_and_10;
 // Packed bus: [26:24] = high operand; [23:0] = low operand.
-wire [26:0] n_11;
+wire [26:0] n_concat_11;
 // Packed bus: [27:27] = high operand; [26:0] = low operand.
-wire [27:0] n_12;
+wire [27:0] n_concat_12;
 // Packed stream beat: DATA [23:0], KEEP [26:24], LAST [27], USER [35:28].
-wire [35:0] n_13;
+wire [35:0] n_concat_13;
 // Select true operand when condition is 1; false operand otherwise.
-wire [35:0] n_14;
+wire [35:0] n_mux_14;
 // Select true operand when condition is 1; false operand otherwise.
-wire [35:0] n_15;
+wire [35:0] n_mux_15;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_16;
+wire [0:0] n_not_16;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_17;
+wire [0:0] n_and_17;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_18;
+wire [0:0] n_and_18;
 // Select true operand when condition is 1; false operand otherwise.
-wire [35:0] n_19;
+wire [35:0] n_mux_19;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_20;
+wire [0:0] n_or_20;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_21;
+wire [0:0] n_mux_21;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_22;
+wire [0:0] n_and_22;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_23;
+wire [0:0] n_or_23;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_24;
+wire [0:0] n_mux_24;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_25;
+wire [0:0] n_not_25;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_26;
+wire [0:0] n_mux_26;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_27;
+wire [0:0] n_and_27;
 // Signed two's-complement extension.
-wire [47:0] n_28;
+wire [47:0] n_signextend_28;
 // Signed two's-complement extension.
-wire [47:0] n_29;
+wire [47:0] n_signextend_29;
 // Operation '*'; result limited to 48 bits. Signed interpretation only for slt/asr/signextend.
-wire [47:0] n_30;
+wire [47:0] n_mul_30;
 // Signed two's-complement extension.
-wire [48:0] n_31;
+wire [48:0] n_signextend_31;
 // Operation 'asr'; result limited to 49 bits. Signed interpretation only for slt/asr/signextend.
-wire [48:0] n_32;
+wire [48:0] n_asr_32;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_33;
+wire [15:0] n_bits_15_0_33;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_34;
+wire [0:0] n_lt_34;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_35;
+wire [0:0] n_eq_35;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_36;
+wire [0:0] n_bits_0_0_36;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_37;
+wire [0:0] n_and_37;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_38;
+wire [0:0] n_or_38;
 // Unsigned resize: zero extend (or preserve width).
-wire [48:0] n_39;
+wire [48:0] n_resize_39;
 // Operation '+'; result limited to 49 bits. Signed interpretation only for slt/asr/signextend.
-wire [48:0] n_40;
+wire [48:0] n_add_40;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_41;
+wire [0:0] n_slt_41;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_42;
+wire [0:0] n_slt_42;
 // Select true operand when condition is 1; false operand otherwise.
-wire [48:0] n_43;
+wire [48:0] n_mux_43;
 // Select true operand when condition is 1; false operand otherwise.
-wire [48:0] n_44;
+wire [48:0] n_mux_44;
 // Signed fixed-point result: 24 total bits, 16 fractional bits; rounding NearestEven, overflow Saturate.
-wire [23:0] n_45;
+wire [23:0] n_resize_45;
 // Select true operand when condition is 1; false operand otherwise.
-wire [23:0] n_46;
+wire [23:0] n_mux_46;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_47;
+wire [2:0] n_mux_47;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_48;
+wire [0:0] n_mux_48;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_49;
+wire [7:0] n_mux_49;
 // Extract source bits [23:0], rebase to bit 0.
-wire [23:0] n_50;
+wire [23:0] n_bits_23_0_50;
 // Extract source bits [26:24], rebase to bit 0.
-wire [2:0] n_51;
+wire [2:0] n_bits_26_24_51;
 // Extract source bits [27:27], rebase to bit 0.
-wire [0:0] n_52;
+wire [0:0] n_bits_27_27_52;
 // Extract source bits [35:28], rebase to bit 0.
-wire [7:0] n_53;
+wire [7:0] n_bits_35_28_53;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_54;
+wire [0:0] n_not_54;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_55;
+wire [0:0] n_or_55;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_56;
+wire [0:0] n_or_56;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_57;
+wire [0:0] n_and_57;
 // Packed bus: [26:24] = high operand; [23:0] = low operand.
-wire [26:0] n_58;
+wire [26:0] n_concat_58;
 // Packed bus: [27:27] = high operand; [26:0] = low operand.
-wire [27:0] n_59;
+wire [27:0] n_concat_59;
 // Packed stream beat: DATA [23:0], KEEP [26:24], LAST [27], USER [35:28].
-wire [35:0] n_60;
+wire [35:0] n_concat_60;
 // Select true operand when condition is 1; false operand otherwise.
-wire [35:0] n_61;
+wire [35:0] n_mux_61;
 // Select true operand when condition is 1; false operand otherwise.
-wire [35:0] n_62;
+wire [35:0] n_mux_62;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_63;
+wire [0:0] n_not_63;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_64;
+wire [0:0] n_and_64;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_65;
+wire [0:0] n_and_65;
 // Select true operand when condition is 1; false operand otherwise.
-wire [35:0] n_66;
+wire [35:0] n_mux_66;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_67;
+wire [0:0] n_or_67;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_68;
+wire [0:0] n_mux_68;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_69;
+wire [0:0] n_and_69;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_70;
+wire [0:0] n_or_70;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_71;
-assign n_0 = ~s_input_cut_spill_valid;
-assign n_1 = s_input_cut_head >> 0;
-assign n_2 = s_input_cut_head >> 24;
-assign n_3 = s_input_cut_head >> 27;
-assign n_4 = s_input_cut_head >> 28;
-assign n_5 = ~s_gain_valid;
-assign n_6 = n_5 | s_gain_tready;
-assign n_7 = ~s_input_cut_valid;
-assign n_8 = n_7 | s_input_cut_tready;
-assign n_9 = s_input_cut_spill_valid | s_input_tvalid;
-assign n_10 = n_8 & n_9;
-assign n_11 = {s_input_tkeep, s_input_tdata};
-assign n_12 = {s_input_tlast, n_11};
-assign n_13 = {s_input_tuser, n_12};
-assign n_14 = s_input_cut_spill_valid ? s_input_cut_spill : n_13;
-assign n_15 = n_10 ? n_14 : s_input_cut_head;
-assign n_16 = ~n_8;
-assign n_17 = s_input_tvalid & s_input_tready;
-assign n_18 = n_16 & n_17;
-assign n_19 = n_18 ? n_13 : s_input_cut_spill;
-assign n_20 = s_input_cut_spill_valid | s_input_tvalid;
-assign n_21 = n_8 ? n_20 : s_input_cut_valid;
-assign n_22 = s_input_tvalid & s_input_tready;
-assign n_23 = s_input_cut_spill_valid | n_22;
-assign n_24 = n_8 ? 1'd0 : n_23;
-assign n_25 = ~s_output_cut_spill_valid;
-assign n_26 = n_6 ? s_input_cut_tvalid : s_gain_valid;
-assign n_27 = n_6 & s_input_cut_tvalid;
-assign n_28 = $signed(s_input_cut_tdata);
-assign n_29 = $signed(24'd98304);
-assign n_30 = n_28 * n_29;
-assign n_31 = $signed(n_30);
-assign n_32 = $signed(n_31) >>> 16;
-assign n_33 = n_31 >> 0;
-assign n_34 = 16'd32768 < n_33;
-assign n_35 = 16'd32768 == n_33;
-assign n_36 = n_32 >> 0;
-assign n_37 = n_35 & n_36;
-assign n_38 = n_34 | n_37;
-assign n_39 = n_38;
-assign n_40 = n_32 + n_39;
-assign n_41 = $signed(n_40) < $signed(49'd562949945032704);
-assign n_42 = $signed(49'd8388607) < $signed(n_40);
-assign n_43 = n_42 ? 49'd8388607 : n_40;
-assign n_44 = n_41 ? 49'd562949945032704 : n_43;
-assign n_45 = n_44;
-assign n_46 = n_27 ? n_45 : s_gain_data;
-assign n_47 = n_27 ? s_input_cut_tkeep : s_gain_keep;
-assign n_48 = n_27 ? s_input_cut_tlast : s_gain_last;
-assign n_49 = n_27 ? s_input_cut_tuser : s_gain_user;
-assign n_50 = s_output_cut_head >> 0;
-assign n_51 = s_output_cut_head >> 24;
-assign n_52 = s_output_cut_head >> 27;
-assign n_53 = s_output_cut_head >> 28;
-assign n_54 = ~s_output_cut_valid;
-assign n_55 = n_54 | s_output_cut_tready;
-assign n_56 = s_output_cut_spill_valid | s_gain_tvalid;
-assign n_57 = n_55 & n_56;
-assign n_58 = {s_gain_tkeep, s_gain_tdata};
-assign n_59 = {s_gain_tlast, n_58};
-assign n_60 = {s_gain_tuser, n_59};
-assign n_61 = s_output_cut_spill_valid ? s_output_cut_spill : n_60;
-assign n_62 = n_57 ? n_61 : s_output_cut_head;
-assign n_63 = ~n_55;
-assign n_64 = s_gain_tvalid & s_gain_tready;
-assign n_65 = n_63 & n_64;
-assign n_66 = n_65 ? n_60 : s_output_cut_spill;
-assign n_67 = s_output_cut_spill_valid | s_gain_tvalid;
-assign n_68 = n_55 ? n_67 : s_output_cut_valid;
-assign n_69 = s_gain_tvalid & s_gain_tready;
-assign n_70 = s_output_cut_spill_valid | n_69;
-assign n_71 = n_55 ? 1'd0 : n_70;
-assign s_input_tready = n_0;
+wire [0:0] n_mux_71;
+assign n_not_0 = ~s_input_cut_spill_valid;
+assign n_bits_23_0_1 = s_input_cut_head >> 0;
+assign n_bits_26_24_2 = s_input_cut_head >> 24;
+assign n_bits_27_27_3 = s_input_cut_head >> 27;
+assign n_bits_35_28_4 = s_input_cut_head >> 28;
+assign n_not_5 = ~s_gain_valid;
+assign n_or_6 = n_not_5 | s_gain_tready;
+assign n_not_7 = ~s_input_cut_valid;
+assign n_or_8 = n_not_7 | s_input_cut_tready;
+assign n_or_9 = s_input_cut_spill_valid | s_input_tvalid;
+assign n_and_10 = n_or_8 & n_or_9;
+assign n_concat_11 = {s_input_tkeep, s_input_tdata};
+assign n_concat_12 = {s_input_tlast, n_concat_11};
+assign n_concat_13 = {s_input_tuser, n_concat_12};
+assign n_mux_14 = s_input_cut_spill_valid ? s_input_cut_spill : n_concat_13;
+assign n_mux_15 = n_and_10 ? n_mux_14 : s_input_cut_head;
+assign n_not_16 = ~n_or_8;
+assign n_and_17 = s_input_tvalid & s_input_tready;
+assign n_and_18 = n_not_16 & n_and_17;
+assign n_mux_19 = n_and_18 ? n_concat_13 : s_input_cut_spill;
+assign n_or_20 = s_input_cut_spill_valid | s_input_tvalid;
+assign n_mux_21 = n_or_8 ? n_or_20 : s_input_cut_valid;
+assign n_and_22 = s_input_tvalid & s_input_tready;
+assign n_or_23 = s_input_cut_spill_valid | n_and_22;
+assign n_mux_24 = n_or_8 ? 1'd0 : n_or_23;
+assign n_not_25 = ~s_output_cut_spill_valid;
+assign n_mux_26 = n_or_6 ? s_input_cut_tvalid : s_gain_valid;
+assign n_and_27 = n_or_6 & s_input_cut_tvalid;
+assign n_signextend_28 = $signed(s_input_cut_tdata);
+assign n_signextend_29 = $signed(24'd98304);
+assign n_mul_30 = n_signextend_28 * n_signextend_29;
+assign n_signextend_31 = $signed(n_mul_30);
+assign n_asr_32 = $signed(n_signextend_31) >>> 16;
+assign n_bits_15_0_33 = n_signextend_31 >> 0;
+assign n_lt_34 = 16'd32768 < n_bits_15_0_33;
+assign n_eq_35 = 16'd32768 == n_bits_15_0_33;
+assign n_bits_0_0_36 = n_asr_32 >> 0;
+assign n_and_37 = n_eq_35 & n_bits_0_0_36;
+assign n_or_38 = n_lt_34 | n_and_37;
+assign n_resize_39 = n_or_38;
+assign n_add_40 = n_asr_32 + n_resize_39;
+assign n_slt_41 = $signed(n_add_40) < $signed(49'd562949945032704);
+assign n_slt_42 = $signed(49'd8388607) < $signed(n_add_40);
+assign n_mux_43 = n_slt_42 ? 49'd8388607 : n_add_40;
+assign n_mux_44 = n_slt_41 ? 49'd562949945032704 : n_mux_43;
+assign n_resize_45 = n_mux_44;
+assign n_mux_46 = n_and_27 ? n_resize_45 : s_gain_data;
+assign n_mux_47 = n_and_27 ? s_input_cut_tkeep : s_gain_keep;
+assign n_mux_48 = n_and_27 ? s_input_cut_tlast : s_gain_last;
+assign n_mux_49 = n_and_27 ? s_input_cut_tuser : s_gain_user;
+assign n_bits_23_0_50 = s_output_cut_head >> 0;
+assign n_bits_26_24_51 = s_output_cut_head >> 24;
+assign n_bits_27_27_52 = s_output_cut_head >> 27;
+assign n_bits_35_28_53 = s_output_cut_head >> 28;
+assign n_not_54 = ~s_output_cut_valid;
+assign n_or_55 = n_not_54 | s_output_cut_tready;
+assign n_or_56 = s_output_cut_spill_valid | s_gain_tvalid;
+assign n_and_57 = n_or_55 & n_or_56;
+assign n_concat_58 = {s_gain_tkeep, s_gain_tdata};
+assign n_concat_59 = {s_gain_tlast, n_concat_58};
+assign n_concat_60 = {s_gain_tuser, n_concat_59};
+assign n_mux_61 = s_output_cut_spill_valid ? s_output_cut_spill : n_concat_60;
+assign n_mux_62 = n_and_57 ? n_mux_61 : s_output_cut_head;
+assign n_not_63 = ~n_or_55;
+assign n_and_64 = s_gain_tvalid & s_gain_tready;
+assign n_and_65 = n_not_63 & n_and_64;
+assign n_mux_66 = n_and_65 ? n_concat_60 : s_output_cut_spill;
+assign n_or_67 = s_output_cut_spill_valid | s_gain_tvalid;
+assign n_mux_68 = n_or_55 ? n_or_67 : s_output_cut_valid;
+assign n_and_69 = s_gain_tvalid & s_gain_tready;
+assign n_or_70 = s_output_cut_spill_valid | n_and_69;
+assign n_mux_71 = n_or_55 ? 1'd0 : n_or_70;
+assign s_input_tready = n_not_0;
 assign s_output_tdata = s_output_cut_tdata;
 assign s_output_tkeep = s_output_cut_tkeep;
 assign s_output_tlast = s_output_cut_tlast;
 assign s_output_tuser = s_output_cut_tuser;
 assign s_output_tvalid = s_output_cut_tvalid;
-assign s_input_cut_tdata = n_1;
-assign s_input_cut_tkeep = n_2;
-assign s_input_cut_tlast = n_3;
-assign s_input_cut_tuser = n_4;
+assign s_input_cut_tdata = n_bits_23_0_1;
+assign s_input_cut_tkeep = n_bits_26_24_2;
+assign s_input_cut_tlast = n_bits_27_27_3;
+assign s_input_cut_tuser = n_bits_35_28_4;
 assign s_input_cut_tvalid = s_input_cut_valid;
-assign s_input_cut_tready = n_6;
+assign s_input_cut_tready = n_or_6;
 assign s_gain_tdata = s_gain_data;
 assign s_gain_tkeep = s_gain_keep;
 assign s_gain_tlast = s_gain_last;
 assign s_gain_tuser = s_gain_user;
 assign s_gain_tvalid = s_gain_valid;
-assign s_gain_tready = n_25;
-assign s_output_cut_tdata = n_50;
-assign s_output_cut_tkeep = n_51;
-assign s_output_cut_tlast = n_52;
-assign s_output_cut_tuser = n_53;
+assign s_gain_tready = n_not_25;
+assign s_output_cut_tdata = n_bits_23_0_50;
+assign s_output_cut_tkeep = n_bits_26_24_51;
+assign s_output_cut_tlast = n_bits_27_27_52;
+assign s_output_cut_tuser = n_bits_35_28_53;
 assign s_output_cut_tvalid = s_output_cut_valid;
 assign s_output_cut_tready = s_output_tready;
 always @(posedge clk) begin
@@ -349,19 +349,19 @@ always @(posedge clk) begin
     s_output_cut_valid <= 1'd0;
     s_output_cut_spill_valid <= 1'd0;
   end else begin
-    s_input_cut_head <= n_15;
-    s_input_cut_spill <= n_19;
-    s_input_cut_valid <= n_21;
-    s_input_cut_spill_valid <= n_24;
-    s_gain_valid <= n_26;
-    s_gain_data <= n_46;
-    s_gain_keep <= n_47;
-    s_gain_last <= n_48;
-    s_gain_user <= n_49;
-    s_output_cut_head <= n_62;
-    s_output_cut_spill <= n_66;
-    s_output_cut_valid <= n_68;
-    s_output_cut_spill_valid <= n_71;
+    s_input_cut_head <= n_mux_15;
+    s_input_cut_spill <= n_mux_19;
+    s_input_cut_valid <= n_mux_21;
+    s_input_cut_spill_valid <= n_mux_24;
+    s_gain_valid <= n_mux_26;
+    s_gain_data <= n_mux_46;
+    s_gain_keep <= n_mux_47;
+    s_gain_last <= n_mux_48;
+    s_gain_user <= n_mux_49;
+    s_output_cut_head <= n_mux_62;
+    s_output_cut_spill <= n_mux_66;
+    s_output_cut_valid <= n_mux_68;
+    s_output_cut_spill_valid <= n_mux_71;
   end
 end
 endmodule

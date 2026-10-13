@@ -348,6 +348,22 @@ h('Two complementary experiments')
 p('The offline Clock Lab evaluates exported circuit graphs. The Open in VeriSim links load actual generated Verilog plus a prepared testbench into the external browser simulator. Its first load needs network access. The exact link payloads pass local Icarus tests; hosted browser UI execution has not been verified here.')
 note('Requirements and exact boundaries: CONSTRUCTS_AND_REQUIREMENTS.md and SEQUENTIAL_CIL.md. Reproducible native-code, graph and RTL checks: tests/run-advanced.sh. These tests establish the included cases; they are not a proof for every program.')
 
+# 25 Traceable generated hardware
+page('Teacher extension  Names on the wires')
+p('A label helps us follow a wire through a drawing. SharpHDL can put useful labels on the wires in its generated Verilog too. The label changes what we call the wire, not the number it carries or when that number changes.')
+code('''var address = (baseAddress + offset)
+    .Named("effective_address");
+var selected = address.Eq(Expr.Const(16, 0xff02))
+    .Named("uart_tx_selected");''')
+h('Follow a labeled wire')
+code("""assign n_uart_tx_selected =
+    n_effective_address == 16'd65282;""")
+p('Read this aloud: the UART transmit register is selected when the address equals 65282. The same number written in hexadecimal is FF02. In TinyRisc, that address means send a byte. The comparison makes a one-bit yes-or-no wire; it does not store a number or add a clock.')
+table([['Label','What it tells us'],['n_effective_address','The address calculated by adding the base and offset.'],['n_uart_tx_selected','A yes-or-no result identifying the transmit register.'],['n_add_17','An unnamed addition; the number distinguishes this particular wire.'],['Method_IL_0002_add','Arithmetic traced to a method and instruction offset in CIL.']],[2.5,4.5],10.5)
+h('Try a detective experiment')
+p('Open docs/tinyrisc/TinyRisc_Demo.html. Step one instruction at a time and watch the PC, registers and output LEDs. Predict the next value before stepping. The prepared program adds 5 + 4 + 3 + 2 + 1 and leaves 15 on the LEDs. Its bundled trace works offline; the optional fresh VeriSim run needs the simulator engine.')
+note('The source builder supplies application names explicitly with Named. C# local names are not automatically recovered. Duplicate hints receive suffixes; every intermediate wire keeps its width and truncation. The demo steps through a recorded trace. A fresh VeriSim run executes real RTL, but is not a live paused processor. Requirements and examples: NET_NAMING.md.')
+
 # Remove inherited title rules and keep all headings black.
 for tree in (d.styles.element,d.element):
  for node in list(tree.iter(qn('w:pBdr'))):node.getparent().remove(node)

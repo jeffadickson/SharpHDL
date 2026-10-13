@@ -16,8 +16,8 @@ module h_CilDebugUnsignedHalf(
   output wire [0:0] s_fault
 );
 // Behavioral CIL result from Behavioral.CSharpFunctions.UnsignedHalf; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_0;
-assign n_0 = s_a >> 1;
-assign s_y = n_0;
+wire [31:0] n_shr_0;
+assign n_shr_0 = s_a >> 1;
+assign s_y = n_shr_0;
 assign s_fault = 1'd0;
 endmodule

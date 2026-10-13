@@ -26,100 +26,100 @@ reg [3:0] s_count;
 // FSM binary encoding: 0=Ready, 1=Running, 2=Done; reset=0; invalid encoding returns to 0 on next edge.
 reg [1:0] s_drill_state;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_eq_0;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_eq_1;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_and_2;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_3;
+wire [0:0] n_not_3;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_4;
+wire [0:0] n_and_4;
 // Operation '+'; result limited to 4 bits. Signed interpretation only for slt/asr/signextend.
-wire [3:0] n_5;
+wire [3:0] n_add_5;
 // Select true operand when condition is 1; false operand otherwise.
-wire [3:0] n_6;
+wire [3:0] n_mux_6;
 // Select true operand when condition is 1; false operand otherwise.
-wire [3:0] n_7;
+wire [3:0] n_mux_7;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_8;
+wire [0:0] n_eq_8;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_9;
+wire [0:0] n_and_9;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_10;
+wire [0:0] n_eq_10;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_11;
+wire [0:0] n_and_11;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_12;
+wire [0:0] n_eq_12;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_13;
+wire [0:0] n_eq_13;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_14;
+wire [0:0] n_and_14;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_15;
+wire [0:0] n_and_15;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_16;
+wire [0:0] n_eq_16;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_17;
+wire [0:0] n_not_17;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_18;
+wire [0:0] n_and_18;
 // Unsigned resize: zero extend (or preserve width).
-wire [2:0] n_19;
+wire [2:0] n_resize_19;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_20;
+wire [0:0] n_lt_20;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_21;
+wire [1:0] n_mux_21;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_22;
+wire [1:0] n_mux_22;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_23;
+wire [1:0] n_mux_23;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_24;
+wire [1:0] n_mux_24;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_25;
+wire [1:0] n_mux_25;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_26;
+wire [0:0] n_eq_26;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_27;
-assign n_0 = s_drill_state == 2'd0;
-assign n_1 = s_drill_state == 2'd1;
-assign n_2 = n_1 & s_enable;
-assign n_3 = ~s_stop;
-assign n_4 = n_2 & n_3;
-assign n_5 = s_count + 4'd1;
-assign n_6 = n_4 ? n_5 : s_count;
-assign n_7 = n_0 ? 4'd0 : n_6;
-assign n_8 = s_drill_state == 2'd0;
-assign n_9 = n_8 & s_start;
-assign n_10 = s_drill_state == 2'd1;
-assign n_11 = n_10 & s_stop;
-assign n_12 = s_drill_state == 2'd1;
-assign n_13 = s_count == 4'd3;
-assign n_14 = s_enable & n_13;
-assign n_15 = n_12 & n_14;
-assign n_16 = s_drill_state == 2'd2;
-assign n_17 = ~s_start;
-assign n_18 = n_16 & n_17;
-assign n_19 = s_drill_state;
-assign n_20 = n_19 < 3'd3;
-assign n_21 = n_20 ? s_drill_state : 2'd0;
-assign n_22 = n_18 ? 2'd0 : n_21;
-assign n_23 = n_15 ? 2'd2 : n_22;
-assign n_24 = n_11 ? 2'd0 : n_23;
-assign n_25 = n_9 ? 2'd1 : n_24;
-assign n_26 = s_drill_state == 2'd1;
-assign n_27 = s_drill_state == 2'd2;
+wire [0:0] n_eq_27;
+assign n_eq_0 = s_drill_state == 2'd0;
+assign n_eq_1 = s_drill_state == 2'd1;
+assign n_and_2 = n_eq_1 & s_enable;
+assign n_not_3 = ~s_stop;
+assign n_and_4 = n_and_2 & n_not_3;
+assign n_add_5 = s_count + 4'd1;
+assign n_mux_6 = n_and_4 ? n_add_5 : s_count;
+assign n_mux_7 = n_eq_0 ? 4'd0 : n_mux_6;
+assign n_eq_8 = s_drill_state == 2'd0;
+assign n_and_9 = n_eq_8 & s_start;
+assign n_eq_10 = s_drill_state == 2'd1;
+assign n_and_11 = n_eq_10 & s_stop;
+assign n_eq_12 = s_drill_state == 2'd1;
+assign n_eq_13 = s_count == 4'd3;
+assign n_and_14 = s_enable & n_eq_13;
+assign n_and_15 = n_eq_12 & n_and_14;
+assign n_eq_16 = s_drill_state == 2'd2;
+assign n_not_17 = ~s_start;
+assign n_and_18 = n_eq_16 & n_not_17;
+assign n_resize_19 = s_drill_state;
+assign n_lt_20 = n_resize_19 < 3'd3;
+assign n_mux_21 = n_lt_20 ? s_drill_state : 2'd0;
+assign n_mux_22 = n_and_18 ? 2'd0 : n_mux_21;
+assign n_mux_23 = n_and_15 ? 2'd2 : n_mux_22;
+assign n_mux_24 = n_and_11 ? 2'd0 : n_mux_23;
+assign n_mux_25 = n_and_9 ? 2'd1 : n_mux_24;
+assign n_eq_26 = s_drill_state == 2'd1;
+assign n_eq_27 = s_drill_state == 2'd2;
 assign s_phase = s_drill_state;
 assign s_ticks = s_count;
-assign s_running = n_26;
-assign s_done = n_27;
+assign s_running = n_eq_26;
+assign s_done = n_eq_27;
 always @(posedge clk) begin
   if (rst) begin
     s_count <= 4'd0;
     s_drill_state <= 2'd0;
   end else begin
-    s_count <= n_7;
-    s_drill_state <= n_25;
+    s_count <= n_mux_7;
+    s_drill_state <= n_mux_25;
   end
 end
 endmodule

@@ -16,29 +16,29 @@ module h_CilCsLoop(
   output wire [0:0] s_fault
 );
 // Operation '<<'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_0;
+wire [31:0] n_shl_0;
 // Loop IL_0008 add; native 32-bit arithmetic.
-wire [31:0] n_1;
+wire [31:0] n_Loop_IL_0008_add;
 // Operation '<<'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_2;
+wire [31:0] n_shl_1;
 // Loop IL_0008 add; native 32-bit arithmetic.
-wire [31:0] n_3;
+wire [31:0] n_Loop_IL_0008_add_2;
 // Operation '<<'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_4;
+wire [31:0] n_shl_2;
 // Loop IL_0008 add; native 32-bit arithmetic.
-wire [31:0] n_5;
+wire [31:0] n_Loop_IL_0008_add_3;
 // Operation '<<'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_6;
+wire [31:0] n_shl_3;
 // Behavioral CIL result from Behavioral.CSharpFunctions.Loop; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_7;
-assign n_0 = s_a << 1;
-assign n_1 = n_0 + s_b;
-assign n_2 = n_1 << 1;
-assign n_3 = n_2 + s_b;
-assign n_4 = n_3 << 1;
-assign n_5 = n_4 + s_b;
-assign n_6 = n_5 << 1;
-assign n_7 = n_6 + s_b;
-assign s_y = n_7;
+wire [31:0] n_Loop_IL_0008_add_4;
+assign n_shl_0 = s_a << 1;
+assign n_Loop_IL_0008_add = n_shl_0 + s_b;
+assign n_shl_1 = n_Loop_IL_0008_add << 1;
+assign n_Loop_IL_0008_add_2 = n_shl_1 + s_b;
+assign n_shl_2 = n_Loop_IL_0008_add_2 << 1;
+assign n_Loop_IL_0008_add_3 = n_shl_2 + s_b;
+assign n_shl_3 = n_Loop_IL_0008_add_3 << 1;
+assign n_Loop_IL_0008_add_4 = n_shl_3 + s_b;
+assign s_y = n_Loop_IL_0008_add_4;
 assign s_fault = 1'd0;
 endmodule

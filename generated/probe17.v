@@ -56,88 +56,88 @@ reg [16:0] s_r;
 // State register; synchronous active-high reset value 0; updates at rising clk.
 reg [16:0] s_prev;
 // Operation '+'; result limited to 17 bits. Signed interpretation only for slt/asr/signextend.
-wire [16:0] n_0;
+wire [16:0] n_add_0;
 // Select true operand when condition is 1; false operand otherwise.
-wire [16:0] n_1;
+wire [16:0] n_mux_1;
 // Operation '+'; result limited to 17 bits. Signed interpretation only for slt/asr/signextend.
-wire [16:0] n_2;
+wire [16:0] n_add_2;
 // Operation '-'; result limited to 17 bits. Signed interpretation only for slt/asr/signextend.
-wire [16:0] n_3;
+wire [16:0] n_sub_3;
 // Operation '*'; result limited to 17 bits. Signed interpretation only for slt/asr/signextend.
-wire [16:0] n_4;
+wire [16:0] n_mul_4;
 // Operation '&'; result limited to 17 bits. Signed interpretation only for slt/asr/signextend.
-wire [16:0] n_5;
+wire [16:0] n_and_5;
 // Operation '|'; result limited to 17 bits. Signed interpretation only for slt/asr/signextend.
-wire [16:0] n_6;
+wire [16:0] n_or_6;
 // Operation '^'; result limited to 17 bits. Signed interpretation only for slt/asr/signextend.
-wire [16:0] n_7;
+wire [16:0] n_xor_7;
 // Operation '~'; result limited to 17 bits. Signed interpretation only for slt/asr/signextend.
-wire [16:0] n_8;
+wire [16:0] n_not_8;
 // Operation '<<'; result limited to 17 bits. Signed interpretation only for slt/asr/signextend.
-wire [16:0] n_9;
+wire [16:0] n_shl_9;
 // Operation '>>'; result limited to 17 bits. Signed interpretation only for slt/asr/signextend.
-wire [16:0] n_10;
+wire [16:0] n_shr_10;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_11;
+wire [0:0] n_eq_11;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_12;
+wire [0:0] n_lt_12;
 // Select true operand when condition is 1; false operand otherwise.
-wire [16:0] n_13;
+wire [16:0] n_mux_13;
 // Packed bus: [33:17] = high operand; [16:0] = low operand.
-wire [33:0] n_14;
+wire [33:0] n_concat_14;
 // Extract source bits [16:0], rebase to bit 0.
-wire [16:0] n_15;
+wire [16:0] n_bits_16_0_15;
 // Unsigned resize: zero extend (or preserve width).
-wire [18:0] n_16;
+wire [18:0] n_resize_16;
 // Operation '+'; result limited to 17 bits. Signed interpretation only for slt/asr/signextend.
-wire [16:0] n_17;
+wire [16:0] n_add_17;
 // Unsigned resize: zero extend (or preserve width).
-wire [18:0] n_18;
+wire [18:0] n_resize_18;
 // Unsigned resize: zero extend (or preserve width).
-wire [18:0] n_19;
+wire [18:0] n_resize_19;
 // Unsigned resize: zero extend (or preserve width).
-wire [18:0] n_20;
+wire [18:0] n_resize_20;
 // Operation '+'; result limited to 19 bits. Signed interpretation only for slt/asr/signextend.
-wire [18:0] n_21;
-assign n_0 = s_r + s_a;
-assign n_1 = s_en ? n_0 : s_r;
-assign n_2 = s_a + s_b;
-assign n_3 = s_a - s_b;
-assign n_4 = s_a * s_b;
-assign n_5 = s_a & s_b;
-assign n_6 = s_a | s_b;
-assign n_7 = s_a ^ s_b;
-assign n_8 = ~s_a;
-assign n_9 = s_a << 2;
-assign n_10 = s_a >> 2;
-assign n_11 = s_a == s_b;
-assign n_12 = s_a < s_b;
-assign n_13 = s_en ? s_a : s_b;
-assign n_14 = {s_a, s_b};
-assign n_15 = s_a >> 0;
-assign n_16 = s_a;
-assign n_17 = s_a + s_b;
-assign n_18 = n_17;
-assign n_19 = s_a;
-assign n_20 = s_b;
-assign n_21 = n_19 + n_20;
-assign s_o0 = n_2;
-assign s_o1 = n_3;
-assign s_o2 = n_4;
-assign s_o3 = n_5;
-assign s_o4 = n_6;
-assign s_o5 = n_7;
-assign s_o6 = n_8;
-assign s_o7 = n_9;
-assign s_o8 = n_10;
-assign s_o9 = n_11;
-assign s_o10 = n_12;
-assign s_o11 = n_13;
-assign s_o12 = n_14;
-assign s_o13 = n_15;
-assign s_o14 = n_16;
-assign s_o15 = n_18;
-assign s_o16 = n_21;
+wire [18:0] n_add_21;
+assign n_add_0 = s_r + s_a;
+assign n_mux_1 = s_en ? n_add_0 : s_r;
+assign n_add_2 = s_a + s_b;
+assign n_sub_3 = s_a - s_b;
+assign n_mul_4 = s_a * s_b;
+assign n_and_5 = s_a & s_b;
+assign n_or_6 = s_a | s_b;
+assign n_xor_7 = s_a ^ s_b;
+assign n_not_8 = ~s_a;
+assign n_shl_9 = s_a << 2;
+assign n_shr_10 = s_a >> 2;
+assign n_eq_11 = s_a == s_b;
+assign n_lt_12 = s_a < s_b;
+assign n_mux_13 = s_en ? s_a : s_b;
+assign n_concat_14 = {s_a, s_b};
+assign n_bits_16_0_15 = s_a >> 0;
+assign n_resize_16 = s_a;
+assign n_add_17 = s_a + s_b;
+assign n_resize_18 = n_add_17;
+assign n_resize_19 = s_a;
+assign n_resize_20 = s_b;
+assign n_add_21 = n_resize_19 + n_resize_20;
+assign s_o0 = n_add_2;
+assign s_o1 = n_sub_3;
+assign s_o2 = n_mul_4;
+assign s_o3 = n_and_5;
+assign s_o4 = n_or_6;
+assign s_o5 = n_xor_7;
+assign s_o6 = n_not_8;
+assign s_o7 = n_shl_9;
+assign s_o8 = n_shr_10;
+assign s_o9 = n_eq_11;
+assign s_o10 = n_lt_12;
+assign s_o11 = n_mux_13;
+assign s_o12 = n_concat_14;
+assign s_o13 = n_bits_16_0_15;
+assign s_o14 = n_resize_16;
+assign s_o15 = n_resize_18;
+assign s_o16 = n_add_21;
 assign s_o17 = s_r;
 assign s_o18 = s_prev;
 always @(posedge clk) begin
@@ -145,7 +145,7 @@ always @(posedge clk) begin
     s_r <= 17'd0;
     s_prev <= 17'd0;
   end else begin
-    s_r <= n_1;
+    s_r <= n_mux_1;
     s_prev <= s_r;
   end
 end

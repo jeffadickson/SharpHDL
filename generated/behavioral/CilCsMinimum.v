@@ -16,14 +16,14 @@ module h_CilCsMinimum(
   output wire [0:0] s_fault
 );
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_slt_0;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_not_1;
 // Behavioral CIL result from Behavioral.CSharpFunctions.Minimum; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_2;
-assign n_0 = $signed(s_a) < $signed(s_b);
-assign n_1 = ~n_0;
-assign n_2 = n_1 ? s_b : s_a;
-assign s_y = n_2;
+wire [31:0] n_mux_2;
+assign n_slt_0 = $signed(s_a) < $signed(s_b);
+assign n_not_1 = ~n_slt_0;
+assign n_mux_2 = n_not_1 ? s_b : s_a;
+assign s_y = n_mux_2;
 assign s_fault = 1'd0;
 endmodule

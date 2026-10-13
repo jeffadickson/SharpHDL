@@ -54,45 +54,45 @@ reg [0:0] s_mul_last;
 // mul: registered TUSER metadata [3:0].
 reg [3:0] s_mul_user;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_not_0;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_or_1;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_2;
+wire [0:0] n_mux_2;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_3;
+wire [0:0] n_and_3;
 // Extract source bits [7:0], rebase to bit 0.
-wire [7:0] n_4;
+wire [7:0] n_bits_7_0_4;
 // Signed two's-complement extension.
-wire [15:0] n_5;
+wire [15:0] n_signextend_5;
 // Extract source bits [15:8], rebase to bit 0.
-wire [7:0] n_6;
+wire [7:0] n_bits_15_8_6;
 // Signed two's-complement extension.
-wire [15:0] n_7;
+wire [15:0] n_signextend_7;
 // mul: full 16-bit signed two's complement product A*B; architecture Parallel. TKEEP all ones; TLAST/TUSER follow the accepted operand pair. One output register; multiplication is combinational, with synthesis-selected mapping.
-wire [15:0] n_8;
+wire [15:0] n_mul_8;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_9;
+wire [15:0] n_mux_9;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_10;
+wire [1:0] n_mux_10;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_11;
+wire [0:0] n_mux_11;
 // Select true operand when condition is 1; false operand otherwise.
-wire [3:0] n_12;
-assign n_0 = ~s_mul_valid;
-assign n_1 = n_0 | s_mul_tready;
-assign n_2 = n_1 ? s_input_tvalid : s_mul_valid;
-assign n_3 = n_1 & s_input_tvalid;
-assign n_4 = s_input_tdata >> 0;
-assign n_5 = $signed(n_4);
-assign n_6 = s_input_tdata >> 8;
-assign n_7 = $signed(n_6);
-assign n_8 = n_5 * n_7;
-assign n_9 = n_3 ? n_8 : s_mul_data;
-assign n_10 = n_3 ? s_input_tkeep : s_mul_keep;
-assign n_11 = n_3 ? s_input_tlast : s_mul_last;
-assign n_12 = n_3 ? s_input_tuser : s_mul_user;
-assign s_input_tready = n_1;
+wire [3:0] n_mux_12;
+assign n_not_0 = ~s_mul_valid;
+assign n_or_1 = n_not_0 | s_mul_tready;
+assign n_mux_2 = n_or_1 ? s_input_tvalid : s_mul_valid;
+assign n_and_3 = n_or_1 & s_input_tvalid;
+assign n_bits_7_0_4 = s_input_tdata >> 0;
+assign n_signextend_5 = $signed(n_bits_7_0_4);
+assign n_bits_15_8_6 = s_input_tdata >> 8;
+assign n_signextend_7 = $signed(n_bits_15_8_6);
+assign n_mul_8 = n_signextend_5 * n_signextend_7;
+assign n_mux_9 = n_and_3 ? n_mul_8 : s_mul_data;
+assign n_mux_10 = n_and_3 ? s_input_tkeep : s_mul_keep;
+assign n_mux_11 = n_and_3 ? s_input_tlast : s_mul_last;
+assign n_mux_12 = n_and_3 ? s_input_tuser : s_mul_user;
+assign s_input_tready = n_or_1;
 assign s_output_tdata = s_mul_tdata;
 assign s_output_tkeep = s_mul_tkeep;
 assign s_output_tlast = s_mul_tlast;
@@ -112,11 +112,11 @@ always @(posedge clk) begin
     s_mul_last <= 1'd0;
     s_mul_user <= 4'd0;
   end else begin
-    s_mul_valid <= n_2;
-    s_mul_data <= n_9;
-    s_mul_keep <= n_10;
-    s_mul_last <= n_11;
-    s_mul_user <= n_12;
+    s_mul_valid <= n_mux_2;
+    s_mul_data <= n_mux_9;
+    s_mul_keep <= n_mux_10;
+    s_mul_last <= n_mux_11;
+    s_mul_user <= n_mux_12;
   end
 end
 endmodule

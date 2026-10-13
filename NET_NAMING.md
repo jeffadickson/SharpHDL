@@ -47,5 +47,6 @@ its existing interface or force a literal into a wire. Hint metadata is not
 propagated through arbitrary graph rewrites. Synthesis may optimize away or
 rename nets; these names describe the emitted RTL, not a physical placement.
 
-Run `tests/run-tinyrisc.sh`, then `python3 tests/check-net-naming.py` with
+Run `tests/run-tinyrisc.sh` and `tests/run-advanced.sh`, then
+`python3 tests/check-net-naming.py` with
 `DOTNET_ROOT` and Icarus on PATH. See `docs/tinyrisc/README.md` for demo tests.

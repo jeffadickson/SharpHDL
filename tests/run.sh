@@ -2,7 +2,10 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p build generated
-if command -v dotnet >/dev/null; then
+if [[ -n "${DOTNET_ROOT:-}" ]]; then
+  python3 tools/build_test_suite.py "$DOTNET_ROOT" core
+  "$DOTNET_ROOT/dotnet" build/core/core.dll
+elif command -v dotnet >/dev/null; then
   dotnet run --project tests/Tests.csproj
 else
   mcs -r:System.Numerics -out:build/tests.exe src/SharpHDL/*.cs examples/*.cs tests/*.cs

@@ -453,15 +453,15 @@ Finding identical cells in module `\h_Divide8SignedParallelFloorWrap'.
 Removed a total of 0 cells.
 
 3.12.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$578 ($dff) from module h_Divide8SignedParallelFloorWrap (D = \n_155, Q = \s_div_user, rval = 4'0000).
+Adding SRST signal on $procdff$578 ($dff) from module h_Divide8SignedParallelFloorWrap (D = \n_mux_155, Q = \s_div_user, rval = 4'0000).
 Adding EN signal on $auto$ff.cc:266:slice$579 ($sdff) from module h_Divide8SignedParallelFloorWrap (D = \s_input_tuser, Q = \s_div_user).
-Adding SRST signal on $procdff$577 ($dff) from module h_Divide8SignedParallelFloorWrap (D = \n_154, Q = \s_div_last, rval = 1'0).
+Adding SRST signal on $procdff$577 ($dff) from module h_Divide8SignedParallelFloorWrap (D = \n_mux_154, Q = \s_div_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$581 ($sdff) from module h_Divide8SignedParallelFloorWrap (D = \s_input_tlast, Q = \s_div_last).
-Adding SRST signal on $procdff$576 ($dff) from module h_Divide8SignedParallelFloorWrap (D = \n_153, Q = \s_div_keep, rval = 3'000).
+Adding SRST signal on $procdff$576 ($dff) from module h_Divide8SignedParallelFloorWrap (D = \n_mux_153, Q = \s_div_keep, rval = 3'000).
 Adding EN signal on $auto$ff.cc:266:slice$583 ($sdff) from module h_Divide8SignedParallelFloorWrap (D = 3'111, Q = \s_div_keep).
-Adding SRST signal on $procdff$575 ($dff) from module h_Divide8SignedParallelFloorWrap (D = \n_152, Q = \s_div_data, rval = 24'000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$585 ($sdff) from module h_Divide8SignedParallelFloorWrap (D = { 5'00000 \n_135 \n_133 \n_143 \n_147 }, Q = \s_div_data).
-Adding SRST signal on $procdff$574 ($dff) from module h_Divide8SignedParallelFloorWrap (D = \n_2, Q = \s_div_valid, rval = 1'0).
+Adding SRST signal on $procdff$575 ($dff) from module h_Divide8SignedParallelFloorWrap (D = \n_mux_152, Q = \s_div_data, rval = 24'000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$585 ($sdff) from module h_Divide8SignedParallelFloorWrap (D = { 5'00000 \n_and_135 \n_eq_133 \n_mux_143 \n_mux_147 }, Q = \s_div_data).
+Adding SRST signal on $procdff$574 ($dff) from module h_Divide8SignedParallelFloorWrap (D = \n_mux_2, Q = \s_div_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$587 ($sdff) from module h_Divide8SignedParallelFloorWrap (D = \s_input_tvalid, Q = \s_div_valid).
 Setting constant 0-bit at position 19 on $auto$ff.cc:266:slice$586 ($sdffe) from module h_Divide8SignedParallelFloorWrap.
 Setting constant 0-bit at position 20 on $auto$ff.cc:266:slice$586 ($sdffe) from module h_Divide8SignedParallelFloorWrap.
@@ -582,27 +582,33 @@ Removed top 1 bits (of 9) from port Y of cell h_Divide8SignedParallelFloorWrap.$
 Removed top 1 bits (of 9) from port A of cell h_Divide8SignedParallelFloorWrap.$sub$generated/Divide8SignedParallelFloorWrap.v:478$81 ($sub).
 Removed top 1 bits (of 9) from port Y of cell h_Divide8SignedParallelFloorWrap.$sub$generated/Divide8SignedParallelFloorWrap.v:512$107 ($sub).
 Removed top 1 bits (of 9) from port B of cell h_Divide8SignedParallelFloorWrap.$sub$generated/Divide8SignedParallelFloorWrap.v:512$107 ($sub).
-Removed top 1 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_107.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_144.
-Removed top 6 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_24.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_26.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_27.
-Removed top 6 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_37.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_40.
-Removed top 5 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_51.
-Removed top 4 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_65.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_69.
-Removed top 3 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_79.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_83.
-Removed top 2 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_93.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_96.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_mux_111.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_mux_27.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_mux_41.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_mux_55.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_mux_69.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_mux_83.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_mux_97.
+Removed top 1 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_or_107.
+Removed top 6 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_or_37.
+Removed top 5 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_or_51.
+Removed top 4 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_or_65.
+Removed top 3 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_or_79.
+Removed top 2 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_or_93.
+Removed top 6 bits (of 8) from wire h_Divide8SignedParallelFloorWrap.n_shl_24.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_sub_144.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_sub_26.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_sub_40.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_sub_54.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_sub_68.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelFloorWrap.n_sub_96.
 Removed top 5 bits (of 24) from wire h_Divide8SignedParallelFloorWrap.s_div_data.
 
 3.14. Executing PEEPOPT pass (run peephole optimizers).
 
 3.15. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \h_Divide8SignedParallelFloorWrap..
-Removed 0 unused cells and 15 unused wires.
+Removed 0 unused cells and 21 unused wires.
 <suppressed ~1 debug messages>
 
 3.16. Executing SHARE pass (SAT-based resource sharing).
@@ -663,28 +669,28 @@ Extracting $alu and $macc cells in module h_Divide8SignedParallelFloorWrap:
   creating $alu model for $lt$generated/Divide8SignedParallelFloorWrap.v:472$77 ($lt): new $alu
   creating $alu model for $lt$generated/Divide8SignedParallelFloorWrap.v:486$87 ($lt): new $alu
   creating $alu model for $lt$generated/Divide8SignedParallelFloorWrap.v:499$96 ($lt): new $alu
-  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:499$96: $auto$alumacc.cc:485:replace_alu$614
-  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:486$87: $auto$alumacc.cc:485:replace_alu$619
-  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:472$77: $auto$alumacc.cc:485:replace_alu$630
-  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:458$67: $auto$alumacc.cc:485:replace_alu$641
-  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:444$57: $auto$alumacc.cc:485:replace_alu$652
-  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:430$47: $auto$alumacc.cc:485:replace_alu$663
-  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:416$37: $auto$alumacc.cc:485:replace_alu$674
-  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:402$27: $auto$alumacc.cc:485:replace_alu$685
-  creating $alu cell for $add$generated/Divide8SignedParallelFloorWrap.v:498$95: $auto$alumacc.cc:485:replace_alu$696
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:380$11: $auto$alumacc.cc:485:replace_alu$699
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:385$15: $auto$alumacc.cc:485:replace_alu$702
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:394$21, $lt$generated/Divide8SignedParallelFloorWrap.v:388$17: $auto$alumacc.cc:485:replace_alu$705
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:408$31: $auto$alumacc.cc:485:replace_alu$710
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:422$41: $auto$alumacc.cc:485:replace_alu$713
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:436$51: $auto$alumacc.cc:485:replace_alu$716
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:450$61: $auto$alumacc.cc:485:replace_alu$719
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:464$71: $auto$alumacc.cc:485:replace_alu$722
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:478$81: $auto$alumacc.cc:485:replace_alu$725
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:492$90: $auto$alumacc.cc:485:replace_alu$728
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:506$101: $auto$alumacc.cc:485:replace_alu$731
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:508$103: $auto$alumacc.cc:485:replace_alu$734
-  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:512$107: $auto$alumacc.cc:485:replace_alu$737
+  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:499$96: $auto$alumacc.cc:485:replace_alu$620
+  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:486$87: $auto$alumacc.cc:485:replace_alu$625
+  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:472$77: $auto$alumacc.cc:485:replace_alu$636
+  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:458$67: $auto$alumacc.cc:485:replace_alu$647
+  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:444$57: $auto$alumacc.cc:485:replace_alu$658
+  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:430$47: $auto$alumacc.cc:485:replace_alu$669
+  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:416$37: $auto$alumacc.cc:485:replace_alu$680
+  creating $alu cell for $lt$generated/Divide8SignedParallelFloorWrap.v:402$27: $auto$alumacc.cc:485:replace_alu$691
+  creating $alu cell for $add$generated/Divide8SignedParallelFloorWrap.v:498$95: $auto$alumacc.cc:485:replace_alu$702
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:380$11: $auto$alumacc.cc:485:replace_alu$705
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:385$15: $auto$alumacc.cc:485:replace_alu$708
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:394$21, $lt$generated/Divide8SignedParallelFloorWrap.v:388$17: $auto$alumacc.cc:485:replace_alu$711
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:408$31: $auto$alumacc.cc:485:replace_alu$716
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:422$41: $auto$alumacc.cc:485:replace_alu$719
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:436$51: $auto$alumacc.cc:485:replace_alu$722
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:450$61: $auto$alumacc.cc:485:replace_alu$725
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:464$71: $auto$alumacc.cc:485:replace_alu$728
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:478$81: $auto$alumacc.cc:485:replace_alu$731
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:492$90: $auto$alumacc.cc:485:replace_alu$734
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:506$101: $auto$alumacc.cc:485:replace_alu$737
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:508$103: $auto$alumacc.cc:485:replace_alu$740
+  creating $alu cell for $sub$generated/Divide8SignedParallelFloorWrap.v:512$107: $auto$alumacc.cc:485:replace_alu$743
   created 22 $alu and 0 $macc cells.
 
 3.21. Executing OPT pass (performing simple optimizations).
@@ -805,7 +811,7 @@ No more expansions possible.
 
 3.27.1. Executing OPT_EXPR pass (perform const folding).
 Optimizing module h_Divide8SignedParallelFloorWrap.
-<suppressed ~5 debug messages>
+<suppressed ~3 debug messages>
 
 3.27.2. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\h_Divide8SignedParallelFloorWrap'.
@@ -897,18 +903,18 @@ Successfully finished Verilog frontend.
 3.31.3. Continuing TECHMAP pass.
 Using extmapper simplemap for cells of type $not.
 Using extmapper simplemap for cells of type $or.
+Using template $paramod$a2af9b43308e3114c3b5dd3f4dc3329b2387395d\_80_ice40_alu for cells of type $alu.
+Using template $paramod$d1615bf4e5e328245ffd1550e5fe105901cda77b\_90_alu for cells of type $alu.
 Using extmapper simplemap for cells of type $and.
 Using extmapper simplemap for cells of type $xor.
 Using template $paramod$c3cd1564c35d873179656addd6052d7ea8b6d991\_80_ice40_alu for cells of type $alu.
 Using extmapper simplemap for cells of type $mux.
 Using template $paramod$a1bc51c02ce12ac21eb18988e83292af48ed7d72\_80_ice40_alu for cells of type $alu.
-Using template $paramod$a2af9b43308e3114c3b5dd3f4dc3329b2387395d\_80_ice40_alu for cells of type $alu.
 Using template $paramod$78464f9f65d57061f7490f3fe5dd257e4a61e2b7\_80_ice40_alu for cells of type $alu.
 Using extmapper simplemap for cells of type $reduce_and.
 Using template $paramod$cd54e322aa4265ca236096fe4bb634aaec4e39b4\_80_ice40_alu for cells of type $alu.
 Using extmapper simplemap for cells of type $logic_not.
 Using template $paramod$53700bbee849b2010ad0b60a61ccd204a10e24ca\_80_ice40_alu for cells of type $alu.
-Using template $paramod$d1615bf4e5e328245ffd1550e5fe105901cda77b\_90_alu for cells of type $alu.
 Using extmapper simplemap for cells of type $sdffe.
 Using extmapper simplemap for cells of type $pos.
 Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000010 for cells of type $lcu.
@@ -938,11 +944,11 @@ Removed 77 unused cells and 359 unused wires.
 3.33. Executing ICE40_OPT pass (performing simple optimizations).
 
 3.33.1. Running ICE40 specific optimizations.
-Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$696.slice[8].carry: CO=1'0
-Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$699.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$699.BB [0]
-Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$702.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$702.BB [0]
-Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$734.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$734.BB [0]
-Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$737.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$737.BB [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$702.slice[8].carry: CO=1'0
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$705.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$705.BB [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$708.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$708.BB [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$740.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$740.BB [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$743.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$743.BB [0]
 
 3.33.2. Executing OPT_EXPR pass (perform const folding).
 Optimizing module h_Divide8SignedParallelFloorWrap.
@@ -1013,11 +1019,11 @@ No more expansions possible.
 Optimizing module h_Divide8SignedParallelFloorWrap.
 
 3.37. Executing SIMPLEMAP pass (map simple cells to gate primitives).
-Mapping h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$696.slice[8].carry ($lut).
-Mapping h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$699.slice[0].carry ($lut).
-Mapping h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$702.slice[0].carry ($lut).
-Mapping h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$734.slice[0].carry ($lut).
-Mapping h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$737.slice[0].carry ($lut).
+Mapping h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$702.slice[8].carry ($lut).
+Mapping h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$705.slice[0].carry ($lut).
+Mapping h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$708.slice[0].carry ($lut).
+Mapping h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$740.slice[0].carry ($lut).
+Mapping h_Divide8SignedParallelFloorWrap.$auto$alumacc.cc:485:replace_alu$743.slice[0].carry ($lut).
 
 3.38. Executing ICE40_OPT pass (performing simple optimizations).
 
@@ -1100,7 +1106,7 @@ ABC: Participating nodes from the first network   =     238. (  80.68 % of nodes
 ABC: Participating nodes from the second network  =     256. (  86.78 % of nodes)
 ABC: Node pairs (any polarity)                    =     238. (  80.68 % of names can be moved)
 ABC: Node pairs (same polarity)                   =     225. (  76.27 % of names can be moved)
-ABC: Total runtime =     0.10 sec
+ABC: Total runtime =     0.06 sec
 ABC: + write_blif <abc-temp-dir>/output.blif 
 
 3.40.1.2. Re-integrating ABC results.
@@ -1187,14 +1193,14 @@ Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000001\LUT=2'01 
 Using template $paramod$fd904e9e35cfd343a9df248824bd3f1408724879\$lut for cells of type $lut.
 Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00110101 for cells of type $lut.
 Using template $paramod$9d707d218adbd63b6f9a0c79d7ee037306fb6296\$lut for cells of type $lut.
-Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01010011 for cells of type $lut.
-Using template $paramod$4cf5305612d86489c1a6171729557670bf08582e\$lut for cells of type $lut.
 Using template $paramod$d8f7a71542d461bf3c8abd7204340fac59138bfd\$lut for cells of type $lut.
+Using template $paramod$d3f4c7e3f0239dbfbe248a0012ae40b9c40236fc\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01010011 for cells of type $lut.
+Using template $paramod$deb4f121bbf3d55ed9a98f692fd112e0918f51b5\$lut for cells of type $lut.
+Using template $paramod$4cf5305612d86489c1a6171729557670bf08582e\$lut for cells of type $lut.
 Using template $paramod$893106f98ad51427effed3ed0d324f4f01aa0edd\$lut for cells of type $lut.
 Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10010000 for cells of type $lut.
 Using template $paramod$85b779ce5ab505dbf25e5e046fb43ca2b76b878b\$lut for cells of type $lut.
-Using template $paramod$d3f4c7e3f0239dbfbe248a0012ae40b9c40236fc\$lut for cells of type $lut.
-Using template $paramod$deb4f121bbf3d55ed9a98f692fd112e0918f51b5\$lut for cells of type $lut.
 Using template $paramod$c5f3c57a6d466a2f42208bafb8985b96ce884440\$lut for cells of type $lut.
 Using template $paramod$6a34cd5b50e324824168b4186d0b04ba5e83b039\$lut for cells of type $lut.
 Using template $paramod$821131537f5bd0b4836f5026076702f8fb1bcdf3\$lut for cells of type $lut.
@@ -1221,10 +1227,10 @@ Using template $paramod$c5b694ec89d7629b942ccf6a9be1d39e24f8edec\$lut for cells 
 Using template $paramod$fc318a7df7fe07fd6e06d67fcbc358e9823ea389\$lut for cells of type $lut.
 Using template $paramod$70ebb6cf5bc7d63c5c1a98ccefefa2af79e8f2a9\$lut for cells of type $lut.
 Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0100 for cells of type $lut.
-Using template $paramod$0ba75a5c39fee2305ddf265d5f92b5da7e37f554\$lut for cells of type $lut.
 Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1011 for cells of type $lut.
 Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11111000 for cells of type $lut.
 Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1110 for cells of type $lut.
+Using template $paramod$0ba75a5c39fee2305ddf265d5f92b5da7e37f554\$lut for cells of type $lut.
 No more expansions possible.
 <suppressed ~921 debug messages>
 Removed 0 unused cells and 794 unused wires.
@@ -1247,9 +1253,9 @@ Removed 0 unused modules.
 === h_Divide8SignedParallelFloorWrap ===
 
    Number of wires:                238
-   Number of wire bits:           1586
+   Number of wire bits:           1580
    Number of public wires:         238
-   Number of public wire bits:    1586
+   Number of public wire bits:    1580
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
@@ -1271,9 +1277,9 @@ Found and reported 0 problems.
 === h_Divide8SignedParallelFloorWrap ===
 
    Number of wires:                238
-   Number of wire bits:           1586
+   Number of wire bits:           1580
    Number of public wires:         238
-   Number of public wire bits:    1586
+   Number of public wire bits:    1580
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0

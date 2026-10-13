@@ -64,7 +64,8 @@ example; after purposeful edits, use the lesson build or update expectations.
 
 The first command builds the language examples, tests them, and emits the
 25 MHz ClassroomCore. The second synthesizes, places/routes at 25 MHz, and
-packs `build/goboard/classroom.bin`. This script does not program hardware.
+packs `build/goboard/classroom.bin` and refreshes the checked-in image, reports
+and SHA-256 manifest in `generated/goboard`. This script does not program hardware.
 The teacher should install and test the board's programming/USB interface on
 one laptop and confirm the device revision before distributing a class image.
 
@@ -87,7 +88,7 @@ without simulating millions of clocks per button action.
 The submitted build passed Yosys iCE40 synthesis, nextpnr placement/routing at
 25 MHz, and IceStorm bitstream packing. The mapped design uses 230 of 1280
 logic cells (17%), no block RAM, and 23 I/O. The final reported internal clock
-estimate is 160.77 MHz; the requested target was only 25 MHz. This estimate is
+estimate is 154.63 MHz; the requested target was only 25 MHz. This estimate is
 not a measured board clock limit and is not an input/output timing guarantee.
 No hardware was connected or programmed. Physical startup, button feel, USB
 programming and display behavior still require one pilot-board check.

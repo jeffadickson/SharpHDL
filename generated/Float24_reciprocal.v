@@ -14,2488 +14,2488 @@ module h_Float24_reciprocal(
   output wire [23:0] s_result
 );
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_0;
+wire [6:0] n_bits_22_16_0;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_eq_1;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_2;
+wire [6:0] n_bits_22_16_2;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_3;
+wire [0:0] n_eq_3;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_4;
+wire [0:0] n_or_4;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_5;
+wire [6:0] n_bits_22_16_5;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_6;
+wire [0:0] n_eq_6;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_7;
+wire [0:0] n_or_7;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_8;
+wire [6:0] n_bits_22_16_8;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_9;
+wire [0:0] n_eq_9;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_10;
+wire [6:0] n_bits_22_16_10;
 // Unsigned resize: zero extend (or preserve width).
-wire [15:0] n_11;
+wire [15:0] n_resize_11;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_12;
+wire [6:0] n_bits_22_16_12;
 // Unsigned resize: zero extend (or preserve width).
-wire [15:0] n_13;
+wire [15:0] n_resize_13;
 // Operation '-'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_14;
+wire [15:0] n_sub_14;
 // Operation '-'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_15;
+wire [15:0] n_sub_15;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_16;
+wire [37:0] n_shl_16;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_17;
+wire [15:0] n_bits_15_0_17;
 // Packed bus: [16:16] = high operand; [15:0] = low operand.
-wire [16:0] n_18;
+wire [16:0] n_concat_18;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_19;
+wire [36:0] n_resize_19;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_20;
+wire [36:0] n_shl_20;
 // Extract source bits [36:36], rebase to bit 0.
-wire [0:0] n_21;
+wire [0:0] n_bits_36_36_21;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_22;
+wire [37:0] n_resize_22;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_23;
+wire [37:0] n_or_23;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_24;
+wire [15:0] n_bits_15_0_24;
 // Packed bus: [16:16] = high operand; [15:0] = low operand.
-wire [16:0] n_25;
+wire [16:0] n_concat_25;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_26;
+wire [37:0] n_resize_26;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_27;
+wire [0:0] n_lt_27;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_28;
+wire [0:0] n_not_28;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_29;
+wire [36:0] n_resize_29;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_30;
+wire [36:0] n_shl_30;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_31;
+wire [36:0] n_or_31;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_32;
+wire [37:0] n_sub_32;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_33;
+wire [37:0] n_mux_33;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_34;
+wire [37:0] n_shl_34;
 // Extract source bits [35:35], rebase to bit 0.
-wire [0:0] n_35;
+wire [0:0] n_bits_35_35_35;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_36;
+wire [37:0] n_resize_36;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_37;
+wire [37:0] n_or_37;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_38;
+wire [0:0] n_lt_38;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_39;
+wire [0:0] n_not_39;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_40;
+wire [36:0] n_resize_40;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_41;
+wire [36:0] n_shl_41;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_42;
+wire [36:0] n_or_42;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_43;
+wire [37:0] n_sub_43;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_44;
+wire [37:0] n_mux_44;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_45;
+wire [37:0] n_shl_45;
 // Extract source bits [34:34], rebase to bit 0.
-wire [0:0] n_46;
+wire [0:0] n_bits_34_34_46;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_47;
+wire [37:0] n_resize_47;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_48;
+wire [37:0] n_or_48;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_49;
+wire [0:0] n_lt_49;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_50;
+wire [0:0] n_not_50;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_51;
+wire [36:0] n_resize_51;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_52;
+wire [36:0] n_shl_52;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_53;
+wire [36:0] n_or_53;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_54;
+wire [37:0] n_sub_54;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_55;
+wire [37:0] n_mux_55;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_56;
+wire [37:0] n_shl_56;
 // Extract source bits [33:33], rebase to bit 0.
-wire [0:0] n_57;
+wire [0:0] n_bits_33_33_57;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_58;
+wire [37:0] n_resize_58;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_59;
+wire [37:0] n_or_59;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_60;
+wire [0:0] n_lt_60;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_61;
+wire [0:0] n_not_61;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_62;
+wire [36:0] n_resize_62;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_63;
+wire [36:0] n_shl_63;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_64;
+wire [36:0] n_or_64;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_65;
+wire [37:0] n_sub_65;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_66;
+wire [37:0] n_mux_66;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_67;
+wire [37:0] n_shl_67;
 // Extract source bits [32:32], rebase to bit 0.
-wire [0:0] n_68;
+wire [0:0] n_bits_32_32_68;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_69;
+wire [37:0] n_resize_69;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_70;
+wire [37:0] n_or_70;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_71;
+wire [0:0] n_lt_71;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_72;
+wire [0:0] n_not_72;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_73;
+wire [36:0] n_resize_73;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_74;
+wire [36:0] n_shl_74;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_75;
+wire [36:0] n_or_75;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_76;
+wire [37:0] n_sub_76;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_77;
+wire [37:0] n_mux_77;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_78;
+wire [37:0] n_shl_78;
 // Extract source bits [31:31], rebase to bit 0.
-wire [0:0] n_79;
+wire [0:0] n_bits_31_31_79;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_80;
+wire [37:0] n_resize_80;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_81;
+wire [37:0] n_or_81;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_82;
+wire [0:0] n_lt_82;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_83;
+wire [0:0] n_not_83;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_84;
+wire [36:0] n_resize_84;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_85;
+wire [36:0] n_shl_85;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_86;
+wire [36:0] n_or_86;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_87;
+wire [37:0] n_sub_87;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_88;
+wire [37:0] n_mux_88;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_89;
+wire [37:0] n_shl_89;
 // Extract source bits [30:30], rebase to bit 0.
-wire [0:0] n_90;
+wire [0:0] n_bits_30_30_90;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_91;
+wire [37:0] n_resize_91;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_92;
+wire [37:0] n_or_92;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_93;
+wire [0:0] n_lt_93;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_94;
+wire [0:0] n_not_94;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_95;
+wire [36:0] n_resize_95;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_96;
+wire [36:0] n_shl_96;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_97;
+wire [36:0] n_or_97;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_98;
+wire [37:0] n_sub_98;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_99;
+wire [37:0] n_mux_99;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_100;
+wire [37:0] n_shl_100;
 // Extract source bits [29:29], rebase to bit 0.
-wire [0:0] n_101;
+wire [0:0] n_bits_29_29_101;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_102;
+wire [37:0] n_resize_102;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_103;
+wire [37:0] n_or_103;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_104;
+wire [0:0] n_lt_104;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_105;
+wire [0:0] n_not_105;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_106;
+wire [36:0] n_resize_106;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_107;
+wire [36:0] n_shl_107;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_108;
+wire [36:0] n_or_108;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_109;
+wire [37:0] n_sub_109;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_110;
+wire [37:0] n_mux_110;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_111;
+wire [37:0] n_shl_111;
 // Extract source bits [28:28], rebase to bit 0.
-wire [0:0] n_112;
+wire [0:0] n_bits_28_28_112;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_113;
+wire [37:0] n_resize_113;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_114;
+wire [37:0] n_or_114;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_115;
+wire [0:0] n_lt_115;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_116;
+wire [0:0] n_not_116;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_117;
+wire [36:0] n_resize_117;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_118;
+wire [36:0] n_shl_118;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_119;
+wire [36:0] n_or_119;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_120;
+wire [37:0] n_sub_120;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_121;
+wire [37:0] n_mux_121;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_122;
+wire [37:0] n_shl_122;
 // Extract source bits [27:27], rebase to bit 0.
-wire [0:0] n_123;
+wire [0:0] n_bits_27_27_123;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_124;
+wire [37:0] n_resize_124;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_125;
+wire [37:0] n_or_125;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_126;
+wire [0:0] n_lt_126;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_127;
+wire [0:0] n_not_127;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_128;
+wire [36:0] n_resize_128;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_129;
+wire [36:0] n_shl_129;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_130;
+wire [36:0] n_or_130;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_131;
+wire [37:0] n_sub_131;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_132;
+wire [37:0] n_mux_132;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_133;
+wire [37:0] n_shl_133;
 // Extract source bits [26:26], rebase to bit 0.
-wire [0:0] n_134;
+wire [0:0] n_bits_26_26_134;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_135;
+wire [37:0] n_resize_135;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_136;
+wire [37:0] n_or_136;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_137;
+wire [0:0] n_lt_137;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_138;
+wire [0:0] n_not_138;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_139;
+wire [36:0] n_resize_139;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_140;
+wire [36:0] n_shl_140;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_141;
+wire [36:0] n_or_141;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_142;
+wire [37:0] n_sub_142;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_143;
+wire [37:0] n_mux_143;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_144;
+wire [37:0] n_shl_144;
 // Extract source bits [25:25], rebase to bit 0.
-wire [0:0] n_145;
+wire [0:0] n_bits_25_25_145;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_146;
+wire [37:0] n_resize_146;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_147;
+wire [37:0] n_or_147;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_148;
+wire [0:0] n_lt_148;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_149;
+wire [0:0] n_not_149;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_150;
+wire [36:0] n_resize_150;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_151;
+wire [36:0] n_shl_151;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_152;
+wire [36:0] n_or_152;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_153;
+wire [37:0] n_sub_153;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_154;
+wire [37:0] n_mux_154;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_155;
+wire [37:0] n_shl_155;
 // Extract source bits [24:24], rebase to bit 0.
-wire [0:0] n_156;
+wire [0:0] n_bits_24_24_156;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_157;
+wire [37:0] n_resize_157;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_158;
+wire [37:0] n_or_158;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_159;
+wire [0:0] n_lt_159;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_160;
+wire [0:0] n_not_160;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_161;
+wire [36:0] n_resize_161;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_162;
+wire [36:0] n_shl_162;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_163;
+wire [36:0] n_or_163;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_164;
+wire [37:0] n_sub_164;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_165;
+wire [37:0] n_mux_165;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_166;
+wire [37:0] n_shl_166;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_167;
+wire [0:0] n_bits_23_23_167;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_168;
+wire [37:0] n_resize_168;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_169;
+wire [37:0] n_or_169;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_170;
+wire [0:0] n_lt_170;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_171;
+wire [0:0] n_not_171;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_172;
+wire [36:0] n_resize_172;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_173;
+wire [36:0] n_shl_173;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_174;
+wire [36:0] n_or_174;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_175;
+wire [37:0] n_sub_175;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_176;
+wire [37:0] n_mux_176;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_177;
+wire [37:0] n_shl_177;
 // Extract source bits [22:22], rebase to bit 0.
-wire [0:0] n_178;
+wire [0:0] n_bits_22_22_178;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_179;
+wire [37:0] n_resize_179;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_180;
+wire [37:0] n_or_180;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_181;
+wire [0:0] n_lt_181;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_182;
+wire [0:0] n_not_182;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_183;
+wire [36:0] n_resize_183;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_184;
+wire [36:0] n_shl_184;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_185;
+wire [36:0] n_or_185;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_186;
+wire [37:0] n_sub_186;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_187;
+wire [37:0] n_mux_187;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_188;
+wire [37:0] n_shl_188;
 // Extract source bits [21:21], rebase to bit 0.
-wire [0:0] n_189;
+wire [0:0] n_bits_21_21_189;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_190;
+wire [37:0] n_resize_190;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_191;
+wire [37:0] n_or_191;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_192;
+wire [0:0] n_lt_192;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_193;
+wire [0:0] n_not_193;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_194;
+wire [36:0] n_resize_194;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_195;
+wire [36:0] n_shl_195;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_196;
+wire [36:0] n_or_196;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_197;
+wire [37:0] n_sub_197;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_198;
+wire [37:0] n_mux_198;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_199;
+wire [37:0] n_shl_199;
 // Extract source bits [20:20], rebase to bit 0.
-wire [0:0] n_200;
+wire [0:0] n_bits_20_20_200;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_201;
+wire [37:0] n_resize_201;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_202;
+wire [37:0] n_or_202;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_203;
+wire [0:0] n_lt_203;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_204;
+wire [0:0] n_not_204;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_205;
+wire [36:0] n_resize_205;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_206;
+wire [36:0] n_shl_206;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_207;
+wire [36:0] n_or_207;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_208;
+wire [37:0] n_sub_208;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_209;
+wire [37:0] n_mux_209;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_210;
+wire [37:0] n_shl_210;
 // Extract source bits [19:19], rebase to bit 0.
-wire [0:0] n_211;
+wire [0:0] n_bits_19_19_211;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_212;
+wire [37:0] n_resize_212;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_213;
+wire [37:0] n_or_213;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_214;
+wire [0:0] n_lt_214;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_215;
+wire [0:0] n_not_215;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_216;
+wire [36:0] n_resize_216;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_217;
+wire [36:0] n_shl_217;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_218;
+wire [36:0] n_or_218;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_219;
+wire [37:0] n_sub_219;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_220;
+wire [37:0] n_mux_220;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_221;
+wire [37:0] n_shl_221;
 // Extract source bits [18:18], rebase to bit 0.
-wire [0:0] n_222;
+wire [0:0] n_bits_18_18_222;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_223;
+wire [37:0] n_resize_223;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_224;
+wire [37:0] n_or_224;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_225;
+wire [0:0] n_lt_225;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_226;
+wire [0:0] n_not_226;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_227;
+wire [36:0] n_resize_227;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_228;
+wire [36:0] n_shl_228;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_229;
+wire [36:0] n_or_229;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_230;
+wire [37:0] n_sub_230;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_231;
+wire [37:0] n_mux_231;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_232;
+wire [37:0] n_shl_232;
 // Extract source bits [17:17], rebase to bit 0.
-wire [0:0] n_233;
+wire [0:0] n_bits_17_17_233;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_234;
+wire [37:0] n_resize_234;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_235;
+wire [37:0] n_or_235;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_236;
+wire [0:0] n_lt_236;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_237;
+wire [0:0] n_not_237;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_238;
+wire [36:0] n_resize_238;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_239;
+wire [36:0] n_shl_239;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_240;
+wire [36:0] n_or_240;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_241;
+wire [37:0] n_sub_241;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_242;
+wire [37:0] n_mux_242;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_243;
+wire [37:0] n_shl_243;
 // Extract source bits [16:16], rebase to bit 0.
-wire [0:0] n_244;
+wire [0:0] n_bits_16_16_244;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_245;
+wire [37:0] n_resize_245;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_246;
+wire [37:0] n_or_246;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_247;
+wire [0:0] n_lt_247;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_248;
+wire [0:0] n_not_248;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_249;
+wire [36:0] n_resize_249;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_250;
+wire [36:0] n_shl_250;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_251;
+wire [36:0] n_or_251;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_252;
+wire [37:0] n_sub_252;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_253;
+wire [37:0] n_mux_253;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_254;
+wire [37:0] n_shl_254;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_255;
+wire [0:0] n_bits_15_15_255;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_256;
+wire [37:0] n_resize_256;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_257;
+wire [37:0] n_or_257;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_258;
+wire [0:0] n_lt_258;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_259;
+wire [0:0] n_not_259;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_260;
+wire [36:0] n_resize_260;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_261;
+wire [36:0] n_shl_261;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_262;
+wire [36:0] n_or_262;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_263;
+wire [37:0] n_sub_263;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_264;
+wire [37:0] n_mux_264;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_265;
+wire [37:0] n_shl_265;
 // Extract source bits [14:14], rebase to bit 0.
-wire [0:0] n_266;
+wire [0:0] n_bits_14_14_266;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_267;
+wire [37:0] n_resize_267;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_268;
+wire [37:0] n_or_268;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_269;
+wire [0:0] n_lt_269;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_270;
+wire [0:0] n_not_270;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_271;
+wire [36:0] n_resize_271;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_272;
+wire [36:0] n_shl_272;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_273;
+wire [36:0] n_or_273;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_274;
+wire [37:0] n_sub_274;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_275;
+wire [37:0] n_mux_275;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_276;
+wire [37:0] n_shl_276;
 // Extract source bits [13:13], rebase to bit 0.
-wire [0:0] n_277;
+wire [0:0] n_bits_13_13_277;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_278;
+wire [37:0] n_resize_278;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_279;
+wire [37:0] n_or_279;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_280;
+wire [0:0] n_lt_280;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_281;
+wire [0:0] n_not_281;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_282;
+wire [36:0] n_resize_282;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_283;
+wire [36:0] n_shl_283;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_284;
+wire [36:0] n_or_284;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_285;
+wire [37:0] n_sub_285;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_286;
+wire [37:0] n_mux_286;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_287;
+wire [37:0] n_shl_287;
 // Extract source bits [12:12], rebase to bit 0.
-wire [0:0] n_288;
+wire [0:0] n_bits_12_12_288;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_289;
+wire [37:0] n_resize_289;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_290;
+wire [37:0] n_or_290;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_291;
+wire [0:0] n_lt_291;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_292;
+wire [0:0] n_not_292;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_293;
+wire [36:0] n_resize_293;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_294;
+wire [36:0] n_shl_294;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_295;
+wire [36:0] n_or_295;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_296;
+wire [37:0] n_sub_296;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_297;
+wire [37:0] n_mux_297;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_298;
+wire [37:0] n_shl_298;
 // Extract source bits [11:11], rebase to bit 0.
-wire [0:0] n_299;
+wire [0:0] n_bits_11_11_299;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_300;
+wire [37:0] n_resize_300;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_301;
+wire [37:0] n_or_301;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_302;
+wire [0:0] n_lt_302;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_303;
+wire [0:0] n_not_303;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_304;
+wire [36:0] n_resize_304;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_305;
+wire [36:0] n_shl_305;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_306;
+wire [36:0] n_or_306;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_307;
+wire [37:0] n_sub_307;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_308;
+wire [37:0] n_mux_308;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_309;
+wire [37:0] n_shl_309;
 // Extract source bits [10:10], rebase to bit 0.
-wire [0:0] n_310;
+wire [0:0] n_bits_10_10_310;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_311;
+wire [37:0] n_resize_311;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_312;
+wire [37:0] n_or_312;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_313;
+wire [0:0] n_lt_313;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_314;
+wire [0:0] n_not_314;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_315;
+wire [36:0] n_resize_315;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_316;
+wire [36:0] n_shl_316;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_317;
+wire [36:0] n_or_317;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_318;
+wire [37:0] n_sub_318;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_319;
+wire [37:0] n_mux_319;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_320;
+wire [37:0] n_shl_320;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_321;
+wire [0:0] n_bits_9_9_321;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_322;
+wire [37:0] n_resize_322;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_323;
+wire [37:0] n_or_323;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_324;
+wire [0:0] n_lt_324;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_325;
+wire [0:0] n_not_325;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_326;
+wire [36:0] n_resize_326;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_327;
+wire [36:0] n_shl_327;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_328;
+wire [36:0] n_or_328;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_329;
+wire [37:0] n_sub_329;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_330;
+wire [37:0] n_mux_330;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_331;
+wire [37:0] n_shl_331;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_332;
+wire [0:0] n_bits_8_8_332;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_333;
+wire [37:0] n_resize_333;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_334;
+wire [37:0] n_or_334;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_335;
+wire [0:0] n_lt_335;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_336;
+wire [0:0] n_not_336;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_337;
+wire [36:0] n_resize_337;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_338;
+wire [36:0] n_shl_338;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_339;
+wire [36:0] n_or_339;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_340;
+wire [37:0] n_sub_340;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_341;
+wire [37:0] n_mux_341;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_342;
+wire [37:0] n_shl_342;
 // Extract source bits [7:7], rebase to bit 0.
-wire [0:0] n_343;
+wire [0:0] n_bits_7_7_343;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_344;
+wire [37:0] n_resize_344;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_345;
+wire [37:0] n_or_345;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_346;
+wire [0:0] n_lt_346;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_347;
+wire [0:0] n_not_347;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_348;
+wire [36:0] n_resize_348;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_349;
+wire [36:0] n_shl_349;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_350;
+wire [36:0] n_or_350;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_351;
+wire [37:0] n_sub_351;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_352;
+wire [37:0] n_mux_352;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_353;
+wire [37:0] n_shl_353;
 // Extract source bits [6:6], rebase to bit 0.
-wire [0:0] n_354;
+wire [0:0] n_bits_6_6_354;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_355;
+wire [37:0] n_resize_355;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_356;
+wire [37:0] n_or_356;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_357;
+wire [0:0] n_lt_357;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_358;
+wire [0:0] n_not_358;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_359;
+wire [36:0] n_resize_359;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_360;
+wire [36:0] n_shl_360;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_361;
+wire [36:0] n_or_361;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_362;
+wire [37:0] n_sub_362;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_363;
+wire [37:0] n_mux_363;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_364;
+wire [37:0] n_shl_364;
 // Extract source bits [5:5], rebase to bit 0.
-wire [0:0] n_365;
+wire [0:0] n_bits_5_5_365;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_366;
+wire [37:0] n_resize_366;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_367;
+wire [37:0] n_or_367;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_368;
+wire [0:0] n_lt_368;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_369;
+wire [0:0] n_not_369;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_370;
+wire [36:0] n_resize_370;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_371;
+wire [36:0] n_shl_371;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_372;
+wire [36:0] n_or_372;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_373;
+wire [37:0] n_sub_373;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_374;
+wire [37:0] n_mux_374;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_375;
+wire [37:0] n_shl_375;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_376;
+wire [0:0] n_bits_4_4_376;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_377;
+wire [37:0] n_resize_377;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_378;
+wire [37:0] n_or_378;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_379;
+wire [0:0] n_lt_379;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_380;
+wire [0:0] n_not_380;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_381;
+wire [36:0] n_resize_381;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_382;
+wire [36:0] n_shl_382;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_383;
+wire [36:0] n_or_383;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_384;
+wire [37:0] n_sub_384;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_385;
+wire [37:0] n_mux_385;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_386;
+wire [37:0] n_shl_386;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_387;
+wire [0:0] n_bits_3_3_387;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_388;
+wire [37:0] n_resize_388;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_389;
+wire [37:0] n_or_389;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_390;
+wire [0:0] n_lt_390;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_391;
+wire [0:0] n_not_391;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_392;
+wire [36:0] n_resize_392;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_393;
+wire [36:0] n_shl_393;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_394;
+wire [36:0] n_or_394;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_395;
+wire [37:0] n_sub_395;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_396;
+wire [37:0] n_mux_396;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_397;
+wire [37:0] n_shl_397;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_398;
+wire [0:0] n_bits_2_2_398;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_399;
+wire [37:0] n_resize_399;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_400;
+wire [37:0] n_or_400;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_401;
+wire [0:0] n_lt_401;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_402;
+wire [0:0] n_not_402;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_403;
+wire [36:0] n_resize_403;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_404;
+wire [36:0] n_shl_404;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_405;
+wire [36:0] n_or_405;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_406;
+wire [37:0] n_sub_406;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_407;
+wire [37:0] n_mux_407;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_408;
+wire [37:0] n_shl_408;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_409;
+wire [0:0] n_bits_1_1_409;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_410;
+wire [37:0] n_resize_410;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_411;
+wire [37:0] n_or_411;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_412;
+wire [0:0] n_lt_412;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_413;
+wire [0:0] n_not_413;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_414;
+wire [36:0] n_resize_414;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_415;
+wire [36:0] n_shl_415;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_416;
+wire [36:0] n_or_416;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_417;
+wire [37:0] n_sub_417;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_418;
+wire [37:0] n_mux_418;
 // Operation '<<'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_419;
+wire [37:0] n_shl_419;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_420;
+wire [0:0] n_bits_0_0_420;
 // Unsigned resize: zero extend (or preserve width).
-wire [37:0] n_421;
+wire [37:0] n_resize_421;
 // Operation '|'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_422;
+wire [37:0] n_or_422;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_423;
+wire [0:0] n_lt_423;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_424;
+wire [0:0] n_not_424;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_425;
+wire [36:0] n_resize_425;
 // Operation '<<'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_426;
+wire [36:0] n_shl_426;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_427;
+wire [36:0] n_or_427;
 // Operation '-'; result limited to 38 bits. Signed interpretation only for slt/asr/signextend.
-wire [37:0] n_428;
+wire [37:0] n_sub_428;
 // Select true operand when condition is 1; false operand otherwise.
-wire [37:0] n_429;
+wire [37:0] n_mux_429;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_430;
+wire [0:0] n_eq_430;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_431;
+wire [0:0] n_not_431;
 // Unsigned resize: zero extend (or preserve width).
-wire [36:0] n_432;
+wire [36:0] n_resize_432;
 // Operation '|'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_433;
+wire [36:0] n_or_433;
 // Extract source bits [36:36], rebase to bit 0.
-wire [0:0] n_434;
+wire [0:0] n_bits_36_36_434;
 // Extract source bits [35:35], rebase to bit 0.
-wire [0:0] n_435;
+wire [0:0] n_bits_35_35_435;
 // Extract source bits [34:34], rebase to bit 0.
-wire [0:0] n_436;
+wire [0:0] n_bits_34_34_436;
 // Extract source bits [33:33], rebase to bit 0.
-wire [0:0] n_437;
+wire [0:0] n_bits_33_33_437;
 // Extract source bits [32:32], rebase to bit 0.
-wire [0:0] n_438;
+wire [0:0] n_bits_32_32_438;
 // Extract source bits [31:31], rebase to bit 0.
-wire [0:0] n_439;
+wire [0:0] n_bits_31_31_439;
 // Extract source bits [30:30], rebase to bit 0.
-wire [0:0] n_440;
+wire [0:0] n_bits_30_30_440;
 // Extract source bits [29:29], rebase to bit 0.
-wire [0:0] n_441;
+wire [0:0] n_bits_29_29_441;
 // Extract source bits [28:28], rebase to bit 0.
-wire [0:0] n_442;
+wire [0:0] n_bits_28_28_442;
 // Extract source bits [27:27], rebase to bit 0.
-wire [0:0] n_443;
+wire [0:0] n_bits_27_27_443;
 // Extract source bits [26:26], rebase to bit 0.
-wire [0:0] n_444;
+wire [0:0] n_bits_26_26_444;
 // Extract source bits [25:25], rebase to bit 0.
-wire [0:0] n_445;
+wire [0:0] n_bits_25_25_445;
 // Extract source bits [24:24], rebase to bit 0.
-wire [0:0] n_446;
+wire [0:0] n_bits_24_24_446;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_447;
+wire [0:0] n_bits_23_23_447;
 // Extract source bits [22:22], rebase to bit 0.
-wire [0:0] n_448;
+wire [0:0] n_bits_22_22_448;
 // Extract source bits [21:21], rebase to bit 0.
-wire [0:0] n_449;
+wire [0:0] n_bits_21_21_449;
 // Extract source bits [20:20], rebase to bit 0.
-wire [0:0] n_450;
+wire [0:0] n_bits_20_20_450;
 // Extract source bits [19:19], rebase to bit 0.
-wire [0:0] n_451;
+wire [0:0] n_bits_19_19_451;
 // Extract source bits [18:18], rebase to bit 0.
-wire [0:0] n_452;
+wire [0:0] n_bits_18_18_452;
 // Extract source bits [17:17], rebase to bit 0.
-wire [0:0] n_453;
+wire [0:0] n_bits_17_17_453;
 // Extract source bits [16:16], rebase to bit 0.
-wire [0:0] n_454;
+wire [0:0] n_bits_16_16_454;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_455;
+wire [0:0] n_bits_15_15_455;
 // Extract source bits [14:14], rebase to bit 0.
-wire [0:0] n_456;
+wire [0:0] n_bits_14_14_456;
 // Extract source bits [13:13], rebase to bit 0.
-wire [0:0] n_457;
+wire [0:0] n_bits_13_13_457;
 // Extract source bits [12:12], rebase to bit 0.
-wire [0:0] n_458;
+wire [0:0] n_bits_12_12_458;
 // Extract source bits [11:11], rebase to bit 0.
-wire [0:0] n_459;
+wire [0:0] n_bits_11_11_459;
 // Extract source bits [10:10], rebase to bit 0.
-wire [0:0] n_460;
+wire [0:0] n_bits_10_10_460;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_461;
+wire [0:0] n_bits_9_9_461;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_462;
+wire [0:0] n_bits_8_8_462;
 // Extract source bits [7:7], rebase to bit 0.
-wire [0:0] n_463;
+wire [0:0] n_bits_7_7_463;
 // Extract source bits [6:6], rebase to bit 0.
-wire [0:0] n_464;
+wire [0:0] n_bits_6_6_464;
 // Extract source bits [5:5], rebase to bit 0.
-wire [0:0] n_465;
+wire [0:0] n_bits_5_5_465;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_466;
+wire [0:0] n_bits_4_4_466;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_467;
+wire [0:0] n_bits_3_3_467;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_468;
+wire [0:0] n_bits_2_2_468;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_469;
+wire [0:0] n_bits_1_1_469;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_470;
+wire [0:0] n_bits_0_0_470;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_471;
+wire [15:0] n_mux_471;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_472;
+wire [15:0] n_mux_472;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_473;
+wire [15:0] n_mux_473;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_474;
+wire [15:0] n_mux_474;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_475;
+wire [15:0] n_mux_475;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_476;
+wire [15:0] n_mux_476;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_477;
+wire [15:0] n_mux_477;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_478;
+wire [15:0] n_mux_478;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_479;
+wire [15:0] n_mux_479;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_480;
+wire [15:0] n_mux_480;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_481;
+wire [15:0] n_mux_481;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_482;
+wire [15:0] n_mux_482;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_483;
+wire [15:0] n_mux_483;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_484;
+wire [15:0] n_mux_484;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_485;
+wire [15:0] n_mux_485;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_486;
+wire [15:0] n_mux_486;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_487;
+wire [15:0] n_mux_487;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_488;
+wire [15:0] n_mux_488;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_489;
+wire [15:0] n_mux_489;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_490;
+wire [15:0] n_mux_490;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_491;
+wire [15:0] n_mux_491;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_492;
+wire [15:0] n_mux_492;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_493;
+wire [15:0] n_mux_493;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_494;
+wire [15:0] n_mux_494;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_495;
+wire [15:0] n_mux_495;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_496;
+wire [15:0] n_mux_496;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_497;
+wire [15:0] n_mux_497;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_498;
+wire [15:0] n_mux_498;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_499;
+wire [15:0] n_mux_499;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_500;
+wire [15:0] n_mux_500;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_501;
+wire [15:0] n_mux_501;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_502;
+wire [15:0] n_mux_502;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_503;
+wire [15:0] n_mux_503;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_504;
+wire [15:0] n_mux_504;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_505;
+wire [15:0] n_mux_505;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_506;
+wire [15:0] n_mux_506;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_507;
+wire [15:0] n_mux_507;
 // Operation '+'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_508;
+wire [15:0] n_add_508;
 // Operation '+'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_509;
+wire [15:0] n_add_509;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_510;
+wire [36:0] n_shr_510;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_511;
+wire [17:0] n_resize_511;
 // Extract source bits [19:19], rebase to bit 0.
-wire [0:0] n_512;
+wire [0:0] n_bits_19_19_512;
 // Extract source bits [18:0], rebase to bit 0.
-wire [18:0] n_513;
+wire [18:0] n_bits_18_0_513;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_514;
+wire [0:0] n_eq_514;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_515;
+wire [0:0] n_not_515;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_516;
+wire [0:0] n_bits_0_0_516;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_517;
+wire [0:0] n_or_517;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_518;
+wire [0:0] n_and_518;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_519;
+wire [17:0] n_resize_519;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_520;
+wire [17:0] n_add_520;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_521;
+wire [36:0] n_shr_521;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_522;
+wire [17:0] n_resize_522;
 // Extract source bits [18:18], rebase to bit 0.
-wire [0:0] n_523;
+wire [0:0] n_bits_18_18_523;
 // Extract source bits [17:0], rebase to bit 0.
-wire [17:0] n_524;
+wire [17:0] n_bits_17_0_524;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_525;
+wire [0:0] n_eq_525;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_526;
+wire [0:0] n_not_526;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_527;
+wire [0:0] n_bits_0_0_527;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_528;
+wire [0:0] n_or_528;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_529;
+wire [0:0] n_and_529;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_530;
+wire [17:0] n_resize_530;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_531;
+wire [17:0] n_add_531;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_532;
+wire [36:0] n_shr_532;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_533;
+wire [17:0] n_resize_533;
 // Extract source bits [17:17], rebase to bit 0.
-wire [0:0] n_534;
+wire [0:0] n_bits_17_17_534;
 // Extract source bits [16:0], rebase to bit 0.
-wire [16:0] n_535;
+wire [16:0] n_bits_16_0_535;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_536;
+wire [0:0] n_eq_536;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_537;
+wire [0:0] n_not_537;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_538;
+wire [0:0] n_bits_0_0_538;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_539;
+wire [0:0] n_or_539;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_540;
+wire [0:0] n_and_540;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_541;
+wire [17:0] n_resize_541;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_542;
+wire [17:0] n_add_542;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_543;
+wire [36:0] n_shr_543;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_544;
+wire [17:0] n_resize_544;
 // Extract source bits [16:16], rebase to bit 0.
-wire [0:0] n_545;
+wire [0:0] n_bits_16_16_545;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_546;
+wire [15:0] n_bits_15_0_546;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_547;
+wire [0:0] n_eq_547;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_548;
+wire [0:0] n_not_548;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_549;
+wire [0:0] n_bits_0_0_549;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_550;
+wire [0:0] n_or_550;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_551;
+wire [0:0] n_and_551;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_552;
+wire [17:0] n_resize_552;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_553;
+wire [17:0] n_add_553;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_554;
+wire [36:0] n_shr_554;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_555;
+wire [17:0] n_resize_555;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_556;
+wire [0:0] n_bits_15_15_556;
 // Extract source bits [14:0], rebase to bit 0.
-wire [14:0] n_557;
+wire [14:0] n_bits_14_0_557;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_558;
+wire [0:0] n_eq_558;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_559;
+wire [0:0] n_not_559;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_560;
+wire [0:0] n_bits_0_0_560;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_561;
+wire [0:0] n_or_561;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_562;
+wire [0:0] n_and_562;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_563;
+wire [17:0] n_resize_563;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_564;
+wire [17:0] n_add_564;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_565;
+wire [36:0] n_shr_565;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_566;
+wire [17:0] n_resize_566;
 // Extract source bits [14:14], rebase to bit 0.
-wire [0:0] n_567;
+wire [0:0] n_bits_14_14_567;
 // Extract source bits [13:0], rebase to bit 0.
-wire [13:0] n_568;
+wire [13:0] n_bits_13_0_568;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_569;
+wire [0:0] n_eq_569;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_570;
+wire [0:0] n_not_570;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_571;
+wire [0:0] n_bits_0_0_571;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_572;
+wire [0:0] n_or_572;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_573;
+wire [0:0] n_and_573;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_574;
+wire [17:0] n_resize_574;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_575;
+wire [17:0] n_add_575;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_576;
+wire [36:0] n_shr_576;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_577;
+wire [17:0] n_resize_577;
 // Extract source bits [13:13], rebase to bit 0.
-wire [0:0] n_578;
+wire [0:0] n_bits_13_13_578;
 // Extract source bits [12:0], rebase to bit 0.
-wire [12:0] n_579;
+wire [12:0] n_bits_12_0_579;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_580;
+wire [0:0] n_eq_580;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_581;
+wire [0:0] n_not_581;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_582;
+wire [0:0] n_bits_0_0_582;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_583;
+wire [0:0] n_or_583;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_584;
+wire [0:0] n_and_584;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_585;
+wire [17:0] n_resize_585;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_586;
+wire [17:0] n_add_586;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_587;
+wire [36:0] n_shr_587;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_588;
+wire [17:0] n_resize_588;
 // Extract source bits [12:12], rebase to bit 0.
-wire [0:0] n_589;
+wire [0:0] n_bits_12_12_589;
 // Extract source bits [11:0], rebase to bit 0.
-wire [11:0] n_590;
+wire [11:0] n_bits_11_0_590;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_591;
+wire [0:0] n_eq_591;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_592;
+wire [0:0] n_not_592;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_593;
+wire [0:0] n_bits_0_0_593;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_594;
+wire [0:0] n_or_594;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_595;
+wire [0:0] n_and_595;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_596;
+wire [17:0] n_resize_596;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_597;
+wire [17:0] n_add_597;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_598;
+wire [36:0] n_shr_598;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_599;
+wire [17:0] n_resize_599;
 // Extract source bits [11:11], rebase to bit 0.
-wire [0:0] n_600;
+wire [0:0] n_bits_11_11_600;
 // Extract source bits [10:0], rebase to bit 0.
-wire [10:0] n_601;
+wire [10:0] n_bits_10_0_601;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_602;
+wire [0:0] n_eq_602;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_603;
+wire [0:0] n_not_603;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_604;
+wire [0:0] n_bits_0_0_604;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_605;
+wire [0:0] n_or_605;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_606;
+wire [0:0] n_and_606;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_607;
+wire [17:0] n_resize_607;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_608;
+wire [17:0] n_add_608;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_609;
+wire [36:0] n_shr_609;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_610;
+wire [17:0] n_resize_610;
 // Extract source bits [10:10], rebase to bit 0.
-wire [0:0] n_611;
+wire [0:0] n_bits_10_10_611;
 // Extract source bits [9:0], rebase to bit 0.
-wire [9:0] n_612;
+wire [9:0] n_bits_9_0_612;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_613;
+wire [0:0] n_eq_613;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_614;
+wire [0:0] n_not_614;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_615;
+wire [0:0] n_bits_0_0_615;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_616;
+wire [0:0] n_or_616;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_617;
+wire [0:0] n_and_617;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_618;
+wire [17:0] n_resize_618;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_619;
+wire [17:0] n_add_619;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_620;
+wire [36:0] n_shr_620;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_621;
+wire [17:0] n_resize_621;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_622;
+wire [0:0] n_bits_9_9_622;
 // Extract source bits [8:0], rebase to bit 0.
-wire [8:0] n_623;
+wire [8:0] n_bits_8_0_623;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_624;
+wire [0:0] n_eq_624;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_625;
+wire [0:0] n_not_625;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_626;
+wire [0:0] n_bits_0_0_626;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_627;
+wire [0:0] n_or_627;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_628;
+wire [0:0] n_and_628;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_629;
+wire [17:0] n_resize_629;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_630;
+wire [17:0] n_add_630;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_631;
+wire [36:0] n_shr_631;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_632;
+wire [17:0] n_resize_632;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_633;
+wire [0:0] n_bits_8_8_633;
 // Extract source bits [7:0], rebase to bit 0.
-wire [7:0] n_634;
+wire [7:0] n_bits_7_0_634;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_635;
+wire [0:0] n_eq_635;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_636;
+wire [0:0] n_not_636;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_637;
+wire [0:0] n_bits_0_0_637;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_638;
+wire [0:0] n_or_638;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_639;
+wire [0:0] n_and_639;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_640;
+wire [17:0] n_resize_640;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_641;
+wire [17:0] n_add_641;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_642;
+wire [36:0] n_shr_642;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_643;
+wire [17:0] n_resize_643;
 // Extract source bits [7:7], rebase to bit 0.
-wire [0:0] n_644;
+wire [0:0] n_bits_7_7_644;
 // Extract source bits [6:0], rebase to bit 0.
-wire [6:0] n_645;
+wire [6:0] n_bits_6_0_645;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_646;
+wire [0:0] n_eq_646;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_647;
+wire [0:0] n_not_647;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_648;
+wire [0:0] n_bits_0_0_648;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_649;
+wire [0:0] n_or_649;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_650;
+wire [0:0] n_and_650;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_651;
+wire [17:0] n_resize_651;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_652;
+wire [17:0] n_add_652;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_653;
+wire [36:0] n_shr_653;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_654;
+wire [17:0] n_resize_654;
 // Extract source bits [6:6], rebase to bit 0.
-wire [0:0] n_655;
+wire [0:0] n_bits_6_6_655;
 // Extract source bits [5:0], rebase to bit 0.
-wire [5:0] n_656;
+wire [5:0] n_bits_5_0_656;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_657;
+wire [0:0] n_eq_657;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_658;
+wire [0:0] n_not_658;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_659;
+wire [0:0] n_bits_0_0_659;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_660;
+wire [0:0] n_or_660;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_661;
+wire [0:0] n_and_661;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_662;
+wire [17:0] n_resize_662;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_663;
+wire [17:0] n_add_663;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_664;
+wire [36:0] n_shr_664;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_665;
+wire [17:0] n_resize_665;
 // Extract source bits [5:5], rebase to bit 0.
-wire [0:0] n_666;
+wire [0:0] n_bits_5_5_666;
 // Extract source bits [4:0], rebase to bit 0.
-wire [4:0] n_667;
+wire [4:0] n_bits_4_0_667;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_668;
+wire [0:0] n_eq_668;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_669;
+wire [0:0] n_not_669;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_670;
+wire [0:0] n_bits_0_0_670;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_671;
+wire [0:0] n_or_671;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_672;
+wire [0:0] n_and_672;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_673;
+wire [17:0] n_resize_673;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_674;
+wire [17:0] n_add_674;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_675;
+wire [36:0] n_shr_675;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_676;
+wire [17:0] n_resize_676;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_677;
+wire [0:0] n_bits_4_4_677;
 // Extract source bits [3:0], rebase to bit 0.
-wire [3:0] n_678;
+wire [3:0] n_bits_3_0_678;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_679;
+wire [0:0] n_eq_679;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_680;
+wire [0:0] n_not_680;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_681;
+wire [0:0] n_bits_0_0_681;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_682;
+wire [0:0] n_or_682;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_683;
+wire [0:0] n_and_683;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_684;
+wire [17:0] n_resize_684;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_685;
+wire [17:0] n_add_685;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_686;
+wire [36:0] n_shr_686;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_687;
+wire [17:0] n_resize_687;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_688;
+wire [0:0] n_bits_3_3_688;
 // Extract source bits [2:0], rebase to bit 0.
-wire [2:0] n_689;
+wire [2:0] n_bits_2_0_689;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_690;
+wire [0:0] n_eq_690;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_691;
+wire [0:0] n_not_691;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_692;
+wire [0:0] n_bits_0_0_692;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_693;
+wire [0:0] n_or_693;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_694;
+wire [0:0] n_and_694;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_695;
+wire [17:0] n_resize_695;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_696;
+wire [17:0] n_add_696;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_697;
+wire [36:0] n_shr_697;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_698;
+wire [17:0] n_resize_698;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_699;
+wire [0:0] n_bits_2_2_699;
 // Extract source bits [1:0], rebase to bit 0.
-wire [1:0] n_700;
+wire [1:0] n_bits_1_0_700;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_701;
+wire [0:0] n_eq_701;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_702;
+wire [0:0] n_not_702;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_703;
+wire [0:0] n_bits_0_0_703;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_704;
+wire [0:0] n_or_704;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_705;
+wire [0:0] n_and_705;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_706;
+wire [17:0] n_resize_706;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_707;
+wire [17:0] n_add_707;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_708;
+wire [36:0] n_shr_708;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_709;
+wire [17:0] n_resize_709;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_710;
+wire [0:0] n_bits_1_1_710;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_711;
+wire [0:0] n_bits_0_0_711;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_712;
+wire [0:0] n_eq_712;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_713;
+wire [0:0] n_not_713;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_714;
+wire [0:0] n_bits_0_0_714;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_715;
+wire [0:0] n_or_715;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_716;
+wire [0:0] n_and_716;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_717;
+wire [17:0] n_resize_717;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_718;
+wire [17:0] n_add_718;
 // Operation '>>'; result limited to 37 bits. Signed interpretation only for slt/asr/signextend.
-wire [36:0] n_719;
+wire [36:0] n_shr_719;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_720;
+wire [17:0] n_resize_720;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_721;
+wire [0:0] n_bits_0_0_721;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_722;
+wire [0:0] n_bits_0_0_722;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_723;
+wire [0:0] n_or_723;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_724;
+wire [0:0] n_and_724;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_725;
+wire [17:0] n_resize_725;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_726;
+wire [17:0] n_add_726;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_727;
+wire [17:0] n_resize_727;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_728;
+wire [17:0] n_shl_728;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_729;
+wire [17:0] n_resize_729;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_730;
+wire [17:0] n_shl_730;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_731;
+wire [17:0] n_resize_731;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_732;
+wire [17:0] n_shl_732;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_733;
+wire [17:0] n_resize_733;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_734;
+wire [17:0] n_shl_734;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_735;
+wire [17:0] n_resize_735;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_736;
+wire [17:0] n_shl_736;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_737;
+wire [17:0] n_resize_737;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_738;
+wire [17:0] n_shl_738;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_739;
+wire [17:0] n_resize_739;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_740;
+wire [17:0] n_shl_740;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_741;
+wire [17:0] n_resize_741;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_742;
+wire [17:0] n_shl_742;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_743;
+wire [17:0] n_resize_743;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_744;
+wire [17:0] n_shl_744;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_745;
+wire [17:0] n_resize_745;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_746;
+wire [17:0] n_shl_746;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_747;
+wire [17:0] n_resize_747;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_748;
+wire [17:0] n_shl_748;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_749;
+wire [17:0] n_resize_749;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_750;
+wire [17:0] n_shl_750;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_751;
+wire [17:0] n_resize_751;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_752;
+wire [17:0] n_shl_752;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_753;
+wire [17:0] n_resize_753;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_754;
+wire [17:0] n_shl_754;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_755;
+wire [17:0] n_resize_755;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_756;
+wire [17:0] n_shl_756;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_757;
+wire [17:0] n_resize_757;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_758;
+wire [17:0] n_shl_758;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_759;
+wire [17:0] n_resize_759;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_760;
+wire [17:0] n_shl_760;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_761;
+wire [17:0] n_mux_761;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_762;
+wire [17:0] n_mux_762;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_763;
+wire [17:0] n_mux_763;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_764;
+wire [17:0] n_mux_764;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_765;
+wire [17:0] n_mux_765;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_766;
+wire [17:0] n_mux_766;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_767;
+wire [17:0] n_mux_767;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_768;
+wire [17:0] n_mux_768;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_769;
+wire [17:0] n_mux_769;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_770;
+wire [17:0] n_mux_770;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_771;
+wire [17:0] n_mux_771;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_772;
+wire [17:0] n_mux_772;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_773;
+wire [17:0] n_mux_773;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_774;
+wire [17:0] n_mux_774;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_775;
+wire [17:0] n_mux_775;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_776;
+wire [17:0] n_mux_776;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_777;
+wire [17:0] n_mux_777;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_778;
+wire [17:0] n_mux_778;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_779;
+wire [17:0] n_mux_779;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_780;
+wire [17:0] n_mux_780;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_781;
+wire [17:0] n_mux_781;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_782;
+wire [17:0] n_mux_782;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_783;
+wire [17:0] n_mux_783;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_784;
+wire [17:0] n_mux_784;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_785;
+wire [17:0] n_mux_785;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_786;
+wire [17:0] n_mux_786;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_787;
+wire [17:0] n_mux_787;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_788;
+wire [17:0] n_mux_788;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_789;
+wire [17:0] n_mux_789;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_790;
+wire [17:0] n_mux_790;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_791;
+wire [17:0] n_mux_791;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_792;
+wire [17:0] n_mux_792;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_793;
+wire [17:0] n_mux_793;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_794;
+wire [17:0] n_mux_794;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_795;
+wire [17:0] n_mux_795;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_796;
+wire [17:0] n_mux_796;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_797;
+wire [17:0] n_mux_797;
 // Extract source bits [17:17], rebase to bit 0.
-wire [0:0] n_798;
+wire [0:0] n_bits_17_17_798;
 // Unsigned resize: zero extend (or preserve width).
-wire [15:0] n_799;
+wire [15:0] n_resize_799;
 // Operation '+'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_800;
+wire [15:0] n_add_800;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_801;
+wire [0:0] n_slt_801;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_802;
+wire [0:0] n_eq_802;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_803;
+wire [0:0] n_or_803;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_804;
+wire [0:0] n_slt_804;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_805;
+wire [0:0] n_not_805;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_806;
+wire [6:0] n_bits_22_16_806;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_807;
+wire [0:0] n_eq_807;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_808;
+wire [0:0] n_not_808;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_809;
+wire [0:0] n_bits_23_23_809;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_810;
+wire [0:0] n_and_810;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_811;
+wire [6:0] n_bits_22_16_811;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_812;
+wire [0:0] n_eq_812;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_813;
+wire [0:0] n_not_813;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_814;
+wire [0:0] n_bits_23_23_814;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_815;
+wire [0:0] n_and_815;
 // Operation '^'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_816;
+wire [0:0] n_xor_816;
 // Packed bus: [23:23] = high operand; [22:0] = low operand.
-wire [23:0] n_817;
+wire [23:0] n_concat_817;
 // Narrow: retain low bits; upper bits discarded.
-wire [6:0] n_818;
+wire [6:0] n_resize_818;
 // Operation '>>'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_819;
+wire [17:0] n_shr_819;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_820;
+wire [17:0] n_mux_820;
 // Narrow: retain low bits; upper bits discarded.
-wire [15:0] n_821;
+wire [15:0] n_resize_821;
 // Packed bus: [22:16] = high operand; [15:0] = low operand.
-wire [22:0] n_822;
+wire [22:0] n_concat_822;
 // Packed bus: [23:23] = high operand; [22:0] = low operand.
-wire [23:0] n_823;
+wire [23:0] n_concat_823;
 // Select true operand when condition is 1; false operand otherwise.
-wire [23:0] n_824;
+wire [23:0] n_mux_824;
 // Custom float: SIGN [23], EXP [22:16] bias 63, FRACTION [15:0] with hidden leading 1. EXP=0 flushes to zero; EXP=all ones is NaR. Round nearest even; finite overflow saturates.
-wire [23:0] n_825;
+wire [23:0] n_mux_825;
 // Custom float: SIGN [23], EXP [22:16] bias 63, FRACTION [15:0] with hidden leading 1. EXP=0 flushes to zero; EXP=all ones is NaR. Round nearest even; finite overflow saturates.
-wire [23:0] n_826;
+wire [23:0] n_mux_826;
 // Custom float: SIGN [23], EXP [22:16] bias 63, FRACTION [15:0] with hidden leading 1. EXP=0 flushes to zero; EXP=all ones is NaR. Round nearest even; finite overflow saturates.
-wire [23:0] n_827;
-assign n_0 = 24'd4128768 >> 16;
-assign n_1 = n_0 == 7'd127;
-assign n_2 = s_a >> 16;
-assign n_3 = n_2 == 7'd127;
-assign n_4 = n_1 | n_3;
-assign n_5 = s_a >> 16;
-assign n_6 = n_5 == 7'd0;
-assign n_7 = n_4 | n_6;
-assign n_8 = 24'd4128768 >> 16;
-assign n_9 = n_8 == 7'd0;
-assign n_10 = 24'd4128768 >> 16;
-assign n_11 = n_10;
-assign n_12 = s_a >> 16;
-assign n_13 = n_12;
-assign n_14 = n_11 - n_13;
-assign n_15 = n_14 - 16'd20;
-assign n_16 = 38'd0 << 1;
-assign n_17 = 24'd4128768 >> 0;
-assign n_18 = {1'd1, n_17};
-assign n_19 = n_18;
-assign n_20 = n_19 << 20;
-assign n_21 = n_20 >> 36;
-assign n_22 = n_21;
-assign n_23 = n_16 | n_22;
-assign n_24 = s_a >> 0;
-assign n_25 = {1'd1, n_24};
-assign n_26 = n_25;
-assign n_27 = n_23 < n_26;
-assign n_28 = ~n_27;
-assign n_29 = n_28;
-assign n_30 = n_29 << 36;
-assign n_31 = 37'd0 | n_30;
-assign n_32 = n_23 - n_26;
-assign n_33 = n_28 ? n_32 : n_23;
-assign n_34 = n_33 << 1;
-assign n_35 = n_20 >> 35;
-assign n_36 = n_35;
-assign n_37 = n_34 | n_36;
-assign n_38 = n_37 < n_26;
-assign n_39 = ~n_38;
-assign n_40 = n_39;
-assign n_41 = n_40 << 35;
-assign n_42 = n_31 | n_41;
-assign n_43 = n_37 - n_26;
-assign n_44 = n_39 ? n_43 : n_37;
-assign n_45 = n_44 << 1;
-assign n_46 = n_20 >> 34;
-assign n_47 = n_46;
-assign n_48 = n_45 | n_47;
-assign n_49 = n_48 < n_26;
-assign n_50 = ~n_49;
-assign n_51 = n_50;
-assign n_52 = n_51 << 34;
-assign n_53 = n_42 | n_52;
-assign n_54 = n_48 - n_26;
-assign n_55 = n_50 ? n_54 : n_48;
-assign n_56 = n_55 << 1;
-assign n_57 = n_20 >> 33;
-assign n_58 = n_57;
-assign n_59 = n_56 | n_58;
-assign n_60 = n_59 < n_26;
-assign n_61 = ~n_60;
-assign n_62 = n_61;
-assign n_63 = n_62 << 33;
-assign n_64 = n_53 | n_63;
-assign n_65 = n_59 - n_26;
-assign n_66 = n_61 ? n_65 : n_59;
-assign n_67 = n_66 << 1;
-assign n_68 = n_20 >> 32;
-assign n_69 = n_68;
-assign n_70 = n_67 | n_69;
-assign n_71 = n_70 < n_26;
-assign n_72 = ~n_71;
-assign n_73 = n_72;
-assign n_74 = n_73 << 32;
-assign n_75 = n_64 | n_74;
-assign n_76 = n_70 - n_26;
-assign n_77 = n_72 ? n_76 : n_70;
-assign n_78 = n_77 << 1;
-assign n_79 = n_20 >> 31;
-assign n_80 = n_79;
-assign n_81 = n_78 | n_80;
-assign n_82 = n_81 < n_26;
-assign n_83 = ~n_82;
-assign n_84 = n_83;
-assign n_85 = n_84 << 31;
-assign n_86 = n_75 | n_85;
-assign n_87 = n_81 - n_26;
-assign n_88 = n_83 ? n_87 : n_81;
-assign n_89 = n_88 << 1;
-assign n_90 = n_20 >> 30;
-assign n_91 = n_90;
-assign n_92 = n_89 | n_91;
-assign n_93 = n_92 < n_26;
-assign n_94 = ~n_93;
-assign n_95 = n_94;
-assign n_96 = n_95 << 30;
-assign n_97 = n_86 | n_96;
-assign n_98 = n_92 - n_26;
-assign n_99 = n_94 ? n_98 : n_92;
-assign n_100 = n_99 << 1;
-assign n_101 = n_20 >> 29;
-assign n_102 = n_101;
-assign n_103 = n_100 | n_102;
-assign n_104 = n_103 < n_26;
-assign n_105 = ~n_104;
-assign n_106 = n_105;
-assign n_107 = n_106 << 29;
-assign n_108 = n_97 | n_107;
-assign n_109 = n_103 - n_26;
-assign n_110 = n_105 ? n_109 : n_103;
-assign n_111 = n_110 << 1;
-assign n_112 = n_20 >> 28;
-assign n_113 = n_112;
-assign n_114 = n_111 | n_113;
-assign n_115 = n_114 < n_26;
-assign n_116 = ~n_115;
-assign n_117 = n_116;
-assign n_118 = n_117 << 28;
-assign n_119 = n_108 | n_118;
-assign n_120 = n_114 - n_26;
-assign n_121 = n_116 ? n_120 : n_114;
-assign n_122 = n_121 << 1;
-assign n_123 = n_20 >> 27;
-assign n_124 = n_123;
-assign n_125 = n_122 | n_124;
-assign n_126 = n_125 < n_26;
-assign n_127 = ~n_126;
-assign n_128 = n_127;
-assign n_129 = n_128 << 27;
-assign n_130 = n_119 | n_129;
-assign n_131 = n_125 - n_26;
-assign n_132 = n_127 ? n_131 : n_125;
-assign n_133 = n_132 << 1;
-assign n_134 = n_20 >> 26;
-assign n_135 = n_134;
-assign n_136 = n_133 | n_135;
-assign n_137 = n_136 < n_26;
-assign n_138 = ~n_137;
-assign n_139 = n_138;
-assign n_140 = n_139 << 26;
-assign n_141 = n_130 | n_140;
-assign n_142 = n_136 - n_26;
-assign n_143 = n_138 ? n_142 : n_136;
-assign n_144 = n_143 << 1;
-assign n_145 = n_20 >> 25;
-assign n_146 = n_145;
-assign n_147 = n_144 | n_146;
-assign n_148 = n_147 < n_26;
-assign n_149 = ~n_148;
-assign n_150 = n_149;
-assign n_151 = n_150 << 25;
-assign n_152 = n_141 | n_151;
-assign n_153 = n_147 - n_26;
-assign n_154 = n_149 ? n_153 : n_147;
-assign n_155 = n_154 << 1;
-assign n_156 = n_20 >> 24;
-assign n_157 = n_156;
-assign n_158 = n_155 | n_157;
-assign n_159 = n_158 < n_26;
-assign n_160 = ~n_159;
-assign n_161 = n_160;
-assign n_162 = n_161 << 24;
-assign n_163 = n_152 | n_162;
-assign n_164 = n_158 - n_26;
-assign n_165 = n_160 ? n_164 : n_158;
-assign n_166 = n_165 << 1;
-assign n_167 = n_20 >> 23;
-assign n_168 = n_167;
-assign n_169 = n_166 | n_168;
-assign n_170 = n_169 < n_26;
-assign n_171 = ~n_170;
-assign n_172 = n_171;
-assign n_173 = n_172 << 23;
-assign n_174 = n_163 | n_173;
-assign n_175 = n_169 - n_26;
-assign n_176 = n_171 ? n_175 : n_169;
-assign n_177 = n_176 << 1;
-assign n_178 = n_20 >> 22;
-assign n_179 = n_178;
-assign n_180 = n_177 | n_179;
-assign n_181 = n_180 < n_26;
-assign n_182 = ~n_181;
-assign n_183 = n_182;
-assign n_184 = n_183 << 22;
-assign n_185 = n_174 | n_184;
-assign n_186 = n_180 - n_26;
-assign n_187 = n_182 ? n_186 : n_180;
-assign n_188 = n_187 << 1;
-assign n_189 = n_20 >> 21;
-assign n_190 = n_189;
-assign n_191 = n_188 | n_190;
-assign n_192 = n_191 < n_26;
-assign n_193 = ~n_192;
-assign n_194 = n_193;
-assign n_195 = n_194 << 21;
-assign n_196 = n_185 | n_195;
-assign n_197 = n_191 - n_26;
-assign n_198 = n_193 ? n_197 : n_191;
-assign n_199 = n_198 << 1;
-assign n_200 = n_20 >> 20;
-assign n_201 = n_200;
-assign n_202 = n_199 | n_201;
-assign n_203 = n_202 < n_26;
-assign n_204 = ~n_203;
-assign n_205 = n_204;
-assign n_206 = n_205 << 20;
-assign n_207 = n_196 | n_206;
-assign n_208 = n_202 - n_26;
-assign n_209 = n_204 ? n_208 : n_202;
-assign n_210 = n_209 << 1;
-assign n_211 = n_20 >> 19;
-assign n_212 = n_211;
-assign n_213 = n_210 | n_212;
-assign n_214 = n_213 < n_26;
-assign n_215 = ~n_214;
-assign n_216 = n_215;
-assign n_217 = n_216 << 19;
-assign n_218 = n_207 | n_217;
-assign n_219 = n_213 - n_26;
-assign n_220 = n_215 ? n_219 : n_213;
-assign n_221 = n_220 << 1;
-assign n_222 = n_20 >> 18;
-assign n_223 = n_222;
-assign n_224 = n_221 | n_223;
-assign n_225 = n_224 < n_26;
-assign n_226 = ~n_225;
-assign n_227 = n_226;
-assign n_228 = n_227 << 18;
-assign n_229 = n_218 | n_228;
-assign n_230 = n_224 - n_26;
-assign n_231 = n_226 ? n_230 : n_224;
-assign n_232 = n_231 << 1;
-assign n_233 = n_20 >> 17;
-assign n_234 = n_233;
-assign n_235 = n_232 | n_234;
-assign n_236 = n_235 < n_26;
-assign n_237 = ~n_236;
-assign n_238 = n_237;
-assign n_239 = n_238 << 17;
-assign n_240 = n_229 | n_239;
-assign n_241 = n_235 - n_26;
-assign n_242 = n_237 ? n_241 : n_235;
-assign n_243 = n_242 << 1;
-assign n_244 = n_20 >> 16;
-assign n_245 = n_244;
-assign n_246 = n_243 | n_245;
-assign n_247 = n_246 < n_26;
-assign n_248 = ~n_247;
-assign n_249 = n_248;
-assign n_250 = n_249 << 16;
-assign n_251 = n_240 | n_250;
-assign n_252 = n_246 - n_26;
-assign n_253 = n_248 ? n_252 : n_246;
-assign n_254 = n_253 << 1;
-assign n_255 = n_20 >> 15;
-assign n_256 = n_255;
-assign n_257 = n_254 | n_256;
-assign n_258 = n_257 < n_26;
-assign n_259 = ~n_258;
-assign n_260 = n_259;
-assign n_261 = n_260 << 15;
-assign n_262 = n_251 | n_261;
-assign n_263 = n_257 - n_26;
-assign n_264 = n_259 ? n_263 : n_257;
-assign n_265 = n_264 << 1;
-assign n_266 = n_20 >> 14;
-assign n_267 = n_266;
-assign n_268 = n_265 | n_267;
-assign n_269 = n_268 < n_26;
-assign n_270 = ~n_269;
-assign n_271 = n_270;
-assign n_272 = n_271 << 14;
-assign n_273 = n_262 | n_272;
-assign n_274 = n_268 - n_26;
-assign n_275 = n_270 ? n_274 : n_268;
-assign n_276 = n_275 << 1;
-assign n_277 = n_20 >> 13;
-assign n_278 = n_277;
-assign n_279 = n_276 | n_278;
-assign n_280 = n_279 < n_26;
-assign n_281 = ~n_280;
-assign n_282 = n_281;
-assign n_283 = n_282 << 13;
-assign n_284 = n_273 | n_283;
-assign n_285 = n_279 - n_26;
-assign n_286 = n_281 ? n_285 : n_279;
-assign n_287 = n_286 << 1;
-assign n_288 = n_20 >> 12;
-assign n_289 = n_288;
-assign n_290 = n_287 | n_289;
-assign n_291 = n_290 < n_26;
-assign n_292 = ~n_291;
-assign n_293 = n_292;
-assign n_294 = n_293 << 12;
-assign n_295 = n_284 | n_294;
-assign n_296 = n_290 - n_26;
-assign n_297 = n_292 ? n_296 : n_290;
-assign n_298 = n_297 << 1;
-assign n_299 = n_20 >> 11;
-assign n_300 = n_299;
-assign n_301 = n_298 | n_300;
-assign n_302 = n_301 < n_26;
-assign n_303 = ~n_302;
-assign n_304 = n_303;
-assign n_305 = n_304 << 11;
-assign n_306 = n_295 | n_305;
-assign n_307 = n_301 - n_26;
-assign n_308 = n_303 ? n_307 : n_301;
-assign n_309 = n_308 << 1;
-assign n_310 = n_20 >> 10;
-assign n_311 = n_310;
-assign n_312 = n_309 | n_311;
-assign n_313 = n_312 < n_26;
-assign n_314 = ~n_313;
-assign n_315 = n_314;
-assign n_316 = n_315 << 10;
-assign n_317 = n_306 | n_316;
-assign n_318 = n_312 - n_26;
-assign n_319 = n_314 ? n_318 : n_312;
-assign n_320 = n_319 << 1;
-assign n_321 = n_20 >> 9;
-assign n_322 = n_321;
-assign n_323 = n_320 | n_322;
-assign n_324 = n_323 < n_26;
-assign n_325 = ~n_324;
-assign n_326 = n_325;
-assign n_327 = n_326 << 9;
-assign n_328 = n_317 | n_327;
-assign n_329 = n_323 - n_26;
-assign n_330 = n_325 ? n_329 : n_323;
-assign n_331 = n_330 << 1;
-assign n_332 = n_20 >> 8;
-assign n_333 = n_332;
-assign n_334 = n_331 | n_333;
-assign n_335 = n_334 < n_26;
-assign n_336 = ~n_335;
-assign n_337 = n_336;
-assign n_338 = n_337 << 8;
-assign n_339 = n_328 | n_338;
-assign n_340 = n_334 - n_26;
-assign n_341 = n_336 ? n_340 : n_334;
-assign n_342 = n_341 << 1;
-assign n_343 = n_20 >> 7;
-assign n_344 = n_343;
-assign n_345 = n_342 | n_344;
-assign n_346 = n_345 < n_26;
-assign n_347 = ~n_346;
-assign n_348 = n_347;
-assign n_349 = n_348 << 7;
-assign n_350 = n_339 | n_349;
-assign n_351 = n_345 - n_26;
-assign n_352 = n_347 ? n_351 : n_345;
-assign n_353 = n_352 << 1;
-assign n_354 = n_20 >> 6;
-assign n_355 = n_354;
-assign n_356 = n_353 | n_355;
-assign n_357 = n_356 < n_26;
-assign n_358 = ~n_357;
-assign n_359 = n_358;
-assign n_360 = n_359 << 6;
-assign n_361 = n_350 | n_360;
-assign n_362 = n_356 - n_26;
-assign n_363 = n_358 ? n_362 : n_356;
-assign n_364 = n_363 << 1;
-assign n_365 = n_20 >> 5;
-assign n_366 = n_365;
-assign n_367 = n_364 | n_366;
-assign n_368 = n_367 < n_26;
-assign n_369 = ~n_368;
-assign n_370 = n_369;
-assign n_371 = n_370 << 5;
-assign n_372 = n_361 | n_371;
-assign n_373 = n_367 - n_26;
-assign n_374 = n_369 ? n_373 : n_367;
-assign n_375 = n_374 << 1;
-assign n_376 = n_20 >> 4;
-assign n_377 = n_376;
-assign n_378 = n_375 | n_377;
-assign n_379 = n_378 < n_26;
-assign n_380 = ~n_379;
-assign n_381 = n_380;
-assign n_382 = n_381 << 4;
-assign n_383 = n_372 | n_382;
-assign n_384 = n_378 - n_26;
-assign n_385 = n_380 ? n_384 : n_378;
-assign n_386 = n_385 << 1;
-assign n_387 = n_20 >> 3;
-assign n_388 = n_387;
-assign n_389 = n_386 | n_388;
-assign n_390 = n_389 < n_26;
-assign n_391 = ~n_390;
-assign n_392 = n_391;
-assign n_393 = n_392 << 3;
-assign n_394 = n_383 | n_393;
-assign n_395 = n_389 - n_26;
-assign n_396 = n_391 ? n_395 : n_389;
-assign n_397 = n_396 << 1;
-assign n_398 = n_20 >> 2;
-assign n_399 = n_398;
-assign n_400 = n_397 | n_399;
-assign n_401 = n_400 < n_26;
-assign n_402 = ~n_401;
-assign n_403 = n_402;
-assign n_404 = n_403 << 2;
-assign n_405 = n_394 | n_404;
-assign n_406 = n_400 - n_26;
-assign n_407 = n_402 ? n_406 : n_400;
-assign n_408 = n_407 << 1;
-assign n_409 = n_20 >> 1;
-assign n_410 = n_409;
-assign n_411 = n_408 | n_410;
-assign n_412 = n_411 < n_26;
-assign n_413 = ~n_412;
-assign n_414 = n_413;
-assign n_415 = n_414 << 1;
-assign n_416 = n_405 | n_415;
-assign n_417 = n_411 - n_26;
-assign n_418 = n_413 ? n_417 : n_411;
-assign n_419 = n_418 << 1;
-assign n_420 = n_20 >> 0;
-assign n_421 = n_420;
-assign n_422 = n_419 | n_421;
-assign n_423 = n_422 < n_26;
-assign n_424 = ~n_423;
-assign n_425 = n_424;
-assign n_426 = n_425 << 0;
-assign n_427 = n_416 | n_426;
-assign n_428 = n_422 - n_26;
-assign n_429 = n_424 ? n_428 : n_422;
-assign n_430 = n_429 == 38'd0;
-assign n_431 = ~n_430;
-assign n_432 = n_431;
-assign n_433 = n_427 | n_432;
-assign n_434 = n_433 >> 36;
-assign n_435 = n_433 >> 35;
-assign n_436 = n_433 >> 34;
-assign n_437 = n_433 >> 33;
-assign n_438 = n_433 >> 32;
-assign n_439 = n_433 >> 31;
-assign n_440 = n_433 >> 30;
-assign n_441 = n_433 >> 29;
-assign n_442 = n_433 >> 28;
-assign n_443 = n_433 >> 27;
-assign n_444 = n_433 >> 26;
-assign n_445 = n_433 >> 25;
-assign n_446 = n_433 >> 24;
-assign n_447 = n_433 >> 23;
-assign n_448 = n_433 >> 22;
-assign n_449 = n_433 >> 21;
-assign n_450 = n_433 >> 20;
-assign n_451 = n_433 >> 19;
-assign n_452 = n_433 >> 18;
-assign n_453 = n_433 >> 17;
-assign n_454 = n_433 >> 16;
-assign n_455 = n_433 >> 15;
-assign n_456 = n_433 >> 14;
-assign n_457 = n_433 >> 13;
-assign n_458 = n_433 >> 12;
-assign n_459 = n_433 >> 11;
-assign n_460 = n_433 >> 10;
-assign n_461 = n_433 >> 9;
-assign n_462 = n_433 >> 8;
-assign n_463 = n_433 >> 7;
-assign n_464 = n_433 >> 6;
-assign n_465 = n_433 >> 5;
-assign n_466 = n_433 >> 4;
-assign n_467 = n_433 >> 3;
-assign n_468 = n_433 >> 2;
-assign n_469 = n_433 >> 1;
-assign n_470 = n_433 >> 0;
-assign n_471 = n_470 ? 16'd0 : 16'd0;
-assign n_472 = n_469 ? 16'd1 : n_471;
-assign n_473 = n_468 ? 16'd2 : n_472;
-assign n_474 = n_467 ? 16'd3 : n_473;
-assign n_475 = n_466 ? 16'd4 : n_474;
-assign n_476 = n_465 ? 16'd5 : n_475;
-assign n_477 = n_464 ? 16'd6 : n_476;
-assign n_478 = n_463 ? 16'd7 : n_477;
-assign n_479 = n_462 ? 16'd8 : n_478;
-assign n_480 = n_461 ? 16'd9 : n_479;
-assign n_481 = n_460 ? 16'd10 : n_480;
-assign n_482 = n_459 ? 16'd11 : n_481;
-assign n_483 = n_458 ? 16'd12 : n_482;
-assign n_484 = n_457 ? 16'd13 : n_483;
-assign n_485 = n_456 ? 16'd14 : n_484;
-assign n_486 = n_455 ? 16'd15 : n_485;
-assign n_487 = n_454 ? 16'd16 : n_486;
-assign n_488 = n_453 ? 16'd17 : n_487;
-assign n_489 = n_452 ? 16'd18 : n_488;
-assign n_490 = n_451 ? 16'd19 : n_489;
-assign n_491 = n_450 ? 16'd20 : n_490;
-assign n_492 = n_449 ? 16'd21 : n_491;
-assign n_493 = n_448 ? 16'd22 : n_492;
-assign n_494 = n_447 ? 16'd23 : n_493;
-assign n_495 = n_446 ? 16'd24 : n_494;
-assign n_496 = n_445 ? 16'd25 : n_495;
-assign n_497 = n_444 ? 16'd26 : n_496;
-assign n_498 = n_443 ? 16'd27 : n_497;
-assign n_499 = n_442 ? 16'd28 : n_498;
-assign n_500 = n_441 ? 16'd29 : n_499;
-assign n_501 = n_440 ? 16'd30 : n_500;
-assign n_502 = n_439 ? 16'd31 : n_501;
-assign n_503 = n_438 ? 16'd32 : n_502;
-assign n_504 = n_437 ? 16'd33 : n_503;
-assign n_505 = n_436 ? 16'd34 : n_504;
-assign n_506 = n_435 ? 16'd35 : n_505;
-assign n_507 = n_434 ? 16'd36 : n_506;
-assign n_508 = n_15 + n_507;
-assign n_509 = n_508 + 16'd63;
-assign n_510 = n_433 >> 20;
-assign n_511 = n_510;
-assign n_512 = n_433 >> 19;
-assign n_513 = n_433 >> 0;
-assign n_514 = n_513 == 19'd0;
-assign n_515 = ~n_514;
-assign n_516 = n_511 >> 0;
-assign n_517 = n_515 | n_516;
-assign n_518 = n_512 & n_517;
-assign n_519 = n_518;
-assign n_520 = n_511 + n_519;
-assign n_521 = n_433 >> 19;
-assign n_522 = n_521;
-assign n_523 = n_433 >> 18;
-assign n_524 = n_433 >> 0;
-assign n_525 = n_524 == 18'd0;
-assign n_526 = ~n_525;
-assign n_527 = n_522 >> 0;
-assign n_528 = n_526 | n_527;
-assign n_529 = n_523 & n_528;
-assign n_530 = n_529;
-assign n_531 = n_522 + n_530;
-assign n_532 = n_433 >> 18;
-assign n_533 = n_532;
-assign n_534 = n_433 >> 17;
-assign n_535 = n_433 >> 0;
-assign n_536 = n_535 == 17'd0;
-assign n_537 = ~n_536;
-assign n_538 = n_533 >> 0;
-assign n_539 = n_537 | n_538;
-assign n_540 = n_534 & n_539;
-assign n_541 = n_540;
-assign n_542 = n_533 + n_541;
-assign n_543 = n_433 >> 17;
-assign n_544 = n_543;
-assign n_545 = n_433 >> 16;
-assign n_546 = n_433 >> 0;
-assign n_547 = n_546 == 16'd0;
-assign n_548 = ~n_547;
-assign n_549 = n_544 >> 0;
-assign n_550 = n_548 | n_549;
-assign n_551 = n_545 & n_550;
-assign n_552 = n_551;
-assign n_553 = n_544 + n_552;
-assign n_554 = n_433 >> 16;
-assign n_555 = n_554;
-assign n_556 = n_433 >> 15;
-assign n_557 = n_433 >> 0;
-assign n_558 = n_557 == 15'd0;
-assign n_559 = ~n_558;
-assign n_560 = n_555 >> 0;
-assign n_561 = n_559 | n_560;
-assign n_562 = n_556 & n_561;
-assign n_563 = n_562;
-assign n_564 = n_555 + n_563;
-assign n_565 = n_433 >> 15;
-assign n_566 = n_565;
-assign n_567 = n_433 >> 14;
-assign n_568 = n_433 >> 0;
-assign n_569 = n_568 == 14'd0;
-assign n_570 = ~n_569;
-assign n_571 = n_566 >> 0;
-assign n_572 = n_570 | n_571;
-assign n_573 = n_567 & n_572;
-assign n_574 = n_573;
-assign n_575 = n_566 + n_574;
-assign n_576 = n_433 >> 14;
-assign n_577 = n_576;
-assign n_578 = n_433 >> 13;
-assign n_579 = n_433 >> 0;
-assign n_580 = n_579 == 13'd0;
-assign n_581 = ~n_580;
-assign n_582 = n_577 >> 0;
-assign n_583 = n_581 | n_582;
-assign n_584 = n_578 & n_583;
-assign n_585 = n_584;
-assign n_586 = n_577 + n_585;
-assign n_587 = n_433 >> 13;
-assign n_588 = n_587;
-assign n_589 = n_433 >> 12;
-assign n_590 = n_433 >> 0;
-assign n_591 = n_590 == 12'd0;
-assign n_592 = ~n_591;
-assign n_593 = n_588 >> 0;
-assign n_594 = n_592 | n_593;
-assign n_595 = n_589 & n_594;
-assign n_596 = n_595;
-assign n_597 = n_588 + n_596;
-assign n_598 = n_433 >> 12;
-assign n_599 = n_598;
-assign n_600 = n_433 >> 11;
-assign n_601 = n_433 >> 0;
-assign n_602 = n_601 == 11'd0;
-assign n_603 = ~n_602;
-assign n_604 = n_599 >> 0;
-assign n_605 = n_603 | n_604;
-assign n_606 = n_600 & n_605;
-assign n_607 = n_606;
-assign n_608 = n_599 + n_607;
-assign n_609 = n_433 >> 11;
-assign n_610 = n_609;
-assign n_611 = n_433 >> 10;
-assign n_612 = n_433 >> 0;
-assign n_613 = n_612 == 10'd0;
-assign n_614 = ~n_613;
-assign n_615 = n_610 >> 0;
-assign n_616 = n_614 | n_615;
-assign n_617 = n_611 & n_616;
-assign n_618 = n_617;
-assign n_619 = n_610 + n_618;
-assign n_620 = n_433 >> 10;
-assign n_621 = n_620;
-assign n_622 = n_433 >> 9;
-assign n_623 = n_433 >> 0;
-assign n_624 = n_623 == 9'd0;
-assign n_625 = ~n_624;
-assign n_626 = n_621 >> 0;
-assign n_627 = n_625 | n_626;
-assign n_628 = n_622 & n_627;
-assign n_629 = n_628;
-assign n_630 = n_621 + n_629;
-assign n_631 = n_433 >> 9;
-assign n_632 = n_631;
-assign n_633 = n_433 >> 8;
-assign n_634 = n_433 >> 0;
-assign n_635 = n_634 == 8'd0;
-assign n_636 = ~n_635;
-assign n_637 = n_632 >> 0;
-assign n_638 = n_636 | n_637;
-assign n_639 = n_633 & n_638;
-assign n_640 = n_639;
-assign n_641 = n_632 + n_640;
-assign n_642 = n_433 >> 8;
-assign n_643 = n_642;
-assign n_644 = n_433 >> 7;
-assign n_645 = n_433 >> 0;
-assign n_646 = n_645 == 7'd0;
-assign n_647 = ~n_646;
-assign n_648 = n_643 >> 0;
-assign n_649 = n_647 | n_648;
-assign n_650 = n_644 & n_649;
-assign n_651 = n_650;
-assign n_652 = n_643 + n_651;
-assign n_653 = n_433 >> 7;
-assign n_654 = n_653;
-assign n_655 = n_433 >> 6;
-assign n_656 = n_433 >> 0;
-assign n_657 = n_656 == 6'd0;
-assign n_658 = ~n_657;
-assign n_659 = n_654 >> 0;
-assign n_660 = n_658 | n_659;
-assign n_661 = n_655 & n_660;
-assign n_662 = n_661;
-assign n_663 = n_654 + n_662;
-assign n_664 = n_433 >> 6;
-assign n_665 = n_664;
-assign n_666 = n_433 >> 5;
-assign n_667 = n_433 >> 0;
-assign n_668 = n_667 == 5'd0;
-assign n_669 = ~n_668;
-assign n_670 = n_665 >> 0;
-assign n_671 = n_669 | n_670;
-assign n_672 = n_666 & n_671;
-assign n_673 = n_672;
-assign n_674 = n_665 + n_673;
-assign n_675 = n_433 >> 5;
-assign n_676 = n_675;
-assign n_677 = n_433 >> 4;
-assign n_678 = n_433 >> 0;
-assign n_679 = n_678 == 4'd0;
-assign n_680 = ~n_679;
-assign n_681 = n_676 >> 0;
-assign n_682 = n_680 | n_681;
-assign n_683 = n_677 & n_682;
-assign n_684 = n_683;
-assign n_685 = n_676 + n_684;
-assign n_686 = n_433 >> 4;
-assign n_687 = n_686;
-assign n_688 = n_433 >> 3;
-assign n_689 = n_433 >> 0;
-assign n_690 = n_689 == 3'd0;
-assign n_691 = ~n_690;
-assign n_692 = n_687 >> 0;
-assign n_693 = n_691 | n_692;
-assign n_694 = n_688 & n_693;
-assign n_695 = n_694;
-assign n_696 = n_687 + n_695;
-assign n_697 = n_433 >> 3;
-assign n_698 = n_697;
-assign n_699 = n_433 >> 2;
-assign n_700 = n_433 >> 0;
-assign n_701 = n_700 == 2'd0;
-assign n_702 = ~n_701;
-assign n_703 = n_698 >> 0;
-assign n_704 = n_702 | n_703;
-assign n_705 = n_699 & n_704;
-assign n_706 = n_705;
-assign n_707 = n_698 + n_706;
-assign n_708 = n_433 >> 2;
-assign n_709 = n_708;
-assign n_710 = n_433 >> 1;
-assign n_711 = n_433 >> 0;
-assign n_712 = n_711 == 1'd0;
-assign n_713 = ~n_712;
-assign n_714 = n_709 >> 0;
-assign n_715 = n_713 | n_714;
-assign n_716 = n_710 & n_715;
-assign n_717 = n_716;
-assign n_718 = n_709 + n_717;
-assign n_719 = n_433 >> 1;
-assign n_720 = n_719;
-assign n_721 = n_433 >> 0;
-assign n_722 = n_720 >> 0;
-assign n_723 = 1'd0 | n_722;
-assign n_724 = n_721 & n_723;
-assign n_725 = n_724;
-assign n_726 = n_720 + n_725;
-assign n_727 = n_433;
-assign n_728 = n_727 << 0;
-assign n_729 = n_433;
-assign n_730 = n_729 << 1;
-assign n_731 = n_433;
-assign n_732 = n_731 << 2;
-assign n_733 = n_433;
-assign n_734 = n_733 << 3;
-assign n_735 = n_433;
-assign n_736 = n_735 << 4;
-assign n_737 = n_433;
-assign n_738 = n_737 << 5;
-assign n_739 = n_433;
-assign n_740 = n_739 << 6;
-assign n_741 = n_433;
-assign n_742 = n_741 << 7;
-assign n_743 = n_433;
-assign n_744 = n_743 << 8;
-assign n_745 = n_433;
-assign n_746 = n_745 << 9;
-assign n_747 = n_433;
-assign n_748 = n_747 << 10;
-assign n_749 = n_433;
-assign n_750 = n_749 << 11;
-assign n_751 = n_433;
-assign n_752 = n_751 << 12;
-assign n_753 = n_433;
-assign n_754 = n_753 << 13;
-assign n_755 = n_433;
-assign n_756 = n_755 << 14;
-assign n_757 = n_433;
-assign n_758 = n_757 << 15;
-assign n_759 = n_433;
-assign n_760 = n_759 << 16;
-assign n_761 = n_470 ? n_760 : 18'd0;
-assign n_762 = n_469 ? n_758 : n_761;
-assign n_763 = n_468 ? n_756 : n_762;
-assign n_764 = n_467 ? n_754 : n_763;
-assign n_765 = n_466 ? n_752 : n_764;
-assign n_766 = n_465 ? n_750 : n_765;
-assign n_767 = n_464 ? n_748 : n_766;
-assign n_768 = n_463 ? n_746 : n_767;
-assign n_769 = n_462 ? n_744 : n_768;
-assign n_770 = n_461 ? n_742 : n_769;
-assign n_771 = n_460 ? n_740 : n_770;
-assign n_772 = n_459 ? n_738 : n_771;
-assign n_773 = n_458 ? n_736 : n_772;
-assign n_774 = n_457 ? n_734 : n_773;
-assign n_775 = n_456 ? n_732 : n_774;
-assign n_776 = n_455 ? n_730 : n_775;
-assign n_777 = n_454 ? n_728 : n_776;
-assign n_778 = n_453 ? n_726 : n_777;
-assign n_779 = n_452 ? n_718 : n_778;
-assign n_780 = n_451 ? n_707 : n_779;
-assign n_781 = n_450 ? n_696 : n_780;
-assign n_782 = n_449 ? n_685 : n_781;
-assign n_783 = n_448 ? n_674 : n_782;
-assign n_784 = n_447 ? n_663 : n_783;
-assign n_785 = n_446 ? n_652 : n_784;
-assign n_786 = n_445 ? n_641 : n_785;
-assign n_787 = n_444 ? n_630 : n_786;
-assign n_788 = n_443 ? n_619 : n_787;
-assign n_789 = n_442 ? n_608 : n_788;
-assign n_790 = n_441 ? n_597 : n_789;
-assign n_791 = n_440 ? n_586 : n_790;
-assign n_792 = n_439 ? n_575 : n_791;
-assign n_793 = n_438 ? n_564 : n_792;
-assign n_794 = n_437 ? n_553 : n_793;
-assign n_795 = n_436 ? n_542 : n_794;
-assign n_796 = n_435 ? n_531 : n_795;
-assign n_797 = n_434 ? n_520 : n_796;
-assign n_798 = n_797 >> 17;
-assign n_799 = n_798;
-assign n_800 = n_509 + n_799;
-assign n_801 = $signed(n_800) < $signed(16'd1);
-assign n_802 = n_433 == 37'd0;
-assign n_803 = n_801 | n_802;
-assign n_804 = $signed(n_800) < $signed(16'd127);
-assign n_805 = ~n_804;
-assign n_806 = 24'd4128768 >> 16;
-assign n_807 = n_806 == 7'd0;
-assign n_808 = ~n_807;
-assign n_809 = 24'd4128768 >> 23;
-assign n_810 = n_808 & n_809;
-assign n_811 = s_a >> 16;
-assign n_812 = n_811 == 7'd0;
-assign n_813 = ~n_812;
-assign n_814 = s_a >> 23;
-assign n_815 = n_813 & n_814;
-assign n_816 = n_810 ^ n_815;
-assign n_817 = {n_816, 23'd8323071};
-assign n_818 = n_800;
-assign n_819 = n_797 >> 1;
-assign n_820 = n_798 ? n_819 : n_797;
-assign n_821 = n_820;
-assign n_822 = {n_818, n_821};
-assign n_823 = {n_816, n_822};
-assign n_824 = n_805 ? n_817 : n_823;
-assign n_825 = n_803 ? 24'd0 : n_824;
-assign n_826 = n_9 ? 24'd0 : n_825;
-assign n_827 = n_7 ? 24'd8323072 : n_826;
-assign s_result = n_827;
+wire [23:0] n_mux_827;
+assign n_bits_22_16_0 = 24'd4128768 >> 16;
+assign n_eq_1 = n_bits_22_16_0 == 7'd127;
+assign n_bits_22_16_2 = s_a >> 16;
+assign n_eq_3 = n_bits_22_16_2 == 7'd127;
+assign n_or_4 = n_eq_1 | n_eq_3;
+assign n_bits_22_16_5 = s_a >> 16;
+assign n_eq_6 = n_bits_22_16_5 == 7'd0;
+assign n_or_7 = n_or_4 | n_eq_6;
+assign n_bits_22_16_8 = 24'd4128768 >> 16;
+assign n_eq_9 = n_bits_22_16_8 == 7'd0;
+assign n_bits_22_16_10 = 24'd4128768 >> 16;
+assign n_resize_11 = n_bits_22_16_10;
+assign n_bits_22_16_12 = s_a >> 16;
+assign n_resize_13 = n_bits_22_16_12;
+assign n_sub_14 = n_resize_11 - n_resize_13;
+assign n_sub_15 = n_sub_14 - 16'd20;
+assign n_shl_16 = 38'd0 << 1;
+assign n_bits_15_0_17 = 24'd4128768 >> 0;
+assign n_concat_18 = {1'd1, n_bits_15_0_17};
+assign n_resize_19 = n_concat_18;
+assign n_shl_20 = n_resize_19 << 20;
+assign n_bits_36_36_21 = n_shl_20 >> 36;
+assign n_resize_22 = n_bits_36_36_21;
+assign n_or_23 = n_shl_16 | n_resize_22;
+assign n_bits_15_0_24 = s_a >> 0;
+assign n_concat_25 = {1'd1, n_bits_15_0_24};
+assign n_resize_26 = n_concat_25;
+assign n_lt_27 = n_or_23 < n_resize_26;
+assign n_not_28 = ~n_lt_27;
+assign n_resize_29 = n_not_28;
+assign n_shl_30 = n_resize_29 << 36;
+assign n_or_31 = 37'd0 | n_shl_30;
+assign n_sub_32 = n_or_23 - n_resize_26;
+assign n_mux_33 = n_not_28 ? n_sub_32 : n_or_23;
+assign n_shl_34 = n_mux_33 << 1;
+assign n_bits_35_35_35 = n_shl_20 >> 35;
+assign n_resize_36 = n_bits_35_35_35;
+assign n_or_37 = n_shl_34 | n_resize_36;
+assign n_lt_38 = n_or_37 < n_resize_26;
+assign n_not_39 = ~n_lt_38;
+assign n_resize_40 = n_not_39;
+assign n_shl_41 = n_resize_40 << 35;
+assign n_or_42 = n_or_31 | n_shl_41;
+assign n_sub_43 = n_or_37 - n_resize_26;
+assign n_mux_44 = n_not_39 ? n_sub_43 : n_or_37;
+assign n_shl_45 = n_mux_44 << 1;
+assign n_bits_34_34_46 = n_shl_20 >> 34;
+assign n_resize_47 = n_bits_34_34_46;
+assign n_or_48 = n_shl_45 | n_resize_47;
+assign n_lt_49 = n_or_48 < n_resize_26;
+assign n_not_50 = ~n_lt_49;
+assign n_resize_51 = n_not_50;
+assign n_shl_52 = n_resize_51 << 34;
+assign n_or_53 = n_or_42 | n_shl_52;
+assign n_sub_54 = n_or_48 - n_resize_26;
+assign n_mux_55 = n_not_50 ? n_sub_54 : n_or_48;
+assign n_shl_56 = n_mux_55 << 1;
+assign n_bits_33_33_57 = n_shl_20 >> 33;
+assign n_resize_58 = n_bits_33_33_57;
+assign n_or_59 = n_shl_56 | n_resize_58;
+assign n_lt_60 = n_or_59 < n_resize_26;
+assign n_not_61 = ~n_lt_60;
+assign n_resize_62 = n_not_61;
+assign n_shl_63 = n_resize_62 << 33;
+assign n_or_64 = n_or_53 | n_shl_63;
+assign n_sub_65 = n_or_59 - n_resize_26;
+assign n_mux_66 = n_not_61 ? n_sub_65 : n_or_59;
+assign n_shl_67 = n_mux_66 << 1;
+assign n_bits_32_32_68 = n_shl_20 >> 32;
+assign n_resize_69 = n_bits_32_32_68;
+assign n_or_70 = n_shl_67 | n_resize_69;
+assign n_lt_71 = n_or_70 < n_resize_26;
+assign n_not_72 = ~n_lt_71;
+assign n_resize_73 = n_not_72;
+assign n_shl_74 = n_resize_73 << 32;
+assign n_or_75 = n_or_64 | n_shl_74;
+assign n_sub_76 = n_or_70 - n_resize_26;
+assign n_mux_77 = n_not_72 ? n_sub_76 : n_or_70;
+assign n_shl_78 = n_mux_77 << 1;
+assign n_bits_31_31_79 = n_shl_20 >> 31;
+assign n_resize_80 = n_bits_31_31_79;
+assign n_or_81 = n_shl_78 | n_resize_80;
+assign n_lt_82 = n_or_81 < n_resize_26;
+assign n_not_83 = ~n_lt_82;
+assign n_resize_84 = n_not_83;
+assign n_shl_85 = n_resize_84 << 31;
+assign n_or_86 = n_or_75 | n_shl_85;
+assign n_sub_87 = n_or_81 - n_resize_26;
+assign n_mux_88 = n_not_83 ? n_sub_87 : n_or_81;
+assign n_shl_89 = n_mux_88 << 1;
+assign n_bits_30_30_90 = n_shl_20 >> 30;
+assign n_resize_91 = n_bits_30_30_90;
+assign n_or_92 = n_shl_89 | n_resize_91;
+assign n_lt_93 = n_or_92 < n_resize_26;
+assign n_not_94 = ~n_lt_93;
+assign n_resize_95 = n_not_94;
+assign n_shl_96 = n_resize_95 << 30;
+assign n_or_97 = n_or_86 | n_shl_96;
+assign n_sub_98 = n_or_92 - n_resize_26;
+assign n_mux_99 = n_not_94 ? n_sub_98 : n_or_92;
+assign n_shl_100 = n_mux_99 << 1;
+assign n_bits_29_29_101 = n_shl_20 >> 29;
+assign n_resize_102 = n_bits_29_29_101;
+assign n_or_103 = n_shl_100 | n_resize_102;
+assign n_lt_104 = n_or_103 < n_resize_26;
+assign n_not_105 = ~n_lt_104;
+assign n_resize_106 = n_not_105;
+assign n_shl_107 = n_resize_106 << 29;
+assign n_or_108 = n_or_97 | n_shl_107;
+assign n_sub_109 = n_or_103 - n_resize_26;
+assign n_mux_110 = n_not_105 ? n_sub_109 : n_or_103;
+assign n_shl_111 = n_mux_110 << 1;
+assign n_bits_28_28_112 = n_shl_20 >> 28;
+assign n_resize_113 = n_bits_28_28_112;
+assign n_or_114 = n_shl_111 | n_resize_113;
+assign n_lt_115 = n_or_114 < n_resize_26;
+assign n_not_116 = ~n_lt_115;
+assign n_resize_117 = n_not_116;
+assign n_shl_118 = n_resize_117 << 28;
+assign n_or_119 = n_or_108 | n_shl_118;
+assign n_sub_120 = n_or_114 - n_resize_26;
+assign n_mux_121 = n_not_116 ? n_sub_120 : n_or_114;
+assign n_shl_122 = n_mux_121 << 1;
+assign n_bits_27_27_123 = n_shl_20 >> 27;
+assign n_resize_124 = n_bits_27_27_123;
+assign n_or_125 = n_shl_122 | n_resize_124;
+assign n_lt_126 = n_or_125 < n_resize_26;
+assign n_not_127 = ~n_lt_126;
+assign n_resize_128 = n_not_127;
+assign n_shl_129 = n_resize_128 << 27;
+assign n_or_130 = n_or_119 | n_shl_129;
+assign n_sub_131 = n_or_125 - n_resize_26;
+assign n_mux_132 = n_not_127 ? n_sub_131 : n_or_125;
+assign n_shl_133 = n_mux_132 << 1;
+assign n_bits_26_26_134 = n_shl_20 >> 26;
+assign n_resize_135 = n_bits_26_26_134;
+assign n_or_136 = n_shl_133 | n_resize_135;
+assign n_lt_137 = n_or_136 < n_resize_26;
+assign n_not_138 = ~n_lt_137;
+assign n_resize_139 = n_not_138;
+assign n_shl_140 = n_resize_139 << 26;
+assign n_or_141 = n_or_130 | n_shl_140;
+assign n_sub_142 = n_or_136 - n_resize_26;
+assign n_mux_143 = n_not_138 ? n_sub_142 : n_or_136;
+assign n_shl_144 = n_mux_143 << 1;
+assign n_bits_25_25_145 = n_shl_20 >> 25;
+assign n_resize_146 = n_bits_25_25_145;
+assign n_or_147 = n_shl_144 | n_resize_146;
+assign n_lt_148 = n_or_147 < n_resize_26;
+assign n_not_149 = ~n_lt_148;
+assign n_resize_150 = n_not_149;
+assign n_shl_151 = n_resize_150 << 25;
+assign n_or_152 = n_or_141 | n_shl_151;
+assign n_sub_153 = n_or_147 - n_resize_26;
+assign n_mux_154 = n_not_149 ? n_sub_153 : n_or_147;
+assign n_shl_155 = n_mux_154 << 1;
+assign n_bits_24_24_156 = n_shl_20 >> 24;
+assign n_resize_157 = n_bits_24_24_156;
+assign n_or_158 = n_shl_155 | n_resize_157;
+assign n_lt_159 = n_or_158 < n_resize_26;
+assign n_not_160 = ~n_lt_159;
+assign n_resize_161 = n_not_160;
+assign n_shl_162 = n_resize_161 << 24;
+assign n_or_163 = n_or_152 | n_shl_162;
+assign n_sub_164 = n_or_158 - n_resize_26;
+assign n_mux_165 = n_not_160 ? n_sub_164 : n_or_158;
+assign n_shl_166 = n_mux_165 << 1;
+assign n_bits_23_23_167 = n_shl_20 >> 23;
+assign n_resize_168 = n_bits_23_23_167;
+assign n_or_169 = n_shl_166 | n_resize_168;
+assign n_lt_170 = n_or_169 < n_resize_26;
+assign n_not_171 = ~n_lt_170;
+assign n_resize_172 = n_not_171;
+assign n_shl_173 = n_resize_172 << 23;
+assign n_or_174 = n_or_163 | n_shl_173;
+assign n_sub_175 = n_or_169 - n_resize_26;
+assign n_mux_176 = n_not_171 ? n_sub_175 : n_or_169;
+assign n_shl_177 = n_mux_176 << 1;
+assign n_bits_22_22_178 = n_shl_20 >> 22;
+assign n_resize_179 = n_bits_22_22_178;
+assign n_or_180 = n_shl_177 | n_resize_179;
+assign n_lt_181 = n_or_180 < n_resize_26;
+assign n_not_182 = ~n_lt_181;
+assign n_resize_183 = n_not_182;
+assign n_shl_184 = n_resize_183 << 22;
+assign n_or_185 = n_or_174 | n_shl_184;
+assign n_sub_186 = n_or_180 - n_resize_26;
+assign n_mux_187 = n_not_182 ? n_sub_186 : n_or_180;
+assign n_shl_188 = n_mux_187 << 1;
+assign n_bits_21_21_189 = n_shl_20 >> 21;
+assign n_resize_190 = n_bits_21_21_189;
+assign n_or_191 = n_shl_188 | n_resize_190;
+assign n_lt_192 = n_or_191 < n_resize_26;
+assign n_not_193 = ~n_lt_192;
+assign n_resize_194 = n_not_193;
+assign n_shl_195 = n_resize_194 << 21;
+assign n_or_196 = n_or_185 | n_shl_195;
+assign n_sub_197 = n_or_191 - n_resize_26;
+assign n_mux_198 = n_not_193 ? n_sub_197 : n_or_191;
+assign n_shl_199 = n_mux_198 << 1;
+assign n_bits_20_20_200 = n_shl_20 >> 20;
+assign n_resize_201 = n_bits_20_20_200;
+assign n_or_202 = n_shl_199 | n_resize_201;
+assign n_lt_203 = n_or_202 < n_resize_26;
+assign n_not_204 = ~n_lt_203;
+assign n_resize_205 = n_not_204;
+assign n_shl_206 = n_resize_205 << 20;
+assign n_or_207 = n_or_196 | n_shl_206;
+assign n_sub_208 = n_or_202 - n_resize_26;
+assign n_mux_209 = n_not_204 ? n_sub_208 : n_or_202;
+assign n_shl_210 = n_mux_209 << 1;
+assign n_bits_19_19_211 = n_shl_20 >> 19;
+assign n_resize_212 = n_bits_19_19_211;
+assign n_or_213 = n_shl_210 | n_resize_212;
+assign n_lt_214 = n_or_213 < n_resize_26;
+assign n_not_215 = ~n_lt_214;
+assign n_resize_216 = n_not_215;
+assign n_shl_217 = n_resize_216 << 19;
+assign n_or_218 = n_or_207 | n_shl_217;
+assign n_sub_219 = n_or_213 - n_resize_26;
+assign n_mux_220 = n_not_215 ? n_sub_219 : n_or_213;
+assign n_shl_221 = n_mux_220 << 1;
+assign n_bits_18_18_222 = n_shl_20 >> 18;
+assign n_resize_223 = n_bits_18_18_222;
+assign n_or_224 = n_shl_221 | n_resize_223;
+assign n_lt_225 = n_or_224 < n_resize_26;
+assign n_not_226 = ~n_lt_225;
+assign n_resize_227 = n_not_226;
+assign n_shl_228 = n_resize_227 << 18;
+assign n_or_229 = n_or_218 | n_shl_228;
+assign n_sub_230 = n_or_224 - n_resize_26;
+assign n_mux_231 = n_not_226 ? n_sub_230 : n_or_224;
+assign n_shl_232 = n_mux_231 << 1;
+assign n_bits_17_17_233 = n_shl_20 >> 17;
+assign n_resize_234 = n_bits_17_17_233;
+assign n_or_235 = n_shl_232 | n_resize_234;
+assign n_lt_236 = n_or_235 < n_resize_26;
+assign n_not_237 = ~n_lt_236;
+assign n_resize_238 = n_not_237;
+assign n_shl_239 = n_resize_238 << 17;
+assign n_or_240 = n_or_229 | n_shl_239;
+assign n_sub_241 = n_or_235 - n_resize_26;
+assign n_mux_242 = n_not_237 ? n_sub_241 : n_or_235;
+assign n_shl_243 = n_mux_242 << 1;
+assign n_bits_16_16_244 = n_shl_20 >> 16;
+assign n_resize_245 = n_bits_16_16_244;
+assign n_or_246 = n_shl_243 | n_resize_245;
+assign n_lt_247 = n_or_246 < n_resize_26;
+assign n_not_248 = ~n_lt_247;
+assign n_resize_249 = n_not_248;
+assign n_shl_250 = n_resize_249 << 16;
+assign n_or_251 = n_or_240 | n_shl_250;
+assign n_sub_252 = n_or_246 - n_resize_26;
+assign n_mux_253 = n_not_248 ? n_sub_252 : n_or_246;
+assign n_shl_254 = n_mux_253 << 1;
+assign n_bits_15_15_255 = n_shl_20 >> 15;
+assign n_resize_256 = n_bits_15_15_255;
+assign n_or_257 = n_shl_254 | n_resize_256;
+assign n_lt_258 = n_or_257 < n_resize_26;
+assign n_not_259 = ~n_lt_258;
+assign n_resize_260 = n_not_259;
+assign n_shl_261 = n_resize_260 << 15;
+assign n_or_262 = n_or_251 | n_shl_261;
+assign n_sub_263 = n_or_257 - n_resize_26;
+assign n_mux_264 = n_not_259 ? n_sub_263 : n_or_257;
+assign n_shl_265 = n_mux_264 << 1;
+assign n_bits_14_14_266 = n_shl_20 >> 14;
+assign n_resize_267 = n_bits_14_14_266;
+assign n_or_268 = n_shl_265 | n_resize_267;
+assign n_lt_269 = n_or_268 < n_resize_26;
+assign n_not_270 = ~n_lt_269;
+assign n_resize_271 = n_not_270;
+assign n_shl_272 = n_resize_271 << 14;
+assign n_or_273 = n_or_262 | n_shl_272;
+assign n_sub_274 = n_or_268 - n_resize_26;
+assign n_mux_275 = n_not_270 ? n_sub_274 : n_or_268;
+assign n_shl_276 = n_mux_275 << 1;
+assign n_bits_13_13_277 = n_shl_20 >> 13;
+assign n_resize_278 = n_bits_13_13_277;
+assign n_or_279 = n_shl_276 | n_resize_278;
+assign n_lt_280 = n_or_279 < n_resize_26;
+assign n_not_281 = ~n_lt_280;
+assign n_resize_282 = n_not_281;
+assign n_shl_283 = n_resize_282 << 13;
+assign n_or_284 = n_or_273 | n_shl_283;
+assign n_sub_285 = n_or_279 - n_resize_26;
+assign n_mux_286 = n_not_281 ? n_sub_285 : n_or_279;
+assign n_shl_287 = n_mux_286 << 1;
+assign n_bits_12_12_288 = n_shl_20 >> 12;
+assign n_resize_289 = n_bits_12_12_288;
+assign n_or_290 = n_shl_287 | n_resize_289;
+assign n_lt_291 = n_or_290 < n_resize_26;
+assign n_not_292 = ~n_lt_291;
+assign n_resize_293 = n_not_292;
+assign n_shl_294 = n_resize_293 << 12;
+assign n_or_295 = n_or_284 | n_shl_294;
+assign n_sub_296 = n_or_290 - n_resize_26;
+assign n_mux_297 = n_not_292 ? n_sub_296 : n_or_290;
+assign n_shl_298 = n_mux_297 << 1;
+assign n_bits_11_11_299 = n_shl_20 >> 11;
+assign n_resize_300 = n_bits_11_11_299;
+assign n_or_301 = n_shl_298 | n_resize_300;
+assign n_lt_302 = n_or_301 < n_resize_26;
+assign n_not_303 = ~n_lt_302;
+assign n_resize_304 = n_not_303;
+assign n_shl_305 = n_resize_304 << 11;
+assign n_or_306 = n_or_295 | n_shl_305;
+assign n_sub_307 = n_or_301 - n_resize_26;
+assign n_mux_308 = n_not_303 ? n_sub_307 : n_or_301;
+assign n_shl_309 = n_mux_308 << 1;
+assign n_bits_10_10_310 = n_shl_20 >> 10;
+assign n_resize_311 = n_bits_10_10_310;
+assign n_or_312 = n_shl_309 | n_resize_311;
+assign n_lt_313 = n_or_312 < n_resize_26;
+assign n_not_314 = ~n_lt_313;
+assign n_resize_315 = n_not_314;
+assign n_shl_316 = n_resize_315 << 10;
+assign n_or_317 = n_or_306 | n_shl_316;
+assign n_sub_318 = n_or_312 - n_resize_26;
+assign n_mux_319 = n_not_314 ? n_sub_318 : n_or_312;
+assign n_shl_320 = n_mux_319 << 1;
+assign n_bits_9_9_321 = n_shl_20 >> 9;
+assign n_resize_322 = n_bits_9_9_321;
+assign n_or_323 = n_shl_320 | n_resize_322;
+assign n_lt_324 = n_or_323 < n_resize_26;
+assign n_not_325 = ~n_lt_324;
+assign n_resize_326 = n_not_325;
+assign n_shl_327 = n_resize_326 << 9;
+assign n_or_328 = n_or_317 | n_shl_327;
+assign n_sub_329 = n_or_323 - n_resize_26;
+assign n_mux_330 = n_not_325 ? n_sub_329 : n_or_323;
+assign n_shl_331 = n_mux_330 << 1;
+assign n_bits_8_8_332 = n_shl_20 >> 8;
+assign n_resize_333 = n_bits_8_8_332;
+assign n_or_334 = n_shl_331 | n_resize_333;
+assign n_lt_335 = n_or_334 < n_resize_26;
+assign n_not_336 = ~n_lt_335;
+assign n_resize_337 = n_not_336;
+assign n_shl_338 = n_resize_337 << 8;
+assign n_or_339 = n_or_328 | n_shl_338;
+assign n_sub_340 = n_or_334 - n_resize_26;
+assign n_mux_341 = n_not_336 ? n_sub_340 : n_or_334;
+assign n_shl_342 = n_mux_341 << 1;
+assign n_bits_7_7_343 = n_shl_20 >> 7;
+assign n_resize_344 = n_bits_7_7_343;
+assign n_or_345 = n_shl_342 | n_resize_344;
+assign n_lt_346 = n_or_345 < n_resize_26;
+assign n_not_347 = ~n_lt_346;
+assign n_resize_348 = n_not_347;
+assign n_shl_349 = n_resize_348 << 7;
+assign n_or_350 = n_or_339 | n_shl_349;
+assign n_sub_351 = n_or_345 - n_resize_26;
+assign n_mux_352 = n_not_347 ? n_sub_351 : n_or_345;
+assign n_shl_353 = n_mux_352 << 1;
+assign n_bits_6_6_354 = n_shl_20 >> 6;
+assign n_resize_355 = n_bits_6_6_354;
+assign n_or_356 = n_shl_353 | n_resize_355;
+assign n_lt_357 = n_or_356 < n_resize_26;
+assign n_not_358 = ~n_lt_357;
+assign n_resize_359 = n_not_358;
+assign n_shl_360 = n_resize_359 << 6;
+assign n_or_361 = n_or_350 | n_shl_360;
+assign n_sub_362 = n_or_356 - n_resize_26;
+assign n_mux_363 = n_not_358 ? n_sub_362 : n_or_356;
+assign n_shl_364 = n_mux_363 << 1;
+assign n_bits_5_5_365 = n_shl_20 >> 5;
+assign n_resize_366 = n_bits_5_5_365;
+assign n_or_367 = n_shl_364 | n_resize_366;
+assign n_lt_368 = n_or_367 < n_resize_26;
+assign n_not_369 = ~n_lt_368;
+assign n_resize_370 = n_not_369;
+assign n_shl_371 = n_resize_370 << 5;
+assign n_or_372 = n_or_361 | n_shl_371;
+assign n_sub_373 = n_or_367 - n_resize_26;
+assign n_mux_374 = n_not_369 ? n_sub_373 : n_or_367;
+assign n_shl_375 = n_mux_374 << 1;
+assign n_bits_4_4_376 = n_shl_20 >> 4;
+assign n_resize_377 = n_bits_4_4_376;
+assign n_or_378 = n_shl_375 | n_resize_377;
+assign n_lt_379 = n_or_378 < n_resize_26;
+assign n_not_380 = ~n_lt_379;
+assign n_resize_381 = n_not_380;
+assign n_shl_382 = n_resize_381 << 4;
+assign n_or_383 = n_or_372 | n_shl_382;
+assign n_sub_384 = n_or_378 - n_resize_26;
+assign n_mux_385 = n_not_380 ? n_sub_384 : n_or_378;
+assign n_shl_386 = n_mux_385 << 1;
+assign n_bits_3_3_387 = n_shl_20 >> 3;
+assign n_resize_388 = n_bits_3_3_387;
+assign n_or_389 = n_shl_386 | n_resize_388;
+assign n_lt_390 = n_or_389 < n_resize_26;
+assign n_not_391 = ~n_lt_390;
+assign n_resize_392 = n_not_391;
+assign n_shl_393 = n_resize_392 << 3;
+assign n_or_394 = n_or_383 | n_shl_393;
+assign n_sub_395 = n_or_389 - n_resize_26;
+assign n_mux_396 = n_not_391 ? n_sub_395 : n_or_389;
+assign n_shl_397 = n_mux_396 << 1;
+assign n_bits_2_2_398 = n_shl_20 >> 2;
+assign n_resize_399 = n_bits_2_2_398;
+assign n_or_400 = n_shl_397 | n_resize_399;
+assign n_lt_401 = n_or_400 < n_resize_26;
+assign n_not_402 = ~n_lt_401;
+assign n_resize_403 = n_not_402;
+assign n_shl_404 = n_resize_403 << 2;
+assign n_or_405 = n_or_394 | n_shl_404;
+assign n_sub_406 = n_or_400 - n_resize_26;
+assign n_mux_407 = n_not_402 ? n_sub_406 : n_or_400;
+assign n_shl_408 = n_mux_407 << 1;
+assign n_bits_1_1_409 = n_shl_20 >> 1;
+assign n_resize_410 = n_bits_1_1_409;
+assign n_or_411 = n_shl_408 | n_resize_410;
+assign n_lt_412 = n_or_411 < n_resize_26;
+assign n_not_413 = ~n_lt_412;
+assign n_resize_414 = n_not_413;
+assign n_shl_415 = n_resize_414 << 1;
+assign n_or_416 = n_or_405 | n_shl_415;
+assign n_sub_417 = n_or_411 - n_resize_26;
+assign n_mux_418 = n_not_413 ? n_sub_417 : n_or_411;
+assign n_shl_419 = n_mux_418 << 1;
+assign n_bits_0_0_420 = n_shl_20 >> 0;
+assign n_resize_421 = n_bits_0_0_420;
+assign n_or_422 = n_shl_419 | n_resize_421;
+assign n_lt_423 = n_or_422 < n_resize_26;
+assign n_not_424 = ~n_lt_423;
+assign n_resize_425 = n_not_424;
+assign n_shl_426 = n_resize_425 << 0;
+assign n_or_427 = n_or_416 | n_shl_426;
+assign n_sub_428 = n_or_422 - n_resize_26;
+assign n_mux_429 = n_not_424 ? n_sub_428 : n_or_422;
+assign n_eq_430 = n_mux_429 == 38'd0;
+assign n_not_431 = ~n_eq_430;
+assign n_resize_432 = n_not_431;
+assign n_or_433 = n_or_427 | n_resize_432;
+assign n_bits_36_36_434 = n_or_433 >> 36;
+assign n_bits_35_35_435 = n_or_433 >> 35;
+assign n_bits_34_34_436 = n_or_433 >> 34;
+assign n_bits_33_33_437 = n_or_433 >> 33;
+assign n_bits_32_32_438 = n_or_433 >> 32;
+assign n_bits_31_31_439 = n_or_433 >> 31;
+assign n_bits_30_30_440 = n_or_433 >> 30;
+assign n_bits_29_29_441 = n_or_433 >> 29;
+assign n_bits_28_28_442 = n_or_433 >> 28;
+assign n_bits_27_27_443 = n_or_433 >> 27;
+assign n_bits_26_26_444 = n_or_433 >> 26;
+assign n_bits_25_25_445 = n_or_433 >> 25;
+assign n_bits_24_24_446 = n_or_433 >> 24;
+assign n_bits_23_23_447 = n_or_433 >> 23;
+assign n_bits_22_22_448 = n_or_433 >> 22;
+assign n_bits_21_21_449 = n_or_433 >> 21;
+assign n_bits_20_20_450 = n_or_433 >> 20;
+assign n_bits_19_19_451 = n_or_433 >> 19;
+assign n_bits_18_18_452 = n_or_433 >> 18;
+assign n_bits_17_17_453 = n_or_433 >> 17;
+assign n_bits_16_16_454 = n_or_433 >> 16;
+assign n_bits_15_15_455 = n_or_433 >> 15;
+assign n_bits_14_14_456 = n_or_433 >> 14;
+assign n_bits_13_13_457 = n_or_433 >> 13;
+assign n_bits_12_12_458 = n_or_433 >> 12;
+assign n_bits_11_11_459 = n_or_433 >> 11;
+assign n_bits_10_10_460 = n_or_433 >> 10;
+assign n_bits_9_9_461 = n_or_433 >> 9;
+assign n_bits_8_8_462 = n_or_433 >> 8;
+assign n_bits_7_7_463 = n_or_433 >> 7;
+assign n_bits_6_6_464 = n_or_433 >> 6;
+assign n_bits_5_5_465 = n_or_433 >> 5;
+assign n_bits_4_4_466 = n_or_433 >> 4;
+assign n_bits_3_3_467 = n_or_433 >> 3;
+assign n_bits_2_2_468 = n_or_433 >> 2;
+assign n_bits_1_1_469 = n_or_433 >> 1;
+assign n_bits_0_0_470 = n_or_433 >> 0;
+assign n_mux_471 = n_bits_0_0_470 ? 16'd0 : 16'd0;
+assign n_mux_472 = n_bits_1_1_469 ? 16'd1 : n_mux_471;
+assign n_mux_473 = n_bits_2_2_468 ? 16'd2 : n_mux_472;
+assign n_mux_474 = n_bits_3_3_467 ? 16'd3 : n_mux_473;
+assign n_mux_475 = n_bits_4_4_466 ? 16'd4 : n_mux_474;
+assign n_mux_476 = n_bits_5_5_465 ? 16'd5 : n_mux_475;
+assign n_mux_477 = n_bits_6_6_464 ? 16'd6 : n_mux_476;
+assign n_mux_478 = n_bits_7_7_463 ? 16'd7 : n_mux_477;
+assign n_mux_479 = n_bits_8_8_462 ? 16'd8 : n_mux_478;
+assign n_mux_480 = n_bits_9_9_461 ? 16'd9 : n_mux_479;
+assign n_mux_481 = n_bits_10_10_460 ? 16'd10 : n_mux_480;
+assign n_mux_482 = n_bits_11_11_459 ? 16'd11 : n_mux_481;
+assign n_mux_483 = n_bits_12_12_458 ? 16'd12 : n_mux_482;
+assign n_mux_484 = n_bits_13_13_457 ? 16'd13 : n_mux_483;
+assign n_mux_485 = n_bits_14_14_456 ? 16'd14 : n_mux_484;
+assign n_mux_486 = n_bits_15_15_455 ? 16'd15 : n_mux_485;
+assign n_mux_487 = n_bits_16_16_454 ? 16'd16 : n_mux_486;
+assign n_mux_488 = n_bits_17_17_453 ? 16'd17 : n_mux_487;
+assign n_mux_489 = n_bits_18_18_452 ? 16'd18 : n_mux_488;
+assign n_mux_490 = n_bits_19_19_451 ? 16'd19 : n_mux_489;
+assign n_mux_491 = n_bits_20_20_450 ? 16'd20 : n_mux_490;
+assign n_mux_492 = n_bits_21_21_449 ? 16'd21 : n_mux_491;
+assign n_mux_493 = n_bits_22_22_448 ? 16'd22 : n_mux_492;
+assign n_mux_494 = n_bits_23_23_447 ? 16'd23 : n_mux_493;
+assign n_mux_495 = n_bits_24_24_446 ? 16'd24 : n_mux_494;
+assign n_mux_496 = n_bits_25_25_445 ? 16'd25 : n_mux_495;
+assign n_mux_497 = n_bits_26_26_444 ? 16'd26 : n_mux_496;
+assign n_mux_498 = n_bits_27_27_443 ? 16'd27 : n_mux_497;
+assign n_mux_499 = n_bits_28_28_442 ? 16'd28 : n_mux_498;
+assign n_mux_500 = n_bits_29_29_441 ? 16'd29 : n_mux_499;
+assign n_mux_501 = n_bits_30_30_440 ? 16'd30 : n_mux_500;
+assign n_mux_502 = n_bits_31_31_439 ? 16'd31 : n_mux_501;
+assign n_mux_503 = n_bits_32_32_438 ? 16'd32 : n_mux_502;
+assign n_mux_504 = n_bits_33_33_437 ? 16'd33 : n_mux_503;
+assign n_mux_505 = n_bits_34_34_436 ? 16'd34 : n_mux_504;
+assign n_mux_506 = n_bits_35_35_435 ? 16'd35 : n_mux_505;
+assign n_mux_507 = n_bits_36_36_434 ? 16'd36 : n_mux_506;
+assign n_add_508 = n_sub_15 + n_mux_507;
+assign n_add_509 = n_add_508 + 16'd63;
+assign n_shr_510 = n_or_433 >> 20;
+assign n_resize_511 = n_shr_510;
+assign n_bits_19_19_512 = n_or_433 >> 19;
+assign n_bits_18_0_513 = n_or_433 >> 0;
+assign n_eq_514 = n_bits_18_0_513 == 19'd0;
+assign n_not_515 = ~n_eq_514;
+assign n_bits_0_0_516 = n_resize_511 >> 0;
+assign n_or_517 = n_not_515 | n_bits_0_0_516;
+assign n_and_518 = n_bits_19_19_512 & n_or_517;
+assign n_resize_519 = n_and_518;
+assign n_add_520 = n_resize_511 + n_resize_519;
+assign n_shr_521 = n_or_433 >> 19;
+assign n_resize_522 = n_shr_521;
+assign n_bits_18_18_523 = n_or_433 >> 18;
+assign n_bits_17_0_524 = n_or_433 >> 0;
+assign n_eq_525 = n_bits_17_0_524 == 18'd0;
+assign n_not_526 = ~n_eq_525;
+assign n_bits_0_0_527 = n_resize_522 >> 0;
+assign n_or_528 = n_not_526 | n_bits_0_0_527;
+assign n_and_529 = n_bits_18_18_523 & n_or_528;
+assign n_resize_530 = n_and_529;
+assign n_add_531 = n_resize_522 + n_resize_530;
+assign n_shr_532 = n_or_433 >> 18;
+assign n_resize_533 = n_shr_532;
+assign n_bits_17_17_534 = n_or_433 >> 17;
+assign n_bits_16_0_535 = n_or_433 >> 0;
+assign n_eq_536 = n_bits_16_0_535 == 17'd0;
+assign n_not_537 = ~n_eq_536;
+assign n_bits_0_0_538 = n_resize_533 >> 0;
+assign n_or_539 = n_not_537 | n_bits_0_0_538;
+assign n_and_540 = n_bits_17_17_534 & n_or_539;
+assign n_resize_541 = n_and_540;
+assign n_add_542 = n_resize_533 + n_resize_541;
+assign n_shr_543 = n_or_433 >> 17;
+assign n_resize_544 = n_shr_543;
+assign n_bits_16_16_545 = n_or_433 >> 16;
+assign n_bits_15_0_546 = n_or_433 >> 0;
+assign n_eq_547 = n_bits_15_0_546 == 16'd0;
+assign n_not_548 = ~n_eq_547;
+assign n_bits_0_0_549 = n_resize_544 >> 0;
+assign n_or_550 = n_not_548 | n_bits_0_0_549;
+assign n_and_551 = n_bits_16_16_545 & n_or_550;
+assign n_resize_552 = n_and_551;
+assign n_add_553 = n_resize_544 + n_resize_552;
+assign n_shr_554 = n_or_433 >> 16;
+assign n_resize_555 = n_shr_554;
+assign n_bits_15_15_556 = n_or_433 >> 15;
+assign n_bits_14_0_557 = n_or_433 >> 0;
+assign n_eq_558 = n_bits_14_0_557 == 15'd0;
+assign n_not_559 = ~n_eq_558;
+assign n_bits_0_0_560 = n_resize_555 >> 0;
+assign n_or_561 = n_not_559 | n_bits_0_0_560;
+assign n_and_562 = n_bits_15_15_556 & n_or_561;
+assign n_resize_563 = n_and_562;
+assign n_add_564 = n_resize_555 + n_resize_563;
+assign n_shr_565 = n_or_433 >> 15;
+assign n_resize_566 = n_shr_565;
+assign n_bits_14_14_567 = n_or_433 >> 14;
+assign n_bits_13_0_568 = n_or_433 >> 0;
+assign n_eq_569 = n_bits_13_0_568 == 14'd0;
+assign n_not_570 = ~n_eq_569;
+assign n_bits_0_0_571 = n_resize_566 >> 0;
+assign n_or_572 = n_not_570 | n_bits_0_0_571;
+assign n_and_573 = n_bits_14_14_567 & n_or_572;
+assign n_resize_574 = n_and_573;
+assign n_add_575 = n_resize_566 + n_resize_574;
+assign n_shr_576 = n_or_433 >> 14;
+assign n_resize_577 = n_shr_576;
+assign n_bits_13_13_578 = n_or_433 >> 13;
+assign n_bits_12_0_579 = n_or_433 >> 0;
+assign n_eq_580 = n_bits_12_0_579 == 13'd0;
+assign n_not_581 = ~n_eq_580;
+assign n_bits_0_0_582 = n_resize_577 >> 0;
+assign n_or_583 = n_not_581 | n_bits_0_0_582;
+assign n_and_584 = n_bits_13_13_578 & n_or_583;
+assign n_resize_585 = n_and_584;
+assign n_add_586 = n_resize_577 + n_resize_585;
+assign n_shr_587 = n_or_433 >> 13;
+assign n_resize_588 = n_shr_587;
+assign n_bits_12_12_589 = n_or_433 >> 12;
+assign n_bits_11_0_590 = n_or_433 >> 0;
+assign n_eq_591 = n_bits_11_0_590 == 12'd0;
+assign n_not_592 = ~n_eq_591;
+assign n_bits_0_0_593 = n_resize_588 >> 0;
+assign n_or_594 = n_not_592 | n_bits_0_0_593;
+assign n_and_595 = n_bits_12_12_589 & n_or_594;
+assign n_resize_596 = n_and_595;
+assign n_add_597 = n_resize_588 + n_resize_596;
+assign n_shr_598 = n_or_433 >> 12;
+assign n_resize_599 = n_shr_598;
+assign n_bits_11_11_600 = n_or_433 >> 11;
+assign n_bits_10_0_601 = n_or_433 >> 0;
+assign n_eq_602 = n_bits_10_0_601 == 11'd0;
+assign n_not_603 = ~n_eq_602;
+assign n_bits_0_0_604 = n_resize_599 >> 0;
+assign n_or_605 = n_not_603 | n_bits_0_0_604;
+assign n_and_606 = n_bits_11_11_600 & n_or_605;
+assign n_resize_607 = n_and_606;
+assign n_add_608 = n_resize_599 + n_resize_607;
+assign n_shr_609 = n_or_433 >> 11;
+assign n_resize_610 = n_shr_609;
+assign n_bits_10_10_611 = n_or_433 >> 10;
+assign n_bits_9_0_612 = n_or_433 >> 0;
+assign n_eq_613 = n_bits_9_0_612 == 10'd0;
+assign n_not_614 = ~n_eq_613;
+assign n_bits_0_0_615 = n_resize_610 >> 0;
+assign n_or_616 = n_not_614 | n_bits_0_0_615;
+assign n_and_617 = n_bits_10_10_611 & n_or_616;
+assign n_resize_618 = n_and_617;
+assign n_add_619 = n_resize_610 + n_resize_618;
+assign n_shr_620 = n_or_433 >> 10;
+assign n_resize_621 = n_shr_620;
+assign n_bits_9_9_622 = n_or_433 >> 9;
+assign n_bits_8_0_623 = n_or_433 >> 0;
+assign n_eq_624 = n_bits_8_0_623 == 9'd0;
+assign n_not_625 = ~n_eq_624;
+assign n_bits_0_0_626 = n_resize_621 >> 0;
+assign n_or_627 = n_not_625 | n_bits_0_0_626;
+assign n_and_628 = n_bits_9_9_622 & n_or_627;
+assign n_resize_629 = n_and_628;
+assign n_add_630 = n_resize_621 + n_resize_629;
+assign n_shr_631 = n_or_433 >> 9;
+assign n_resize_632 = n_shr_631;
+assign n_bits_8_8_633 = n_or_433 >> 8;
+assign n_bits_7_0_634 = n_or_433 >> 0;
+assign n_eq_635 = n_bits_7_0_634 == 8'd0;
+assign n_not_636 = ~n_eq_635;
+assign n_bits_0_0_637 = n_resize_632 >> 0;
+assign n_or_638 = n_not_636 | n_bits_0_0_637;
+assign n_and_639 = n_bits_8_8_633 & n_or_638;
+assign n_resize_640 = n_and_639;
+assign n_add_641 = n_resize_632 + n_resize_640;
+assign n_shr_642 = n_or_433 >> 8;
+assign n_resize_643 = n_shr_642;
+assign n_bits_7_7_644 = n_or_433 >> 7;
+assign n_bits_6_0_645 = n_or_433 >> 0;
+assign n_eq_646 = n_bits_6_0_645 == 7'd0;
+assign n_not_647 = ~n_eq_646;
+assign n_bits_0_0_648 = n_resize_643 >> 0;
+assign n_or_649 = n_not_647 | n_bits_0_0_648;
+assign n_and_650 = n_bits_7_7_644 & n_or_649;
+assign n_resize_651 = n_and_650;
+assign n_add_652 = n_resize_643 + n_resize_651;
+assign n_shr_653 = n_or_433 >> 7;
+assign n_resize_654 = n_shr_653;
+assign n_bits_6_6_655 = n_or_433 >> 6;
+assign n_bits_5_0_656 = n_or_433 >> 0;
+assign n_eq_657 = n_bits_5_0_656 == 6'd0;
+assign n_not_658 = ~n_eq_657;
+assign n_bits_0_0_659 = n_resize_654 >> 0;
+assign n_or_660 = n_not_658 | n_bits_0_0_659;
+assign n_and_661 = n_bits_6_6_655 & n_or_660;
+assign n_resize_662 = n_and_661;
+assign n_add_663 = n_resize_654 + n_resize_662;
+assign n_shr_664 = n_or_433 >> 6;
+assign n_resize_665 = n_shr_664;
+assign n_bits_5_5_666 = n_or_433 >> 5;
+assign n_bits_4_0_667 = n_or_433 >> 0;
+assign n_eq_668 = n_bits_4_0_667 == 5'd0;
+assign n_not_669 = ~n_eq_668;
+assign n_bits_0_0_670 = n_resize_665 >> 0;
+assign n_or_671 = n_not_669 | n_bits_0_0_670;
+assign n_and_672 = n_bits_5_5_666 & n_or_671;
+assign n_resize_673 = n_and_672;
+assign n_add_674 = n_resize_665 + n_resize_673;
+assign n_shr_675 = n_or_433 >> 5;
+assign n_resize_676 = n_shr_675;
+assign n_bits_4_4_677 = n_or_433 >> 4;
+assign n_bits_3_0_678 = n_or_433 >> 0;
+assign n_eq_679 = n_bits_3_0_678 == 4'd0;
+assign n_not_680 = ~n_eq_679;
+assign n_bits_0_0_681 = n_resize_676 >> 0;
+assign n_or_682 = n_not_680 | n_bits_0_0_681;
+assign n_and_683 = n_bits_4_4_677 & n_or_682;
+assign n_resize_684 = n_and_683;
+assign n_add_685 = n_resize_676 + n_resize_684;
+assign n_shr_686 = n_or_433 >> 4;
+assign n_resize_687 = n_shr_686;
+assign n_bits_3_3_688 = n_or_433 >> 3;
+assign n_bits_2_0_689 = n_or_433 >> 0;
+assign n_eq_690 = n_bits_2_0_689 == 3'd0;
+assign n_not_691 = ~n_eq_690;
+assign n_bits_0_0_692 = n_resize_687 >> 0;
+assign n_or_693 = n_not_691 | n_bits_0_0_692;
+assign n_and_694 = n_bits_3_3_688 & n_or_693;
+assign n_resize_695 = n_and_694;
+assign n_add_696 = n_resize_687 + n_resize_695;
+assign n_shr_697 = n_or_433 >> 3;
+assign n_resize_698 = n_shr_697;
+assign n_bits_2_2_699 = n_or_433 >> 2;
+assign n_bits_1_0_700 = n_or_433 >> 0;
+assign n_eq_701 = n_bits_1_0_700 == 2'd0;
+assign n_not_702 = ~n_eq_701;
+assign n_bits_0_0_703 = n_resize_698 >> 0;
+assign n_or_704 = n_not_702 | n_bits_0_0_703;
+assign n_and_705 = n_bits_2_2_699 & n_or_704;
+assign n_resize_706 = n_and_705;
+assign n_add_707 = n_resize_698 + n_resize_706;
+assign n_shr_708 = n_or_433 >> 2;
+assign n_resize_709 = n_shr_708;
+assign n_bits_1_1_710 = n_or_433 >> 1;
+assign n_bits_0_0_711 = n_or_433 >> 0;
+assign n_eq_712 = n_bits_0_0_711 == 1'd0;
+assign n_not_713 = ~n_eq_712;
+assign n_bits_0_0_714 = n_resize_709 >> 0;
+assign n_or_715 = n_not_713 | n_bits_0_0_714;
+assign n_and_716 = n_bits_1_1_710 & n_or_715;
+assign n_resize_717 = n_and_716;
+assign n_add_718 = n_resize_709 + n_resize_717;
+assign n_shr_719 = n_or_433 >> 1;
+assign n_resize_720 = n_shr_719;
+assign n_bits_0_0_721 = n_or_433 >> 0;
+assign n_bits_0_0_722 = n_resize_720 >> 0;
+assign n_or_723 = 1'd0 | n_bits_0_0_722;
+assign n_and_724 = n_bits_0_0_721 & n_or_723;
+assign n_resize_725 = n_and_724;
+assign n_add_726 = n_resize_720 + n_resize_725;
+assign n_resize_727 = n_or_433;
+assign n_shl_728 = n_resize_727 << 0;
+assign n_resize_729 = n_or_433;
+assign n_shl_730 = n_resize_729 << 1;
+assign n_resize_731 = n_or_433;
+assign n_shl_732 = n_resize_731 << 2;
+assign n_resize_733 = n_or_433;
+assign n_shl_734 = n_resize_733 << 3;
+assign n_resize_735 = n_or_433;
+assign n_shl_736 = n_resize_735 << 4;
+assign n_resize_737 = n_or_433;
+assign n_shl_738 = n_resize_737 << 5;
+assign n_resize_739 = n_or_433;
+assign n_shl_740 = n_resize_739 << 6;
+assign n_resize_741 = n_or_433;
+assign n_shl_742 = n_resize_741 << 7;
+assign n_resize_743 = n_or_433;
+assign n_shl_744 = n_resize_743 << 8;
+assign n_resize_745 = n_or_433;
+assign n_shl_746 = n_resize_745 << 9;
+assign n_resize_747 = n_or_433;
+assign n_shl_748 = n_resize_747 << 10;
+assign n_resize_749 = n_or_433;
+assign n_shl_750 = n_resize_749 << 11;
+assign n_resize_751 = n_or_433;
+assign n_shl_752 = n_resize_751 << 12;
+assign n_resize_753 = n_or_433;
+assign n_shl_754 = n_resize_753 << 13;
+assign n_resize_755 = n_or_433;
+assign n_shl_756 = n_resize_755 << 14;
+assign n_resize_757 = n_or_433;
+assign n_shl_758 = n_resize_757 << 15;
+assign n_resize_759 = n_or_433;
+assign n_shl_760 = n_resize_759 << 16;
+assign n_mux_761 = n_bits_0_0_470 ? n_shl_760 : 18'd0;
+assign n_mux_762 = n_bits_1_1_469 ? n_shl_758 : n_mux_761;
+assign n_mux_763 = n_bits_2_2_468 ? n_shl_756 : n_mux_762;
+assign n_mux_764 = n_bits_3_3_467 ? n_shl_754 : n_mux_763;
+assign n_mux_765 = n_bits_4_4_466 ? n_shl_752 : n_mux_764;
+assign n_mux_766 = n_bits_5_5_465 ? n_shl_750 : n_mux_765;
+assign n_mux_767 = n_bits_6_6_464 ? n_shl_748 : n_mux_766;
+assign n_mux_768 = n_bits_7_7_463 ? n_shl_746 : n_mux_767;
+assign n_mux_769 = n_bits_8_8_462 ? n_shl_744 : n_mux_768;
+assign n_mux_770 = n_bits_9_9_461 ? n_shl_742 : n_mux_769;
+assign n_mux_771 = n_bits_10_10_460 ? n_shl_740 : n_mux_770;
+assign n_mux_772 = n_bits_11_11_459 ? n_shl_738 : n_mux_771;
+assign n_mux_773 = n_bits_12_12_458 ? n_shl_736 : n_mux_772;
+assign n_mux_774 = n_bits_13_13_457 ? n_shl_734 : n_mux_773;
+assign n_mux_775 = n_bits_14_14_456 ? n_shl_732 : n_mux_774;
+assign n_mux_776 = n_bits_15_15_455 ? n_shl_730 : n_mux_775;
+assign n_mux_777 = n_bits_16_16_454 ? n_shl_728 : n_mux_776;
+assign n_mux_778 = n_bits_17_17_453 ? n_add_726 : n_mux_777;
+assign n_mux_779 = n_bits_18_18_452 ? n_add_718 : n_mux_778;
+assign n_mux_780 = n_bits_19_19_451 ? n_add_707 : n_mux_779;
+assign n_mux_781 = n_bits_20_20_450 ? n_add_696 : n_mux_780;
+assign n_mux_782 = n_bits_21_21_449 ? n_add_685 : n_mux_781;
+assign n_mux_783 = n_bits_22_22_448 ? n_add_674 : n_mux_782;
+assign n_mux_784 = n_bits_23_23_447 ? n_add_663 : n_mux_783;
+assign n_mux_785 = n_bits_24_24_446 ? n_add_652 : n_mux_784;
+assign n_mux_786 = n_bits_25_25_445 ? n_add_641 : n_mux_785;
+assign n_mux_787 = n_bits_26_26_444 ? n_add_630 : n_mux_786;
+assign n_mux_788 = n_bits_27_27_443 ? n_add_619 : n_mux_787;
+assign n_mux_789 = n_bits_28_28_442 ? n_add_608 : n_mux_788;
+assign n_mux_790 = n_bits_29_29_441 ? n_add_597 : n_mux_789;
+assign n_mux_791 = n_bits_30_30_440 ? n_add_586 : n_mux_790;
+assign n_mux_792 = n_bits_31_31_439 ? n_add_575 : n_mux_791;
+assign n_mux_793 = n_bits_32_32_438 ? n_add_564 : n_mux_792;
+assign n_mux_794 = n_bits_33_33_437 ? n_add_553 : n_mux_793;
+assign n_mux_795 = n_bits_34_34_436 ? n_add_542 : n_mux_794;
+assign n_mux_796 = n_bits_35_35_435 ? n_add_531 : n_mux_795;
+assign n_mux_797 = n_bits_36_36_434 ? n_add_520 : n_mux_796;
+assign n_bits_17_17_798 = n_mux_797 >> 17;
+assign n_resize_799 = n_bits_17_17_798;
+assign n_add_800 = n_add_509 + n_resize_799;
+assign n_slt_801 = $signed(n_add_800) < $signed(16'd1);
+assign n_eq_802 = n_or_433 == 37'd0;
+assign n_or_803 = n_slt_801 | n_eq_802;
+assign n_slt_804 = $signed(n_add_800) < $signed(16'd127);
+assign n_not_805 = ~n_slt_804;
+assign n_bits_22_16_806 = 24'd4128768 >> 16;
+assign n_eq_807 = n_bits_22_16_806 == 7'd0;
+assign n_not_808 = ~n_eq_807;
+assign n_bits_23_23_809 = 24'd4128768 >> 23;
+assign n_and_810 = n_not_808 & n_bits_23_23_809;
+assign n_bits_22_16_811 = s_a >> 16;
+assign n_eq_812 = n_bits_22_16_811 == 7'd0;
+assign n_not_813 = ~n_eq_812;
+assign n_bits_23_23_814 = s_a >> 23;
+assign n_and_815 = n_not_813 & n_bits_23_23_814;
+assign n_xor_816 = n_and_810 ^ n_and_815;
+assign n_concat_817 = {n_xor_816, 23'd8323071};
+assign n_resize_818 = n_add_800;
+assign n_shr_819 = n_mux_797 >> 1;
+assign n_mux_820 = n_bits_17_17_798 ? n_shr_819 : n_mux_797;
+assign n_resize_821 = n_mux_820;
+assign n_concat_822 = {n_resize_818, n_resize_821};
+assign n_concat_823 = {n_xor_816, n_concat_822};
+assign n_mux_824 = n_not_805 ? n_concat_817 : n_concat_823;
+assign n_mux_825 = n_or_803 ? 24'd0 : n_mux_824;
+assign n_mux_826 = n_eq_9 ? 24'd0 : n_mux_825;
+assign n_mux_827 = n_or_7 ? 24'd8323072 : n_mux_826;
+assign s_result = n_mux_827;
 endmodule

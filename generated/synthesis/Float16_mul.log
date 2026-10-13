@@ -60,19 +60,19 @@ Removed a total of 2 cells.
 Running muxtree optimizer on module \h_Float16_mul..
   Creating internal representation of mux trees.
   Evaluating internal representation of mux trees.
-      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:757$181: \n_188 -> { 2'01 \n_188 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:756$180: \n_190 -> { 2'01 \n_190 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:755$179: \n_192 -> { 2'01 \n_192 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:754$178: \n_194 -> { 2'01 \n_194 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:753$177: \n_196 -> { 2'01 \n_196 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:752$176: \n_198 -> { 2'01 \n_198 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:751$175: \n_200 -> { 2'01 \n_200 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:750$174: \n_202 -> { 2'01 \n_202 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:749$173: \n_204 -> { 2'01 \n_204 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:748$172: \n_206 -> { 2'01 \n_206 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:747$171: \n_208 -> { 2'01 \n_208 [9:0] }
-      Replacing known input bits on port A of cell $ternary$generated/Float16_mul.v:791$212: \n_230 -> { 1'0 \n_230 [10:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:791$212: \n_252 -> { \n_252 [11] 1'1 \n_252 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:757$181: \n_shl_188 -> { 2'01 \n_shl_188 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:756$180: \n_shl_190 -> { 2'01 \n_shl_190 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:755$179: \n_shl_192 -> { 2'01 \n_shl_192 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:754$178: \n_shl_194 -> { 2'01 \n_shl_194 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:753$177: \n_shl_196 -> { 2'01 \n_shl_196 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:752$176: \n_shl_198 -> { 2'01 \n_shl_198 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:751$175: \n_shl_200 -> { 2'01 \n_shl_200 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:750$174: \n_shl_202 -> { 2'01 \n_shl_202 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:749$173: \n_shl_204 -> { 2'01 \n_shl_204 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:748$172: \n_shl_206 -> { 2'01 \n_shl_206 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:747$171: \n_shl_208 -> { 2'01 \n_shl_208 [9:0] }
+      Replacing known input bits on port A of cell $ternary$generated/Float16_mul.v:791$212: \n_mux_230 -> { 1'0 \n_mux_230 [10:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_mul.v:791$212: \n_shr_252 -> { \n_shr_252 [11] 1'1 \n_shr_252 [9:0] }
   Analyzing evaluation results.
 Removed 0 multiplexer ports.
 <suppressed ~3 debug messages>

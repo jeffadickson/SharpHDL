@@ -28,92 +28,92 @@ reg [24:0] s_divider;
 // State register; synchronous active-high reset value 0; updates at rising clk.
 reg [7:0] s_count;
 // Operation '~'; result limited to 4 bits. Signed interpretation only for slt/asr/signextend.
-wire [3:0] n_0;
+wire [3:0] n_not_0;
 // Operation '&'; result limited to 4 bits. Signed interpretation only for slt/asr/signextend.
-wire [3:0] n_1;
+wire [3:0] n_and_1;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_2;
+wire [0:0] n_bits_0_0_2;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_3;
+wire [0:0] n_bits_1_1_3;
 // Operation '+'; result limited to 4 bits. Signed interpretation only for slt/asr/signextend.
-wire [3:0] n_4;
+wire [3:0] n_add_4;
 // Select true operand when condition is 1; false operand otherwise.
-wire [3:0] n_5;
+wire [3:0] n_mux_5;
 // Select true operand when condition is 1; false operand otherwise.
-wire [3:0] n_6;
+wire [3:0] n_mux_6;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_7;
+wire [0:0] n_bits_2_2_7;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_8;
+wire [0:0] n_not_8;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_9;
+wire [0:0] n_mux_9;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_10;
+wire [0:0] n_bits_3_3_10;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_11;
+wire [0:0] n_not_11;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_12;
+wire [0:0] n_mux_12;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_13;
+wire [0:0] n_eq_13;
 // Operation '+'; result limited to 25 bits. Signed interpretation only for slt/asr/signextend.
-wire [24:0] n_14;
+wire [24:0] n_add_14;
 // Select true operand when condition is 1; false operand otherwise.
-wire [24:0] n_15;
+wire [24:0] n_mux_15;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_16;
+wire [0:0] n_bits_0_0_16;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_17;
+wire [0:0] n_and_17;
 // Operation '+'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_18;
+wire [7:0] n_add_18;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_19;
+wire [7:0] n_mux_19;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_20;
+wire [7:0] n_mux_20;
 // Extract source bits [7:4], rebase to bit 0.
-wire [3:0] n_21;
+wire [3:0] n_bits_7_4_21;
 // Select true operand when condition is 1; false operand otherwise.
-wire [3:0] n_22;
+wire [3:0] n_mux_22;
 // Extract source bits [3:0], rebase to bit 0.
-wire [3:0] n_23;
+wire [3:0] n_bits_3_0_23;
 // Operation '+'; result limited to 4 bits. Signed interpretation only for slt/asr/signextend.
-wire [3:0] n_24;
+wire [3:0] n_add_24;
 // Select true operand when condition is 1; false operand otherwise.
-wire [3:0] n_25;
+wire [3:0] n_mux_25;
 // Extract source bits [3:0], rebase to bit 0.
-wire [3:0] n_26;
+wire [3:0] n_bits_3_0_26;
 // Select true operand when condition is 1; false operand otherwise.
-wire [3:0] n_27;
-assign n_0 = ~s_previous_buttons;
-assign n_1 = s_buttons & n_0;
-assign n_2 = n_1 >> 0;
-assign n_3 = n_1 >> 1;
-assign n_4 = s_b + 4'd1;
-assign n_5 = n_3 ? n_4 : s_b;
-assign n_6 = n_2 ? 4'd0 : n_5;
-assign n_7 = n_1 >> 2;
-assign n_8 = ~s_run;
-assign n_9 = n_7 ? n_8 : s_run;
-assign n_10 = n_1 >> 3;
-assign n_11 = ~s_counter_mode;
-assign n_12 = n_10 ? n_11 : s_counter_mode;
-assign n_13 = s_divider == 25'd24999999;
-assign n_14 = s_divider + 25'd1;
-assign n_15 = n_13 ? 25'd0 : n_14;
-assign n_16 = n_1 >> 0;
-assign n_17 = s_run & n_13;
-assign n_18 = s_count + 8'd1;
-assign n_19 = n_17 ? n_18 : s_count;
-assign n_20 = n_16 ? 8'd0 : n_19;
-assign n_21 = s_count >> 4;
-assign n_22 = s_counter_mode ? n_21 : s_b;
-assign n_23 = s_count >> 0;
-assign n_24 = s_b + 4'd2;
-assign n_25 = s_counter_mode ? n_23 : n_24;
-assign n_26 = s_count >> 0;
-assign n_27 = s_counter_mode ? n_26 : s_b;
-assign s_left_digit = n_22;
-assign s_right_digit = n_25;
-assign s_leds = n_27;
+wire [3:0] n_mux_27;
+assign n_not_0 = ~s_previous_buttons;
+assign n_and_1 = s_buttons & n_not_0;
+assign n_bits_0_0_2 = n_and_1 >> 0;
+assign n_bits_1_1_3 = n_and_1 >> 1;
+assign n_add_4 = s_b + 4'd1;
+assign n_mux_5 = n_bits_1_1_3 ? n_add_4 : s_b;
+assign n_mux_6 = n_bits_0_0_2 ? 4'd0 : n_mux_5;
+assign n_bits_2_2_7 = n_and_1 >> 2;
+assign n_not_8 = ~s_run;
+assign n_mux_9 = n_bits_2_2_7 ? n_not_8 : s_run;
+assign n_bits_3_3_10 = n_and_1 >> 3;
+assign n_not_11 = ~s_counter_mode;
+assign n_mux_12 = n_bits_3_3_10 ? n_not_11 : s_counter_mode;
+assign n_eq_13 = s_divider == 25'd24999999;
+assign n_add_14 = s_divider + 25'd1;
+assign n_mux_15 = n_eq_13 ? 25'd0 : n_add_14;
+assign n_bits_0_0_16 = n_and_1 >> 0;
+assign n_and_17 = s_run & n_eq_13;
+assign n_add_18 = s_count + 8'd1;
+assign n_mux_19 = n_and_17 ? n_add_18 : s_count;
+assign n_mux_20 = n_bits_0_0_16 ? 8'd0 : n_mux_19;
+assign n_bits_7_4_21 = s_count >> 4;
+assign n_mux_22 = s_counter_mode ? n_bits_7_4_21 : s_b;
+assign n_bits_3_0_23 = s_count >> 0;
+assign n_add_24 = s_b + 4'd2;
+assign n_mux_25 = s_counter_mode ? n_bits_3_0_23 : n_add_24;
+assign n_bits_3_0_26 = s_count >> 0;
+assign n_mux_27 = s_counter_mode ? n_bits_3_0_26 : s_b;
+assign s_left_digit = n_mux_22;
+assign s_right_digit = n_mux_25;
+assign s_leds = n_mux_27;
 always @(posedge clk) begin
   if (rst) begin
     s_previous_buttons <= 4'd0;
@@ -124,11 +124,11 @@ always @(posedge clk) begin
     s_count <= 8'd0;
   end else begin
     s_previous_buttons <= s_buttons;
-    s_b <= n_6;
-    s_run <= n_9;
-    s_counter_mode <= n_12;
-    s_divider <= n_15;
-    s_count <= n_20;
+    s_b <= n_mux_6;
+    s_run <= n_mux_9;
+    s_counter_mode <= n_mux_12;
+    s_divider <= n_mux_15;
+    s_count <= n_mux_20;
   end
 end
 endmodule

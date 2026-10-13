@@ -1,5 +1,5 @@
 
--- Running command `read_verilog generated/three-languages/AddTwo_CSharp.v; synth_ice40 -top h_AddTwo; stat; write_verilog -noattr generated/three-languages/AddTwo_mapped.v' --
+-- Running command `read_verilog generated/three-languages/AddTwo_CSharp.v; synth_ice40 -top h_AddTwo; check -assert; stat; write_verilog -noattr generated/three-languages/AddTwo_mapped.v' --
 
 1. Executing Verilog-2005 frontend: generated/three-languages/AddTwo_CSharp.v
 Parsing Verilog input from `generated/three-languages/AddTwo_CSharp.v' to AST representation.
@@ -930,7 +930,11 @@ Removed 0 unused modules.
 Checking module h_AddTwo...
 Found and reported 0 problems.
 
-3. Printing statistics.
+3. Executing CHECK pass (checking for obvious problems).
+Checking module h_AddTwo...
+Found and reported 0 problems.
+
+4. Printing statistics.
 
 === h_AddTwo ===
 
@@ -945,13 +949,9 @@ Found and reported 0 problems.
      SB_CARRY                        5
      SB_LUT4                         7
 
-4. Executing Verilog backend.
+5. Executing Verilog backend.
 
-4.1. Executing BMUXMAP pass.
+5.1. Executing BMUXMAP pass.
 
-4.2. Executing DEMUXMAP pass.
+5.2. Executing DEMUXMAP pass.
 Dumping module `\h_AddTwo'.
-
-End of script. Logfile hash: 9413504793, CPU: user 0.40s system 0.02s, MEM: 18.59 MB peak
-Yosys 0.33 (git sha1 2584903a060)
-Time spent: 66% 13x read_verilog (0 sec), 9% 1x abc (0 sec), ...

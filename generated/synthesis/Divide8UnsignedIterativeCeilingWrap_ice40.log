@@ -472,32 +472,32 @@ Finding identical cells in module `\h_Divide8UnsignedIterativeCeilingWrap'.
 Removed a total of 0 cells.
 
 3.12.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$553 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_72, Q = \s_div_user, rval = 4'0000).
+Adding SRST signal on $procdff$553 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_72, Q = \s_div_user, rval = 4'0000).
 Adding EN signal on $auto$ff.cc:266:slice$554 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \s_input_tuser, Q = \s_div_user).
-Adding SRST signal on $procdff$552 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_71, Q = \s_div_last, rval = 1'0).
+Adding SRST signal on $procdff$552 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_71, Q = \s_div_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$556 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \s_input_tlast, Q = \s_div_last).
-Adding SRST signal on $procdff$551 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_70, Q = \s_div_result, rval = 24'000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$558 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = { 6'000000 \n_46 \n_58 \n_65 }, Q = \s_div_result).
-Adding SRST signal on $procdff$550 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_44, Q = \s_div_index, rval = 3'000).
-Adding EN signal on $auto$ff.cc:266:slice$560 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_43, Q = \s_div_index).
-Adding SRST signal on $procdff$549 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_42, Q = \s_div_negative_q, rval = 1'0).
+Adding SRST signal on $procdff$551 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_70, Q = \s_div_result, rval = 24'000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$558 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = { 6'000000 \n_eq_46 \n_mux_58 \n_mux_65 }, Q = \s_div_result).
+Adding SRST signal on $procdff$550 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_44, Q = \s_div_index, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$560 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_add_43, Q = \s_div_index).
+Adding SRST signal on $procdff$549 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_42, Q = \s_div_negative_q, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$564 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = 1'0, Q = \s_div_negative_q).
-Adding SRST signal on $procdff$548 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_40, Q = \s_div_sign_a, rval = 1'0).
+Adding SRST signal on $procdff$548 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_40, Q = \s_div_sign_a, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$566 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = 1'0, Q = \s_div_sign_a).
-Adding SRST signal on $procdff$547 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_39, Q = \s_div_original_a, rval = 8'00000000).
+Adding SRST signal on $procdff$547 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_39, Q = \s_div_original_a, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$568 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \s_input_tdata [7:0], Q = \s_div_original_a).
-Adding SRST signal on $procdff$546 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_37, Q = \s_div_r, rval = 9'000000000).
-Adding EN signal on $auto$ff.cc:266:slice$570 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_36, Q = \s_div_r).
-Adding SRST signal on $procdff$545 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_32, Q = \s_div_q, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$574 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_31, Q = \s_div_q).
-Adding SRST signal on $procdff$544 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_21, Q = \s_div_abs_b, rval = 8'00000000).
+Adding SRST signal on $procdff$546 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_37, Q = \s_div_r, rval = 9'000000000).
+Adding EN signal on $auto$ff.cc:266:slice$570 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_36, Q = \s_div_r).
+Adding SRST signal on $procdff$545 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_32, Q = \s_div_q, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$574 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_or_31, Q = \s_div_q).
+Adding SRST signal on $procdff$544 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_21, Q = \s_div_abs_b, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$578 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \s_input_tdata [15:8], Q = \s_div_abs_b).
-Adding SRST signal on $procdff$543 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_17, Q = \s_div_shift_a, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$580 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_17, Q = \s_div_shift_a).
-Adding SRST signal on $procdff$542 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_11, Q = \s_div_valid, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$584 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_11, Q = \s_div_valid).
-Adding SRST signal on $procdff$541 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_8, Q = \s_div_busy, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$588 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_8, Q = \s_div_busy).
+Adding SRST signal on $procdff$543 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_17, Q = \s_div_shift_a, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$580 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_17, Q = \s_div_shift_a).
+Adding SRST signal on $procdff$542 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_11, Q = \s_div_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$584 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_11, Q = \s_div_valid).
+Adding SRST signal on $procdff$541 ($dff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_8, Q = \s_div_busy, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$588 ($sdff) from module h_Divide8UnsignedIterativeCeilingWrap (D = \n_mux_8, Q = \s_div_busy).
 Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$567 ($sdffe) from module h_Divide8UnsignedIterativeCeilingWrap.
 Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$565 ($sdffe) from module h_Divide8UnsignedIterativeCeilingWrap.
 Setting constant 0-bit at position 18 on $auto$ff.cc:266:slice$559 ($sdffe) from module h_Divide8UnsignedIterativeCeilingWrap.
@@ -1148,7 +1148,7 @@ No more expansions possible.
 Removed 0 unused cells and 218 unused wires.
 
 3.45. Executing AUTONAME pass.
-Renamed 1015 objects in module h_Divide8UnsignedIterativeCeilingWrap (18 iterations).
+Renamed 906 objects in module h_Divide8UnsignedIterativeCeilingWrap (17 iterations).
 <suppressed ~231 debug messages>
 
 3.46. Executing HIERARCHY pass (managing design hierarchy).

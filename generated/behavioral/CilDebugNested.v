@@ -16,35 +16,35 @@ module h_CilDebugNested(
   output wire [0:0] s_fault
 );
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_slt_0;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_slt_1;
 // Nested IL_001e sub; native 32-bit arithmetic.
-wire [31:0] n_2;
+wire [31:0] n_Nested_IL_001e_sub;
 // Nested IL_0019 add; native 32-bit arithmetic.
-wire [31:0] n_3;
+wire [31:0] n_Nested_IL_0019_add;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_4;
+wire [31:0] n_mux_2;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_5;
+wire [0:0] n_slt_3;
 // Nested IL_0010 xor; native 32-bit arithmetic.
-wire [31:0] n_6;
+wire [31:0] n_Nested_IL_0010_xor;
 // Nested IL_000b and; native 32-bit arithmetic.
-wire [31:0] n_7;
+wire [31:0] n_Nested_IL_000b_and;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_8;
+wire [31:0] n_mux_4;
 // Behavioral CIL result from Behavioral.CSharpFunctions.Nested; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_9;
-assign n_0 = $signed(s_a) < $signed(32'd0);
-assign n_1 = $signed(s_b) < $signed(32'd0);
-assign n_2 = s_a - s_b;
-assign n_3 = s_a + s_b;
-assign n_4 = n_1 ? n_2 : n_3;
-assign n_5 = $signed(s_b) < $signed(32'd0);
-assign n_6 = s_a ^ s_b;
-assign n_7 = s_a & s_b;
-assign n_8 = n_5 ? n_6 : n_7;
-assign n_9 = n_0 ? n_4 : n_8;
-assign s_y = n_9;
+wire [31:0] n_mux_5;
+assign n_slt_0 = $signed(s_a) < $signed(32'd0);
+assign n_slt_1 = $signed(s_b) < $signed(32'd0);
+assign n_Nested_IL_001e_sub = s_a - s_b;
+assign n_Nested_IL_0019_add = s_a + s_b;
+assign n_mux_2 = n_slt_1 ? n_Nested_IL_001e_sub : n_Nested_IL_0019_add;
+assign n_slt_3 = $signed(s_b) < $signed(32'd0);
+assign n_Nested_IL_0010_xor = s_a ^ s_b;
+assign n_Nested_IL_000b_and = s_a & s_b;
+assign n_mux_4 = n_slt_3 ? n_Nested_IL_0010_xor : n_Nested_IL_000b_and;
+assign n_mux_5 = n_slt_0 ? n_mux_2 : n_mux_4;
+assign s_y = n_mux_5;
 assign s_fault = 1'd0;
 endmodule

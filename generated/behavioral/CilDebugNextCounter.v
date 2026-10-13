@@ -16,20 +16,20 @@ module h_CilDebugNextCounter(
   output wire [0:0] s_fault
 );
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_0;
+wire [31:0] n_resize_0;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_eq_1;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_not_2;
 // NextCounter IL_0009 add; native 32-bit arithmetic.
-wire [31:0] n_3;
+wire [31:0] n_NextCounter_IL_0009_add;
 // Behavioral CIL result from Behavioral.CSharpFunctions.NextCounter; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_4;
-assign n_0 = s_b;
-assign n_1 = n_0 == 32'd0;
-assign n_2 = ~n_1;
-assign n_3 = s_a + 32'd1;
-assign n_4 = n_2 ? n_3 : s_a;
-assign s_y = n_4;
+wire [31:0] n_mux_3;
+assign n_resize_0 = s_b;
+assign n_eq_1 = n_resize_0 == 32'd0;
+assign n_not_2 = ~n_eq_1;
+assign n_NextCounter_IL_0009_add = s_a + 32'd1;
+assign n_mux_3 = n_not_2 ? n_NextCounter_IL_0009_add : s_a;
+assign s_y = n_mux_3;
 assign s_fault = 1'd0;
 endmodule

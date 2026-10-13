@@ -138,15 +138,17 @@ analysis, general algebraic optimization or automatic pipelining.
 
 The writer visits child expressions before parents. Constants become sized
 literals. Signals become prefixed identifiers. Other expression nodes become
-sized temporary wires with continuous assignments.
+sized temporary wires with continuous assignments. Explicit `Named` hints retain
+application intent; otherwise names describe the operation. CIL arithmetic
+also records the method and IL offset. See [NET_NAMING.md](NET_NAMING.md).
 
 For this exact graph:
 
 | IR object | Emitted representation |
 |---|---|
 | e0, eight-bit literal one | `8'd1` |
-| e1, eight-bit addition | `n_0`, an eight-bit wire |
-| e2, eight-bit Mux | `n_1`, an eight-bit wire |
+| e1, eight-bit addition | `n_add_0`, an eight-bit wire |
+| e2, eight-bit Mux | `n_mux_1`, an eight-bit wire |
 | count, eight-bit register | `reg [7:0] s_count` |
 | count.next connection | Nonblocking assignment to s_count at each clock edge |
 
@@ -154,16 +156,16 @@ The relevant actual output from generated/counter.v is:
 
 ```verilog
 reg [7:0] s_count;
-wire [7:0] n_0;
-wire [7:0] n_1;
-assign n_0 = s_count + 8'd1;
-assign n_1 = s_enable ? n_0 : s_count;
+wire [7:0] n_add_0;
+wire [7:0] n_mux_1;
+assign n_add_0 = s_count + 8'd1;
+assign n_mux_1 = s_enable ? n_add_0 : s_count;
 assign s_value = s_count;
 always @(posedge clk) begin
   if (rst) begin
     s_count <= 8'd0;
   end else begin
-    s_count <= n_1;
+    s_count <= n_mux_1;
   end
 end
 ```
@@ -253,18 +255,18 @@ The FIR equation is:
 Here is the actual arithmetic portion of generated/fsharp/FsFir.v:
 
 ```verilog
-assign n_10 = $signed(s_s_axis_tdata);
-assign n_11 = n_10 * 32'd1;
-assign n_12 = 32'd0 + n_11;
-assign n_13 = $signed(s_delay_1);
-assign n_14 = n_13 * 32'd3;
-assign n_15 = n_12 + n_14;
-assign n_16 = $signed(s_delay_2);
-assign n_17 = n_16 * 32'd3;
-assign n_18 = n_15 + n_17;
-assign n_19 = $signed(s_delay_3);
-assign n_20 = n_19 * 32'd1;
-assign n_21 = n_18 + n_20;
+assign n_signextend_10 = $signed(s_s_axis_tdata);
+assign n_mul_11 = n_signextend_10 * 32'd1;
+assign n_add_12 = 32'd0 + n_mul_11;
+assign n_signextend_13 = $signed(s_delay_1);
+assign n_mul_14 = n_signextend_13 * 32'd3;
+assign n_add_15 = n_add_12 + n_mul_14;
+assign n_signextend_16 = $signed(s_delay_2);
+assign n_mul_17 = n_signextend_16 * 32'd3;
+assign n_add_18 = n_add_15 + n_mul_17;
+assign n_signextend_19 = $signed(s_delay_3);
+assign n_mul_20 = n_signextend_19 * 32'd1;
+assign n_add_21 = n_add_18 + n_mul_20;
 ```
 
 All those n_ wires are 32 bits. The delays are 16-bit registers. The graph dump

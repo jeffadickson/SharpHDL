@@ -453,15 +453,15 @@ Finding identical cells in module `\h_Divide8SignedParallelNearestEvenSaturate'.
 Removed a total of 0 cells.
 
 3.12.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$582 ($dff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \n_160, Q = \s_div_user, rval = 4'0000).
+Adding SRST signal on $procdff$582 ($dff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \n_mux_160, Q = \s_div_user, rval = 4'0000).
 Adding EN signal on $auto$ff.cc:266:slice$583 ($sdff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \s_input_tuser, Q = \s_div_user).
-Adding SRST signal on $procdff$581 ($dff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \n_159, Q = \s_div_last, rval = 1'0).
+Adding SRST signal on $procdff$581 ($dff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \n_mux_159, Q = \s_div_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$585 ($sdff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \s_input_tlast, Q = \s_div_last).
-Adding SRST signal on $procdff$580 ($dff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \n_158, Q = \s_div_keep, rval = 3'000).
+Adding SRST signal on $procdff$580 ($dff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \n_mux_158, Q = \s_div_keep, rval = 3'000).
 Adding EN signal on $auto$ff.cc:266:slice$587 ($sdff) from module h_Divide8SignedParallelNearestEvenSaturate (D = 3'111, Q = \s_div_keep).
-Adding SRST signal on $procdff$579 ($dff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \n_157, Q = \s_div_data, rval = 24'000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$589 ($sdff) from module h_Divide8SignedParallelNearestEvenSaturate (D = { 5'00000 \n_139 \n_137 \n_147 \n_152 }, Q = \s_div_data).
-Adding SRST signal on $procdff$578 ($dff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \n_2, Q = \s_div_valid, rval = 1'0).
+Adding SRST signal on $procdff$579 ($dff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \n_mux_157, Q = \s_div_data, rval = 24'000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$589 ($sdff) from module h_Divide8SignedParallelNearestEvenSaturate (D = { 5'00000 \n_and_139 \n_eq_137 \n_mux_147 \n_mux_152 }, Q = \s_div_data).
+Adding SRST signal on $procdff$578 ($dff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \n_mux_2, Q = \s_div_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$591 ($sdff) from module h_Divide8SignedParallelNearestEvenSaturate (D = \s_input_tvalid, Q = \s_div_valid).
 Setting constant 0-bit at position 19 on $auto$ff.cc:266:slice$590 ($sdffe) from module h_Divide8SignedParallelNearestEvenSaturate.
 Setting constant 0-bit at position 20 on $auto$ff.cc:266:slice$590 ($sdffe) from module h_Divide8SignedParallelNearestEvenSaturate.
@@ -584,30 +584,32 @@ Removed top 1 bits (of 9) from port Y of cell h_Divide8SignedParallelNearestEven
 Removed top 1 bits (of 9) from port A of cell h_Divide8SignedParallelNearestEvenSaturate.$sub$generated/Divide8SignedParallelNearestEvenSaturate.v:488$81 ($sub).
 Removed top 1 bits (of 9) from port Y of cell h_Divide8SignedParallelNearestEvenSaturate.$sub$generated/Divide8SignedParallelNearestEvenSaturate.v:526$110 ($sub).
 Removed top 1 bits (of 9) from port B of cell h_Divide8SignedParallelNearestEvenSaturate.$sub$generated/Divide8SignedParallelNearestEvenSaturate.v:526$110 ($sub).
-Removed top 1 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_107.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_111.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_148.
-Removed top 6 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_24.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_26.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_27.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_40.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_41.
-Removed top 5 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_51.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_54.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_55.
-Removed top 4 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_65.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_68.
-Removed top 3 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_79.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_83.
-Removed top 2 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_93.
-Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_97.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_mux_111.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_mux_27.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_mux_41.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_mux_55.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_mux_69.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_mux_83.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_mux_97.
+Removed top 1 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_or_107.
+Removed top 6 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_or_37.
+Removed top 5 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_or_51.
+Removed top 4 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_or_65.
+Removed top 3 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_or_79.
+Removed top 2 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_or_93.
+Removed top 6 bits (of 8) from wire h_Divide8SignedParallelNearestEvenSaturate.n_shl_24.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_sub_110.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_sub_148.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_sub_26.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_sub_54.
+Removed top 1 bits (of 9) from wire h_Divide8SignedParallelNearestEvenSaturate.n_sub_68.
 Removed top 5 bits (of 24) from wire h_Divide8SignedParallelNearestEvenSaturate.s_div_data.
 
 3.14. Executing PEEPOPT pass (run peephole optimizers).
 
 3.15. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \h_Divide8SignedParallelNearestEvenSaturate..
-Removed 0 unused cells and 18 unused wires.
+Removed 0 unused cells and 20 unused wires.
 <suppressed ~1 debug messages>
 
 3.16. Executing SHARE pass (SAT-based resource sharing).
@@ -670,29 +672,29 @@ Extracting $alu and $macc cells in module h_Divide8SignedParallelNearestEvenSatu
   creating $alu model for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:506$93 ($lt): new $alu
   creating $alu model for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:513$99 ($lt): new $alu
   creating $alu model for $eq$generated/Divide8SignedParallelNearestEvenSaturate.v:507$94 ($eq): merged with $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:506$93.
-  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:513$99: $auto$alumacc.cc:485:replace_alu$622
-  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:506$93, $eq$generated/Divide8SignedParallelNearestEvenSaturate.v:507$94: $auto$alumacc.cc:485:replace_alu$627
-  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:496$87: $auto$alumacc.cc:485:replace_alu$634
-  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:482$77: $auto$alumacc.cc:485:replace_alu$645
-  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:468$67: $auto$alumacc.cc:485:replace_alu$656
-  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:454$57: $auto$alumacc.cc:485:replace_alu$667
-  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:440$47: $auto$alumacc.cc:485:replace_alu$678
-  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:426$37: $auto$alumacc.cc:485:replace_alu$689
-  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:412$27: $auto$alumacc.cc:485:replace_alu$700
-  creating $alu cell for $add$generated/Divide8SignedParallelNearestEvenSaturate.v:512$98: $auto$alumacc.cc:485:replace_alu$711
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:390$11: $auto$alumacc.cc:485:replace_alu$714
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:395$15: $auto$alumacc.cc:485:replace_alu$717
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:404$21, $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:398$17: $auto$alumacc.cc:485:replace_alu$720
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:418$31: $auto$alumacc.cc:485:replace_alu$725
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:432$41: $auto$alumacc.cc:485:replace_alu$728
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:446$51: $auto$alumacc.cc:485:replace_alu$731
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:460$61: $auto$alumacc.cc:485:replace_alu$734
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:474$71: $auto$alumacc.cc:485:replace_alu$737
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:488$81: $auto$alumacc.cc:485:replace_alu$740
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:503$90: $auto$alumacc.cc:485:replace_alu$743
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:520$104: $auto$alumacc.cc:485:replace_alu$746
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:522$106: $auto$alumacc.cc:485:replace_alu$749
-  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:526$110: $auto$alumacc.cc:485:replace_alu$752
+  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:513$99: $auto$alumacc.cc:485:replace_alu$624
+  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:506$93, $eq$generated/Divide8SignedParallelNearestEvenSaturate.v:507$94: $auto$alumacc.cc:485:replace_alu$629
+  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:496$87: $auto$alumacc.cc:485:replace_alu$636
+  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:482$77: $auto$alumacc.cc:485:replace_alu$647
+  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:468$67: $auto$alumacc.cc:485:replace_alu$658
+  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:454$57: $auto$alumacc.cc:485:replace_alu$669
+  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:440$47: $auto$alumacc.cc:485:replace_alu$680
+  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:426$37: $auto$alumacc.cc:485:replace_alu$691
+  creating $alu cell for $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:412$27: $auto$alumacc.cc:485:replace_alu$702
+  creating $alu cell for $add$generated/Divide8SignedParallelNearestEvenSaturate.v:512$98: $auto$alumacc.cc:485:replace_alu$713
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:390$11: $auto$alumacc.cc:485:replace_alu$716
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:395$15: $auto$alumacc.cc:485:replace_alu$719
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:404$21, $lt$generated/Divide8SignedParallelNearestEvenSaturate.v:398$17: $auto$alumacc.cc:485:replace_alu$722
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:418$31: $auto$alumacc.cc:485:replace_alu$727
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:432$41: $auto$alumacc.cc:485:replace_alu$730
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:446$51: $auto$alumacc.cc:485:replace_alu$733
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:460$61: $auto$alumacc.cc:485:replace_alu$736
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:474$71: $auto$alumacc.cc:485:replace_alu$739
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:488$81: $auto$alumacc.cc:485:replace_alu$742
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:503$90: $auto$alumacc.cc:485:replace_alu$745
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:520$104: $auto$alumacc.cc:485:replace_alu$748
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:522$106: $auto$alumacc.cc:485:replace_alu$751
+  creating $alu cell for $sub$generated/Divide8SignedParallelNearestEvenSaturate.v:526$110: $auto$alumacc.cc:485:replace_alu$754
   created 23 $alu and 0 $macc cells.
 
 3.21. Executing OPT pass (performing simple optimizations).
@@ -813,7 +815,7 @@ No more expansions possible.
 
 3.27.1. Executing OPT_EXPR pass (perform const folding).
 Optimizing module h_Divide8SignedParallelNearestEvenSaturate.
-<suppressed ~6 debug messages>
+<suppressed ~5 debug messages>
 
 3.27.2. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\h_Divide8SignedParallelNearestEvenSaturate'.
@@ -947,11 +949,11 @@ Removed 76 unused cells and 372 unused wires.
 3.33. Executing ICE40_OPT pass (performing simple optimizations).
 
 3.33.1. Running ICE40 specific optimizations.
-Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$711.slice[8].carry: CO=1'0
-Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$714.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$714.BB [0]
-Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$717.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$717.BB [0]
-Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$749.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$749.BB [0]
-Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$752.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$752.BB [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$713.slice[8].carry: CO=1'0
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$716.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$716.BB [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$719.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$719.BB [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$751.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$751.BB [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$754.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$754.BB [0]
 
 3.33.2. Executing OPT_EXPR pass (perform const folding).
 Optimizing module h_Divide8SignedParallelNearestEvenSaturate.
@@ -1022,11 +1024,11 @@ No more expansions possible.
 Optimizing module h_Divide8SignedParallelNearestEvenSaturate.
 
 3.37. Executing SIMPLEMAP pass (map simple cells to gate primitives).
-Mapping h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$711.slice[8].carry ($lut).
-Mapping h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$714.slice[0].carry ($lut).
-Mapping h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$717.slice[0].carry ($lut).
-Mapping h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$749.slice[0].carry ($lut).
-Mapping h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$752.slice[0].carry ($lut).
+Mapping h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$713.slice[8].carry ($lut).
+Mapping h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$716.slice[0].carry ($lut).
+Mapping h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$719.slice[0].carry ($lut).
+Mapping h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$751.slice[0].carry ($lut).
+Mapping h_Divide8SignedParallelNearestEvenSaturate.$auto$alumacc.cc:485:replace_alu$754.slice[0].carry ($lut).
 
 3.38. Executing ICE40_OPT pass (performing simple optimizations).
 
@@ -1109,7 +1111,7 @@ ABC: Participating nodes from the first network   =     256. (  81.53 % of nodes
 ABC: Participating nodes from the second network  =     274. (  87.26 % of nodes)
 ABC: Node pairs (any polarity)                    =     256. (  81.53 % of names can be moved)
 ABC: Node pairs (same polarity)                   =     237. (  75.48 % of names can be moved)
-ABC: Total runtime =     0.13 sec
+ABC: Total runtime =     0.16 sec
 ABC: + write_blif <abc-temp-dir>/output.blif 
 
 3.40.1.2. Re-integrating ABC results.
@@ -1255,9 +1257,9 @@ Removed 0 unused modules.
 === h_Divide8SignedParallelNearestEvenSaturate ===
 
    Number of wires:                253
-   Number of wire bits:           1661
+   Number of wire bits:           1654
    Number of public wires:         253
-   Number of public wire bits:    1661
+   Number of public wire bits:    1654
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
@@ -1279,9 +1281,9 @@ Found and reported 0 problems.
 === h_Divide8SignedParallelNearestEvenSaturate ===
 
    Number of wires:                253
-   Number of wire bits:           1661
+   Number of wire bits:           1654
    Number of public wires:         253
-   Number of public wire bits:    1661
+   Number of public wire bits:    1654
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0

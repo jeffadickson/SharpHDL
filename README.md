@@ -273,3 +273,6 @@ Generated RTL supports [meaningful intermediate net names](NET_NAMING.md):
 use `.Named("effective_address")` for design intent; unnamed expressions get
 operation names, and behavioral arithmetic retains method/IL provenance.
 The TinyRisc example and its browser demo include these names.
+
+For the complete rebuild/test order, updated workbook and archived board image,
+see [the regeneration audit](REGENERATION_AUDIT.md) and `tests/run-all.sh`.

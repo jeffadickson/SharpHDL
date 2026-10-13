@@ -48,96 +48,96 @@ wire [0:0] s_fifo_tready;
 // FIFO packed beat: DATA [31:0], KEEP [35:32], LAST [36], USER [44:37].
 reg [44:0] s_fifo_slot0;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_lt_0;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_eq_1;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_not_2;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_3;
+wire [0:0] n_and_3;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_4;
+wire [0:0] n_or_4;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_5;
+wire [0:0] n_and_5;
 // Operation '^'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_6;
+wire [0:0] n_xor_6;
 // Operation '+'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_7;
+wire [0:0] n_add_7;
 // Operation '-'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_8;
+wire [0:0] n_sub_8;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_9;
+wire [0:0] n_mux_9;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_10;
+wire [0:0] n_mux_10;
 // Extract source bits [31:0], rebase to bit 0.
-wire [31:0] n_11;
+wire [31:0] n_bits_31_0_11;
 // Extract source bits [35:32], rebase to bit 0.
-wire [3:0] n_12;
+wire [3:0] n_bits_35_32_12;
 // Extract source bits [36:36], rebase to bit 0.
-wire [0:0] n_13;
+wire [0:0] n_bits_36_36_13;
 // Extract source bits [44:37], rebase to bit 0.
-wire [7:0] n_14;
+wire [7:0] n_bits_44_37_14;
 // Operation '-'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_15;
+wire [0:0] n_sub_15;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_16;
+wire [0:0] n_mux_16;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_17;
+wire [0:0] n_eq_17;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_18;
+wire [0:0] n_and_18;
 // Packed bus: [35:32] = high operand; [31:0] = low operand.
-wire [35:0] n_19;
+wire [35:0] n_concat_19;
 // Packed bus: [36:36] = high operand; [35:0] = low operand.
-wire [36:0] n_20;
+wire [36:0] n_concat_20;
 // Packed bus: [44:37] = high operand; [36:0] = low operand.
-wire [44:0] n_21;
+wire [44:0] n_concat_21;
 // Select true operand when condition is 1; false operand otherwise.
-wire [44:0] n_22;
+wire [44:0] n_mux_22;
 // Select true operand when condition is 1; false operand otherwise.
-wire [44:0] n_23;
-assign n_0 = s_fifo_count < 1'd1;
-assign n_1 = s_fifo_count == 1'd0;
-assign n_2 = ~n_1;
-assign n_3 = n_2 & s_fifo_tready;
-assign n_4 = n_0 | n_3;
-assign n_5 = s_s_axis_tvalid & n_4;
-assign n_6 = n_5 ^ n_3;
-assign n_7 = s_fifo_count + 1'd1;
-assign n_8 = s_fifo_count - 1'd1;
-assign n_9 = n_5 ? n_7 : n_8;
-assign n_10 = n_6 ? n_9 : s_fifo_count;
-assign n_11 = s_fifo_slot0 >> 0;
-assign n_12 = s_fifo_slot0 >> 32;
-assign n_13 = s_fifo_slot0 >> 36;
-assign n_14 = s_fifo_slot0 >> 37;
-assign n_15 = s_fifo_count - 1'd1;
-assign n_16 = n_3 ? n_15 : s_fifo_count;
-assign n_17 = n_16 == 1'd0;
-assign n_18 = n_5 & n_17;
-assign n_19 = {s_s_axis_tkeep, s_s_axis_tdata};
-assign n_20 = {s_s_axis_tlast, n_19};
-assign n_21 = {s_s_axis_tuser, n_20};
-assign n_22 = n_3 ? 45'd0 : s_fifo_slot0;
-assign n_23 = n_18 ? n_21 : n_22;
-assign s_s_axis_tready = n_4;
+wire [44:0] n_mux_23;
+assign n_lt_0 = s_fifo_count < 1'd1;
+assign n_eq_1 = s_fifo_count == 1'd0;
+assign n_not_2 = ~n_eq_1;
+assign n_and_3 = n_not_2 & s_fifo_tready;
+assign n_or_4 = n_lt_0 | n_and_3;
+assign n_and_5 = s_s_axis_tvalid & n_or_4;
+assign n_xor_6 = n_and_5 ^ n_and_3;
+assign n_add_7 = s_fifo_count + 1'd1;
+assign n_sub_8 = s_fifo_count - 1'd1;
+assign n_mux_9 = n_and_5 ? n_add_7 : n_sub_8;
+assign n_mux_10 = n_xor_6 ? n_mux_9 : s_fifo_count;
+assign n_bits_31_0_11 = s_fifo_slot0 >> 0;
+assign n_bits_35_32_12 = s_fifo_slot0 >> 32;
+assign n_bits_36_36_13 = s_fifo_slot0 >> 36;
+assign n_bits_44_37_14 = s_fifo_slot0 >> 37;
+assign n_sub_15 = s_fifo_count - 1'd1;
+assign n_mux_16 = n_and_3 ? n_sub_15 : s_fifo_count;
+assign n_eq_17 = n_mux_16 == 1'd0;
+assign n_and_18 = n_and_5 & n_eq_17;
+assign n_concat_19 = {s_s_axis_tkeep, s_s_axis_tdata};
+assign n_concat_20 = {s_s_axis_tlast, n_concat_19};
+assign n_concat_21 = {s_s_axis_tuser, n_concat_20};
+assign n_mux_22 = n_and_3 ? 45'd0 : s_fifo_slot0;
+assign n_mux_23 = n_and_18 ? n_concat_21 : n_mux_22;
+assign s_s_axis_tready = n_or_4;
 assign s_m_axis_tdata = s_fifo_tdata;
 assign s_m_axis_tkeep = s_fifo_tkeep;
 assign s_m_axis_tlast = s_fifo_tlast;
 assign s_m_axis_tuser = s_fifo_tuser;
 assign s_m_axis_tvalid = s_fifo_tvalid;
-assign s_fifo_tdata = n_11;
-assign s_fifo_tkeep = n_12;
-assign s_fifo_tlast = n_13;
-assign s_fifo_tuser = n_14;
-assign s_fifo_tvalid = n_2;
+assign s_fifo_tdata = n_bits_31_0_11;
+assign s_fifo_tkeep = n_bits_35_32_12;
+assign s_fifo_tlast = n_bits_36_36_13;
+assign s_fifo_tuser = n_bits_44_37_14;
+assign s_fifo_tvalid = n_not_2;
 assign s_fifo_tready = s_m_axis_tready;
 always @(posedge clk) begin
   if (rst) begin
     s_fifo_count <= 1'd0;
     s_fifo_slot0 <= 45'd0;
   end else begin
-    s_fifo_count <= n_10;
-    s_fifo_slot0 <= n_23;
+    s_fifo_count <= n_mux_10;
+    s_fifo_slot0 <= n_mux_23;
   end
 end
 endmodule

@@ -16,23 +16,23 @@ module h_CilDebugPredicate(
   output wire [0:0] s_fault
 );
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_slt_0;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_not_1;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_lt_2;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_3;
+wire [31:0] n_resize_3;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_4;
+wire [31:0] n_mux_4;
 // Behavioral CIL result from Behavioral.CSharpFunctions.Predicate; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 1 bits. Undefined when fault=1.
-wire [0:0] n_5;
-assign n_0 = $signed(s_a) < $signed(s_b);
-assign n_1 = ~n_0;
-assign n_2 = 32'd0 < s_b;
-assign n_3 = n_2;
-assign n_4 = n_1 ? 32'd0 : n_3;
-assign n_5 = n_4;
-assign s_y = n_5;
+wire [0:0] n_resize_5;
+assign n_slt_0 = $signed(s_a) < $signed(s_b);
+assign n_not_1 = ~n_slt_0;
+assign n_lt_2 = 32'd0 < s_b;
+assign n_resize_3 = n_lt_2;
+assign n_mux_4 = n_not_1 ? 32'd0 : n_resize_3;
+assign n_resize_5 = n_mux_4;
+assign s_y = n_resize_5;
 assign s_fault = 1'd0;
 endmodule

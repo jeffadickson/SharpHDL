@@ -14,5446 +14,5446 @@ module h_Float24_exp(
   output wire [23:0] s_result
 );
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_0;
+wire [6:0] n_bits_22_16_0;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_eq_1;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_2;
+wire [6:0] n_bits_22_16_2;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_3;
+wire [0:0] n_eq_3;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_4;
+wire [0:0] n_or_4;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_5;
+wire [6:0] n_bits_22_16_5;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_6;
+wire [0:0] n_eq_6;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_7;
+wire [6:0] n_bits_22_16_7;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_8;
+wire [0:0] n_eq_8;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_9;
+wire [0:0] n_or_9;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_10;
+wire [6:0] n_bits_22_16_10;
 // Unsigned resize: zero extend (or preserve width).
-wire [15:0] n_11;
+wire [15:0] n_resize_11;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_12;
+wire [6:0] n_bits_22_16_12;
 // Unsigned resize: zero extend (or preserve width).
-wire [15:0] n_13;
+wire [15:0] n_resize_13;
 // Operation '+'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_14;
+wire [15:0] n_add_14;
 // Operation '-'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_15;
+wire [15:0] n_sub_15;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_16;
+wire [15:0] n_bits_15_0_16;
 // Packed bus: [16:16] = high operand; [15:0] = low operand.
-wire [16:0] n_17;
+wire [16:0] n_concat_17;
 // Unsigned resize: zero extend (or preserve width).
-wire [33:0] n_18;
+wire [33:0] n_resize_18;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_19;
+wire [15:0] n_bits_15_0_19;
 // Packed bus: [16:16] = high operand; [15:0] = low operand.
-wire [16:0] n_20;
+wire [16:0] n_concat_20;
 // Unsigned resize: zero extend (or preserve width).
-wire [33:0] n_21;
+wire [33:0] n_resize_21;
 // Operation '*'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_22;
+wire [33:0] n_mul_22;
 // Extract source bits [33:33], rebase to bit 0.
-wire [0:0] n_23;
+wire [0:0] n_bits_33_33_23;
 // Extract source bits [32:32], rebase to bit 0.
-wire [0:0] n_24;
+wire [0:0] n_bits_32_32_24;
 // Extract source bits [31:31], rebase to bit 0.
-wire [0:0] n_25;
+wire [0:0] n_bits_31_31_25;
 // Extract source bits [30:30], rebase to bit 0.
-wire [0:0] n_26;
+wire [0:0] n_bits_30_30_26;
 // Extract source bits [29:29], rebase to bit 0.
-wire [0:0] n_27;
+wire [0:0] n_bits_29_29_27;
 // Extract source bits [28:28], rebase to bit 0.
-wire [0:0] n_28;
+wire [0:0] n_bits_28_28_28;
 // Extract source bits [27:27], rebase to bit 0.
-wire [0:0] n_29;
+wire [0:0] n_bits_27_27_29;
 // Extract source bits [26:26], rebase to bit 0.
-wire [0:0] n_30;
+wire [0:0] n_bits_26_26_30;
 // Extract source bits [25:25], rebase to bit 0.
-wire [0:0] n_31;
+wire [0:0] n_bits_25_25_31;
 // Extract source bits [24:24], rebase to bit 0.
-wire [0:0] n_32;
+wire [0:0] n_bits_24_24_32;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_33;
+wire [0:0] n_bits_23_23_33;
 // Extract source bits [22:22], rebase to bit 0.
-wire [0:0] n_34;
+wire [0:0] n_bits_22_22_34;
 // Extract source bits [21:21], rebase to bit 0.
-wire [0:0] n_35;
+wire [0:0] n_bits_21_21_35;
 // Extract source bits [20:20], rebase to bit 0.
-wire [0:0] n_36;
+wire [0:0] n_bits_20_20_36;
 // Extract source bits [19:19], rebase to bit 0.
-wire [0:0] n_37;
+wire [0:0] n_bits_19_19_37;
 // Extract source bits [18:18], rebase to bit 0.
-wire [0:0] n_38;
+wire [0:0] n_bits_18_18_38;
 // Extract source bits [17:17], rebase to bit 0.
-wire [0:0] n_39;
+wire [0:0] n_bits_17_17_39;
 // Extract source bits [16:16], rebase to bit 0.
-wire [0:0] n_40;
+wire [0:0] n_bits_16_16_40;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_41;
+wire [0:0] n_bits_15_15_41;
 // Extract source bits [14:14], rebase to bit 0.
-wire [0:0] n_42;
+wire [0:0] n_bits_14_14_42;
 // Extract source bits [13:13], rebase to bit 0.
-wire [0:0] n_43;
+wire [0:0] n_bits_13_13_43;
 // Extract source bits [12:12], rebase to bit 0.
-wire [0:0] n_44;
+wire [0:0] n_bits_12_12_44;
 // Extract source bits [11:11], rebase to bit 0.
-wire [0:0] n_45;
+wire [0:0] n_bits_11_11_45;
 // Extract source bits [10:10], rebase to bit 0.
-wire [0:0] n_46;
+wire [0:0] n_bits_10_10_46;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_47;
+wire [0:0] n_bits_9_9_47;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_48;
+wire [0:0] n_bits_8_8_48;
 // Extract source bits [7:7], rebase to bit 0.
-wire [0:0] n_49;
+wire [0:0] n_bits_7_7_49;
 // Extract source bits [6:6], rebase to bit 0.
-wire [0:0] n_50;
+wire [0:0] n_bits_6_6_50;
 // Extract source bits [5:5], rebase to bit 0.
-wire [0:0] n_51;
+wire [0:0] n_bits_5_5_51;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_52;
+wire [0:0] n_bits_4_4_52;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_53;
+wire [0:0] n_bits_3_3_53;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_54;
+wire [0:0] n_bits_2_2_54;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_55;
+wire [0:0] n_bits_1_1_55;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_56;
+wire [0:0] n_bits_0_0_56;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_57;
+wire [15:0] n_mux_57;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_58;
+wire [15:0] n_mux_58;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_59;
+wire [15:0] n_mux_59;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_60;
+wire [15:0] n_mux_60;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_61;
+wire [15:0] n_mux_61;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_62;
+wire [15:0] n_mux_62;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_63;
+wire [15:0] n_mux_63;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_64;
+wire [15:0] n_mux_64;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_65;
+wire [15:0] n_mux_65;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_66;
+wire [15:0] n_mux_66;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_67;
+wire [15:0] n_mux_67;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_68;
+wire [15:0] n_mux_68;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_69;
+wire [15:0] n_mux_69;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_70;
+wire [15:0] n_mux_70;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_71;
+wire [15:0] n_mux_71;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_72;
+wire [15:0] n_mux_72;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_73;
+wire [15:0] n_mux_73;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_74;
+wire [15:0] n_mux_74;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_75;
+wire [15:0] n_mux_75;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_76;
+wire [15:0] n_mux_76;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_77;
+wire [15:0] n_mux_77;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_78;
+wire [15:0] n_mux_78;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_79;
+wire [15:0] n_mux_79;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_80;
+wire [15:0] n_mux_80;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_81;
+wire [15:0] n_mux_81;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_82;
+wire [15:0] n_mux_82;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_83;
+wire [15:0] n_mux_83;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_84;
+wire [15:0] n_mux_84;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_85;
+wire [15:0] n_mux_85;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_86;
+wire [15:0] n_mux_86;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_87;
+wire [15:0] n_mux_87;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_88;
+wire [15:0] n_mux_88;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_89;
+wire [15:0] n_mux_89;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_90;
+wire [15:0] n_mux_90;
 // Operation '+'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_91;
+wire [15:0] n_add_91;
 // Operation '+'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_92;
+wire [15:0] n_add_92;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_93;
+wire [33:0] n_shr_93;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_94;
+wire [17:0] n_resize_94;
 // Extract source bits [16:16], rebase to bit 0.
-wire [0:0] n_95;
+wire [0:0] n_bits_16_16_95;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_96;
+wire [15:0] n_bits_15_0_96;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_97;
+wire [0:0] n_eq_97;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_98;
+wire [0:0] n_not_98;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_99;
+wire [0:0] n_bits_0_0_99;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_100;
+wire [0:0] n_or_100;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_101;
+wire [0:0] n_and_101;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_102;
+wire [17:0] n_resize_102;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_103;
+wire [17:0] n_add_103;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_104;
+wire [33:0] n_shr_104;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_105;
+wire [17:0] n_resize_105;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_106;
+wire [0:0] n_bits_15_15_106;
 // Extract source bits [14:0], rebase to bit 0.
-wire [14:0] n_107;
+wire [14:0] n_bits_14_0_107;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_108;
+wire [0:0] n_eq_108;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_109;
+wire [0:0] n_not_109;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_110;
+wire [0:0] n_bits_0_0_110;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_111;
+wire [0:0] n_or_111;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_112;
+wire [0:0] n_and_112;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_113;
+wire [17:0] n_resize_113;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_114;
+wire [17:0] n_add_114;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_115;
+wire [33:0] n_shr_115;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_116;
+wire [17:0] n_resize_116;
 // Extract source bits [14:14], rebase to bit 0.
-wire [0:0] n_117;
+wire [0:0] n_bits_14_14_117;
 // Extract source bits [13:0], rebase to bit 0.
-wire [13:0] n_118;
+wire [13:0] n_bits_13_0_118;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_119;
+wire [0:0] n_eq_119;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_120;
+wire [0:0] n_not_120;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_121;
+wire [0:0] n_bits_0_0_121;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_122;
+wire [0:0] n_or_122;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_123;
+wire [0:0] n_and_123;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_124;
+wire [17:0] n_resize_124;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_125;
+wire [17:0] n_add_125;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_126;
+wire [33:0] n_shr_126;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_127;
+wire [17:0] n_resize_127;
 // Extract source bits [13:13], rebase to bit 0.
-wire [0:0] n_128;
+wire [0:0] n_bits_13_13_128;
 // Extract source bits [12:0], rebase to bit 0.
-wire [12:0] n_129;
+wire [12:0] n_bits_12_0_129;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_130;
+wire [0:0] n_eq_130;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_131;
+wire [0:0] n_not_131;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_132;
+wire [0:0] n_bits_0_0_132;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_133;
+wire [0:0] n_or_133;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_134;
+wire [0:0] n_and_134;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_135;
+wire [17:0] n_resize_135;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_136;
+wire [17:0] n_add_136;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_137;
+wire [33:0] n_shr_137;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_138;
+wire [17:0] n_resize_138;
 // Extract source bits [12:12], rebase to bit 0.
-wire [0:0] n_139;
+wire [0:0] n_bits_12_12_139;
 // Extract source bits [11:0], rebase to bit 0.
-wire [11:0] n_140;
+wire [11:0] n_bits_11_0_140;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_141;
+wire [0:0] n_eq_141;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_142;
+wire [0:0] n_not_142;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_143;
+wire [0:0] n_bits_0_0_143;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_144;
+wire [0:0] n_or_144;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_145;
+wire [0:0] n_and_145;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_146;
+wire [17:0] n_resize_146;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_147;
+wire [17:0] n_add_147;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_148;
+wire [33:0] n_shr_148;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_149;
+wire [17:0] n_resize_149;
 // Extract source bits [11:11], rebase to bit 0.
-wire [0:0] n_150;
+wire [0:0] n_bits_11_11_150;
 // Extract source bits [10:0], rebase to bit 0.
-wire [10:0] n_151;
+wire [10:0] n_bits_10_0_151;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_152;
+wire [0:0] n_eq_152;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_153;
+wire [0:0] n_not_153;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_154;
+wire [0:0] n_bits_0_0_154;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_155;
+wire [0:0] n_or_155;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_156;
+wire [0:0] n_and_156;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_157;
+wire [17:0] n_resize_157;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_158;
+wire [17:0] n_add_158;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_159;
+wire [33:0] n_shr_159;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_160;
+wire [17:0] n_resize_160;
 // Extract source bits [10:10], rebase to bit 0.
-wire [0:0] n_161;
+wire [0:0] n_bits_10_10_161;
 // Extract source bits [9:0], rebase to bit 0.
-wire [9:0] n_162;
+wire [9:0] n_bits_9_0_162;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_163;
+wire [0:0] n_eq_163;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_164;
+wire [0:0] n_not_164;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_165;
+wire [0:0] n_bits_0_0_165;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_166;
+wire [0:0] n_or_166;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_167;
+wire [0:0] n_and_167;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_168;
+wire [17:0] n_resize_168;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_169;
+wire [17:0] n_add_169;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_170;
+wire [33:0] n_shr_170;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_171;
+wire [17:0] n_resize_171;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_172;
+wire [0:0] n_bits_9_9_172;
 // Extract source bits [8:0], rebase to bit 0.
-wire [8:0] n_173;
+wire [8:0] n_bits_8_0_173;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_174;
+wire [0:0] n_eq_174;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_175;
+wire [0:0] n_not_175;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_176;
+wire [0:0] n_bits_0_0_176;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_177;
+wire [0:0] n_or_177;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_178;
+wire [0:0] n_and_178;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_179;
+wire [17:0] n_resize_179;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_180;
+wire [17:0] n_add_180;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_181;
+wire [33:0] n_shr_181;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_182;
+wire [17:0] n_resize_182;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_183;
+wire [0:0] n_bits_8_8_183;
 // Extract source bits [7:0], rebase to bit 0.
-wire [7:0] n_184;
+wire [7:0] n_bits_7_0_184;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_185;
+wire [0:0] n_eq_185;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_186;
+wire [0:0] n_not_186;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_187;
+wire [0:0] n_bits_0_0_187;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_188;
+wire [0:0] n_or_188;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_189;
+wire [0:0] n_and_189;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_190;
+wire [17:0] n_resize_190;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_191;
+wire [17:0] n_add_191;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_192;
+wire [33:0] n_shr_192;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_193;
+wire [17:0] n_resize_193;
 // Extract source bits [7:7], rebase to bit 0.
-wire [0:0] n_194;
+wire [0:0] n_bits_7_7_194;
 // Extract source bits [6:0], rebase to bit 0.
-wire [6:0] n_195;
+wire [6:0] n_bits_6_0_195;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_196;
+wire [0:0] n_eq_196;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_197;
+wire [0:0] n_not_197;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_198;
+wire [0:0] n_bits_0_0_198;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_199;
+wire [0:0] n_or_199;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_200;
+wire [0:0] n_and_200;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_201;
+wire [17:0] n_resize_201;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_202;
+wire [17:0] n_add_202;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_203;
+wire [33:0] n_shr_203;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_204;
+wire [17:0] n_resize_204;
 // Extract source bits [6:6], rebase to bit 0.
-wire [0:0] n_205;
+wire [0:0] n_bits_6_6_205;
 // Extract source bits [5:0], rebase to bit 0.
-wire [5:0] n_206;
+wire [5:0] n_bits_5_0_206;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_207;
+wire [0:0] n_eq_207;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_208;
+wire [0:0] n_not_208;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_209;
+wire [0:0] n_bits_0_0_209;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_210;
+wire [0:0] n_or_210;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_211;
+wire [0:0] n_and_211;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_212;
+wire [17:0] n_resize_212;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_213;
+wire [17:0] n_add_213;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_214;
+wire [33:0] n_shr_214;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_215;
+wire [17:0] n_resize_215;
 // Extract source bits [5:5], rebase to bit 0.
-wire [0:0] n_216;
+wire [0:0] n_bits_5_5_216;
 // Extract source bits [4:0], rebase to bit 0.
-wire [4:0] n_217;
+wire [4:0] n_bits_4_0_217;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_218;
+wire [0:0] n_eq_218;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_219;
+wire [0:0] n_not_219;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_220;
+wire [0:0] n_bits_0_0_220;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_221;
+wire [0:0] n_or_221;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_222;
+wire [0:0] n_and_222;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_223;
+wire [17:0] n_resize_223;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_224;
+wire [17:0] n_add_224;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_225;
+wire [33:0] n_shr_225;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_226;
+wire [17:0] n_resize_226;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_227;
+wire [0:0] n_bits_4_4_227;
 // Extract source bits [3:0], rebase to bit 0.
-wire [3:0] n_228;
+wire [3:0] n_bits_3_0_228;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_229;
+wire [0:0] n_eq_229;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_230;
+wire [0:0] n_not_230;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_231;
+wire [0:0] n_bits_0_0_231;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_232;
+wire [0:0] n_or_232;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_233;
+wire [0:0] n_and_233;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_234;
+wire [17:0] n_resize_234;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_235;
+wire [17:0] n_add_235;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_236;
+wire [33:0] n_shr_236;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_237;
+wire [17:0] n_resize_237;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_238;
+wire [0:0] n_bits_3_3_238;
 // Extract source bits [2:0], rebase to bit 0.
-wire [2:0] n_239;
+wire [2:0] n_bits_2_0_239;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_240;
+wire [0:0] n_eq_240;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_241;
+wire [0:0] n_not_241;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_242;
+wire [0:0] n_bits_0_0_242;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_243;
+wire [0:0] n_or_243;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_244;
+wire [0:0] n_and_244;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_245;
+wire [17:0] n_resize_245;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_246;
+wire [17:0] n_add_246;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_247;
+wire [33:0] n_shr_247;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_248;
+wire [17:0] n_resize_248;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_249;
+wire [0:0] n_bits_2_2_249;
 // Extract source bits [1:0], rebase to bit 0.
-wire [1:0] n_250;
+wire [1:0] n_bits_1_0_250;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_251;
+wire [0:0] n_eq_251;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_252;
+wire [0:0] n_not_252;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_253;
+wire [0:0] n_bits_0_0_253;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_254;
+wire [0:0] n_or_254;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_255;
+wire [0:0] n_and_255;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_256;
+wire [17:0] n_resize_256;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_257;
+wire [17:0] n_add_257;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_258;
+wire [33:0] n_shr_258;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_259;
+wire [17:0] n_resize_259;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_260;
+wire [0:0] n_bits_1_1_260;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_261;
+wire [0:0] n_bits_0_0_261;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_262;
+wire [0:0] n_eq_262;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_263;
+wire [0:0] n_not_263;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_264;
+wire [0:0] n_bits_0_0_264;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_265;
+wire [0:0] n_or_265;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_266;
+wire [0:0] n_and_266;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_267;
+wire [17:0] n_resize_267;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_268;
+wire [17:0] n_add_268;
 // Operation '>>'; result limited to 34 bits. Signed interpretation only for slt/asr/signextend.
-wire [33:0] n_269;
+wire [33:0] n_shr_269;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_270;
+wire [17:0] n_resize_270;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_271;
+wire [0:0] n_bits_0_0_271;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_272;
+wire [0:0] n_bits_0_0_272;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_273;
+wire [0:0] n_or_273;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_274;
+wire [0:0] n_and_274;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_275;
+wire [17:0] n_resize_275;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_276;
+wire [17:0] n_add_276;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_277;
+wire [17:0] n_resize_277;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_278;
+wire [17:0] n_shl_278;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_279;
+wire [17:0] n_resize_279;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_280;
+wire [17:0] n_shl_280;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_281;
+wire [17:0] n_resize_281;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_282;
+wire [17:0] n_shl_282;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_283;
+wire [17:0] n_resize_283;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_284;
+wire [17:0] n_shl_284;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_285;
+wire [17:0] n_resize_285;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_286;
+wire [17:0] n_shl_286;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_287;
+wire [17:0] n_resize_287;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_288;
+wire [17:0] n_shl_288;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_289;
+wire [17:0] n_resize_289;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_290;
+wire [17:0] n_shl_290;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_291;
+wire [17:0] n_resize_291;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_292;
+wire [17:0] n_shl_292;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_293;
+wire [17:0] n_resize_293;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_294;
+wire [17:0] n_shl_294;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_295;
+wire [17:0] n_resize_295;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_296;
+wire [17:0] n_shl_296;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_297;
+wire [17:0] n_resize_297;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_298;
+wire [17:0] n_shl_298;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_299;
+wire [17:0] n_resize_299;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_300;
+wire [17:0] n_shl_300;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_301;
+wire [17:0] n_resize_301;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_302;
+wire [17:0] n_shl_302;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_303;
+wire [17:0] n_resize_303;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_304;
+wire [17:0] n_shl_304;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_305;
+wire [17:0] n_resize_305;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_306;
+wire [17:0] n_shl_306;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_307;
+wire [17:0] n_resize_307;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_308;
+wire [17:0] n_shl_308;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_309;
+wire [17:0] n_resize_309;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_310;
+wire [17:0] n_shl_310;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_311;
+wire [17:0] n_mux_311;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_312;
+wire [17:0] n_mux_312;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_313;
+wire [17:0] n_mux_313;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_314;
+wire [17:0] n_mux_314;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_315;
+wire [17:0] n_mux_315;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_316;
+wire [17:0] n_mux_316;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_317;
+wire [17:0] n_mux_317;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_318;
+wire [17:0] n_mux_318;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_319;
+wire [17:0] n_mux_319;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_320;
+wire [17:0] n_mux_320;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_321;
+wire [17:0] n_mux_321;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_322;
+wire [17:0] n_mux_322;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_323;
+wire [17:0] n_mux_323;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_324;
+wire [17:0] n_mux_324;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_325;
+wire [17:0] n_mux_325;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_326;
+wire [17:0] n_mux_326;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_327;
+wire [17:0] n_mux_327;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_328;
+wire [17:0] n_mux_328;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_329;
+wire [17:0] n_mux_329;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_330;
+wire [17:0] n_mux_330;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_331;
+wire [17:0] n_mux_331;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_332;
+wire [17:0] n_mux_332;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_333;
+wire [17:0] n_mux_333;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_334;
+wire [17:0] n_mux_334;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_335;
+wire [17:0] n_mux_335;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_336;
+wire [17:0] n_mux_336;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_337;
+wire [17:0] n_mux_337;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_338;
+wire [17:0] n_mux_338;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_339;
+wire [17:0] n_mux_339;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_340;
+wire [17:0] n_mux_340;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_341;
+wire [17:0] n_mux_341;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_342;
+wire [17:0] n_mux_342;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_343;
+wire [17:0] n_mux_343;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_344;
+wire [17:0] n_mux_344;
 // Extract source bits [17:17], rebase to bit 0.
-wire [0:0] n_345;
+wire [0:0] n_bits_17_17_345;
 // Unsigned resize: zero extend (or preserve width).
-wire [15:0] n_346;
+wire [15:0] n_resize_346;
 // Operation '+'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_347;
+wire [15:0] n_add_347;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_348;
+wire [0:0] n_slt_348;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_349;
+wire [0:0] n_eq_349;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_350;
+wire [0:0] n_or_350;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_351;
+wire [0:0] n_slt_351;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_352;
+wire [0:0] n_not_352;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_353;
+wire [6:0] n_bits_22_16_353;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_354;
+wire [0:0] n_eq_354;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_355;
+wire [0:0] n_not_355;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_356;
+wire [0:0] n_bits_23_23_356;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_357;
+wire [0:0] n_and_357;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_358;
+wire [6:0] n_bits_22_16_358;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_359;
+wire [0:0] n_eq_359;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_360;
+wire [0:0] n_not_360;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_361;
+wire [0:0] n_bits_23_23_361;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_362;
+wire [0:0] n_and_362;
 // Operation '^'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_363;
+wire [0:0] n_xor_363;
 // Packed bus: [23:23] = high operand; [22:0] = low operand.
-wire [23:0] n_364;
+wire [23:0] n_concat_364;
 // Narrow: retain low bits; upper bits discarded.
-wire [6:0] n_365;
+wire [6:0] n_resize_365;
 // Operation '>>'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_366;
+wire [17:0] n_shr_366;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_367;
+wire [17:0] n_mux_367;
 // Narrow: retain low bits; upper bits discarded.
-wire [15:0] n_368;
+wire [15:0] n_resize_368;
 // Packed bus: [22:16] = high operand; [15:0] = low operand.
-wire [22:0] n_369;
+wire [22:0] n_concat_369;
 // Packed bus: [23:23] = high operand; [22:0] = low operand.
-wire [23:0] n_370;
+wire [23:0] n_concat_370;
 // Select true operand when condition is 1; false operand otherwise.
-wire [23:0] n_371;
+wire [23:0] n_mux_371;
 // Custom float: SIGN [23], EXP [22:16] bias 63, FRACTION [15:0] with hidden leading 1. EXP=0 flushes to zero; EXP=all ones is NaR. Round nearest even; finite overflow saturates.
-wire [23:0] n_372;
+wire [23:0] n_mux_372;
 // Custom float: SIGN [23], EXP [22:16] bias 63, FRACTION [15:0] with hidden leading 1. EXP=0 flushes to zero; EXP=all ones is NaR. Round nearest even; finite overflow saturates.
-wire [23:0] n_373;
+wire [23:0] n_mux_373;
 // Custom float: SIGN [23], EXP [22:16] bias 63, FRACTION [15:0] with hidden leading 1. EXP=0 flushes to zero; EXP=all ones is NaR. Round nearest even; finite overflow saturates.
-wire [23:0] n_374;
+wire [23:0] n_mux_374;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_375;
+wire [6:0] n_bits_22_16_375;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_376;
+wire [0:0] n_eq_376;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_377;
+wire [6:0] n_bits_22_16_377;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_378;
+wire [0:0] n_eq_378;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_379;
+wire [0:0] n_not_379;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_380;
+wire [6:0] n_bits_22_16_380;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_381;
+wire [0:0] n_eq_381;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_382;
+wire [0:0] n_not_382;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_383;
+wire [0:0] n_and_383;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_384;
+wire [6:0] n_bits_22_16_384;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_385;
+wire [0:0] n_eq_385;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_386;
+wire [0:0] n_not_386;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_387;
+wire [0:0] n_bits_23_23_387;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_388;
+wire [0:0] n_and_388;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_389;
+wire [6:0] n_bits_22_16_389;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_390;
+wire [0:0] n_eq_390;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_391;
+wire [6:0] n_bits_22_16_391;
 // Unsigned resize: zero extend (or preserve width).
-wire [15:0] n_392;
+wire [15:0] n_resize_392;
 // Operation '-'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_393;
+wire [15:0] n_sub_393;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_394;
+wire [0:0] n_bits_15_15_394;
 // Extract source bits [14:14], rebase to bit 0.
-wire [0:0] n_395;
+wire [0:0] n_bits_14_14_395;
 // Extract source bits [13:13], rebase to bit 0.
-wire [0:0] n_396;
+wire [0:0] n_bits_13_13_396;
 // Extract source bits [12:12], rebase to bit 0.
-wire [0:0] n_397;
+wire [0:0] n_bits_12_12_397;
 // Extract source bits [11:11], rebase to bit 0.
-wire [0:0] n_398;
+wire [0:0] n_bits_11_11_398;
 // Extract source bits [10:10], rebase to bit 0.
-wire [0:0] n_399;
+wire [0:0] n_bits_10_10_399;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_400;
+wire [0:0] n_bits_9_9_400;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_401;
+wire [0:0] n_bits_8_8_401;
 // Extract source bits [7:7], rebase to bit 0.
-wire [0:0] n_402;
+wire [0:0] n_bits_7_7_402;
 // Extract source bits [6:6], rebase to bit 0.
-wire [0:0] n_403;
+wire [0:0] n_bits_6_6_403;
 // Extract source bits [5:5], rebase to bit 0.
-wire [0:0] n_404;
+wire [0:0] n_bits_5_5_404;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_405;
+wire [0:0] n_bits_4_4_405;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_406;
+wire [0:0] n_bits_3_3_406;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_407;
+wire [0:0] n_bits_2_2_407;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_408;
+wire [0:0] n_bits_1_1_408;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_409;
+wire [0:0] n_bits_0_0_409;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_410;
+wire [15:0] n_bits_15_0_410;
 // Packed bus: [16:16] = high operand; [15:0] = low operand.
-wire [16:0] n_411;
+wire [16:0] n_concat_411;
 // Unsigned resize: zero extend (or preserve width).
-wire [144:0] n_412;
+wire [144:0] n_resize_412;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_413;
+wire [144:0] n_shl_413;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_414;
+wire [144:0] n_mux_414;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_415;
+wire [144:0] n_shl_415;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_416;
+wire [144:0] n_mux_416;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_417;
+wire [144:0] n_shl_417;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_418;
+wire [144:0] n_mux_418;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_419;
+wire [144:0] n_shl_419;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_420;
+wire [144:0] n_mux_420;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_421;
+wire [144:0] n_shl_421;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_422;
+wire [144:0] n_mux_422;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_423;
+wire [144:0] n_shl_423;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_424;
+wire [144:0] n_mux_424;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_425;
+wire [144:0] n_shl_425;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_426;
+wire [144:0] n_mux_426;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_427;
+wire [144:0] n_shl_427;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_428;
+wire [144:0] n_mux_428;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_429;
+wire [144:0] n_mux_429;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_430;
+wire [144:0] n_mux_430;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_431;
+wire [144:0] n_mux_431;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_432;
+wire [144:0] n_mux_432;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_433;
+wire [144:0] n_mux_433;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_434;
+wire [144:0] n_mux_434;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_435;
+wire [144:0] n_mux_435;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_436;
+wire [144:0] n_mux_436;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_437;
+wire [144:0] n_mux_437;
 // Operation '-'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_438;
+wire [144:0] n_sub_438;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_439;
+wire [144:0] n_mux_439;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_440;
+wire [6:0] n_bits_22_16_440;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_441;
+wire [0:0] n_eq_441;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_442;
+wire [0:0] n_not_442;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_443;
+wire [0:0] n_bits_23_23_443;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_444;
+wire [0:0] n_and_444;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_445;
+wire [6:0] n_bits_22_16_445;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_446;
+wire [0:0] n_eq_446;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_447;
+wire [6:0] n_bits_22_16_447;
 // Unsigned resize: zero extend (or preserve width).
-wire [15:0] n_448;
+wire [15:0] n_resize_448;
 // Operation '-'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_449;
+wire [15:0] n_sub_449;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_450;
+wire [0:0] n_bits_15_15_450;
 // Extract source bits [14:14], rebase to bit 0.
-wire [0:0] n_451;
+wire [0:0] n_bits_14_14_451;
 // Extract source bits [13:13], rebase to bit 0.
-wire [0:0] n_452;
+wire [0:0] n_bits_13_13_452;
 // Extract source bits [12:12], rebase to bit 0.
-wire [0:0] n_453;
+wire [0:0] n_bits_12_12_453;
 // Extract source bits [11:11], rebase to bit 0.
-wire [0:0] n_454;
+wire [0:0] n_bits_11_11_454;
 // Extract source bits [10:10], rebase to bit 0.
-wire [0:0] n_455;
+wire [0:0] n_bits_10_10_455;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_456;
+wire [0:0] n_bits_9_9_456;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_457;
+wire [0:0] n_bits_8_8_457;
 // Extract source bits [7:7], rebase to bit 0.
-wire [0:0] n_458;
+wire [0:0] n_bits_7_7_458;
 // Extract source bits [6:6], rebase to bit 0.
-wire [0:0] n_459;
+wire [0:0] n_bits_6_6_459;
 // Extract source bits [5:5], rebase to bit 0.
-wire [0:0] n_460;
+wire [0:0] n_bits_5_5_460;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_461;
+wire [0:0] n_bits_4_4_461;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_462;
+wire [0:0] n_bits_3_3_462;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_463;
+wire [0:0] n_bits_2_2_463;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_464;
+wire [0:0] n_bits_1_1_464;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_465;
+wire [0:0] n_bits_0_0_465;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_466;
+wire [15:0] n_bits_15_0_466;
 // Packed bus: [16:16] = high operand; [15:0] = low operand.
-wire [16:0] n_467;
+wire [16:0] n_concat_467;
 // Unsigned resize: zero extend (or preserve width).
-wire [144:0] n_468;
+wire [144:0] n_resize_468;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_469;
+wire [144:0] n_shl_469;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_470;
+wire [144:0] n_mux_470;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_471;
+wire [144:0] n_shl_471;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_472;
+wire [144:0] n_mux_472;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_473;
+wire [144:0] n_shl_473;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_474;
+wire [144:0] n_mux_474;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_475;
+wire [144:0] n_shl_475;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_476;
+wire [144:0] n_mux_476;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_477;
+wire [144:0] n_shl_477;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_478;
+wire [144:0] n_mux_478;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_479;
+wire [144:0] n_shl_479;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_480;
+wire [144:0] n_mux_480;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_481;
+wire [144:0] n_shl_481;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_482;
+wire [144:0] n_mux_482;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_483;
+wire [144:0] n_shl_483;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_484;
+wire [144:0] n_mux_484;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_485;
+wire [144:0] n_mux_485;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_486;
+wire [144:0] n_mux_486;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_487;
+wire [144:0] n_mux_487;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_488;
+wire [144:0] n_mux_488;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_489;
+wire [144:0] n_mux_489;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_490;
+wire [144:0] n_mux_490;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_491;
+wire [144:0] n_mux_491;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_492;
+wire [144:0] n_mux_492;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_493;
+wire [144:0] n_mux_493;
 // Operation '-'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_494;
+wire [144:0] n_sub_494;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_495;
+wire [144:0] n_mux_495;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_496;
+wire [0:0] n_slt_496;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_497;
+wire [0:0] n_and_497;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_498;
+wire [6:0] n_bits_22_16_498;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_499;
+wire [0:0] n_eq_499;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_500;
+wire [0:0] n_not_500;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_501;
+wire [6:0] n_bits_22_16_501;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_502;
+wire [0:0] n_eq_502;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_503;
+wire [0:0] n_not_503;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_504;
+wire [0:0] n_and_504;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_505;
+wire [6:0] n_bits_22_16_505;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_506;
+wire [0:0] n_eq_506;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_507;
+wire [0:0] n_not_507;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_508;
+wire [0:0] n_bits_23_23_508;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_509;
+wire [0:0] n_and_509;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_510;
+wire [6:0] n_bits_22_16_510;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_511;
+wire [0:0] n_eq_511;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_512;
+wire [6:0] n_bits_22_16_512;
 // Unsigned resize: zero extend (or preserve width).
-wire [15:0] n_513;
+wire [15:0] n_resize_513;
 // Operation '-'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_514;
+wire [15:0] n_sub_514;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_515;
+wire [0:0] n_bits_15_15_515;
 // Extract source bits [14:14], rebase to bit 0.
-wire [0:0] n_516;
+wire [0:0] n_bits_14_14_516;
 // Extract source bits [13:13], rebase to bit 0.
-wire [0:0] n_517;
+wire [0:0] n_bits_13_13_517;
 // Extract source bits [12:12], rebase to bit 0.
-wire [0:0] n_518;
+wire [0:0] n_bits_12_12_518;
 // Extract source bits [11:11], rebase to bit 0.
-wire [0:0] n_519;
+wire [0:0] n_bits_11_11_519;
 // Extract source bits [10:10], rebase to bit 0.
-wire [0:0] n_520;
+wire [0:0] n_bits_10_10_520;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_521;
+wire [0:0] n_bits_9_9_521;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_522;
+wire [0:0] n_bits_8_8_522;
 // Extract source bits [7:7], rebase to bit 0.
-wire [0:0] n_523;
+wire [0:0] n_bits_7_7_523;
 // Extract source bits [6:6], rebase to bit 0.
-wire [0:0] n_524;
+wire [0:0] n_bits_6_6_524;
 // Extract source bits [5:5], rebase to bit 0.
-wire [0:0] n_525;
+wire [0:0] n_bits_5_5_525;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_526;
+wire [0:0] n_bits_4_4_526;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_527;
+wire [0:0] n_bits_3_3_527;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_528;
+wire [0:0] n_bits_2_2_528;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_529;
+wire [0:0] n_bits_1_1_529;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_530;
+wire [0:0] n_bits_0_0_530;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_531;
+wire [15:0] n_bits_15_0_531;
 // Packed bus: [16:16] = high operand; [15:0] = low operand.
-wire [16:0] n_532;
+wire [16:0] n_concat_532;
 // Unsigned resize: zero extend (or preserve width).
-wire [144:0] n_533;
+wire [144:0] n_resize_533;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_534;
+wire [144:0] n_shl_534;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_535;
+wire [144:0] n_mux_535;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_536;
+wire [144:0] n_shl_536;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_537;
+wire [144:0] n_mux_537;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_538;
+wire [144:0] n_shl_538;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_539;
+wire [144:0] n_mux_539;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_540;
+wire [144:0] n_shl_540;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_541;
+wire [144:0] n_mux_541;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_542;
+wire [144:0] n_shl_542;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_543;
+wire [144:0] n_mux_543;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_544;
+wire [144:0] n_shl_544;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_545;
+wire [144:0] n_mux_545;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_546;
+wire [144:0] n_shl_546;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_547;
+wire [144:0] n_mux_547;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_548;
+wire [144:0] n_shl_548;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_549;
+wire [144:0] n_mux_549;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_550;
+wire [144:0] n_mux_550;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_551;
+wire [144:0] n_mux_551;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_552;
+wire [144:0] n_mux_552;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_553;
+wire [144:0] n_mux_553;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_554;
+wire [144:0] n_mux_554;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_555;
+wire [144:0] n_mux_555;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_556;
+wire [144:0] n_mux_556;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_557;
+wire [144:0] n_mux_557;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_558;
+wire [144:0] n_mux_558;
 // Operation '-'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_559;
+wire [144:0] n_sub_559;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_560;
+wire [144:0] n_mux_560;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_561;
+wire [6:0] n_bits_22_16_561;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_562;
+wire [0:0] n_eq_562;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_563;
+wire [0:0] n_not_563;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_564;
+wire [0:0] n_bits_23_23_564;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_565;
+wire [0:0] n_and_565;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_566;
+wire [6:0] n_bits_22_16_566;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_567;
+wire [0:0] n_eq_567;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_568;
+wire [6:0] n_bits_22_16_568;
 // Unsigned resize: zero extend (or preserve width).
-wire [15:0] n_569;
+wire [15:0] n_resize_569;
 // Operation '-'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_570;
+wire [15:0] n_sub_570;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_571;
+wire [0:0] n_bits_15_15_571;
 // Extract source bits [14:14], rebase to bit 0.
-wire [0:0] n_572;
+wire [0:0] n_bits_14_14_572;
 // Extract source bits [13:13], rebase to bit 0.
-wire [0:0] n_573;
+wire [0:0] n_bits_13_13_573;
 // Extract source bits [12:12], rebase to bit 0.
-wire [0:0] n_574;
+wire [0:0] n_bits_12_12_574;
 // Extract source bits [11:11], rebase to bit 0.
-wire [0:0] n_575;
+wire [0:0] n_bits_11_11_575;
 // Extract source bits [10:10], rebase to bit 0.
-wire [0:0] n_576;
+wire [0:0] n_bits_10_10_576;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_577;
+wire [0:0] n_bits_9_9_577;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_578;
+wire [0:0] n_bits_8_8_578;
 // Extract source bits [7:7], rebase to bit 0.
-wire [0:0] n_579;
+wire [0:0] n_bits_7_7_579;
 // Extract source bits [6:6], rebase to bit 0.
-wire [0:0] n_580;
+wire [0:0] n_bits_6_6_580;
 // Extract source bits [5:5], rebase to bit 0.
-wire [0:0] n_581;
+wire [0:0] n_bits_5_5_581;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_582;
+wire [0:0] n_bits_4_4_582;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_583;
+wire [0:0] n_bits_3_3_583;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_584;
+wire [0:0] n_bits_2_2_584;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_585;
+wire [0:0] n_bits_1_1_585;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_586;
+wire [0:0] n_bits_0_0_586;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_587;
+wire [15:0] n_bits_15_0_587;
 // Packed bus: [16:16] = high operand; [15:0] = low operand.
-wire [16:0] n_588;
+wire [16:0] n_concat_588;
 // Unsigned resize: zero extend (or preserve width).
-wire [144:0] n_589;
+wire [144:0] n_resize_589;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_590;
+wire [144:0] n_shl_590;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_591;
+wire [144:0] n_mux_591;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_592;
+wire [144:0] n_shl_592;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_593;
+wire [144:0] n_mux_593;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_594;
+wire [144:0] n_shl_594;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_595;
+wire [144:0] n_mux_595;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_596;
+wire [144:0] n_shl_596;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_597;
+wire [144:0] n_mux_597;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_598;
+wire [144:0] n_shl_598;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_599;
+wire [144:0] n_mux_599;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_600;
+wire [144:0] n_shl_600;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_601;
+wire [144:0] n_mux_601;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_602;
+wire [144:0] n_shl_602;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_603;
+wire [144:0] n_mux_603;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_604;
+wire [144:0] n_shl_604;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_605;
+wire [144:0] n_mux_605;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_606;
+wire [144:0] n_mux_606;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_607;
+wire [144:0] n_mux_607;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_608;
+wire [144:0] n_mux_608;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_609;
+wire [144:0] n_mux_609;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_610;
+wire [144:0] n_mux_610;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_611;
+wire [144:0] n_mux_611;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_612;
+wire [144:0] n_mux_612;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_613;
+wire [144:0] n_mux_613;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_614;
+wire [144:0] n_mux_614;
 // Operation '-'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_615;
+wire [144:0] n_sub_615;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_616;
+wire [144:0] n_mux_616;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_617;
+wire [0:0] n_slt_617;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_618;
+wire [0:0] n_and_618;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_619;
+wire [0:0] n_not_619;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_620;
+wire [6:0] n_bits_22_16_620;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_621;
+wire [0:0] n_eq_621;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_622;
+wire [6:0] n_bits_22_16_622;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_623;
+wire [0:0] n_eq_623;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_624;
+wire [0:0] n_not_624;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_625;
+wire [0:0] n_bits_23_23_625;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_626;
+wire [0:0] n_and_626;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_627;
+wire [6:0] n_bits_22_16_627;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_628;
+wire [0:0] n_eq_628;
 // Extract source bits [22:16], rebase to bit 0.
-wire [6:0] n_629;
+wire [6:0] n_bits_22_16_629;
 // Unsigned resize: zero extend (or preserve width).
-wire [15:0] n_630;
+wire [15:0] n_resize_630;
 // Operation '-'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_631;
+wire [15:0] n_sub_631;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_632;
+wire [0:0] n_bits_15_15_632;
 // Extract source bits [14:14], rebase to bit 0.
-wire [0:0] n_633;
+wire [0:0] n_bits_14_14_633;
 // Extract source bits [13:13], rebase to bit 0.
-wire [0:0] n_634;
+wire [0:0] n_bits_13_13_634;
 // Extract source bits [12:12], rebase to bit 0.
-wire [0:0] n_635;
+wire [0:0] n_bits_12_12_635;
 // Extract source bits [11:11], rebase to bit 0.
-wire [0:0] n_636;
+wire [0:0] n_bits_11_11_636;
 // Extract source bits [10:10], rebase to bit 0.
-wire [0:0] n_637;
+wire [0:0] n_bits_10_10_637;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_638;
+wire [0:0] n_bits_9_9_638;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_639;
+wire [0:0] n_bits_8_8_639;
 // Extract source bits [7:7], rebase to bit 0.
-wire [0:0] n_640;
+wire [0:0] n_bits_7_7_640;
 // Extract source bits [6:6], rebase to bit 0.
-wire [0:0] n_641;
+wire [0:0] n_bits_6_6_641;
 // Extract source bits [5:5], rebase to bit 0.
-wire [0:0] n_642;
+wire [0:0] n_bits_5_5_642;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_643;
+wire [0:0] n_bits_4_4_643;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_644;
+wire [0:0] n_bits_3_3_644;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_645;
+wire [0:0] n_bits_2_2_645;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_646;
+wire [0:0] n_bits_1_1_646;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_647;
+wire [0:0] n_bits_0_0_647;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_648;
+wire [15:0] n_bits_15_0_648;
 // Packed bus: [16:16] = high operand; [15:0] = low operand.
-wire [16:0] n_649;
+wire [16:0] n_concat_649;
 // Unsigned resize: zero extend (or preserve width).
-wire [144:0] n_650;
+wire [144:0] n_resize_650;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_651;
+wire [144:0] n_shl_651;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_652;
+wire [144:0] n_mux_652;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_653;
+wire [144:0] n_shl_653;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_654;
+wire [144:0] n_mux_654;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_655;
+wire [144:0] n_shl_655;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_656;
+wire [144:0] n_mux_656;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_657;
+wire [144:0] n_shl_657;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_658;
+wire [144:0] n_mux_658;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_659;
+wire [144:0] n_shl_659;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_660;
+wire [144:0] n_mux_660;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_661;
+wire [144:0] n_shl_661;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_662;
+wire [144:0] n_mux_662;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_663;
+wire [144:0] n_shl_663;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_664;
+wire [144:0] n_mux_664;
 // Operation '<<'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_665;
+wire [144:0] n_shl_665;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_666;
+wire [144:0] n_mux_666;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_667;
+wire [144:0] n_mux_667;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_668;
+wire [144:0] n_mux_668;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_669;
+wire [144:0] n_mux_669;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_670;
+wire [144:0] n_mux_670;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_671;
+wire [144:0] n_mux_671;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_672;
+wire [144:0] n_mux_672;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_673;
+wire [144:0] n_mux_673;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_674;
+wire [144:0] n_mux_674;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_675;
+wire [144:0] n_mux_675;
 // Operation '-'; result limited to 145 bits. Signed interpretation only for slt/asr/signextend.
-wire [144:0] n_676;
+wire [144:0] n_sub_676;
 // Select true operand when condition is 1; false operand otherwise.
-wire [144:0] n_677;
+wire [144:0] n_mux_677;
 // Signed two's-complement extension.
-wire [145:0] n_678;
+wire [145:0] n_signextend_678;
 // Operation 'asr'; result limited to 146 bits. Signed interpretation only for slt/asr/signextend.
-wire [145:0] n_679;
+wire [145:0] n_asr_679;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_680;
+wire [0:0] n_slt_680;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_681;
+wire [0:0] n_slt_681;
 // Select true operand when condition is 1; false operand otherwise.
-wire [145:0] n_682;
+wire [145:0] n_mux_682;
 // Select true operand when condition is 1; false operand otherwise.
-wire [145:0] n_683;
+wire [145:0] n_mux_683;
 // Signed fixed-point result: 64 total bits, 32 fractional bits; rounding Floor, overflow Saturate.
-wire [63:0] n_684;
+wire [63:0] n_resize_684;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_685;
+wire [63:0] n_mux_685;
 // Operation 'asr'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_686;
+wire [63:0] n_asr_686;
 // Narrow: retain low bits; upper bits discarded.
-wire [15:0] n_687;
+wire [15:0] n_resize_687;
 // Operation '-'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_688;
+wire [15:0] n_sub_688;
 // Extract source bits [31:0], rebase to bit 0.
-wire [31:0] n_689;
+wire [31:0] n_bits_31_0_689;
 // Extract source bits [31:22], rebase to bit 0.
-wire [9:0] n_690;
+wire [9:0] n_bits_31_22_690;
 // exp2 fraction ROM: base coefficients, Q8.32; address = fraction [31:22].
-wire [39:0] n_691;
-function [39:0] rom_n_691;
+wire [39:0] n_lookup_691;
+function [39:0] rom_n_lookup_691;
   input [9:0] address;
   begin
     case (address)
-      10'd0: rom_n_691 = 40'd4294967296;
-      10'd1: rom_n_691 = 40'd4297875550;
-      10'd2: rom_n_691 = 40'd4300785774;
-      10'd3: rom_n_691 = 40'd4303697968;
-      10'd4: rom_n_691 = 40'd4306612134;
-      10'd5: rom_n_691 = 40'd4309528273;
-      10'd6: rom_n_691 = 40'd4312446387;
-      10'd7: rom_n_691 = 40'd4315366477;
-      10'd8: rom_n_691 = 40'd4318288544;
-      10'd9: rom_n_691 = 40'd4321212589;
-      10'd10: rom_n_691 = 40'd4324138615;
-      10'd11: rom_n_691 = 40'd4327066622;
-      10'd12: rom_n_691 = 40'd4329996612;
-      10'd13: rom_n_691 = 40'd4332928585;
-      10'd14: rom_n_691 = 40'd4335862544;
-      10'd15: rom_n_691 = 40'd4338798490;
-      10'd16: rom_n_691 = 40'd4341736423;
-      10'd17: rom_n_691 = 40'd4344676346;
-      10'd18: rom_n_691 = 40'd4347618260;
-      10'd19: rom_n_691 = 40'd4350562166;
-      10'd20: rom_n_691 = 40'd4353508065;
-      10'd21: rom_n_691 = 40'd4356455959;
-      10'd22: rom_n_691 = 40'd4359405849;
-      10'd23: rom_n_691 = 40'd4362357737;
-      10'd24: rom_n_691 = 40'd4365311623;
-      10'd25: rom_n_691 = 40'd4368267509;
-      10'd26: rom_n_691 = 40'd4371225397;
-      10'd27: rom_n_691 = 40'd4374185288;
-      10'd28: rom_n_691 = 40'd4377147183;
-      10'd29: rom_n_691 = 40'd4380111084;
-      10'd30: rom_n_691 = 40'd4383076992;
-      10'd31: rom_n_691 = 40'd4386044908;
-      10'd32: rom_n_691 = 40'd4389014833;
-      10'd33: rom_n_691 = 40'd4391986770;
-      10'd34: rom_n_691 = 40'd4394960719;
-      10'd35: rom_n_691 = 40'd4397936682;
-      10'd36: rom_n_691 = 40'd4400914660;
-      10'd37: rom_n_691 = 40'd4403894654;
-      10'd38: rom_n_691 = 40'd4406876666;
-      10'd39: rom_n_691 = 40'd4409860698;
-      10'd40: rom_n_691 = 40'd4412846750;
-      10'd41: rom_n_691 = 40'd4415834824;
-      10'd42: rom_n_691 = 40'd4418824921;
-      10'd43: rom_n_691 = 40'd4421817043;
-      10'd44: rom_n_691 = 40'd4424811191;
-      10'd45: rom_n_691 = 40'd4427807367;
-      10'd46: rom_n_691 = 40'd4430805571;
-      10'd47: rom_n_691 = 40'd4433805805;
-      10'd48: rom_n_691 = 40'd4436808071;
-      10'd49: rom_n_691 = 40'd4439812370;
-      10'd50: rom_n_691 = 40'd4442818704;
-      10'd51: rom_n_691 = 40'd4445827072;
-      10'd52: rom_n_691 = 40'd4448837478;
-      10'd53: rom_n_691 = 40'd4451849923;
-      10'd54: rom_n_691 = 40'd4454864407;
-      10'd55: rom_n_691 = 40'd4457880932;
-      10'd56: rom_n_691 = 40'd4460899500;
-      10'd57: rom_n_691 = 40'd4463920112;
-      10'd58: rom_n_691 = 40'd4466942770;
-      10'd59: rom_n_691 = 40'd4469967474;
-      10'd60: rom_n_691 = 40'd4472994226;
-      10'd61: rom_n_691 = 40'd4476023028;
-      10'd62: rom_n_691 = 40'd4479053880;
-      10'd63: rom_n_691 = 40'd4482086785;
-      10'd64: rom_n_691 = 40'd4485121744;
-      10'd65: rom_n_691 = 40'd4488158757;
-      10'd66: rom_n_691 = 40'd4491197827;
-      10'd67: rom_n_691 = 40'd4494238955;
-      10'd68: rom_n_691 = 40'd4497282142;
-      10'd69: rom_n_691 = 40'd4500327390;
-      10'd70: rom_n_691 = 40'd4503374700;
-      10'd71: rom_n_691 = 40'd4506424073;
-      10'd72: rom_n_691 = 40'd4509475511;
-      10'd73: rom_n_691 = 40'd4512529015;
-      10'd74: rom_n_691 = 40'd4515584587;
-      10'd75: rom_n_691 = 40'd4518642228;
-      10'd76: rom_n_691 = 40'd4521701940;
-      10'd77: rom_n_691 = 40'd4524763723;
-      10'd78: rom_n_691 = 40'd4527827579;
-      10'd79: rom_n_691 = 40'd4530893510;
-      10'd80: rom_n_691 = 40'd4533961517;
-      10'd81: rom_n_691 = 40'd4537031602;
-      10'd82: rom_n_691 = 40'd4540103765;
-      10'd83: rom_n_691 = 40'd4543178009;
-      10'd84: rom_n_691 = 40'd4546254334;
-      10'd85: rom_n_691 = 40'd4549332742;
-      10'd86: rom_n_691 = 40'd4552413235;
-      10'd87: rom_n_691 = 40'd4555495814;
-      10'd88: rom_n_691 = 40'd4558580480;
-      10'd89: rom_n_691 = 40'd4561667235;
-      10'd90: rom_n_691 = 40'd4564756080;
-      10'd91: rom_n_691 = 40'd4567847016;
-      10'd92: rom_n_691 = 40'd4570940045;
-      10'd93: rom_n_691 = 40'd4574035169;
-      10'd94: rom_n_691 = 40'd4577132389;
-      10'd95: rom_n_691 = 40'd4580231706;
-      10'd96: rom_n_691 = 40'd4583333121;
-      10'd97: rom_n_691 = 40'd4586436637;
-      10'd98: rom_n_691 = 40'd4589542254;
-      10'd99: rom_n_691 = 40'd4592649974;
-      10'd100: rom_n_691 = 40'd4595759798;
-      10'd101: rom_n_691 = 40'd4598871728;
-      10'd102: rom_n_691 = 40'd4601985765;
-      10'd103: rom_n_691 = 40'd4605101911;
-      10'd104: rom_n_691 = 40'd4608220167;
-      10'd105: rom_n_691 = 40'd4611340534;
-      10'd106: rom_n_691 = 40'd4614463014;
-      10'd107: rom_n_691 = 40'd4617587609;
-      10'd108: rom_n_691 = 40'd4620714319;
-      10'd109: rom_n_691 = 40'd4623843147;
-      10'd110: rom_n_691 = 40'd4626974093;
-      10'd111: rom_n_691 = 40'd4630107159;
-      10'd112: rom_n_691 = 40'd4633242347;
-      10'd113: rom_n_691 = 40'd4636379657;
-      10'd114: rom_n_691 = 40'd4639519092;
-      10'd115: rom_n_691 = 40'd4642660653;
-      10'd116: rom_n_691 = 40'd4645804341;
-      10'd117: rom_n_691 = 40'd4648950158;
-      10'd118: rom_n_691 = 40'd4652098105;
-      10'd119: rom_n_691 = 40'd4655248183;
-      10'd120: rom_n_691 = 40'd4658400394;
-      10'd121: rom_n_691 = 40'd4661554740;
-      10'd122: rom_n_691 = 40'd4664711222;
-      10'd123: rom_n_691 = 40'd4667869841;
-      10'd124: rom_n_691 = 40'd4671030599;
-      10'd125: rom_n_691 = 40'd4674193497;
-      10'd126: rom_n_691 = 40'd4677358537;
-      10'd127: rom_n_691 = 40'd4680525720;
-      10'd128: rom_n_691 = 40'd4683695048;
-      10'd129: rom_n_691 = 40'd4686866522;
-      10'd130: rom_n_691 = 40'd4690040143;
-      10'd131: rom_n_691 = 40'd4693215913;
-      10'd132: rom_n_691 = 40'd4696393833;
-      10'd133: rom_n_691 = 40'd4699573906;
-      10'd134: rom_n_691 = 40'd4702756132;
-      10'd135: rom_n_691 = 40'd4705940512;
-      10'd136: rom_n_691 = 40'd4709127049;
-      10'd137: rom_n_691 = 40'd4712315743;
-      10'd138: rom_n_691 = 40'd4715506597;
-      10'd139: rom_n_691 = 40'd4718699611;
-      10'd140: rom_n_691 = 40'd4721894787;
-      10'd141: rom_n_691 = 40'd4725092127;
-      10'd142: rom_n_691 = 40'd4728291632;
-      10'd143: rom_n_691 = 40'd4731493304;
-      10'd144: rom_n_691 = 40'd4734697143;
-      10'd145: rom_n_691 = 40'd4737903152;
-      10'd146: rom_n_691 = 40'd4741111331;
-      10'd147: rom_n_691 = 40'd4744321683;
-      10'd148: rom_n_691 = 40'd4747534209;
-      10'd149: rom_n_691 = 40'd4750748910;
-      10'd150: rom_n_691 = 40'd4753965788;
-      10'd151: rom_n_691 = 40'd4757184844;
-      10'd152: rom_n_691 = 40'd4760406080;
-      10'd153: rom_n_691 = 40'd4763629497;
-      10'd154: rom_n_691 = 40'd4766855097;
-      10'd155: rom_n_691 = 40'd4770082881;
-      10'd156: rom_n_691 = 40'd4773312851;
-      10'd157: rom_n_691 = 40'd4776545007;
-      10'd158: rom_n_691 = 40'd4779779352;
-      10'd159: rom_n_691 = 40'd4783015888;
-      10'd160: rom_n_691 = 40'd4786254615;
-      10'd161: rom_n_691 = 40'd4789495534;
-      10'd162: rom_n_691 = 40'd4792738649;
-      10'd163: rom_n_691 = 40'd4795983959;
-      10'd164: rom_n_691 = 40'd4799231467;
-      10'd165: rom_n_691 = 40'd4802481174;
-      10'd166: rom_n_691 = 40'd4805733082;
-      10'd167: rom_n_691 = 40'd4808987191;
-      10'd168: rom_n_691 = 40'd4812243504;
-      10'd169: rom_n_691 = 40'd4815502022;
-      10'd170: rom_n_691 = 40'd4818762746;
-      10'd171: rom_n_691 = 40'd4822025678;
-      10'd172: rom_n_691 = 40'd4825290820;
-      10'd173: rom_n_691 = 40'd4828558172;
-      10'd174: rom_n_691 = 40'd4831827737;
-      10'd175: rom_n_691 = 40'd4835099516;
-      10'd176: rom_n_691 = 40'd4838373510;
-      10'd177: rom_n_691 = 40'd4841649721;
-      10'd178: rom_n_691 = 40'd4844928151;
-      10'd179: rom_n_691 = 40'd4848208801;
-      10'd180: rom_n_691 = 40'd4851491672;
-      10'd181: rom_n_691 = 40'd4854776765;
-      10'd182: rom_n_691 = 40'd4858064084;
-      10'd183: rom_n_691 = 40'd4861353628;
-      10'd184: rom_n_691 = 40'd4864645400;
-      10'd185: rom_n_691 = 40'd4867939401;
-      10'd186: rom_n_691 = 40'd4871235632;
-      10'd187: rom_n_691 = 40'd4874534095;
-      10'd188: rom_n_691 = 40'd4877834792;
-      10'd189: rom_n_691 = 40'd4881137723;
-      10'd190: rom_n_691 = 40'd4884442891;
-      10'd191: rom_n_691 = 40'd4887750298;
-      10'd192: rom_n_691 = 40'd4891059943;
-      10'd193: rom_n_691 = 40'd4894371830;
-      10'd194: rom_n_691 = 40'd4897685960;
-      10'd195: rom_n_691 = 40'd4901002333;
-      10'd196: rom_n_691 = 40'd4904320952;
-      10'd197: rom_n_691 = 40'd4907641818;
-      10'd198: rom_n_691 = 40'd4910964933;
-      10'd199: rom_n_691 = 40'd4914290298;
-      10'd200: rom_n_691 = 40'd4917617915;
-      10'd201: rom_n_691 = 40'd4920947785;
-      10'd202: rom_n_691 = 40'd4924279910;
-      10'd203: rom_n_691 = 40'd4927614291;
-      10'd204: rom_n_691 = 40'd4930950930;
-      10'd205: rom_n_691 = 40'd4934289828;
-      10'd206: rom_n_691 = 40'd4937630987;
-      10'd207: rom_n_691 = 40'd4940974409;
-      10'd208: rom_n_691 = 40'd4944320094;
-      10'd209: rom_n_691 = 40'd4947668045;
-      10'd210: rom_n_691 = 40'd4951018263;
-      10'd211: rom_n_691 = 40'd4954370749;
-      10'd212: rom_n_691 = 40'd4957725506;
-      10'd213: rom_n_691 = 40'd4961082534;
-      10'd214: rom_n_691 = 40'd4964441835;
-      10'd215: rom_n_691 = 40'd4967803411;
-      10'd216: rom_n_691 = 40'd4971167263;
-      10'd217: rom_n_691 = 40'd4974533393;
-      10'd218: rom_n_691 = 40'd4977901803;
-      10'd219: rom_n_691 = 40'd4981272493;
-      10'd220: rom_n_691 = 40'd4984645465;
-      10'd221: rom_n_691 = 40'd4988020722;
-      10'd222: rom_n_691 = 40'd4991398263;
-      10'd223: rom_n_691 = 40'd4994778092;
-      10'd224: rom_n_691 = 40'd4998160210;
-      10'd225: rom_n_691 = 40'd5001544618;
-      10'd226: rom_n_691 = 40'd5004931317;
-      10'd227: rom_n_691 = 40'd5008320310;
-      10'd228: rom_n_691 = 40'd5011711597;
-      10'd229: rom_n_691 = 40'd5015105181;
-      10'd230: rom_n_691 = 40'd5018501062;
-      10'd231: rom_n_691 = 40'd5021899244;
-      10'd232: rom_n_691 = 40'd5025299726;
-      10'd233: rom_n_691 = 40'd5028702510;
-      10'd234: rom_n_691 = 40'd5032107599;
-      10'd235: rom_n_691 = 40'd5035514994;
-      10'd236: rom_n_691 = 40'd5038924695;
-      10'd237: rom_n_691 = 40'd5042336706;
-      10'd238: rom_n_691 = 40'd5045751027;
-      10'd239: rom_n_691 = 40'd5049167660;
-      10'd240: rom_n_691 = 40'd5052586606;
-      10'd241: rom_n_691 = 40'd5056007868;
-      10'd242: rom_n_691 = 40'd5059431446;
-      10'd243: rom_n_691 = 40'd5062857342;
-      10'd244: rom_n_691 = 40'd5066285558;
-      10'd245: rom_n_691 = 40'd5069716096;
-      10'd246: rom_n_691 = 40'd5073148956;
-      10'd247: rom_n_691 = 40'd5076584141;
-      10'd248: rom_n_691 = 40'd5080021652;
-      10'd249: rom_n_691 = 40'd5083461490;
-      10'd250: rom_n_691 = 40'd5086903658;
-      10'd251: rom_n_691 = 40'd5090348157;
-      10'd252: rom_n_691 = 40'd5093794988;
-      10'd253: rom_n_691 = 40'd5097244153;
-      10'd254: rom_n_691 = 40'd5100695653;
-      10'd255: rom_n_691 = 40'd5104149491;
-      10'd256: rom_n_691 = 40'd5107605667;
-      10'd257: rom_n_691 = 40'd5111064184;
-      10'd258: rom_n_691 = 40'd5114525042;
-      10'd259: rom_n_691 = 40'd5117988244;
-      10'd260: rom_n_691 = 40'd5121453791;
-      10'd261: rom_n_691 = 40'd5124921684;
-      10'd262: rom_n_691 = 40'd5128391926;
-      10'd263: rom_n_691 = 40'd5131864518;
-      10'd264: rom_n_691 = 40'd5135339461;
-      10'd265: rom_n_691 = 40'd5138816757;
-      10'd266: rom_n_691 = 40'd5142296407;
-      10'd267: rom_n_691 = 40'd5145778414;
-      10'd268: rom_n_691 = 40'd5149262779;
-      10'd269: rom_n_691 = 40'd5152749502;
-      10'd270: rom_n_691 = 40'd5156238587;
-      10'd271: rom_n_691 = 40'd5159730035;
-      10'd272: rom_n_691 = 40'd5163223846;
-      10'd273: rom_n_691 = 40'd5166720024;
-      10'd274: rom_n_691 = 40'd5170218568;
-      10'd275: rom_n_691 = 40'd5173719482;
-      10'd276: rom_n_691 = 40'd5177222766;
-      10'd277: rom_n_691 = 40'd5180728423;
-      10'd278: rom_n_691 = 40'd5184236453;
-      10'd279: rom_n_691 = 40'd5187746859;
-      10'd280: rom_n_691 = 40'd5191259641;
-      10'd281: rom_n_691 = 40'd5194774802;
-      10'd282: rom_n_691 = 40'd5198292344;
-      10'd283: rom_n_691 = 40'd5201812267;
-      10'd284: rom_n_691 = 40'd5205334574;
-      10'd285: rom_n_691 = 40'd5208859266;
-      10'd286: rom_n_691 = 40'd5212386344;
-      10'd287: rom_n_691 = 40'd5215915811;
-      10'd288: rom_n_691 = 40'd5219447668;
-      10'd289: rom_n_691 = 40'd5222981916;
-      10'd290: rom_n_691 = 40'd5226518557;
-      10'd291: rom_n_691 = 40'd5230057593;
-      10'd292: rom_n_691 = 40'd5233599026;
-      10'd293: rom_n_691 = 40'd5237142856;
-      10'd294: rom_n_691 = 40'd5240689087;
-      10'd295: rom_n_691 = 40'd5244237718;
-      10'd296: rom_n_691 = 40'd5247788752;
-      10'd297: rom_n_691 = 40'd5251342191;
-      10'd298: rom_n_691 = 40'd5254898036;
-      10'd299: rom_n_691 = 40'd5258456289;
-      10'd300: rom_n_691 = 40'd5262016951;
-      10'd301: rom_n_691 = 40'd5265580024;
-      10'd302: rom_n_691 = 40'd5269145510;
-      10'd303: rom_n_691 = 40'd5272713410;
-      10'd304: rom_n_691 = 40'd5276283726;
-      10'd305: rom_n_691 = 40'd5279856460;
-      10'd306: rom_n_691 = 40'd5283431613;
-      10'd307: rom_n_691 = 40'd5287009187;
-      10'd308: rom_n_691 = 40'd5290589183;
-      10'd309: rom_n_691 = 40'd5294171603;
-      10'd310: rom_n_691 = 40'd5297756449;
-      10'd311: rom_n_691 = 40'd5301343723;
-      10'd312: rom_n_691 = 40'd5304933425;
-      10'd313: rom_n_691 = 40'd5308525558;
-      10'd314: rom_n_691 = 40'd5312120124;
-      10'd315: rom_n_691 = 40'd5315717124;
-      10'd316: rom_n_691 = 40'd5319316559;
-      10'd317: rom_n_691 = 40'd5322918431;
-      10'd318: rom_n_691 = 40'd5326522743;
-      10'd319: rom_n_691 = 40'd5330129495;
-      10'd320: rom_n_691 = 40'd5333738689;
-      10'd321: rom_n_691 = 40'd5337350327;
-      10'd322: rom_n_691 = 40'd5340964411;
-      10'd323: rom_n_691 = 40'd5344580942;
-      10'd324: rom_n_691 = 40'd5348199922;
-      10'd325: rom_n_691 = 40'd5351821352;
-      10'd326: rom_n_691 = 40'd5355445235;
-      10'd327: rom_n_691 = 40'd5359071571;
-      10'd328: rom_n_691 = 40'd5362700363;
-      10'd329: rom_n_691 = 40'd5366331612;
-      10'd330: rom_n_691 = 40'd5369965320;
-      10'd331: rom_n_691 = 40'd5373601488;
-      10'd332: rom_n_691 = 40'd5377240118;
-      10'd333: rom_n_691 = 40'd5380881213;
-      10'd334: rom_n_691 = 40'd5384524773;
-      10'd335: rom_n_691 = 40'd5388170800;
-      10'd336: rom_n_691 = 40'd5391819295;
-      10'd337: rom_n_691 = 40'd5395470262;
-      10'd338: rom_n_691 = 40'd5399123700;
-      10'd339: rom_n_691 = 40'd5402779613;
-      10'd340: rom_n_691 = 40'd5406438001;
-      10'd341: rom_n_691 = 40'd5410098866;
-      10'd342: rom_n_691 = 40'd5413762210;
-      10'd343: rom_n_691 = 40'd5417428034;
-      10'd344: rom_n_691 = 40'd5421096341;
-      10'd345: rom_n_691 = 40'd5424767132;
-      10'd346: rom_n_691 = 40'd5428440408;
-      10'd347: rom_n_691 = 40'd5432116172;
-      10'd348: rom_n_691 = 40'd5435794424;
-      10'd349: rom_n_691 = 40'd5439475168;
-      10'd350: rom_n_691 = 40'd5443158403;
-      10'd351: rom_n_691 = 40'd5446844133;
-      10'd352: rom_n_691 = 40'd5450532358;
-      10'd353: rom_n_691 = 40'd5454223081;
-      10'd354: rom_n_691 = 40'd5457916303;
-      10'd355: rom_n_691 = 40'd5461612025;
-      10'd356: rom_n_691 = 40'd5465310250;
-      10'd357: rom_n_691 = 40'd5469010980;
-      10'd358: rom_n_691 = 40'd5472714215;
-      10'd359: rom_n_691 = 40'd5476419958;
-      10'd360: rom_n_691 = 40'd5480128210;
-      10'd361: rom_n_691 = 40'd5483838973;
-      10'd362: rom_n_691 = 40'd5487552249;
-      10'd363: rom_n_691 = 40'd5491268039;
-      10'd364: rom_n_691 = 40'd5494986345;
-      10'd365: rom_n_691 = 40'd5498707169;
-      10'd366: rom_n_691 = 40'd5502430512;
-      10'd367: rom_n_691 = 40'd5506156377;
-      10'd368: rom_n_691 = 40'd5509884764;
-      10'd369: rom_n_691 = 40'd5513615676;
-      10'd370: rom_n_691 = 40'd5517349115;
-      10'd371: rom_n_691 = 40'd5521085081;
-      10'd372: rom_n_691 = 40'd5524823577;
-      10'd373: rom_n_691 = 40'd5528564605;
-      10'd374: rom_n_691 = 40'd5532308166;
-      10'd375: rom_n_691 = 40'd5536054261;
-      10'd376: rom_n_691 = 40'd5539802893;
-      10'd377: rom_n_691 = 40'd5543554064;
-      10'd378: rom_n_691 = 40'd5547307775;
-      10'd379: rom_n_691 = 40'd5551064027;
-      10'd380: rom_n_691 = 40'd5554822823;
-      10'd381: rom_n_691 = 40'd5558584164;
-      10'd382: rom_n_691 = 40'd5562348052;
-      10'd383: rom_n_691 = 40'd5566114488;
-      10'd384: rom_n_691 = 40'd5569883475;
-      10'd385: rom_n_691 = 40'd5573655014;
-      10'd386: rom_n_691 = 40'd5577429107;
-      10'd387: rom_n_691 = 40'd5581205756;
-      10'd388: rom_n_691 = 40'd5584984961;
-      10'd389: rom_n_691 = 40'd5588766726;
-      10'd390: rom_n_691 = 40'd5592551052;
-      10'd391: rom_n_691 = 40'd5596337940;
-      10'd392: rom_n_691 = 40'd5600127392;
-      10'd393: rom_n_691 = 40'd5603919410;
-      10'd394: rom_n_691 = 40'd5607713996;
-      10'd395: rom_n_691 = 40'd5611511151;
-      10'd396: rom_n_691 = 40'd5615310878;
-      10'd397: rom_n_691 = 40'd5619113177;
-      10'd398: rom_n_691 = 40'd5622918051;
-      10'd399: rom_n_691 = 40'd5626725501;
-      10'd400: rom_n_691 = 40'd5630535530;
-      10'd401: rom_n_691 = 40'd5634348138;
-      10'd402: rom_n_691 = 40'd5638163328;
-      10'd403: rom_n_691 = 40'd5641981102;
-      10'd404: rom_n_691 = 40'd5645801460;
-      10'd405: rom_n_691 = 40'd5649624406;
-      10'd406: rom_n_691 = 40'd5653449940;
-      10'd407: rom_n_691 = 40'd5657278064;
-      10'd408: rom_n_691 = 40'd5661108781;
-      10'd409: rom_n_691 = 40'd5664942091;
-      10'd410: rom_n_691 = 40'd5668777998;
-      10'd411: rom_n_691 = 40'd5672616501;
-      10'd412: rom_n_691 = 40'd5676457604;
-      10'd413: rom_n_691 = 40'd5680301308;
-      10'd414: rom_n_691 = 40'd5684147614;
-      10'd415: rom_n_691 = 40'd5687996525;
-      10'd416: rom_n_691 = 40'd5691848042;
-      10'd417: rom_n_691 = 40'd5695702167;
-      10'd418: rom_n_691 = 40'd5699558902;
-      10'd419: rom_n_691 = 40'd5703418248;
-      10'd420: rom_n_691 = 40'd5707280207;
-      10'd421: rom_n_691 = 40'd5711144782;
-      10'd422: rom_n_691 = 40'd5715011973;
-      10'd423: rom_n_691 = 40'd5718881783;
-      10'd424: rom_n_691 = 40'd5722754214;
-      10'd425: rom_n_691 = 40'd5726629266;
-      10'd426: rom_n_691 = 40'd5730506943;
-      10'd427: rom_n_691 = 40'd5734387245;
-      10'd428: rom_n_691 = 40'd5738270175;
-      10'd429: rom_n_691 = 40'd5742155733;
-      10'd430: rom_n_691 = 40'd5746043923;
-      10'd431: rom_n_691 = 40'd5749934746;
-      10'd432: rom_n_691 = 40'd5753828203;
-      10'd433: rom_n_691 = 40'd5757724297;
-      10'd434: rom_n_691 = 40'd5761623029;
-      10'd435: rom_n_691 = 40'd5765524401;
-      10'd436: rom_n_691 = 40'd5769428414;
-      10'd437: rom_n_691 = 40'd5773335071;
-      10'd438: rom_n_691 = 40'd5777244374;
-      10'd439: rom_n_691 = 40'd5781156323;
-      10'd440: rom_n_691 = 40'd5785070921;
-      10'd441: rom_n_691 = 40'd5788988171;
-      10'd442: rom_n_691 = 40'd5792908072;
-      10'd443: rom_n_691 = 40'd5796830628;
-      10'd444: rom_n_691 = 40'd5800755840;
-      10'd445: rom_n_691 = 40'd5804683710;
-      10'd446: rom_n_691 = 40'd5808614239;
-      10'd447: rom_n_691 = 40'd5812547430;
-      10'd448: rom_n_691 = 40'd5816483285;
-      10'd449: rom_n_691 = 40'd5820421804;
-      10'd450: rom_n_691 = 40'd5824362990;
-      10'd451: rom_n_691 = 40'd5828306845;
-      10'd452: rom_n_691 = 40'd5832253371;
-      10'd453: rom_n_691 = 40'd5836202568;
-      10'd454: rom_n_691 = 40'd5840154440;
-      10'd455: rom_n_691 = 40'd5844108988;
-      10'd456: rom_n_691 = 40'd5848066214;
-      10'd457: rom_n_691 = 40'd5852026119;
-      10'd458: rom_n_691 = 40'd5855988705;
-      10'd459: rom_n_691 = 40'd5859953975;
-      10'd460: rom_n_691 = 40'd5863921930;
-      10'd461: rom_n_691 = 40'd5867892571;
-      10'd462: rom_n_691 = 40'd5871865901;
-      10'd463: rom_n_691 = 40'd5875841922;
-      10'd464: rom_n_691 = 40'd5879820635;
-      10'd465: rom_n_691 = 40'd5883802042;
-      10'd466: rom_n_691 = 40'd5887786145;
-      10'd467: rom_n_691 = 40'd5891772946;
-      10'd468: rom_n_691 = 40'd5895762446;
-      10'd469: rom_n_691 = 40'd5899754648;
-      10'd470: rom_n_691 = 40'd5903749552;
-      10'd471: rom_n_691 = 40'd5907747162;
-      10'd472: rom_n_691 = 40'd5911747479;
-      10'd473: rom_n_691 = 40'd5915750505;
-      10'd474: rom_n_691 = 40'd5919756241;
-      10'd475: rom_n_691 = 40'd5923764690;
-      10'd476: rom_n_691 = 40'd5927775853;
-      10'd477: rom_n_691 = 40'd5931789732;
-      10'd478: rom_n_691 = 40'd5935806329;
-      10'd479: rom_n_691 = 40'd5939825645;
-      10'd480: rom_n_691 = 40'd5943847684;
-      10'd481: rom_n_691 = 40'd5947872445;
-      10'd482: rom_n_691 = 40'd5951899932;
-      10'd483: rom_n_691 = 40'd5955930146;
-      10'd484: rom_n_691 = 40'd5959963090;
-      10'd485: rom_n_691 = 40'd5963998764;
-      10'd486: rom_n_691 = 40'd5968037170;
-      10'd487: rom_n_691 = 40'd5972078311;
-      10'd488: rom_n_691 = 40'd5976122189;
-      10'd489: rom_n_691 = 40'd5980168805;
-      10'd490: rom_n_691 = 40'd5984218160;
-      10'd491: rom_n_691 = 40'd5988270258;
-      10'd492: rom_n_691 = 40'd5992325100;
-      10'd493: rom_n_691 = 40'd5996382687;
-      10'd494: rom_n_691 = 40'd6000443022;
-      10'd495: rom_n_691 = 40'd6004506106;
-      10'd496: rom_n_691 = 40'd6008571941;
-      10'd497: rom_n_691 = 40'd6012640530;
-      10'd498: rom_n_691 = 40'd6016711873;
-      10'd499: rom_n_691 = 40'd6020785974;
-      10'd500: rom_n_691 = 40'd6024862833;
-      10'd501: rom_n_691 = 40'd6028942452;
-      10'd502: rom_n_691 = 40'd6033024834;
-      10'd503: rom_n_691 = 40'd6037109980;
-      10'd504: rom_n_691 = 40'd6041197893;
-      10'd505: rom_n_691 = 40'd6045288573;
-      10'd506: rom_n_691 = 40'd6049382024;
-      10'd507: rom_n_691 = 40'd6053478246;
-      10'd508: rom_n_691 = 40'd6057577242;
-      10'd509: rom_n_691 = 40'd6061679013;
-      10'd510: rom_n_691 = 40'd6065783562;
-      10'd511: rom_n_691 = 40'd6069890891;
-      10'd512: rom_n_691 = 40'd6074001000;
-      10'd513: rom_n_691 = 40'd6078113892;
-      10'd514: rom_n_691 = 40'd6082229570;
-      10'd515: rom_n_691 = 40'd6086348034;
-      10'd516: rom_n_691 = 40'd6090469287;
-      10'd517: rom_n_691 = 40'd6094593331;
-      10'd518: rom_n_691 = 40'd6098720167;
-      10'd519: rom_n_691 = 40'd6102849798;
-      10'd520: rom_n_691 = 40'd6106982225;
-      10'd521: rom_n_691 = 40'd6111117450;
-      10'd522: rom_n_691 = 40'd6115255475;
-      10'd523: rom_n_691 = 40'd6119396302;
-      10'd524: rom_n_691 = 40'd6123539933;
-      10'd525: rom_n_691 = 40'd6127686370;
-      10'd526: rom_n_691 = 40'd6131835615;
-      10'd527: rom_n_691 = 40'd6135987669;
-      10'd528: rom_n_691 = 40'd6140142534;
-      10'd529: rom_n_691 = 40'd6144300213;
-      10'd530: rom_n_691 = 40'd6148460708;
-      10'd531: rom_n_691 = 40'd6152624019;
-      10'd532: rom_n_691 = 40'd6156790150;
-      10'd533: rom_n_691 = 40'd6160959101;
-      10'd534: rom_n_691 = 40'd6165130876;
-      10'd535: rom_n_691 = 40'd6169305475;
-      10'd536: rom_n_691 = 40'd6173482901;
-      10'd537: rom_n_691 = 40'd6177663156;
-      10'd538: rom_n_691 = 40'd6181846241;
-      10'd539: rom_n_691 = 40'd6186032159;
-      10'd540: rom_n_691 = 40'd6190220911;
-      10'd541: rom_n_691 = 40'd6194412500;
-      10'd542: rom_n_691 = 40'd6198606927;
-      10'd543: rom_n_691 = 40'd6202804194;
-      10'd544: rom_n_691 = 40'd6207004303;
-      10'd545: rom_n_691 = 40'd6211207256;
-      10'd546: rom_n_691 = 40'd6215413055;
-      10'd547: rom_n_691 = 40'd6219621702;
-      10'd548: rom_n_691 = 40'd6223833199;
-      10'd549: rom_n_691 = 40'd6228047547;
-      10'd550: rom_n_691 = 40'd6232264749;
-      10'd551: rom_n_691 = 40'd6236484807;
-      10'd552: rom_n_691 = 40'd6240707722;
-      10'd553: rom_n_691 = 40'd6244933497;
-      10'd554: rom_n_691 = 40'd6249162133;
-      10'd555: rom_n_691 = 40'd6253393633;
-      10'd556: rom_n_691 = 40'd6257627997;
-      10'd557: rom_n_691 = 40'd6261865229;
-      10'd558: rom_n_691 = 40'd6266105331;
-      10'd559: rom_n_691 = 40'd6270348303;
-      10'd560: rom_n_691 = 40'd6274594148;
-      10'd561: rom_n_691 = 40'd6278842868;
-      10'd562: rom_n_691 = 40'd6283094466;
-      10'd563: rom_n_691 = 40'd6287348942;
-      10'd564: rom_n_691 = 40'd6291606299;
-      10'd565: rom_n_691 = 40'd6295866538;
-      10'd566: rom_n_691 = 40'd6300129663;
-      10'd567: rom_n_691 = 40'd6304395674;
-      10'd568: rom_n_691 = 40'd6308664574;
-      10'd569: rom_n_691 = 40'd6312936364;
-      10'd570: rom_n_691 = 40'd6317211047;
-      10'd571: rom_n_691 = 40'd6321488625;
-      10'd572: rom_n_691 = 40'd6325769099;
-      10'd573: rom_n_691 = 40'd6330052471;
-      10'd574: rom_n_691 = 40'd6334338744;
-      10'd575: rom_n_691 = 40'd6338627919;
-      10'd576: rom_n_691 = 40'd6342919999;
-      10'd577: rom_n_691 = 40'd6347214985;
-      10'd578: rom_n_691 = 40'd6351512879;
-      10'd579: rom_n_691 = 40'd6355813683;
-      10'd580: rom_n_691 = 40'd6360117399;
-      10'd581: rom_n_691 = 40'd6364424030;
-      10'd582: rom_n_691 = 40'd6368733577;
-      10'd583: rom_n_691 = 40'd6373046042;
-      10'd584: rom_n_691 = 40'd6377361427;
-      10'd585: rom_n_691 = 40'd6381679734;
-      10'd586: rom_n_691 = 40'd6386000965;
-      10'd587: rom_n_691 = 40'd6390325123;
-      10'd588: rom_n_691 = 40'd6394652208;
-      10'd589: rom_n_691 = 40'd6398982223;
-      10'd590: rom_n_691 = 40'd6403315171;
-      10'd591: rom_n_691 = 40'd6407651052;
-      10'd592: rom_n_691 = 40'd6411989869;
-      10'd593: rom_n_691 = 40'd6416331624;
-      10'd594: rom_n_691 = 40'd6420676319;
-      10'd595: rom_n_691 = 40'd6425023956;
-      10'd596: rom_n_691 = 40'd6429374537;
-      10'd597: rom_n_691 = 40'd6433728064;
-      10'd598: rom_n_691 = 40'd6438084539;
-      10'd599: rom_n_691 = 40'd6442443963;
-      10'd600: rom_n_691 = 40'd6446806340;
-      10'd601: rom_n_691 = 40'd6451171670;
-      10'd602: rom_n_691 = 40'd6455539957;
-      10'd603: rom_n_691 = 40'd6459911201;
-      10'd604: rom_n_691 = 40'd6464285405;
-      10'd605: rom_n_691 = 40'd6468662571;
-      10'd606: rom_n_691 = 40'd6473042701;
-      10'd607: rom_n_691 = 40'd6477425797;
-      10'd608: rom_n_691 = 40'd6481811861;
-      10'd609: rom_n_691 = 40'd6486200895;
-      10'd610: rom_n_691 = 40'd6490592900;
-      10'd611: rom_n_691 = 40'd6494987880;
-      10'd612: rom_n_691 = 40'd6499385836;
-      10'd613: rom_n_691 = 40'd6503786769;
-      10'd614: rom_n_691 = 40'd6508190683;
-      10'd615: rom_n_691 = 40'd6512597579;
-      10'd616: rom_n_691 = 40'd6517007458;
-      10'd617: rom_n_691 = 40'd6521420324;
-      10'd618: rom_n_691 = 40'd6525836178;
-      10'd619: rom_n_691 = 40'd6530255022;
-      10'd620: rom_n_691 = 40'd6534676858;
-      10'd621: rom_n_691 = 40'd6539101688;
-      10'd622: rom_n_691 = 40'd6543529515;
-      10'd623: rom_n_691 = 40'd6547960339;
-      10'd624: rom_n_691 = 40'd6552394164;
-      10'd625: rom_n_691 = 40'd6556830991;
-      10'd626: rom_n_691 = 40'd6561270823;
-      10'd627: rom_n_691 = 40'd6565713661;
-      10'd628: rom_n_691 = 40'd6570159507;
-      10'd629: rom_n_691 = 40'd6574608364;
-      10'd630: rom_n_691 = 40'd6579060233;
-      10'd631: rom_n_691 = 40'd6583515116;
-      10'd632: rom_n_691 = 40'd6587973017;
-      10'd633: rom_n_691 = 40'd6592433935;
-      10'd634: rom_n_691 = 40'd6596897875;
-      10'd635: rom_n_691 = 40'd6601364837;
-      10'd636: rom_n_691 = 40'd6605834824;
-      10'd637: rom_n_691 = 40'd6610307837;
-      10'd638: rom_n_691 = 40'd6614783879;
-      10'd639: rom_n_691 = 40'd6619262953;
-      10'd640: rom_n_691 = 40'd6623745059;
-      10'd641: rom_n_691 = 40'd6628230200;
-      10'd642: rom_n_691 = 40'd6632718378;
-      10'd643: rom_n_691 = 40'd6637209595;
-      10'd644: rom_n_691 = 40'd6641703853;
-      10'd645: rom_n_691 = 40'd6646201155;
-      10'd646: rom_n_691 = 40'd6650701502;
-      10'd647: rom_n_691 = 40'd6655204896;
-      10'd648: rom_n_691 = 40'd6659711339;
-      10'd649: rom_n_691 = 40'd6664220834;
-      10'd650: rom_n_691 = 40'd6668733383;
-      10'd651: rom_n_691 = 40'd6673248987;
-      10'd652: rom_n_691 = 40'd6677767649;
-      10'd653: rom_n_691 = 40'd6682289370;
-      10'd654: rom_n_691 = 40'd6686814153;
-      10'd655: rom_n_691 = 40'd6691342000;
-      10'd656: rom_n_691 = 40'd6695872913;
-      10'd657: rom_n_691 = 40'd6700406894;
-      10'd658: rom_n_691 = 40'd6704943946;
-      10'd659: rom_n_691 = 40'd6709484069;
-      10'd660: rom_n_691 = 40'd6714027267;
-      10'd661: rom_n_691 = 40'd6718573540;
-      10'd662: rom_n_691 = 40'd6723122893;
-      10'd663: rom_n_691 = 40'd6727675326;
-      10'd664: rom_n_691 = 40'd6732230841;
-      10'd665: rom_n_691 = 40'd6736789441;
-      10'd666: rom_n_691 = 40'd6741351128;
-      10'd667: rom_n_691 = 40'd6745915904;
-      10'd668: rom_n_691 = 40'd6750483771;
-      10'd669: rom_n_691 = 40'd6755054730;
-      10'd670: rom_n_691 = 40'd6759628785;
-      10'd671: rom_n_691 = 40'd6764205937;
-      10'd672: rom_n_691 = 40'd6768786189;
-      10'd673: rom_n_691 = 40'd6773369542;
-      10'd674: rom_n_691 = 40'd6777955998;
-      10'd675: rom_n_691 = 40'd6782545560;
-      10'd676: rom_n_691 = 40'd6787138230;
-      10'd677: rom_n_691 = 40'd6791734010;
-      10'd678: rom_n_691 = 40'd6796332901;
-      10'd679: rom_n_691 = 40'd6800934907;
-      10'd680: rom_n_691 = 40'd6805540029;
-      10'd681: rom_n_691 = 40'd6810148269;
-      10'd682: rom_n_691 = 40'd6814759629;
-      10'd683: rom_n_691 = 40'd6819374112;
-      10'd684: rom_n_691 = 40'd6823991719;
-      10'd685: rom_n_691 = 40'd6828612454;
-      10'd686: rom_n_691 = 40'd6833236317;
-      10'd687: rom_n_691 = 40'd6837863311;
-      10'd688: rom_n_691 = 40'd6842493438;
-      10'd689: rom_n_691 = 40'd6847126700;
-      10'd690: rom_n_691 = 40'd6851763100;
-      10'd691: rom_n_691 = 40'd6856402639;
-      10'd692: rom_n_691 = 40'd6861045320;
-      10'd693: rom_n_691 = 40'd6865691144;
-      10'd694: rom_n_691 = 40'd6870340114;
-      10'd695: rom_n_691 = 40'd6874992232;
-      10'd696: rom_n_691 = 40'd6879647501;
-      10'd697: rom_n_691 = 40'd6884305921;
-      10'd698: rom_n_691 = 40'd6888967496;
-      10'd699: rom_n_691 = 40'd6893632227;
-      10'd700: rom_n_691 = 40'd6898300117;
-      10'd701: rom_n_691 = 40'd6902971168;
-      10'd702: rom_n_691 = 40'd6907645382;
-      10'd703: rom_n_691 = 40'd6912322760;
-      10'd704: rom_n_691 = 40'd6917003306;
-      10'd705: rom_n_691 = 40'd6921687021;
-      10'd706: rom_n_691 = 40'd6926373908;
-      10'd707: rom_n_691 = 40'd6931063969;
-      10'd708: rom_n_691 = 40'd6935757205;
-      10'd709: rom_n_691 = 40'd6940453619;
-      10'd710: rom_n_691 = 40'd6945153213;
-      10'd711: rom_n_691 = 40'd6949855989;
-      10'd712: rom_n_691 = 40'd6954561950;
-      10'd713: rom_n_691 = 40'd6959271098;
-      10'd714: rom_n_691 = 40'd6963983434;
-      10'd715: rom_n_691 = 40'd6968698961;
-      10'd716: rom_n_691 = 40'd6973417680;
-      10'd717: rom_n_691 = 40'd6978139596;
-      10'd718: rom_n_691 = 40'd6982864708;
-      10'd719: rom_n_691 = 40'd6987593020;
-      10'd720: rom_n_691 = 40'd6992324534;
-      10'd721: rom_n_691 = 40'd6997059251;
-      10'd722: rom_n_691 = 40'd7001797175;
-      10'd723: rom_n_691 = 40'd7006538307;
-      10'd724: rom_n_691 = 40'd7011282649;
-      10'd725: rom_n_691 = 40'd7016030204;
-      10'd726: rom_n_691 = 40'd7020780973;
-      10'd727: rom_n_691 = 40'd7025534959;
-      10'd728: rom_n_691 = 40'd7030292165;
-      10'd729: rom_n_691 = 40'd7035052591;
-      10'd730: rom_n_691 = 40'd7039816241;
-      10'd731: rom_n_691 = 40'd7044583117;
-      10'd732: rom_n_691 = 40'd7049353220;
-      10'd733: rom_n_691 = 40'd7054126554;
-      10'd734: rom_n_691 = 40'd7058903119;
-      10'd735: rom_n_691 = 40'd7063682919;
-      10'd736: rom_n_691 = 40'd7068465956;
-      10'd737: rom_n_691 = 40'd7073252231;
-      10'd738: rom_n_691 = 40'd7078041747;
-      10'd739: rom_n_691 = 40'd7082834507;
-      10'd740: rom_n_691 = 40'd7087630511;
-      10'd741: rom_n_691 = 40'd7092429763;
-      10'd742: rom_n_691 = 40'd7097232265;
-      10'd743: rom_n_691 = 40'd7102038019;
-      10'd744: rom_n_691 = 40'd7106847027;
-      10'd745: rom_n_691 = 40'd7111659291;
-      10'd746: rom_n_691 = 40'd7116474814;
-      10'd747: rom_n_691 = 40'd7121293598;
-      10'd748: rom_n_691 = 40'd7126115644;
-      10'd749: rom_n_691 = 40'd7130940956;
-      10'd750: rom_n_691 = 40'd7135769535;
-      10'd751: rom_n_691 = 40'd7140601383;
-      10'd752: rom_n_691 = 40'd7145436504;
-      10'd753: rom_n_691 = 40'd7150274898;
-      10'd754: rom_n_691 = 40'd7155116569;
-      10'd755: rom_n_691 = 40'd7159961518;
-      10'd756: rom_n_691 = 40'd7164809747;
-      10'd757: rom_n_691 = 40'd7169661260;
-      10'd758: rom_n_691 = 40'd7174516058;
-      10'd759: rom_n_691 = 40'd7179374143;
-      10'd760: rom_n_691 = 40'd7184235517;
-      10'd761: rom_n_691 = 40'd7189100184;
-      10'd762: rom_n_691 = 40'd7193968144;
-      10'd763: rom_n_691 = 40'd7198839401;
-      10'd764: rom_n_691 = 40'd7203713956;
-      10'd765: rom_n_691 = 40'd7208591812;
-      10'd766: rom_n_691 = 40'd7213472970;
-      10'd767: rom_n_691 = 40'd7218357434;
-      10'd768: rom_n_691 = 40'd7223245206;
-      10'd769: rom_n_691 = 40'd7228136287;
-      10'd770: rom_n_691 = 40'd7233030680;
-      10'd771: rom_n_691 = 40'd7237928387;
-      10'd772: rom_n_691 = 40'd7242829410;
-      10'd773: rom_n_691 = 40'd7247733752;
-      10'd774: rom_n_691 = 40'd7252641415;
-      10'd775: rom_n_691 = 40'd7257552401;
-      10'd776: rom_n_691 = 40'd7262466713;
-      10'd777: rom_n_691 = 40'd7267384352;
-      10'd778: rom_n_691 = 40'd7272305321;
-      10'd779: rom_n_691 = 40'd7277229622;
-      10'd780: rom_n_691 = 40'd7282157258;
-      10'd781: rom_n_691 = 40'd7287088230;
-      10'd782: rom_n_691 = 40'd7292022541;
-      10'd783: rom_n_691 = 40'd7296960193;
-      10'd784: rom_n_691 = 40'd7301901189;
-      10'd785: rom_n_691 = 40'd7306845530;
-      10'd786: rom_n_691 = 40'd7311793220;
-      10'd787: rom_n_691 = 40'd7316744259;
-      10'd788: rom_n_691 = 40'd7321698651;
-      10'd789: rom_n_691 = 40'd7326656398;
-      10'd790: rom_n_691 = 40'd7331617502;
-      10'd791: rom_n_691 = 40'd7336581966;
-      10'd792: rom_n_691 = 40'd7341549790;
-      10'd793: rom_n_691 = 40'd7346520979;
-      10'd794: rom_n_691 = 40'd7351495534;
-      10'd795: rom_n_691 = 40'd7356473457;
-      10'd796: rom_n_691 = 40'd7361454751;
-      10'd797: rom_n_691 = 40'd7366439418;
-      10'd798: rom_n_691 = 40'd7371427460;
-      10'd799: rom_n_691 = 40'd7376418880;
-      10'd800: rom_n_691 = 40'd7381413680;
-      10'd801: rom_n_691 = 40'd7386411861;
-      10'd802: rom_n_691 = 40'd7391413428;
-      10'd803: rom_n_691 = 40'd7396418381;
-      10'd804: rom_n_691 = 40'd7401426722;
-      10'd805: rom_n_691 = 40'd7406438456;
-      10'd806: rom_n_691 = 40'd7411453582;
-      10'd807: rom_n_691 = 40'd7416472105;
-      10'd808: rom_n_691 = 40'd7421494026;
-      10'd809: rom_n_691 = 40'd7426519347;
-      10'd810: rom_n_691 = 40'd7431548072;
-      10'd811: rom_n_691 = 40'd7436580201;
-      10'd812: rom_n_691 = 40'd7441615738;
-      10'd813: rom_n_691 = 40'd7446654684;
-      10'd814: rom_n_691 = 40'd7451697043;
-      10'd815: rom_n_691 = 40'd7456742815;
-      10'd816: rom_n_691 = 40'd7461792005;
-      10'd817: rom_n_691 = 40'd7466844613;
-      10'd818: rom_n_691 = 40'd7471900643;
-      10'd819: rom_n_691 = 40'd7476960096;
-      10'd820: rom_n_691 = 40'd7482022975;
-      10'd821: rom_n_691 = 40'd7487089283;
-      10'd822: rom_n_691 = 40'd7492159021;
-      10'd823: rom_n_691 = 40'd7497232191;
-      10'd824: rom_n_691 = 40'd7502308797;
-      10'd825: rom_n_691 = 40'd7507388841;
-      10'd826: rom_n_691 = 40'd7512472324;
-      10'd827: rom_n_691 = 40'd7517559250;
-      10'd828: rom_n_691 = 40'd7522649620;
-      10'd829: rom_n_691 = 40'd7527743437;
-      10'd830: rom_n_691 = 40'd7532840703;
-      10'd831: rom_n_691 = 40'd7537941421;
-      10'd832: rom_n_691 = 40'd7543045592;
-      10'd833: rom_n_691 = 40'd7548153220;
-      10'd834: rom_n_691 = 40'd7553264306;
-      10'd835: rom_n_691 = 40'd7558378853;
-      10'd836: rom_n_691 = 40'd7563496864;
-      10'd837: rom_n_691 = 40'd7568618340;
-      10'd838: rom_n_691 = 40'd7573743283;
-      10'd839: rom_n_691 = 40'd7578871697;
-      10'd840: rom_n_691 = 40'd7584003584;
-      10'd841: rom_n_691 = 40'd7589138946;
-      10'd842: rom_n_691 = 40'd7594277785;
-      10'd843: rom_n_691 = 40'd7599420103;
-      10'd844: rom_n_691 = 40'd7604565904;
-      10'd845: rom_n_691 = 40'd7609715189;
-      10'd846: rom_n_691 = 40'd7614867960;
-      10'd847: rom_n_691 = 40'd7620024221;
-      10'd848: rom_n_691 = 40'd7625183973;
-      10'd849: rom_n_691 = 40'd7630347220;
-      10'd850: rom_n_691 = 40'd7635513962;
-      10'd851: rom_n_691 = 40'd7640684203;
-      10'd852: rom_n_691 = 40'd7645857945;
-      10'd853: rom_n_691 = 40'd7651035190;
-      10'd854: rom_n_691 = 40'd7656215940;
-      10'd855: rom_n_691 = 40'd7661400199;
-      10'd856: rom_n_691 = 40'd7666587968;
-      10'd857: rom_n_691 = 40'd7671779250;
-      10'd858: rom_n_691 = 40'd7676974048;
-      10'd859: rom_n_691 = 40'd7682172362;
-      10'd860: rom_n_691 = 40'd7687374197;
-      10'd861: rom_n_691 = 40'd7692579554;
-      10'd862: rom_n_691 = 40'd7697788436;
-      10'd863: rom_n_691 = 40'd7703000845;
-      10'd864: rom_n_691 = 40'd7708216783;
-      10'd865: rom_n_691 = 40'd7713436253;
-      10'd866: rom_n_691 = 40'd7718659258;
-      10'd867: rom_n_691 = 40'd7723885799;
-      10'd868: rom_n_691 = 40'd7729115879;
-      10'd869: rom_n_691 = 40'd7734349500;
-      10'd870: rom_n_691 = 40'd7739586666;
-      10'd871: rom_n_691 = 40'd7744827378;
-      10'd872: rom_n_691 = 40'd7750071638;
-      10'd873: rom_n_691 = 40'd7755319449;
-      10'd874: rom_n_691 = 40'd7760570814;
-      10'd875: rom_n_691 = 40'd7765825735;
-      10'd876: rom_n_691 = 40'd7771084214;
-      10'd877: rom_n_691 = 40'd7776346253;
-      10'd878: rom_n_691 = 40'd7781611856;
-      10'd879: rom_n_691 = 40'd7786881024;
-      10'd880: rom_n_691 = 40'd7792153760;
-      10'd881: rom_n_691 = 40'd7797430067;
-      10'd882: rom_n_691 = 40'd7802709946;
-      10'd883: rom_n_691 = 40'd7807993401;
-      10'd884: rom_n_691 = 40'd7813280433;
-      10'd885: rom_n_691 = 40'd7818571045;
-      10'd886: rom_n_691 = 40'd7823865239;
-      10'd887: rom_n_691 = 40'd7829163018;
-      10'd888: rom_n_691 = 40'd7834464385;
-      10'd889: rom_n_691 = 40'd7839769341;
-      10'd890: rom_n_691 = 40'd7845077890;
-      10'd891: rom_n_691 = 40'd7850390033;
-      10'd892: rom_n_691 = 40'd7855705773;
-      10'd893: rom_n_691 = 40'd7861025112;
-      10'd894: rom_n_691 = 40'd7866348054;
-      10'd895: rom_n_691 = 40'd7871674599;
-      10'd896: rom_n_691 = 40'd7877004752;
-      10'd897: rom_n_691 = 40'd7882338513;
-      10'd898: rom_n_691 = 40'd7887675887;
-      10'd899: rom_n_691 = 40'd7893016874;
-      10'd900: rom_n_691 = 40'd7898361478;
-      10'd901: rom_n_691 = 40'd7903709701;
-      10'd902: rom_n_691 = 40'd7909061546;
-      10'd903: rom_n_691 = 40'd7914417014;
-      10'd904: rom_n_691 = 40'd7919776109;
-      10'd905: rom_n_691 = 40'd7925138832;
-      10'd906: rom_n_691 = 40'd7930505187;
-      10'd907: rom_n_691 = 40'd7935875175;
-      10'd908: rom_n_691 = 40'd7941248800;
-      10'd909: rom_n_691 = 40'd7946626063;
-      10'd910: rom_n_691 = 40'd7952006968;
-      10'd911: rom_n_691 = 40'd7957391516;
-      10'd912: rom_n_691 = 40'd7962779710;
-      10'd913: rom_n_691 = 40'd7968171552;
-      10'd914: rom_n_691 = 40'd7973567046;
-      10'd915: rom_n_691 = 40'd7978966193;
-      10'd916: rom_n_691 = 40'd7984368996;
-      10'd917: rom_n_691 = 40'd7989775457;
-      10'd918: rom_n_691 = 40'd7995185579;
-      10'd919: rom_n_691 = 40'd8000599365;
-      10'd920: rom_n_691 = 40'd8006016816;
-      10'd921: rom_n_691 = 40'd8011437936;
-      10'd922: rom_n_691 = 40'd8016862726;
-      10'd923: rom_n_691 = 40'd8022291190;
-      10'd924: rom_n_691 = 40'd8027723330;
-      10'd925: rom_n_691 = 40'd8033159148;
-      10'd926: rom_n_691 = 40'd8038598646;
-      10'd927: rom_n_691 = 40'd8044041828;
-      10'd928: rom_n_691 = 40'd8049488696;
-      10'd929: rom_n_691 = 40'd8054939252;
-      10'd930: rom_n_691 = 40'd8060393498;
-      10'd931: rom_n_691 = 40'd8065851438;
-      10'd932: rom_n_691 = 40'd8071313074;
-      10'd933: rom_n_691 = 40'd8076778407;
-      10'd934: rom_n_691 = 40'd8082247442;
-      10'd935: rom_n_691 = 40'd8087720180;
-      10'd936: rom_n_691 = 40'd8093196623;
-      10'd937: rom_n_691 = 40'd8098676775;
-      10'd938: rom_n_691 = 40'd8104160638;
-      10'd939: rom_n_691 = 40'd8109648214;
-      10'd940: rom_n_691 = 40'd8115139505;
-      10'd941: rom_n_691 = 40'd8120634515;
-      10'd942: rom_n_691 = 40'd8126133246;
-      10'd943: rom_n_691 = 40'd8131635701;
-      10'd944: rom_n_691 = 40'd8137141881;
-      10'd945: rom_n_691 = 40'd8142651789;
-      10'd946: rom_n_691 = 40'd8148165429;
-      10'd947: rom_n_691 = 40'd8153682802;
-      10'd948: rom_n_691 = 40'd8159203910;
-      10'd949: rom_n_691 = 40'd8164728758;
-      10'd950: rom_n_691 = 40'd8170257346;
-      10'd951: rom_n_691 = 40'd8175789678;
-      10'd952: rom_n_691 = 40'd8181325756;
-      10'd953: rom_n_691 = 40'd8186865583;
-      10'd954: rom_n_691 = 40'd8192409161;
-      10'd955: rom_n_691 = 40'd8197956493;
-      10'd956: rom_n_691 = 40'd8203507581;
-      10'd957: rom_n_691 = 40'd8209062428;
-      10'd958: rom_n_691 = 40'd8214621036;
-      10'd959: rom_n_691 = 40'd8220183408;
-      10'd960: rom_n_691 = 40'd8225749546;
-      10'd961: rom_n_691 = 40'd8231319454;
-      10'd962: rom_n_691 = 40'd8236893133;
-      10'd963: rom_n_691 = 40'd8242470586;
-      10'd964: rom_n_691 = 40'd8248051816;
-      10'd965: rom_n_691 = 40'd8253636825;
-      10'd966: rom_n_691 = 40'd8259225616;
-      10'd967: rom_n_691 = 40'd8264818191;
-      10'd968: rom_n_691 = 40'd8270414553;
-      10'd969: rom_n_691 = 40'd8276014704;
-      10'd970: rom_n_691 = 40'd8281618648;
-      10'd971: rom_n_691 = 40'd8287226386;
-      10'd972: rom_n_691 = 40'd8292837922;
-      10'd973: rom_n_691 = 40'd8298453257;
-      10'd974: rom_n_691 = 40'd8304072394;
-      10'd975: rom_n_691 = 40'd8309695336;
-      10'd976: rom_n_691 = 40'd8315322086;
-      10'd977: rom_n_691 = 40'd8320952646;
-      10'd978: rom_n_691 = 40'd8326587018;
-      10'd979: rom_n_691 = 40'd8332225206;
-      10'd980: rom_n_691 = 40'd8337867211;
-      10'd981: rom_n_691 = 40'd8343513037;
-      10'd982: rom_n_691 = 40'd8349162686;
-      10'd983: rom_n_691 = 40'd8354816160;
-      10'd984: rom_n_691 = 40'd8360473463;
-      10'd985: rom_n_691 = 40'd8366134596;
-      10'd986: rom_n_691 = 40'd8371799562;
-      10'd987: rom_n_691 = 40'd8377468365;
-      10'd988: rom_n_691 = 40'd8383141006;
-      10'd989: rom_n_691 = 40'd8388817488;
-      10'd990: rom_n_691 = 40'd8394497814;
-      10'd991: rom_n_691 = 40'd8400181986;
-      10'd992: rom_n_691 = 40'd8405870007;
-      10'd993: rom_n_691 = 40'd8411561879;
-      10'd994: rom_n_691 = 40'd8417257606;
-      10'd995: rom_n_691 = 40'd8422957190;
-      10'd996: rom_n_691 = 40'd8428660633;
-      10'd997: rom_n_691 = 40'd8434367937;
-      10'd998: rom_n_691 = 40'd8440079107;
-      10'd999: rom_n_691 = 40'd8445794143;
-      10'd1000: rom_n_691 = 40'd8451513050;
-      10'd1001: rom_n_691 = 40'd8457235829;
-      10'd1002: rom_n_691 = 40'd8462962483;
-      10'd1003: rom_n_691 = 40'd8468693014;
-      10'd1004: rom_n_691 = 40'd8474427426;
-      10'd1005: rom_n_691 = 40'd8480165721;
-      10'd1006: rom_n_691 = 40'd8485907902;
-      10'd1007: rom_n_691 = 40'd8491653970;
-      10'd1008: rom_n_691 = 40'd8497403930;
-      10'd1009: rom_n_691 = 40'd8503157783;
-      10'd1010: rom_n_691 = 40'd8508915532;
-      10'd1011: rom_n_691 = 40'd8514677180;
-      10'd1012: rom_n_691 = 40'd8520442729;
-      10'd1013: rom_n_691 = 40'd8526212182;
-      10'd1014: rom_n_691 = 40'd8531985542;
-      10'd1015: rom_n_691 = 40'd8537762812;
-      10'd1016: rom_n_691 = 40'd8543543993;
-      10'd1017: rom_n_691 = 40'd8549329089;
-      10'd1018: rom_n_691 = 40'd8555118102;
-      10'd1019: rom_n_691 = 40'd8560911035;
-      10'd1020: rom_n_691 = 40'd8566707891;
-      10'd1021: rom_n_691 = 40'd8572508671;
-      10'd1022: rom_n_691 = 40'd8578313380;
-      10'd1023: rom_n_691 = 40'd8584122020;
-      default: rom_n_691 = 40'd0;
+      10'd0: rom_n_lookup_691 = 40'd4294967296;
+      10'd1: rom_n_lookup_691 = 40'd4297875550;
+      10'd2: rom_n_lookup_691 = 40'd4300785774;
+      10'd3: rom_n_lookup_691 = 40'd4303697968;
+      10'd4: rom_n_lookup_691 = 40'd4306612134;
+      10'd5: rom_n_lookup_691 = 40'd4309528273;
+      10'd6: rom_n_lookup_691 = 40'd4312446387;
+      10'd7: rom_n_lookup_691 = 40'd4315366477;
+      10'd8: rom_n_lookup_691 = 40'd4318288544;
+      10'd9: rom_n_lookup_691 = 40'd4321212589;
+      10'd10: rom_n_lookup_691 = 40'd4324138615;
+      10'd11: rom_n_lookup_691 = 40'd4327066622;
+      10'd12: rom_n_lookup_691 = 40'd4329996612;
+      10'd13: rom_n_lookup_691 = 40'd4332928585;
+      10'd14: rom_n_lookup_691 = 40'd4335862544;
+      10'd15: rom_n_lookup_691 = 40'd4338798490;
+      10'd16: rom_n_lookup_691 = 40'd4341736423;
+      10'd17: rom_n_lookup_691 = 40'd4344676346;
+      10'd18: rom_n_lookup_691 = 40'd4347618260;
+      10'd19: rom_n_lookup_691 = 40'd4350562166;
+      10'd20: rom_n_lookup_691 = 40'd4353508065;
+      10'd21: rom_n_lookup_691 = 40'd4356455959;
+      10'd22: rom_n_lookup_691 = 40'd4359405849;
+      10'd23: rom_n_lookup_691 = 40'd4362357737;
+      10'd24: rom_n_lookup_691 = 40'd4365311623;
+      10'd25: rom_n_lookup_691 = 40'd4368267509;
+      10'd26: rom_n_lookup_691 = 40'd4371225397;
+      10'd27: rom_n_lookup_691 = 40'd4374185288;
+      10'd28: rom_n_lookup_691 = 40'd4377147183;
+      10'd29: rom_n_lookup_691 = 40'd4380111084;
+      10'd30: rom_n_lookup_691 = 40'd4383076992;
+      10'd31: rom_n_lookup_691 = 40'd4386044908;
+      10'd32: rom_n_lookup_691 = 40'd4389014833;
+      10'd33: rom_n_lookup_691 = 40'd4391986770;
+      10'd34: rom_n_lookup_691 = 40'd4394960719;
+      10'd35: rom_n_lookup_691 = 40'd4397936682;
+      10'd36: rom_n_lookup_691 = 40'd4400914660;
+      10'd37: rom_n_lookup_691 = 40'd4403894654;
+      10'd38: rom_n_lookup_691 = 40'd4406876666;
+      10'd39: rom_n_lookup_691 = 40'd4409860698;
+      10'd40: rom_n_lookup_691 = 40'd4412846750;
+      10'd41: rom_n_lookup_691 = 40'd4415834824;
+      10'd42: rom_n_lookup_691 = 40'd4418824921;
+      10'd43: rom_n_lookup_691 = 40'd4421817043;
+      10'd44: rom_n_lookup_691 = 40'd4424811191;
+      10'd45: rom_n_lookup_691 = 40'd4427807367;
+      10'd46: rom_n_lookup_691 = 40'd4430805571;
+      10'd47: rom_n_lookup_691 = 40'd4433805805;
+      10'd48: rom_n_lookup_691 = 40'd4436808071;
+      10'd49: rom_n_lookup_691 = 40'd4439812370;
+      10'd50: rom_n_lookup_691 = 40'd4442818704;
+      10'd51: rom_n_lookup_691 = 40'd4445827072;
+      10'd52: rom_n_lookup_691 = 40'd4448837478;
+      10'd53: rom_n_lookup_691 = 40'd4451849923;
+      10'd54: rom_n_lookup_691 = 40'd4454864407;
+      10'd55: rom_n_lookup_691 = 40'd4457880932;
+      10'd56: rom_n_lookup_691 = 40'd4460899500;
+      10'd57: rom_n_lookup_691 = 40'd4463920112;
+      10'd58: rom_n_lookup_691 = 40'd4466942770;
+      10'd59: rom_n_lookup_691 = 40'd4469967474;
+      10'd60: rom_n_lookup_691 = 40'd4472994226;
+      10'd61: rom_n_lookup_691 = 40'd4476023028;
+      10'd62: rom_n_lookup_691 = 40'd4479053880;
+      10'd63: rom_n_lookup_691 = 40'd4482086785;
+      10'd64: rom_n_lookup_691 = 40'd4485121744;
+      10'd65: rom_n_lookup_691 = 40'd4488158757;
+      10'd66: rom_n_lookup_691 = 40'd4491197827;
+      10'd67: rom_n_lookup_691 = 40'd4494238955;
+      10'd68: rom_n_lookup_691 = 40'd4497282142;
+      10'd69: rom_n_lookup_691 = 40'd4500327390;
+      10'd70: rom_n_lookup_691 = 40'd4503374700;
+      10'd71: rom_n_lookup_691 = 40'd4506424073;
+      10'd72: rom_n_lookup_691 = 40'd4509475511;
+      10'd73: rom_n_lookup_691 = 40'd4512529015;
+      10'd74: rom_n_lookup_691 = 40'd4515584587;
+      10'd75: rom_n_lookup_691 = 40'd4518642228;
+      10'd76: rom_n_lookup_691 = 40'd4521701940;
+      10'd77: rom_n_lookup_691 = 40'd4524763723;
+      10'd78: rom_n_lookup_691 = 40'd4527827579;
+      10'd79: rom_n_lookup_691 = 40'd4530893510;
+      10'd80: rom_n_lookup_691 = 40'd4533961517;
+      10'd81: rom_n_lookup_691 = 40'd4537031602;
+      10'd82: rom_n_lookup_691 = 40'd4540103765;
+      10'd83: rom_n_lookup_691 = 40'd4543178009;
+      10'd84: rom_n_lookup_691 = 40'd4546254334;
+      10'd85: rom_n_lookup_691 = 40'd4549332742;
+      10'd86: rom_n_lookup_691 = 40'd4552413235;
+      10'd87: rom_n_lookup_691 = 40'd4555495814;
+      10'd88: rom_n_lookup_691 = 40'd4558580480;
+      10'd89: rom_n_lookup_691 = 40'd4561667235;
+      10'd90: rom_n_lookup_691 = 40'd4564756080;
+      10'd91: rom_n_lookup_691 = 40'd4567847016;
+      10'd92: rom_n_lookup_691 = 40'd4570940045;
+      10'd93: rom_n_lookup_691 = 40'd4574035169;
+      10'd94: rom_n_lookup_691 = 40'd4577132389;
+      10'd95: rom_n_lookup_691 = 40'd4580231706;
+      10'd96: rom_n_lookup_691 = 40'd4583333121;
+      10'd97: rom_n_lookup_691 = 40'd4586436637;
+      10'd98: rom_n_lookup_691 = 40'd4589542254;
+      10'd99: rom_n_lookup_691 = 40'd4592649974;
+      10'd100: rom_n_lookup_691 = 40'd4595759798;
+      10'd101: rom_n_lookup_691 = 40'd4598871728;
+      10'd102: rom_n_lookup_691 = 40'd4601985765;
+      10'd103: rom_n_lookup_691 = 40'd4605101911;
+      10'd104: rom_n_lookup_691 = 40'd4608220167;
+      10'd105: rom_n_lookup_691 = 40'd4611340534;
+      10'd106: rom_n_lookup_691 = 40'd4614463014;
+      10'd107: rom_n_lookup_691 = 40'd4617587609;
+      10'd108: rom_n_lookup_691 = 40'd4620714319;
+      10'd109: rom_n_lookup_691 = 40'd4623843147;
+      10'd110: rom_n_lookup_691 = 40'd4626974093;
+      10'd111: rom_n_lookup_691 = 40'd4630107159;
+      10'd112: rom_n_lookup_691 = 40'd4633242347;
+      10'd113: rom_n_lookup_691 = 40'd4636379657;
+      10'd114: rom_n_lookup_691 = 40'd4639519092;
+      10'd115: rom_n_lookup_691 = 40'd4642660653;
+      10'd116: rom_n_lookup_691 = 40'd4645804341;
+      10'd117: rom_n_lookup_691 = 40'd4648950158;
+      10'd118: rom_n_lookup_691 = 40'd4652098105;
+      10'd119: rom_n_lookup_691 = 40'd4655248183;
+      10'd120: rom_n_lookup_691 = 40'd4658400394;
+      10'd121: rom_n_lookup_691 = 40'd4661554740;
+      10'd122: rom_n_lookup_691 = 40'd4664711222;
+      10'd123: rom_n_lookup_691 = 40'd4667869841;
+      10'd124: rom_n_lookup_691 = 40'd4671030599;
+      10'd125: rom_n_lookup_691 = 40'd4674193497;
+      10'd126: rom_n_lookup_691 = 40'd4677358537;
+      10'd127: rom_n_lookup_691 = 40'd4680525720;
+      10'd128: rom_n_lookup_691 = 40'd4683695048;
+      10'd129: rom_n_lookup_691 = 40'd4686866522;
+      10'd130: rom_n_lookup_691 = 40'd4690040143;
+      10'd131: rom_n_lookup_691 = 40'd4693215913;
+      10'd132: rom_n_lookup_691 = 40'd4696393833;
+      10'd133: rom_n_lookup_691 = 40'd4699573906;
+      10'd134: rom_n_lookup_691 = 40'd4702756132;
+      10'd135: rom_n_lookup_691 = 40'd4705940512;
+      10'd136: rom_n_lookup_691 = 40'd4709127049;
+      10'd137: rom_n_lookup_691 = 40'd4712315743;
+      10'd138: rom_n_lookup_691 = 40'd4715506597;
+      10'd139: rom_n_lookup_691 = 40'd4718699611;
+      10'd140: rom_n_lookup_691 = 40'd4721894787;
+      10'd141: rom_n_lookup_691 = 40'd4725092127;
+      10'd142: rom_n_lookup_691 = 40'd4728291632;
+      10'd143: rom_n_lookup_691 = 40'd4731493304;
+      10'd144: rom_n_lookup_691 = 40'd4734697143;
+      10'd145: rom_n_lookup_691 = 40'd4737903152;
+      10'd146: rom_n_lookup_691 = 40'd4741111331;
+      10'd147: rom_n_lookup_691 = 40'd4744321683;
+      10'd148: rom_n_lookup_691 = 40'd4747534209;
+      10'd149: rom_n_lookup_691 = 40'd4750748910;
+      10'd150: rom_n_lookup_691 = 40'd4753965788;
+      10'd151: rom_n_lookup_691 = 40'd4757184844;
+      10'd152: rom_n_lookup_691 = 40'd4760406080;
+      10'd153: rom_n_lookup_691 = 40'd4763629497;
+      10'd154: rom_n_lookup_691 = 40'd4766855097;
+      10'd155: rom_n_lookup_691 = 40'd4770082881;
+      10'd156: rom_n_lookup_691 = 40'd4773312851;
+      10'd157: rom_n_lookup_691 = 40'd4776545007;
+      10'd158: rom_n_lookup_691 = 40'd4779779352;
+      10'd159: rom_n_lookup_691 = 40'd4783015888;
+      10'd160: rom_n_lookup_691 = 40'd4786254615;
+      10'd161: rom_n_lookup_691 = 40'd4789495534;
+      10'd162: rom_n_lookup_691 = 40'd4792738649;
+      10'd163: rom_n_lookup_691 = 40'd4795983959;
+      10'd164: rom_n_lookup_691 = 40'd4799231467;
+      10'd165: rom_n_lookup_691 = 40'd4802481174;
+      10'd166: rom_n_lookup_691 = 40'd4805733082;
+      10'd167: rom_n_lookup_691 = 40'd4808987191;
+      10'd168: rom_n_lookup_691 = 40'd4812243504;
+      10'd169: rom_n_lookup_691 = 40'd4815502022;
+      10'd170: rom_n_lookup_691 = 40'd4818762746;
+      10'd171: rom_n_lookup_691 = 40'd4822025678;
+      10'd172: rom_n_lookup_691 = 40'd4825290820;
+      10'd173: rom_n_lookup_691 = 40'd4828558172;
+      10'd174: rom_n_lookup_691 = 40'd4831827737;
+      10'd175: rom_n_lookup_691 = 40'd4835099516;
+      10'd176: rom_n_lookup_691 = 40'd4838373510;
+      10'd177: rom_n_lookup_691 = 40'd4841649721;
+      10'd178: rom_n_lookup_691 = 40'd4844928151;
+      10'd179: rom_n_lookup_691 = 40'd4848208801;
+      10'd180: rom_n_lookup_691 = 40'd4851491672;
+      10'd181: rom_n_lookup_691 = 40'd4854776765;
+      10'd182: rom_n_lookup_691 = 40'd4858064084;
+      10'd183: rom_n_lookup_691 = 40'd4861353628;
+      10'd184: rom_n_lookup_691 = 40'd4864645400;
+      10'd185: rom_n_lookup_691 = 40'd4867939401;
+      10'd186: rom_n_lookup_691 = 40'd4871235632;
+      10'd187: rom_n_lookup_691 = 40'd4874534095;
+      10'd188: rom_n_lookup_691 = 40'd4877834792;
+      10'd189: rom_n_lookup_691 = 40'd4881137723;
+      10'd190: rom_n_lookup_691 = 40'd4884442891;
+      10'd191: rom_n_lookup_691 = 40'd4887750298;
+      10'd192: rom_n_lookup_691 = 40'd4891059943;
+      10'd193: rom_n_lookup_691 = 40'd4894371830;
+      10'd194: rom_n_lookup_691 = 40'd4897685960;
+      10'd195: rom_n_lookup_691 = 40'd4901002333;
+      10'd196: rom_n_lookup_691 = 40'd4904320952;
+      10'd197: rom_n_lookup_691 = 40'd4907641818;
+      10'd198: rom_n_lookup_691 = 40'd4910964933;
+      10'd199: rom_n_lookup_691 = 40'd4914290298;
+      10'd200: rom_n_lookup_691 = 40'd4917617915;
+      10'd201: rom_n_lookup_691 = 40'd4920947785;
+      10'd202: rom_n_lookup_691 = 40'd4924279910;
+      10'd203: rom_n_lookup_691 = 40'd4927614291;
+      10'd204: rom_n_lookup_691 = 40'd4930950930;
+      10'd205: rom_n_lookup_691 = 40'd4934289828;
+      10'd206: rom_n_lookup_691 = 40'd4937630987;
+      10'd207: rom_n_lookup_691 = 40'd4940974409;
+      10'd208: rom_n_lookup_691 = 40'd4944320094;
+      10'd209: rom_n_lookup_691 = 40'd4947668045;
+      10'd210: rom_n_lookup_691 = 40'd4951018263;
+      10'd211: rom_n_lookup_691 = 40'd4954370749;
+      10'd212: rom_n_lookup_691 = 40'd4957725506;
+      10'd213: rom_n_lookup_691 = 40'd4961082534;
+      10'd214: rom_n_lookup_691 = 40'd4964441835;
+      10'd215: rom_n_lookup_691 = 40'd4967803411;
+      10'd216: rom_n_lookup_691 = 40'd4971167263;
+      10'd217: rom_n_lookup_691 = 40'd4974533393;
+      10'd218: rom_n_lookup_691 = 40'd4977901803;
+      10'd219: rom_n_lookup_691 = 40'd4981272493;
+      10'd220: rom_n_lookup_691 = 40'd4984645465;
+      10'd221: rom_n_lookup_691 = 40'd4988020722;
+      10'd222: rom_n_lookup_691 = 40'd4991398263;
+      10'd223: rom_n_lookup_691 = 40'd4994778092;
+      10'd224: rom_n_lookup_691 = 40'd4998160210;
+      10'd225: rom_n_lookup_691 = 40'd5001544618;
+      10'd226: rom_n_lookup_691 = 40'd5004931317;
+      10'd227: rom_n_lookup_691 = 40'd5008320310;
+      10'd228: rom_n_lookup_691 = 40'd5011711597;
+      10'd229: rom_n_lookup_691 = 40'd5015105181;
+      10'd230: rom_n_lookup_691 = 40'd5018501062;
+      10'd231: rom_n_lookup_691 = 40'd5021899244;
+      10'd232: rom_n_lookup_691 = 40'd5025299726;
+      10'd233: rom_n_lookup_691 = 40'd5028702510;
+      10'd234: rom_n_lookup_691 = 40'd5032107599;
+      10'd235: rom_n_lookup_691 = 40'd5035514994;
+      10'd236: rom_n_lookup_691 = 40'd5038924695;
+      10'd237: rom_n_lookup_691 = 40'd5042336706;
+      10'd238: rom_n_lookup_691 = 40'd5045751027;
+      10'd239: rom_n_lookup_691 = 40'd5049167660;
+      10'd240: rom_n_lookup_691 = 40'd5052586606;
+      10'd241: rom_n_lookup_691 = 40'd5056007868;
+      10'd242: rom_n_lookup_691 = 40'd5059431446;
+      10'd243: rom_n_lookup_691 = 40'd5062857342;
+      10'd244: rom_n_lookup_691 = 40'd5066285558;
+      10'd245: rom_n_lookup_691 = 40'd5069716096;
+      10'd246: rom_n_lookup_691 = 40'd5073148956;
+      10'd247: rom_n_lookup_691 = 40'd5076584141;
+      10'd248: rom_n_lookup_691 = 40'd5080021652;
+      10'd249: rom_n_lookup_691 = 40'd5083461490;
+      10'd250: rom_n_lookup_691 = 40'd5086903658;
+      10'd251: rom_n_lookup_691 = 40'd5090348157;
+      10'd252: rom_n_lookup_691 = 40'd5093794988;
+      10'd253: rom_n_lookup_691 = 40'd5097244153;
+      10'd254: rom_n_lookup_691 = 40'd5100695653;
+      10'd255: rom_n_lookup_691 = 40'd5104149491;
+      10'd256: rom_n_lookup_691 = 40'd5107605667;
+      10'd257: rom_n_lookup_691 = 40'd5111064184;
+      10'd258: rom_n_lookup_691 = 40'd5114525042;
+      10'd259: rom_n_lookup_691 = 40'd5117988244;
+      10'd260: rom_n_lookup_691 = 40'd5121453791;
+      10'd261: rom_n_lookup_691 = 40'd5124921684;
+      10'd262: rom_n_lookup_691 = 40'd5128391926;
+      10'd263: rom_n_lookup_691 = 40'd5131864518;
+      10'd264: rom_n_lookup_691 = 40'd5135339461;
+      10'd265: rom_n_lookup_691 = 40'd5138816757;
+      10'd266: rom_n_lookup_691 = 40'd5142296407;
+      10'd267: rom_n_lookup_691 = 40'd5145778414;
+      10'd268: rom_n_lookup_691 = 40'd5149262779;
+      10'd269: rom_n_lookup_691 = 40'd5152749502;
+      10'd270: rom_n_lookup_691 = 40'd5156238587;
+      10'd271: rom_n_lookup_691 = 40'd5159730035;
+      10'd272: rom_n_lookup_691 = 40'd5163223846;
+      10'd273: rom_n_lookup_691 = 40'd5166720024;
+      10'd274: rom_n_lookup_691 = 40'd5170218568;
+      10'd275: rom_n_lookup_691 = 40'd5173719482;
+      10'd276: rom_n_lookup_691 = 40'd5177222766;
+      10'd277: rom_n_lookup_691 = 40'd5180728423;
+      10'd278: rom_n_lookup_691 = 40'd5184236453;
+      10'd279: rom_n_lookup_691 = 40'd5187746859;
+      10'd280: rom_n_lookup_691 = 40'd5191259641;
+      10'd281: rom_n_lookup_691 = 40'd5194774802;
+      10'd282: rom_n_lookup_691 = 40'd5198292344;
+      10'd283: rom_n_lookup_691 = 40'd5201812267;
+      10'd284: rom_n_lookup_691 = 40'd5205334574;
+      10'd285: rom_n_lookup_691 = 40'd5208859266;
+      10'd286: rom_n_lookup_691 = 40'd5212386344;
+      10'd287: rom_n_lookup_691 = 40'd5215915811;
+      10'd288: rom_n_lookup_691 = 40'd5219447668;
+      10'd289: rom_n_lookup_691 = 40'd5222981916;
+      10'd290: rom_n_lookup_691 = 40'd5226518557;
+      10'd291: rom_n_lookup_691 = 40'd5230057593;
+      10'd292: rom_n_lookup_691 = 40'd5233599026;
+      10'd293: rom_n_lookup_691 = 40'd5237142856;
+      10'd294: rom_n_lookup_691 = 40'd5240689087;
+      10'd295: rom_n_lookup_691 = 40'd5244237718;
+      10'd296: rom_n_lookup_691 = 40'd5247788752;
+      10'd297: rom_n_lookup_691 = 40'd5251342191;
+      10'd298: rom_n_lookup_691 = 40'd5254898036;
+      10'd299: rom_n_lookup_691 = 40'd5258456289;
+      10'd300: rom_n_lookup_691 = 40'd5262016951;
+      10'd301: rom_n_lookup_691 = 40'd5265580024;
+      10'd302: rom_n_lookup_691 = 40'd5269145510;
+      10'd303: rom_n_lookup_691 = 40'd5272713410;
+      10'd304: rom_n_lookup_691 = 40'd5276283726;
+      10'd305: rom_n_lookup_691 = 40'd5279856460;
+      10'd306: rom_n_lookup_691 = 40'd5283431613;
+      10'd307: rom_n_lookup_691 = 40'd5287009187;
+      10'd308: rom_n_lookup_691 = 40'd5290589183;
+      10'd309: rom_n_lookup_691 = 40'd5294171603;
+      10'd310: rom_n_lookup_691 = 40'd5297756449;
+      10'd311: rom_n_lookup_691 = 40'd5301343723;
+      10'd312: rom_n_lookup_691 = 40'd5304933425;
+      10'd313: rom_n_lookup_691 = 40'd5308525558;
+      10'd314: rom_n_lookup_691 = 40'd5312120124;
+      10'd315: rom_n_lookup_691 = 40'd5315717124;
+      10'd316: rom_n_lookup_691 = 40'd5319316559;
+      10'd317: rom_n_lookup_691 = 40'd5322918431;
+      10'd318: rom_n_lookup_691 = 40'd5326522743;
+      10'd319: rom_n_lookup_691 = 40'd5330129495;
+      10'd320: rom_n_lookup_691 = 40'd5333738689;
+      10'd321: rom_n_lookup_691 = 40'd5337350327;
+      10'd322: rom_n_lookup_691 = 40'd5340964411;
+      10'd323: rom_n_lookup_691 = 40'd5344580942;
+      10'd324: rom_n_lookup_691 = 40'd5348199922;
+      10'd325: rom_n_lookup_691 = 40'd5351821352;
+      10'd326: rom_n_lookup_691 = 40'd5355445235;
+      10'd327: rom_n_lookup_691 = 40'd5359071571;
+      10'd328: rom_n_lookup_691 = 40'd5362700363;
+      10'd329: rom_n_lookup_691 = 40'd5366331612;
+      10'd330: rom_n_lookup_691 = 40'd5369965320;
+      10'd331: rom_n_lookup_691 = 40'd5373601488;
+      10'd332: rom_n_lookup_691 = 40'd5377240118;
+      10'd333: rom_n_lookup_691 = 40'd5380881213;
+      10'd334: rom_n_lookup_691 = 40'd5384524773;
+      10'd335: rom_n_lookup_691 = 40'd5388170800;
+      10'd336: rom_n_lookup_691 = 40'd5391819295;
+      10'd337: rom_n_lookup_691 = 40'd5395470262;
+      10'd338: rom_n_lookup_691 = 40'd5399123700;
+      10'd339: rom_n_lookup_691 = 40'd5402779613;
+      10'd340: rom_n_lookup_691 = 40'd5406438001;
+      10'd341: rom_n_lookup_691 = 40'd5410098866;
+      10'd342: rom_n_lookup_691 = 40'd5413762210;
+      10'd343: rom_n_lookup_691 = 40'd5417428034;
+      10'd344: rom_n_lookup_691 = 40'd5421096341;
+      10'd345: rom_n_lookup_691 = 40'd5424767132;
+      10'd346: rom_n_lookup_691 = 40'd5428440408;
+      10'd347: rom_n_lookup_691 = 40'd5432116172;
+      10'd348: rom_n_lookup_691 = 40'd5435794424;
+      10'd349: rom_n_lookup_691 = 40'd5439475168;
+      10'd350: rom_n_lookup_691 = 40'd5443158403;
+      10'd351: rom_n_lookup_691 = 40'd5446844133;
+      10'd352: rom_n_lookup_691 = 40'd5450532358;
+      10'd353: rom_n_lookup_691 = 40'd5454223081;
+      10'd354: rom_n_lookup_691 = 40'd5457916303;
+      10'd355: rom_n_lookup_691 = 40'd5461612025;
+      10'd356: rom_n_lookup_691 = 40'd5465310250;
+      10'd357: rom_n_lookup_691 = 40'd5469010980;
+      10'd358: rom_n_lookup_691 = 40'd5472714215;
+      10'd359: rom_n_lookup_691 = 40'd5476419958;
+      10'd360: rom_n_lookup_691 = 40'd5480128210;
+      10'd361: rom_n_lookup_691 = 40'd5483838973;
+      10'd362: rom_n_lookup_691 = 40'd5487552249;
+      10'd363: rom_n_lookup_691 = 40'd5491268039;
+      10'd364: rom_n_lookup_691 = 40'd5494986345;
+      10'd365: rom_n_lookup_691 = 40'd5498707169;
+      10'd366: rom_n_lookup_691 = 40'd5502430512;
+      10'd367: rom_n_lookup_691 = 40'd5506156377;
+      10'd368: rom_n_lookup_691 = 40'd5509884764;
+      10'd369: rom_n_lookup_691 = 40'd5513615676;
+      10'd370: rom_n_lookup_691 = 40'd5517349115;
+      10'd371: rom_n_lookup_691 = 40'd5521085081;
+      10'd372: rom_n_lookup_691 = 40'd5524823577;
+      10'd373: rom_n_lookup_691 = 40'd5528564605;
+      10'd374: rom_n_lookup_691 = 40'd5532308166;
+      10'd375: rom_n_lookup_691 = 40'd5536054261;
+      10'd376: rom_n_lookup_691 = 40'd5539802893;
+      10'd377: rom_n_lookup_691 = 40'd5543554064;
+      10'd378: rom_n_lookup_691 = 40'd5547307775;
+      10'd379: rom_n_lookup_691 = 40'd5551064027;
+      10'd380: rom_n_lookup_691 = 40'd5554822823;
+      10'd381: rom_n_lookup_691 = 40'd5558584164;
+      10'd382: rom_n_lookup_691 = 40'd5562348052;
+      10'd383: rom_n_lookup_691 = 40'd5566114488;
+      10'd384: rom_n_lookup_691 = 40'd5569883475;
+      10'd385: rom_n_lookup_691 = 40'd5573655014;
+      10'd386: rom_n_lookup_691 = 40'd5577429107;
+      10'd387: rom_n_lookup_691 = 40'd5581205756;
+      10'd388: rom_n_lookup_691 = 40'd5584984961;
+      10'd389: rom_n_lookup_691 = 40'd5588766726;
+      10'd390: rom_n_lookup_691 = 40'd5592551052;
+      10'd391: rom_n_lookup_691 = 40'd5596337940;
+      10'd392: rom_n_lookup_691 = 40'd5600127392;
+      10'd393: rom_n_lookup_691 = 40'd5603919410;
+      10'd394: rom_n_lookup_691 = 40'd5607713996;
+      10'd395: rom_n_lookup_691 = 40'd5611511151;
+      10'd396: rom_n_lookup_691 = 40'd5615310878;
+      10'd397: rom_n_lookup_691 = 40'd5619113177;
+      10'd398: rom_n_lookup_691 = 40'd5622918051;
+      10'd399: rom_n_lookup_691 = 40'd5626725501;
+      10'd400: rom_n_lookup_691 = 40'd5630535530;
+      10'd401: rom_n_lookup_691 = 40'd5634348138;
+      10'd402: rom_n_lookup_691 = 40'd5638163328;
+      10'd403: rom_n_lookup_691 = 40'd5641981102;
+      10'd404: rom_n_lookup_691 = 40'd5645801460;
+      10'd405: rom_n_lookup_691 = 40'd5649624406;
+      10'd406: rom_n_lookup_691 = 40'd5653449940;
+      10'd407: rom_n_lookup_691 = 40'd5657278064;
+      10'd408: rom_n_lookup_691 = 40'd5661108781;
+      10'd409: rom_n_lookup_691 = 40'd5664942091;
+      10'd410: rom_n_lookup_691 = 40'd5668777998;
+      10'd411: rom_n_lookup_691 = 40'd5672616501;
+      10'd412: rom_n_lookup_691 = 40'd5676457604;
+      10'd413: rom_n_lookup_691 = 40'd5680301308;
+      10'd414: rom_n_lookup_691 = 40'd5684147614;
+      10'd415: rom_n_lookup_691 = 40'd5687996525;
+      10'd416: rom_n_lookup_691 = 40'd5691848042;
+      10'd417: rom_n_lookup_691 = 40'd5695702167;
+      10'd418: rom_n_lookup_691 = 40'd5699558902;
+      10'd419: rom_n_lookup_691 = 40'd5703418248;
+      10'd420: rom_n_lookup_691 = 40'd5707280207;
+      10'd421: rom_n_lookup_691 = 40'd5711144782;
+      10'd422: rom_n_lookup_691 = 40'd5715011973;
+      10'd423: rom_n_lookup_691 = 40'd5718881783;
+      10'd424: rom_n_lookup_691 = 40'd5722754214;
+      10'd425: rom_n_lookup_691 = 40'd5726629266;
+      10'd426: rom_n_lookup_691 = 40'd5730506943;
+      10'd427: rom_n_lookup_691 = 40'd5734387245;
+      10'd428: rom_n_lookup_691 = 40'd5738270175;
+      10'd429: rom_n_lookup_691 = 40'd5742155733;
+      10'd430: rom_n_lookup_691 = 40'd5746043923;
+      10'd431: rom_n_lookup_691 = 40'd5749934746;
+      10'd432: rom_n_lookup_691 = 40'd5753828203;
+      10'd433: rom_n_lookup_691 = 40'd5757724297;
+      10'd434: rom_n_lookup_691 = 40'd5761623029;
+      10'd435: rom_n_lookup_691 = 40'd5765524401;
+      10'd436: rom_n_lookup_691 = 40'd5769428414;
+      10'd437: rom_n_lookup_691 = 40'd5773335071;
+      10'd438: rom_n_lookup_691 = 40'd5777244374;
+      10'd439: rom_n_lookup_691 = 40'd5781156323;
+      10'd440: rom_n_lookup_691 = 40'd5785070921;
+      10'd441: rom_n_lookup_691 = 40'd5788988171;
+      10'd442: rom_n_lookup_691 = 40'd5792908072;
+      10'd443: rom_n_lookup_691 = 40'd5796830628;
+      10'd444: rom_n_lookup_691 = 40'd5800755840;
+      10'd445: rom_n_lookup_691 = 40'd5804683710;
+      10'd446: rom_n_lookup_691 = 40'd5808614239;
+      10'd447: rom_n_lookup_691 = 40'd5812547430;
+      10'd448: rom_n_lookup_691 = 40'd5816483285;
+      10'd449: rom_n_lookup_691 = 40'd5820421804;
+      10'd450: rom_n_lookup_691 = 40'd5824362990;
+      10'd451: rom_n_lookup_691 = 40'd5828306845;
+      10'd452: rom_n_lookup_691 = 40'd5832253371;
+      10'd453: rom_n_lookup_691 = 40'd5836202568;
+      10'd454: rom_n_lookup_691 = 40'd5840154440;
+      10'd455: rom_n_lookup_691 = 40'd5844108988;
+      10'd456: rom_n_lookup_691 = 40'd5848066214;
+      10'd457: rom_n_lookup_691 = 40'd5852026119;
+      10'd458: rom_n_lookup_691 = 40'd5855988705;
+      10'd459: rom_n_lookup_691 = 40'd5859953975;
+      10'd460: rom_n_lookup_691 = 40'd5863921930;
+      10'd461: rom_n_lookup_691 = 40'd5867892571;
+      10'd462: rom_n_lookup_691 = 40'd5871865901;
+      10'd463: rom_n_lookup_691 = 40'd5875841922;
+      10'd464: rom_n_lookup_691 = 40'd5879820635;
+      10'd465: rom_n_lookup_691 = 40'd5883802042;
+      10'd466: rom_n_lookup_691 = 40'd5887786145;
+      10'd467: rom_n_lookup_691 = 40'd5891772946;
+      10'd468: rom_n_lookup_691 = 40'd5895762446;
+      10'd469: rom_n_lookup_691 = 40'd5899754648;
+      10'd470: rom_n_lookup_691 = 40'd5903749552;
+      10'd471: rom_n_lookup_691 = 40'd5907747162;
+      10'd472: rom_n_lookup_691 = 40'd5911747479;
+      10'd473: rom_n_lookup_691 = 40'd5915750505;
+      10'd474: rom_n_lookup_691 = 40'd5919756241;
+      10'd475: rom_n_lookup_691 = 40'd5923764690;
+      10'd476: rom_n_lookup_691 = 40'd5927775853;
+      10'd477: rom_n_lookup_691 = 40'd5931789732;
+      10'd478: rom_n_lookup_691 = 40'd5935806329;
+      10'd479: rom_n_lookup_691 = 40'd5939825645;
+      10'd480: rom_n_lookup_691 = 40'd5943847684;
+      10'd481: rom_n_lookup_691 = 40'd5947872445;
+      10'd482: rom_n_lookup_691 = 40'd5951899932;
+      10'd483: rom_n_lookup_691 = 40'd5955930146;
+      10'd484: rom_n_lookup_691 = 40'd5959963090;
+      10'd485: rom_n_lookup_691 = 40'd5963998764;
+      10'd486: rom_n_lookup_691 = 40'd5968037170;
+      10'd487: rom_n_lookup_691 = 40'd5972078311;
+      10'd488: rom_n_lookup_691 = 40'd5976122189;
+      10'd489: rom_n_lookup_691 = 40'd5980168805;
+      10'd490: rom_n_lookup_691 = 40'd5984218160;
+      10'd491: rom_n_lookup_691 = 40'd5988270258;
+      10'd492: rom_n_lookup_691 = 40'd5992325100;
+      10'd493: rom_n_lookup_691 = 40'd5996382687;
+      10'd494: rom_n_lookup_691 = 40'd6000443022;
+      10'd495: rom_n_lookup_691 = 40'd6004506106;
+      10'd496: rom_n_lookup_691 = 40'd6008571941;
+      10'd497: rom_n_lookup_691 = 40'd6012640530;
+      10'd498: rom_n_lookup_691 = 40'd6016711873;
+      10'd499: rom_n_lookup_691 = 40'd6020785974;
+      10'd500: rom_n_lookup_691 = 40'd6024862833;
+      10'd501: rom_n_lookup_691 = 40'd6028942452;
+      10'd502: rom_n_lookup_691 = 40'd6033024834;
+      10'd503: rom_n_lookup_691 = 40'd6037109980;
+      10'd504: rom_n_lookup_691 = 40'd6041197893;
+      10'd505: rom_n_lookup_691 = 40'd6045288573;
+      10'd506: rom_n_lookup_691 = 40'd6049382024;
+      10'd507: rom_n_lookup_691 = 40'd6053478246;
+      10'd508: rom_n_lookup_691 = 40'd6057577242;
+      10'd509: rom_n_lookup_691 = 40'd6061679013;
+      10'd510: rom_n_lookup_691 = 40'd6065783562;
+      10'd511: rom_n_lookup_691 = 40'd6069890891;
+      10'd512: rom_n_lookup_691 = 40'd6074001000;
+      10'd513: rom_n_lookup_691 = 40'd6078113892;
+      10'd514: rom_n_lookup_691 = 40'd6082229570;
+      10'd515: rom_n_lookup_691 = 40'd6086348034;
+      10'd516: rom_n_lookup_691 = 40'd6090469287;
+      10'd517: rom_n_lookup_691 = 40'd6094593331;
+      10'd518: rom_n_lookup_691 = 40'd6098720167;
+      10'd519: rom_n_lookup_691 = 40'd6102849798;
+      10'd520: rom_n_lookup_691 = 40'd6106982225;
+      10'd521: rom_n_lookup_691 = 40'd6111117450;
+      10'd522: rom_n_lookup_691 = 40'd6115255475;
+      10'd523: rom_n_lookup_691 = 40'd6119396302;
+      10'd524: rom_n_lookup_691 = 40'd6123539933;
+      10'd525: rom_n_lookup_691 = 40'd6127686370;
+      10'd526: rom_n_lookup_691 = 40'd6131835615;
+      10'd527: rom_n_lookup_691 = 40'd6135987669;
+      10'd528: rom_n_lookup_691 = 40'd6140142534;
+      10'd529: rom_n_lookup_691 = 40'd6144300213;
+      10'd530: rom_n_lookup_691 = 40'd6148460708;
+      10'd531: rom_n_lookup_691 = 40'd6152624019;
+      10'd532: rom_n_lookup_691 = 40'd6156790150;
+      10'd533: rom_n_lookup_691 = 40'd6160959101;
+      10'd534: rom_n_lookup_691 = 40'd6165130876;
+      10'd535: rom_n_lookup_691 = 40'd6169305475;
+      10'd536: rom_n_lookup_691 = 40'd6173482901;
+      10'd537: rom_n_lookup_691 = 40'd6177663156;
+      10'd538: rom_n_lookup_691 = 40'd6181846241;
+      10'd539: rom_n_lookup_691 = 40'd6186032159;
+      10'd540: rom_n_lookup_691 = 40'd6190220911;
+      10'd541: rom_n_lookup_691 = 40'd6194412500;
+      10'd542: rom_n_lookup_691 = 40'd6198606927;
+      10'd543: rom_n_lookup_691 = 40'd6202804194;
+      10'd544: rom_n_lookup_691 = 40'd6207004303;
+      10'd545: rom_n_lookup_691 = 40'd6211207256;
+      10'd546: rom_n_lookup_691 = 40'd6215413055;
+      10'd547: rom_n_lookup_691 = 40'd6219621702;
+      10'd548: rom_n_lookup_691 = 40'd6223833199;
+      10'd549: rom_n_lookup_691 = 40'd6228047547;
+      10'd550: rom_n_lookup_691 = 40'd6232264749;
+      10'd551: rom_n_lookup_691 = 40'd6236484807;
+      10'd552: rom_n_lookup_691 = 40'd6240707722;
+      10'd553: rom_n_lookup_691 = 40'd6244933497;
+      10'd554: rom_n_lookup_691 = 40'd6249162133;
+      10'd555: rom_n_lookup_691 = 40'd6253393633;
+      10'd556: rom_n_lookup_691 = 40'd6257627997;
+      10'd557: rom_n_lookup_691 = 40'd6261865229;
+      10'd558: rom_n_lookup_691 = 40'd6266105331;
+      10'd559: rom_n_lookup_691 = 40'd6270348303;
+      10'd560: rom_n_lookup_691 = 40'd6274594148;
+      10'd561: rom_n_lookup_691 = 40'd6278842868;
+      10'd562: rom_n_lookup_691 = 40'd6283094466;
+      10'd563: rom_n_lookup_691 = 40'd6287348942;
+      10'd564: rom_n_lookup_691 = 40'd6291606299;
+      10'd565: rom_n_lookup_691 = 40'd6295866538;
+      10'd566: rom_n_lookup_691 = 40'd6300129663;
+      10'd567: rom_n_lookup_691 = 40'd6304395674;
+      10'd568: rom_n_lookup_691 = 40'd6308664574;
+      10'd569: rom_n_lookup_691 = 40'd6312936364;
+      10'd570: rom_n_lookup_691 = 40'd6317211047;
+      10'd571: rom_n_lookup_691 = 40'd6321488625;
+      10'd572: rom_n_lookup_691 = 40'd6325769099;
+      10'd573: rom_n_lookup_691 = 40'd6330052471;
+      10'd574: rom_n_lookup_691 = 40'd6334338744;
+      10'd575: rom_n_lookup_691 = 40'd6338627919;
+      10'd576: rom_n_lookup_691 = 40'd6342919999;
+      10'd577: rom_n_lookup_691 = 40'd6347214985;
+      10'd578: rom_n_lookup_691 = 40'd6351512879;
+      10'd579: rom_n_lookup_691 = 40'd6355813683;
+      10'd580: rom_n_lookup_691 = 40'd6360117399;
+      10'd581: rom_n_lookup_691 = 40'd6364424030;
+      10'd582: rom_n_lookup_691 = 40'd6368733577;
+      10'd583: rom_n_lookup_691 = 40'd6373046042;
+      10'd584: rom_n_lookup_691 = 40'd6377361427;
+      10'd585: rom_n_lookup_691 = 40'd6381679734;
+      10'd586: rom_n_lookup_691 = 40'd6386000965;
+      10'd587: rom_n_lookup_691 = 40'd6390325123;
+      10'd588: rom_n_lookup_691 = 40'd6394652208;
+      10'd589: rom_n_lookup_691 = 40'd6398982223;
+      10'd590: rom_n_lookup_691 = 40'd6403315171;
+      10'd591: rom_n_lookup_691 = 40'd6407651052;
+      10'd592: rom_n_lookup_691 = 40'd6411989869;
+      10'd593: rom_n_lookup_691 = 40'd6416331624;
+      10'd594: rom_n_lookup_691 = 40'd6420676319;
+      10'd595: rom_n_lookup_691 = 40'd6425023956;
+      10'd596: rom_n_lookup_691 = 40'd6429374537;
+      10'd597: rom_n_lookup_691 = 40'd6433728064;
+      10'd598: rom_n_lookup_691 = 40'd6438084539;
+      10'd599: rom_n_lookup_691 = 40'd6442443963;
+      10'd600: rom_n_lookup_691 = 40'd6446806340;
+      10'd601: rom_n_lookup_691 = 40'd6451171670;
+      10'd602: rom_n_lookup_691 = 40'd6455539957;
+      10'd603: rom_n_lookup_691 = 40'd6459911201;
+      10'd604: rom_n_lookup_691 = 40'd6464285405;
+      10'd605: rom_n_lookup_691 = 40'd6468662571;
+      10'd606: rom_n_lookup_691 = 40'd6473042701;
+      10'd607: rom_n_lookup_691 = 40'd6477425797;
+      10'd608: rom_n_lookup_691 = 40'd6481811861;
+      10'd609: rom_n_lookup_691 = 40'd6486200895;
+      10'd610: rom_n_lookup_691 = 40'd6490592900;
+      10'd611: rom_n_lookup_691 = 40'd6494987880;
+      10'd612: rom_n_lookup_691 = 40'd6499385836;
+      10'd613: rom_n_lookup_691 = 40'd6503786769;
+      10'd614: rom_n_lookup_691 = 40'd6508190683;
+      10'd615: rom_n_lookup_691 = 40'd6512597579;
+      10'd616: rom_n_lookup_691 = 40'd6517007458;
+      10'd617: rom_n_lookup_691 = 40'd6521420324;
+      10'd618: rom_n_lookup_691 = 40'd6525836178;
+      10'd619: rom_n_lookup_691 = 40'd6530255022;
+      10'd620: rom_n_lookup_691 = 40'd6534676858;
+      10'd621: rom_n_lookup_691 = 40'd6539101688;
+      10'd622: rom_n_lookup_691 = 40'd6543529515;
+      10'd623: rom_n_lookup_691 = 40'd6547960339;
+      10'd624: rom_n_lookup_691 = 40'd6552394164;
+      10'd625: rom_n_lookup_691 = 40'd6556830991;
+      10'd626: rom_n_lookup_691 = 40'd6561270823;
+      10'd627: rom_n_lookup_691 = 40'd6565713661;
+      10'd628: rom_n_lookup_691 = 40'd6570159507;
+      10'd629: rom_n_lookup_691 = 40'd6574608364;
+      10'd630: rom_n_lookup_691 = 40'd6579060233;
+      10'd631: rom_n_lookup_691 = 40'd6583515116;
+      10'd632: rom_n_lookup_691 = 40'd6587973017;
+      10'd633: rom_n_lookup_691 = 40'd6592433935;
+      10'd634: rom_n_lookup_691 = 40'd6596897875;
+      10'd635: rom_n_lookup_691 = 40'd6601364837;
+      10'd636: rom_n_lookup_691 = 40'd6605834824;
+      10'd637: rom_n_lookup_691 = 40'd6610307837;
+      10'd638: rom_n_lookup_691 = 40'd6614783879;
+      10'd639: rom_n_lookup_691 = 40'd6619262953;
+      10'd640: rom_n_lookup_691 = 40'd6623745059;
+      10'd641: rom_n_lookup_691 = 40'd6628230200;
+      10'd642: rom_n_lookup_691 = 40'd6632718378;
+      10'd643: rom_n_lookup_691 = 40'd6637209595;
+      10'd644: rom_n_lookup_691 = 40'd6641703853;
+      10'd645: rom_n_lookup_691 = 40'd6646201155;
+      10'd646: rom_n_lookup_691 = 40'd6650701502;
+      10'd647: rom_n_lookup_691 = 40'd6655204896;
+      10'd648: rom_n_lookup_691 = 40'd6659711339;
+      10'd649: rom_n_lookup_691 = 40'd6664220834;
+      10'd650: rom_n_lookup_691 = 40'd6668733383;
+      10'd651: rom_n_lookup_691 = 40'd6673248987;
+      10'd652: rom_n_lookup_691 = 40'd6677767649;
+      10'd653: rom_n_lookup_691 = 40'd6682289370;
+      10'd654: rom_n_lookup_691 = 40'd6686814153;
+      10'd655: rom_n_lookup_691 = 40'd6691342000;
+      10'd656: rom_n_lookup_691 = 40'd6695872913;
+      10'd657: rom_n_lookup_691 = 40'd6700406894;
+      10'd658: rom_n_lookup_691 = 40'd6704943946;
+      10'd659: rom_n_lookup_691 = 40'd6709484069;
+      10'd660: rom_n_lookup_691 = 40'd6714027267;
+      10'd661: rom_n_lookup_691 = 40'd6718573540;
+      10'd662: rom_n_lookup_691 = 40'd6723122893;
+      10'd663: rom_n_lookup_691 = 40'd6727675326;
+      10'd664: rom_n_lookup_691 = 40'd6732230841;
+      10'd665: rom_n_lookup_691 = 40'd6736789441;
+      10'd666: rom_n_lookup_691 = 40'd6741351128;
+      10'd667: rom_n_lookup_691 = 40'd6745915904;
+      10'd668: rom_n_lookup_691 = 40'd6750483771;
+      10'd669: rom_n_lookup_691 = 40'd6755054730;
+      10'd670: rom_n_lookup_691 = 40'd6759628785;
+      10'd671: rom_n_lookup_691 = 40'd6764205937;
+      10'd672: rom_n_lookup_691 = 40'd6768786189;
+      10'd673: rom_n_lookup_691 = 40'd6773369542;
+      10'd674: rom_n_lookup_691 = 40'd6777955998;
+      10'd675: rom_n_lookup_691 = 40'd6782545560;
+      10'd676: rom_n_lookup_691 = 40'd6787138230;
+      10'd677: rom_n_lookup_691 = 40'd6791734010;
+      10'd678: rom_n_lookup_691 = 40'd6796332901;
+      10'd679: rom_n_lookup_691 = 40'd6800934907;
+      10'd680: rom_n_lookup_691 = 40'd6805540029;
+      10'd681: rom_n_lookup_691 = 40'd6810148269;
+      10'd682: rom_n_lookup_691 = 40'd6814759629;
+      10'd683: rom_n_lookup_691 = 40'd6819374112;
+      10'd684: rom_n_lookup_691 = 40'd6823991719;
+      10'd685: rom_n_lookup_691 = 40'd6828612454;
+      10'd686: rom_n_lookup_691 = 40'd6833236317;
+      10'd687: rom_n_lookup_691 = 40'd6837863311;
+      10'd688: rom_n_lookup_691 = 40'd6842493438;
+      10'd689: rom_n_lookup_691 = 40'd6847126700;
+      10'd690: rom_n_lookup_691 = 40'd6851763100;
+      10'd691: rom_n_lookup_691 = 40'd6856402639;
+      10'd692: rom_n_lookup_691 = 40'd6861045320;
+      10'd693: rom_n_lookup_691 = 40'd6865691144;
+      10'd694: rom_n_lookup_691 = 40'd6870340114;
+      10'd695: rom_n_lookup_691 = 40'd6874992232;
+      10'd696: rom_n_lookup_691 = 40'd6879647501;
+      10'd697: rom_n_lookup_691 = 40'd6884305921;
+      10'd698: rom_n_lookup_691 = 40'd6888967496;
+      10'd699: rom_n_lookup_691 = 40'd6893632227;
+      10'd700: rom_n_lookup_691 = 40'd6898300117;
+      10'd701: rom_n_lookup_691 = 40'd6902971168;
+      10'd702: rom_n_lookup_691 = 40'd6907645382;
+      10'd703: rom_n_lookup_691 = 40'd6912322760;
+      10'd704: rom_n_lookup_691 = 40'd6917003306;
+      10'd705: rom_n_lookup_691 = 40'd6921687021;
+      10'd706: rom_n_lookup_691 = 40'd6926373908;
+      10'd707: rom_n_lookup_691 = 40'd6931063969;
+      10'd708: rom_n_lookup_691 = 40'd6935757205;
+      10'd709: rom_n_lookup_691 = 40'd6940453619;
+      10'd710: rom_n_lookup_691 = 40'd6945153213;
+      10'd711: rom_n_lookup_691 = 40'd6949855989;
+      10'd712: rom_n_lookup_691 = 40'd6954561950;
+      10'd713: rom_n_lookup_691 = 40'd6959271098;
+      10'd714: rom_n_lookup_691 = 40'd6963983434;
+      10'd715: rom_n_lookup_691 = 40'd6968698961;
+      10'd716: rom_n_lookup_691 = 40'd6973417680;
+      10'd717: rom_n_lookup_691 = 40'd6978139596;
+      10'd718: rom_n_lookup_691 = 40'd6982864708;
+      10'd719: rom_n_lookup_691 = 40'd6987593020;
+      10'd720: rom_n_lookup_691 = 40'd6992324534;
+      10'd721: rom_n_lookup_691 = 40'd6997059251;
+      10'd722: rom_n_lookup_691 = 40'd7001797175;
+      10'd723: rom_n_lookup_691 = 40'd7006538307;
+      10'd724: rom_n_lookup_691 = 40'd7011282649;
+      10'd725: rom_n_lookup_691 = 40'd7016030204;
+      10'd726: rom_n_lookup_691 = 40'd7020780973;
+      10'd727: rom_n_lookup_691 = 40'd7025534959;
+      10'd728: rom_n_lookup_691 = 40'd7030292165;
+      10'd729: rom_n_lookup_691 = 40'd7035052591;
+      10'd730: rom_n_lookup_691 = 40'd7039816241;
+      10'd731: rom_n_lookup_691 = 40'd7044583117;
+      10'd732: rom_n_lookup_691 = 40'd7049353220;
+      10'd733: rom_n_lookup_691 = 40'd7054126554;
+      10'd734: rom_n_lookup_691 = 40'd7058903119;
+      10'd735: rom_n_lookup_691 = 40'd7063682919;
+      10'd736: rom_n_lookup_691 = 40'd7068465956;
+      10'd737: rom_n_lookup_691 = 40'd7073252231;
+      10'd738: rom_n_lookup_691 = 40'd7078041747;
+      10'd739: rom_n_lookup_691 = 40'd7082834507;
+      10'd740: rom_n_lookup_691 = 40'd7087630511;
+      10'd741: rom_n_lookup_691 = 40'd7092429763;
+      10'd742: rom_n_lookup_691 = 40'd7097232265;
+      10'd743: rom_n_lookup_691 = 40'd7102038019;
+      10'd744: rom_n_lookup_691 = 40'd7106847027;
+      10'd745: rom_n_lookup_691 = 40'd7111659291;
+      10'd746: rom_n_lookup_691 = 40'd7116474814;
+      10'd747: rom_n_lookup_691 = 40'd7121293598;
+      10'd748: rom_n_lookup_691 = 40'd7126115644;
+      10'd749: rom_n_lookup_691 = 40'd7130940956;
+      10'd750: rom_n_lookup_691 = 40'd7135769535;
+      10'd751: rom_n_lookup_691 = 40'd7140601383;
+      10'd752: rom_n_lookup_691 = 40'd7145436504;
+      10'd753: rom_n_lookup_691 = 40'd7150274898;
+      10'd754: rom_n_lookup_691 = 40'd7155116569;
+      10'd755: rom_n_lookup_691 = 40'd7159961518;
+      10'd756: rom_n_lookup_691 = 40'd7164809747;
+      10'd757: rom_n_lookup_691 = 40'd7169661260;
+      10'd758: rom_n_lookup_691 = 40'd7174516058;
+      10'd759: rom_n_lookup_691 = 40'd7179374143;
+      10'd760: rom_n_lookup_691 = 40'd7184235517;
+      10'd761: rom_n_lookup_691 = 40'd7189100184;
+      10'd762: rom_n_lookup_691 = 40'd7193968144;
+      10'd763: rom_n_lookup_691 = 40'd7198839401;
+      10'd764: rom_n_lookup_691 = 40'd7203713956;
+      10'd765: rom_n_lookup_691 = 40'd7208591812;
+      10'd766: rom_n_lookup_691 = 40'd7213472970;
+      10'd767: rom_n_lookup_691 = 40'd7218357434;
+      10'd768: rom_n_lookup_691 = 40'd7223245206;
+      10'd769: rom_n_lookup_691 = 40'd7228136287;
+      10'd770: rom_n_lookup_691 = 40'd7233030680;
+      10'd771: rom_n_lookup_691 = 40'd7237928387;
+      10'd772: rom_n_lookup_691 = 40'd7242829410;
+      10'd773: rom_n_lookup_691 = 40'd7247733752;
+      10'd774: rom_n_lookup_691 = 40'd7252641415;
+      10'd775: rom_n_lookup_691 = 40'd7257552401;
+      10'd776: rom_n_lookup_691 = 40'd7262466713;
+      10'd777: rom_n_lookup_691 = 40'd7267384352;
+      10'd778: rom_n_lookup_691 = 40'd7272305321;
+      10'd779: rom_n_lookup_691 = 40'd7277229622;
+      10'd780: rom_n_lookup_691 = 40'd7282157258;
+      10'd781: rom_n_lookup_691 = 40'd7287088230;
+      10'd782: rom_n_lookup_691 = 40'd7292022541;
+      10'd783: rom_n_lookup_691 = 40'd7296960193;
+      10'd784: rom_n_lookup_691 = 40'd7301901189;
+      10'd785: rom_n_lookup_691 = 40'd7306845530;
+      10'd786: rom_n_lookup_691 = 40'd7311793220;
+      10'd787: rom_n_lookup_691 = 40'd7316744259;
+      10'd788: rom_n_lookup_691 = 40'd7321698651;
+      10'd789: rom_n_lookup_691 = 40'd7326656398;
+      10'd790: rom_n_lookup_691 = 40'd7331617502;
+      10'd791: rom_n_lookup_691 = 40'd7336581966;
+      10'd792: rom_n_lookup_691 = 40'd7341549790;
+      10'd793: rom_n_lookup_691 = 40'd7346520979;
+      10'd794: rom_n_lookup_691 = 40'd7351495534;
+      10'd795: rom_n_lookup_691 = 40'd7356473457;
+      10'd796: rom_n_lookup_691 = 40'd7361454751;
+      10'd797: rom_n_lookup_691 = 40'd7366439418;
+      10'd798: rom_n_lookup_691 = 40'd7371427460;
+      10'd799: rom_n_lookup_691 = 40'd7376418880;
+      10'd800: rom_n_lookup_691 = 40'd7381413680;
+      10'd801: rom_n_lookup_691 = 40'd7386411861;
+      10'd802: rom_n_lookup_691 = 40'd7391413428;
+      10'd803: rom_n_lookup_691 = 40'd7396418381;
+      10'd804: rom_n_lookup_691 = 40'd7401426722;
+      10'd805: rom_n_lookup_691 = 40'd7406438456;
+      10'd806: rom_n_lookup_691 = 40'd7411453582;
+      10'd807: rom_n_lookup_691 = 40'd7416472105;
+      10'd808: rom_n_lookup_691 = 40'd7421494026;
+      10'd809: rom_n_lookup_691 = 40'd7426519347;
+      10'd810: rom_n_lookup_691 = 40'd7431548072;
+      10'd811: rom_n_lookup_691 = 40'd7436580201;
+      10'd812: rom_n_lookup_691 = 40'd7441615738;
+      10'd813: rom_n_lookup_691 = 40'd7446654684;
+      10'd814: rom_n_lookup_691 = 40'd7451697043;
+      10'd815: rom_n_lookup_691 = 40'd7456742815;
+      10'd816: rom_n_lookup_691 = 40'd7461792005;
+      10'd817: rom_n_lookup_691 = 40'd7466844613;
+      10'd818: rom_n_lookup_691 = 40'd7471900643;
+      10'd819: rom_n_lookup_691 = 40'd7476960096;
+      10'd820: rom_n_lookup_691 = 40'd7482022975;
+      10'd821: rom_n_lookup_691 = 40'd7487089283;
+      10'd822: rom_n_lookup_691 = 40'd7492159021;
+      10'd823: rom_n_lookup_691 = 40'd7497232191;
+      10'd824: rom_n_lookup_691 = 40'd7502308797;
+      10'd825: rom_n_lookup_691 = 40'd7507388841;
+      10'd826: rom_n_lookup_691 = 40'd7512472324;
+      10'd827: rom_n_lookup_691 = 40'd7517559250;
+      10'd828: rom_n_lookup_691 = 40'd7522649620;
+      10'd829: rom_n_lookup_691 = 40'd7527743437;
+      10'd830: rom_n_lookup_691 = 40'd7532840703;
+      10'd831: rom_n_lookup_691 = 40'd7537941421;
+      10'd832: rom_n_lookup_691 = 40'd7543045592;
+      10'd833: rom_n_lookup_691 = 40'd7548153220;
+      10'd834: rom_n_lookup_691 = 40'd7553264306;
+      10'd835: rom_n_lookup_691 = 40'd7558378853;
+      10'd836: rom_n_lookup_691 = 40'd7563496864;
+      10'd837: rom_n_lookup_691 = 40'd7568618340;
+      10'd838: rom_n_lookup_691 = 40'd7573743283;
+      10'd839: rom_n_lookup_691 = 40'd7578871697;
+      10'd840: rom_n_lookup_691 = 40'd7584003584;
+      10'd841: rom_n_lookup_691 = 40'd7589138946;
+      10'd842: rom_n_lookup_691 = 40'd7594277785;
+      10'd843: rom_n_lookup_691 = 40'd7599420103;
+      10'd844: rom_n_lookup_691 = 40'd7604565904;
+      10'd845: rom_n_lookup_691 = 40'd7609715189;
+      10'd846: rom_n_lookup_691 = 40'd7614867960;
+      10'd847: rom_n_lookup_691 = 40'd7620024221;
+      10'd848: rom_n_lookup_691 = 40'd7625183973;
+      10'd849: rom_n_lookup_691 = 40'd7630347220;
+      10'd850: rom_n_lookup_691 = 40'd7635513962;
+      10'd851: rom_n_lookup_691 = 40'd7640684203;
+      10'd852: rom_n_lookup_691 = 40'd7645857945;
+      10'd853: rom_n_lookup_691 = 40'd7651035190;
+      10'd854: rom_n_lookup_691 = 40'd7656215940;
+      10'd855: rom_n_lookup_691 = 40'd7661400199;
+      10'd856: rom_n_lookup_691 = 40'd7666587968;
+      10'd857: rom_n_lookup_691 = 40'd7671779250;
+      10'd858: rom_n_lookup_691 = 40'd7676974048;
+      10'd859: rom_n_lookup_691 = 40'd7682172362;
+      10'd860: rom_n_lookup_691 = 40'd7687374197;
+      10'd861: rom_n_lookup_691 = 40'd7692579554;
+      10'd862: rom_n_lookup_691 = 40'd7697788436;
+      10'd863: rom_n_lookup_691 = 40'd7703000845;
+      10'd864: rom_n_lookup_691 = 40'd7708216783;
+      10'd865: rom_n_lookup_691 = 40'd7713436253;
+      10'd866: rom_n_lookup_691 = 40'd7718659258;
+      10'd867: rom_n_lookup_691 = 40'd7723885799;
+      10'd868: rom_n_lookup_691 = 40'd7729115879;
+      10'd869: rom_n_lookup_691 = 40'd7734349500;
+      10'd870: rom_n_lookup_691 = 40'd7739586666;
+      10'd871: rom_n_lookup_691 = 40'd7744827378;
+      10'd872: rom_n_lookup_691 = 40'd7750071638;
+      10'd873: rom_n_lookup_691 = 40'd7755319449;
+      10'd874: rom_n_lookup_691 = 40'd7760570814;
+      10'd875: rom_n_lookup_691 = 40'd7765825735;
+      10'd876: rom_n_lookup_691 = 40'd7771084214;
+      10'd877: rom_n_lookup_691 = 40'd7776346253;
+      10'd878: rom_n_lookup_691 = 40'd7781611856;
+      10'd879: rom_n_lookup_691 = 40'd7786881024;
+      10'd880: rom_n_lookup_691 = 40'd7792153760;
+      10'd881: rom_n_lookup_691 = 40'd7797430067;
+      10'd882: rom_n_lookup_691 = 40'd7802709946;
+      10'd883: rom_n_lookup_691 = 40'd7807993401;
+      10'd884: rom_n_lookup_691 = 40'd7813280433;
+      10'd885: rom_n_lookup_691 = 40'd7818571045;
+      10'd886: rom_n_lookup_691 = 40'd7823865239;
+      10'd887: rom_n_lookup_691 = 40'd7829163018;
+      10'd888: rom_n_lookup_691 = 40'd7834464385;
+      10'd889: rom_n_lookup_691 = 40'd7839769341;
+      10'd890: rom_n_lookup_691 = 40'd7845077890;
+      10'd891: rom_n_lookup_691 = 40'd7850390033;
+      10'd892: rom_n_lookup_691 = 40'd7855705773;
+      10'd893: rom_n_lookup_691 = 40'd7861025112;
+      10'd894: rom_n_lookup_691 = 40'd7866348054;
+      10'd895: rom_n_lookup_691 = 40'd7871674599;
+      10'd896: rom_n_lookup_691 = 40'd7877004752;
+      10'd897: rom_n_lookup_691 = 40'd7882338513;
+      10'd898: rom_n_lookup_691 = 40'd7887675887;
+      10'd899: rom_n_lookup_691 = 40'd7893016874;
+      10'd900: rom_n_lookup_691 = 40'd7898361478;
+      10'd901: rom_n_lookup_691 = 40'd7903709701;
+      10'd902: rom_n_lookup_691 = 40'd7909061546;
+      10'd903: rom_n_lookup_691 = 40'd7914417014;
+      10'd904: rom_n_lookup_691 = 40'd7919776109;
+      10'd905: rom_n_lookup_691 = 40'd7925138832;
+      10'd906: rom_n_lookup_691 = 40'd7930505187;
+      10'd907: rom_n_lookup_691 = 40'd7935875175;
+      10'd908: rom_n_lookup_691 = 40'd7941248800;
+      10'd909: rom_n_lookup_691 = 40'd7946626063;
+      10'd910: rom_n_lookup_691 = 40'd7952006968;
+      10'd911: rom_n_lookup_691 = 40'd7957391516;
+      10'd912: rom_n_lookup_691 = 40'd7962779710;
+      10'd913: rom_n_lookup_691 = 40'd7968171552;
+      10'd914: rom_n_lookup_691 = 40'd7973567046;
+      10'd915: rom_n_lookup_691 = 40'd7978966193;
+      10'd916: rom_n_lookup_691 = 40'd7984368996;
+      10'd917: rom_n_lookup_691 = 40'd7989775457;
+      10'd918: rom_n_lookup_691 = 40'd7995185579;
+      10'd919: rom_n_lookup_691 = 40'd8000599365;
+      10'd920: rom_n_lookup_691 = 40'd8006016816;
+      10'd921: rom_n_lookup_691 = 40'd8011437936;
+      10'd922: rom_n_lookup_691 = 40'd8016862726;
+      10'd923: rom_n_lookup_691 = 40'd8022291190;
+      10'd924: rom_n_lookup_691 = 40'd8027723330;
+      10'd925: rom_n_lookup_691 = 40'd8033159148;
+      10'd926: rom_n_lookup_691 = 40'd8038598646;
+      10'd927: rom_n_lookup_691 = 40'd8044041828;
+      10'd928: rom_n_lookup_691 = 40'd8049488696;
+      10'd929: rom_n_lookup_691 = 40'd8054939252;
+      10'd930: rom_n_lookup_691 = 40'd8060393498;
+      10'd931: rom_n_lookup_691 = 40'd8065851438;
+      10'd932: rom_n_lookup_691 = 40'd8071313074;
+      10'd933: rom_n_lookup_691 = 40'd8076778407;
+      10'd934: rom_n_lookup_691 = 40'd8082247442;
+      10'd935: rom_n_lookup_691 = 40'd8087720180;
+      10'd936: rom_n_lookup_691 = 40'd8093196623;
+      10'd937: rom_n_lookup_691 = 40'd8098676775;
+      10'd938: rom_n_lookup_691 = 40'd8104160638;
+      10'd939: rom_n_lookup_691 = 40'd8109648214;
+      10'd940: rom_n_lookup_691 = 40'd8115139505;
+      10'd941: rom_n_lookup_691 = 40'd8120634515;
+      10'd942: rom_n_lookup_691 = 40'd8126133246;
+      10'd943: rom_n_lookup_691 = 40'd8131635701;
+      10'd944: rom_n_lookup_691 = 40'd8137141881;
+      10'd945: rom_n_lookup_691 = 40'd8142651789;
+      10'd946: rom_n_lookup_691 = 40'd8148165429;
+      10'd947: rom_n_lookup_691 = 40'd8153682802;
+      10'd948: rom_n_lookup_691 = 40'd8159203910;
+      10'd949: rom_n_lookup_691 = 40'd8164728758;
+      10'd950: rom_n_lookup_691 = 40'd8170257346;
+      10'd951: rom_n_lookup_691 = 40'd8175789678;
+      10'd952: rom_n_lookup_691 = 40'd8181325756;
+      10'd953: rom_n_lookup_691 = 40'd8186865583;
+      10'd954: rom_n_lookup_691 = 40'd8192409161;
+      10'd955: rom_n_lookup_691 = 40'd8197956493;
+      10'd956: rom_n_lookup_691 = 40'd8203507581;
+      10'd957: rom_n_lookup_691 = 40'd8209062428;
+      10'd958: rom_n_lookup_691 = 40'd8214621036;
+      10'd959: rom_n_lookup_691 = 40'd8220183408;
+      10'd960: rom_n_lookup_691 = 40'd8225749546;
+      10'd961: rom_n_lookup_691 = 40'd8231319454;
+      10'd962: rom_n_lookup_691 = 40'd8236893133;
+      10'd963: rom_n_lookup_691 = 40'd8242470586;
+      10'd964: rom_n_lookup_691 = 40'd8248051816;
+      10'd965: rom_n_lookup_691 = 40'd8253636825;
+      10'd966: rom_n_lookup_691 = 40'd8259225616;
+      10'd967: rom_n_lookup_691 = 40'd8264818191;
+      10'd968: rom_n_lookup_691 = 40'd8270414553;
+      10'd969: rom_n_lookup_691 = 40'd8276014704;
+      10'd970: rom_n_lookup_691 = 40'd8281618648;
+      10'd971: rom_n_lookup_691 = 40'd8287226386;
+      10'd972: rom_n_lookup_691 = 40'd8292837922;
+      10'd973: rom_n_lookup_691 = 40'd8298453257;
+      10'd974: rom_n_lookup_691 = 40'd8304072394;
+      10'd975: rom_n_lookup_691 = 40'd8309695336;
+      10'd976: rom_n_lookup_691 = 40'd8315322086;
+      10'd977: rom_n_lookup_691 = 40'd8320952646;
+      10'd978: rom_n_lookup_691 = 40'd8326587018;
+      10'd979: rom_n_lookup_691 = 40'd8332225206;
+      10'd980: rom_n_lookup_691 = 40'd8337867211;
+      10'd981: rom_n_lookup_691 = 40'd8343513037;
+      10'd982: rom_n_lookup_691 = 40'd8349162686;
+      10'd983: rom_n_lookup_691 = 40'd8354816160;
+      10'd984: rom_n_lookup_691 = 40'd8360473463;
+      10'd985: rom_n_lookup_691 = 40'd8366134596;
+      10'd986: rom_n_lookup_691 = 40'd8371799562;
+      10'd987: rom_n_lookup_691 = 40'd8377468365;
+      10'd988: rom_n_lookup_691 = 40'd8383141006;
+      10'd989: rom_n_lookup_691 = 40'd8388817488;
+      10'd990: rom_n_lookup_691 = 40'd8394497814;
+      10'd991: rom_n_lookup_691 = 40'd8400181986;
+      10'd992: rom_n_lookup_691 = 40'd8405870007;
+      10'd993: rom_n_lookup_691 = 40'd8411561879;
+      10'd994: rom_n_lookup_691 = 40'd8417257606;
+      10'd995: rom_n_lookup_691 = 40'd8422957190;
+      10'd996: rom_n_lookup_691 = 40'd8428660633;
+      10'd997: rom_n_lookup_691 = 40'd8434367937;
+      10'd998: rom_n_lookup_691 = 40'd8440079107;
+      10'd999: rom_n_lookup_691 = 40'd8445794143;
+      10'd1000: rom_n_lookup_691 = 40'd8451513050;
+      10'd1001: rom_n_lookup_691 = 40'd8457235829;
+      10'd1002: rom_n_lookup_691 = 40'd8462962483;
+      10'd1003: rom_n_lookup_691 = 40'd8468693014;
+      10'd1004: rom_n_lookup_691 = 40'd8474427426;
+      10'd1005: rom_n_lookup_691 = 40'd8480165721;
+      10'd1006: rom_n_lookup_691 = 40'd8485907902;
+      10'd1007: rom_n_lookup_691 = 40'd8491653970;
+      10'd1008: rom_n_lookup_691 = 40'd8497403930;
+      10'd1009: rom_n_lookup_691 = 40'd8503157783;
+      10'd1010: rom_n_lookup_691 = 40'd8508915532;
+      10'd1011: rom_n_lookup_691 = 40'd8514677180;
+      10'd1012: rom_n_lookup_691 = 40'd8520442729;
+      10'd1013: rom_n_lookup_691 = 40'd8526212182;
+      10'd1014: rom_n_lookup_691 = 40'd8531985542;
+      10'd1015: rom_n_lookup_691 = 40'd8537762812;
+      10'd1016: rom_n_lookup_691 = 40'd8543543993;
+      10'd1017: rom_n_lookup_691 = 40'd8549329089;
+      10'd1018: rom_n_lookup_691 = 40'd8555118102;
+      10'd1019: rom_n_lookup_691 = 40'd8560911035;
+      10'd1020: rom_n_lookup_691 = 40'd8566707891;
+      10'd1021: rom_n_lookup_691 = 40'd8572508671;
+      10'd1022: rom_n_lookup_691 = 40'd8578313380;
+      10'd1023: rom_n_lookup_691 = 40'd8584122020;
+      default: rom_n_lookup_691 = 40'd0;
     endcase
   end
 endfunction
 // exp2 fraction ROM: signed interval differences, 32 fractional bits.
-wire [40:0] n_692;
-function [40:0] rom_n_692;
+wire [40:0] n_lookup_692;
+function [40:0] rom_n_lookup_692;
   input [9:0] address;
   begin
     case (address)
-      10'd0: rom_n_692 = 41'd2908254;
-      10'd1: rom_n_692 = 41'd2910224;
-      10'd2: rom_n_692 = 41'd2912194;
-      10'd3: rom_n_692 = 41'd2914166;
-      10'd4: rom_n_692 = 41'd2916139;
-      10'd5: rom_n_692 = 41'd2918114;
-      10'd6: rom_n_692 = 41'd2920090;
-      10'd7: rom_n_692 = 41'd2922067;
-      10'd8: rom_n_692 = 41'd2924045;
-      10'd9: rom_n_692 = 41'd2926026;
-      10'd10: rom_n_692 = 41'd2928007;
-      10'd11: rom_n_692 = 41'd2929990;
-      10'd12: rom_n_692 = 41'd2931973;
-      10'd13: rom_n_692 = 41'd2933959;
-      10'd14: rom_n_692 = 41'd2935946;
-      10'd15: rom_n_692 = 41'd2937933;
-      10'd16: rom_n_692 = 41'd2939923;
-      10'd17: rom_n_692 = 41'd2941914;
-      10'd18: rom_n_692 = 41'd2943906;
-      10'd19: rom_n_692 = 41'd2945899;
-      10'd20: rom_n_692 = 41'd2947894;
-      10'd21: rom_n_692 = 41'd2949890;
-      10'd22: rom_n_692 = 41'd2951888;
-      10'd23: rom_n_692 = 41'd2953886;
-      10'd24: rom_n_692 = 41'd2955886;
-      10'd25: rom_n_692 = 41'd2957888;
-      10'd26: rom_n_692 = 41'd2959891;
-      10'd27: rom_n_692 = 41'd2961895;
-      10'd28: rom_n_692 = 41'd2963901;
-      10'd29: rom_n_692 = 41'd2965908;
-      10'd30: rom_n_692 = 41'd2967916;
-      10'd31: rom_n_692 = 41'd2969925;
-      10'd32: rom_n_692 = 41'd2971937;
-      10'd33: rom_n_692 = 41'd2973949;
-      10'd34: rom_n_692 = 41'd2975963;
-      10'd35: rom_n_692 = 41'd2977978;
-      10'd36: rom_n_692 = 41'd2979994;
-      10'd37: rom_n_692 = 41'd2982012;
-      10'd38: rom_n_692 = 41'd2984032;
-      10'd39: rom_n_692 = 41'd2986052;
-      10'd40: rom_n_692 = 41'd2988074;
-      10'd41: rom_n_692 = 41'd2990097;
-      10'd42: rom_n_692 = 41'd2992122;
-      10'd43: rom_n_692 = 41'd2994148;
-      10'd44: rom_n_692 = 41'd2996176;
-      10'd45: rom_n_692 = 41'd2998204;
-      10'd46: rom_n_692 = 41'd3000234;
-      10'd47: rom_n_692 = 41'd3002266;
-      10'd48: rom_n_692 = 41'd3004299;
-      10'd49: rom_n_692 = 41'd3006334;
-      10'd50: rom_n_692 = 41'd3008368;
-      10'd51: rom_n_692 = 41'd3010406;
-      10'd52: rom_n_692 = 41'd3012445;
-      10'd53: rom_n_692 = 41'd3014484;
-      10'd54: rom_n_692 = 41'd3016525;
-      10'd55: rom_n_692 = 41'd3018568;
-      10'd56: rom_n_692 = 41'd3020612;
-      10'd57: rom_n_692 = 41'd3022658;
-      10'd58: rom_n_692 = 41'd3024704;
-      10'd59: rom_n_692 = 41'd3026752;
-      10'd60: rom_n_692 = 41'd3028802;
-      10'd61: rom_n_692 = 41'd3030852;
-      10'd62: rom_n_692 = 41'd3032905;
-      10'd63: rom_n_692 = 41'd3034959;
-      10'd64: rom_n_692 = 41'd3037013;
-      10'd65: rom_n_692 = 41'd3039070;
-      10'd66: rom_n_692 = 41'd3041128;
-      10'd67: rom_n_692 = 41'd3043187;
-      10'd68: rom_n_692 = 41'd3045248;
-      10'd69: rom_n_692 = 41'd3047310;
-      10'd70: rom_n_692 = 41'd3049373;
-      10'd71: rom_n_692 = 41'd3051438;
-      10'd72: rom_n_692 = 41'd3053504;
-      10'd73: rom_n_692 = 41'd3055572;
-      10'd74: rom_n_692 = 41'd3057641;
-      10'd75: rom_n_692 = 41'd3059712;
-      10'd76: rom_n_692 = 41'd3061783;
-      10'd77: rom_n_692 = 41'd3063856;
-      10'd78: rom_n_692 = 41'd3065931;
-      10'd79: rom_n_692 = 41'd3068007;
-      10'd80: rom_n_692 = 41'd3070085;
-      10'd81: rom_n_692 = 41'd3072163;
-      10'd82: rom_n_692 = 41'd3074244;
-      10'd83: rom_n_692 = 41'd3076325;
-      10'd84: rom_n_692 = 41'd3078408;
-      10'd85: rom_n_692 = 41'd3080493;
-      10'd86: rom_n_692 = 41'd3082579;
-      10'd87: rom_n_692 = 41'd3084666;
-      10'd88: rom_n_692 = 41'd3086755;
-      10'd89: rom_n_692 = 41'd3088845;
-      10'd90: rom_n_692 = 41'd3090936;
-      10'd91: rom_n_692 = 41'd3093029;
-      10'd92: rom_n_692 = 41'd3095124;
-      10'd93: rom_n_692 = 41'd3097220;
-      10'd94: rom_n_692 = 41'd3099317;
-      10'd95: rom_n_692 = 41'd3101415;
-      10'd96: rom_n_692 = 41'd3103516;
-      10'd97: rom_n_692 = 41'd3105617;
-      10'd98: rom_n_692 = 41'd3107720;
-      10'd99: rom_n_692 = 41'd3109824;
-      10'd100: rom_n_692 = 41'd3111930;
-      10'd101: rom_n_692 = 41'd3114037;
-      10'd102: rom_n_692 = 41'd3116146;
-      10'd103: rom_n_692 = 41'd3118256;
-      10'd104: rom_n_692 = 41'd3120367;
-      10'd105: rom_n_692 = 41'd3122480;
-      10'd106: rom_n_692 = 41'd3124595;
-      10'd107: rom_n_692 = 41'd3126710;
-      10'd108: rom_n_692 = 41'd3128828;
-      10'd109: rom_n_692 = 41'd3130946;
-      10'd110: rom_n_692 = 41'd3133066;
-      10'd111: rom_n_692 = 41'd3135188;
-      10'd112: rom_n_692 = 41'd3137310;
-      10'd113: rom_n_692 = 41'd3139435;
-      10'd114: rom_n_692 = 41'd3141561;
-      10'd115: rom_n_692 = 41'd3143688;
-      10'd116: rom_n_692 = 41'd3145817;
-      10'd117: rom_n_692 = 41'd3147947;
-      10'd118: rom_n_692 = 41'd3150078;
-      10'd119: rom_n_692 = 41'd3152211;
-      10'd120: rom_n_692 = 41'd3154346;
-      10'd121: rom_n_692 = 41'd3156482;
-      10'd122: rom_n_692 = 41'd3158619;
-      10'd123: rom_n_692 = 41'd3160758;
-      10'd124: rom_n_692 = 41'd3162898;
-      10'd125: rom_n_692 = 41'd3165040;
-      10'd126: rom_n_692 = 41'd3167183;
-      10'd127: rom_n_692 = 41'd3169328;
-      10'd128: rom_n_692 = 41'd3171474;
-      10'd129: rom_n_692 = 41'd3173621;
-      10'd130: rom_n_692 = 41'd3175770;
-      10'd131: rom_n_692 = 41'd3177920;
-      10'd132: rom_n_692 = 41'd3180073;
-      10'd133: rom_n_692 = 41'd3182226;
-      10'd134: rom_n_692 = 41'd3184380;
-      10'd135: rom_n_692 = 41'd3186537;
-      10'd136: rom_n_692 = 41'd3188694;
-      10'd137: rom_n_692 = 41'd3190854;
-      10'd138: rom_n_692 = 41'd3193014;
-      10'd139: rom_n_692 = 41'd3195176;
-      10'd140: rom_n_692 = 41'd3197340;
-      10'd141: rom_n_692 = 41'd3199505;
-      10'd142: rom_n_692 = 41'd3201672;
-      10'd143: rom_n_692 = 41'd3203839;
-      10'd144: rom_n_692 = 41'd3206009;
-      10'd145: rom_n_692 = 41'd3208179;
-      10'd146: rom_n_692 = 41'd3210352;
-      10'd147: rom_n_692 = 41'd3212526;
-      10'd148: rom_n_692 = 41'd3214701;
-      10'd149: rom_n_692 = 41'd3216878;
-      10'd150: rom_n_692 = 41'd3219056;
-      10'd151: rom_n_692 = 41'd3221236;
-      10'd152: rom_n_692 = 41'd3223417;
-      10'd153: rom_n_692 = 41'd3225600;
-      10'd154: rom_n_692 = 41'd3227784;
-      10'd155: rom_n_692 = 41'd3229970;
-      10'd156: rom_n_692 = 41'd3232156;
-      10'd157: rom_n_692 = 41'd3234345;
-      10'd158: rom_n_692 = 41'd3236536;
-      10'd159: rom_n_692 = 41'd3238727;
-      10'd160: rom_n_692 = 41'd3240919;
-      10'd161: rom_n_692 = 41'd3243115;
-      10'd162: rom_n_692 = 41'd3245310;
-      10'd163: rom_n_692 = 41'd3247508;
-      10'd164: rom_n_692 = 41'd3249707;
-      10'd165: rom_n_692 = 41'd3251908;
-      10'd166: rom_n_692 = 41'd3254109;
-      10'd167: rom_n_692 = 41'd3256313;
-      10'd168: rom_n_692 = 41'd3258518;
-      10'd169: rom_n_692 = 41'd3260724;
-      10'd170: rom_n_692 = 41'd3262932;
-      10'd171: rom_n_692 = 41'd3265142;
-      10'd172: rom_n_692 = 41'd3267352;
-      10'd173: rom_n_692 = 41'd3269565;
-      10'd174: rom_n_692 = 41'd3271779;
-      10'd175: rom_n_692 = 41'd3273994;
-      10'd176: rom_n_692 = 41'd3276211;
-      10'd177: rom_n_692 = 41'd3278430;
-      10'd178: rom_n_692 = 41'd3280650;
-      10'd179: rom_n_692 = 41'd3282871;
-      10'd180: rom_n_692 = 41'd3285093;
-      10'd181: rom_n_692 = 41'd3287319;
-      10'd182: rom_n_692 = 41'd3289544;
-      10'd183: rom_n_692 = 41'd3291772;
-      10'd184: rom_n_692 = 41'd3294001;
-      10'd185: rom_n_692 = 41'd3296231;
-      10'd186: rom_n_692 = 41'd3298463;
-      10'd187: rom_n_692 = 41'd3300697;
-      10'd188: rom_n_692 = 41'd3302931;
-      10'd189: rom_n_692 = 41'd3305168;
-      10'd190: rom_n_692 = 41'd3307407;
-      10'd191: rom_n_692 = 41'd3309645;
-      10'd192: rom_n_692 = 41'd3311887;
-      10'd193: rom_n_692 = 41'd3314130;
-      10'd194: rom_n_692 = 41'd3316373;
-      10'd195: rom_n_692 = 41'd3318619;
-      10'd196: rom_n_692 = 41'd3320866;
-      10'd197: rom_n_692 = 41'd3323115;
-      10'd198: rom_n_692 = 41'd3325365;
-      10'd199: rom_n_692 = 41'd3327617;
-      10'd200: rom_n_692 = 41'd3329870;
-      10'd201: rom_n_692 = 41'd3332125;
-      10'd202: rom_n_692 = 41'd3334381;
-      10'd203: rom_n_692 = 41'd3336639;
-      10'd204: rom_n_692 = 41'd3338898;
-      10'd205: rom_n_692 = 41'd3341159;
-      10'd206: rom_n_692 = 41'd3343422;
-      10'd207: rom_n_692 = 41'd3345685;
-      10'd208: rom_n_692 = 41'd3347951;
-      10'd209: rom_n_692 = 41'd3350218;
-      10'd210: rom_n_692 = 41'd3352486;
-      10'd211: rom_n_692 = 41'd3354757;
-      10'd212: rom_n_692 = 41'd3357028;
-      10'd213: rom_n_692 = 41'd3359301;
-      10'd214: rom_n_692 = 41'd3361576;
-      10'd215: rom_n_692 = 41'd3363852;
-      10'd216: rom_n_692 = 41'd3366130;
-      10'd217: rom_n_692 = 41'd3368410;
-      10'd218: rom_n_692 = 41'd3370690;
-      10'd219: rom_n_692 = 41'd3372972;
-      10'd220: rom_n_692 = 41'd3375257;
-      10'd221: rom_n_692 = 41'd3377541;
-      10'd222: rom_n_692 = 41'd3379829;
-      10'd223: rom_n_692 = 41'd3382118;
-      10'd224: rom_n_692 = 41'd3384408;
-      10'd225: rom_n_692 = 41'd3386699;
-      10'd226: rom_n_692 = 41'd3388993;
-      10'd227: rom_n_692 = 41'd3391287;
-      10'd228: rom_n_692 = 41'd3393584;
-      10'd229: rom_n_692 = 41'd3395881;
-      10'd230: rom_n_692 = 41'd3398182;
-      10'd231: rom_n_692 = 41'd3400482;
-      10'd232: rom_n_692 = 41'd3402784;
-      10'd233: rom_n_692 = 41'd3405089;
-      10'd234: rom_n_692 = 41'd3407395;
-      10'd235: rom_n_692 = 41'd3409701;
-      10'd236: rom_n_692 = 41'd3412011;
-      10'd237: rom_n_692 = 41'd3414321;
-      10'd238: rom_n_692 = 41'd3416633;
-      10'd239: rom_n_692 = 41'd3418946;
-      10'd240: rom_n_692 = 41'd3421262;
-      10'd241: rom_n_692 = 41'd3423578;
-      10'd242: rom_n_692 = 41'd3425896;
-      10'd243: rom_n_692 = 41'd3428216;
-      10'd244: rom_n_692 = 41'd3430538;
-      10'd245: rom_n_692 = 41'd3432860;
-      10'd246: rom_n_692 = 41'd3435185;
-      10'd247: rom_n_692 = 41'd3437511;
-      10'd248: rom_n_692 = 41'd3439838;
-      10'd249: rom_n_692 = 41'd3442168;
-      10'd250: rom_n_692 = 41'd3444499;
-      10'd251: rom_n_692 = 41'd3446831;
-      10'd252: rom_n_692 = 41'd3449165;
-      10'd253: rom_n_692 = 41'd3451500;
-      10'd254: rom_n_692 = 41'd3453838;
-      10'd255: rom_n_692 = 41'd3456176;
-      10'd256: rom_n_692 = 41'd3458517;
-      10'd257: rom_n_692 = 41'd3460858;
-      10'd258: rom_n_692 = 41'd3463202;
-      10'd259: rom_n_692 = 41'd3465547;
-      10'd260: rom_n_692 = 41'd3467893;
-      10'd261: rom_n_692 = 41'd3470242;
-      10'd262: rom_n_692 = 41'd3472592;
-      10'd263: rom_n_692 = 41'd3474943;
-      10'd264: rom_n_692 = 41'd3477296;
-      10'd265: rom_n_692 = 41'd3479650;
-      10'd266: rom_n_692 = 41'd3482007;
-      10'd267: rom_n_692 = 41'd3484365;
-      10'd268: rom_n_692 = 41'd3486723;
-      10'd269: rom_n_692 = 41'd3489085;
-      10'd270: rom_n_692 = 41'd3491448;
-      10'd271: rom_n_692 = 41'd3493811;
-      10'd272: rom_n_692 = 41'd3496178;
-      10'd273: rom_n_692 = 41'd3498544;
-      10'd274: rom_n_692 = 41'd3500914;
-      10'd275: rom_n_692 = 41'd3503284;
-      10'd276: rom_n_692 = 41'd3505657;
-      10'd277: rom_n_692 = 41'd3508030;
-      10'd278: rom_n_692 = 41'd3510406;
-      10'd279: rom_n_692 = 41'd3512782;
-      10'd280: rom_n_692 = 41'd3515161;
-      10'd281: rom_n_692 = 41'd3517542;
-      10'd282: rom_n_692 = 41'd3519923;
-      10'd283: rom_n_692 = 41'd3522307;
-      10'd284: rom_n_692 = 41'd3524692;
-      10'd285: rom_n_692 = 41'd3527078;
-      10'd286: rom_n_692 = 41'd3529467;
-      10'd287: rom_n_692 = 41'd3531857;
-      10'd288: rom_n_692 = 41'd3534248;
-      10'd289: rom_n_692 = 41'd3536641;
-      10'd290: rom_n_692 = 41'd3539036;
-      10'd291: rom_n_692 = 41'd3541433;
-      10'd292: rom_n_692 = 41'd3543830;
-      10'd293: rom_n_692 = 41'd3546231;
-      10'd294: rom_n_692 = 41'd3548631;
-      10'd295: rom_n_692 = 41'd3551034;
-      10'd296: rom_n_692 = 41'd3553439;
-      10'd297: rom_n_692 = 41'd3555845;
-      10'd298: rom_n_692 = 41'd3558253;
-      10'd299: rom_n_692 = 41'd3560662;
-      10'd300: rom_n_692 = 41'd3563073;
-      10'd301: rom_n_692 = 41'd3565486;
-      10'd302: rom_n_692 = 41'd3567900;
-      10'd303: rom_n_692 = 41'd3570316;
-      10'd304: rom_n_692 = 41'd3572734;
-      10'd305: rom_n_692 = 41'd3575153;
-      10'd306: rom_n_692 = 41'd3577574;
-      10'd307: rom_n_692 = 41'd3579996;
-      10'd308: rom_n_692 = 41'd3582420;
-      10'd309: rom_n_692 = 41'd3584846;
-      10'd310: rom_n_692 = 41'd3587274;
-      10'd311: rom_n_692 = 41'd3589702;
-      10'd312: rom_n_692 = 41'd3592133;
-      10'd313: rom_n_692 = 41'd3594566;
-      10'd314: rom_n_692 = 41'd3597000;
-      10'd315: rom_n_692 = 41'd3599435;
-      10'd316: rom_n_692 = 41'd3601872;
-      10'd317: rom_n_692 = 41'd3604312;
-      10'd318: rom_n_692 = 41'd3606752;
-      10'd319: rom_n_692 = 41'd3609194;
-      10'd320: rom_n_692 = 41'd3611638;
-      10'd321: rom_n_692 = 41'd3614084;
-      10'd322: rom_n_692 = 41'd3616531;
-      10'd323: rom_n_692 = 41'd3618980;
-      10'd324: rom_n_692 = 41'd3621430;
-      10'd325: rom_n_692 = 41'd3623883;
-      10'd326: rom_n_692 = 41'd3626336;
-      10'd327: rom_n_692 = 41'd3628792;
-      10'd328: rom_n_692 = 41'd3631249;
-      10'd329: rom_n_692 = 41'd3633708;
-      10'd330: rom_n_692 = 41'd3636168;
-      10'd331: rom_n_692 = 41'd3638630;
-      10'd332: rom_n_692 = 41'd3641095;
-      10'd333: rom_n_692 = 41'd3643560;
-      10'd334: rom_n_692 = 41'd3646027;
-      10'd335: rom_n_692 = 41'd3648495;
-      10'd336: rom_n_692 = 41'd3650967;
-      10'd337: rom_n_692 = 41'd3653438;
-      10'd338: rom_n_692 = 41'd3655913;
-      10'd339: rom_n_692 = 41'd3658388;
-      10'd340: rom_n_692 = 41'd3660865;
-      10'd341: rom_n_692 = 41'd3663344;
-      10'd342: rom_n_692 = 41'd3665824;
-      10'd343: rom_n_692 = 41'd3668307;
-      10'd344: rom_n_692 = 41'd3670791;
-      10'd345: rom_n_692 = 41'd3673276;
-      10'd346: rom_n_692 = 41'd3675764;
-      10'd347: rom_n_692 = 41'd3678252;
-      10'd348: rom_n_692 = 41'd3680744;
-      10'd349: rom_n_692 = 41'd3683235;
-      10'd350: rom_n_692 = 41'd3685730;
-      10'd351: rom_n_692 = 41'd3688225;
-      10'd352: rom_n_692 = 41'd3690723;
-      10'd353: rom_n_692 = 41'd3693222;
-      10'd354: rom_n_692 = 41'd3695722;
-      10'd355: rom_n_692 = 41'd3698225;
-      10'd356: rom_n_692 = 41'd3700730;
-      10'd357: rom_n_692 = 41'd3703235;
-      10'd358: rom_n_692 = 41'd3705743;
-      10'd359: rom_n_692 = 41'd3708252;
-      10'd360: rom_n_692 = 41'd3710763;
-      10'd361: rom_n_692 = 41'd3713276;
-      10'd362: rom_n_692 = 41'd3715790;
-      10'd363: rom_n_692 = 41'd3718306;
-      10'd364: rom_n_692 = 41'd3720824;
-      10'd365: rom_n_692 = 41'd3723343;
-      10'd366: rom_n_692 = 41'd3725865;
-      10'd367: rom_n_692 = 41'd3728387;
-      10'd368: rom_n_692 = 41'd3730912;
-      10'd369: rom_n_692 = 41'd3733439;
-      10'd370: rom_n_692 = 41'd3735966;
-      10'd371: rom_n_692 = 41'd3738496;
-      10'd372: rom_n_692 = 41'd3741028;
-      10'd373: rom_n_692 = 41'd3743561;
-      10'd374: rom_n_692 = 41'd3746095;
-      10'd375: rom_n_692 = 41'd3748632;
-      10'd376: rom_n_692 = 41'd3751171;
-      10'd377: rom_n_692 = 41'd3753711;
-      10'd378: rom_n_692 = 41'd3756252;
-      10'd379: rom_n_692 = 41'd3758796;
-      10'd380: rom_n_692 = 41'd3761341;
-      10'd381: rom_n_692 = 41'd3763888;
-      10'd382: rom_n_692 = 41'd3766436;
-      10'd383: rom_n_692 = 41'd3768987;
-      10'd384: rom_n_692 = 41'd3771539;
-      10'd385: rom_n_692 = 41'd3774093;
-      10'd386: rom_n_692 = 41'd3776649;
-      10'd387: rom_n_692 = 41'd3779205;
-      10'd388: rom_n_692 = 41'd3781765;
-      10'd389: rom_n_692 = 41'd3784326;
-      10'd390: rom_n_692 = 41'd3786888;
-      10'd391: rom_n_692 = 41'd3789452;
-      10'd392: rom_n_692 = 41'd3792018;
-      10'd393: rom_n_692 = 41'd3794586;
-      10'd394: rom_n_692 = 41'd3797155;
-      10'd395: rom_n_692 = 41'd3799727;
-      10'd396: rom_n_692 = 41'd3802299;
-      10'd397: rom_n_692 = 41'd3804874;
-      10'd398: rom_n_692 = 41'd3807450;
-      10'd399: rom_n_692 = 41'd3810029;
-      10'd400: rom_n_692 = 41'd3812608;
-      10'd401: rom_n_692 = 41'd3815190;
-      10'd402: rom_n_692 = 41'd3817774;
-      10'd403: rom_n_692 = 41'd3820358;
-      10'd404: rom_n_692 = 41'd3822946;
-      10'd405: rom_n_692 = 41'd3825534;
-      10'd406: rom_n_692 = 41'd3828124;
-      10'd407: rom_n_692 = 41'd3830717;
-      10'd408: rom_n_692 = 41'd3833310;
-      10'd409: rom_n_692 = 41'd3835907;
-      10'd410: rom_n_692 = 41'd3838503;
-      10'd411: rom_n_692 = 41'd3841103;
-      10'd412: rom_n_692 = 41'd3843704;
-      10'd413: rom_n_692 = 41'd3846306;
-      10'd414: rom_n_692 = 41'd3848911;
-      10'd415: rom_n_692 = 41'd3851517;
-      10'd416: rom_n_692 = 41'd3854125;
-      10'd417: rom_n_692 = 41'd3856735;
-      10'd418: rom_n_692 = 41'd3859346;
-      10'd419: rom_n_692 = 41'd3861959;
-      10'd420: rom_n_692 = 41'd3864575;
-      10'd421: rom_n_692 = 41'd3867191;
-      10'd422: rom_n_692 = 41'd3869810;
-      10'd423: rom_n_692 = 41'd3872431;
-      10'd424: rom_n_692 = 41'd3875052;
-      10'd425: rom_n_692 = 41'd3877677;
-      10'd426: rom_n_692 = 41'd3880302;
-      10'd427: rom_n_692 = 41'd3882930;
-      10'd428: rom_n_692 = 41'd3885558;
-      10'd429: rom_n_692 = 41'd3888190;
-      10'd430: rom_n_692 = 41'd3890823;
-      10'd431: rom_n_692 = 41'd3893457;
-      10'd432: rom_n_692 = 41'd3896094;
-      10'd433: rom_n_692 = 41'd3898732;
-      10'd434: rom_n_692 = 41'd3901372;
-      10'd435: rom_n_692 = 41'd3904013;
-      10'd436: rom_n_692 = 41'd3906657;
-      10'd437: rom_n_692 = 41'd3909303;
-      10'd438: rom_n_692 = 41'd3911949;
-      10'd439: rom_n_692 = 41'd3914598;
-      10'd440: rom_n_692 = 41'd3917250;
-      10'd441: rom_n_692 = 41'd3919901;
-      10'd442: rom_n_692 = 41'd3922556;
-      10'd443: rom_n_692 = 41'd3925212;
-      10'd444: rom_n_692 = 41'd3927870;
-      10'd445: rom_n_692 = 41'd3930529;
-      10'd446: rom_n_692 = 41'd3933191;
-      10'd447: rom_n_692 = 41'd3935855;
-      10'd448: rom_n_692 = 41'd3938519;
-      10'd449: rom_n_692 = 41'd3941186;
-      10'd450: rom_n_692 = 41'd3943855;
-      10'd451: rom_n_692 = 41'd3946526;
-      10'd452: rom_n_692 = 41'd3949197;
-      10'd453: rom_n_692 = 41'd3951872;
-      10'd454: rom_n_692 = 41'd3954548;
-      10'd455: rom_n_692 = 41'd3957226;
-      10'd456: rom_n_692 = 41'd3959905;
-      10'd457: rom_n_692 = 41'd3962586;
-      10'd458: rom_n_692 = 41'd3965270;
-      10'd459: rom_n_692 = 41'd3967955;
-      10'd460: rom_n_692 = 41'd3970641;
-      10'd461: rom_n_692 = 41'd3973330;
-      10'd462: rom_n_692 = 41'd3976021;
-      10'd463: rom_n_692 = 41'd3978713;
-      10'd464: rom_n_692 = 41'd3981407;
-      10'd465: rom_n_692 = 41'd3984103;
-      10'd466: rom_n_692 = 41'd3986801;
-      10'd467: rom_n_692 = 41'd3989500;
-      10'd468: rom_n_692 = 41'd3992202;
-      10'd469: rom_n_692 = 41'd3994904;
-      10'd470: rom_n_692 = 41'd3997610;
-      10'd471: rom_n_692 = 41'd4000317;
-      10'd472: rom_n_692 = 41'd4003026;
-      10'd473: rom_n_692 = 41'd4005736;
-      10'd474: rom_n_692 = 41'd4008449;
-      10'd475: rom_n_692 = 41'd4011163;
-      10'd476: rom_n_692 = 41'd4013879;
-      10'd477: rom_n_692 = 41'd4016597;
-      10'd478: rom_n_692 = 41'd4019316;
-      10'd479: rom_n_692 = 41'd4022039;
-      10'd480: rom_n_692 = 41'd4024761;
-      10'd481: rom_n_692 = 41'd4027487;
-      10'd482: rom_n_692 = 41'd4030214;
-      10'd483: rom_n_692 = 41'd4032944;
-      10'd484: rom_n_692 = 41'd4035674;
-      10'd485: rom_n_692 = 41'd4038406;
-      10'd486: rom_n_692 = 41'd4041141;
-      10'd487: rom_n_692 = 41'd4043878;
-      10'd488: rom_n_692 = 41'd4046616;
-      10'd489: rom_n_692 = 41'd4049355;
-      10'd490: rom_n_692 = 41'd4052098;
-      10'd491: rom_n_692 = 41'd4054842;
-      10'd492: rom_n_692 = 41'd4057587;
-      10'd493: rom_n_692 = 41'd4060335;
-      10'd494: rom_n_692 = 41'd4063084;
-      10'd495: rom_n_692 = 41'd4065835;
-      10'd496: rom_n_692 = 41'd4068589;
-      10'd497: rom_n_692 = 41'd4071343;
-      10'd498: rom_n_692 = 41'd4074101;
-      10'd499: rom_n_692 = 41'd4076859;
-      10'd500: rom_n_692 = 41'd4079619;
-      10'd501: rom_n_692 = 41'd4082382;
-      10'd502: rom_n_692 = 41'd4085146;
-      10'd503: rom_n_692 = 41'd4087913;
-      10'd504: rom_n_692 = 41'd4090680;
-      10'd505: rom_n_692 = 41'd4093451;
-      10'd506: rom_n_692 = 41'd4096222;
-      10'd507: rom_n_692 = 41'd4098996;
-      10'd508: rom_n_692 = 41'd4101771;
-      10'd509: rom_n_692 = 41'd4104549;
-      10'd510: rom_n_692 = 41'd4107329;
-      10'd511: rom_n_692 = 41'd4110109;
-      10'd512: rom_n_692 = 41'd4112892;
-      10'd513: rom_n_692 = 41'd4115678;
-      10'd514: rom_n_692 = 41'd4118464;
-      10'd515: rom_n_692 = 41'd4121253;
-      10'd516: rom_n_692 = 41'd4124044;
-      10'd517: rom_n_692 = 41'd4126836;
-      10'd518: rom_n_692 = 41'd4129631;
-      10'd519: rom_n_692 = 41'd4132427;
-      10'd520: rom_n_692 = 41'd4135225;
-      10'd521: rom_n_692 = 41'd4138025;
-      10'd522: rom_n_692 = 41'd4140827;
-      10'd523: rom_n_692 = 41'd4143631;
-      10'd524: rom_n_692 = 41'd4146437;
-      10'd525: rom_n_692 = 41'd4149245;
-      10'd526: rom_n_692 = 41'd4152054;
-      10'd527: rom_n_692 = 41'd4154865;
-      10'd528: rom_n_692 = 41'd4157679;
-      10'd529: rom_n_692 = 41'd4160495;
-      10'd530: rom_n_692 = 41'd4163311;
-      10'd531: rom_n_692 = 41'd4166131;
-      10'd532: rom_n_692 = 41'd4168951;
-      10'd533: rom_n_692 = 41'd4171775;
-      10'd534: rom_n_692 = 41'd4174599;
-      10'd535: rom_n_692 = 41'd4177426;
-      10'd536: rom_n_692 = 41'd4180255;
-      10'd537: rom_n_692 = 41'd4183085;
-      10'd538: rom_n_692 = 41'd4185918;
-      10'd539: rom_n_692 = 41'd4188752;
-      10'd540: rom_n_692 = 41'd4191589;
-      10'd541: rom_n_692 = 41'd4194427;
-      10'd542: rom_n_692 = 41'd4197267;
-      10'd543: rom_n_692 = 41'd4200109;
-      10'd544: rom_n_692 = 41'd4202953;
-      10'd545: rom_n_692 = 41'd4205799;
-      10'd546: rom_n_692 = 41'd4208647;
-      10'd547: rom_n_692 = 41'd4211497;
-      10'd548: rom_n_692 = 41'd4214348;
-      10'd549: rom_n_692 = 41'd4217202;
-      10'd550: rom_n_692 = 41'd4220058;
-      10'd551: rom_n_692 = 41'd4222915;
-      10'd552: rom_n_692 = 41'd4225775;
-      10'd553: rom_n_692 = 41'd4228636;
-      10'd554: rom_n_692 = 41'd4231500;
-      10'd555: rom_n_692 = 41'd4234364;
-      10'd556: rom_n_692 = 41'd4237232;
-      10'd557: rom_n_692 = 41'd4240102;
-      10'd558: rom_n_692 = 41'd4242972;
-      10'd559: rom_n_692 = 41'd4245845;
-      10'd560: rom_n_692 = 41'd4248720;
-      10'd561: rom_n_692 = 41'd4251598;
-      10'd562: rom_n_692 = 41'd4254476;
-      10'd563: rom_n_692 = 41'd4257357;
-      10'd564: rom_n_692 = 41'd4260239;
-      10'd565: rom_n_692 = 41'd4263125;
-      10'd566: rom_n_692 = 41'd4266011;
-      10'd567: rom_n_692 = 41'd4268900;
-      10'd568: rom_n_692 = 41'd4271790;
-      10'd569: rom_n_692 = 41'd4274683;
-      10'd570: rom_n_692 = 41'd4277578;
-      10'd571: rom_n_692 = 41'd4280474;
-      10'd572: rom_n_692 = 41'd4283372;
-      10'd573: rom_n_692 = 41'd4286273;
-      10'd574: rom_n_692 = 41'd4289175;
-      10'd575: rom_n_692 = 41'd4292080;
-      10'd576: rom_n_692 = 41'd4294986;
-      10'd577: rom_n_692 = 41'd4297894;
-      10'd578: rom_n_692 = 41'd4300804;
-      10'd579: rom_n_692 = 41'd4303716;
-      10'd580: rom_n_692 = 41'd4306631;
-      10'd581: rom_n_692 = 41'd4309547;
-      10'd582: rom_n_692 = 41'd4312465;
-      10'd583: rom_n_692 = 41'd4315385;
-      10'd584: rom_n_692 = 41'd4318307;
-      10'd585: rom_n_692 = 41'd4321231;
-      10'd586: rom_n_692 = 41'd4324158;
-      10'd587: rom_n_692 = 41'd4327085;
-      10'd588: rom_n_692 = 41'd4330015;
-      10'd589: rom_n_692 = 41'd4332948;
-      10'd590: rom_n_692 = 41'd4335881;
-      10'd591: rom_n_692 = 41'd4338817;
-      10'd592: rom_n_692 = 41'd4341755;
-      10'd593: rom_n_692 = 41'd4344695;
-      10'd594: rom_n_692 = 41'd4347637;
-      10'd595: rom_n_692 = 41'd4350581;
-      10'd596: rom_n_692 = 41'd4353527;
-      10'd597: rom_n_692 = 41'd4356475;
-      10'd598: rom_n_692 = 41'd4359424;
-      10'd599: rom_n_692 = 41'd4362377;
-      10'd600: rom_n_692 = 41'd4365330;
-      10'd601: rom_n_692 = 41'd4368287;
-      10'd602: rom_n_692 = 41'd4371244;
-      10'd603: rom_n_692 = 41'd4374204;
-      10'd604: rom_n_692 = 41'd4377166;
-      10'd605: rom_n_692 = 41'd4380130;
-      10'd606: rom_n_692 = 41'd4383096;
-      10'd607: rom_n_692 = 41'd4386064;
-      10'd608: rom_n_692 = 41'd4389034;
-      10'd609: rom_n_692 = 41'd4392005;
-      10'd610: rom_n_692 = 41'd4394980;
-      10'd611: rom_n_692 = 41'd4397956;
-      10'd612: rom_n_692 = 41'd4400933;
-      10'd613: rom_n_692 = 41'd4403914;
-      10'd614: rom_n_692 = 41'd4406896;
-      10'd615: rom_n_692 = 41'd4409879;
-      10'd616: rom_n_692 = 41'd4412866;
-      10'd617: rom_n_692 = 41'd4415854;
-      10'd618: rom_n_692 = 41'd4418844;
-      10'd619: rom_n_692 = 41'd4421836;
-      10'd620: rom_n_692 = 41'd4424830;
-      10'd621: rom_n_692 = 41'd4427827;
-      10'd622: rom_n_692 = 41'd4430824;
-      10'd623: rom_n_692 = 41'd4433825;
-      10'd624: rom_n_692 = 41'd4436827;
-      10'd625: rom_n_692 = 41'd4439832;
-      10'd626: rom_n_692 = 41'd4442838;
-      10'd627: rom_n_692 = 41'd4445846;
-      10'd628: rom_n_692 = 41'd4448857;
-      10'd629: rom_n_692 = 41'd4451869;
-      10'd630: rom_n_692 = 41'd4454883;
-      10'd631: rom_n_692 = 41'd4457901;
-      10'd632: rom_n_692 = 41'd4460918;
-      10'd633: rom_n_692 = 41'd4463940;
-      10'd634: rom_n_692 = 41'd4466962;
-      10'd635: rom_n_692 = 41'd4469987;
-      10'd636: rom_n_692 = 41'd4473013;
-      10'd637: rom_n_692 = 41'd4476042;
-      10'd638: rom_n_692 = 41'd4479074;
-      10'd639: rom_n_692 = 41'd4482106;
-      10'd640: rom_n_692 = 41'd4485141;
-      10'd641: rom_n_692 = 41'd4488178;
-      10'd642: rom_n_692 = 41'd4491217;
-      10'd643: rom_n_692 = 41'd4494258;
-      10'd644: rom_n_692 = 41'd4497302;
-      10'd645: rom_n_692 = 41'd4500347;
-      10'd646: rom_n_692 = 41'd4503394;
-      10'd647: rom_n_692 = 41'd4506443;
-      10'd648: rom_n_692 = 41'd4509495;
-      10'd649: rom_n_692 = 41'd4512549;
-      10'd650: rom_n_692 = 41'd4515604;
-      10'd651: rom_n_692 = 41'd4518662;
-      10'd652: rom_n_692 = 41'd4521721;
-      10'd653: rom_n_692 = 41'd4524783;
-      10'd654: rom_n_692 = 41'd4527847;
-      10'd655: rom_n_692 = 41'd4530913;
-      10'd656: rom_n_692 = 41'd4533981;
-      10'd657: rom_n_692 = 41'd4537052;
-      10'd658: rom_n_692 = 41'd4540123;
-      10'd659: rom_n_692 = 41'd4543198;
-      10'd660: rom_n_692 = 41'd4546273;
-      10'd661: rom_n_692 = 41'd4549353;
-      10'd662: rom_n_692 = 41'd4552433;
-      10'd663: rom_n_692 = 41'd4555515;
-      10'd664: rom_n_692 = 41'd4558600;
-      10'd665: rom_n_692 = 41'd4561687;
-      10'd666: rom_n_692 = 41'd4564776;
-      10'd667: rom_n_692 = 41'd4567867;
-      10'd668: rom_n_692 = 41'd4570959;
-      10'd669: rom_n_692 = 41'd4574055;
-      10'd670: rom_n_692 = 41'd4577152;
-      10'd671: rom_n_692 = 41'd4580252;
-      10'd672: rom_n_692 = 41'd4583353;
-      10'd673: rom_n_692 = 41'd4586456;
-      10'd674: rom_n_692 = 41'd4589562;
-      10'd675: rom_n_692 = 41'd4592670;
-      10'd676: rom_n_692 = 41'd4595780;
-      10'd677: rom_n_692 = 41'd4598891;
-      10'd678: rom_n_692 = 41'd4602006;
-      10'd679: rom_n_692 = 41'd4605122;
-      10'd680: rom_n_692 = 41'd4608240;
-      10'd681: rom_n_692 = 41'd4611360;
-      10'd682: rom_n_692 = 41'd4614483;
-      10'd683: rom_n_692 = 41'd4617607;
-      10'd684: rom_n_692 = 41'd4620735;
-      10'd685: rom_n_692 = 41'd4623863;
-      10'd686: rom_n_692 = 41'd4626994;
-      10'd687: rom_n_692 = 41'd4630127;
-      10'd688: rom_n_692 = 41'd4633262;
-      10'd689: rom_n_692 = 41'd4636400;
-      10'd690: rom_n_692 = 41'd4639539;
-      10'd691: rom_n_692 = 41'd4642681;
-      10'd692: rom_n_692 = 41'd4645824;
-      10'd693: rom_n_692 = 41'd4648970;
-      10'd694: rom_n_692 = 41'd4652118;
-      10'd695: rom_n_692 = 41'd4655269;
-      10'd696: rom_n_692 = 41'd4658420;
-      10'd697: rom_n_692 = 41'd4661575;
-      10'd698: rom_n_692 = 41'd4664731;
-      10'd699: rom_n_692 = 41'd4667890;
-      10'd700: rom_n_692 = 41'd4671051;
-      10'd701: rom_n_692 = 41'd4674214;
-      10'd702: rom_n_692 = 41'd4677378;
-      10'd703: rom_n_692 = 41'd4680546;
-      10'd704: rom_n_692 = 41'd4683715;
-      10'd705: rom_n_692 = 41'd4686887;
-      10'd706: rom_n_692 = 41'd4690061;
-      10'd707: rom_n_692 = 41'd4693236;
-      10'd708: rom_n_692 = 41'd4696414;
-      10'd709: rom_n_692 = 41'd4699594;
-      10'd710: rom_n_692 = 41'd4702776;
-      10'd711: rom_n_692 = 41'd4705961;
-      10'd712: rom_n_692 = 41'd4709148;
-      10'd713: rom_n_692 = 41'd4712336;
-      10'd714: rom_n_692 = 41'd4715527;
-      10'd715: rom_n_692 = 41'd4718719;
-      10'd716: rom_n_692 = 41'd4721916;
-      10'd717: rom_n_692 = 41'd4725112;
-      10'd718: rom_n_692 = 41'd4728312;
-      10'd719: rom_n_692 = 41'd4731514;
-      10'd720: rom_n_692 = 41'd4734717;
-      10'd721: rom_n_692 = 41'd4737924;
-      10'd722: rom_n_692 = 41'd4741132;
-      10'd723: rom_n_692 = 41'd4744342;
-      10'd724: rom_n_692 = 41'd4747555;
-      10'd725: rom_n_692 = 41'd4750769;
-      10'd726: rom_n_692 = 41'd4753986;
-      10'd727: rom_n_692 = 41'd4757206;
-      10'd728: rom_n_692 = 41'd4760426;
-      10'd729: rom_n_692 = 41'd4763650;
-      10'd730: rom_n_692 = 41'd4766876;
-      10'd731: rom_n_692 = 41'd4770103;
-      10'd732: rom_n_692 = 41'd4773334;
-      10'd733: rom_n_692 = 41'd4776565;
-      10'd734: rom_n_692 = 41'd4779800;
-      10'd735: rom_n_692 = 41'd4783037;
-      10'd736: rom_n_692 = 41'd4786275;
-      10'd737: rom_n_692 = 41'd4789516;
-      10'd738: rom_n_692 = 41'd4792760;
-      10'd739: rom_n_692 = 41'd4796004;
-      10'd740: rom_n_692 = 41'd4799252;
-      10'd741: rom_n_692 = 41'd4802502;
-      10'd742: rom_n_692 = 41'd4805754;
-      10'd743: rom_n_692 = 41'd4809008;
-      10'd744: rom_n_692 = 41'd4812264;
-      10'd745: rom_n_692 = 41'd4815523;
-      10'd746: rom_n_692 = 41'd4818784;
-      10'd747: rom_n_692 = 41'd4822046;
-      10'd748: rom_n_692 = 41'd4825312;
-      10'd749: rom_n_692 = 41'd4828579;
-      10'd750: rom_n_692 = 41'd4831848;
-      10'd751: rom_n_692 = 41'd4835121;
-      10'd752: rom_n_692 = 41'd4838394;
-      10'd753: rom_n_692 = 41'd4841671;
-      10'd754: rom_n_692 = 41'd4844949;
-      10'd755: rom_n_692 = 41'd4848229;
-      10'd756: rom_n_692 = 41'd4851513;
-      10'd757: rom_n_692 = 41'd4854798;
-      10'd758: rom_n_692 = 41'd4858085;
-      10'd759: rom_n_692 = 41'd4861374;
-      10'd760: rom_n_692 = 41'd4864667;
-      10'd761: rom_n_692 = 41'd4867960;
-      10'd762: rom_n_692 = 41'd4871257;
-      10'd763: rom_n_692 = 41'd4874555;
-      10'd764: rom_n_692 = 41'd4877856;
-      10'd765: rom_n_692 = 41'd4881158;
-      10'd766: rom_n_692 = 41'd4884464;
-      10'd767: rom_n_692 = 41'd4887772;
-      10'd768: rom_n_692 = 41'd4891081;
-      10'd769: rom_n_692 = 41'd4894393;
-      10'd770: rom_n_692 = 41'd4897707;
-      10'd771: rom_n_692 = 41'd4901023;
-      10'd772: rom_n_692 = 41'd4904342;
-      10'd773: rom_n_692 = 41'd4907663;
-      10'd774: rom_n_692 = 41'd4910986;
-      10'd775: rom_n_692 = 41'd4914312;
-      10'd776: rom_n_692 = 41'd4917639;
-      10'd777: rom_n_692 = 41'd4920969;
-      10'd778: rom_n_692 = 41'd4924301;
-      10'd779: rom_n_692 = 41'd4927636;
-      10'd780: rom_n_692 = 41'd4930972;
-      10'd781: rom_n_692 = 41'd4934311;
-      10'd782: rom_n_692 = 41'd4937652;
-      10'd783: rom_n_692 = 41'd4940996;
-      10'd784: rom_n_692 = 41'd4944341;
-      10'd785: rom_n_692 = 41'd4947690;
-      10'd786: rom_n_692 = 41'd4951039;
-      10'd787: rom_n_692 = 41'd4954392;
-      10'd788: rom_n_692 = 41'd4957747;
-      10'd789: rom_n_692 = 41'd4961104;
-      10'd790: rom_n_692 = 41'd4964464;
-      10'd791: rom_n_692 = 41'd4967824;
-      10'd792: rom_n_692 = 41'd4971189;
-      10'd793: rom_n_692 = 41'd4974555;
-      10'd794: rom_n_692 = 41'd4977923;
-      10'd795: rom_n_692 = 41'd4981294;
-      10'd796: rom_n_692 = 41'd4984667;
-      10'd797: rom_n_692 = 41'd4988042;
-      10'd798: rom_n_692 = 41'd4991420;
-      10'd799: rom_n_692 = 41'd4994800;
-      10'd800: rom_n_692 = 41'd4998181;
-      10'd801: rom_n_692 = 41'd5001567;
-      10'd802: rom_n_692 = 41'd5004953;
-      10'd803: rom_n_692 = 41'd5008341;
-      10'd804: rom_n_692 = 41'd5011734;
-      10'd805: rom_n_692 = 41'd5015126;
-      10'd806: rom_n_692 = 41'd5018523;
-      10'd807: rom_n_692 = 41'd5021921;
-      10'd808: rom_n_692 = 41'd5025321;
-      10'd809: rom_n_692 = 41'd5028725;
-      10'd810: rom_n_692 = 41'd5032129;
-      10'd811: rom_n_692 = 41'd5035537;
-      10'd812: rom_n_692 = 41'd5038946;
-      10'd813: rom_n_692 = 41'd5042359;
-      10'd814: rom_n_692 = 41'd5045772;
-      10'd815: rom_n_692 = 41'd5049190;
-      10'd816: rom_n_692 = 41'd5052608;
-      10'd817: rom_n_692 = 41'd5056030;
-      10'd818: rom_n_692 = 41'd5059453;
-      10'd819: rom_n_692 = 41'd5062879;
-      10'd820: rom_n_692 = 41'd5066308;
-      10'd821: rom_n_692 = 41'd5069738;
-      10'd822: rom_n_692 = 41'd5073170;
-      10'd823: rom_n_692 = 41'd5076606;
-      10'd824: rom_n_692 = 41'd5080044;
-      10'd825: rom_n_692 = 41'd5083483;
-      10'd826: rom_n_692 = 41'd5086926;
-      10'd827: rom_n_692 = 41'd5090370;
-      10'd828: rom_n_692 = 41'd5093817;
-      10'd829: rom_n_692 = 41'd5097266;
-      10'd830: rom_n_692 = 41'd5100718;
-      10'd831: rom_n_692 = 41'd5104171;
-      10'd832: rom_n_692 = 41'd5107628;
-      10'd833: rom_n_692 = 41'd5111086;
-      10'd834: rom_n_692 = 41'd5114547;
-      10'd835: rom_n_692 = 41'd5118011;
-      10'd836: rom_n_692 = 41'd5121476;
-      10'd837: rom_n_692 = 41'd5124943;
-      10'd838: rom_n_692 = 41'd5128414;
-      10'd839: rom_n_692 = 41'd5131887;
-      10'd840: rom_n_692 = 41'd5135362;
-      10'd841: rom_n_692 = 41'd5138839;
-      10'd842: rom_n_692 = 41'd5142318;
-      10'd843: rom_n_692 = 41'd5145801;
-      10'd844: rom_n_692 = 41'd5149285;
-      10'd845: rom_n_692 = 41'd5152771;
-      10'd846: rom_n_692 = 41'd5156261;
-      10'd847: rom_n_692 = 41'd5159752;
-      10'd848: rom_n_692 = 41'd5163247;
-      10'd849: rom_n_692 = 41'd5166742;
-      10'd850: rom_n_692 = 41'd5170241;
-      10'd851: rom_n_692 = 41'd5173742;
-      10'd852: rom_n_692 = 41'd5177245;
-      10'd853: rom_n_692 = 41'd5180750;
-      10'd854: rom_n_692 = 41'd5184259;
-      10'd855: rom_n_692 = 41'd5187769;
-      10'd856: rom_n_692 = 41'd5191282;
-      10'd857: rom_n_692 = 41'd5194798;
-      10'd858: rom_n_692 = 41'd5198314;
-      10'd859: rom_n_692 = 41'd5201835;
-      10'd860: rom_n_692 = 41'd5205357;
-      10'd861: rom_n_692 = 41'd5208882;
-      10'd862: rom_n_692 = 41'd5212409;
-      10'd863: rom_n_692 = 41'd5215938;
-      10'd864: rom_n_692 = 41'd5219470;
-      10'd865: rom_n_692 = 41'd5223005;
-      10'd866: rom_n_692 = 41'd5226541;
-      10'd867: rom_n_692 = 41'd5230080;
-      10'd868: rom_n_692 = 41'd5233621;
-      10'd869: rom_n_692 = 41'd5237166;
-      10'd870: rom_n_692 = 41'd5240712;
-      10'd871: rom_n_692 = 41'd5244260;
-      10'd872: rom_n_692 = 41'd5247811;
-      10'd873: rom_n_692 = 41'd5251365;
-      10'd874: rom_n_692 = 41'd5254921;
-      10'd875: rom_n_692 = 41'd5258479;
-      10'd876: rom_n_692 = 41'd5262039;
-      10'd877: rom_n_692 = 41'd5265603;
-      10'd878: rom_n_692 = 41'd5269168;
-      10'd879: rom_n_692 = 41'd5272736;
-      10'd880: rom_n_692 = 41'd5276307;
-      10'd881: rom_n_692 = 41'd5279879;
-      10'd882: rom_n_692 = 41'd5283455;
-      10'd883: rom_n_692 = 41'd5287032;
-      10'd884: rom_n_692 = 41'd5290612;
-      10'd885: rom_n_692 = 41'd5294194;
-      10'd886: rom_n_692 = 41'd5297779;
-      10'd887: rom_n_692 = 41'd5301367;
-      10'd888: rom_n_692 = 41'd5304956;
-      10'd889: rom_n_692 = 41'd5308549;
-      10'd890: rom_n_692 = 41'd5312143;
-      10'd891: rom_n_692 = 41'd5315740;
-      10'd892: rom_n_692 = 41'd5319339;
-      10'd893: rom_n_692 = 41'd5322942;
-      10'd894: rom_n_692 = 41'd5326545;
-      10'd895: rom_n_692 = 41'd5330153;
-      10'd896: rom_n_692 = 41'd5333761;
-      10'd897: rom_n_692 = 41'd5337374;
-      10'd898: rom_n_692 = 41'd5340987;
-      10'd899: rom_n_692 = 41'd5344604;
-      10'd900: rom_n_692 = 41'd5348223;
-      10'd901: rom_n_692 = 41'd5351845;
-      10'd902: rom_n_692 = 41'd5355468;
-      10'd903: rom_n_692 = 41'd5359095;
-      10'd904: rom_n_692 = 41'd5362723;
-      10'd905: rom_n_692 = 41'd5366355;
-      10'd906: rom_n_692 = 41'd5369988;
-      10'd907: rom_n_692 = 41'd5373625;
-      10'd908: rom_n_692 = 41'd5377263;
-      10'd909: rom_n_692 = 41'd5380905;
-      10'd910: rom_n_692 = 41'd5384548;
-      10'd911: rom_n_692 = 41'd5388194;
-      10'd912: rom_n_692 = 41'd5391842;
-      10'd913: rom_n_692 = 41'd5395494;
-      10'd914: rom_n_692 = 41'd5399147;
-      10'd915: rom_n_692 = 41'd5402803;
-      10'd916: rom_n_692 = 41'd5406461;
-      10'd917: rom_n_692 = 41'd5410122;
-      10'd918: rom_n_692 = 41'd5413786;
-      10'd919: rom_n_692 = 41'd5417451;
-      10'd920: rom_n_692 = 41'd5421120;
-      10'd921: rom_n_692 = 41'd5424790;
-      10'd922: rom_n_692 = 41'd5428464;
-      10'd923: rom_n_692 = 41'd5432140;
-      10'd924: rom_n_692 = 41'd5435818;
-      10'd925: rom_n_692 = 41'd5439498;
-      10'd926: rom_n_692 = 41'd5443182;
-      10'd927: rom_n_692 = 41'd5446868;
-      10'd928: rom_n_692 = 41'd5450556;
-      10'd929: rom_n_692 = 41'd5454246;
-      10'd930: rom_n_692 = 41'd5457940;
-      10'd931: rom_n_692 = 41'd5461636;
-      10'd932: rom_n_692 = 41'd5465333;
-      10'd933: rom_n_692 = 41'd5469035;
-      10'd934: rom_n_692 = 41'd5472738;
-      10'd935: rom_n_692 = 41'd5476443;
-      10'd936: rom_n_692 = 41'd5480152;
-      10'd937: rom_n_692 = 41'd5483863;
-      10'd938: rom_n_692 = 41'd5487576;
-      10'd939: rom_n_692 = 41'd5491291;
-      10'd940: rom_n_692 = 41'd5495010;
-      10'd941: rom_n_692 = 41'd5498731;
-      10'd942: rom_n_692 = 41'd5502455;
-      10'd943: rom_n_692 = 41'd5506180;
-      10'd944: rom_n_692 = 41'd5509908;
-      10'd945: rom_n_692 = 41'd5513640;
-      10'd946: rom_n_692 = 41'd5517373;
-      10'd947: rom_n_692 = 41'd5521108;
-      10'd948: rom_n_692 = 41'd5524848;
-      10'd949: rom_n_692 = 41'd5528588;
-      10'd950: rom_n_692 = 41'd5532332;
-      10'd951: rom_n_692 = 41'd5536078;
-      10'd952: rom_n_692 = 41'd5539827;
-      10'd953: rom_n_692 = 41'd5543578;
-      10'd954: rom_n_692 = 41'd5547332;
-      10'd955: rom_n_692 = 41'd5551088;
-      10'd956: rom_n_692 = 41'd5554847;
-      10'd957: rom_n_692 = 41'd5558608;
-      10'd958: rom_n_692 = 41'd5562372;
-      10'd959: rom_n_692 = 41'd5566138;
-      10'd960: rom_n_692 = 41'd5569908;
-      10'd961: rom_n_692 = 41'd5573679;
-      10'd962: rom_n_692 = 41'd5577453;
-      10'd963: rom_n_692 = 41'd5581230;
-      10'd964: rom_n_692 = 41'd5585009;
-      10'd965: rom_n_692 = 41'd5588791;
-      10'd966: rom_n_692 = 41'd5592575;
-      10'd967: rom_n_692 = 41'd5596362;
-      10'd968: rom_n_692 = 41'd5600151;
-      10'd969: rom_n_692 = 41'd5603944;
-      10'd970: rom_n_692 = 41'd5607738;
-      10'd971: rom_n_692 = 41'd5611536;
-      10'd972: rom_n_692 = 41'd5615335;
-      10'd973: rom_n_692 = 41'd5619137;
-      10'd974: rom_n_692 = 41'd5622942;
-      10'd975: rom_n_692 = 41'd5626750;
-      10'd976: rom_n_692 = 41'd5630560;
-      10'd977: rom_n_692 = 41'd5634372;
-      10'd978: rom_n_692 = 41'd5638188;
-      10'd979: rom_n_692 = 41'd5642005;
-      10'd980: rom_n_692 = 41'd5645826;
-      10'd981: rom_n_692 = 41'd5649649;
-      10'd982: rom_n_692 = 41'd5653474;
-      10'd983: rom_n_692 = 41'd5657303;
-      10'd984: rom_n_692 = 41'd5661133;
-      10'd985: rom_n_692 = 41'd5664966;
-      10'd986: rom_n_692 = 41'd5668803;
-      10'd987: rom_n_692 = 41'd5672641;
-      10'd988: rom_n_692 = 41'd5676482;
-      10'd989: rom_n_692 = 41'd5680326;
-      10'd990: rom_n_692 = 41'd5684172;
-      10'd991: rom_n_692 = 41'd5688021;
-      10'd992: rom_n_692 = 41'd5691872;
-      10'd993: rom_n_692 = 41'd5695727;
-      10'd994: rom_n_692 = 41'd5699584;
-      10'd995: rom_n_692 = 41'd5703443;
-      10'd996: rom_n_692 = 41'd5707304;
-      10'd997: rom_n_692 = 41'd5711170;
-      10'd998: rom_n_692 = 41'd5715036;
-      10'd999: rom_n_692 = 41'd5718907;
-      10'd1000: rom_n_692 = 41'd5722779;
-      10'd1001: rom_n_692 = 41'd5726654;
-      10'd1002: rom_n_692 = 41'd5730531;
-      10'd1003: rom_n_692 = 41'd5734412;
-      10'd1004: rom_n_692 = 41'd5738295;
-      10'd1005: rom_n_692 = 41'd5742181;
-      10'd1006: rom_n_692 = 41'd5746068;
-      10'd1007: rom_n_692 = 41'd5749960;
-      10'd1008: rom_n_692 = 41'd5753853;
-      10'd1009: rom_n_692 = 41'd5757749;
-      10'd1010: rom_n_692 = 41'd5761648;
-      10'd1011: rom_n_692 = 41'd5765549;
-      10'd1012: rom_n_692 = 41'd5769453;
-      10'd1013: rom_n_692 = 41'd5773360;
-      10'd1014: rom_n_692 = 41'd5777270;
-      10'd1015: rom_n_692 = 41'd5781181;
-      10'd1016: rom_n_692 = 41'd5785096;
-      10'd1017: rom_n_692 = 41'd5789013;
-      10'd1018: rom_n_692 = 41'd5792933;
-      10'd1019: rom_n_692 = 41'd5796856;
-      10'd1020: rom_n_692 = 41'd5800780;
-      10'd1021: rom_n_692 = 41'd5804709;
-      10'd1022: rom_n_692 = 41'd5808640;
-      10'd1023: rom_n_692 = 41'd5812572;
-      default: rom_n_692 = 41'd0;
+      10'd0: rom_n_lookup_692 = 41'd2908254;
+      10'd1: rom_n_lookup_692 = 41'd2910224;
+      10'd2: rom_n_lookup_692 = 41'd2912194;
+      10'd3: rom_n_lookup_692 = 41'd2914166;
+      10'd4: rom_n_lookup_692 = 41'd2916139;
+      10'd5: rom_n_lookup_692 = 41'd2918114;
+      10'd6: rom_n_lookup_692 = 41'd2920090;
+      10'd7: rom_n_lookup_692 = 41'd2922067;
+      10'd8: rom_n_lookup_692 = 41'd2924045;
+      10'd9: rom_n_lookup_692 = 41'd2926026;
+      10'd10: rom_n_lookup_692 = 41'd2928007;
+      10'd11: rom_n_lookup_692 = 41'd2929990;
+      10'd12: rom_n_lookup_692 = 41'd2931973;
+      10'd13: rom_n_lookup_692 = 41'd2933959;
+      10'd14: rom_n_lookup_692 = 41'd2935946;
+      10'd15: rom_n_lookup_692 = 41'd2937933;
+      10'd16: rom_n_lookup_692 = 41'd2939923;
+      10'd17: rom_n_lookup_692 = 41'd2941914;
+      10'd18: rom_n_lookup_692 = 41'd2943906;
+      10'd19: rom_n_lookup_692 = 41'd2945899;
+      10'd20: rom_n_lookup_692 = 41'd2947894;
+      10'd21: rom_n_lookup_692 = 41'd2949890;
+      10'd22: rom_n_lookup_692 = 41'd2951888;
+      10'd23: rom_n_lookup_692 = 41'd2953886;
+      10'd24: rom_n_lookup_692 = 41'd2955886;
+      10'd25: rom_n_lookup_692 = 41'd2957888;
+      10'd26: rom_n_lookup_692 = 41'd2959891;
+      10'd27: rom_n_lookup_692 = 41'd2961895;
+      10'd28: rom_n_lookup_692 = 41'd2963901;
+      10'd29: rom_n_lookup_692 = 41'd2965908;
+      10'd30: rom_n_lookup_692 = 41'd2967916;
+      10'd31: rom_n_lookup_692 = 41'd2969925;
+      10'd32: rom_n_lookup_692 = 41'd2971937;
+      10'd33: rom_n_lookup_692 = 41'd2973949;
+      10'd34: rom_n_lookup_692 = 41'd2975963;
+      10'd35: rom_n_lookup_692 = 41'd2977978;
+      10'd36: rom_n_lookup_692 = 41'd2979994;
+      10'd37: rom_n_lookup_692 = 41'd2982012;
+      10'd38: rom_n_lookup_692 = 41'd2984032;
+      10'd39: rom_n_lookup_692 = 41'd2986052;
+      10'd40: rom_n_lookup_692 = 41'd2988074;
+      10'd41: rom_n_lookup_692 = 41'd2990097;
+      10'd42: rom_n_lookup_692 = 41'd2992122;
+      10'd43: rom_n_lookup_692 = 41'd2994148;
+      10'd44: rom_n_lookup_692 = 41'd2996176;
+      10'd45: rom_n_lookup_692 = 41'd2998204;
+      10'd46: rom_n_lookup_692 = 41'd3000234;
+      10'd47: rom_n_lookup_692 = 41'd3002266;
+      10'd48: rom_n_lookup_692 = 41'd3004299;
+      10'd49: rom_n_lookup_692 = 41'd3006334;
+      10'd50: rom_n_lookup_692 = 41'd3008368;
+      10'd51: rom_n_lookup_692 = 41'd3010406;
+      10'd52: rom_n_lookup_692 = 41'd3012445;
+      10'd53: rom_n_lookup_692 = 41'd3014484;
+      10'd54: rom_n_lookup_692 = 41'd3016525;
+      10'd55: rom_n_lookup_692 = 41'd3018568;
+      10'd56: rom_n_lookup_692 = 41'd3020612;
+      10'd57: rom_n_lookup_692 = 41'd3022658;
+      10'd58: rom_n_lookup_692 = 41'd3024704;
+      10'd59: rom_n_lookup_692 = 41'd3026752;
+      10'd60: rom_n_lookup_692 = 41'd3028802;
+      10'd61: rom_n_lookup_692 = 41'd3030852;
+      10'd62: rom_n_lookup_692 = 41'd3032905;
+      10'd63: rom_n_lookup_692 = 41'd3034959;
+      10'd64: rom_n_lookup_692 = 41'd3037013;
+      10'd65: rom_n_lookup_692 = 41'd3039070;
+      10'd66: rom_n_lookup_692 = 41'd3041128;
+      10'd67: rom_n_lookup_692 = 41'd3043187;
+      10'd68: rom_n_lookup_692 = 41'd3045248;
+      10'd69: rom_n_lookup_692 = 41'd3047310;
+      10'd70: rom_n_lookup_692 = 41'd3049373;
+      10'd71: rom_n_lookup_692 = 41'd3051438;
+      10'd72: rom_n_lookup_692 = 41'd3053504;
+      10'd73: rom_n_lookup_692 = 41'd3055572;
+      10'd74: rom_n_lookup_692 = 41'd3057641;
+      10'd75: rom_n_lookup_692 = 41'd3059712;
+      10'd76: rom_n_lookup_692 = 41'd3061783;
+      10'd77: rom_n_lookup_692 = 41'd3063856;
+      10'd78: rom_n_lookup_692 = 41'd3065931;
+      10'd79: rom_n_lookup_692 = 41'd3068007;
+      10'd80: rom_n_lookup_692 = 41'd3070085;
+      10'd81: rom_n_lookup_692 = 41'd3072163;
+      10'd82: rom_n_lookup_692 = 41'd3074244;
+      10'd83: rom_n_lookup_692 = 41'd3076325;
+      10'd84: rom_n_lookup_692 = 41'd3078408;
+      10'd85: rom_n_lookup_692 = 41'd3080493;
+      10'd86: rom_n_lookup_692 = 41'd3082579;
+      10'd87: rom_n_lookup_692 = 41'd3084666;
+      10'd88: rom_n_lookup_692 = 41'd3086755;
+      10'd89: rom_n_lookup_692 = 41'd3088845;
+      10'd90: rom_n_lookup_692 = 41'd3090936;
+      10'd91: rom_n_lookup_692 = 41'd3093029;
+      10'd92: rom_n_lookup_692 = 41'd3095124;
+      10'd93: rom_n_lookup_692 = 41'd3097220;
+      10'd94: rom_n_lookup_692 = 41'd3099317;
+      10'd95: rom_n_lookup_692 = 41'd3101415;
+      10'd96: rom_n_lookup_692 = 41'd3103516;
+      10'd97: rom_n_lookup_692 = 41'd3105617;
+      10'd98: rom_n_lookup_692 = 41'd3107720;
+      10'd99: rom_n_lookup_692 = 41'd3109824;
+      10'd100: rom_n_lookup_692 = 41'd3111930;
+      10'd101: rom_n_lookup_692 = 41'd3114037;
+      10'd102: rom_n_lookup_692 = 41'd3116146;
+      10'd103: rom_n_lookup_692 = 41'd3118256;
+      10'd104: rom_n_lookup_692 = 41'd3120367;
+      10'd105: rom_n_lookup_692 = 41'd3122480;
+      10'd106: rom_n_lookup_692 = 41'd3124595;
+      10'd107: rom_n_lookup_692 = 41'd3126710;
+      10'd108: rom_n_lookup_692 = 41'd3128828;
+      10'd109: rom_n_lookup_692 = 41'd3130946;
+      10'd110: rom_n_lookup_692 = 41'd3133066;
+      10'd111: rom_n_lookup_692 = 41'd3135188;
+      10'd112: rom_n_lookup_692 = 41'd3137310;
+      10'd113: rom_n_lookup_692 = 41'd3139435;
+      10'd114: rom_n_lookup_692 = 41'd3141561;
+      10'd115: rom_n_lookup_692 = 41'd3143688;
+      10'd116: rom_n_lookup_692 = 41'd3145817;
+      10'd117: rom_n_lookup_692 = 41'd3147947;
+      10'd118: rom_n_lookup_692 = 41'd3150078;
+      10'd119: rom_n_lookup_692 = 41'd3152211;
+      10'd120: rom_n_lookup_692 = 41'd3154346;
+      10'd121: rom_n_lookup_692 = 41'd3156482;
+      10'd122: rom_n_lookup_692 = 41'd3158619;
+      10'd123: rom_n_lookup_692 = 41'd3160758;
+      10'd124: rom_n_lookup_692 = 41'd3162898;
+      10'd125: rom_n_lookup_692 = 41'd3165040;
+      10'd126: rom_n_lookup_692 = 41'd3167183;
+      10'd127: rom_n_lookup_692 = 41'd3169328;
+      10'd128: rom_n_lookup_692 = 41'd3171474;
+      10'd129: rom_n_lookup_692 = 41'd3173621;
+      10'd130: rom_n_lookup_692 = 41'd3175770;
+      10'd131: rom_n_lookup_692 = 41'd3177920;
+      10'd132: rom_n_lookup_692 = 41'd3180073;
+      10'd133: rom_n_lookup_692 = 41'd3182226;
+      10'd134: rom_n_lookup_692 = 41'd3184380;
+      10'd135: rom_n_lookup_692 = 41'd3186537;
+      10'd136: rom_n_lookup_692 = 41'd3188694;
+      10'd137: rom_n_lookup_692 = 41'd3190854;
+      10'd138: rom_n_lookup_692 = 41'd3193014;
+      10'd139: rom_n_lookup_692 = 41'd3195176;
+      10'd140: rom_n_lookup_692 = 41'd3197340;
+      10'd141: rom_n_lookup_692 = 41'd3199505;
+      10'd142: rom_n_lookup_692 = 41'd3201672;
+      10'd143: rom_n_lookup_692 = 41'd3203839;
+      10'd144: rom_n_lookup_692 = 41'd3206009;
+      10'd145: rom_n_lookup_692 = 41'd3208179;
+      10'd146: rom_n_lookup_692 = 41'd3210352;
+      10'd147: rom_n_lookup_692 = 41'd3212526;
+      10'd148: rom_n_lookup_692 = 41'd3214701;
+      10'd149: rom_n_lookup_692 = 41'd3216878;
+      10'd150: rom_n_lookup_692 = 41'd3219056;
+      10'd151: rom_n_lookup_692 = 41'd3221236;
+      10'd152: rom_n_lookup_692 = 41'd3223417;
+      10'd153: rom_n_lookup_692 = 41'd3225600;
+      10'd154: rom_n_lookup_692 = 41'd3227784;
+      10'd155: rom_n_lookup_692 = 41'd3229970;
+      10'd156: rom_n_lookup_692 = 41'd3232156;
+      10'd157: rom_n_lookup_692 = 41'd3234345;
+      10'd158: rom_n_lookup_692 = 41'd3236536;
+      10'd159: rom_n_lookup_692 = 41'd3238727;
+      10'd160: rom_n_lookup_692 = 41'd3240919;
+      10'd161: rom_n_lookup_692 = 41'd3243115;
+      10'd162: rom_n_lookup_692 = 41'd3245310;
+      10'd163: rom_n_lookup_692 = 41'd3247508;
+      10'd164: rom_n_lookup_692 = 41'd3249707;
+      10'd165: rom_n_lookup_692 = 41'd3251908;
+      10'd166: rom_n_lookup_692 = 41'd3254109;
+      10'd167: rom_n_lookup_692 = 41'd3256313;
+      10'd168: rom_n_lookup_692 = 41'd3258518;
+      10'd169: rom_n_lookup_692 = 41'd3260724;
+      10'd170: rom_n_lookup_692 = 41'd3262932;
+      10'd171: rom_n_lookup_692 = 41'd3265142;
+      10'd172: rom_n_lookup_692 = 41'd3267352;
+      10'd173: rom_n_lookup_692 = 41'd3269565;
+      10'd174: rom_n_lookup_692 = 41'd3271779;
+      10'd175: rom_n_lookup_692 = 41'd3273994;
+      10'd176: rom_n_lookup_692 = 41'd3276211;
+      10'd177: rom_n_lookup_692 = 41'd3278430;
+      10'd178: rom_n_lookup_692 = 41'd3280650;
+      10'd179: rom_n_lookup_692 = 41'd3282871;
+      10'd180: rom_n_lookup_692 = 41'd3285093;
+      10'd181: rom_n_lookup_692 = 41'd3287319;
+      10'd182: rom_n_lookup_692 = 41'd3289544;
+      10'd183: rom_n_lookup_692 = 41'd3291772;
+      10'd184: rom_n_lookup_692 = 41'd3294001;
+      10'd185: rom_n_lookup_692 = 41'd3296231;
+      10'd186: rom_n_lookup_692 = 41'd3298463;
+      10'd187: rom_n_lookup_692 = 41'd3300697;
+      10'd188: rom_n_lookup_692 = 41'd3302931;
+      10'd189: rom_n_lookup_692 = 41'd3305168;
+      10'd190: rom_n_lookup_692 = 41'd3307407;
+      10'd191: rom_n_lookup_692 = 41'd3309645;
+      10'd192: rom_n_lookup_692 = 41'd3311887;
+      10'd193: rom_n_lookup_692 = 41'd3314130;
+      10'd194: rom_n_lookup_692 = 41'd3316373;
+      10'd195: rom_n_lookup_692 = 41'd3318619;
+      10'd196: rom_n_lookup_692 = 41'd3320866;
+      10'd197: rom_n_lookup_692 = 41'd3323115;
+      10'd198: rom_n_lookup_692 = 41'd3325365;
+      10'd199: rom_n_lookup_692 = 41'd3327617;
+      10'd200: rom_n_lookup_692 = 41'd3329870;
+      10'd201: rom_n_lookup_692 = 41'd3332125;
+      10'd202: rom_n_lookup_692 = 41'd3334381;
+      10'd203: rom_n_lookup_692 = 41'd3336639;
+      10'd204: rom_n_lookup_692 = 41'd3338898;
+      10'd205: rom_n_lookup_692 = 41'd3341159;
+      10'd206: rom_n_lookup_692 = 41'd3343422;
+      10'd207: rom_n_lookup_692 = 41'd3345685;
+      10'd208: rom_n_lookup_692 = 41'd3347951;
+      10'd209: rom_n_lookup_692 = 41'd3350218;
+      10'd210: rom_n_lookup_692 = 41'd3352486;
+      10'd211: rom_n_lookup_692 = 41'd3354757;
+      10'd212: rom_n_lookup_692 = 41'd3357028;
+      10'd213: rom_n_lookup_692 = 41'd3359301;
+      10'd214: rom_n_lookup_692 = 41'd3361576;
+      10'd215: rom_n_lookup_692 = 41'd3363852;
+      10'd216: rom_n_lookup_692 = 41'd3366130;
+      10'd217: rom_n_lookup_692 = 41'd3368410;
+      10'd218: rom_n_lookup_692 = 41'd3370690;
+      10'd219: rom_n_lookup_692 = 41'd3372972;
+      10'd220: rom_n_lookup_692 = 41'd3375257;
+      10'd221: rom_n_lookup_692 = 41'd3377541;
+      10'd222: rom_n_lookup_692 = 41'd3379829;
+      10'd223: rom_n_lookup_692 = 41'd3382118;
+      10'd224: rom_n_lookup_692 = 41'd3384408;
+      10'd225: rom_n_lookup_692 = 41'd3386699;
+      10'd226: rom_n_lookup_692 = 41'd3388993;
+      10'd227: rom_n_lookup_692 = 41'd3391287;
+      10'd228: rom_n_lookup_692 = 41'd3393584;
+      10'd229: rom_n_lookup_692 = 41'd3395881;
+      10'd230: rom_n_lookup_692 = 41'd3398182;
+      10'd231: rom_n_lookup_692 = 41'd3400482;
+      10'd232: rom_n_lookup_692 = 41'd3402784;
+      10'd233: rom_n_lookup_692 = 41'd3405089;
+      10'd234: rom_n_lookup_692 = 41'd3407395;
+      10'd235: rom_n_lookup_692 = 41'd3409701;
+      10'd236: rom_n_lookup_692 = 41'd3412011;
+      10'd237: rom_n_lookup_692 = 41'd3414321;
+      10'd238: rom_n_lookup_692 = 41'd3416633;
+      10'd239: rom_n_lookup_692 = 41'd3418946;
+      10'd240: rom_n_lookup_692 = 41'd3421262;
+      10'd241: rom_n_lookup_692 = 41'd3423578;
+      10'd242: rom_n_lookup_692 = 41'd3425896;
+      10'd243: rom_n_lookup_692 = 41'd3428216;
+      10'd244: rom_n_lookup_692 = 41'd3430538;
+      10'd245: rom_n_lookup_692 = 41'd3432860;
+      10'd246: rom_n_lookup_692 = 41'd3435185;
+      10'd247: rom_n_lookup_692 = 41'd3437511;
+      10'd248: rom_n_lookup_692 = 41'd3439838;
+      10'd249: rom_n_lookup_692 = 41'd3442168;
+      10'd250: rom_n_lookup_692 = 41'd3444499;
+      10'd251: rom_n_lookup_692 = 41'd3446831;
+      10'd252: rom_n_lookup_692 = 41'd3449165;
+      10'd253: rom_n_lookup_692 = 41'd3451500;
+      10'd254: rom_n_lookup_692 = 41'd3453838;
+      10'd255: rom_n_lookup_692 = 41'd3456176;
+      10'd256: rom_n_lookup_692 = 41'd3458517;
+      10'd257: rom_n_lookup_692 = 41'd3460858;
+      10'd258: rom_n_lookup_692 = 41'd3463202;
+      10'd259: rom_n_lookup_692 = 41'd3465547;
+      10'd260: rom_n_lookup_692 = 41'd3467893;
+      10'd261: rom_n_lookup_692 = 41'd3470242;
+      10'd262: rom_n_lookup_692 = 41'd3472592;
+      10'd263: rom_n_lookup_692 = 41'd3474943;
+      10'd264: rom_n_lookup_692 = 41'd3477296;
+      10'd265: rom_n_lookup_692 = 41'd3479650;
+      10'd266: rom_n_lookup_692 = 41'd3482007;
+      10'd267: rom_n_lookup_692 = 41'd3484365;
+      10'd268: rom_n_lookup_692 = 41'd3486723;
+      10'd269: rom_n_lookup_692 = 41'd3489085;
+      10'd270: rom_n_lookup_692 = 41'd3491448;
+      10'd271: rom_n_lookup_692 = 41'd3493811;
+      10'd272: rom_n_lookup_692 = 41'd3496178;
+      10'd273: rom_n_lookup_692 = 41'd3498544;
+      10'd274: rom_n_lookup_692 = 41'd3500914;
+      10'd275: rom_n_lookup_692 = 41'd3503284;
+      10'd276: rom_n_lookup_692 = 41'd3505657;
+      10'd277: rom_n_lookup_692 = 41'd3508030;
+      10'd278: rom_n_lookup_692 = 41'd3510406;
+      10'd279: rom_n_lookup_692 = 41'd3512782;
+      10'd280: rom_n_lookup_692 = 41'd3515161;
+      10'd281: rom_n_lookup_692 = 41'd3517542;
+      10'd282: rom_n_lookup_692 = 41'd3519923;
+      10'd283: rom_n_lookup_692 = 41'd3522307;
+      10'd284: rom_n_lookup_692 = 41'd3524692;
+      10'd285: rom_n_lookup_692 = 41'd3527078;
+      10'd286: rom_n_lookup_692 = 41'd3529467;
+      10'd287: rom_n_lookup_692 = 41'd3531857;
+      10'd288: rom_n_lookup_692 = 41'd3534248;
+      10'd289: rom_n_lookup_692 = 41'd3536641;
+      10'd290: rom_n_lookup_692 = 41'd3539036;
+      10'd291: rom_n_lookup_692 = 41'd3541433;
+      10'd292: rom_n_lookup_692 = 41'd3543830;
+      10'd293: rom_n_lookup_692 = 41'd3546231;
+      10'd294: rom_n_lookup_692 = 41'd3548631;
+      10'd295: rom_n_lookup_692 = 41'd3551034;
+      10'd296: rom_n_lookup_692 = 41'd3553439;
+      10'd297: rom_n_lookup_692 = 41'd3555845;
+      10'd298: rom_n_lookup_692 = 41'd3558253;
+      10'd299: rom_n_lookup_692 = 41'd3560662;
+      10'd300: rom_n_lookup_692 = 41'd3563073;
+      10'd301: rom_n_lookup_692 = 41'd3565486;
+      10'd302: rom_n_lookup_692 = 41'd3567900;
+      10'd303: rom_n_lookup_692 = 41'd3570316;
+      10'd304: rom_n_lookup_692 = 41'd3572734;
+      10'd305: rom_n_lookup_692 = 41'd3575153;
+      10'd306: rom_n_lookup_692 = 41'd3577574;
+      10'd307: rom_n_lookup_692 = 41'd3579996;
+      10'd308: rom_n_lookup_692 = 41'd3582420;
+      10'd309: rom_n_lookup_692 = 41'd3584846;
+      10'd310: rom_n_lookup_692 = 41'd3587274;
+      10'd311: rom_n_lookup_692 = 41'd3589702;
+      10'd312: rom_n_lookup_692 = 41'd3592133;
+      10'd313: rom_n_lookup_692 = 41'd3594566;
+      10'd314: rom_n_lookup_692 = 41'd3597000;
+      10'd315: rom_n_lookup_692 = 41'd3599435;
+      10'd316: rom_n_lookup_692 = 41'd3601872;
+      10'd317: rom_n_lookup_692 = 41'd3604312;
+      10'd318: rom_n_lookup_692 = 41'd3606752;
+      10'd319: rom_n_lookup_692 = 41'd3609194;
+      10'd320: rom_n_lookup_692 = 41'd3611638;
+      10'd321: rom_n_lookup_692 = 41'd3614084;
+      10'd322: rom_n_lookup_692 = 41'd3616531;
+      10'd323: rom_n_lookup_692 = 41'd3618980;
+      10'd324: rom_n_lookup_692 = 41'd3621430;
+      10'd325: rom_n_lookup_692 = 41'd3623883;
+      10'd326: rom_n_lookup_692 = 41'd3626336;
+      10'd327: rom_n_lookup_692 = 41'd3628792;
+      10'd328: rom_n_lookup_692 = 41'd3631249;
+      10'd329: rom_n_lookup_692 = 41'd3633708;
+      10'd330: rom_n_lookup_692 = 41'd3636168;
+      10'd331: rom_n_lookup_692 = 41'd3638630;
+      10'd332: rom_n_lookup_692 = 41'd3641095;
+      10'd333: rom_n_lookup_692 = 41'd3643560;
+      10'd334: rom_n_lookup_692 = 41'd3646027;
+      10'd335: rom_n_lookup_692 = 41'd3648495;
+      10'd336: rom_n_lookup_692 = 41'd3650967;
+      10'd337: rom_n_lookup_692 = 41'd3653438;
+      10'd338: rom_n_lookup_692 = 41'd3655913;
+      10'd339: rom_n_lookup_692 = 41'd3658388;
+      10'd340: rom_n_lookup_692 = 41'd3660865;
+      10'd341: rom_n_lookup_692 = 41'd3663344;
+      10'd342: rom_n_lookup_692 = 41'd3665824;
+      10'd343: rom_n_lookup_692 = 41'd3668307;
+      10'd344: rom_n_lookup_692 = 41'd3670791;
+      10'd345: rom_n_lookup_692 = 41'd3673276;
+      10'd346: rom_n_lookup_692 = 41'd3675764;
+      10'd347: rom_n_lookup_692 = 41'd3678252;
+      10'd348: rom_n_lookup_692 = 41'd3680744;
+      10'd349: rom_n_lookup_692 = 41'd3683235;
+      10'd350: rom_n_lookup_692 = 41'd3685730;
+      10'd351: rom_n_lookup_692 = 41'd3688225;
+      10'd352: rom_n_lookup_692 = 41'd3690723;
+      10'd353: rom_n_lookup_692 = 41'd3693222;
+      10'd354: rom_n_lookup_692 = 41'd3695722;
+      10'd355: rom_n_lookup_692 = 41'd3698225;
+      10'd356: rom_n_lookup_692 = 41'd3700730;
+      10'd357: rom_n_lookup_692 = 41'd3703235;
+      10'd358: rom_n_lookup_692 = 41'd3705743;
+      10'd359: rom_n_lookup_692 = 41'd3708252;
+      10'd360: rom_n_lookup_692 = 41'd3710763;
+      10'd361: rom_n_lookup_692 = 41'd3713276;
+      10'd362: rom_n_lookup_692 = 41'd3715790;
+      10'd363: rom_n_lookup_692 = 41'd3718306;
+      10'd364: rom_n_lookup_692 = 41'd3720824;
+      10'd365: rom_n_lookup_692 = 41'd3723343;
+      10'd366: rom_n_lookup_692 = 41'd3725865;
+      10'd367: rom_n_lookup_692 = 41'd3728387;
+      10'd368: rom_n_lookup_692 = 41'd3730912;
+      10'd369: rom_n_lookup_692 = 41'd3733439;
+      10'd370: rom_n_lookup_692 = 41'd3735966;
+      10'd371: rom_n_lookup_692 = 41'd3738496;
+      10'd372: rom_n_lookup_692 = 41'd3741028;
+      10'd373: rom_n_lookup_692 = 41'd3743561;
+      10'd374: rom_n_lookup_692 = 41'd3746095;
+      10'd375: rom_n_lookup_692 = 41'd3748632;
+      10'd376: rom_n_lookup_692 = 41'd3751171;
+      10'd377: rom_n_lookup_692 = 41'd3753711;
+      10'd378: rom_n_lookup_692 = 41'd3756252;
+      10'd379: rom_n_lookup_692 = 41'd3758796;
+      10'd380: rom_n_lookup_692 = 41'd3761341;
+      10'd381: rom_n_lookup_692 = 41'd3763888;
+      10'd382: rom_n_lookup_692 = 41'd3766436;
+      10'd383: rom_n_lookup_692 = 41'd3768987;
+      10'd384: rom_n_lookup_692 = 41'd3771539;
+      10'd385: rom_n_lookup_692 = 41'd3774093;
+      10'd386: rom_n_lookup_692 = 41'd3776649;
+      10'd387: rom_n_lookup_692 = 41'd3779205;
+      10'd388: rom_n_lookup_692 = 41'd3781765;
+      10'd389: rom_n_lookup_692 = 41'd3784326;
+      10'd390: rom_n_lookup_692 = 41'd3786888;
+      10'd391: rom_n_lookup_692 = 41'd3789452;
+      10'd392: rom_n_lookup_692 = 41'd3792018;
+      10'd393: rom_n_lookup_692 = 41'd3794586;
+      10'd394: rom_n_lookup_692 = 41'd3797155;
+      10'd395: rom_n_lookup_692 = 41'd3799727;
+      10'd396: rom_n_lookup_692 = 41'd3802299;
+      10'd397: rom_n_lookup_692 = 41'd3804874;
+      10'd398: rom_n_lookup_692 = 41'd3807450;
+      10'd399: rom_n_lookup_692 = 41'd3810029;
+      10'd400: rom_n_lookup_692 = 41'd3812608;
+      10'd401: rom_n_lookup_692 = 41'd3815190;
+      10'd402: rom_n_lookup_692 = 41'd3817774;
+      10'd403: rom_n_lookup_692 = 41'd3820358;
+      10'd404: rom_n_lookup_692 = 41'd3822946;
+      10'd405: rom_n_lookup_692 = 41'd3825534;
+      10'd406: rom_n_lookup_692 = 41'd3828124;
+      10'd407: rom_n_lookup_692 = 41'd3830717;
+      10'd408: rom_n_lookup_692 = 41'd3833310;
+      10'd409: rom_n_lookup_692 = 41'd3835907;
+      10'd410: rom_n_lookup_692 = 41'd3838503;
+      10'd411: rom_n_lookup_692 = 41'd3841103;
+      10'd412: rom_n_lookup_692 = 41'd3843704;
+      10'd413: rom_n_lookup_692 = 41'd3846306;
+      10'd414: rom_n_lookup_692 = 41'd3848911;
+      10'd415: rom_n_lookup_692 = 41'd3851517;
+      10'd416: rom_n_lookup_692 = 41'd3854125;
+      10'd417: rom_n_lookup_692 = 41'd3856735;
+      10'd418: rom_n_lookup_692 = 41'd3859346;
+      10'd419: rom_n_lookup_692 = 41'd3861959;
+      10'd420: rom_n_lookup_692 = 41'd3864575;
+      10'd421: rom_n_lookup_692 = 41'd3867191;
+      10'd422: rom_n_lookup_692 = 41'd3869810;
+      10'd423: rom_n_lookup_692 = 41'd3872431;
+      10'd424: rom_n_lookup_692 = 41'd3875052;
+      10'd425: rom_n_lookup_692 = 41'd3877677;
+      10'd426: rom_n_lookup_692 = 41'd3880302;
+      10'd427: rom_n_lookup_692 = 41'd3882930;
+      10'd428: rom_n_lookup_692 = 41'd3885558;
+      10'd429: rom_n_lookup_692 = 41'd3888190;
+      10'd430: rom_n_lookup_692 = 41'd3890823;
+      10'd431: rom_n_lookup_692 = 41'd3893457;
+      10'd432: rom_n_lookup_692 = 41'd3896094;
+      10'd433: rom_n_lookup_692 = 41'd3898732;
+      10'd434: rom_n_lookup_692 = 41'd3901372;
+      10'd435: rom_n_lookup_692 = 41'd3904013;
+      10'd436: rom_n_lookup_692 = 41'd3906657;
+      10'd437: rom_n_lookup_692 = 41'd3909303;
+      10'd438: rom_n_lookup_692 = 41'd3911949;
+      10'd439: rom_n_lookup_692 = 41'd3914598;
+      10'd440: rom_n_lookup_692 = 41'd3917250;
+      10'd441: rom_n_lookup_692 = 41'd3919901;
+      10'd442: rom_n_lookup_692 = 41'd3922556;
+      10'd443: rom_n_lookup_692 = 41'd3925212;
+      10'd444: rom_n_lookup_692 = 41'd3927870;
+      10'd445: rom_n_lookup_692 = 41'd3930529;
+      10'd446: rom_n_lookup_692 = 41'd3933191;
+      10'd447: rom_n_lookup_692 = 41'd3935855;
+      10'd448: rom_n_lookup_692 = 41'd3938519;
+      10'd449: rom_n_lookup_692 = 41'd3941186;
+      10'd450: rom_n_lookup_692 = 41'd3943855;
+      10'd451: rom_n_lookup_692 = 41'd3946526;
+      10'd452: rom_n_lookup_692 = 41'd3949197;
+      10'd453: rom_n_lookup_692 = 41'd3951872;
+      10'd454: rom_n_lookup_692 = 41'd3954548;
+      10'd455: rom_n_lookup_692 = 41'd3957226;
+      10'd456: rom_n_lookup_692 = 41'd3959905;
+      10'd457: rom_n_lookup_692 = 41'd3962586;
+      10'd458: rom_n_lookup_692 = 41'd3965270;
+      10'd459: rom_n_lookup_692 = 41'd3967955;
+      10'd460: rom_n_lookup_692 = 41'd3970641;
+      10'd461: rom_n_lookup_692 = 41'd3973330;
+      10'd462: rom_n_lookup_692 = 41'd3976021;
+      10'd463: rom_n_lookup_692 = 41'd3978713;
+      10'd464: rom_n_lookup_692 = 41'd3981407;
+      10'd465: rom_n_lookup_692 = 41'd3984103;
+      10'd466: rom_n_lookup_692 = 41'd3986801;
+      10'd467: rom_n_lookup_692 = 41'd3989500;
+      10'd468: rom_n_lookup_692 = 41'd3992202;
+      10'd469: rom_n_lookup_692 = 41'd3994904;
+      10'd470: rom_n_lookup_692 = 41'd3997610;
+      10'd471: rom_n_lookup_692 = 41'd4000317;
+      10'd472: rom_n_lookup_692 = 41'd4003026;
+      10'd473: rom_n_lookup_692 = 41'd4005736;
+      10'd474: rom_n_lookup_692 = 41'd4008449;
+      10'd475: rom_n_lookup_692 = 41'd4011163;
+      10'd476: rom_n_lookup_692 = 41'd4013879;
+      10'd477: rom_n_lookup_692 = 41'd4016597;
+      10'd478: rom_n_lookup_692 = 41'd4019316;
+      10'd479: rom_n_lookup_692 = 41'd4022039;
+      10'd480: rom_n_lookup_692 = 41'd4024761;
+      10'd481: rom_n_lookup_692 = 41'd4027487;
+      10'd482: rom_n_lookup_692 = 41'd4030214;
+      10'd483: rom_n_lookup_692 = 41'd4032944;
+      10'd484: rom_n_lookup_692 = 41'd4035674;
+      10'd485: rom_n_lookup_692 = 41'd4038406;
+      10'd486: rom_n_lookup_692 = 41'd4041141;
+      10'd487: rom_n_lookup_692 = 41'd4043878;
+      10'd488: rom_n_lookup_692 = 41'd4046616;
+      10'd489: rom_n_lookup_692 = 41'd4049355;
+      10'd490: rom_n_lookup_692 = 41'd4052098;
+      10'd491: rom_n_lookup_692 = 41'd4054842;
+      10'd492: rom_n_lookup_692 = 41'd4057587;
+      10'd493: rom_n_lookup_692 = 41'd4060335;
+      10'd494: rom_n_lookup_692 = 41'd4063084;
+      10'd495: rom_n_lookup_692 = 41'd4065835;
+      10'd496: rom_n_lookup_692 = 41'd4068589;
+      10'd497: rom_n_lookup_692 = 41'd4071343;
+      10'd498: rom_n_lookup_692 = 41'd4074101;
+      10'd499: rom_n_lookup_692 = 41'd4076859;
+      10'd500: rom_n_lookup_692 = 41'd4079619;
+      10'd501: rom_n_lookup_692 = 41'd4082382;
+      10'd502: rom_n_lookup_692 = 41'd4085146;
+      10'd503: rom_n_lookup_692 = 41'd4087913;
+      10'd504: rom_n_lookup_692 = 41'd4090680;
+      10'd505: rom_n_lookup_692 = 41'd4093451;
+      10'd506: rom_n_lookup_692 = 41'd4096222;
+      10'd507: rom_n_lookup_692 = 41'd4098996;
+      10'd508: rom_n_lookup_692 = 41'd4101771;
+      10'd509: rom_n_lookup_692 = 41'd4104549;
+      10'd510: rom_n_lookup_692 = 41'd4107329;
+      10'd511: rom_n_lookup_692 = 41'd4110109;
+      10'd512: rom_n_lookup_692 = 41'd4112892;
+      10'd513: rom_n_lookup_692 = 41'd4115678;
+      10'd514: rom_n_lookup_692 = 41'd4118464;
+      10'd515: rom_n_lookup_692 = 41'd4121253;
+      10'd516: rom_n_lookup_692 = 41'd4124044;
+      10'd517: rom_n_lookup_692 = 41'd4126836;
+      10'd518: rom_n_lookup_692 = 41'd4129631;
+      10'd519: rom_n_lookup_692 = 41'd4132427;
+      10'd520: rom_n_lookup_692 = 41'd4135225;
+      10'd521: rom_n_lookup_692 = 41'd4138025;
+      10'd522: rom_n_lookup_692 = 41'd4140827;
+      10'd523: rom_n_lookup_692 = 41'd4143631;
+      10'd524: rom_n_lookup_692 = 41'd4146437;
+      10'd525: rom_n_lookup_692 = 41'd4149245;
+      10'd526: rom_n_lookup_692 = 41'd4152054;
+      10'd527: rom_n_lookup_692 = 41'd4154865;
+      10'd528: rom_n_lookup_692 = 41'd4157679;
+      10'd529: rom_n_lookup_692 = 41'd4160495;
+      10'd530: rom_n_lookup_692 = 41'd4163311;
+      10'd531: rom_n_lookup_692 = 41'd4166131;
+      10'd532: rom_n_lookup_692 = 41'd4168951;
+      10'd533: rom_n_lookup_692 = 41'd4171775;
+      10'd534: rom_n_lookup_692 = 41'd4174599;
+      10'd535: rom_n_lookup_692 = 41'd4177426;
+      10'd536: rom_n_lookup_692 = 41'd4180255;
+      10'd537: rom_n_lookup_692 = 41'd4183085;
+      10'd538: rom_n_lookup_692 = 41'd4185918;
+      10'd539: rom_n_lookup_692 = 41'd4188752;
+      10'd540: rom_n_lookup_692 = 41'd4191589;
+      10'd541: rom_n_lookup_692 = 41'd4194427;
+      10'd542: rom_n_lookup_692 = 41'd4197267;
+      10'd543: rom_n_lookup_692 = 41'd4200109;
+      10'd544: rom_n_lookup_692 = 41'd4202953;
+      10'd545: rom_n_lookup_692 = 41'd4205799;
+      10'd546: rom_n_lookup_692 = 41'd4208647;
+      10'd547: rom_n_lookup_692 = 41'd4211497;
+      10'd548: rom_n_lookup_692 = 41'd4214348;
+      10'd549: rom_n_lookup_692 = 41'd4217202;
+      10'd550: rom_n_lookup_692 = 41'd4220058;
+      10'd551: rom_n_lookup_692 = 41'd4222915;
+      10'd552: rom_n_lookup_692 = 41'd4225775;
+      10'd553: rom_n_lookup_692 = 41'd4228636;
+      10'd554: rom_n_lookup_692 = 41'd4231500;
+      10'd555: rom_n_lookup_692 = 41'd4234364;
+      10'd556: rom_n_lookup_692 = 41'd4237232;
+      10'd557: rom_n_lookup_692 = 41'd4240102;
+      10'd558: rom_n_lookup_692 = 41'd4242972;
+      10'd559: rom_n_lookup_692 = 41'd4245845;
+      10'd560: rom_n_lookup_692 = 41'd4248720;
+      10'd561: rom_n_lookup_692 = 41'd4251598;
+      10'd562: rom_n_lookup_692 = 41'd4254476;
+      10'd563: rom_n_lookup_692 = 41'd4257357;
+      10'd564: rom_n_lookup_692 = 41'd4260239;
+      10'd565: rom_n_lookup_692 = 41'd4263125;
+      10'd566: rom_n_lookup_692 = 41'd4266011;
+      10'd567: rom_n_lookup_692 = 41'd4268900;
+      10'd568: rom_n_lookup_692 = 41'd4271790;
+      10'd569: rom_n_lookup_692 = 41'd4274683;
+      10'd570: rom_n_lookup_692 = 41'd4277578;
+      10'd571: rom_n_lookup_692 = 41'd4280474;
+      10'd572: rom_n_lookup_692 = 41'd4283372;
+      10'd573: rom_n_lookup_692 = 41'd4286273;
+      10'd574: rom_n_lookup_692 = 41'd4289175;
+      10'd575: rom_n_lookup_692 = 41'd4292080;
+      10'd576: rom_n_lookup_692 = 41'd4294986;
+      10'd577: rom_n_lookup_692 = 41'd4297894;
+      10'd578: rom_n_lookup_692 = 41'd4300804;
+      10'd579: rom_n_lookup_692 = 41'd4303716;
+      10'd580: rom_n_lookup_692 = 41'd4306631;
+      10'd581: rom_n_lookup_692 = 41'd4309547;
+      10'd582: rom_n_lookup_692 = 41'd4312465;
+      10'd583: rom_n_lookup_692 = 41'd4315385;
+      10'd584: rom_n_lookup_692 = 41'd4318307;
+      10'd585: rom_n_lookup_692 = 41'd4321231;
+      10'd586: rom_n_lookup_692 = 41'd4324158;
+      10'd587: rom_n_lookup_692 = 41'd4327085;
+      10'd588: rom_n_lookup_692 = 41'd4330015;
+      10'd589: rom_n_lookup_692 = 41'd4332948;
+      10'd590: rom_n_lookup_692 = 41'd4335881;
+      10'd591: rom_n_lookup_692 = 41'd4338817;
+      10'd592: rom_n_lookup_692 = 41'd4341755;
+      10'd593: rom_n_lookup_692 = 41'd4344695;
+      10'd594: rom_n_lookup_692 = 41'd4347637;
+      10'd595: rom_n_lookup_692 = 41'd4350581;
+      10'd596: rom_n_lookup_692 = 41'd4353527;
+      10'd597: rom_n_lookup_692 = 41'd4356475;
+      10'd598: rom_n_lookup_692 = 41'd4359424;
+      10'd599: rom_n_lookup_692 = 41'd4362377;
+      10'd600: rom_n_lookup_692 = 41'd4365330;
+      10'd601: rom_n_lookup_692 = 41'd4368287;
+      10'd602: rom_n_lookup_692 = 41'd4371244;
+      10'd603: rom_n_lookup_692 = 41'd4374204;
+      10'd604: rom_n_lookup_692 = 41'd4377166;
+      10'd605: rom_n_lookup_692 = 41'd4380130;
+      10'd606: rom_n_lookup_692 = 41'd4383096;
+      10'd607: rom_n_lookup_692 = 41'd4386064;
+      10'd608: rom_n_lookup_692 = 41'd4389034;
+      10'd609: rom_n_lookup_692 = 41'd4392005;
+      10'd610: rom_n_lookup_692 = 41'd4394980;
+      10'd611: rom_n_lookup_692 = 41'd4397956;
+      10'd612: rom_n_lookup_692 = 41'd4400933;
+      10'd613: rom_n_lookup_692 = 41'd4403914;
+      10'd614: rom_n_lookup_692 = 41'd4406896;
+      10'd615: rom_n_lookup_692 = 41'd4409879;
+      10'd616: rom_n_lookup_692 = 41'd4412866;
+      10'd617: rom_n_lookup_692 = 41'd4415854;
+      10'd618: rom_n_lookup_692 = 41'd4418844;
+      10'd619: rom_n_lookup_692 = 41'd4421836;
+      10'd620: rom_n_lookup_692 = 41'd4424830;
+      10'd621: rom_n_lookup_692 = 41'd4427827;
+      10'd622: rom_n_lookup_692 = 41'd4430824;
+      10'd623: rom_n_lookup_692 = 41'd4433825;
+      10'd624: rom_n_lookup_692 = 41'd4436827;
+      10'd625: rom_n_lookup_692 = 41'd4439832;
+      10'd626: rom_n_lookup_692 = 41'd4442838;
+      10'd627: rom_n_lookup_692 = 41'd4445846;
+      10'd628: rom_n_lookup_692 = 41'd4448857;
+      10'd629: rom_n_lookup_692 = 41'd4451869;
+      10'd630: rom_n_lookup_692 = 41'd4454883;
+      10'd631: rom_n_lookup_692 = 41'd4457901;
+      10'd632: rom_n_lookup_692 = 41'd4460918;
+      10'd633: rom_n_lookup_692 = 41'd4463940;
+      10'd634: rom_n_lookup_692 = 41'd4466962;
+      10'd635: rom_n_lookup_692 = 41'd4469987;
+      10'd636: rom_n_lookup_692 = 41'd4473013;
+      10'd637: rom_n_lookup_692 = 41'd4476042;
+      10'd638: rom_n_lookup_692 = 41'd4479074;
+      10'd639: rom_n_lookup_692 = 41'd4482106;
+      10'd640: rom_n_lookup_692 = 41'd4485141;
+      10'd641: rom_n_lookup_692 = 41'd4488178;
+      10'd642: rom_n_lookup_692 = 41'd4491217;
+      10'd643: rom_n_lookup_692 = 41'd4494258;
+      10'd644: rom_n_lookup_692 = 41'd4497302;
+      10'd645: rom_n_lookup_692 = 41'd4500347;
+      10'd646: rom_n_lookup_692 = 41'd4503394;
+      10'd647: rom_n_lookup_692 = 41'd4506443;
+      10'd648: rom_n_lookup_692 = 41'd4509495;
+      10'd649: rom_n_lookup_692 = 41'd4512549;
+      10'd650: rom_n_lookup_692 = 41'd4515604;
+      10'd651: rom_n_lookup_692 = 41'd4518662;
+      10'd652: rom_n_lookup_692 = 41'd4521721;
+      10'd653: rom_n_lookup_692 = 41'd4524783;
+      10'd654: rom_n_lookup_692 = 41'd4527847;
+      10'd655: rom_n_lookup_692 = 41'd4530913;
+      10'd656: rom_n_lookup_692 = 41'd4533981;
+      10'd657: rom_n_lookup_692 = 41'd4537052;
+      10'd658: rom_n_lookup_692 = 41'd4540123;
+      10'd659: rom_n_lookup_692 = 41'd4543198;
+      10'd660: rom_n_lookup_692 = 41'd4546273;
+      10'd661: rom_n_lookup_692 = 41'd4549353;
+      10'd662: rom_n_lookup_692 = 41'd4552433;
+      10'd663: rom_n_lookup_692 = 41'd4555515;
+      10'd664: rom_n_lookup_692 = 41'd4558600;
+      10'd665: rom_n_lookup_692 = 41'd4561687;
+      10'd666: rom_n_lookup_692 = 41'd4564776;
+      10'd667: rom_n_lookup_692 = 41'd4567867;
+      10'd668: rom_n_lookup_692 = 41'd4570959;
+      10'd669: rom_n_lookup_692 = 41'd4574055;
+      10'd670: rom_n_lookup_692 = 41'd4577152;
+      10'd671: rom_n_lookup_692 = 41'd4580252;
+      10'd672: rom_n_lookup_692 = 41'd4583353;
+      10'd673: rom_n_lookup_692 = 41'd4586456;
+      10'd674: rom_n_lookup_692 = 41'd4589562;
+      10'd675: rom_n_lookup_692 = 41'd4592670;
+      10'd676: rom_n_lookup_692 = 41'd4595780;
+      10'd677: rom_n_lookup_692 = 41'd4598891;
+      10'd678: rom_n_lookup_692 = 41'd4602006;
+      10'd679: rom_n_lookup_692 = 41'd4605122;
+      10'd680: rom_n_lookup_692 = 41'd4608240;
+      10'd681: rom_n_lookup_692 = 41'd4611360;
+      10'd682: rom_n_lookup_692 = 41'd4614483;
+      10'd683: rom_n_lookup_692 = 41'd4617607;
+      10'd684: rom_n_lookup_692 = 41'd4620735;
+      10'd685: rom_n_lookup_692 = 41'd4623863;
+      10'd686: rom_n_lookup_692 = 41'd4626994;
+      10'd687: rom_n_lookup_692 = 41'd4630127;
+      10'd688: rom_n_lookup_692 = 41'd4633262;
+      10'd689: rom_n_lookup_692 = 41'd4636400;
+      10'd690: rom_n_lookup_692 = 41'd4639539;
+      10'd691: rom_n_lookup_692 = 41'd4642681;
+      10'd692: rom_n_lookup_692 = 41'd4645824;
+      10'd693: rom_n_lookup_692 = 41'd4648970;
+      10'd694: rom_n_lookup_692 = 41'd4652118;
+      10'd695: rom_n_lookup_692 = 41'd4655269;
+      10'd696: rom_n_lookup_692 = 41'd4658420;
+      10'd697: rom_n_lookup_692 = 41'd4661575;
+      10'd698: rom_n_lookup_692 = 41'd4664731;
+      10'd699: rom_n_lookup_692 = 41'd4667890;
+      10'd700: rom_n_lookup_692 = 41'd4671051;
+      10'd701: rom_n_lookup_692 = 41'd4674214;
+      10'd702: rom_n_lookup_692 = 41'd4677378;
+      10'd703: rom_n_lookup_692 = 41'd4680546;
+      10'd704: rom_n_lookup_692 = 41'd4683715;
+      10'd705: rom_n_lookup_692 = 41'd4686887;
+      10'd706: rom_n_lookup_692 = 41'd4690061;
+      10'd707: rom_n_lookup_692 = 41'd4693236;
+      10'd708: rom_n_lookup_692 = 41'd4696414;
+      10'd709: rom_n_lookup_692 = 41'd4699594;
+      10'd710: rom_n_lookup_692 = 41'd4702776;
+      10'd711: rom_n_lookup_692 = 41'd4705961;
+      10'd712: rom_n_lookup_692 = 41'd4709148;
+      10'd713: rom_n_lookup_692 = 41'd4712336;
+      10'd714: rom_n_lookup_692 = 41'd4715527;
+      10'd715: rom_n_lookup_692 = 41'd4718719;
+      10'd716: rom_n_lookup_692 = 41'd4721916;
+      10'd717: rom_n_lookup_692 = 41'd4725112;
+      10'd718: rom_n_lookup_692 = 41'd4728312;
+      10'd719: rom_n_lookup_692 = 41'd4731514;
+      10'd720: rom_n_lookup_692 = 41'd4734717;
+      10'd721: rom_n_lookup_692 = 41'd4737924;
+      10'd722: rom_n_lookup_692 = 41'd4741132;
+      10'd723: rom_n_lookup_692 = 41'd4744342;
+      10'd724: rom_n_lookup_692 = 41'd4747555;
+      10'd725: rom_n_lookup_692 = 41'd4750769;
+      10'd726: rom_n_lookup_692 = 41'd4753986;
+      10'd727: rom_n_lookup_692 = 41'd4757206;
+      10'd728: rom_n_lookup_692 = 41'd4760426;
+      10'd729: rom_n_lookup_692 = 41'd4763650;
+      10'd730: rom_n_lookup_692 = 41'd4766876;
+      10'd731: rom_n_lookup_692 = 41'd4770103;
+      10'd732: rom_n_lookup_692 = 41'd4773334;
+      10'd733: rom_n_lookup_692 = 41'd4776565;
+      10'd734: rom_n_lookup_692 = 41'd4779800;
+      10'd735: rom_n_lookup_692 = 41'd4783037;
+      10'd736: rom_n_lookup_692 = 41'd4786275;
+      10'd737: rom_n_lookup_692 = 41'd4789516;
+      10'd738: rom_n_lookup_692 = 41'd4792760;
+      10'd739: rom_n_lookup_692 = 41'd4796004;
+      10'd740: rom_n_lookup_692 = 41'd4799252;
+      10'd741: rom_n_lookup_692 = 41'd4802502;
+      10'd742: rom_n_lookup_692 = 41'd4805754;
+      10'd743: rom_n_lookup_692 = 41'd4809008;
+      10'd744: rom_n_lookup_692 = 41'd4812264;
+      10'd745: rom_n_lookup_692 = 41'd4815523;
+      10'd746: rom_n_lookup_692 = 41'd4818784;
+      10'd747: rom_n_lookup_692 = 41'd4822046;
+      10'd748: rom_n_lookup_692 = 41'd4825312;
+      10'd749: rom_n_lookup_692 = 41'd4828579;
+      10'd750: rom_n_lookup_692 = 41'd4831848;
+      10'd751: rom_n_lookup_692 = 41'd4835121;
+      10'd752: rom_n_lookup_692 = 41'd4838394;
+      10'd753: rom_n_lookup_692 = 41'd4841671;
+      10'd754: rom_n_lookup_692 = 41'd4844949;
+      10'd755: rom_n_lookup_692 = 41'd4848229;
+      10'd756: rom_n_lookup_692 = 41'd4851513;
+      10'd757: rom_n_lookup_692 = 41'd4854798;
+      10'd758: rom_n_lookup_692 = 41'd4858085;
+      10'd759: rom_n_lookup_692 = 41'd4861374;
+      10'd760: rom_n_lookup_692 = 41'd4864667;
+      10'd761: rom_n_lookup_692 = 41'd4867960;
+      10'd762: rom_n_lookup_692 = 41'd4871257;
+      10'd763: rom_n_lookup_692 = 41'd4874555;
+      10'd764: rom_n_lookup_692 = 41'd4877856;
+      10'd765: rom_n_lookup_692 = 41'd4881158;
+      10'd766: rom_n_lookup_692 = 41'd4884464;
+      10'd767: rom_n_lookup_692 = 41'd4887772;
+      10'd768: rom_n_lookup_692 = 41'd4891081;
+      10'd769: rom_n_lookup_692 = 41'd4894393;
+      10'd770: rom_n_lookup_692 = 41'd4897707;
+      10'd771: rom_n_lookup_692 = 41'd4901023;
+      10'd772: rom_n_lookup_692 = 41'd4904342;
+      10'd773: rom_n_lookup_692 = 41'd4907663;
+      10'd774: rom_n_lookup_692 = 41'd4910986;
+      10'd775: rom_n_lookup_692 = 41'd4914312;
+      10'd776: rom_n_lookup_692 = 41'd4917639;
+      10'd777: rom_n_lookup_692 = 41'd4920969;
+      10'd778: rom_n_lookup_692 = 41'd4924301;
+      10'd779: rom_n_lookup_692 = 41'd4927636;
+      10'd780: rom_n_lookup_692 = 41'd4930972;
+      10'd781: rom_n_lookup_692 = 41'd4934311;
+      10'd782: rom_n_lookup_692 = 41'd4937652;
+      10'd783: rom_n_lookup_692 = 41'd4940996;
+      10'd784: rom_n_lookup_692 = 41'd4944341;
+      10'd785: rom_n_lookup_692 = 41'd4947690;
+      10'd786: rom_n_lookup_692 = 41'd4951039;
+      10'd787: rom_n_lookup_692 = 41'd4954392;
+      10'd788: rom_n_lookup_692 = 41'd4957747;
+      10'd789: rom_n_lookup_692 = 41'd4961104;
+      10'd790: rom_n_lookup_692 = 41'd4964464;
+      10'd791: rom_n_lookup_692 = 41'd4967824;
+      10'd792: rom_n_lookup_692 = 41'd4971189;
+      10'd793: rom_n_lookup_692 = 41'd4974555;
+      10'd794: rom_n_lookup_692 = 41'd4977923;
+      10'd795: rom_n_lookup_692 = 41'd4981294;
+      10'd796: rom_n_lookup_692 = 41'd4984667;
+      10'd797: rom_n_lookup_692 = 41'd4988042;
+      10'd798: rom_n_lookup_692 = 41'd4991420;
+      10'd799: rom_n_lookup_692 = 41'd4994800;
+      10'd800: rom_n_lookup_692 = 41'd4998181;
+      10'd801: rom_n_lookup_692 = 41'd5001567;
+      10'd802: rom_n_lookup_692 = 41'd5004953;
+      10'd803: rom_n_lookup_692 = 41'd5008341;
+      10'd804: rom_n_lookup_692 = 41'd5011734;
+      10'd805: rom_n_lookup_692 = 41'd5015126;
+      10'd806: rom_n_lookup_692 = 41'd5018523;
+      10'd807: rom_n_lookup_692 = 41'd5021921;
+      10'd808: rom_n_lookup_692 = 41'd5025321;
+      10'd809: rom_n_lookup_692 = 41'd5028725;
+      10'd810: rom_n_lookup_692 = 41'd5032129;
+      10'd811: rom_n_lookup_692 = 41'd5035537;
+      10'd812: rom_n_lookup_692 = 41'd5038946;
+      10'd813: rom_n_lookup_692 = 41'd5042359;
+      10'd814: rom_n_lookup_692 = 41'd5045772;
+      10'd815: rom_n_lookup_692 = 41'd5049190;
+      10'd816: rom_n_lookup_692 = 41'd5052608;
+      10'd817: rom_n_lookup_692 = 41'd5056030;
+      10'd818: rom_n_lookup_692 = 41'd5059453;
+      10'd819: rom_n_lookup_692 = 41'd5062879;
+      10'd820: rom_n_lookup_692 = 41'd5066308;
+      10'd821: rom_n_lookup_692 = 41'd5069738;
+      10'd822: rom_n_lookup_692 = 41'd5073170;
+      10'd823: rom_n_lookup_692 = 41'd5076606;
+      10'd824: rom_n_lookup_692 = 41'd5080044;
+      10'd825: rom_n_lookup_692 = 41'd5083483;
+      10'd826: rom_n_lookup_692 = 41'd5086926;
+      10'd827: rom_n_lookup_692 = 41'd5090370;
+      10'd828: rom_n_lookup_692 = 41'd5093817;
+      10'd829: rom_n_lookup_692 = 41'd5097266;
+      10'd830: rom_n_lookup_692 = 41'd5100718;
+      10'd831: rom_n_lookup_692 = 41'd5104171;
+      10'd832: rom_n_lookup_692 = 41'd5107628;
+      10'd833: rom_n_lookup_692 = 41'd5111086;
+      10'd834: rom_n_lookup_692 = 41'd5114547;
+      10'd835: rom_n_lookup_692 = 41'd5118011;
+      10'd836: rom_n_lookup_692 = 41'd5121476;
+      10'd837: rom_n_lookup_692 = 41'd5124943;
+      10'd838: rom_n_lookup_692 = 41'd5128414;
+      10'd839: rom_n_lookup_692 = 41'd5131887;
+      10'd840: rom_n_lookup_692 = 41'd5135362;
+      10'd841: rom_n_lookup_692 = 41'd5138839;
+      10'd842: rom_n_lookup_692 = 41'd5142318;
+      10'd843: rom_n_lookup_692 = 41'd5145801;
+      10'd844: rom_n_lookup_692 = 41'd5149285;
+      10'd845: rom_n_lookup_692 = 41'd5152771;
+      10'd846: rom_n_lookup_692 = 41'd5156261;
+      10'd847: rom_n_lookup_692 = 41'd5159752;
+      10'd848: rom_n_lookup_692 = 41'd5163247;
+      10'd849: rom_n_lookup_692 = 41'd5166742;
+      10'd850: rom_n_lookup_692 = 41'd5170241;
+      10'd851: rom_n_lookup_692 = 41'd5173742;
+      10'd852: rom_n_lookup_692 = 41'd5177245;
+      10'd853: rom_n_lookup_692 = 41'd5180750;
+      10'd854: rom_n_lookup_692 = 41'd5184259;
+      10'd855: rom_n_lookup_692 = 41'd5187769;
+      10'd856: rom_n_lookup_692 = 41'd5191282;
+      10'd857: rom_n_lookup_692 = 41'd5194798;
+      10'd858: rom_n_lookup_692 = 41'd5198314;
+      10'd859: rom_n_lookup_692 = 41'd5201835;
+      10'd860: rom_n_lookup_692 = 41'd5205357;
+      10'd861: rom_n_lookup_692 = 41'd5208882;
+      10'd862: rom_n_lookup_692 = 41'd5212409;
+      10'd863: rom_n_lookup_692 = 41'd5215938;
+      10'd864: rom_n_lookup_692 = 41'd5219470;
+      10'd865: rom_n_lookup_692 = 41'd5223005;
+      10'd866: rom_n_lookup_692 = 41'd5226541;
+      10'd867: rom_n_lookup_692 = 41'd5230080;
+      10'd868: rom_n_lookup_692 = 41'd5233621;
+      10'd869: rom_n_lookup_692 = 41'd5237166;
+      10'd870: rom_n_lookup_692 = 41'd5240712;
+      10'd871: rom_n_lookup_692 = 41'd5244260;
+      10'd872: rom_n_lookup_692 = 41'd5247811;
+      10'd873: rom_n_lookup_692 = 41'd5251365;
+      10'd874: rom_n_lookup_692 = 41'd5254921;
+      10'd875: rom_n_lookup_692 = 41'd5258479;
+      10'd876: rom_n_lookup_692 = 41'd5262039;
+      10'd877: rom_n_lookup_692 = 41'd5265603;
+      10'd878: rom_n_lookup_692 = 41'd5269168;
+      10'd879: rom_n_lookup_692 = 41'd5272736;
+      10'd880: rom_n_lookup_692 = 41'd5276307;
+      10'd881: rom_n_lookup_692 = 41'd5279879;
+      10'd882: rom_n_lookup_692 = 41'd5283455;
+      10'd883: rom_n_lookup_692 = 41'd5287032;
+      10'd884: rom_n_lookup_692 = 41'd5290612;
+      10'd885: rom_n_lookup_692 = 41'd5294194;
+      10'd886: rom_n_lookup_692 = 41'd5297779;
+      10'd887: rom_n_lookup_692 = 41'd5301367;
+      10'd888: rom_n_lookup_692 = 41'd5304956;
+      10'd889: rom_n_lookup_692 = 41'd5308549;
+      10'd890: rom_n_lookup_692 = 41'd5312143;
+      10'd891: rom_n_lookup_692 = 41'd5315740;
+      10'd892: rom_n_lookup_692 = 41'd5319339;
+      10'd893: rom_n_lookup_692 = 41'd5322942;
+      10'd894: rom_n_lookup_692 = 41'd5326545;
+      10'd895: rom_n_lookup_692 = 41'd5330153;
+      10'd896: rom_n_lookup_692 = 41'd5333761;
+      10'd897: rom_n_lookup_692 = 41'd5337374;
+      10'd898: rom_n_lookup_692 = 41'd5340987;
+      10'd899: rom_n_lookup_692 = 41'd5344604;
+      10'd900: rom_n_lookup_692 = 41'd5348223;
+      10'd901: rom_n_lookup_692 = 41'd5351845;
+      10'd902: rom_n_lookup_692 = 41'd5355468;
+      10'd903: rom_n_lookup_692 = 41'd5359095;
+      10'd904: rom_n_lookup_692 = 41'd5362723;
+      10'd905: rom_n_lookup_692 = 41'd5366355;
+      10'd906: rom_n_lookup_692 = 41'd5369988;
+      10'd907: rom_n_lookup_692 = 41'd5373625;
+      10'd908: rom_n_lookup_692 = 41'd5377263;
+      10'd909: rom_n_lookup_692 = 41'd5380905;
+      10'd910: rom_n_lookup_692 = 41'd5384548;
+      10'd911: rom_n_lookup_692 = 41'd5388194;
+      10'd912: rom_n_lookup_692 = 41'd5391842;
+      10'd913: rom_n_lookup_692 = 41'd5395494;
+      10'd914: rom_n_lookup_692 = 41'd5399147;
+      10'd915: rom_n_lookup_692 = 41'd5402803;
+      10'd916: rom_n_lookup_692 = 41'd5406461;
+      10'd917: rom_n_lookup_692 = 41'd5410122;
+      10'd918: rom_n_lookup_692 = 41'd5413786;
+      10'd919: rom_n_lookup_692 = 41'd5417451;
+      10'd920: rom_n_lookup_692 = 41'd5421120;
+      10'd921: rom_n_lookup_692 = 41'd5424790;
+      10'd922: rom_n_lookup_692 = 41'd5428464;
+      10'd923: rom_n_lookup_692 = 41'd5432140;
+      10'd924: rom_n_lookup_692 = 41'd5435818;
+      10'd925: rom_n_lookup_692 = 41'd5439498;
+      10'd926: rom_n_lookup_692 = 41'd5443182;
+      10'd927: rom_n_lookup_692 = 41'd5446868;
+      10'd928: rom_n_lookup_692 = 41'd5450556;
+      10'd929: rom_n_lookup_692 = 41'd5454246;
+      10'd930: rom_n_lookup_692 = 41'd5457940;
+      10'd931: rom_n_lookup_692 = 41'd5461636;
+      10'd932: rom_n_lookup_692 = 41'd5465333;
+      10'd933: rom_n_lookup_692 = 41'd5469035;
+      10'd934: rom_n_lookup_692 = 41'd5472738;
+      10'd935: rom_n_lookup_692 = 41'd5476443;
+      10'd936: rom_n_lookup_692 = 41'd5480152;
+      10'd937: rom_n_lookup_692 = 41'd5483863;
+      10'd938: rom_n_lookup_692 = 41'd5487576;
+      10'd939: rom_n_lookup_692 = 41'd5491291;
+      10'd940: rom_n_lookup_692 = 41'd5495010;
+      10'd941: rom_n_lookup_692 = 41'd5498731;
+      10'd942: rom_n_lookup_692 = 41'd5502455;
+      10'd943: rom_n_lookup_692 = 41'd5506180;
+      10'd944: rom_n_lookup_692 = 41'd5509908;
+      10'd945: rom_n_lookup_692 = 41'd5513640;
+      10'd946: rom_n_lookup_692 = 41'd5517373;
+      10'd947: rom_n_lookup_692 = 41'd5521108;
+      10'd948: rom_n_lookup_692 = 41'd5524848;
+      10'd949: rom_n_lookup_692 = 41'd5528588;
+      10'd950: rom_n_lookup_692 = 41'd5532332;
+      10'd951: rom_n_lookup_692 = 41'd5536078;
+      10'd952: rom_n_lookup_692 = 41'd5539827;
+      10'd953: rom_n_lookup_692 = 41'd5543578;
+      10'd954: rom_n_lookup_692 = 41'd5547332;
+      10'd955: rom_n_lookup_692 = 41'd5551088;
+      10'd956: rom_n_lookup_692 = 41'd5554847;
+      10'd957: rom_n_lookup_692 = 41'd5558608;
+      10'd958: rom_n_lookup_692 = 41'd5562372;
+      10'd959: rom_n_lookup_692 = 41'd5566138;
+      10'd960: rom_n_lookup_692 = 41'd5569908;
+      10'd961: rom_n_lookup_692 = 41'd5573679;
+      10'd962: rom_n_lookup_692 = 41'd5577453;
+      10'd963: rom_n_lookup_692 = 41'd5581230;
+      10'd964: rom_n_lookup_692 = 41'd5585009;
+      10'd965: rom_n_lookup_692 = 41'd5588791;
+      10'd966: rom_n_lookup_692 = 41'd5592575;
+      10'd967: rom_n_lookup_692 = 41'd5596362;
+      10'd968: rom_n_lookup_692 = 41'd5600151;
+      10'd969: rom_n_lookup_692 = 41'd5603944;
+      10'd970: rom_n_lookup_692 = 41'd5607738;
+      10'd971: rom_n_lookup_692 = 41'd5611536;
+      10'd972: rom_n_lookup_692 = 41'd5615335;
+      10'd973: rom_n_lookup_692 = 41'd5619137;
+      10'd974: rom_n_lookup_692 = 41'd5622942;
+      10'd975: rom_n_lookup_692 = 41'd5626750;
+      10'd976: rom_n_lookup_692 = 41'd5630560;
+      10'd977: rom_n_lookup_692 = 41'd5634372;
+      10'd978: rom_n_lookup_692 = 41'd5638188;
+      10'd979: rom_n_lookup_692 = 41'd5642005;
+      10'd980: rom_n_lookup_692 = 41'd5645826;
+      10'd981: rom_n_lookup_692 = 41'd5649649;
+      10'd982: rom_n_lookup_692 = 41'd5653474;
+      10'd983: rom_n_lookup_692 = 41'd5657303;
+      10'd984: rom_n_lookup_692 = 41'd5661133;
+      10'd985: rom_n_lookup_692 = 41'd5664966;
+      10'd986: rom_n_lookup_692 = 41'd5668803;
+      10'd987: rom_n_lookup_692 = 41'd5672641;
+      10'd988: rom_n_lookup_692 = 41'd5676482;
+      10'd989: rom_n_lookup_692 = 41'd5680326;
+      10'd990: rom_n_lookup_692 = 41'd5684172;
+      10'd991: rom_n_lookup_692 = 41'd5688021;
+      10'd992: rom_n_lookup_692 = 41'd5691872;
+      10'd993: rom_n_lookup_692 = 41'd5695727;
+      10'd994: rom_n_lookup_692 = 41'd5699584;
+      10'd995: rom_n_lookup_692 = 41'd5703443;
+      10'd996: rom_n_lookup_692 = 41'd5707304;
+      10'd997: rom_n_lookup_692 = 41'd5711170;
+      10'd998: rom_n_lookup_692 = 41'd5715036;
+      10'd999: rom_n_lookup_692 = 41'd5718907;
+      10'd1000: rom_n_lookup_692 = 41'd5722779;
+      10'd1001: rom_n_lookup_692 = 41'd5726654;
+      10'd1002: rom_n_lookup_692 = 41'd5730531;
+      10'd1003: rom_n_lookup_692 = 41'd5734412;
+      10'd1004: rom_n_lookup_692 = 41'd5738295;
+      10'd1005: rom_n_lookup_692 = 41'd5742181;
+      10'd1006: rom_n_lookup_692 = 41'd5746068;
+      10'd1007: rom_n_lookup_692 = 41'd5749960;
+      10'd1008: rom_n_lookup_692 = 41'd5753853;
+      10'd1009: rom_n_lookup_692 = 41'd5757749;
+      10'd1010: rom_n_lookup_692 = 41'd5761648;
+      10'd1011: rom_n_lookup_692 = 41'd5765549;
+      10'd1012: rom_n_lookup_692 = 41'd5769453;
+      10'd1013: rom_n_lookup_692 = 41'd5773360;
+      10'd1014: rom_n_lookup_692 = 41'd5777270;
+      10'd1015: rom_n_lookup_692 = 41'd5781181;
+      10'd1016: rom_n_lookup_692 = 41'd5785096;
+      10'd1017: rom_n_lookup_692 = 41'd5789013;
+      10'd1018: rom_n_lookup_692 = 41'd5792933;
+      10'd1019: rom_n_lookup_692 = 41'd5796856;
+      10'd1020: rom_n_lookup_692 = 41'd5800780;
+      10'd1021: rom_n_lookup_692 = 41'd5804709;
+      10'd1022: rom_n_lookup_692 = 41'd5808640;
+      10'd1023: rom_n_lookup_692 = 41'd5812572;
+      default: rom_n_lookup_692 = 41'd0;
     endcase
   end
 endfunction
 // Signed two's-complement extension.
-wire [63:0] n_693;
+wire [63:0] n_signextend_693;
 // Extract source bits [21:0], rebase to bit 0.
-wire [21:0] n_694;
+wire [21:0] n_bits_21_0_694;
 // Unsigned resize: zero extend (or preserve width).
-wire [63:0] n_695;
+wire [63:0] n_resize_695;
 // Operation '*'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_696;
+wire [63:0] n_mul_696;
 // Operation 'asr'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_697;
+wire [63:0] n_asr_697;
 // Narrow: retain low bits; upper bits discarded.
-wire [39:0] n_698;
+wire [39:0] n_resize_698;
 // exp2 fraction ROM: interpolated Q8.32 value. Low 22 fraction bits select position inside interval.
-wire [39:0] n_699;
+wire [39:0] n_add_699;
 // Extract source bits [39:39], rebase to bit 0.
-wire [0:0] n_700;
+wire [0:0] n_bits_39_39_700;
 // Extract source bits [38:38], rebase to bit 0.
-wire [0:0] n_701;
+wire [0:0] n_bits_38_38_701;
 // Extract source bits [37:37], rebase to bit 0.
-wire [0:0] n_702;
+wire [0:0] n_bits_37_37_702;
 // Extract source bits [36:36], rebase to bit 0.
-wire [0:0] n_703;
+wire [0:0] n_bits_36_36_703;
 // Extract source bits [35:35], rebase to bit 0.
-wire [0:0] n_704;
+wire [0:0] n_bits_35_35_704;
 // Extract source bits [34:34], rebase to bit 0.
-wire [0:0] n_705;
+wire [0:0] n_bits_34_34_705;
 // Extract source bits [33:33], rebase to bit 0.
-wire [0:0] n_706;
+wire [0:0] n_bits_33_33_706;
 // Extract source bits [32:32], rebase to bit 0.
-wire [0:0] n_707;
+wire [0:0] n_bits_32_32_707;
 // Extract source bits [31:31], rebase to bit 0.
-wire [0:0] n_708;
+wire [0:0] n_bits_31_31_708;
 // Extract source bits [30:30], rebase to bit 0.
-wire [0:0] n_709;
+wire [0:0] n_bits_30_30_709;
 // Extract source bits [29:29], rebase to bit 0.
-wire [0:0] n_710;
+wire [0:0] n_bits_29_29_710;
 // Extract source bits [28:28], rebase to bit 0.
-wire [0:0] n_711;
+wire [0:0] n_bits_28_28_711;
 // Extract source bits [27:27], rebase to bit 0.
-wire [0:0] n_712;
+wire [0:0] n_bits_27_27_712;
 // Extract source bits [26:26], rebase to bit 0.
-wire [0:0] n_713;
+wire [0:0] n_bits_26_26_713;
 // Extract source bits [25:25], rebase to bit 0.
-wire [0:0] n_714;
+wire [0:0] n_bits_25_25_714;
 // Extract source bits [24:24], rebase to bit 0.
-wire [0:0] n_715;
+wire [0:0] n_bits_24_24_715;
 // Extract source bits [23:23], rebase to bit 0.
-wire [0:0] n_716;
+wire [0:0] n_bits_23_23_716;
 // Extract source bits [22:22], rebase to bit 0.
-wire [0:0] n_717;
+wire [0:0] n_bits_22_22_717;
 // Extract source bits [21:21], rebase to bit 0.
-wire [0:0] n_718;
+wire [0:0] n_bits_21_21_718;
 // Extract source bits [20:20], rebase to bit 0.
-wire [0:0] n_719;
+wire [0:0] n_bits_20_20_719;
 // Extract source bits [19:19], rebase to bit 0.
-wire [0:0] n_720;
+wire [0:0] n_bits_19_19_720;
 // Extract source bits [18:18], rebase to bit 0.
-wire [0:0] n_721;
+wire [0:0] n_bits_18_18_721;
 // Extract source bits [17:17], rebase to bit 0.
-wire [0:0] n_722;
+wire [0:0] n_bits_17_17_722;
 // Extract source bits [16:16], rebase to bit 0.
-wire [0:0] n_723;
+wire [0:0] n_bits_16_16_723;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_724;
+wire [0:0] n_bits_15_15_724;
 // Extract source bits [14:14], rebase to bit 0.
-wire [0:0] n_725;
+wire [0:0] n_bits_14_14_725;
 // Extract source bits [13:13], rebase to bit 0.
-wire [0:0] n_726;
+wire [0:0] n_bits_13_13_726;
 // Extract source bits [12:12], rebase to bit 0.
-wire [0:0] n_727;
+wire [0:0] n_bits_12_12_727;
 // Extract source bits [11:11], rebase to bit 0.
-wire [0:0] n_728;
+wire [0:0] n_bits_11_11_728;
 // Extract source bits [10:10], rebase to bit 0.
-wire [0:0] n_729;
+wire [0:0] n_bits_10_10_729;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_730;
+wire [0:0] n_bits_9_9_730;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_731;
+wire [0:0] n_bits_8_8_731;
 // Extract source bits [7:7], rebase to bit 0.
-wire [0:0] n_732;
+wire [0:0] n_bits_7_7_732;
 // Extract source bits [6:6], rebase to bit 0.
-wire [0:0] n_733;
+wire [0:0] n_bits_6_6_733;
 // Extract source bits [5:5], rebase to bit 0.
-wire [0:0] n_734;
+wire [0:0] n_bits_5_5_734;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_735;
+wire [0:0] n_bits_4_4_735;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_736;
+wire [0:0] n_bits_3_3_736;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_737;
+wire [0:0] n_bits_2_2_737;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_738;
+wire [0:0] n_bits_1_1_738;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_739;
+wire [0:0] n_bits_0_0_739;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_740;
+wire [15:0] n_mux_740;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_741;
+wire [15:0] n_mux_741;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_742;
+wire [15:0] n_mux_742;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_743;
+wire [15:0] n_mux_743;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_744;
+wire [15:0] n_mux_744;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_745;
+wire [15:0] n_mux_745;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_746;
+wire [15:0] n_mux_746;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_747;
+wire [15:0] n_mux_747;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_748;
+wire [15:0] n_mux_748;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_749;
+wire [15:0] n_mux_749;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_750;
+wire [15:0] n_mux_750;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_751;
+wire [15:0] n_mux_751;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_752;
+wire [15:0] n_mux_752;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_753;
+wire [15:0] n_mux_753;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_754;
+wire [15:0] n_mux_754;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_755;
+wire [15:0] n_mux_755;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_756;
+wire [15:0] n_mux_756;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_757;
+wire [15:0] n_mux_757;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_758;
+wire [15:0] n_mux_758;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_759;
+wire [15:0] n_mux_759;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_760;
+wire [15:0] n_mux_760;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_761;
+wire [15:0] n_mux_761;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_762;
+wire [15:0] n_mux_762;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_763;
+wire [15:0] n_mux_763;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_764;
+wire [15:0] n_mux_764;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_765;
+wire [15:0] n_mux_765;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_766;
+wire [15:0] n_mux_766;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_767;
+wire [15:0] n_mux_767;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_768;
+wire [15:0] n_mux_768;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_769;
+wire [15:0] n_mux_769;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_770;
+wire [15:0] n_mux_770;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_771;
+wire [15:0] n_mux_771;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_772;
+wire [15:0] n_mux_772;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_773;
+wire [15:0] n_mux_773;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_774;
+wire [15:0] n_mux_774;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_775;
+wire [15:0] n_mux_775;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_776;
+wire [15:0] n_mux_776;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_777;
+wire [15:0] n_mux_777;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_778;
+wire [15:0] n_mux_778;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_779;
+wire [15:0] n_mux_779;
 // Operation '+'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_780;
+wire [15:0] n_add_780;
 // Operation '+'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_781;
+wire [15:0] n_add_781;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_782;
+wire [39:0] n_shr_782;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_783;
+wire [17:0] n_resize_783;
 // Extract source bits [22:22], rebase to bit 0.
-wire [0:0] n_784;
+wire [0:0] n_bits_22_22_784;
 // Extract source bits [21:0], rebase to bit 0.
-wire [21:0] n_785;
+wire [21:0] n_bits_21_0_785;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_786;
+wire [0:0] n_eq_786;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_787;
+wire [0:0] n_not_787;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_788;
+wire [0:0] n_bits_0_0_788;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_789;
+wire [0:0] n_or_789;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_790;
+wire [0:0] n_and_790;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_791;
+wire [17:0] n_resize_791;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_792;
+wire [17:0] n_add_792;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_793;
+wire [39:0] n_shr_793;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_794;
+wire [17:0] n_resize_794;
 // Extract source bits [21:21], rebase to bit 0.
-wire [0:0] n_795;
+wire [0:0] n_bits_21_21_795;
 // Extract source bits [20:0], rebase to bit 0.
-wire [20:0] n_796;
+wire [20:0] n_bits_20_0_796;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_797;
+wire [0:0] n_eq_797;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_798;
+wire [0:0] n_not_798;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_799;
+wire [0:0] n_bits_0_0_799;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_800;
+wire [0:0] n_or_800;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_801;
+wire [0:0] n_and_801;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_802;
+wire [17:0] n_resize_802;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_803;
+wire [17:0] n_add_803;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_804;
+wire [39:0] n_shr_804;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_805;
+wire [17:0] n_resize_805;
 // Extract source bits [20:20], rebase to bit 0.
-wire [0:0] n_806;
+wire [0:0] n_bits_20_20_806;
 // Extract source bits [19:0], rebase to bit 0.
-wire [19:0] n_807;
+wire [19:0] n_bits_19_0_807;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_808;
+wire [0:0] n_eq_808;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_809;
+wire [0:0] n_not_809;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_810;
+wire [0:0] n_bits_0_0_810;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_811;
+wire [0:0] n_or_811;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_812;
+wire [0:0] n_and_812;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_813;
+wire [17:0] n_resize_813;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_814;
+wire [17:0] n_add_814;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_815;
+wire [39:0] n_shr_815;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_816;
+wire [17:0] n_resize_816;
 // Extract source bits [19:19], rebase to bit 0.
-wire [0:0] n_817;
+wire [0:0] n_bits_19_19_817;
 // Extract source bits [18:0], rebase to bit 0.
-wire [18:0] n_818;
+wire [18:0] n_bits_18_0_818;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_819;
+wire [0:0] n_eq_819;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_820;
+wire [0:0] n_not_820;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_821;
+wire [0:0] n_bits_0_0_821;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_822;
+wire [0:0] n_or_822;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_823;
+wire [0:0] n_and_823;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_824;
+wire [17:0] n_resize_824;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_825;
+wire [17:0] n_add_825;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_826;
+wire [39:0] n_shr_826;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_827;
+wire [17:0] n_resize_827;
 // Extract source bits [18:18], rebase to bit 0.
-wire [0:0] n_828;
+wire [0:0] n_bits_18_18_828;
 // Extract source bits [17:0], rebase to bit 0.
-wire [17:0] n_829;
+wire [17:0] n_bits_17_0_829;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_830;
+wire [0:0] n_eq_830;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_831;
+wire [0:0] n_not_831;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_832;
+wire [0:0] n_bits_0_0_832;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_833;
+wire [0:0] n_or_833;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_834;
+wire [0:0] n_and_834;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_835;
+wire [17:0] n_resize_835;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_836;
+wire [17:0] n_add_836;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_837;
+wire [39:0] n_shr_837;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_838;
+wire [17:0] n_resize_838;
 // Extract source bits [17:17], rebase to bit 0.
-wire [0:0] n_839;
+wire [0:0] n_bits_17_17_839;
 // Extract source bits [16:0], rebase to bit 0.
-wire [16:0] n_840;
+wire [16:0] n_bits_16_0_840;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_841;
+wire [0:0] n_eq_841;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_842;
+wire [0:0] n_not_842;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_843;
+wire [0:0] n_bits_0_0_843;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_844;
+wire [0:0] n_or_844;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_845;
+wire [0:0] n_and_845;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_846;
+wire [17:0] n_resize_846;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_847;
+wire [17:0] n_add_847;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_848;
+wire [39:0] n_shr_848;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_849;
+wire [17:0] n_resize_849;
 // Extract source bits [16:16], rebase to bit 0.
-wire [0:0] n_850;
+wire [0:0] n_bits_16_16_850;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_851;
+wire [15:0] n_bits_15_0_851;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_852;
+wire [0:0] n_eq_852;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_853;
+wire [0:0] n_not_853;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_854;
+wire [0:0] n_bits_0_0_854;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_855;
+wire [0:0] n_or_855;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_856;
+wire [0:0] n_and_856;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_857;
+wire [17:0] n_resize_857;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_858;
+wire [17:0] n_add_858;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_859;
+wire [39:0] n_shr_859;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_860;
+wire [17:0] n_resize_860;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_861;
+wire [0:0] n_bits_15_15_861;
 // Extract source bits [14:0], rebase to bit 0.
-wire [14:0] n_862;
+wire [14:0] n_bits_14_0_862;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_863;
+wire [0:0] n_eq_863;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_864;
+wire [0:0] n_not_864;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_865;
+wire [0:0] n_bits_0_0_865;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_866;
+wire [0:0] n_or_866;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_867;
+wire [0:0] n_and_867;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_868;
+wire [17:0] n_resize_868;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_869;
+wire [17:0] n_add_869;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_870;
+wire [39:0] n_shr_870;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_871;
+wire [17:0] n_resize_871;
 // Extract source bits [14:14], rebase to bit 0.
-wire [0:0] n_872;
+wire [0:0] n_bits_14_14_872;
 // Extract source bits [13:0], rebase to bit 0.
-wire [13:0] n_873;
+wire [13:0] n_bits_13_0_873;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_874;
+wire [0:0] n_eq_874;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_875;
+wire [0:0] n_not_875;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_876;
+wire [0:0] n_bits_0_0_876;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_877;
+wire [0:0] n_or_877;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_878;
+wire [0:0] n_and_878;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_879;
+wire [17:0] n_resize_879;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_880;
+wire [17:0] n_add_880;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_881;
+wire [39:0] n_shr_881;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_882;
+wire [17:0] n_resize_882;
 // Extract source bits [13:13], rebase to bit 0.
-wire [0:0] n_883;
+wire [0:0] n_bits_13_13_883;
 // Extract source bits [12:0], rebase to bit 0.
-wire [12:0] n_884;
+wire [12:0] n_bits_12_0_884;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_885;
+wire [0:0] n_eq_885;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_886;
+wire [0:0] n_not_886;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_887;
+wire [0:0] n_bits_0_0_887;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_888;
+wire [0:0] n_or_888;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_889;
+wire [0:0] n_and_889;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_890;
+wire [17:0] n_resize_890;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_891;
+wire [17:0] n_add_891;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_892;
+wire [39:0] n_shr_892;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_893;
+wire [17:0] n_resize_893;
 // Extract source bits [12:12], rebase to bit 0.
-wire [0:0] n_894;
+wire [0:0] n_bits_12_12_894;
 // Extract source bits [11:0], rebase to bit 0.
-wire [11:0] n_895;
+wire [11:0] n_bits_11_0_895;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_896;
+wire [0:0] n_eq_896;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_897;
+wire [0:0] n_not_897;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_898;
+wire [0:0] n_bits_0_0_898;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_899;
+wire [0:0] n_or_899;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_900;
+wire [0:0] n_and_900;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_901;
+wire [17:0] n_resize_901;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_902;
+wire [17:0] n_add_902;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_903;
+wire [39:0] n_shr_903;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_904;
+wire [17:0] n_resize_904;
 // Extract source bits [11:11], rebase to bit 0.
-wire [0:0] n_905;
+wire [0:0] n_bits_11_11_905;
 // Extract source bits [10:0], rebase to bit 0.
-wire [10:0] n_906;
+wire [10:0] n_bits_10_0_906;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_907;
+wire [0:0] n_eq_907;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_908;
+wire [0:0] n_not_908;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_909;
+wire [0:0] n_bits_0_0_909;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_910;
+wire [0:0] n_or_910;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_911;
+wire [0:0] n_and_911;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_912;
+wire [17:0] n_resize_912;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_913;
+wire [17:0] n_add_913;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_914;
+wire [39:0] n_shr_914;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_915;
+wire [17:0] n_resize_915;
 // Extract source bits [10:10], rebase to bit 0.
-wire [0:0] n_916;
+wire [0:0] n_bits_10_10_916;
 // Extract source bits [9:0], rebase to bit 0.
-wire [9:0] n_917;
+wire [9:0] n_bits_9_0_917;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_918;
+wire [0:0] n_eq_918;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_919;
+wire [0:0] n_not_919;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_920;
+wire [0:0] n_bits_0_0_920;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_921;
+wire [0:0] n_or_921;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_922;
+wire [0:0] n_and_922;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_923;
+wire [17:0] n_resize_923;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_924;
+wire [17:0] n_add_924;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_925;
+wire [39:0] n_shr_925;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_926;
+wire [17:0] n_resize_926;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_927;
+wire [0:0] n_bits_9_9_927;
 // Extract source bits [8:0], rebase to bit 0.
-wire [8:0] n_928;
+wire [8:0] n_bits_8_0_928;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_929;
+wire [0:0] n_eq_929;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_930;
+wire [0:0] n_not_930;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_931;
+wire [0:0] n_bits_0_0_931;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_932;
+wire [0:0] n_or_932;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_933;
+wire [0:0] n_and_933;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_934;
+wire [17:0] n_resize_934;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_935;
+wire [17:0] n_add_935;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_936;
+wire [39:0] n_shr_936;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_937;
+wire [17:0] n_resize_937;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_938;
+wire [0:0] n_bits_8_8_938;
 // Extract source bits [7:0], rebase to bit 0.
-wire [7:0] n_939;
+wire [7:0] n_bits_7_0_939;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_940;
+wire [0:0] n_eq_940;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_941;
+wire [0:0] n_not_941;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_942;
+wire [0:0] n_bits_0_0_942;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_943;
+wire [0:0] n_or_943;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_944;
+wire [0:0] n_and_944;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_945;
+wire [17:0] n_resize_945;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_946;
+wire [17:0] n_add_946;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_947;
+wire [39:0] n_shr_947;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_948;
+wire [17:0] n_resize_948;
 // Extract source bits [7:7], rebase to bit 0.
-wire [0:0] n_949;
+wire [0:0] n_bits_7_7_949;
 // Extract source bits [6:0], rebase to bit 0.
-wire [6:0] n_950;
+wire [6:0] n_bits_6_0_950;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_951;
+wire [0:0] n_eq_951;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_952;
+wire [0:0] n_not_952;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_953;
+wire [0:0] n_bits_0_0_953;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_954;
+wire [0:0] n_or_954;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_955;
+wire [0:0] n_and_955;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_956;
+wire [17:0] n_resize_956;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_957;
+wire [17:0] n_add_957;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_958;
+wire [39:0] n_shr_958;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_959;
+wire [17:0] n_resize_959;
 // Extract source bits [6:6], rebase to bit 0.
-wire [0:0] n_960;
+wire [0:0] n_bits_6_6_960;
 // Extract source bits [5:0], rebase to bit 0.
-wire [5:0] n_961;
+wire [5:0] n_bits_5_0_961;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_962;
+wire [0:0] n_eq_962;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_963;
+wire [0:0] n_not_963;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_964;
+wire [0:0] n_bits_0_0_964;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_965;
+wire [0:0] n_or_965;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_966;
+wire [0:0] n_and_966;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_967;
+wire [17:0] n_resize_967;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_968;
+wire [17:0] n_add_968;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_969;
+wire [39:0] n_shr_969;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_970;
+wire [17:0] n_resize_970;
 // Extract source bits [5:5], rebase to bit 0.
-wire [0:0] n_971;
+wire [0:0] n_bits_5_5_971;
 // Extract source bits [4:0], rebase to bit 0.
-wire [4:0] n_972;
+wire [4:0] n_bits_4_0_972;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_973;
+wire [0:0] n_eq_973;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_974;
+wire [0:0] n_not_974;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_975;
+wire [0:0] n_bits_0_0_975;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_976;
+wire [0:0] n_or_976;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_977;
+wire [0:0] n_and_977;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_978;
+wire [17:0] n_resize_978;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_979;
+wire [17:0] n_add_979;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_980;
+wire [39:0] n_shr_980;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_981;
+wire [17:0] n_resize_981;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_982;
+wire [0:0] n_bits_4_4_982;
 // Extract source bits [3:0], rebase to bit 0.
-wire [3:0] n_983;
+wire [3:0] n_bits_3_0_983;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_984;
+wire [0:0] n_eq_984;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_985;
+wire [0:0] n_not_985;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_986;
+wire [0:0] n_bits_0_0_986;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_987;
+wire [0:0] n_or_987;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_988;
+wire [0:0] n_and_988;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_989;
+wire [17:0] n_resize_989;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_990;
+wire [17:0] n_add_990;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_991;
+wire [39:0] n_shr_991;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_992;
+wire [17:0] n_resize_992;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_993;
+wire [0:0] n_bits_3_3_993;
 // Extract source bits [2:0], rebase to bit 0.
-wire [2:0] n_994;
+wire [2:0] n_bits_2_0_994;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_995;
+wire [0:0] n_eq_995;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_996;
+wire [0:0] n_not_996;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_997;
+wire [0:0] n_bits_0_0_997;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_998;
+wire [0:0] n_or_998;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_999;
+wire [0:0] n_and_999;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_1000;
+wire [17:0] n_resize_1000;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1001;
+wire [17:0] n_add_1001;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_1002;
+wire [39:0] n_shr_1002;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1003;
+wire [17:0] n_resize_1003;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_1004;
+wire [0:0] n_bits_2_2_1004;
 // Extract source bits [1:0], rebase to bit 0.
-wire [1:0] n_1005;
+wire [1:0] n_bits_1_0_1005;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1006;
+wire [0:0] n_eq_1006;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1007;
+wire [0:0] n_not_1007;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_1008;
+wire [0:0] n_bits_0_0_1008;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1009;
+wire [0:0] n_or_1009;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1010;
+wire [0:0] n_and_1010;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_1011;
+wire [17:0] n_resize_1011;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1012;
+wire [17:0] n_add_1012;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_1013;
+wire [39:0] n_shr_1013;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1014;
+wire [17:0] n_resize_1014;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_1015;
+wire [0:0] n_bits_1_1_1015;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_1016;
+wire [0:0] n_bits_0_0_1016;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1017;
+wire [0:0] n_eq_1017;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1018;
+wire [0:0] n_not_1018;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_1019;
+wire [0:0] n_bits_0_0_1019;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1020;
+wire [0:0] n_or_1020;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1021;
+wire [0:0] n_and_1021;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_1022;
+wire [17:0] n_resize_1022;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1023;
+wire [17:0] n_add_1023;
 // Operation '>>'; result limited to 40 bits. Signed interpretation only for slt/asr/signextend.
-wire [39:0] n_1024;
+wire [39:0] n_shr_1024;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1025;
+wire [17:0] n_resize_1025;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_1026;
+wire [0:0] n_bits_0_0_1026;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_1027;
+wire [0:0] n_bits_0_0_1027;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1028;
+wire [0:0] n_or_1028;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1029;
+wire [0:0] n_and_1029;
 // Unsigned resize: zero extend (or preserve width).
-wire [17:0] n_1030;
+wire [17:0] n_resize_1030;
 // Operation '+'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1031;
+wire [17:0] n_add_1031;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1032;
+wire [17:0] n_resize_1032;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1033;
+wire [17:0] n_shl_1033;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1034;
+wire [17:0] n_resize_1034;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1035;
+wire [17:0] n_shl_1035;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1036;
+wire [17:0] n_resize_1036;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1037;
+wire [17:0] n_shl_1037;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1038;
+wire [17:0] n_resize_1038;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1039;
+wire [17:0] n_shl_1039;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1040;
+wire [17:0] n_resize_1040;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1041;
+wire [17:0] n_shl_1041;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1042;
+wire [17:0] n_resize_1042;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1043;
+wire [17:0] n_shl_1043;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1044;
+wire [17:0] n_resize_1044;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1045;
+wire [17:0] n_shl_1045;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1046;
+wire [17:0] n_resize_1046;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1047;
+wire [17:0] n_shl_1047;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1048;
+wire [17:0] n_resize_1048;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1049;
+wire [17:0] n_shl_1049;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1050;
+wire [17:0] n_resize_1050;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1051;
+wire [17:0] n_shl_1051;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1052;
+wire [17:0] n_resize_1052;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1053;
+wire [17:0] n_shl_1053;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1054;
+wire [17:0] n_resize_1054;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1055;
+wire [17:0] n_shl_1055;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1056;
+wire [17:0] n_resize_1056;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1057;
+wire [17:0] n_shl_1057;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1058;
+wire [17:0] n_resize_1058;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1059;
+wire [17:0] n_shl_1059;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1060;
+wire [17:0] n_resize_1060;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1061;
+wire [17:0] n_shl_1061;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1062;
+wire [17:0] n_resize_1062;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1063;
+wire [17:0] n_shl_1063;
 // Narrow: retain low bits; upper bits discarded.
-wire [17:0] n_1064;
+wire [17:0] n_resize_1064;
 // Operation '<<'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1065;
+wire [17:0] n_shl_1065;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1066;
+wire [17:0] n_mux_1066;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1067;
+wire [17:0] n_mux_1067;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1068;
+wire [17:0] n_mux_1068;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1069;
+wire [17:0] n_mux_1069;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1070;
+wire [17:0] n_mux_1070;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1071;
+wire [17:0] n_mux_1071;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1072;
+wire [17:0] n_mux_1072;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1073;
+wire [17:0] n_mux_1073;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1074;
+wire [17:0] n_mux_1074;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1075;
+wire [17:0] n_mux_1075;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1076;
+wire [17:0] n_mux_1076;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1077;
+wire [17:0] n_mux_1077;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1078;
+wire [17:0] n_mux_1078;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1079;
+wire [17:0] n_mux_1079;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1080;
+wire [17:0] n_mux_1080;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1081;
+wire [17:0] n_mux_1081;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1082;
+wire [17:0] n_mux_1082;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1083;
+wire [17:0] n_mux_1083;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1084;
+wire [17:0] n_mux_1084;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1085;
+wire [17:0] n_mux_1085;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1086;
+wire [17:0] n_mux_1086;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1087;
+wire [17:0] n_mux_1087;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1088;
+wire [17:0] n_mux_1088;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1089;
+wire [17:0] n_mux_1089;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1090;
+wire [17:0] n_mux_1090;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1091;
+wire [17:0] n_mux_1091;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1092;
+wire [17:0] n_mux_1092;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1093;
+wire [17:0] n_mux_1093;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1094;
+wire [17:0] n_mux_1094;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1095;
+wire [17:0] n_mux_1095;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1096;
+wire [17:0] n_mux_1096;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1097;
+wire [17:0] n_mux_1097;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1098;
+wire [17:0] n_mux_1098;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1099;
+wire [17:0] n_mux_1099;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1100;
+wire [17:0] n_mux_1100;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1101;
+wire [17:0] n_mux_1101;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1102;
+wire [17:0] n_mux_1102;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1103;
+wire [17:0] n_mux_1103;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1104;
+wire [17:0] n_mux_1104;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1105;
+wire [17:0] n_mux_1105;
 // Extract source bits [17:17], rebase to bit 0.
-wire [0:0] n_1106;
+wire [0:0] n_bits_17_17_1106;
 // Unsigned resize: zero extend (or preserve width).
-wire [15:0] n_1107;
+wire [15:0] n_resize_1107;
 // Operation '+'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_1108;
+wire [15:0] n_add_1108;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1109;
+wire [0:0] n_slt_1109;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1110;
+wire [0:0] n_eq_1110;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1111;
+wire [0:0] n_or_1111;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1112;
+wire [0:0] n_slt_1112;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1113;
+wire [0:0] n_not_1113;
 // Packed bus: [23:23] = high operand; [22:0] = low operand.
-wire [23:0] n_1114;
+wire [23:0] n_concat_1114;
 // Narrow: retain low bits; upper bits discarded.
-wire [6:0] n_1115;
+wire [6:0] n_resize_1115;
 // Operation '>>'; result limited to 18 bits. Signed interpretation only for slt/asr/signextend.
-wire [17:0] n_1116;
+wire [17:0] n_shr_1116;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_1117;
+wire [17:0] n_mux_1117;
 // Narrow: retain low bits; upper bits discarded.
-wire [15:0] n_1118;
+wire [15:0] n_resize_1118;
 // Packed bus: [22:16] = high operand; [15:0] = low operand.
-wire [22:0] n_1119;
+wire [22:0] n_concat_1119;
 // Packed bus: [23:23] = high operand; [22:0] = low operand.
-wire [23:0] n_1120;
+wire [23:0] n_concat_1120;
 // Select true operand when condition is 1; false operand otherwise.
-wire [23:0] n_1121;
+wire [23:0] n_mux_1121;
 // Custom float: SIGN [23], EXP [22:16] bias 63, FRACTION [15:0] with hidden leading 1. EXP=0 flushes to zero; EXP=all ones is NaR. Round nearest even; finite overflow saturates.
-wire [23:0] n_1122;
+wire [23:0] n_mux_1122;
 // Custom float: SIGN [23], EXP [22:16] bias 63, FRACTION [15:0] with hidden leading 1. EXP=0 flushes to zero; EXP=all ones is NaR. Round nearest even; finite overflow saturates.
-wire [23:0] n_1123;
+wire [23:0] n_mux_1123;
 // Custom float: SIGN [23], EXP [22:16] bias 63, FRACTION [15:0] with hidden leading 1. EXP=0 flushes to zero; EXP=all ones is NaR. Round nearest even; finite overflow saturates.
-wire [23:0] n_1124;
+wire [23:0] n_mux_1124;
 // Custom float: SIGN [23], EXP [22:16] bias 63, FRACTION [15:0] with hidden leading 1. EXP=0 flushes to zero; EXP=all ones is NaR. Round nearest even; finite overflow saturates.
-wire [23:0] n_1125;
-assign n_0 = s_a >> 16;
-assign n_1 = n_0 == 7'd127;
-assign n_2 = 24'd4157780 >> 16;
-assign n_3 = n_2 == 7'd127;
-assign n_4 = n_1 | n_3;
-assign n_5 = s_a >> 16;
-assign n_6 = n_5 == 7'd0;
-assign n_7 = 24'd4157780 >> 16;
-assign n_8 = n_7 == 7'd0;
-assign n_9 = n_6 | n_8;
-assign n_10 = s_a >> 16;
-assign n_11 = n_10;
-assign n_12 = 24'd4157780 >> 16;
-assign n_13 = n_12;
-assign n_14 = n_11 + n_13;
-assign n_15 = n_14 - 16'd158;
-assign n_16 = s_a >> 0;
-assign n_17 = {1'd1, n_16};
-assign n_18 = n_17;
-assign n_19 = 24'd4157780 >> 0;
-assign n_20 = {1'd1, n_19};
-assign n_21 = n_20;
-assign n_22 = n_18 * n_21;
-assign n_23 = n_22 >> 33;
-assign n_24 = n_22 >> 32;
-assign n_25 = n_22 >> 31;
-assign n_26 = n_22 >> 30;
-assign n_27 = n_22 >> 29;
-assign n_28 = n_22 >> 28;
-assign n_29 = n_22 >> 27;
-assign n_30 = n_22 >> 26;
-assign n_31 = n_22 >> 25;
-assign n_32 = n_22 >> 24;
-assign n_33 = n_22 >> 23;
-assign n_34 = n_22 >> 22;
-assign n_35 = n_22 >> 21;
-assign n_36 = n_22 >> 20;
-assign n_37 = n_22 >> 19;
-assign n_38 = n_22 >> 18;
-assign n_39 = n_22 >> 17;
-assign n_40 = n_22 >> 16;
-assign n_41 = n_22 >> 15;
-assign n_42 = n_22 >> 14;
-assign n_43 = n_22 >> 13;
-assign n_44 = n_22 >> 12;
-assign n_45 = n_22 >> 11;
-assign n_46 = n_22 >> 10;
-assign n_47 = n_22 >> 9;
-assign n_48 = n_22 >> 8;
-assign n_49 = n_22 >> 7;
-assign n_50 = n_22 >> 6;
-assign n_51 = n_22 >> 5;
-assign n_52 = n_22 >> 4;
-assign n_53 = n_22 >> 3;
-assign n_54 = n_22 >> 2;
-assign n_55 = n_22 >> 1;
-assign n_56 = n_22 >> 0;
-assign n_57 = n_56 ? 16'd0 : 16'd0;
-assign n_58 = n_55 ? 16'd1 : n_57;
-assign n_59 = n_54 ? 16'd2 : n_58;
-assign n_60 = n_53 ? 16'd3 : n_59;
-assign n_61 = n_52 ? 16'd4 : n_60;
-assign n_62 = n_51 ? 16'd5 : n_61;
-assign n_63 = n_50 ? 16'd6 : n_62;
-assign n_64 = n_49 ? 16'd7 : n_63;
-assign n_65 = n_48 ? 16'd8 : n_64;
-assign n_66 = n_47 ? 16'd9 : n_65;
-assign n_67 = n_46 ? 16'd10 : n_66;
-assign n_68 = n_45 ? 16'd11 : n_67;
-assign n_69 = n_44 ? 16'd12 : n_68;
-assign n_70 = n_43 ? 16'd13 : n_69;
-assign n_71 = n_42 ? 16'd14 : n_70;
-assign n_72 = n_41 ? 16'd15 : n_71;
-assign n_73 = n_40 ? 16'd16 : n_72;
-assign n_74 = n_39 ? 16'd17 : n_73;
-assign n_75 = n_38 ? 16'd18 : n_74;
-assign n_76 = n_37 ? 16'd19 : n_75;
-assign n_77 = n_36 ? 16'd20 : n_76;
-assign n_78 = n_35 ? 16'd21 : n_77;
-assign n_79 = n_34 ? 16'd22 : n_78;
-assign n_80 = n_33 ? 16'd23 : n_79;
-assign n_81 = n_32 ? 16'd24 : n_80;
-assign n_82 = n_31 ? 16'd25 : n_81;
-assign n_83 = n_30 ? 16'd26 : n_82;
-assign n_84 = n_29 ? 16'd27 : n_83;
-assign n_85 = n_28 ? 16'd28 : n_84;
-assign n_86 = n_27 ? 16'd29 : n_85;
-assign n_87 = n_26 ? 16'd30 : n_86;
-assign n_88 = n_25 ? 16'd31 : n_87;
-assign n_89 = n_24 ? 16'd32 : n_88;
-assign n_90 = n_23 ? 16'd33 : n_89;
-assign n_91 = n_15 + n_90;
-assign n_92 = n_91 + 16'd63;
-assign n_93 = n_22 >> 17;
-assign n_94 = n_93;
-assign n_95 = n_22 >> 16;
-assign n_96 = n_22 >> 0;
-assign n_97 = n_96 == 16'd0;
-assign n_98 = ~n_97;
-assign n_99 = n_94 >> 0;
-assign n_100 = n_98 | n_99;
-assign n_101 = n_95 & n_100;
-assign n_102 = n_101;
-assign n_103 = n_94 + n_102;
-assign n_104 = n_22 >> 16;
-assign n_105 = n_104;
-assign n_106 = n_22 >> 15;
-assign n_107 = n_22 >> 0;
-assign n_108 = n_107 == 15'd0;
-assign n_109 = ~n_108;
-assign n_110 = n_105 >> 0;
-assign n_111 = n_109 | n_110;
-assign n_112 = n_106 & n_111;
-assign n_113 = n_112;
-assign n_114 = n_105 + n_113;
-assign n_115 = n_22 >> 15;
-assign n_116 = n_115;
-assign n_117 = n_22 >> 14;
-assign n_118 = n_22 >> 0;
-assign n_119 = n_118 == 14'd0;
-assign n_120 = ~n_119;
-assign n_121 = n_116 >> 0;
-assign n_122 = n_120 | n_121;
-assign n_123 = n_117 & n_122;
-assign n_124 = n_123;
-assign n_125 = n_116 + n_124;
-assign n_126 = n_22 >> 14;
-assign n_127 = n_126;
-assign n_128 = n_22 >> 13;
-assign n_129 = n_22 >> 0;
-assign n_130 = n_129 == 13'd0;
-assign n_131 = ~n_130;
-assign n_132 = n_127 >> 0;
-assign n_133 = n_131 | n_132;
-assign n_134 = n_128 & n_133;
-assign n_135 = n_134;
-assign n_136 = n_127 + n_135;
-assign n_137 = n_22 >> 13;
-assign n_138 = n_137;
-assign n_139 = n_22 >> 12;
-assign n_140 = n_22 >> 0;
-assign n_141 = n_140 == 12'd0;
-assign n_142 = ~n_141;
-assign n_143 = n_138 >> 0;
-assign n_144 = n_142 | n_143;
-assign n_145 = n_139 & n_144;
-assign n_146 = n_145;
-assign n_147 = n_138 + n_146;
-assign n_148 = n_22 >> 12;
-assign n_149 = n_148;
-assign n_150 = n_22 >> 11;
-assign n_151 = n_22 >> 0;
-assign n_152 = n_151 == 11'd0;
-assign n_153 = ~n_152;
-assign n_154 = n_149 >> 0;
-assign n_155 = n_153 | n_154;
-assign n_156 = n_150 & n_155;
-assign n_157 = n_156;
-assign n_158 = n_149 + n_157;
-assign n_159 = n_22 >> 11;
-assign n_160 = n_159;
-assign n_161 = n_22 >> 10;
-assign n_162 = n_22 >> 0;
-assign n_163 = n_162 == 10'd0;
-assign n_164 = ~n_163;
-assign n_165 = n_160 >> 0;
-assign n_166 = n_164 | n_165;
-assign n_167 = n_161 & n_166;
-assign n_168 = n_167;
-assign n_169 = n_160 + n_168;
-assign n_170 = n_22 >> 10;
-assign n_171 = n_170;
-assign n_172 = n_22 >> 9;
-assign n_173 = n_22 >> 0;
-assign n_174 = n_173 == 9'd0;
-assign n_175 = ~n_174;
-assign n_176 = n_171 >> 0;
-assign n_177 = n_175 | n_176;
-assign n_178 = n_172 & n_177;
-assign n_179 = n_178;
-assign n_180 = n_171 + n_179;
-assign n_181 = n_22 >> 9;
-assign n_182 = n_181;
-assign n_183 = n_22 >> 8;
-assign n_184 = n_22 >> 0;
-assign n_185 = n_184 == 8'd0;
-assign n_186 = ~n_185;
-assign n_187 = n_182 >> 0;
-assign n_188 = n_186 | n_187;
-assign n_189 = n_183 & n_188;
-assign n_190 = n_189;
-assign n_191 = n_182 + n_190;
-assign n_192 = n_22 >> 8;
-assign n_193 = n_192;
-assign n_194 = n_22 >> 7;
-assign n_195 = n_22 >> 0;
-assign n_196 = n_195 == 7'd0;
-assign n_197 = ~n_196;
-assign n_198 = n_193 >> 0;
-assign n_199 = n_197 | n_198;
-assign n_200 = n_194 & n_199;
-assign n_201 = n_200;
-assign n_202 = n_193 + n_201;
-assign n_203 = n_22 >> 7;
-assign n_204 = n_203;
-assign n_205 = n_22 >> 6;
-assign n_206 = n_22 >> 0;
-assign n_207 = n_206 == 6'd0;
-assign n_208 = ~n_207;
-assign n_209 = n_204 >> 0;
-assign n_210 = n_208 | n_209;
-assign n_211 = n_205 & n_210;
-assign n_212 = n_211;
-assign n_213 = n_204 + n_212;
-assign n_214 = n_22 >> 6;
-assign n_215 = n_214;
-assign n_216 = n_22 >> 5;
-assign n_217 = n_22 >> 0;
-assign n_218 = n_217 == 5'd0;
-assign n_219 = ~n_218;
-assign n_220 = n_215 >> 0;
-assign n_221 = n_219 | n_220;
-assign n_222 = n_216 & n_221;
-assign n_223 = n_222;
-assign n_224 = n_215 + n_223;
-assign n_225 = n_22 >> 5;
-assign n_226 = n_225;
-assign n_227 = n_22 >> 4;
-assign n_228 = n_22 >> 0;
-assign n_229 = n_228 == 4'd0;
-assign n_230 = ~n_229;
-assign n_231 = n_226 >> 0;
-assign n_232 = n_230 | n_231;
-assign n_233 = n_227 & n_232;
-assign n_234 = n_233;
-assign n_235 = n_226 + n_234;
-assign n_236 = n_22 >> 4;
-assign n_237 = n_236;
-assign n_238 = n_22 >> 3;
-assign n_239 = n_22 >> 0;
-assign n_240 = n_239 == 3'd0;
-assign n_241 = ~n_240;
-assign n_242 = n_237 >> 0;
-assign n_243 = n_241 | n_242;
-assign n_244 = n_238 & n_243;
-assign n_245 = n_244;
-assign n_246 = n_237 + n_245;
-assign n_247 = n_22 >> 3;
-assign n_248 = n_247;
-assign n_249 = n_22 >> 2;
-assign n_250 = n_22 >> 0;
-assign n_251 = n_250 == 2'd0;
-assign n_252 = ~n_251;
-assign n_253 = n_248 >> 0;
-assign n_254 = n_252 | n_253;
-assign n_255 = n_249 & n_254;
-assign n_256 = n_255;
-assign n_257 = n_248 + n_256;
-assign n_258 = n_22 >> 2;
-assign n_259 = n_258;
-assign n_260 = n_22 >> 1;
-assign n_261 = n_22 >> 0;
-assign n_262 = n_261 == 1'd0;
-assign n_263 = ~n_262;
-assign n_264 = n_259 >> 0;
-assign n_265 = n_263 | n_264;
-assign n_266 = n_260 & n_265;
-assign n_267 = n_266;
-assign n_268 = n_259 + n_267;
-assign n_269 = n_22 >> 1;
-assign n_270 = n_269;
-assign n_271 = n_22 >> 0;
-assign n_272 = n_270 >> 0;
-assign n_273 = 1'd0 | n_272;
-assign n_274 = n_271 & n_273;
-assign n_275 = n_274;
-assign n_276 = n_270 + n_275;
-assign n_277 = n_22;
-assign n_278 = n_277 << 0;
-assign n_279 = n_22;
-assign n_280 = n_279 << 1;
-assign n_281 = n_22;
-assign n_282 = n_281 << 2;
-assign n_283 = n_22;
-assign n_284 = n_283 << 3;
-assign n_285 = n_22;
-assign n_286 = n_285 << 4;
-assign n_287 = n_22;
-assign n_288 = n_287 << 5;
-assign n_289 = n_22;
-assign n_290 = n_289 << 6;
-assign n_291 = n_22;
-assign n_292 = n_291 << 7;
-assign n_293 = n_22;
-assign n_294 = n_293 << 8;
-assign n_295 = n_22;
-assign n_296 = n_295 << 9;
-assign n_297 = n_22;
-assign n_298 = n_297 << 10;
-assign n_299 = n_22;
-assign n_300 = n_299 << 11;
-assign n_301 = n_22;
-assign n_302 = n_301 << 12;
-assign n_303 = n_22;
-assign n_304 = n_303 << 13;
-assign n_305 = n_22;
-assign n_306 = n_305 << 14;
-assign n_307 = n_22;
-assign n_308 = n_307 << 15;
-assign n_309 = n_22;
-assign n_310 = n_309 << 16;
-assign n_311 = n_56 ? n_310 : 18'd0;
-assign n_312 = n_55 ? n_308 : n_311;
-assign n_313 = n_54 ? n_306 : n_312;
-assign n_314 = n_53 ? n_304 : n_313;
-assign n_315 = n_52 ? n_302 : n_314;
-assign n_316 = n_51 ? n_300 : n_315;
-assign n_317 = n_50 ? n_298 : n_316;
-assign n_318 = n_49 ? n_296 : n_317;
-assign n_319 = n_48 ? n_294 : n_318;
-assign n_320 = n_47 ? n_292 : n_319;
-assign n_321 = n_46 ? n_290 : n_320;
-assign n_322 = n_45 ? n_288 : n_321;
-assign n_323 = n_44 ? n_286 : n_322;
-assign n_324 = n_43 ? n_284 : n_323;
-assign n_325 = n_42 ? n_282 : n_324;
-assign n_326 = n_41 ? n_280 : n_325;
-assign n_327 = n_40 ? n_278 : n_326;
-assign n_328 = n_39 ? n_276 : n_327;
-assign n_329 = n_38 ? n_268 : n_328;
-assign n_330 = n_37 ? n_257 : n_329;
-assign n_331 = n_36 ? n_246 : n_330;
-assign n_332 = n_35 ? n_235 : n_331;
-assign n_333 = n_34 ? n_224 : n_332;
-assign n_334 = n_33 ? n_213 : n_333;
-assign n_335 = n_32 ? n_202 : n_334;
-assign n_336 = n_31 ? n_191 : n_335;
-assign n_337 = n_30 ? n_180 : n_336;
-assign n_338 = n_29 ? n_169 : n_337;
-assign n_339 = n_28 ? n_158 : n_338;
-assign n_340 = n_27 ? n_147 : n_339;
-assign n_341 = n_26 ? n_136 : n_340;
-assign n_342 = n_25 ? n_125 : n_341;
-assign n_343 = n_24 ? n_114 : n_342;
-assign n_344 = n_23 ? n_103 : n_343;
-assign n_345 = n_344 >> 17;
-assign n_346 = n_345;
-assign n_347 = n_92 + n_346;
-assign n_348 = $signed(n_347) < $signed(16'd1);
-assign n_349 = n_22 == 34'd0;
-assign n_350 = n_348 | n_349;
-assign n_351 = $signed(n_347) < $signed(16'd127);
-assign n_352 = ~n_351;
-assign n_353 = s_a >> 16;
-assign n_354 = n_353 == 7'd0;
-assign n_355 = ~n_354;
-assign n_356 = s_a >> 23;
-assign n_357 = n_355 & n_356;
-assign n_358 = 24'd4157780 >> 16;
-assign n_359 = n_358 == 7'd0;
-assign n_360 = ~n_359;
-assign n_361 = 24'd4157780 >> 23;
-assign n_362 = n_360 & n_361;
-assign n_363 = n_357 ^ n_362;
-assign n_364 = {n_363, 23'd8323071};
-assign n_365 = n_347;
-assign n_366 = n_344 >> 1;
-assign n_367 = n_345 ? n_366 : n_344;
-assign n_368 = n_367;
-assign n_369 = {n_365, n_368};
-assign n_370 = {n_363, n_369};
-assign n_371 = n_352 ? n_364 : n_370;
-assign n_372 = n_350 ? 24'd0 : n_371;
-assign n_373 = n_9 ? 24'd0 : n_372;
-assign n_374 = n_4 ? 24'd8323072 : n_373;
-assign n_375 = n_374 >> 16;
-assign n_376 = n_375 == 7'd127;
-assign n_377 = n_374 >> 16;
-assign n_378 = n_377 == 7'd127;
-assign n_379 = ~n_378;
-assign n_380 = 24'd12906496 >> 16;
-assign n_381 = n_380 == 7'd127;
-assign n_382 = ~n_381;
-assign n_383 = n_379 & n_382;
-assign n_384 = n_374 >> 16;
-assign n_385 = n_384 == 7'd0;
-assign n_386 = ~n_385;
-assign n_387 = n_374 >> 23;
-assign n_388 = n_386 & n_387;
-assign n_389 = n_374 >> 16;
-assign n_390 = n_389 == 7'd0;
-assign n_391 = n_374 >> 16;
-assign n_392 = n_391;
-assign n_393 = n_392 - 16'd1;
-assign n_394 = n_393 >> 15;
-assign n_395 = n_393 >> 14;
-assign n_396 = n_393 >> 13;
-assign n_397 = n_393 >> 12;
-assign n_398 = n_393 >> 11;
-assign n_399 = n_393 >> 10;
-assign n_400 = n_393 >> 9;
-assign n_401 = n_393 >> 8;
-assign n_402 = n_393 >> 7;
-assign n_403 = n_393 >> 6;
-assign n_404 = n_393 >> 5;
-assign n_405 = n_393 >> 4;
-assign n_406 = n_393 >> 3;
-assign n_407 = n_393 >> 2;
-assign n_408 = n_393 >> 1;
-assign n_409 = n_393 >> 0;
-assign n_410 = n_374 >> 0;
-assign n_411 = {1'd1, n_410};
-assign n_412 = n_411;
-assign n_413 = n_412 << 1;
-assign n_414 = n_409 ? n_413 : n_412;
-assign n_415 = n_414 << 2;
-assign n_416 = n_408 ? n_415 : n_414;
-assign n_417 = n_416 << 4;
-assign n_418 = n_407 ? n_417 : n_416;
-assign n_419 = n_418 << 8;
-assign n_420 = n_406 ? n_419 : n_418;
-assign n_421 = n_420 << 16;
-assign n_422 = n_405 ? n_421 : n_420;
-assign n_423 = n_422 << 32;
-assign n_424 = n_404 ? n_423 : n_422;
-assign n_425 = n_424 << 64;
-assign n_426 = n_403 ? n_425 : n_424;
-assign n_427 = n_426 << 128;
-assign n_428 = n_402 ? n_427 : n_426;
-assign n_429 = n_401 ? 145'd0 : n_428;
-assign n_430 = n_400 ? 145'd0 : n_429;
-assign n_431 = n_399 ? 145'd0 : n_430;
-assign n_432 = n_398 ? 145'd0 : n_431;
-assign n_433 = n_397 ? 145'd0 : n_432;
-assign n_434 = n_396 ? 145'd0 : n_433;
-assign n_435 = n_395 ? 145'd0 : n_434;
-assign n_436 = n_394 ? 145'd0 : n_435;
-assign n_437 = n_390 ? 145'd0 : n_436;
-assign n_438 = 145'd0 - n_437;
-assign n_439 = n_388 ? n_438 : n_437;
-assign n_440 = 24'd12906496 >> 16;
-assign n_441 = n_440 == 7'd0;
-assign n_442 = ~n_441;
-assign n_443 = 24'd12906496 >> 23;
-assign n_444 = n_442 & n_443;
-assign n_445 = 24'd12906496 >> 16;
-assign n_446 = n_445 == 7'd0;
-assign n_447 = 24'd12906496 >> 16;
-assign n_448 = n_447;
-assign n_449 = n_448 - 16'd1;
-assign n_450 = n_449 >> 15;
-assign n_451 = n_449 >> 14;
-assign n_452 = n_449 >> 13;
-assign n_453 = n_449 >> 12;
-assign n_454 = n_449 >> 11;
-assign n_455 = n_449 >> 10;
-assign n_456 = n_449 >> 9;
-assign n_457 = n_449 >> 8;
-assign n_458 = n_449 >> 7;
-assign n_459 = n_449 >> 6;
-assign n_460 = n_449 >> 5;
-assign n_461 = n_449 >> 4;
-assign n_462 = n_449 >> 3;
-assign n_463 = n_449 >> 2;
-assign n_464 = n_449 >> 1;
-assign n_465 = n_449 >> 0;
-assign n_466 = 24'd12906496 >> 0;
-assign n_467 = {1'd1, n_466};
-assign n_468 = n_467;
-assign n_469 = n_468 << 1;
-assign n_470 = n_465 ? n_469 : n_468;
-assign n_471 = n_470 << 2;
-assign n_472 = n_464 ? n_471 : n_470;
-assign n_473 = n_472 << 4;
-assign n_474 = n_463 ? n_473 : n_472;
-assign n_475 = n_474 << 8;
-assign n_476 = n_462 ? n_475 : n_474;
-assign n_477 = n_476 << 16;
-assign n_478 = n_461 ? n_477 : n_476;
-assign n_479 = n_478 << 32;
-assign n_480 = n_460 ? n_479 : n_478;
-assign n_481 = n_480 << 64;
-assign n_482 = n_459 ? n_481 : n_480;
-assign n_483 = n_482 << 128;
-assign n_484 = n_458 ? n_483 : n_482;
-assign n_485 = n_457 ? 145'd0 : n_484;
-assign n_486 = n_456 ? 145'd0 : n_485;
-assign n_487 = n_455 ? 145'd0 : n_486;
-assign n_488 = n_454 ? 145'd0 : n_487;
-assign n_489 = n_453 ? 145'd0 : n_488;
-assign n_490 = n_452 ? 145'd0 : n_489;
-assign n_491 = n_451 ? 145'd0 : n_490;
-assign n_492 = n_450 ? 145'd0 : n_491;
-assign n_493 = n_446 ? 145'd0 : n_492;
-assign n_494 = 145'd0 - n_493;
-assign n_495 = n_444 ? n_494 : n_493;
-assign n_496 = $signed(n_439) < $signed(n_495);
-assign n_497 = n_383 & n_496;
-assign n_498 = n_374 >> 16;
-assign n_499 = n_498 == 7'd127;
-assign n_500 = ~n_499;
-assign n_501 = 24'd4521984 >> 16;
-assign n_502 = n_501 == 7'd127;
-assign n_503 = ~n_502;
-assign n_504 = n_500 & n_503;
-assign n_505 = n_374 >> 16;
-assign n_506 = n_505 == 7'd0;
-assign n_507 = ~n_506;
-assign n_508 = n_374 >> 23;
-assign n_509 = n_507 & n_508;
-assign n_510 = n_374 >> 16;
-assign n_511 = n_510 == 7'd0;
-assign n_512 = n_374 >> 16;
-assign n_513 = n_512;
-assign n_514 = n_513 - 16'd1;
-assign n_515 = n_514 >> 15;
-assign n_516 = n_514 >> 14;
-assign n_517 = n_514 >> 13;
-assign n_518 = n_514 >> 12;
-assign n_519 = n_514 >> 11;
-assign n_520 = n_514 >> 10;
-assign n_521 = n_514 >> 9;
-assign n_522 = n_514 >> 8;
-assign n_523 = n_514 >> 7;
-assign n_524 = n_514 >> 6;
-assign n_525 = n_514 >> 5;
-assign n_526 = n_514 >> 4;
-assign n_527 = n_514 >> 3;
-assign n_528 = n_514 >> 2;
-assign n_529 = n_514 >> 1;
-assign n_530 = n_514 >> 0;
-assign n_531 = n_374 >> 0;
-assign n_532 = {1'd1, n_531};
-assign n_533 = n_532;
-assign n_534 = n_533 << 1;
-assign n_535 = n_530 ? n_534 : n_533;
-assign n_536 = n_535 << 2;
-assign n_537 = n_529 ? n_536 : n_535;
-assign n_538 = n_537 << 4;
-assign n_539 = n_528 ? n_538 : n_537;
-assign n_540 = n_539 << 8;
-assign n_541 = n_527 ? n_540 : n_539;
-assign n_542 = n_541 << 16;
-assign n_543 = n_526 ? n_542 : n_541;
-assign n_544 = n_543 << 32;
-assign n_545 = n_525 ? n_544 : n_543;
-assign n_546 = n_545 << 64;
-assign n_547 = n_524 ? n_546 : n_545;
-assign n_548 = n_547 << 128;
-assign n_549 = n_523 ? n_548 : n_547;
-assign n_550 = n_522 ? 145'd0 : n_549;
-assign n_551 = n_521 ? 145'd0 : n_550;
-assign n_552 = n_520 ? 145'd0 : n_551;
-assign n_553 = n_519 ? 145'd0 : n_552;
-assign n_554 = n_518 ? 145'd0 : n_553;
-assign n_555 = n_517 ? 145'd0 : n_554;
-assign n_556 = n_516 ? 145'd0 : n_555;
-assign n_557 = n_515 ? 145'd0 : n_556;
-assign n_558 = n_511 ? 145'd0 : n_557;
-assign n_559 = 145'd0 - n_558;
-assign n_560 = n_509 ? n_559 : n_558;
-assign n_561 = 24'd4521984 >> 16;
-assign n_562 = n_561 == 7'd0;
-assign n_563 = ~n_562;
-assign n_564 = 24'd4521984 >> 23;
-assign n_565 = n_563 & n_564;
-assign n_566 = 24'd4521984 >> 16;
-assign n_567 = n_566 == 7'd0;
-assign n_568 = 24'd4521984 >> 16;
-assign n_569 = n_568;
-assign n_570 = n_569 - 16'd1;
-assign n_571 = n_570 >> 15;
-assign n_572 = n_570 >> 14;
-assign n_573 = n_570 >> 13;
-assign n_574 = n_570 >> 12;
-assign n_575 = n_570 >> 11;
-assign n_576 = n_570 >> 10;
-assign n_577 = n_570 >> 9;
-assign n_578 = n_570 >> 8;
-assign n_579 = n_570 >> 7;
-assign n_580 = n_570 >> 6;
-assign n_581 = n_570 >> 5;
-assign n_582 = n_570 >> 4;
-assign n_583 = n_570 >> 3;
-assign n_584 = n_570 >> 2;
-assign n_585 = n_570 >> 1;
-assign n_586 = n_570 >> 0;
-assign n_587 = 24'd4521984 >> 0;
-assign n_588 = {1'd1, n_587};
-assign n_589 = n_588;
-assign n_590 = n_589 << 1;
-assign n_591 = n_586 ? n_590 : n_589;
-assign n_592 = n_591 << 2;
-assign n_593 = n_585 ? n_592 : n_591;
-assign n_594 = n_593 << 4;
-assign n_595 = n_584 ? n_594 : n_593;
-assign n_596 = n_595 << 8;
-assign n_597 = n_583 ? n_596 : n_595;
-assign n_598 = n_597 << 16;
-assign n_599 = n_582 ? n_598 : n_597;
-assign n_600 = n_599 << 32;
-assign n_601 = n_581 ? n_600 : n_599;
-assign n_602 = n_601 << 64;
-assign n_603 = n_580 ? n_602 : n_601;
-assign n_604 = n_603 << 128;
-assign n_605 = n_579 ? n_604 : n_603;
-assign n_606 = n_578 ? 145'd0 : n_605;
-assign n_607 = n_577 ? 145'd0 : n_606;
-assign n_608 = n_576 ? 145'd0 : n_607;
-assign n_609 = n_575 ? 145'd0 : n_608;
-assign n_610 = n_574 ? 145'd0 : n_609;
-assign n_611 = n_573 ? 145'd0 : n_610;
-assign n_612 = n_572 ? 145'd0 : n_611;
-assign n_613 = n_571 ? 145'd0 : n_612;
-assign n_614 = n_567 ? 145'd0 : n_613;
-assign n_615 = 145'd0 - n_614;
-assign n_616 = n_565 ? n_615 : n_614;
-assign n_617 = $signed(n_560) < $signed(n_616);
-assign n_618 = n_504 & n_617;
-assign n_619 = ~n_618;
-assign n_620 = n_374 >> 16;
-assign n_621 = n_620 == 7'd127;
-assign n_622 = n_374 >> 16;
-assign n_623 = n_622 == 7'd0;
-assign n_624 = ~n_623;
-assign n_625 = n_374 >> 23;
-assign n_626 = n_624 & n_625;
-assign n_627 = n_374 >> 16;
-assign n_628 = n_627 == 7'd0;
-assign n_629 = n_374 >> 16;
-assign n_630 = n_629;
-assign n_631 = n_630 - 16'd1;
-assign n_632 = n_631 >> 15;
-assign n_633 = n_631 >> 14;
-assign n_634 = n_631 >> 13;
-assign n_635 = n_631 >> 12;
-assign n_636 = n_631 >> 11;
-assign n_637 = n_631 >> 10;
-assign n_638 = n_631 >> 9;
-assign n_639 = n_631 >> 8;
-assign n_640 = n_631 >> 7;
-assign n_641 = n_631 >> 6;
-assign n_642 = n_631 >> 5;
-assign n_643 = n_631 >> 4;
-assign n_644 = n_631 >> 3;
-assign n_645 = n_631 >> 2;
-assign n_646 = n_631 >> 1;
-assign n_647 = n_631 >> 0;
-assign n_648 = n_374 >> 0;
-assign n_649 = {1'd1, n_648};
-assign n_650 = n_649;
-assign n_651 = n_650 << 1;
-assign n_652 = n_647 ? n_651 : n_650;
-assign n_653 = n_652 << 2;
-assign n_654 = n_646 ? n_653 : n_652;
-assign n_655 = n_654 << 4;
-assign n_656 = n_645 ? n_655 : n_654;
-assign n_657 = n_656 << 8;
-assign n_658 = n_644 ? n_657 : n_656;
-assign n_659 = n_658 << 16;
-assign n_660 = n_643 ? n_659 : n_658;
-assign n_661 = n_660 << 32;
-assign n_662 = n_642 ? n_661 : n_660;
-assign n_663 = n_662 << 64;
-assign n_664 = n_641 ? n_663 : n_662;
-assign n_665 = n_664 << 128;
-assign n_666 = n_640 ? n_665 : n_664;
-assign n_667 = n_639 ? 145'd0 : n_666;
-assign n_668 = n_638 ? 145'd0 : n_667;
-assign n_669 = n_637 ? 145'd0 : n_668;
-assign n_670 = n_636 ? 145'd0 : n_669;
-assign n_671 = n_635 ? 145'd0 : n_670;
-assign n_672 = n_634 ? 145'd0 : n_671;
-assign n_673 = n_633 ? 145'd0 : n_672;
-assign n_674 = n_632 ? 145'd0 : n_673;
-assign n_675 = n_628 ? 145'd0 : n_674;
-assign n_676 = 145'd0 - n_675;
-assign n_677 = n_626 ? n_676 : n_675;
-assign n_678 = $signed(n_677);
-assign n_679 = $signed(n_678) >>> 46;
-assign n_680 = $signed(n_679) < $signed(146'd89202980794122492566142863867221409169145856);
-assign n_681 = $signed(146'd9223372036854775807) < $signed(n_679);
-assign n_682 = n_681 ? 146'd9223372036854775807 : n_679;
-assign n_683 = n_680 ? 146'd89202980794122492566142863867221409169145856 : n_682;
-assign n_684 = n_683;
-assign n_685 = n_621 ? 64'd0 : n_684;
-assign n_686 = $signed(n_685) >>> 32;
-assign n_687 = n_686;
-assign n_688 = n_687 - 16'd32;
-assign n_689 = n_685 >> 0;
-assign n_690 = n_689 >> 22;
-assign n_691 = rom_n_691(n_690);
-assign n_692 = rom_n_692(n_690);
-assign n_693 = $signed(n_692);
-assign n_694 = n_689 >> 0;
-assign n_695 = n_694;
-assign n_696 = n_693 * n_695;
-assign n_697 = $signed(n_696) >>> 22;
-assign n_698 = n_697;
-assign n_699 = n_691 + n_698;
-assign n_700 = n_699 >> 39;
-assign n_701 = n_699 >> 38;
-assign n_702 = n_699 >> 37;
-assign n_703 = n_699 >> 36;
-assign n_704 = n_699 >> 35;
-assign n_705 = n_699 >> 34;
-assign n_706 = n_699 >> 33;
-assign n_707 = n_699 >> 32;
-assign n_708 = n_699 >> 31;
-assign n_709 = n_699 >> 30;
-assign n_710 = n_699 >> 29;
-assign n_711 = n_699 >> 28;
-assign n_712 = n_699 >> 27;
-assign n_713 = n_699 >> 26;
-assign n_714 = n_699 >> 25;
-assign n_715 = n_699 >> 24;
-assign n_716 = n_699 >> 23;
-assign n_717 = n_699 >> 22;
-assign n_718 = n_699 >> 21;
-assign n_719 = n_699 >> 20;
-assign n_720 = n_699 >> 19;
-assign n_721 = n_699 >> 18;
-assign n_722 = n_699 >> 17;
-assign n_723 = n_699 >> 16;
-assign n_724 = n_699 >> 15;
-assign n_725 = n_699 >> 14;
-assign n_726 = n_699 >> 13;
-assign n_727 = n_699 >> 12;
-assign n_728 = n_699 >> 11;
-assign n_729 = n_699 >> 10;
-assign n_730 = n_699 >> 9;
-assign n_731 = n_699 >> 8;
-assign n_732 = n_699 >> 7;
-assign n_733 = n_699 >> 6;
-assign n_734 = n_699 >> 5;
-assign n_735 = n_699 >> 4;
-assign n_736 = n_699 >> 3;
-assign n_737 = n_699 >> 2;
-assign n_738 = n_699 >> 1;
-assign n_739 = n_699 >> 0;
-assign n_740 = n_739 ? 16'd0 : 16'd0;
-assign n_741 = n_738 ? 16'd1 : n_740;
-assign n_742 = n_737 ? 16'd2 : n_741;
-assign n_743 = n_736 ? 16'd3 : n_742;
-assign n_744 = n_735 ? 16'd4 : n_743;
-assign n_745 = n_734 ? 16'd5 : n_744;
-assign n_746 = n_733 ? 16'd6 : n_745;
-assign n_747 = n_732 ? 16'd7 : n_746;
-assign n_748 = n_731 ? 16'd8 : n_747;
-assign n_749 = n_730 ? 16'd9 : n_748;
-assign n_750 = n_729 ? 16'd10 : n_749;
-assign n_751 = n_728 ? 16'd11 : n_750;
-assign n_752 = n_727 ? 16'd12 : n_751;
-assign n_753 = n_726 ? 16'd13 : n_752;
-assign n_754 = n_725 ? 16'd14 : n_753;
-assign n_755 = n_724 ? 16'd15 : n_754;
-assign n_756 = n_723 ? 16'd16 : n_755;
-assign n_757 = n_722 ? 16'd17 : n_756;
-assign n_758 = n_721 ? 16'd18 : n_757;
-assign n_759 = n_720 ? 16'd19 : n_758;
-assign n_760 = n_719 ? 16'd20 : n_759;
-assign n_761 = n_718 ? 16'd21 : n_760;
-assign n_762 = n_717 ? 16'd22 : n_761;
-assign n_763 = n_716 ? 16'd23 : n_762;
-assign n_764 = n_715 ? 16'd24 : n_763;
-assign n_765 = n_714 ? 16'd25 : n_764;
-assign n_766 = n_713 ? 16'd26 : n_765;
-assign n_767 = n_712 ? 16'd27 : n_766;
-assign n_768 = n_711 ? 16'd28 : n_767;
-assign n_769 = n_710 ? 16'd29 : n_768;
-assign n_770 = n_709 ? 16'd30 : n_769;
-assign n_771 = n_708 ? 16'd31 : n_770;
-assign n_772 = n_707 ? 16'd32 : n_771;
-assign n_773 = n_706 ? 16'd33 : n_772;
-assign n_774 = n_705 ? 16'd34 : n_773;
-assign n_775 = n_704 ? 16'd35 : n_774;
-assign n_776 = n_703 ? 16'd36 : n_775;
-assign n_777 = n_702 ? 16'd37 : n_776;
-assign n_778 = n_701 ? 16'd38 : n_777;
-assign n_779 = n_700 ? 16'd39 : n_778;
-assign n_780 = n_688 + n_779;
-assign n_781 = n_780 + 16'd63;
-assign n_782 = n_699 >> 23;
-assign n_783 = n_782;
-assign n_784 = n_699 >> 22;
-assign n_785 = n_699 >> 0;
-assign n_786 = n_785 == 22'd0;
-assign n_787 = ~n_786;
-assign n_788 = n_783 >> 0;
-assign n_789 = n_787 | n_788;
-assign n_790 = n_784 & n_789;
-assign n_791 = n_790;
-assign n_792 = n_783 + n_791;
-assign n_793 = n_699 >> 22;
-assign n_794 = n_793;
-assign n_795 = n_699 >> 21;
-assign n_796 = n_699 >> 0;
-assign n_797 = n_796 == 21'd0;
-assign n_798 = ~n_797;
-assign n_799 = n_794 >> 0;
-assign n_800 = n_798 | n_799;
-assign n_801 = n_795 & n_800;
-assign n_802 = n_801;
-assign n_803 = n_794 + n_802;
-assign n_804 = n_699 >> 21;
-assign n_805 = n_804;
-assign n_806 = n_699 >> 20;
-assign n_807 = n_699 >> 0;
-assign n_808 = n_807 == 20'd0;
-assign n_809 = ~n_808;
-assign n_810 = n_805 >> 0;
-assign n_811 = n_809 | n_810;
-assign n_812 = n_806 & n_811;
-assign n_813 = n_812;
-assign n_814 = n_805 + n_813;
-assign n_815 = n_699 >> 20;
-assign n_816 = n_815;
-assign n_817 = n_699 >> 19;
-assign n_818 = n_699 >> 0;
-assign n_819 = n_818 == 19'd0;
-assign n_820 = ~n_819;
-assign n_821 = n_816 >> 0;
-assign n_822 = n_820 | n_821;
-assign n_823 = n_817 & n_822;
-assign n_824 = n_823;
-assign n_825 = n_816 + n_824;
-assign n_826 = n_699 >> 19;
-assign n_827 = n_826;
-assign n_828 = n_699 >> 18;
-assign n_829 = n_699 >> 0;
-assign n_830 = n_829 == 18'd0;
-assign n_831 = ~n_830;
-assign n_832 = n_827 >> 0;
-assign n_833 = n_831 | n_832;
-assign n_834 = n_828 & n_833;
-assign n_835 = n_834;
-assign n_836 = n_827 + n_835;
-assign n_837 = n_699 >> 18;
-assign n_838 = n_837;
-assign n_839 = n_699 >> 17;
-assign n_840 = n_699 >> 0;
-assign n_841 = n_840 == 17'd0;
-assign n_842 = ~n_841;
-assign n_843 = n_838 >> 0;
-assign n_844 = n_842 | n_843;
-assign n_845 = n_839 & n_844;
-assign n_846 = n_845;
-assign n_847 = n_838 + n_846;
-assign n_848 = n_699 >> 17;
-assign n_849 = n_848;
-assign n_850 = n_699 >> 16;
-assign n_851 = n_699 >> 0;
-assign n_852 = n_851 == 16'd0;
-assign n_853 = ~n_852;
-assign n_854 = n_849 >> 0;
-assign n_855 = n_853 | n_854;
-assign n_856 = n_850 & n_855;
-assign n_857 = n_856;
-assign n_858 = n_849 + n_857;
-assign n_859 = n_699 >> 16;
-assign n_860 = n_859;
-assign n_861 = n_699 >> 15;
-assign n_862 = n_699 >> 0;
-assign n_863 = n_862 == 15'd0;
-assign n_864 = ~n_863;
-assign n_865 = n_860 >> 0;
-assign n_866 = n_864 | n_865;
-assign n_867 = n_861 & n_866;
-assign n_868 = n_867;
-assign n_869 = n_860 + n_868;
-assign n_870 = n_699 >> 15;
-assign n_871 = n_870;
-assign n_872 = n_699 >> 14;
-assign n_873 = n_699 >> 0;
-assign n_874 = n_873 == 14'd0;
-assign n_875 = ~n_874;
-assign n_876 = n_871 >> 0;
-assign n_877 = n_875 | n_876;
-assign n_878 = n_872 & n_877;
-assign n_879 = n_878;
-assign n_880 = n_871 + n_879;
-assign n_881 = n_699 >> 14;
-assign n_882 = n_881;
-assign n_883 = n_699 >> 13;
-assign n_884 = n_699 >> 0;
-assign n_885 = n_884 == 13'd0;
-assign n_886 = ~n_885;
-assign n_887 = n_882 >> 0;
-assign n_888 = n_886 | n_887;
-assign n_889 = n_883 & n_888;
-assign n_890 = n_889;
-assign n_891 = n_882 + n_890;
-assign n_892 = n_699 >> 13;
-assign n_893 = n_892;
-assign n_894 = n_699 >> 12;
-assign n_895 = n_699 >> 0;
-assign n_896 = n_895 == 12'd0;
-assign n_897 = ~n_896;
-assign n_898 = n_893 >> 0;
-assign n_899 = n_897 | n_898;
-assign n_900 = n_894 & n_899;
-assign n_901 = n_900;
-assign n_902 = n_893 + n_901;
-assign n_903 = n_699 >> 12;
-assign n_904 = n_903;
-assign n_905 = n_699 >> 11;
-assign n_906 = n_699 >> 0;
-assign n_907 = n_906 == 11'd0;
-assign n_908 = ~n_907;
-assign n_909 = n_904 >> 0;
-assign n_910 = n_908 | n_909;
-assign n_911 = n_905 & n_910;
-assign n_912 = n_911;
-assign n_913 = n_904 + n_912;
-assign n_914 = n_699 >> 11;
-assign n_915 = n_914;
-assign n_916 = n_699 >> 10;
-assign n_917 = n_699 >> 0;
-assign n_918 = n_917 == 10'd0;
-assign n_919 = ~n_918;
-assign n_920 = n_915 >> 0;
-assign n_921 = n_919 | n_920;
-assign n_922 = n_916 & n_921;
-assign n_923 = n_922;
-assign n_924 = n_915 + n_923;
-assign n_925 = n_699 >> 10;
-assign n_926 = n_925;
-assign n_927 = n_699 >> 9;
-assign n_928 = n_699 >> 0;
-assign n_929 = n_928 == 9'd0;
-assign n_930 = ~n_929;
-assign n_931 = n_926 >> 0;
-assign n_932 = n_930 | n_931;
-assign n_933 = n_927 & n_932;
-assign n_934 = n_933;
-assign n_935 = n_926 + n_934;
-assign n_936 = n_699 >> 9;
-assign n_937 = n_936;
-assign n_938 = n_699 >> 8;
-assign n_939 = n_699 >> 0;
-assign n_940 = n_939 == 8'd0;
-assign n_941 = ~n_940;
-assign n_942 = n_937 >> 0;
-assign n_943 = n_941 | n_942;
-assign n_944 = n_938 & n_943;
-assign n_945 = n_944;
-assign n_946 = n_937 + n_945;
-assign n_947 = n_699 >> 8;
-assign n_948 = n_947;
-assign n_949 = n_699 >> 7;
-assign n_950 = n_699 >> 0;
-assign n_951 = n_950 == 7'd0;
-assign n_952 = ~n_951;
-assign n_953 = n_948 >> 0;
-assign n_954 = n_952 | n_953;
-assign n_955 = n_949 & n_954;
-assign n_956 = n_955;
-assign n_957 = n_948 + n_956;
-assign n_958 = n_699 >> 7;
-assign n_959 = n_958;
-assign n_960 = n_699 >> 6;
-assign n_961 = n_699 >> 0;
-assign n_962 = n_961 == 6'd0;
-assign n_963 = ~n_962;
-assign n_964 = n_959 >> 0;
-assign n_965 = n_963 | n_964;
-assign n_966 = n_960 & n_965;
-assign n_967 = n_966;
-assign n_968 = n_959 + n_967;
-assign n_969 = n_699 >> 6;
-assign n_970 = n_969;
-assign n_971 = n_699 >> 5;
-assign n_972 = n_699 >> 0;
-assign n_973 = n_972 == 5'd0;
-assign n_974 = ~n_973;
-assign n_975 = n_970 >> 0;
-assign n_976 = n_974 | n_975;
-assign n_977 = n_971 & n_976;
-assign n_978 = n_977;
-assign n_979 = n_970 + n_978;
-assign n_980 = n_699 >> 5;
-assign n_981 = n_980;
-assign n_982 = n_699 >> 4;
-assign n_983 = n_699 >> 0;
-assign n_984 = n_983 == 4'd0;
-assign n_985 = ~n_984;
-assign n_986 = n_981 >> 0;
-assign n_987 = n_985 | n_986;
-assign n_988 = n_982 & n_987;
-assign n_989 = n_988;
-assign n_990 = n_981 + n_989;
-assign n_991 = n_699 >> 4;
-assign n_992 = n_991;
-assign n_993 = n_699 >> 3;
-assign n_994 = n_699 >> 0;
-assign n_995 = n_994 == 3'd0;
-assign n_996 = ~n_995;
-assign n_997 = n_992 >> 0;
-assign n_998 = n_996 | n_997;
-assign n_999 = n_993 & n_998;
-assign n_1000 = n_999;
-assign n_1001 = n_992 + n_1000;
-assign n_1002 = n_699 >> 3;
-assign n_1003 = n_1002;
-assign n_1004 = n_699 >> 2;
-assign n_1005 = n_699 >> 0;
-assign n_1006 = n_1005 == 2'd0;
-assign n_1007 = ~n_1006;
-assign n_1008 = n_1003 >> 0;
-assign n_1009 = n_1007 | n_1008;
-assign n_1010 = n_1004 & n_1009;
-assign n_1011 = n_1010;
-assign n_1012 = n_1003 + n_1011;
-assign n_1013 = n_699 >> 2;
-assign n_1014 = n_1013;
-assign n_1015 = n_699 >> 1;
-assign n_1016 = n_699 >> 0;
-assign n_1017 = n_1016 == 1'd0;
-assign n_1018 = ~n_1017;
-assign n_1019 = n_1014 >> 0;
-assign n_1020 = n_1018 | n_1019;
-assign n_1021 = n_1015 & n_1020;
-assign n_1022 = n_1021;
-assign n_1023 = n_1014 + n_1022;
-assign n_1024 = n_699 >> 1;
-assign n_1025 = n_1024;
-assign n_1026 = n_699 >> 0;
-assign n_1027 = n_1025 >> 0;
-assign n_1028 = 1'd0 | n_1027;
-assign n_1029 = n_1026 & n_1028;
-assign n_1030 = n_1029;
-assign n_1031 = n_1025 + n_1030;
-assign n_1032 = n_699;
-assign n_1033 = n_1032 << 0;
-assign n_1034 = n_699;
-assign n_1035 = n_1034 << 1;
-assign n_1036 = n_699;
-assign n_1037 = n_1036 << 2;
-assign n_1038 = n_699;
-assign n_1039 = n_1038 << 3;
-assign n_1040 = n_699;
-assign n_1041 = n_1040 << 4;
-assign n_1042 = n_699;
-assign n_1043 = n_1042 << 5;
-assign n_1044 = n_699;
-assign n_1045 = n_1044 << 6;
-assign n_1046 = n_699;
-assign n_1047 = n_1046 << 7;
-assign n_1048 = n_699;
-assign n_1049 = n_1048 << 8;
-assign n_1050 = n_699;
-assign n_1051 = n_1050 << 9;
-assign n_1052 = n_699;
-assign n_1053 = n_1052 << 10;
-assign n_1054 = n_699;
-assign n_1055 = n_1054 << 11;
-assign n_1056 = n_699;
-assign n_1057 = n_1056 << 12;
-assign n_1058 = n_699;
-assign n_1059 = n_1058 << 13;
-assign n_1060 = n_699;
-assign n_1061 = n_1060 << 14;
-assign n_1062 = n_699;
-assign n_1063 = n_1062 << 15;
-assign n_1064 = n_699;
-assign n_1065 = n_1064 << 16;
-assign n_1066 = n_739 ? n_1065 : 18'd0;
-assign n_1067 = n_738 ? n_1063 : n_1066;
-assign n_1068 = n_737 ? n_1061 : n_1067;
-assign n_1069 = n_736 ? n_1059 : n_1068;
-assign n_1070 = n_735 ? n_1057 : n_1069;
-assign n_1071 = n_734 ? n_1055 : n_1070;
-assign n_1072 = n_733 ? n_1053 : n_1071;
-assign n_1073 = n_732 ? n_1051 : n_1072;
-assign n_1074 = n_731 ? n_1049 : n_1073;
-assign n_1075 = n_730 ? n_1047 : n_1074;
-assign n_1076 = n_729 ? n_1045 : n_1075;
-assign n_1077 = n_728 ? n_1043 : n_1076;
-assign n_1078 = n_727 ? n_1041 : n_1077;
-assign n_1079 = n_726 ? n_1039 : n_1078;
-assign n_1080 = n_725 ? n_1037 : n_1079;
-assign n_1081 = n_724 ? n_1035 : n_1080;
-assign n_1082 = n_723 ? n_1033 : n_1081;
-assign n_1083 = n_722 ? n_1031 : n_1082;
-assign n_1084 = n_721 ? n_1023 : n_1083;
-assign n_1085 = n_720 ? n_1012 : n_1084;
-assign n_1086 = n_719 ? n_1001 : n_1085;
-assign n_1087 = n_718 ? n_990 : n_1086;
-assign n_1088 = n_717 ? n_979 : n_1087;
-assign n_1089 = n_716 ? n_968 : n_1088;
-assign n_1090 = n_715 ? n_957 : n_1089;
-assign n_1091 = n_714 ? n_946 : n_1090;
-assign n_1092 = n_713 ? n_935 : n_1091;
-assign n_1093 = n_712 ? n_924 : n_1092;
-assign n_1094 = n_711 ? n_913 : n_1093;
-assign n_1095 = n_710 ? n_902 : n_1094;
-assign n_1096 = n_709 ? n_891 : n_1095;
-assign n_1097 = n_708 ? n_880 : n_1096;
-assign n_1098 = n_707 ? n_869 : n_1097;
-assign n_1099 = n_706 ? n_858 : n_1098;
-assign n_1100 = n_705 ? n_847 : n_1099;
-assign n_1101 = n_704 ? n_836 : n_1100;
-assign n_1102 = n_703 ? n_825 : n_1101;
-assign n_1103 = n_702 ? n_814 : n_1102;
-assign n_1104 = n_701 ? n_803 : n_1103;
-assign n_1105 = n_700 ? n_792 : n_1104;
-assign n_1106 = n_1105 >> 17;
-assign n_1107 = n_1106;
-assign n_1108 = n_781 + n_1107;
-assign n_1109 = $signed(n_1108) < $signed(16'd1);
-assign n_1110 = n_699 == 40'd0;
-assign n_1111 = n_1109 | n_1110;
-assign n_1112 = $signed(n_1108) < $signed(16'd127);
-assign n_1113 = ~n_1112;
-assign n_1114 = {1'd0, 23'd8323071};
-assign n_1115 = n_1108;
-assign n_1116 = n_1105 >> 1;
-assign n_1117 = n_1106 ? n_1116 : n_1105;
-assign n_1118 = n_1117;
-assign n_1119 = {n_1115, n_1118};
-assign n_1120 = {1'd0, n_1119};
-assign n_1121 = n_1113 ? n_1114 : n_1120;
-assign n_1122 = n_1111 ? 24'd0 : n_1121;
-assign n_1123 = n_619 ? 24'd8323071 : n_1122;
-assign n_1124 = n_497 ? 24'd0 : n_1123;
-assign n_1125 = n_376 ? 24'd8323072 : n_1124;
-assign s_result = n_1125;
+wire [23:0] n_mux_1125;
+assign n_bits_22_16_0 = s_a >> 16;
+assign n_eq_1 = n_bits_22_16_0 == 7'd127;
+assign n_bits_22_16_2 = 24'd4157780 >> 16;
+assign n_eq_3 = n_bits_22_16_2 == 7'd127;
+assign n_or_4 = n_eq_1 | n_eq_3;
+assign n_bits_22_16_5 = s_a >> 16;
+assign n_eq_6 = n_bits_22_16_5 == 7'd0;
+assign n_bits_22_16_7 = 24'd4157780 >> 16;
+assign n_eq_8 = n_bits_22_16_7 == 7'd0;
+assign n_or_9 = n_eq_6 | n_eq_8;
+assign n_bits_22_16_10 = s_a >> 16;
+assign n_resize_11 = n_bits_22_16_10;
+assign n_bits_22_16_12 = 24'd4157780 >> 16;
+assign n_resize_13 = n_bits_22_16_12;
+assign n_add_14 = n_resize_11 + n_resize_13;
+assign n_sub_15 = n_add_14 - 16'd158;
+assign n_bits_15_0_16 = s_a >> 0;
+assign n_concat_17 = {1'd1, n_bits_15_0_16};
+assign n_resize_18 = n_concat_17;
+assign n_bits_15_0_19 = 24'd4157780 >> 0;
+assign n_concat_20 = {1'd1, n_bits_15_0_19};
+assign n_resize_21 = n_concat_20;
+assign n_mul_22 = n_resize_18 * n_resize_21;
+assign n_bits_33_33_23 = n_mul_22 >> 33;
+assign n_bits_32_32_24 = n_mul_22 >> 32;
+assign n_bits_31_31_25 = n_mul_22 >> 31;
+assign n_bits_30_30_26 = n_mul_22 >> 30;
+assign n_bits_29_29_27 = n_mul_22 >> 29;
+assign n_bits_28_28_28 = n_mul_22 >> 28;
+assign n_bits_27_27_29 = n_mul_22 >> 27;
+assign n_bits_26_26_30 = n_mul_22 >> 26;
+assign n_bits_25_25_31 = n_mul_22 >> 25;
+assign n_bits_24_24_32 = n_mul_22 >> 24;
+assign n_bits_23_23_33 = n_mul_22 >> 23;
+assign n_bits_22_22_34 = n_mul_22 >> 22;
+assign n_bits_21_21_35 = n_mul_22 >> 21;
+assign n_bits_20_20_36 = n_mul_22 >> 20;
+assign n_bits_19_19_37 = n_mul_22 >> 19;
+assign n_bits_18_18_38 = n_mul_22 >> 18;
+assign n_bits_17_17_39 = n_mul_22 >> 17;
+assign n_bits_16_16_40 = n_mul_22 >> 16;
+assign n_bits_15_15_41 = n_mul_22 >> 15;
+assign n_bits_14_14_42 = n_mul_22 >> 14;
+assign n_bits_13_13_43 = n_mul_22 >> 13;
+assign n_bits_12_12_44 = n_mul_22 >> 12;
+assign n_bits_11_11_45 = n_mul_22 >> 11;
+assign n_bits_10_10_46 = n_mul_22 >> 10;
+assign n_bits_9_9_47 = n_mul_22 >> 9;
+assign n_bits_8_8_48 = n_mul_22 >> 8;
+assign n_bits_7_7_49 = n_mul_22 >> 7;
+assign n_bits_6_6_50 = n_mul_22 >> 6;
+assign n_bits_5_5_51 = n_mul_22 >> 5;
+assign n_bits_4_4_52 = n_mul_22 >> 4;
+assign n_bits_3_3_53 = n_mul_22 >> 3;
+assign n_bits_2_2_54 = n_mul_22 >> 2;
+assign n_bits_1_1_55 = n_mul_22 >> 1;
+assign n_bits_0_0_56 = n_mul_22 >> 0;
+assign n_mux_57 = n_bits_0_0_56 ? 16'd0 : 16'd0;
+assign n_mux_58 = n_bits_1_1_55 ? 16'd1 : n_mux_57;
+assign n_mux_59 = n_bits_2_2_54 ? 16'd2 : n_mux_58;
+assign n_mux_60 = n_bits_3_3_53 ? 16'd3 : n_mux_59;
+assign n_mux_61 = n_bits_4_4_52 ? 16'd4 : n_mux_60;
+assign n_mux_62 = n_bits_5_5_51 ? 16'd5 : n_mux_61;
+assign n_mux_63 = n_bits_6_6_50 ? 16'd6 : n_mux_62;
+assign n_mux_64 = n_bits_7_7_49 ? 16'd7 : n_mux_63;
+assign n_mux_65 = n_bits_8_8_48 ? 16'd8 : n_mux_64;
+assign n_mux_66 = n_bits_9_9_47 ? 16'd9 : n_mux_65;
+assign n_mux_67 = n_bits_10_10_46 ? 16'd10 : n_mux_66;
+assign n_mux_68 = n_bits_11_11_45 ? 16'd11 : n_mux_67;
+assign n_mux_69 = n_bits_12_12_44 ? 16'd12 : n_mux_68;
+assign n_mux_70 = n_bits_13_13_43 ? 16'd13 : n_mux_69;
+assign n_mux_71 = n_bits_14_14_42 ? 16'd14 : n_mux_70;
+assign n_mux_72 = n_bits_15_15_41 ? 16'd15 : n_mux_71;
+assign n_mux_73 = n_bits_16_16_40 ? 16'd16 : n_mux_72;
+assign n_mux_74 = n_bits_17_17_39 ? 16'd17 : n_mux_73;
+assign n_mux_75 = n_bits_18_18_38 ? 16'd18 : n_mux_74;
+assign n_mux_76 = n_bits_19_19_37 ? 16'd19 : n_mux_75;
+assign n_mux_77 = n_bits_20_20_36 ? 16'd20 : n_mux_76;
+assign n_mux_78 = n_bits_21_21_35 ? 16'd21 : n_mux_77;
+assign n_mux_79 = n_bits_22_22_34 ? 16'd22 : n_mux_78;
+assign n_mux_80 = n_bits_23_23_33 ? 16'd23 : n_mux_79;
+assign n_mux_81 = n_bits_24_24_32 ? 16'd24 : n_mux_80;
+assign n_mux_82 = n_bits_25_25_31 ? 16'd25 : n_mux_81;
+assign n_mux_83 = n_bits_26_26_30 ? 16'd26 : n_mux_82;
+assign n_mux_84 = n_bits_27_27_29 ? 16'd27 : n_mux_83;
+assign n_mux_85 = n_bits_28_28_28 ? 16'd28 : n_mux_84;
+assign n_mux_86 = n_bits_29_29_27 ? 16'd29 : n_mux_85;
+assign n_mux_87 = n_bits_30_30_26 ? 16'd30 : n_mux_86;
+assign n_mux_88 = n_bits_31_31_25 ? 16'd31 : n_mux_87;
+assign n_mux_89 = n_bits_32_32_24 ? 16'd32 : n_mux_88;
+assign n_mux_90 = n_bits_33_33_23 ? 16'd33 : n_mux_89;
+assign n_add_91 = n_sub_15 + n_mux_90;
+assign n_add_92 = n_add_91 + 16'd63;
+assign n_shr_93 = n_mul_22 >> 17;
+assign n_resize_94 = n_shr_93;
+assign n_bits_16_16_95 = n_mul_22 >> 16;
+assign n_bits_15_0_96 = n_mul_22 >> 0;
+assign n_eq_97 = n_bits_15_0_96 == 16'd0;
+assign n_not_98 = ~n_eq_97;
+assign n_bits_0_0_99 = n_resize_94 >> 0;
+assign n_or_100 = n_not_98 | n_bits_0_0_99;
+assign n_and_101 = n_bits_16_16_95 & n_or_100;
+assign n_resize_102 = n_and_101;
+assign n_add_103 = n_resize_94 + n_resize_102;
+assign n_shr_104 = n_mul_22 >> 16;
+assign n_resize_105 = n_shr_104;
+assign n_bits_15_15_106 = n_mul_22 >> 15;
+assign n_bits_14_0_107 = n_mul_22 >> 0;
+assign n_eq_108 = n_bits_14_0_107 == 15'd0;
+assign n_not_109 = ~n_eq_108;
+assign n_bits_0_0_110 = n_resize_105 >> 0;
+assign n_or_111 = n_not_109 | n_bits_0_0_110;
+assign n_and_112 = n_bits_15_15_106 & n_or_111;
+assign n_resize_113 = n_and_112;
+assign n_add_114 = n_resize_105 + n_resize_113;
+assign n_shr_115 = n_mul_22 >> 15;
+assign n_resize_116 = n_shr_115;
+assign n_bits_14_14_117 = n_mul_22 >> 14;
+assign n_bits_13_0_118 = n_mul_22 >> 0;
+assign n_eq_119 = n_bits_13_0_118 == 14'd0;
+assign n_not_120 = ~n_eq_119;
+assign n_bits_0_0_121 = n_resize_116 >> 0;
+assign n_or_122 = n_not_120 | n_bits_0_0_121;
+assign n_and_123 = n_bits_14_14_117 & n_or_122;
+assign n_resize_124 = n_and_123;
+assign n_add_125 = n_resize_116 + n_resize_124;
+assign n_shr_126 = n_mul_22 >> 14;
+assign n_resize_127 = n_shr_126;
+assign n_bits_13_13_128 = n_mul_22 >> 13;
+assign n_bits_12_0_129 = n_mul_22 >> 0;
+assign n_eq_130 = n_bits_12_0_129 == 13'd0;
+assign n_not_131 = ~n_eq_130;
+assign n_bits_0_0_132 = n_resize_127 >> 0;
+assign n_or_133 = n_not_131 | n_bits_0_0_132;
+assign n_and_134 = n_bits_13_13_128 & n_or_133;
+assign n_resize_135 = n_and_134;
+assign n_add_136 = n_resize_127 + n_resize_135;
+assign n_shr_137 = n_mul_22 >> 13;
+assign n_resize_138 = n_shr_137;
+assign n_bits_12_12_139 = n_mul_22 >> 12;
+assign n_bits_11_0_140 = n_mul_22 >> 0;
+assign n_eq_141 = n_bits_11_0_140 == 12'd0;
+assign n_not_142 = ~n_eq_141;
+assign n_bits_0_0_143 = n_resize_138 >> 0;
+assign n_or_144 = n_not_142 | n_bits_0_0_143;
+assign n_and_145 = n_bits_12_12_139 & n_or_144;
+assign n_resize_146 = n_and_145;
+assign n_add_147 = n_resize_138 + n_resize_146;
+assign n_shr_148 = n_mul_22 >> 12;
+assign n_resize_149 = n_shr_148;
+assign n_bits_11_11_150 = n_mul_22 >> 11;
+assign n_bits_10_0_151 = n_mul_22 >> 0;
+assign n_eq_152 = n_bits_10_0_151 == 11'd0;
+assign n_not_153 = ~n_eq_152;
+assign n_bits_0_0_154 = n_resize_149 >> 0;
+assign n_or_155 = n_not_153 | n_bits_0_0_154;
+assign n_and_156 = n_bits_11_11_150 & n_or_155;
+assign n_resize_157 = n_and_156;
+assign n_add_158 = n_resize_149 + n_resize_157;
+assign n_shr_159 = n_mul_22 >> 11;
+assign n_resize_160 = n_shr_159;
+assign n_bits_10_10_161 = n_mul_22 >> 10;
+assign n_bits_9_0_162 = n_mul_22 >> 0;
+assign n_eq_163 = n_bits_9_0_162 == 10'd0;
+assign n_not_164 = ~n_eq_163;
+assign n_bits_0_0_165 = n_resize_160 >> 0;
+assign n_or_166 = n_not_164 | n_bits_0_0_165;
+assign n_and_167 = n_bits_10_10_161 & n_or_166;
+assign n_resize_168 = n_and_167;
+assign n_add_169 = n_resize_160 + n_resize_168;
+assign n_shr_170 = n_mul_22 >> 10;
+assign n_resize_171 = n_shr_170;
+assign n_bits_9_9_172 = n_mul_22 >> 9;
+assign n_bits_8_0_173 = n_mul_22 >> 0;
+assign n_eq_174 = n_bits_8_0_173 == 9'd0;
+assign n_not_175 = ~n_eq_174;
+assign n_bits_0_0_176 = n_resize_171 >> 0;
+assign n_or_177 = n_not_175 | n_bits_0_0_176;
+assign n_and_178 = n_bits_9_9_172 & n_or_177;
+assign n_resize_179 = n_and_178;
+assign n_add_180 = n_resize_171 + n_resize_179;
+assign n_shr_181 = n_mul_22 >> 9;
+assign n_resize_182 = n_shr_181;
+assign n_bits_8_8_183 = n_mul_22 >> 8;
+assign n_bits_7_0_184 = n_mul_22 >> 0;
+assign n_eq_185 = n_bits_7_0_184 == 8'd0;
+assign n_not_186 = ~n_eq_185;
+assign n_bits_0_0_187 = n_resize_182 >> 0;
+assign n_or_188 = n_not_186 | n_bits_0_0_187;
+assign n_and_189 = n_bits_8_8_183 & n_or_188;
+assign n_resize_190 = n_and_189;
+assign n_add_191 = n_resize_182 + n_resize_190;
+assign n_shr_192 = n_mul_22 >> 8;
+assign n_resize_193 = n_shr_192;
+assign n_bits_7_7_194 = n_mul_22 >> 7;
+assign n_bits_6_0_195 = n_mul_22 >> 0;
+assign n_eq_196 = n_bits_6_0_195 == 7'd0;
+assign n_not_197 = ~n_eq_196;
+assign n_bits_0_0_198 = n_resize_193 >> 0;
+assign n_or_199 = n_not_197 | n_bits_0_0_198;
+assign n_and_200 = n_bits_7_7_194 & n_or_199;
+assign n_resize_201 = n_and_200;
+assign n_add_202 = n_resize_193 + n_resize_201;
+assign n_shr_203 = n_mul_22 >> 7;
+assign n_resize_204 = n_shr_203;
+assign n_bits_6_6_205 = n_mul_22 >> 6;
+assign n_bits_5_0_206 = n_mul_22 >> 0;
+assign n_eq_207 = n_bits_5_0_206 == 6'd0;
+assign n_not_208 = ~n_eq_207;
+assign n_bits_0_0_209 = n_resize_204 >> 0;
+assign n_or_210 = n_not_208 | n_bits_0_0_209;
+assign n_and_211 = n_bits_6_6_205 & n_or_210;
+assign n_resize_212 = n_and_211;
+assign n_add_213 = n_resize_204 + n_resize_212;
+assign n_shr_214 = n_mul_22 >> 6;
+assign n_resize_215 = n_shr_214;
+assign n_bits_5_5_216 = n_mul_22 >> 5;
+assign n_bits_4_0_217 = n_mul_22 >> 0;
+assign n_eq_218 = n_bits_4_0_217 == 5'd0;
+assign n_not_219 = ~n_eq_218;
+assign n_bits_0_0_220 = n_resize_215 >> 0;
+assign n_or_221 = n_not_219 | n_bits_0_0_220;
+assign n_and_222 = n_bits_5_5_216 & n_or_221;
+assign n_resize_223 = n_and_222;
+assign n_add_224 = n_resize_215 + n_resize_223;
+assign n_shr_225 = n_mul_22 >> 5;
+assign n_resize_226 = n_shr_225;
+assign n_bits_4_4_227 = n_mul_22 >> 4;
+assign n_bits_3_0_228 = n_mul_22 >> 0;
+assign n_eq_229 = n_bits_3_0_228 == 4'd0;
+assign n_not_230 = ~n_eq_229;
+assign n_bits_0_0_231 = n_resize_226 >> 0;
+assign n_or_232 = n_not_230 | n_bits_0_0_231;
+assign n_and_233 = n_bits_4_4_227 & n_or_232;
+assign n_resize_234 = n_and_233;
+assign n_add_235 = n_resize_226 + n_resize_234;
+assign n_shr_236 = n_mul_22 >> 4;
+assign n_resize_237 = n_shr_236;
+assign n_bits_3_3_238 = n_mul_22 >> 3;
+assign n_bits_2_0_239 = n_mul_22 >> 0;
+assign n_eq_240 = n_bits_2_0_239 == 3'd0;
+assign n_not_241 = ~n_eq_240;
+assign n_bits_0_0_242 = n_resize_237 >> 0;
+assign n_or_243 = n_not_241 | n_bits_0_0_242;
+assign n_and_244 = n_bits_3_3_238 & n_or_243;
+assign n_resize_245 = n_and_244;
+assign n_add_246 = n_resize_237 + n_resize_245;
+assign n_shr_247 = n_mul_22 >> 3;
+assign n_resize_248 = n_shr_247;
+assign n_bits_2_2_249 = n_mul_22 >> 2;
+assign n_bits_1_0_250 = n_mul_22 >> 0;
+assign n_eq_251 = n_bits_1_0_250 == 2'd0;
+assign n_not_252 = ~n_eq_251;
+assign n_bits_0_0_253 = n_resize_248 >> 0;
+assign n_or_254 = n_not_252 | n_bits_0_0_253;
+assign n_and_255 = n_bits_2_2_249 & n_or_254;
+assign n_resize_256 = n_and_255;
+assign n_add_257 = n_resize_248 + n_resize_256;
+assign n_shr_258 = n_mul_22 >> 2;
+assign n_resize_259 = n_shr_258;
+assign n_bits_1_1_260 = n_mul_22 >> 1;
+assign n_bits_0_0_261 = n_mul_22 >> 0;
+assign n_eq_262 = n_bits_0_0_261 == 1'd0;
+assign n_not_263 = ~n_eq_262;
+assign n_bits_0_0_264 = n_resize_259 >> 0;
+assign n_or_265 = n_not_263 | n_bits_0_0_264;
+assign n_and_266 = n_bits_1_1_260 & n_or_265;
+assign n_resize_267 = n_and_266;
+assign n_add_268 = n_resize_259 + n_resize_267;
+assign n_shr_269 = n_mul_22 >> 1;
+assign n_resize_270 = n_shr_269;
+assign n_bits_0_0_271 = n_mul_22 >> 0;
+assign n_bits_0_0_272 = n_resize_270 >> 0;
+assign n_or_273 = 1'd0 | n_bits_0_0_272;
+assign n_and_274 = n_bits_0_0_271 & n_or_273;
+assign n_resize_275 = n_and_274;
+assign n_add_276 = n_resize_270 + n_resize_275;
+assign n_resize_277 = n_mul_22;
+assign n_shl_278 = n_resize_277 << 0;
+assign n_resize_279 = n_mul_22;
+assign n_shl_280 = n_resize_279 << 1;
+assign n_resize_281 = n_mul_22;
+assign n_shl_282 = n_resize_281 << 2;
+assign n_resize_283 = n_mul_22;
+assign n_shl_284 = n_resize_283 << 3;
+assign n_resize_285 = n_mul_22;
+assign n_shl_286 = n_resize_285 << 4;
+assign n_resize_287 = n_mul_22;
+assign n_shl_288 = n_resize_287 << 5;
+assign n_resize_289 = n_mul_22;
+assign n_shl_290 = n_resize_289 << 6;
+assign n_resize_291 = n_mul_22;
+assign n_shl_292 = n_resize_291 << 7;
+assign n_resize_293 = n_mul_22;
+assign n_shl_294 = n_resize_293 << 8;
+assign n_resize_295 = n_mul_22;
+assign n_shl_296 = n_resize_295 << 9;
+assign n_resize_297 = n_mul_22;
+assign n_shl_298 = n_resize_297 << 10;
+assign n_resize_299 = n_mul_22;
+assign n_shl_300 = n_resize_299 << 11;
+assign n_resize_301 = n_mul_22;
+assign n_shl_302 = n_resize_301 << 12;
+assign n_resize_303 = n_mul_22;
+assign n_shl_304 = n_resize_303 << 13;
+assign n_resize_305 = n_mul_22;
+assign n_shl_306 = n_resize_305 << 14;
+assign n_resize_307 = n_mul_22;
+assign n_shl_308 = n_resize_307 << 15;
+assign n_resize_309 = n_mul_22;
+assign n_shl_310 = n_resize_309 << 16;
+assign n_mux_311 = n_bits_0_0_56 ? n_shl_310 : 18'd0;
+assign n_mux_312 = n_bits_1_1_55 ? n_shl_308 : n_mux_311;
+assign n_mux_313 = n_bits_2_2_54 ? n_shl_306 : n_mux_312;
+assign n_mux_314 = n_bits_3_3_53 ? n_shl_304 : n_mux_313;
+assign n_mux_315 = n_bits_4_4_52 ? n_shl_302 : n_mux_314;
+assign n_mux_316 = n_bits_5_5_51 ? n_shl_300 : n_mux_315;
+assign n_mux_317 = n_bits_6_6_50 ? n_shl_298 : n_mux_316;
+assign n_mux_318 = n_bits_7_7_49 ? n_shl_296 : n_mux_317;
+assign n_mux_319 = n_bits_8_8_48 ? n_shl_294 : n_mux_318;
+assign n_mux_320 = n_bits_9_9_47 ? n_shl_292 : n_mux_319;
+assign n_mux_321 = n_bits_10_10_46 ? n_shl_290 : n_mux_320;
+assign n_mux_322 = n_bits_11_11_45 ? n_shl_288 : n_mux_321;
+assign n_mux_323 = n_bits_12_12_44 ? n_shl_286 : n_mux_322;
+assign n_mux_324 = n_bits_13_13_43 ? n_shl_284 : n_mux_323;
+assign n_mux_325 = n_bits_14_14_42 ? n_shl_282 : n_mux_324;
+assign n_mux_326 = n_bits_15_15_41 ? n_shl_280 : n_mux_325;
+assign n_mux_327 = n_bits_16_16_40 ? n_shl_278 : n_mux_326;
+assign n_mux_328 = n_bits_17_17_39 ? n_add_276 : n_mux_327;
+assign n_mux_329 = n_bits_18_18_38 ? n_add_268 : n_mux_328;
+assign n_mux_330 = n_bits_19_19_37 ? n_add_257 : n_mux_329;
+assign n_mux_331 = n_bits_20_20_36 ? n_add_246 : n_mux_330;
+assign n_mux_332 = n_bits_21_21_35 ? n_add_235 : n_mux_331;
+assign n_mux_333 = n_bits_22_22_34 ? n_add_224 : n_mux_332;
+assign n_mux_334 = n_bits_23_23_33 ? n_add_213 : n_mux_333;
+assign n_mux_335 = n_bits_24_24_32 ? n_add_202 : n_mux_334;
+assign n_mux_336 = n_bits_25_25_31 ? n_add_191 : n_mux_335;
+assign n_mux_337 = n_bits_26_26_30 ? n_add_180 : n_mux_336;
+assign n_mux_338 = n_bits_27_27_29 ? n_add_169 : n_mux_337;
+assign n_mux_339 = n_bits_28_28_28 ? n_add_158 : n_mux_338;
+assign n_mux_340 = n_bits_29_29_27 ? n_add_147 : n_mux_339;
+assign n_mux_341 = n_bits_30_30_26 ? n_add_136 : n_mux_340;
+assign n_mux_342 = n_bits_31_31_25 ? n_add_125 : n_mux_341;
+assign n_mux_343 = n_bits_32_32_24 ? n_add_114 : n_mux_342;
+assign n_mux_344 = n_bits_33_33_23 ? n_add_103 : n_mux_343;
+assign n_bits_17_17_345 = n_mux_344 >> 17;
+assign n_resize_346 = n_bits_17_17_345;
+assign n_add_347 = n_add_92 + n_resize_346;
+assign n_slt_348 = $signed(n_add_347) < $signed(16'd1);
+assign n_eq_349 = n_mul_22 == 34'd0;
+assign n_or_350 = n_slt_348 | n_eq_349;
+assign n_slt_351 = $signed(n_add_347) < $signed(16'd127);
+assign n_not_352 = ~n_slt_351;
+assign n_bits_22_16_353 = s_a >> 16;
+assign n_eq_354 = n_bits_22_16_353 == 7'd0;
+assign n_not_355 = ~n_eq_354;
+assign n_bits_23_23_356 = s_a >> 23;
+assign n_and_357 = n_not_355 & n_bits_23_23_356;
+assign n_bits_22_16_358 = 24'd4157780 >> 16;
+assign n_eq_359 = n_bits_22_16_358 == 7'd0;
+assign n_not_360 = ~n_eq_359;
+assign n_bits_23_23_361 = 24'd4157780 >> 23;
+assign n_and_362 = n_not_360 & n_bits_23_23_361;
+assign n_xor_363 = n_and_357 ^ n_and_362;
+assign n_concat_364 = {n_xor_363, 23'd8323071};
+assign n_resize_365 = n_add_347;
+assign n_shr_366 = n_mux_344 >> 1;
+assign n_mux_367 = n_bits_17_17_345 ? n_shr_366 : n_mux_344;
+assign n_resize_368 = n_mux_367;
+assign n_concat_369 = {n_resize_365, n_resize_368};
+assign n_concat_370 = {n_xor_363, n_concat_369};
+assign n_mux_371 = n_not_352 ? n_concat_364 : n_concat_370;
+assign n_mux_372 = n_or_350 ? 24'd0 : n_mux_371;
+assign n_mux_373 = n_or_9 ? 24'd0 : n_mux_372;
+assign n_mux_374 = n_or_4 ? 24'd8323072 : n_mux_373;
+assign n_bits_22_16_375 = n_mux_374 >> 16;
+assign n_eq_376 = n_bits_22_16_375 == 7'd127;
+assign n_bits_22_16_377 = n_mux_374 >> 16;
+assign n_eq_378 = n_bits_22_16_377 == 7'd127;
+assign n_not_379 = ~n_eq_378;
+assign n_bits_22_16_380 = 24'd12906496 >> 16;
+assign n_eq_381 = n_bits_22_16_380 == 7'd127;
+assign n_not_382 = ~n_eq_381;
+assign n_and_383 = n_not_379 & n_not_382;
+assign n_bits_22_16_384 = n_mux_374 >> 16;
+assign n_eq_385 = n_bits_22_16_384 == 7'd0;
+assign n_not_386 = ~n_eq_385;
+assign n_bits_23_23_387 = n_mux_374 >> 23;
+assign n_and_388 = n_not_386 & n_bits_23_23_387;
+assign n_bits_22_16_389 = n_mux_374 >> 16;
+assign n_eq_390 = n_bits_22_16_389 == 7'd0;
+assign n_bits_22_16_391 = n_mux_374 >> 16;
+assign n_resize_392 = n_bits_22_16_391;
+assign n_sub_393 = n_resize_392 - 16'd1;
+assign n_bits_15_15_394 = n_sub_393 >> 15;
+assign n_bits_14_14_395 = n_sub_393 >> 14;
+assign n_bits_13_13_396 = n_sub_393 >> 13;
+assign n_bits_12_12_397 = n_sub_393 >> 12;
+assign n_bits_11_11_398 = n_sub_393 >> 11;
+assign n_bits_10_10_399 = n_sub_393 >> 10;
+assign n_bits_9_9_400 = n_sub_393 >> 9;
+assign n_bits_8_8_401 = n_sub_393 >> 8;
+assign n_bits_7_7_402 = n_sub_393 >> 7;
+assign n_bits_6_6_403 = n_sub_393 >> 6;
+assign n_bits_5_5_404 = n_sub_393 >> 5;
+assign n_bits_4_4_405 = n_sub_393 >> 4;
+assign n_bits_3_3_406 = n_sub_393 >> 3;
+assign n_bits_2_2_407 = n_sub_393 >> 2;
+assign n_bits_1_1_408 = n_sub_393 >> 1;
+assign n_bits_0_0_409 = n_sub_393 >> 0;
+assign n_bits_15_0_410 = n_mux_374 >> 0;
+assign n_concat_411 = {1'd1, n_bits_15_0_410};
+assign n_resize_412 = n_concat_411;
+assign n_shl_413 = n_resize_412 << 1;
+assign n_mux_414 = n_bits_0_0_409 ? n_shl_413 : n_resize_412;
+assign n_shl_415 = n_mux_414 << 2;
+assign n_mux_416 = n_bits_1_1_408 ? n_shl_415 : n_mux_414;
+assign n_shl_417 = n_mux_416 << 4;
+assign n_mux_418 = n_bits_2_2_407 ? n_shl_417 : n_mux_416;
+assign n_shl_419 = n_mux_418 << 8;
+assign n_mux_420 = n_bits_3_3_406 ? n_shl_419 : n_mux_418;
+assign n_shl_421 = n_mux_420 << 16;
+assign n_mux_422 = n_bits_4_4_405 ? n_shl_421 : n_mux_420;
+assign n_shl_423 = n_mux_422 << 32;
+assign n_mux_424 = n_bits_5_5_404 ? n_shl_423 : n_mux_422;
+assign n_shl_425 = n_mux_424 << 64;
+assign n_mux_426 = n_bits_6_6_403 ? n_shl_425 : n_mux_424;
+assign n_shl_427 = n_mux_426 << 128;
+assign n_mux_428 = n_bits_7_7_402 ? n_shl_427 : n_mux_426;
+assign n_mux_429 = n_bits_8_8_401 ? 145'd0 : n_mux_428;
+assign n_mux_430 = n_bits_9_9_400 ? 145'd0 : n_mux_429;
+assign n_mux_431 = n_bits_10_10_399 ? 145'd0 : n_mux_430;
+assign n_mux_432 = n_bits_11_11_398 ? 145'd0 : n_mux_431;
+assign n_mux_433 = n_bits_12_12_397 ? 145'd0 : n_mux_432;
+assign n_mux_434 = n_bits_13_13_396 ? 145'd0 : n_mux_433;
+assign n_mux_435 = n_bits_14_14_395 ? 145'd0 : n_mux_434;
+assign n_mux_436 = n_bits_15_15_394 ? 145'd0 : n_mux_435;
+assign n_mux_437 = n_eq_390 ? 145'd0 : n_mux_436;
+assign n_sub_438 = 145'd0 - n_mux_437;
+assign n_mux_439 = n_and_388 ? n_sub_438 : n_mux_437;
+assign n_bits_22_16_440 = 24'd12906496 >> 16;
+assign n_eq_441 = n_bits_22_16_440 == 7'd0;
+assign n_not_442 = ~n_eq_441;
+assign n_bits_23_23_443 = 24'd12906496 >> 23;
+assign n_and_444 = n_not_442 & n_bits_23_23_443;
+assign n_bits_22_16_445 = 24'd12906496 >> 16;
+assign n_eq_446 = n_bits_22_16_445 == 7'd0;
+assign n_bits_22_16_447 = 24'd12906496 >> 16;
+assign n_resize_448 = n_bits_22_16_447;
+assign n_sub_449 = n_resize_448 - 16'd1;
+assign n_bits_15_15_450 = n_sub_449 >> 15;
+assign n_bits_14_14_451 = n_sub_449 >> 14;
+assign n_bits_13_13_452 = n_sub_449 >> 13;
+assign n_bits_12_12_453 = n_sub_449 >> 12;
+assign n_bits_11_11_454 = n_sub_449 >> 11;
+assign n_bits_10_10_455 = n_sub_449 >> 10;
+assign n_bits_9_9_456 = n_sub_449 >> 9;
+assign n_bits_8_8_457 = n_sub_449 >> 8;
+assign n_bits_7_7_458 = n_sub_449 >> 7;
+assign n_bits_6_6_459 = n_sub_449 >> 6;
+assign n_bits_5_5_460 = n_sub_449 >> 5;
+assign n_bits_4_4_461 = n_sub_449 >> 4;
+assign n_bits_3_3_462 = n_sub_449 >> 3;
+assign n_bits_2_2_463 = n_sub_449 >> 2;
+assign n_bits_1_1_464 = n_sub_449 >> 1;
+assign n_bits_0_0_465 = n_sub_449 >> 0;
+assign n_bits_15_0_466 = 24'd12906496 >> 0;
+assign n_concat_467 = {1'd1, n_bits_15_0_466};
+assign n_resize_468 = n_concat_467;
+assign n_shl_469 = n_resize_468 << 1;
+assign n_mux_470 = n_bits_0_0_465 ? n_shl_469 : n_resize_468;
+assign n_shl_471 = n_mux_470 << 2;
+assign n_mux_472 = n_bits_1_1_464 ? n_shl_471 : n_mux_470;
+assign n_shl_473 = n_mux_472 << 4;
+assign n_mux_474 = n_bits_2_2_463 ? n_shl_473 : n_mux_472;
+assign n_shl_475 = n_mux_474 << 8;
+assign n_mux_476 = n_bits_3_3_462 ? n_shl_475 : n_mux_474;
+assign n_shl_477 = n_mux_476 << 16;
+assign n_mux_478 = n_bits_4_4_461 ? n_shl_477 : n_mux_476;
+assign n_shl_479 = n_mux_478 << 32;
+assign n_mux_480 = n_bits_5_5_460 ? n_shl_479 : n_mux_478;
+assign n_shl_481 = n_mux_480 << 64;
+assign n_mux_482 = n_bits_6_6_459 ? n_shl_481 : n_mux_480;
+assign n_shl_483 = n_mux_482 << 128;
+assign n_mux_484 = n_bits_7_7_458 ? n_shl_483 : n_mux_482;
+assign n_mux_485 = n_bits_8_8_457 ? 145'd0 : n_mux_484;
+assign n_mux_486 = n_bits_9_9_456 ? 145'd0 : n_mux_485;
+assign n_mux_487 = n_bits_10_10_455 ? 145'd0 : n_mux_486;
+assign n_mux_488 = n_bits_11_11_454 ? 145'd0 : n_mux_487;
+assign n_mux_489 = n_bits_12_12_453 ? 145'd0 : n_mux_488;
+assign n_mux_490 = n_bits_13_13_452 ? 145'd0 : n_mux_489;
+assign n_mux_491 = n_bits_14_14_451 ? 145'd0 : n_mux_490;
+assign n_mux_492 = n_bits_15_15_450 ? 145'd0 : n_mux_491;
+assign n_mux_493 = n_eq_446 ? 145'd0 : n_mux_492;
+assign n_sub_494 = 145'd0 - n_mux_493;
+assign n_mux_495 = n_and_444 ? n_sub_494 : n_mux_493;
+assign n_slt_496 = $signed(n_mux_439) < $signed(n_mux_495);
+assign n_and_497 = n_and_383 & n_slt_496;
+assign n_bits_22_16_498 = n_mux_374 >> 16;
+assign n_eq_499 = n_bits_22_16_498 == 7'd127;
+assign n_not_500 = ~n_eq_499;
+assign n_bits_22_16_501 = 24'd4521984 >> 16;
+assign n_eq_502 = n_bits_22_16_501 == 7'd127;
+assign n_not_503 = ~n_eq_502;
+assign n_and_504 = n_not_500 & n_not_503;
+assign n_bits_22_16_505 = n_mux_374 >> 16;
+assign n_eq_506 = n_bits_22_16_505 == 7'd0;
+assign n_not_507 = ~n_eq_506;
+assign n_bits_23_23_508 = n_mux_374 >> 23;
+assign n_and_509 = n_not_507 & n_bits_23_23_508;
+assign n_bits_22_16_510 = n_mux_374 >> 16;
+assign n_eq_511 = n_bits_22_16_510 == 7'd0;
+assign n_bits_22_16_512 = n_mux_374 >> 16;
+assign n_resize_513 = n_bits_22_16_512;
+assign n_sub_514 = n_resize_513 - 16'd1;
+assign n_bits_15_15_515 = n_sub_514 >> 15;
+assign n_bits_14_14_516 = n_sub_514 >> 14;
+assign n_bits_13_13_517 = n_sub_514 >> 13;
+assign n_bits_12_12_518 = n_sub_514 >> 12;
+assign n_bits_11_11_519 = n_sub_514 >> 11;
+assign n_bits_10_10_520 = n_sub_514 >> 10;
+assign n_bits_9_9_521 = n_sub_514 >> 9;
+assign n_bits_8_8_522 = n_sub_514 >> 8;
+assign n_bits_7_7_523 = n_sub_514 >> 7;
+assign n_bits_6_6_524 = n_sub_514 >> 6;
+assign n_bits_5_5_525 = n_sub_514 >> 5;
+assign n_bits_4_4_526 = n_sub_514 >> 4;
+assign n_bits_3_3_527 = n_sub_514 >> 3;
+assign n_bits_2_2_528 = n_sub_514 >> 2;
+assign n_bits_1_1_529 = n_sub_514 >> 1;
+assign n_bits_0_0_530 = n_sub_514 >> 0;
+assign n_bits_15_0_531 = n_mux_374 >> 0;
+assign n_concat_532 = {1'd1, n_bits_15_0_531};
+assign n_resize_533 = n_concat_532;
+assign n_shl_534 = n_resize_533 << 1;
+assign n_mux_535 = n_bits_0_0_530 ? n_shl_534 : n_resize_533;
+assign n_shl_536 = n_mux_535 << 2;
+assign n_mux_537 = n_bits_1_1_529 ? n_shl_536 : n_mux_535;
+assign n_shl_538 = n_mux_537 << 4;
+assign n_mux_539 = n_bits_2_2_528 ? n_shl_538 : n_mux_537;
+assign n_shl_540 = n_mux_539 << 8;
+assign n_mux_541 = n_bits_3_3_527 ? n_shl_540 : n_mux_539;
+assign n_shl_542 = n_mux_541 << 16;
+assign n_mux_543 = n_bits_4_4_526 ? n_shl_542 : n_mux_541;
+assign n_shl_544 = n_mux_543 << 32;
+assign n_mux_545 = n_bits_5_5_525 ? n_shl_544 : n_mux_543;
+assign n_shl_546 = n_mux_545 << 64;
+assign n_mux_547 = n_bits_6_6_524 ? n_shl_546 : n_mux_545;
+assign n_shl_548 = n_mux_547 << 128;
+assign n_mux_549 = n_bits_7_7_523 ? n_shl_548 : n_mux_547;
+assign n_mux_550 = n_bits_8_8_522 ? 145'd0 : n_mux_549;
+assign n_mux_551 = n_bits_9_9_521 ? 145'd0 : n_mux_550;
+assign n_mux_552 = n_bits_10_10_520 ? 145'd0 : n_mux_551;
+assign n_mux_553 = n_bits_11_11_519 ? 145'd0 : n_mux_552;
+assign n_mux_554 = n_bits_12_12_518 ? 145'd0 : n_mux_553;
+assign n_mux_555 = n_bits_13_13_517 ? 145'd0 : n_mux_554;
+assign n_mux_556 = n_bits_14_14_516 ? 145'd0 : n_mux_555;
+assign n_mux_557 = n_bits_15_15_515 ? 145'd0 : n_mux_556;
+assign n_mux_558 = n_eq_511 ? 145'd0 : n_mux_557;
+assign n_sub_559 = 145'd0 - n_mux_558;
+assign n_mux_560 = n_and_509 ? n_sub_559 : n_mux_558;
+assign n_bits_22_16_561 = 24'd4521984 >> 16;
+assign n_eq_562 = n_bits_22_16_561 == 7'd0;
+assign n_not_563 = ~n_eq_562;
+assign n_bits_23_23_564 = 24'd4521984 >> 23;
+assign n_and_565 = n_not_563 & n_bits_23_23_564;
+assign n_bits_22_16_566 = 24'd4521984 >> 16;
+assign n_eq_567 = n_bits_22_16_566 == 7'd0;
+assign n_bits_22_16_568 = 24'd4521984 >> 16;
+assign n_resize_569 = n_bits_22_16_568;
+assign n_sub_570 = n_resize_569 - 16'd1;
+assign n_bits_15_15_571 = n_sub_570 >> 15;
+assign n_bits_14_14_572 = n_sub_570 >> 14;
+assign n_bits_13_13_573 = n_sub_570 >> 13;
+assign n_bits_12_12_574 = n_sub_570 >> 12;
+assign n_bits_11_11_575 = n_sub_570 >> 11;
+assign n_bits_10_10_576 = n_sub_570 >> 10;
+assign n_bits_9_9_577 = n_sub_570 >> 9;
+assign n_bits_8_8_578 = n_sub_570 >> 8;
+assign n_bits_7_7_579 = n_sub_570 >> 7;
+assign n_bits_6_6_580 = n_sub_570 >> 6;
+assign n_bits_5_5_581 = n_sub_570 >> 5;
+assign n_bits_4_4_582 = n_sub_570 >> 4;
+assign n_bits_3_3_583 = n_sub_570 >> 3;
+assign n_bits_2_2_584 = n_sub_570 >> 2;
+assign n_bits_1_1_585 = n_sub_570 >> 1;
+assign n_bits_0_0_586 = n_sub_570 >> 0;
+assign n_bits_15_0_587 = 24'd4521984 >> 0;
+assign n_concat_588 = {1'd1, n_bits_15_0_587};
+assign n_resize_589 = n_concat_588;
+assign n_shl_590 = n_resize_589 << 1;
+assign n_mux_591 = n_bits_0_0_586 ? n_shl_590 : n_resize_589;
+assign n_shl_592 = n_mux_591 << 2;
+assign n_mux_593 = n_bits_1_1_585 ? n_shl_592 : n_mux_591;
+assign n_shl_594 = n_mux_593 << 4;
+assign n_mux_595 = n_bits_2_2_584 ? n_shl_594 : n_mux_593;
+assign n_shl_596 = n_mux_595 << 8;
+assign n_mux_597 = n_bits_3_3_583 ? n_shl_596 : n_mux_595;
+assign n_shl_598 = n_mux_597 << 16;
+assign n_mux_599 = n_bits_4_4_582 ? n_shl_598 : n_mux_597;
+assign n_shl_600 = n_mux_599 << 32;
+assign n_mux_601 = n_bits_5_5_581 ? n_shl_600 : n_mux_599;
+assign n_shl_602 = n_mux_601 << 64;
+assign n_mux_603 = n_bits_6_6_580 ? n_shl_602 : n_mux_601;
+assign n_shl_604 = n_mux_603 << 128;
+assign n_mux_605 = n_bits_7_7_579 ? n_shl_604 : n_mux_603;
+assign n_mux_606 = n_bits_8_8_578 ? 145'd0 : n_mux_605;
+assign n_mux_607 = n_bits_9_9_577 ? 145'd0 : n_mux_606;
+assign n_mux_608 = n_bits_10_10_576 ? 145'd0 : n_mux_607;
+assign n_mux_609 = n_bits_11_11_575 ? 145'd0 : n_mux_608;
+assign n_mux_610 = n_bits_12_12_574 ? 145'd0 : n_mux_609;
+assign n_mux_611 = n_bits_13_13_573 ? 145'd0 : n_mux_610;
+assign n_mux_612 = n_bits_14_14_572 ? 145'd0 : n_mux_611;
+assign n_mux_613 = n_bits_15_15_571 ? 145'd0 : n_mux_612;
+assign n_mux_614 = n_eq_567 ? 145'd0 : n_mux_613;
+assign n_sub_615 = 145'd0 - n_mux_614;
+assign n_mux_616 = n_and_565 ? n_sub_615 : n_mux_614;
+assign n_slt_617 = $signed(n_mux_560) < $signed(n_mux_616);
+assign n_and_618 = n_and_504 & n_slt_617;
+assign n_not_619 = ~n_and_618;
+assign n_bits_22_16_620 = n_mux_374 >> 16;
+assign n_eq_621 = n_bits_22_16_620 == 7'd127;
+assign n_bits_22_16_622 = n_mux_374 >> 16;
+assign n_eq_623 = n_bits_22_16_622 == 7'd0;
+assign n_not_624 = ~n_eq_623;
+assign n_bits_23_23_625 = n_mux_374 >> 23;
+assign n_and_626 = n_not_624 & n_bits_23_23_625;
+assign n_bits_22_16_627 = n_mux_374 >> 16;
+assign n_eq_628 = n_bits_22_16_627 == 7'd0;
+assign n_bits_22_16_629 = n_mux_374 >> 16;
+assign n_resize_630 = n_bits_22_16_629;
+assign n_sub_631 = n_resize_630 - 16'd1;
+assign n_bits_15_15_632 = n_sub_631 >> 15;
+assign n_bits_14_14_633 = n_sub_631 >> 14;
+assign n_bits_13_13_634 = n_sub_631 >> 13;
+assign n_bits_12_12_635 = n_sub_631 >> 12;
+assign n_bits_11_11_636 = n_sub_631 >> 11;
+assign n_bits_10_10_637 = n_sub_631 >> 10;
+assign n_bits_9_9_638 = n_sub_631 >> 9;
+assign n_bits_8_8_639 = n_sub_631 >> 8;
+assign n_bits_7_7_640 = n_sub_631 >> 7;
+assign n_bits_6_6_641 = n_sub_631 >> 6;
+assign n_bits_5_5_642 = n_sub_631 >> 5;
+assign n_bits_4_4_643 = n_sub_631 >> 4;
+assign n_bits_3_3_644 = n_sub_631 >> 3;
+assign n_bits_2_2_645 = n_sub_631 >> 2;
+assign n_bits_1_1_646 = n_sub_631 >> 1;
+assign n_bits_0_0_647 = n_sub_631 >> 0;
+assign n_bits_15_0_648 = n_mux_374 >> 0;
+assign n_concat_649 = {1'd1, n_bits_15_0_648};
+assign n_resize_650 = n_concat_649;
+assign n_shl_651 = n_resize_650 << 1;
+assign n_mux_652 = n_bits_0_0_647 ? n_shl_651 : n_resize_650;
+assign n_shl_653 = n_mux_652 << 2;
+assign n_mux_654 = n_bits_1_1_646 ? n_shl_653 : n_mux_652;
+assign n_shl_655 = n_mux_654 << 4;
+assign n_mux_656 = n_bits_2_2_645 ? n_shl_655 : n_mux_654;
+assign n_shl_657 = n_mux_656 << 8;
+assign n_mux_658 = n_bits_3_3_644 ? n_shl_657 : n_mux_656;
+assign n_shl_659 = n_mux_658 << 16;
+assign n_mux_660 = n_bits_4_4_643 ? n_shl_659 : n_mux_658;
+assign n_shl_661 = n_mux_660 << 32;
+assign n_mux_662 = n_bits_5_5_642 ? n_shl_661 : n_mux_660;
+assign n_shl_663 = n_mux_662 << 64;
+assign n_mux_664 = n_bits_6_6_641 ? n_shl_663 : n_mux_662;
+assign n_shl_665 = n_mux_664 << 128;
+assign n_mux_666 = n_bits_7_7_640 ? n_shl_665 : n_mux_664;
+assign n_mux_667 = n_bits_8_8_639 ? 145'd0 : n_mux_666;
+assign n_mux_668 = n_bits_9_9_638 ? 145'd0 : n_mux_667;
+assign n_mux_669 = n_bits_10_10_637 ? 145'd0 : n_mux_668;
+assign n_mux_670 = n_bits_11_11_636 ? 145'd0 : n_mux_669;
+assign n_mux_671 = n_bits_12_12_635 ? 145'd0 : n_mux_670;
+assign n_mux_672 = n_bits_13_13_634 ? 145'd0 : n_mux_671;
+assign n_mux_673 = n_bits_14_14_633 ? 145'd0 : n_mux_672;
+assign n_mux_674 = n_bits_15_15_632 ? 145'd0 : n_mux_673;
+assign n_mux_675 = n_eq_628 ? 145'd0 : n_mux_674;
+assign n_sub_676 = 145'd0 - n_mux_675;
+assign n_mux_677 = n_and_626 ? n_sub_676 : n_mux_675;
+assign n_signextend_678 = $signed(n_mux_677);
+assign n_asr_679 = $signed(n_signextend_678) >>> 46;
+assign n_slt_680 = $signed(n_asr_679) < $signed(146'd89202980794122492566142863867221409169145856);
+assign n_slt_681 = $signed(146'd9223372036854775807) < $signed(n_asr_679);
+assign n_mux_682 = n_slt_681 ? 146'd9223372036854775807 : n_asr_679;
+assign n_mux_683 = n_slt_680 ? 146'd89202980794122492566142863867221409169145856 : n_mux_682;
+assign n_resize_684 = n_mux_683;
+assign n_mux_685 = n_eq_621 ? 64'd0 : n_resize_684;
+assign n_asr_686 = $signed(n_mux_685) >>> 32;
+assign n_resize_687 = n_asr_686;
+assign n_sub_688 = n_resize_687 - 16'd32;
+assign n_bits_31_0_689 = n_mux_685 >> 0;
+assign n_bits_31_22_690 = n_bits_31_0_689 >> 22;
+assign n_lookup_691 = rom_n_lookup_691(n_bits_31_22_690);
+assign n_lookup_692 = rom_n_lookup_692(n_bits_31_22_690);
+assign n_signextend_693 = $signed(n_lookup_692);
+assign n_bits_21_0_694 = n_bits_31_0_689 >> 0;
+assign n_resize_695 = n_bits_21_0_694;
+assign n_mul_696 = n_signextend_693 * n_resize_695;
+assign n_asr_697 = $signed(n_mul_696) >>> 22;
+assign n_resize_698 = n_asr_697;
+assign n_add_699 = n_lookup_691 + n_resize_698;
+assign n_bits_39_39_700 = n_add_699 >> 39;
+assign n_bits_38_38_701 = n_add_699 >> 38;
+assign n_bits_37_37_702 = n_add_699 >> 37;
+assign n_bits_36_36_703 = n_add_699 >> 36;
+assign n_bits_35_35_704 = n_add_699 >> 35;
+assign n_bits_34_34_705 = n_add_699 >> 34;
+assign n_bits_33_33_706 = n_add_699 >> 33;
+assign n_bits_32_32_707 = n_add_699 >> 32;
+assign n_bits_31_31_708 = n_add_699 >> 31;
+assign n_bits_30_30_709 = n_add_699 >> 30;
+assign n_bits_29_29_710 = n_add_699 >> 29;
+assign n_bits_28_28_711 = n_add_699 >> 28;
+assign n_bits_27_27_712 = n_add_699 >> 27;
+assign n_bits_26_26_713 = n_add_699 >> 26;
+assign n_bits_25_25_714 = n_add_699 >> 25;
+assign n_bits_24_24_715 = n_add_699 >> 24;
+assign n_bits_23_23_716 = n_add_699 >> 23;
+assign n_bits_22_22_717 = n_add_699 >> 22;
+assign n_bits_21_21_718 = n_add_699 >> 21;
+assign n_bits_20_20_719 = n_add_699 >> 20;
+assign n_bits_19_19_720 = n_add_699 >> 19;
+assign n_bits_18_18_721 = n_add_699 >> 18;
+assign n_bits_17_17_722 = n_add_699 >> 17;
+assign n_bits_16_16_723 = n_add_699 >> 16;
+assign n_bits_15_15_724 = n_add_699 >> 15;
+assign n_bits_14_14_725 = n_add_699 >> 14;
+assign n_bits_13_13_726 = n_add_699 >> 13;
+assign n_bits_12_12_727 = n_add_699 >> 12;
+assign n_bits_11_11_728 = n_add_699 >> 11;
+assign n_bits_10_10_729 = n_add_699 >> 10;
+assign n_bits_9_9_730 = n_add_699 >> 9;
+assign n_bits_8_8_731 = n_add_699 >> 8;
+assign n_bits_7_7_732 = n_add_699 >> 7;
+assign n_bits_6_6_733 = n_add_699 >> 6;
+assign n_bits_5_5_734 = n_add_699 >> 5;
+assign n_bits_4_4_735 = n_add_699 >> 4;
+assign n_bits_3_3_736 = n_add_699 >> 3;
+assign n_bits_2_2_737 = n_add_699 >> 2;
+assign n_bits_1_1_738 = n_add_699 >> 1;
+assign n_bits_0_0_739 = n_add_699 >> 0;
+assign n_mux_740 = n_bits_0_0_739 ? 16'd0 : 16'd0;
+assign n_mux_741 = n_bits_1_1_738 ? 16'd1 : n_mux_740;
+assign n_mux_742 = n_bits_2_2_737 ? 16'd2 : n_mux_741;
+assign n_mux_743 = n_bits_3_3_736 ? 16'd3 : n_mux_742;
+assign n_mux_744 = n_bits_4_4_735 ? 16'd4 : n_mux_743;
+assign n_mux_745 = n_bits_5_5_734 ? 16'd5 : n_mux_744;
+assign n_mux_746 = n_bits_6_6_733 ? 16'd6 : n_mux_745;
+assign n_mux_747 = n_bits_7_7_732 ? 16'd7 : n_mux_746;
+assign n_mux_748 = n_bits_8_8_731 ? 16'd8 : n_mux_747;
+assign n_mux_749 = n_bits_9_9_730 ? 16'd9 : n_mux_748;
+assign n_mux_750 = n_bits_10_10_729 ? 16'd10 : n_mux_749;
+assign n_mux_751 = n_bits_11_11_728 ? 16'd11 : n_mux_750;
+assign n_mux_752 = n_bits_12_12_727 ? 16'd12 : n_mux_751;
+assign n_mux_753 = n_bits_13_13_726 ? 16'd13 : n_mux_752;
+assign n_mux_754 = n_bits_14_14_725 ? 16'd14 : n_mux_753;
+assign n_mux_755 = n_bits_15_15_724 ? 16'd15 : n_mux_754;
+assign n_mux_756 = n_bits_16_16_723 ? 16'd16 : n_mux_755;
+assign n_mux_757 = n_bits_17_17_722 ? 16'd17 : n_mux_756;
+assign n_mux_758 = n_bits_18_18_721 ? 16'd18 : n_mux_757;
+assign n_mux_759 = n_bits_19_19_720 ? 16'd19 : n_mux_758;
+assign n_mux_760 = n_bits_20_20_719 ? 16'd20 : n_mux_759;
+assign n_mux_761 = n_bits_21_21_718 ? 16'd21 : n_mux_760;
+assign n_mux_762 = n_bits_22_22_717 ? 16'd22 : n_mux_761;
+assign n_mux_763 = n_bits_23_23_716 ? 16'd23 : n_mux_762;
+assign n_mux_764 = n_bits_24_24_715 ? 16'd24 : n_mux_763;
+assign n_mux_765 = n_bits_25_25_714 ? 16'd25 : n_mux_764;
+assign n_mux_766 = n_bits_26_26_713 ? 16'd26 : n_mux_765;
+assign n_mux_767 = n_bits_27_27_712 ? 16'd27 : n_mux_766;
+assign n_mux_768 = n_bits_28_28_711 ? 16'd28 : n_mux_767;
+assign n_mux_769 = n_bits_29_29_710 ? 16'd29 : n_mux_768;
+assign n_mux_770 = n_bits_30_30_709 ? 16'd30 : n_mux_769;
+assign n_mux_771 = n_bits_31_31_708 ? 16'd31 : n_mux_770;
+assign n_mux_772 = n_bits_32_32_707 ? 16'd32 : n_mux_771;
+assign n_mux_773 = n_bits_33_33_706 ? 16'd33 : n_mux_772;
+assign n_mux_774 = n_bits_34_34_705 ? 16'd34 : n_mux_773;
+assign n_mux_775 = n_bits_35_35_704 ? 16'd35 : n_mux_774;
+assign n_mux_776 = n_bits_36_36_703 ? 16'd36 : n_mux_775;
+assign n_mux_777 = n_bits_37_37_702 ? 16'd37 : n_mux_776;
+assign n_mux_778 = n_bits_38_38_701 ? 16'd38 : n_mux_777;
+assign n_mux_779 = n_bits_39_39_700 ? 16'd39 : n_mux_778;
+assign n_add_780 = n_sub_688 + n_mux_779;
+assign n_add_781 = n_add_780 + 16'd63;
+assign n_shr_782 = n_add_699 >> 23;
+assign n_resize_783 = n_shr_782;
+assign n_bits_22_22_784 = n_add_699 >> 22;
+assign n_bits_21_0_785 = n_add_699 >> 0;
+assign n_eq_786 = n_bits_21_0_785 == 22'd0;
+assign n_not_787 = ~n_eq_786;
+assign n_bits_0_0_788 = n_resize_783 >> 0;
+assign n_or_789 = n_not_787 | n_bits_0_0_788;
+assign n_and_790 = n_bits_22_22_784 & n_or_789;
+assign n_resize_791 = n_and_790;
+assign n_add_792 = n_resize_783 + n_resize_791;
+assign n_shr_793 = n_add_699 >> 22;
+assign n_resize_794 = n_shr_793;
+assign n_bits_21_21_795 = n_add_699 >> 21;
+assign n_bits_20_0_796 = n_add_699 >> 0;
+assign n_eq_797 = n_bits_20_0_796 == 21'd0;
+assign n_not_798 = ~n_eq_797;
+assign n_bits_0_0_799 = n_resize_794 >> 0;
+assign n_or_800 = n_not_798 | n_bits_0_0_799;
+assign n_and_801 = n_bits_21_21_795 & n_or_800;
+assign n_resize_802 = n_and_801;
+assign n_add_803 = n_resize_794 + n_resize_802;
+assign n_shr_804 = n_add_699 >> 21;
+assign n_resize_805 = n_shr_804;
+assign n_bits_20_20_806 = n_add_699 >> 20;
+assign n_bits_19_0_807 = n_add_699 >> 0;
+assign n_eq_808 = n_bits_19_0_807 == 20'd0;
+assign n_not_809 = ~n_eq_808;
+assign n_bits_0_0_810 = n_resize_805 >> 0;
+assign n_or_811 = n_not_809 | n_bits_0_0_810;
+assign n_and_812 = n_bits_20_20_806 & n_or_811;
+assign n_resize_813 = n_and_812;
+assign n_add_814 = n_resize_805 + n_resize_813;
+assign n_shr_815 = n_add_699 >> 20;
+assign n_resize_816 = n_shr_815;
+assign n_bits_19_19_817 = n_add_699 >> 19;
+assign n_bits_18_0_818 = n_add_699 >> 0;
+assign n_eq_819 = n_bits_18_0_818 == 19'd0;
+assign n_not_820 = ~n_eq_819;
+assign n_bits_0_0_821 = n_resize_816 >> 0;
+assign n_or_822 = n_not_820 | n_bits_0_0_821;
+assign n_and_823 = n_bits_19_19_817 & n_or_822;
+assign n_resize_824 = n_and_823;
+assign n_add_825 = n_resize_816 + n_resize_824;
+assign n_shr_826 = n_add_699 >> 19;
+assign n_resize_827 = n_shr_826;
+assign n_bits_18_18_828 = n_add_699 >> 18;
+assign n_bits_17_0_829 = n_add_699 >> 0;
+assign n_eq_830 = n_bits_17_0_829 == 18'd0;
+assign n_not_831 = ~n_eq_830;
+assign n_bits_0_0_832 = n_resize_827 >> 0;
+assign n_or_833 = n_not_831 | n_bits_0_0_832;
+assign n_and_834 = n_bits_18_18_828 & n_or_833;
+assign n_resize_835 = n_and_834;
+assign n_add_836 = n_resize_827 + n_resize_835;
+assign n_shr_837 = n_add_699 >> 18;
+assign n_resize_838 = n_shr_837;
+assign n_bits_17_17_839 = n_add_699 >> 17;
+assign n_bits_16_0_840 = n_add_699 >> 0;
+assign n_eq_841 = n_bits_16_0_840 == 17'd0;
+assign n_not_842 = ~n_eq_841;
+assign n_bits_0_0_843 = n_resize_838 >> 0;
+assign n_or_844 = n_not_842 | n_bits_0_0_843;
+assign n_and_845 = n_bits_17_17_839 & n_or_844;
+assign n_resize_846 = n_and_845;
+assign n_add_847 = n_resize_838 + n_resize_846;
+assign n_shr_848 = n_add_699 >> 17;
+assign n_resize_849 = n_shr_848;
+assign n_bits_16_16_850 = n_add_699 >> 16;
+assign n_bits_15_0_851 = n_add_699 >> 0;
+assign n_eq_852 = n_bits_15_0_851 == 16'd0;
+assign n_not_853 = ~n_eq_852;
+assign n_bits_0_0_854 = n_resize_849 >> 0;
+assign n_or_855 = n_not_853 | n_bits_0_0_854;
+assign n_and_856 = n_bits_16_16_850 & n_or_855;
+assign n_resize_857 = n_and_856;
+assign n_add_858 = n_resize_849 + n_resize_857;
+assign n_shr_859 = n_add_699 >> 16;
+assign n_resize_860 = n_shr_859;
+assign n_bits_15_15_861 = n_add_699 >> 15;
+assign n_bits_14_0_862 = n_add_699 >> 0;
+assign n_eq_863 = n_bits_14_0_862 == 15'd0;
+assign n_not_864 = ~n_eq_863;
+assign n_bits_0_0_865 = n_resize_860 >> 0;
+assign n_or_866 = n_not_864 | n_bits_0_0_865;
+assign n_and_867 = n_bits_15_15_861 & n_or_866;
+assign n_resize_868 = n_and_867;
+assign n_add_869 = n_resize_860 + n_resize_868;
+assign n_shr_870 = n_add_699 >> 15;
+assign n_resize_871 = n_shr_870;
+assign n_bits_14_14_872 = n_add_699 >> 14;
+assign n_bits_13_0_873 = n_add_699 >> 0;
+assign n_eq_874 = n_bits_13_0_873 == 14'd0;
+assign n_not_875 = ~n_eq_874;
+assign n_bits_0_0_876 = n_resize_871 >> 0;
+assign n_or_877 = n_not_875 | n_bits_0_0_876;
+assign n_and_878 = n_bits_14_14_872 & n_or_877;
+assign n_resize_879 = n_and_878;
+assign n_add_880 = n_resize_871 + n_resize_879;
+assign n_shr_881 = n_add_699 >> 14;
+assign n_resize_882 = n_shr_881;
+assign n_bits_13_13_883 = n_add_699 >> 13;
+assign n_bits_12_0_884 = n_add_699 >> 0;
+assign n_eq_885 = n_bits_12_0_884 == 13'd0;
+assign n_not_886 = ~n_eq_885;
+assign n_bits_0_0_887 = n_resize_882 >> 0;
+assign n_or_888 = n_not_886 | n_bits_0_0_887;
+assign n_and_889 = n_bits_13_13_883 & n_or_888;
+assign n_resize_890 = n_and_889;
+assign n_add_891 = n_resize_882 + n_resize_890;
+assign n_shr_892 = n_add_699 >> 13;
+assign n_resize_893 = n_shr_892;
+assign n_bits_12_12_894 = n_add_699 >> 12;
+assign n_bits_11_0_895 = n_add_699 >> 0;
+assign n_eq_896 = n_bits_11_0_895 == 12'd0;
+assign n_not_897 = ~n_eq_896;
+assign n_bits_0_0_898 = n_resize_893 >> 0;
+assign n_or_899 = n_not_897 | n_bits_0_0_898;
+assign n_and_900 = n_bits_12_12_894 & n_or_899;
+assign n_resize_901 = n_and_900;
+assign n_add_902 = n_resize_893 + n_resize_901;
+assign n_shr_903 = n_add_699 >> 12;
+assign n_resize_904 = n_shr_903;
+assign n_bits_11_11_905 = n_add_699 >> 11;
+assign n_bits_10_0_906 = n_add_699 >> 0;
+assign n_eq_907 = n_bits_10_0_906 == 11'd0;
+assign n_not_908 = ~n_eq_907;
+assign n_bits_0_0_909 = n_resize_904 >> 0;
+assign n_or_910 = n_not_908 | n_bits_0_0_909;
+assign n_and_911 = n_bits_11_11_905 & n_or_910;
+assign n_resize_912 = n_and_911;
+assign n_add_913 = n_resize_904 + n_resize_912;
+assign n_shr_914 = n_add_699 >> 11;
+assign n_resize_915 = n_shr_914;
+assign n_bits_10_10_916 = n_add_699 >> 10;
+assign n_bits_9_0_917 = n_add_699 >> 0;
+assign n_eq_918 = n_bits_9_0_917 == 10'd0;
+assign n_not_919 = ~n_eq_918;
+assign n_bits_0_0_920 = n_resize_915 >> 0;
+assign n_or_921 = n_not_919 | n_bits_0_0_920;
+assign n_and_922 = n_bits_10_10_916 & n_or_921;
+assign n_resize_923 = n_and_922;
+assign n_add_924 = n_resize_915 + n_resize_923;
+assign n_shr_925 = n_add_699 >> 10;
+assign n_resize_926 = n_shr_925;
+assign n_bits_9_9_927 = n_add_699 >> 9;
+assign n_bits_8_0_928 = n_add_699 >> 0;
+assign n_eq_929 = n_bits_8_0_928 == 9'd0;
+assign n_not_930 = ~n_eq_929;
+assign n_bits_0_0_931 = n_resize_926 >> 0;
+assign n_or_932 = n_not_930 | n_bits_0_0_931;
+assign n_and_933 = n_bits_9_9_927 & n_or_932;
+assign n_resize_934 = n_and_933;
+assign n_add_935 = n_resize_926 + n_resize_934;
+assign n_shr_936 = n_add_699 >> 9;
+assign n_resize_937 = n_shr_936;
+assign n_bits_8_8_938 = n_add_699 >> 8;
+assign n_bits_7_0_939 = n_add_699 >> 0;
+assign n_eq_940 = n_bits_7_0_939 == 8'd0;
+assign n_not_941 = ~n_eq_940;
+assign n_bits_0_0_942 = n_resize_937 >> 0;
+assign n_or_943 = n_not_941 | n_bits_0_0_942;
+assign n_and_944 = n_bits_8_8_938 & n_or_943;
+assign n_resize_945 = n_and_944;
+assign n_add_946 = n_resize_937 + n_resize_945;
+assign n_shr_947 = n_add_699 >> 8;
+assign n_resize_948 = n_shr_947;
+assign n_bits_7_7_949 = n_add_699 >> 7;
+assign n_bits_6_0_950 = n_add_699 >> 0;
+assign n_eq_951 = n_bits_6_0_950 == 7'd0;
+assign n_not_952 = ~n_eq_951;
+assign n_bits_0_0_953 = n_resize_948 >> 0;
+assign n_or_954 = n_not_952 | n_bits_0_0_953;
+assign n_and_955 = n_bits_7_7_949 & n_or_954;
+assign n_resize_956 = n_and_955;
+assign n_add_957 = n_resize_948 + n_resize_956;
+assign n_shr_958 = n_add_699 >> 7;
+assign n_resize_959 = n_shr_958;
+assign n_bits_6_6_960 = n_add_699 >> 6;
+assign n_bits_5_0_961 = n_add_699 >> 0;
+assign n_eq_962 = n_bits_5_0_961 == 6'd0;
+assign n_not_963 = ~n_eq_962;
+assign n_bits_0_0_964 = n_resize_959 >> 0;
+assign n_or_965 = n_not_963 | n_bits_0_0_964;
+assign n_and_966 = n_bits_6_6_960 & n_or_965;
+assign n_resize_967 = n_and_966;
+assign n_add_968 = n_resize_959 + n_resize_967;
+assign n_shr_969 = n_add_699 >> 6;
+assign n_resize_970 = n_shr_969;
+assign n_bits_5_5_971 = n_add_699 >> 5;
+assign n_bits_4_0_972 = n_add_699 >> 0;
+assign n_eq_973 = n_bits_4_0_972 == 5'd0;
+assign n_not_974 = ~n_eq_973;
+assign n_bits_0_0_975 = n_resize_970 >> 0;
+assign n_or_976 = n_not_974 | n_bits_0_0_975;
+assign n_and_977 = n_bits_5_5_971 & n_or_976;
+assign n_resize_978 = n_and_977;
+assign n_add_979 = n_resize_970 + n_resize_978;
+assign n_shr_980 = n_add_699 >> 5;
+assign n_resize_981 = n_shr_980;
+assign n_bits_4_4_982 = n_add_699 >> 4;
+assign n_bits_3_0_983 = n_add_699 >> 0;
+assign n_eq_984 = n_bits_3_0_983 == 4'd0;
+assign n_not_985 = ~n_eq_984;
+assign n_bits_0_0_986 = n_resize_981 >> 0;
+assign n_or_987 = n_not_985 | n_bits_0_0_986;
+assign n_and_988 = n_bits_4_4_982 & n_or_987;
+assign n_resize_989 = n_and_988;
+assign n_add_990 = n_resize_981 + n_resize_989;
+assign n_shr_991 = n_add_699 >> 4;
+assign n_resize_992 = n_shr_991;
+assign n_bits_3_3_993 = n_add_699 >> 3;
+assign n_bits_2_0_994 = n_add_699 >> 0;
+assign n_eq_995 = n_bits_2_0_994 == 3'd0;
+assign n_not_996 = ~n_eq_995;
+assign n_bits_0_0_997 = n_resize_992 >> 0;
+assign n_or_998 = n_not_996 | n_bits_0_0_997;
+assign n_and_999 = n_bits_3_3_993 & n_or_998;
+assign n_resize_1000 = n_and_999;
+assign n_add_1001 = n_resize_992 + n_resize_1000;
+assign n_shr_1002 = n_add_699 >> 3;
+assign n_resize_1003 = n_shr_1002;
+assign n_bits_2_2_1004 = n_add_699 >> 2;
+assign n_bits_1_0_1005 = n_add_699 >> 0;
+assign n_eq_1006 = n_bits_1_0_1005 == 2'd0;
+assign n_not_1007 = ~n_eq_1006;
+assign n_bits_0_0_1008 = n_resize_1003 >> 0;
+assign n_or_1009 = n_not_1007 | n_bits_0_0_1008;
+assign n_and_1010 = n_bits_2_2_1004 & n_or_1009;
+assign n_resize_1011 = n_and_1010;
+assign n_add_1012 = n_resize_1003 + n_resize_1011;
+assign n_shr_1013 = n_add_699 >> 2;
+assign n_resize_1014 = n_shr_1013;
+assign n_bits_1_1_1015 = n_add_699 >> 1;
+assign n_bits_0_0_1016 = n_add_699 >> 0;
+assign n_eq_1017 = n_bits_0_0_1016 == 1'd0;
+assign n_not_1018 = ~n_eq_1017;
+assign n_bits_0_0_1019 = n_resize_1014 >> 0;
+assign n_or_1020 = n_not_1018 | n_bits_0_0_1019;
+assign n_and_1021 = n_bits_1_1_1015 & n_or_1020;
+assign n_resize_1022 = n_and_1021;
+assign n_add_1023 = n_resize_1014 + n_resize_1022;
+assign n_shr_1024 = n_add_699 >> 1;
+assign n_resize_1025 = n_shr_1024;
+assign n_bits_0_0_1026 = n_add_699 >> 0;
+assign n_bits_0_0_1027 = n_resize_1025 >> 0;
+assign n_or_1028 = 1'd0 | n_bits_0_0_1027;
+assign n_and_1029 = n_bits_0_0_1026 & n_or_1028;
+assign n_resize_1030 = n_and_1029;
+assign n_add_1031 = n_resize_1025 + n_resize_1030;
+assign n_resize_1032 = n_add_699;
+assign n_shl_1033 = n_resize_1032 << 0;
+assign n_resize_1034 = n_add_699;
+assign n_shl_1035 = n_resize_1034 << 1;
+assign n_resize_1036 = n_add_699;
+assign n_shl_1037 = n_resize_1036 << 2;
+assign n_resize_1038 = n_add_699;
+assign n_shl_1039 = n_resize_1038 << 3;
+assign n_resize_1040 = n_add_699;
+assign n_shl_1041 = n_resize_1040 << 4;
+assign n_resize_1042 = n_add_699;
+assign n_shl_1043 = n_resize_1042 << 5;
+assign n_resize_1044 = n_add_699;
+assign n_shl_1045 = n_resize_1044 << 6;
+assign n_resize_1046 = n_add_699;
+assign n_shl_1047 = n_resize_1046 << 7;
+assign n_resize_1048 = n_add_699;
+assign n_shl_1049 = n_resize_1048 << 8;
+assign n_resize_1050 = n_add_699;
+assign n_shl_1051 = n_resize_1050 << 9;
+assign n_resize_1052 = n_add_699;
+assign n_shl_1053 = n_resize_1052 << 10;
+assign n_resize_1054 = n_add_699;
+assign n_shl_1055 = n_resize_1054 << 11;
+assign n_resize_1056 = n_add_699;
+assign n_shl_1057 = n_resize_1056 << 12;
+assign n_resize_1058 = n_add_699;
+assign n_shl_1059 = n_resize_1058 << 13;
+assign n_resize_1060 = n_add_699;
+assign n_shl_1061 = n_resize_1060 << 14;
+assign n_resize_1062 = n_add_699;
+assign n_shl_1063 = n_resize_1062 << 15;
+assign n_resize_1064 = n_add_699;
+assign n_shl_1065 = n_resize_1064 << 16;
+assign n_mux_1066 = n_bits_0_0_739 ? n_shl_1065 : 18'd0;
+assign n_mux_1067 = n_bits_1_1_738 ? n_shl_1063 : n_mux_1066;
+assign n_mux_1068 = n_bits_2_2_737 ? n_shl_1061 : n_mux_1067;
+assign n_mux_1069 = n_bits_3_3_736 ? n_shl_1059 : n_mux_1068;
+assign n_mux_1070 = n_bits_4_4_735 ? n_shl_1057 : n_mux_1069;
+assign n_mux_1071 = n_bits_5_5_734 ? n_shl_1055 : n_mux_1070;
+assign n_mux_1072 = n_bits_6_6_733 ? n_shl_1053 : n_mux_1071;
+assign n_mux_1073 = n_bits_7_7_732 ? n_shl_1051 : n_mux_1072;
+assign n_mux_1074 = n_bits_8_8_731 ? n_shl_1049 : n_mux_1073;
+assign n_mux_1075 = n_bits_9_9_730 ? n_shl_1047 : n_mux_1074;
+assign n_mux_1076 = n_bits_10_10_729 ? n_shl_1045 : n_mux_1075;
+assign n_mux_1077 = n_bits_11_11_728 ? n_shl_1043 : n_mux_1076;
+assign n_mux_1078 = n_bits_12_12_727 ? n_shl_1041 : n_mux_1077;
+assign n_mux_1079 = n_bits_13_13_726 ? n_shl_1039 : n_mux_1078;
+assign n_mux_1080 = n_bits_14_14_725 ? n_shl_1037 : n_mux_1079;
+assign n_mux_1081 = n_bits_15_15_724 ? n_shl_1035 : n_mux_1080;
+assign n_mux_1082 = n_bits_16_16_723 ? n_shl_1033 : n_mux_1081;
+assign n_mux_1083 = n_bits_17_17_722 ? n_add_1031 : n_mux_1082;
+assign n_mux_1084 = n_bits_18_18_721 ? n_add_1023 : n_mux_1083;
+assign n_mux_1085 = n_bits_19_19_720 ? n_add_1012 : n_mux_1084;
+assign n_mux_1086 = n_bits_20_20_719 ? n_add_1001 : n_mux_1085;
+assign n_mux_1087 = n_bits_21_21_718 ? n_add_990 : n_mux_1086;
+assign n_mux_1088 = n_bits_22_22_717 ? n_add_979 : n_mux_1087;
+assign n_mux_1089 = n_bits_23_23_716 ? n_add_968 : n_mux_1088;
+assign n_mux_1090 = n_bits_24_24_715 ? n_add_957 : n_mux_1089;
+assign n_mux_1091 = n_bits_25_25_714 ? n_add_946 : n_mux_1090;
+assign n_mux_1092 = n_bits_26_26_713 ? n_add_935 : n_mux_1091;
+assign n_mux_1093 = n_bits_27_27_712 ? n_add_924 : n_mux_1092;
+assign n_mux_1094 = n_bits_28_28_711 ? n_add_913 : n_mux_1093;
+assign n_mux_1095 = n_bits_29_29_710 ? n_add_902 : n_mux_1094;
+assign n_mux_1096 = n_bits_30_30_709 ? n_add_891 : n_mux_1095;
+assign n_mux_1097 = n_bits_31_31_708 ? n_add_880 : n_mux_1096;
+assign n_mux_1098 = n_bits_32_32_707 ? n_add_869 : n_mux_1097;
+assign n_mux_1099 = n_bits_33_33_706 ? n_add_858 : n_mux_1098;
+assign n_mux_1100 = n_bits_34_34_705 ? n_add_847 : n_mux_1099;
+assign n_mux_1101 = n_bits_35_35_704 ? n_add_836 : n_mux_1100;
+assign n_mux_1102 = n_bits_36_36_703 ? n_add_825 : n_mux_1101;
+assign n_mux_1103 = n_bits_37_37_702 ? n_add_814 : n_mux_1102;
+assign n_mux_1104 = n_bits_38_38_701 ? n_add_803 : n_mux_1103;
+assign n_mux_1105 = n_bits_39_39_700 ? n_add_792 : n_mux_1104;
+assign n_bits_17_17_1106 = n_mux_1105 >> 17;
+assign n_resize_1107 = n_bits_17_17_1106;
+assign n_add_1108 = n_add_781 + n_resize_1107;
+assign n_slt_1109 = $signed(n_add_1108) < $signed(16'd1);
+assign n_eq_1110 = n_add_699 == 40'd0;
+assign n_or_1111 = n_slt_1109 | n_eq_1110;
+assign n_slt_1112 = $signed(n_add_1108) < $signed(16'd127);
+assign n_not_1113 = ~n_slt_1112;
+assign n_concat_1114 = {1'd0, 23'd8323071};
+assign n_resize_1115 = n_add_1108;
+assign n_shr_1116 = n_mux_1105 >> 1;
+assign n_mux_1117 = n_bits_17_17_1106 ? n_shr_1116 : n_mux_1105;
+assign n_resize_1118 = n_mux_1117;
+assign n_concat_1119 = {n_resize_1115, n_resize_1118};
+assign n_concat_1120 = {1'd0, n_concat_1119};
+assign n_mux_1121 = n_not_1113 ? n_concat_1114 : n_concat_1120;
+assign n_mux_1122 = n_or_1111 ? 24'd0 : n_mux_1121;
+assign n_mux_1123 = n_not_619 ? 24'd8323071 : n_mux_1122;
+assign n_mux_1124 = n_and_497 ? 24'd0 : n_mux_1123;
+assign n_mux_1125 = n_eq_376 ? 24'd8323072 : n_mux_1124;
+assign s_result = n_mux_1125;
 endmodule

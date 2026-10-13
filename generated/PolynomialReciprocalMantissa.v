@@ -286,561 +286,561 @@ wire [0:0] s_math_result_tvalid;
 // math_result: TREADY; consumer accepts on rising clk when TVALID is also high. Flows opposite payload.
 wire [0:0] s_math_result_tready;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_not_0;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_or_1;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_not_2;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_3;
+wire [0:0] n_or_3;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_4;
+wire [0:0] n_mux_4;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_5;
+wire [0:0] n_and_5;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_6;
+wire [31:0] n_resize_6;
 // Operation '<<'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_7;
+wire [31:0] n_shl_7;
 // Operation '-'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_8;
+wire [31:0] n_sub_8;
 // Horner bundle: accumulator [63:32] signed Q4.28; centered argument [31:0] signed Q4.28.
-wire [63:0] n_9;
+wire [63:0] n_concat_9;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_10;
+wire [63:0] n_mux_10;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_11;
+wire [7:0] n_mux_11;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_12;
+wire [0:0] n_mux_12;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_13;
+wire [7:0] n_mux_13;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_14;
+wire [0:0] n_not_14;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_15;
+wire [0:0] n_or_15;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_16;
+wire [0:0] n_mux_16;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_17;
+wire [0:0] n_and_17;
 // Extract source bits [63:32], rebase to bit 0.
-wire [31:0] n_18;
+wire [31:0] n_bits_63_32_18;
 // Signed two's-complement extension.
-wire [63:0] n_19;
+wire [63:0] n_signextend_19;
 // Extract source bits [31:0], rebase to bit 0.
-wire [31:0] n_20;
+wire [31:0] n_bits_31_0_20;
 // Signed two's-complement extension.
-wire [63:0] n_21;
+wire [63:0] n_signextend_21;
 // Operation '*'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_22;
+wire [63:0] n_mul_22;
 // Operation 'asr'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_23;
+wire [63:0] n_asr_23;
 // Narrow: retain low bits; upper bits discarded.
-wire [31:0] n_24;
+wire [31:0] n_resize_24;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_25;
+wire [31:0] n_add_25;
 // Horner bundle: updated accumulator [63:32] signed Q4.28; centered argument [31:0] signed Q4.28.
-wire [63:0] n_26;
+wire [63:0] n_concat_26;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_27;
+wire [63:0] n_mux_27;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_28;
+wire [7:0] n_mux_28;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_29;
+wire [0:0] n_mux_29;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_30;
+wire [7:0] n_mux_30;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_31;
+wire [0:0] n_not_31;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_32;
+wire [0:0] n_or_32;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_33;
+wire [0:0] n_mux_33;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_34;
+wire [0:0] n_and_34;
 // Extract source bits [63:32], rebase to bit 0.
-wire [31:0] n_35;
+wire [31:0] n_bits_63_32_35;
 // Signed two's-complement extension.
-wire [63:0] n_36;
+wire [63:0] n_signextend_36;
 // Extract source bits [31:0], rebase to bit 0.
-wire [31:0] n_37;
+wire [31:0] n_bits_31_0_37;
 // Signed two's-complement extension.
-wire [63:0] n_38;
+wire [63:0] n_signextend_38;
 // Operation '*'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_39;
+wire [63:0] n_mul_39;
 // Operation 'asr'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_40;
+wire [63:0] n_asr_40;
 // Narrow: retain low bits; upper bits discarded.
-wire [31:0] n_41;
+wire [31:0] n_resize_41;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_42;
+wire [31:0] n_add_42;
 // Horner bundle: updated accumulator [63:32] signed Q4.28; centered argument [31:0] signed Q4.28.
-wire [63:0] n_43;
+wire [63:0] n_concat_43;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_44;
+wire [63:0] n_mux_44;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_45;
+wire [7:0] n_mux_45;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_46;
+wire [0:0] n_mux_46;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_47;
+wire [7:0] n_mux_47;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_48;
+wire [0:0] n_not_48;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_49;
+wire [0:0] n_or_49;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_50;
+wire [0:0] n_mux_50;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_51;
+wire [0:0] n_and_51;
 // Extract source bits [63:32], rebase to bit 0.
-wire [31:0] n_52;
+wire [31:0] n_bits_63_32_52;
 // Signed two's-complement extension.
-wire [63:0] n_53;
+wire [63:0] n_signextend_53;
 // Extract source bits [31:0], rebase to bit 0.
-wire [31:0] n_54;
+wire [31:0] n_bits_31_0_54;
 // Signed two's-complement extension.
-wire [63:0] n_55;
+wire [63:0] n_signextend_55;
 // Operation '*'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_56;
+wire [63:0] n_mul_56;
 // Operation 'asr'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_57;
+wire [63:0] n_asr_57;
 // Narrow: retain low bits; upper bits discarded.
-wire [31:0] n_58;
+wire [31:0] n_resize_58;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_59;
+wire [31:0] n_add_59;
 // Horner bundle: updated accumulator [63:32] signed Q4.28; centered argument [31:0] signed Q4.28.
-wire [63:0] n_60;
+wire [63:0] n_concat_60;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_61;
+wire [63:0] n_mux_61;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_62;
+wire [7:0] n_mux_62;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_63;
+wire [0:0] n_mux_63;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_64;
+wire [7:0] n_mux_64;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_65;
+wire [0:0] n_not_65;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_66;
+wire [0:0] n_or_66;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_67;
+wire [0:0] n_mux_67;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_68;
+wire [0:0] n_and_68;
 // Extract source bits [63:32], rebase to bit 0.
-wire [31:0] n_69;
+wire [31:0] n_bits_63_32_69;
 // Signed two's-complement extension.
-wire [63:0] n_70;
+wire [63:0] n_signextend_70;
 // Extract source bits [31:0], rebase to bit 0.
-wire [31:0] n_71;
+wire [31:0] n_bits_31_0_71;
 // Signed two's-complement extension.
-wire [63:0] n_72;
+wire [63:0] n_signextend_72;
 // Operation '*'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_73;
+wire [63:0] n_mul_73;
 // Operation 'asr'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_74;
+wire [63:0] n_asr_74;
 // Narrow: retain low bits; upper bits discarded.
-wire [31:0] n_75;
+wire [31:0] n_resize_75;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_76;
+wire [31:0] n_add_76;
 // Horner bundle: updated accumulator [63:32] signed Q4.28; centered argument [31:0] signed Q4.28.
-wire [63:0] n_77;
+wire [63:0] n_concat_77;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_78;
+wire [63:0] n_mux_78;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_79;
+wire [7:0] n_mux_79;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_80;
+wire [0:0] n_mux_80;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_81;
+wire [7:0] n_mux_81;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_82;
+wire [0:0] n_not_82;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_83;
+wire [0:0] n_or_83;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_84;
+wire [0:0] n_mux_84;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_85;
+wire [0:0] n_and_85;
 // Extract source bits [63:32], rebase to bit 0.
-wire [31:0] n_86;
+wire [31:0] n_bits_63_32_86;
 // Signed two's-complement extension.
-wire [63:0] n_87;
+wire [63:0] n_signextend_87;
 // Extract source bits [31:0], rebase to bit 0.
-wire [31:0] n_88;
+wire [31:0] n_bits_31_0_88;
 // Signed two's-complement extension.
-wire [63:0] n_89;
+wire [63:0] n_signextend_89;
 // Operation '*'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_90;
+wire [63:0] n_mul_90;
 // Operation 'asr'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_91;
+wire [63:0] n_asr_91;
 // Narrow: retain low bits; upper bits discarded.
-wire [31:0] n_92;
+wire [31:0] n_resize_92;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_93;
+wire [31:0] n_add_93;
 // Horner bundle: updated accumulator [63:32] signed Q4.28; centered argument [31:0] signed Q4.28.
-wire [63:0] n_94;
+wire [63:0] n_concat_94;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_95;
+wire [63:0] n_mux_95;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_96;
+wire [7:0] n_mux_96;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_97;
+wire [0:0] n_mux_97;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_98;
+wire [7:0] n_mux_98;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_99;
+wire [0:0] n_not_99;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_100;
+wire [0:0] n_or_100;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_101;
+wire [0:0] n_mux_101;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_102;
+wire [0:0] n_and_102;
 // Extract source bits [63:32], rebase to bit 0.
-wire [31:0] n_103;
+wire [31:0] n_bits_63_32_103;
 // Signed two's-complement extension.
-wire [63:0] n_104;
+wire [63:0] n_signextend_104;
 // Extract source bits [31:0], rebase to bit 0.
-wire [31:0] n_105;
+wire [31:0] n_bits_31_0_105;
 // Signed two's-complement extension.
-wire [63:0] n_106;
+wire [63:0] n_signextend_106;
 // Operation '*'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_107;
+wire [63:0] n_mul_107;
 // Operation 'asr'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_108;
+wire [63:0] n_asr_108;
 // Narrow: retain low bits; upper bits discarded.
-wire [31:0] n_109;
+wire [31:0] n_resize_109;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_110;
+wire [31:0] n_add_110;
 // Horner bundle: updated accumulator [63:32] signed Q4.28; centered argument [31:0] signed Q4.28.
-wire [63:0] n_111;
+wire [63:0] n_concat_111;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_112;
+wire [63:0] n_mux_112;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_113;
+wire [7:0] n_mux_113;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_114;
+wire [0:0] n_mux_114;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_115;
+wire [7:0] n_mux_115;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_116;
+wire [0:0] n_not_116;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_117;
+wire [0:0] n_or_117;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_118;
+wire [0:0] n_mux_118;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_119;
+wire [0:0] n_and_119;
 // Extract source bits [63:32], rebase to bit 0.
-wire [31:0] n_120;
+wire [31:0] n_bits_63_32_120;
 // Signed two's-complement extension.
-wire [63:0] n_121;
+wire [63:0] n_signextend_121;
 // Extract source bits [31:0], rebase to bit 0.
-wire [31:0] n_122;
+wire [31:0] n_bits_31_0_122;
 // Signed two's-complement extension.
-wire [63:0] n_123;
+wire [63:0] n_signextend_123;
 // Operation '*'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_124;
+wire [63:0] n_mul_124;
 // Operation 'asr'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_125;
+wire [63:0] n_asr_125;
 // Narrow: retain low bits; upper bits discarded.
-wire [31:0] n_126;
+wire [31:0] n_resize_126;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_127;
+wire [31:0] n_add_127;
 // Horner bundle: updated accumulator [63:32] signed Q4.28; centered argument [31:0] signed Q4.28.
-wire [63:0] n_128;
+wire [63:0] n_concat_128;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_129;
+wire [63:0] n_mux_129;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_130;
+wire [7:0] n_mux_130;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_131;
+wire [0:0] n_mux_131;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_132;
+wire [7:0] n_mux_132;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_133;
+wire [0:0] n_not_133;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_134;
+wire [0:0] n_or_134;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_135;
+wire [0:0] n_mux_135;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_136;
+wire [0:0] n_and_136;
 // Extract source bits [63:32], rebase to bit 0.
-wire [31:0] n_137;
+wire [31:0] n_bits_63_32_137;
 // Signed two's-complement extension.
-wire [63:0] n_138;
+wire [63:0] n_signextend_138;
 // Extract source bits [31:0], rebase to bit 0.
-wire [31:0] n_139;
+wire [31:0] n_bits_31_0_139;
 // Signed two's-complement extension.
-wire [63:0] n_140;
+wire [63:0] n_signextend_140;
 // Operation '*'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_141;
+wire [63:0] n_mul_141;
 // Operation 'asr'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_142;
+wire [63:0] n_asr_142;
 // Narrow: retain low bits; upper bits discarded.
-wire [31:0] n_143;
+wire [31:0] n_resize_143;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_144;
+wire [31:0] n_add_144;
 // Horner bundle: updated accumulator [63:32] signed Q4.28; centered argument [31:0] signed Q4.28.
-wire [63:0] n_145;
+wire [63:0] n_concat_145;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_146;
+wire [63:0] n_mux_146;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_147;
+wire [7:0] n_mux_147;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_148;
+wire [0:0] n_mux_148;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_149;
+wire [7:0] n_mux_149;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_150;
+wire [0:0] n_not_150;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_151;
+wire [0:0] n_or_151;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_152;
+wire [0:0] n_mux_152;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_153;
+wire [0:0] n_and_153;
 // Extract source bits [63:32], rebase to bit 0.
-wire [31:0] n_154;
+wire [31:0] n_bits_63_32_154;
 // Signed two's-complement extension.
-wire [63:0] n_155;
+wire [63:0] n_signextend_155;
 // Extract source bits [31:0], rebase to bit 0.
-wire [31:0] n_156;
+wire [31:0] n_bits_31_0_156;
 // Signed two's-complement extension.
-wire [63:0] n_157;
+wire [63:0] n_signextend_157;
 // Operation '*'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_158;
+wire [63:0] n_mul_158;
 // Operation 'asr'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_159;
+wire [63:0] n_asr_159;
 // Narrow: retain low bits; upper bits discarded.
-wire [31:0] n_160;
+wire [31:0] n_resize_160;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_161;
+wire [31:0] n_add_161;
 // Horner bundle: updated accumulator [63:32] signed Q4.28; centered argument [31:0] signed Q4.28.
-wire [63:0] n_162;
+wire [63:0] n_concat_162;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_163;
+wire [63:0] n_mux_163;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_164;
+wire [7:0] n_mux_164;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_165;
+wire [0:0] n_mux_165;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_166;
+wire [7:0] n_mux_166;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_167;
+wire [0:0] n_mux_167;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_168;
+wire [0:0] n_and_168;
 // Extract source bits [63:32], rebase to bit 0.
-wire [31:0] n_169;
+wire [31:0] n_bits_63_32_169;
 // Signed two's-complement extension.
-wire [63:0] n_170;
+wire [63:0] n_signextend_170;
 // Extract source bits [31:0], rebase to bit 0.
-wire [31:0] n_171;
+wire [31:0] n_bits_31_0_171;
 // Signed two's-complement extension.
-wire [63:0] n_172;
+wire [63:0] n_signextend_172;
 // Operation '*'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_173;
+wire [63:0] n_mul_173;
 // Operation 'asr'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_174;
+wire [63:0] n_asr_174;
 // Narrow: retain low bits; upper bits discarded.
-wire [31:0] n_175;
+wire [31:0] n_resize_175;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_176;
+wire [31:0] n_add_176;
 // Horner bundle: updated accumulator [63:32] signed Q4.28; centered argument [31:0] signed Q4.28.
-wire [63:0] n_177;
+wire [63:0] n_concat_177;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_178;
+wire [63:0] n_mux_178;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_179;
+wire [7:0] n_mux_179;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_180;
+wire [0:0] n_mux_180;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_181;
+wire [7:0] n_mux_181;
 // Extract source bits [63:32], rebase to bit 0.
-wire [31:0] n_182;
+wire [31:0] n_bits_63_32_182;
 // Operation 'asr'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_183;
+wire [31:0] n_asr_183;
 // Narrow: retain low bits; upper bits discarded.
-wire [23:0] n_184;
-assign n_0 = ~s_math_reduce_valid;
-assign n_1 = n_0 | s_math_reduce_tready;
-assign n_2 = ~s_math_horner9_valid;
-assign n_3 = n_2 | s_math_horner9_tready;
-assign n_4 = n_1 ? s_s_axis_tvalid : s_math_reduce_valid;
-assign n_5 = n_1 & s_s_axis_tvalid;
-assign n_6 = s_s_axis_tdata;
-assign n_7 = n_6 << 12;
-assign n_8 = n_7 - 32'd134217728;
-assign n_9 = {32'd3103388, n_8};
-assign n_10 = n_5 ? n_9 : s_math_reduce_data;
-assign n_11 = n_5 ? 8'd255 : s_math_reduce_keep;
-assign n_12 = n_5 ? s_s_axis_tlast : s_math_reduce_last;
-assign n_13 = n_5 ? s_s_axis_tuser : s_math_reduce_user;
-assign n_14 = ~s_math_horner8_valid;
-assign n_15 = n_14 | s_math_horner8_tready;
-assign n_16 = n_3 ? s_math_reduce_tvalid : s_math_horner9_valid;
-assign n_17 = n_3 & s_math_reduce_tvalid;
-assign n_18 = s_math_reduce_tdata >> 32;
-assign n_19 = $signed(n_18);
-assign n_20 = s_math_reduce_tdata >> 0;
-assign n_21 = $signed(n_20);
-assign n_22 = n_19 * n_21;
-assign n_23 = $signed(n_22) >>> 28;
-assign n_24 = n_23;
-assign n_25 = n_24 + 32'd4290312215;
-assign n_26 = {n_25, n_20};
-assign n_27 = n_17 ? n_26 : s_math_horner9_data;
-assign n_28 = n_17 ? s_math_reduce_tkeep : s_math_horner9_keep;
-assign n_29 = n_17 ? s_math_reduce_tlast : s_math_horner9_last;
-assign n_30 = n_17 ? s_math_reduce_tuser : s_math_horner9_user;
-assign n_31 = ~s_math_horner7_valid;
-assign n_32 = n_31 | s_math_horner7_tready;
-assign n_33 = n_15 ? s_math_horner9_tvalid : s_math_horner8_valid;
-assign n_34 = n_15 & s_math_horner9_tvalid;
-assign n_35 = s_math_horner9_tdata >> 32;
-assign n_36 = $signed(n_35);
-assign n_37 = s_math_horner9_tdata >> 0;
-assign n_38 = $signed(n_37);
-assign n_39 = n_36 * n_38;
-assign n_40 = $signed(n_39) >>> 28;
-assign n_41 = n_40;
-assign n_42 = n_41 + 32'd6982622;
-assign n_43 = {n_42, n_37};
-assign n_44 = n_34 ? n_43 : s_math_horner8_data;
-assign n_45 = n_34 ? s_math_horner9_tkeep : s_math_horner8_keep;
-assign n_46 = n_34 ? s_math_horner9_tlast : s_math_horner8_last;
-assign n_47 = n_34 ? s_math_horner9_tuser : s_math_horner8_user;
-assign n_48 = ~s_math_horner6_valid;
-assign n_49 = n_48 | s_math_horner6_tready;
-assign n_50 = n_32 ? s_math_horner8_tvalid : s_math_horner7_valid;
-assign n_51 = n_32 & s_math_horner8_tvalid;
-assign n_52 = s_math_horner8_tdata >> 32;
-assign n_53 = $signed(n_52);
-assign n_54 = s_math_horner8_tdata >> 0;
-assign n_55 = $signed(n_54);
-assign n_56 = n_53 * n_55;
-assign n_57 = $signed(n_56) >>> 28;
-assign n_58 = n_57;
-assign n_59 = n_58 + 32'd4284493363;
-assign n_60 = {n_59, n_54};
-assign n_61 = n_51 ? n_60 : s_math_horner7_data;
-assign n_62 = n_51 ? s_math_horner8_tkeep : s_math_horner7_keep;
-assign n_63 = n_51 ? s_math_horner8_tlast : s_math_horner7_last;
-assign n_64 = n_51 ? s_math_horner8_tuser : s_math_horner7_user;
-assign n_65 = ~s_math_horner5_valid;
-assign n_66 = n_65 | s_math_horner5_tready;
-assign n_67 = n_49 ? s_math_horner7_tvalid : s_math_horner6_valid;
-assign n_68 = n_49 & s_math_horner7_tvalid;
-assign n_69 = s_math_horner7_tdata >> 32;
-assign n_70 = $signed(n_69);
-assign n_71 = s_math_horner7_tdata >> 0;
-assign n_72 = $signed(n_71);
-assign n_73 = n_70 * n_72;
-assign n_74 = $signed(n_73) >>> 28;
-assign n_75 = n_74;
-assign n_76 = n_75 + 32'd15710900;
-assign n_77 = {n_76, n_71};
-assign n_78 = n_68 ? n_77 : s_math_horner6_data;
-assign n_79 = n_68 ? s_math_horner7_tkeep : s_math_horner6_keep;
-assign n_80 = n_68 ? s_math_horner7_tlast : s_math_horner6_last;
-assign n_81 = n_68 ? s_math_horner7_tuser : s_math_horner6_user;
-assign n_82 = ~s_math_horner4_valid;
-assign n_83 = n_82 | s_math_horner4_tready;
-assign n_84 = n_66 ? s_math_horner6_tvalid : s_math_horner5_valid;
-assign n_85 = n_66 & s_math_horner6_tvalid;
-assign n_86 = s_math_horner6_tdata >> 32;
-assign n_87 = $signed(n_86);
-assign n_88 = s_math_horner6_tdata >> 0;
-assign n_89 = $signed(n_88);
-assign n_90 = n_87 * n_89;
-assign n_91 = $signed(n_90) >>> 28;
-assign n_92 = n_91;
-assign n_93 = n_92 + 32'd4271400946;
-assign n_94 = {n_93, n_88};
-assign n_95 = n_85 ? n_94 : s_math_horner5_data;
-assign n_96 = n_85 ? s_math_horner6_tkeep : s_math_horner5_keep;
-assign n_97 = n_85 ? s_math_horner6_tlast : s_math_horner5_last;
-assign n_98 = n_85 ? s_math_horner6_tuser : s_math_horner5_user;
-assign n_99 = ~s_math_horner3_valid;
-assign n_100 = n_99 | s_math_horner3_tready;
-assign n_101 = n_83 ? s_math_horner5_tvalid : s_math_horner4_valid;
-assign n_102 = n_83 & s_math_horner5_tvalid;
-assign n_103 = s_math_horner5_tdata >> 32;
-assign n_104 = $signed(n_103);
-assign n_105 = s_math_horner5_tdata >> 0;
-assign n_106 = $signed(n_105);
-assign n_107 = n_104 * n_106;
-assign n_108 = $signed(n_107) >>> 28;
-assign n_109 = n_108;
-assign n_110 = n_109 + 32'd35349525;
-assign n_111 = {n_110, n_105};
-assign n_112 = n_102 ? n_111 : s_math_horner4_data;
-assign n_113 = n_102 ? s_math_horner5_tkeep : s_math_horner4_keep;
-assign n_114 = n_102 ? s_math_horner5_tlast : s_math_horner4_last;
-assign n_115 = n_102 ? s_math_horner5_tuser : s_math_horner4_user;
-assign n_116 = ~s_math_horner2_valid;
-assign n_117 = n_116 | s_math_horner2_tready;
-assign n_118 = n_100 ? s_math_horner4_tvalid : s_math_horner3_valid;
-assign n_119 = n_100 & s_math_horner4_tvalid;
-assign n_120 = s_math_horner4_tdata >> 32;
-assign n_121 = $signed(n_120);
-assign n_122 = s_math_horner4_tdata >> 0;
-assign n_123 = $signed(n_122);
-assign n_124 = n_121 * n_123;
-assign n_125 = $signed(n_124) >>> 28;
-assign n_126 = n_125;
-assign n_127 = n_126 + 32'd4241943008;
-assign n_128 = {n_127, n_122};
-assign n_129 = n_119 ? n_128 : s_math_horner3_data;
-assign n_130 = n_119 ? s_math_horner4_tkeep : s_math_horner3_keep;
-assign n_131 = n_119 ? s_math_horner4_tlast : s_math_horner3_last;
-assign n_132 = n_119 ? s_math_horner4_tuser : s_math_horner3_user;
-assign n_133 = ~s_math_horner1_valid;
-assign n_134 = n_133 | s_math_horner1_tready;
-assign n_135 = n_117 ? s_math_horner3_tvalid : s_math_horner2_valid;
-assign n_136 = n_117 & s_math_horner3_tvalid;
-assign n_137 = s_math_horner3_tdata >> 32;
-assign n_138 = $signed(n_137);
-assign n_139 = s_math_horner3_tdata >> 0;
-assign n_140 = $signed(n_139);
-assign n_141 = n_138 * n_140;
-assign n_142 = $signed(n_141) >>> 28;
-assign n_143 = n_142;
-assign n_144 = n_143 + 32'd79536431;
-assign n_145 = {n_144, n_139};
-assign n_146 = n_136 ? n_145 : s_math_horner2_data;
-assign n_147 = n_136 ? s_math_horner3_tkeep : s_math_horner2_keep;
-assign n_148 = n_136 ? s_math_horner3_tlast : s_math_horner2_last;
-assign n_149 = n_136 ? s_math_horner3_tuser : s_math_horner2_user;
-assign n_150 = ~s_math_horner0_valid;
-assign n_151 = n_150 | s_math_horner0_tready;
-assign n_152 = n_134 ? s_math_horner2_tvalid : s_math_horner1_valid;
-assign n_153 = n_134 & s_math_horner2_tvalid;
-assign n_154 = s_math_horner2_tdata >> 32;
-assign n_155 = $signed(n_154);
-assign n_156 = s_math_horner2_tdata >> 0;
-assign n_157 = $signed(n_156);
-assign n_158 = n_155 * n_157;
-assign n_159 = $signed(n_158) >>> 28;
-assign n_160 = n_159;
-assign n_161 = n_160 + 32'd4175662649;
-assign n_162 = {n_161, n_156};
-assign n_163 = n_153 ? n_162 : s_math_horner1_data;
-assign n_164 = n_153 ? s_math_horner2_tkeep : s_math_horner1_keep;
-assign n_165 = n_153 ? s_math_horner2_tlast : s_math_horner1_last;
-assign n_166 = n_153 ? s_math_horner2_tuser : s_math_horner1_user;
-assign n_167 = n_151 ? s_math_horner1_tvalid : s_math_horner0_valid;
-assign n_168 = n_151 & s_math_horner1_tvalid;
-assign n_169 = s_math_horner1_tdata >> 32;
-assign n_170 = $signed(n_169);
-assign n_171 = s_math_horner1_tdata >> 0;
-assign n_172 = $signed(n_171);
-assign n_173 = n_170 * n_172;
-assign n_174 = $signed(n_173) >>> 28;
-assign n_175 = n_174;
-assign n_176 = n_175 + 32'd178956971;
-assign n_177 = {n_176, n_171};
-assign n_178 = n_168 ? n_177 : s_math_horner0_data;
-assign n_179 = n_168 ? s_math_horner1_tkeep : s_math_horner0_keep;
-assign n_180 = n_168 ? s_math_horner1_tlast : s_math_horner0_last;
-assign n_181 = n_168 ? s_math_horner1_tuser : s_math_horner0_user;
-assign n_182 = s_math_horner0_tdata >> 32;
-assign n_183 = $signed(n_182) >>> 8;
-assign n_184 = n_183;
-assign s_s_axis_tready = n_1;
+wire [23:0] n_resize_184;
+assign n_not_0 = ~s_math_reduce_valid;
+assign n_or_1 = n_not_0 | s_math_reduce_tready;
+assign n_not_2 = ~s_math_horner9_valid;
+assign n_or_3 = n_not_2 | s_math_horner9_tready;
+assign n_mux_4 = n_or_1 ? s_s_axis_tvalid : s_math_reduce_valid;
+assign n_and_5 = n_or_1 & s_s_axis_tvalid;
+assign n_resize_6 = s_s_axis_tdata;
+assign n_shl_7 = n_resize_6 << 12;
+assign n_sub_8 = n_shl_7 - 32'd134217728;
+assign n_concat_9 = {32'd3103388, n_sub_8};
+assign n_mux_10 = n_and_5 ? n_concat_9 : s_math_reduce_data;
+assign n_mux_11 = n_and_5 ? 8'd255 : s_math_reduce_keep;
+assign n_mux_12 = n_and_5 ? s_s_axis_tlast : s_math_reduce_last;
+assign n_mux_13 = n_and_5 ? s_s_axis_tuser : s_math_reduce_user;
+assign n_not_14 = ~s_math_horner8_valid;
+assign n_or_15 = n_not_14 | s_math_horner8_tready;
+assign n_mux_16 = n_or_3 ? s_math_reduce_tvalid : s_math_horner9_valid;
+assign n_and_17 = n_or_3 & s_math_reduce_tvalid;
+assign n_bits_63_32_18 = s_math_reduce_tdata >> 32;
+assign n_signextend_19 = $signed(n_bits_63_32_18);
+assign n_bits_31_0_20 = s_math_reduce_tdata >> 0;
+assign n_signextend_21 = $signed(n_bits_31_0_20);
+assign n_mul_22 = n_signextend_19 * n_signextend_21;
+assign n_asr_23 = $signed(n_mul_22) >>> 28;
+assign n_resize_24 = n_asr_23;
+assign n_add_25 = n_resize_24 + 32'd4290312215;
+assign n_concat_26 = {n_add_25, n_bits_31_0_20};
+assign n_mux_27 = n_and_17 ? n_concat_26 : s_math_horner9_data;
+assign n_mux_28 = n_and_17 ? s_math_reduce_tkeep : s_math_horner9_keep;
+assign n_mux_29 = n_and_17 ? s_math_reduce_tlast : s_math_horner9_last;
+assign n_mux_30 = n_and_17 ? s_math_reduce_tuser : s_math_horner9_user;
+assign n_not_31 = ~s_math_horner7_valid;
+assign n_or_32 = n_not_31 | s_math_horner7_tready;
+assign n_mux_33 = n_or_15 ? s_math_horner9_tvalid : s_math_horner8_valid;
+assign n_and_34 = n_or_15 & s_math_horner9_tvalid;
+assign n_bits_63_32_35 = s_math_horner9_tdata >> 32;
+assign n_signextend_36 = $signed(n_bits_63_32_35);
+assign n_bits_31_0_37 = s_math_horner9_tdata >> 0;
+assign n_signextend_38 = $signed(n_bits_31_0_37);
+assign n_mul_39 = n_signextend_36 * n_signextend_38;
+assign n_asr_40 = $signed(n_mul_39) >>> 28;
+assign n_resize_41 = n_asr_40;
+assign n_add_42 = n_resize_41 + 32'd6982622;
+assign n_concat_43 = {n_add_42, n_bits_31_0_37};
+assign n_mux_44 = n_and_34 ? n_concat_43 : s_math_horner8_data;
+assign n_mux_45 = n_and_34 ? s_math_horner9_tkeep : s_math_horner8_keep;
+assign n_mux_46 = n_and_34 ? s_math_horner9_tlast : s_math_horner8_last;
+assign n_mux_47 = n_and_34 ? s_math_horner9_tuser : s_math_horner8_user;
+assign n_not_48 = ~s_math_horner6_valid;
+assign n_or_49 = n_not_48 | s_math_horner6_tready;
+assign n_mux_50 = n_or_32 ? s_math_horner8_tvalid : s_math_horner7_valid;
+assign n_and_51 = n_or_32 & s_math_horner8_tvalid;
+assign n_bits_63_32_52 = s_math_horner8_tdata >> 32;
+assign n_signextend_53 = $signed(n_bits_63_32_52);
+assign n_bits_31_0_54 = s_math_horner8_tdata >> 0;
+assign n_signextend_55 = $signed(n_bits_31_0_54);
+assign n_mul_56 = n_signextend_53 * n_signextend_55;
+assign n_asr_57 = $signed(n_mul_56) >>> 28;
+assign n_resize_58 = n_asr_57;
+assign n_add_59 = n_resize_58 + 32'd4284493363;
+assign n_concat_60 = {n_add_59, n_bits_31_0_54};
+assign n_mux_61 = n_and_51 ? n_concat_60 : s_math_horner7_data;
+assign n_mux_62 = n_and_51 ? s_math_horner8_tkeep : s_math_horner7_keep;
+assign n_mux_63 = n_and_51 ? s_math_horner8_tlast : s_math_horner7_last;
+assign n_mux_64 = n_and_51 ? s_math_horner8_tuser : s_math_horner7_user;
+assign n_not_65 = ~s_math_horner5_valid;
+assign n_or_66 = n_not_65 | s_math_horner5_tready;
+assign n_mux_67 = n_or_49 ? s_math_horner7_tvalid : s_math_horner6_valid;
+assign n_and_68 = n_or_49 & s_math_horner7_tvalid;
+assign n_bits_63_32_69 = s_math_horner7_tdata >> 32;
+assign n_signextend_70 = $signed(n_bits_63_32_69);
+assign n_bits_31_0_71 = s_math_horner7_tdata >> 0;
+assign n_signextend_72 = $signed(n_bits_31_0_71);
+assign n_mul_73 = n_signextend_70 * n_signextend_72;
+assign n_asr_74 = $signed(n_mul_73) >>> 28;
+assign n_resize_75 = n_asr_74;
+assign n_add_76 = n_resize_75 + 32'd15710900;
+assign n_concat_77 = {n_add_76, n_bits_31_0_71};
+assign n_mux_78 = n_and_68 ? n_concat_77 : s_math_horner6_data;
+assign n_mux_79 = n_and_68 ? s_math_horner7_tkeep : s_math_horner6_keep;
+assign n_mux_80 = n_and_68 ? s_math_horner7_tlast : s_math_horner6_last;
+assign n_mux_81 = n_and_68 ? s_math_horner7_tuser : s_math_horner6_user;
+assign n_not_82 = ~s_math_horner4_valid;
+assign n_or_83 = n_not_82 | s_math_horner4_tready;
+assign n_mux_84 = n_or_66 ? s_math_horner6_tvalid : s_math_horner5_valid;
+assign n_and_85 = n_or_66 & s_math_horner6_tvalid;
+assign n_bits_63_32_86 = s_math_horner6_tdata >> 32;
+assign n_signextend_87 = $signed(n_bits_63_32_86);
+assign n_bits_31_0_88 = s_math_horner6_tdata >> 0;
+assign n_signextend_89 = $signed(n_bits_31_0_88);
+assign n_mul_90 = n_signextend_87 * n_signextend_89;
+assign n_asr_91 = $signed(n_mul_90) >>> 28;
+assign n_resize_92 = n_asr_91;
+assign n_add_93 = n_resize_92 + 32'd4271400946;
+assign n_concat_94 = {n_add_93, n_bits_31_0_88};
+assign n_mux_95 = n_and_85 ? n_concat_94 : s_math_horner5_data;
+assign n_mux_96 = n_and_85 ? s_math_horner6_tkeep : s_math_horner5_keep;
+assign n_mux_97 = n_and_85 ? s_math_horner6_tlast : s_math_horner5_last;
+assign n_mux_98 = n_and_85 ? s_math_horner6_tuser : s_math_horner5_user;
+assign n_not_99 = ~s_math_horner3_valid;
+assign n_or_100 = n_not_99 | s_math_horner3_tready;
+assign n_mux_101 = n_or_83 ? s_math_horner5_tvalid : s_math_horner4_valid;
+assign n_and_102 = n_or_83 & s_math_horner5_tvalid;
+assign n_bits_63_32_103 = s_math_horner5_tdata >> 32;
+assign n_signextend_104 = $signed(n_bits_63_32_103);
+assign n_bits_31_0_105 = s_math_horner5_tdata >> 0;
+assign n_signextend_106 = $signed(n_bits_31_0_105);
+assign n_mul_107 = n_signextend_104 * n_signextend_106;
+assign n_asr_108 = $signed(n_mul_107) >>> 28;
+assign n_resize_109 = n_asr_108;
+assign n_add_110 = n_resize_109 + 32'd35349525;
+assign n_concat_111 = {n_add_110, n_bits_31_0_105};
+assign n_mux_112 = n_and_102 ? n_concat_111 : s_math_horner4_data;
+assign n_mux_113 = n_and_102 ? s_math_horner5_tkeep : s_math_horner4_keep;
+assign n_mux_114 = n_and_102 ? s_math_horner5_tlast : s_math_horner4_last;
+assign n_mux_115 = n_and_102 ? s_math_horner5_tuser : s_math_horner4_user;
+assign n_not_116 = ~s_math_horner2_valid;
+assign n_or_117 = n_not_116 | s_math_horner2_tready;
+assign n_mux_118 = n_or_100 ? s_math_horner4_tvalid : s_math_horner3_valid;
+assign n_and_119 = n_or_100 & s_math_horner4_tvalid;
+assign n_bits_63_32_120 = s_math_horner4_tdata >> 32;
+assign n_signextend_121 = $signed(n_bits_63_32_120);
+assign n_bits_31_0_122 = s_math_horner4_tdata >> 0;
+assign n_signextend_123 = $signed(n_bits_31_0_122);
+assign n_mul_124 = n_signextend_121 * n_signextend_123;
+assign n_asr_125 = $signed(n_mul_124) >>> 28;
+assign n_resize_126 = n_asr_125;
+assign n_add_127 = n_resize_126 + 32'd4241943008;
+assign n_concat_128 = {n_add_127, n_bits_31_0_122};
+assign n_mux_129 = n_and_119 ? n_concat_128 : s_math_horner3_data;
+assign n_mux_130 = n_and_119 ? s_math_horner4_tkeep : s_math_horner3_keep;
+assign n_mux_131 = n_and_119 ? s_math_horner4_tlast : s_math_horner3_last;
+assign n_mux_132 = n_and_119 ? s_math_horner4_tuser : s_math_horner3_user;
+assign n_not_133 = ~s_math_horner1_valid;
+assign n_or_134 = n_not_133 | s_math_horner1_tready;
+assign n_mux_135 = n_or_117 ? s_math_horner3_tvalid : s_math_horner2_valid;
+assign n_and_136 = n_or_117 & s_math_horner3_tvalid;
+assign n_bits_63_32_137 = s_math_horner3_tdata >> 32;
+assign n_signextend_138 = $signed(n_bits_63_32_137);
+assign n_bits_31_0_139 = s_math_horner3_tdata >> 0;
+assign n_signextend_140 = $signed(n_bits_31_0_139);
+assign n_mul_141 = n_signextend_138 * n_signextend_140;
+assign n_asr_142 = $signed(n_mul_141) >>> 28;
+assign n_resize_143 = n_asr_142;
+assign n_add_144 = n_resize_143 + 32'd79536431;
+assign n_concat_145 = {n_add_144, n_bits_31_0_139};
+assign n_mux_146 = n_and_136 ? n_concat_145 : s_math_horner2_data;
+assign n_mux_147 = n_and_136 ? s_math_horner3_tkeep : s_math_horner2_keep;
+assign n_mux_148 = n_and_136 ? s_math_horner3_tlast : s_math_horner2_last;
+assign n_mux_149 = n_and_136 ? s_math_horner3_tuser : s_math_horner2_user;
+assign n_not_150 = ~s_math_horner0_valid;
+assign n_or_151 = n_not_150 | s_math_horner0_tready;
+assign n_mux_152 = n_or_134 ? s_math_horner2_tvalid : s_math_horner1_valid;
+assign n_and_153 = n_or_134 & s_math_horner2_tvalid;
+assign n_bits_63_32_154 = s_math_horner2_tdata >> 32;
+assign n_signextend_155 = $signed(n_bits_63_32_154);
+assign n_bits_31_0_156 = s_math_horner2_tdata >> 0;
+assign n_signextend_157 = $signed(n_bits_31_0_156);
+assign n_mul_158 = n_signextend_155 * n_signextend_157;
+assign n_asr_159 = $signed(n_mul_158) >>> 28;
+assign n_resize_160 = n_asr_159;
+assign n_add_161 = n_resize_160 + 32'd4175662649;
+assign n_concat_162 = {n_add_161, n_bits_31_0_156};
+assign n_mux_163 = n_and_153 ? n_concat_162 : s_math_horner1_data;
+assign n_mux_164 = n_and_153 ? s_math_horner2_tkeep : s_math_horner1_keep;
+assign n_mux_165 = n_and_153 ? s_math_horner2_tlast : s_math_horner1_last;
+assign n_mux_166 = n_and_153 ? s_math_horner2_tuser : s_math_horner1_user;
+assign n_mux_167 = n_or_151 ? s_math_horner1_tvalid : s_math_horner0_valid;
+assign n_and_168 = n_or_151 & s_math_horner1_tvalid;
+assign n_bits_63_32_169 = s_math_horner1_tdata >> 32;
+assign n_signextend_170 = $signed(n_bits_63_32_169);
+assign n_bits_31_0_171 = s_math_horner1_tdata >> 0;
+assign n_signextend_172 = $signed(n_bits_31_0_171);
+assign n_mul_173 = n_signextend_170 * n_signextend_172;
+assign n_asr_174 = $signed(n_mul_173) >>> 28;
+assign n_resize_175 = n_asr_174;
+assign n_add_176 = n_resize_175 + 32'd178956971;
+assign n_concat_177 = {n_add_176, n_bits_31_0_171};
+assign n_mux_178 = n_and_168 ? n_concat_177 : s_math_horner0_data;
+assign n_mux_179 = n_and_168 ? s_math_horner1_tkeep : s_math_horner0_keep;
+assign n_mux_180 = n_and_168 ? s_math_horner1_tlast : s_math_horner0_last;
+assign n_mux_181 = n_and_168 ? s_math_horner1_tuser : s_math_horner0_user;
+assign n_bits_63_32_182 = s_math_horner0_tdata >> 32;
+assign n_asr_183 = $signed(n_bits_63_32_182) >>> 8;
+assign n_resize_184 = n_asr_183;
+assign s_s_axis_tready = n_or_1;
 assign s_m_axis_tdata = s_math_result_tdata;
 assign s_m_axis_tkeep = s_math_result_tkeep;
 assign s_m_axis_tlast = s_math_result_tlast;
@@ -851,68 +851,68 @@ assign s_math_reduce_tkeep = s_math_reduce_keep;
 assign s_math_reduce_tlast = s_math_reduce_last;
 assign s_math_reduce_tuser = s_math_reduce_user;
 assign s_math_reduce_tvalid = s_math_reduce_valid;
-assign s_math_reduce_tready = n_3;
+assign s_math_reduce_tready = n_or_3;
 assign s_math_horner9_tdata = s_math_horner9_data;
 assign s_math_horner9_tkeep = s_math_horner9_keep;
 assign s_math_horner9_tlast = s_math_horner9_last;
 assign s_math_horner9_tuser = s_math_horner9_user;
 assign s_math_horner9_tvalid = s_math_horner9_valid;
-assign s_math_horner9_tready = n_15;
+assign s_math_horner9_tready = n_or_15;
 assign s_math_horner8_tdata = s_math_horner8_data;
 assign s_math_horner8_tkeep = s_math_horner8_keep;
 assign s_math_horner8_tlast = s_math_horner8_last;
 assign s_math_horner8_tuser = s_math_horner8_user;
 assign s_math_horner8_tvalid = s_math_horner8_valid;
-assign s_math_horner8_tready = n_32;
+assign s_math_horner8_tready = n_or_32;
 assign s_math_horner7_tdata = s_math_horner7_data;
 assign s_math_horner7_tkeep = s_math_horner7_keep;
 assign s_math_horner7_tlast = s_math_horner7_last;
 assign s_math_horner7_tuser = s_math_horner7_user;
 assign s_math_horner7_tvalid = s_math_horner7_valid;
-assign s_math_horner7_tready = n_49;
+assign s_math_horner7_tready = n_or_49;
 assign s_math_horner6_tdata = s_math_horner6_data;
 assign s_math_horner6_tkeep = s_math_horner6_keep;
 assign s_math_horner6_tlast = s_math_horner6_last;
 assign s_math_horner6_tuser = s_math_horner6_user;
 assign s_math_horner6_tvalid = s_math_horner6_valid;
-assign s_math_horner6_tready = n_66;
+assign s_math_horner6_tready = n_or_66;
 assign s_math_horner5_tdata = s_math_horner5_data;
 assign s_math_horner5_tkeep = s_math_horner5_keep;
 assign s_math_horner5_tlast = s_math_horner5_last;
 assign s_math_horner5_tuser = s_math_horner5_user;
 assign s_math_horner5_tvalid = s_math_horner5_valid;
-assign s_math_horner5_tready = n_83;
+assign s_math_horner5_tready = n_or_83;
 assign s_math_horner4_tdata = s_math_horner4_data;
 assign s_math_horner4_tkeep = s_math_horner4_keep;
 assign s_math_horner4_tlast = s_math_horner4_last;
 assign s_math_horner4_tuser = s_math_horner4_user;
 assign s_math_horner4_tvalid = s_math_horner4_valid;
-assign s_math_horner4_tready = n_100;
+assign s_math_horner4_tready = n_or_100;
 assign s_math_horner3_tdata = s_math_horner3_data;
 assign s_math_horner3_tkeep = s_math_horner3_keep;
 assign s_math_horner3_tlast = s_math_horner3_last;
 assign s_math_horner3_tuser = s_math_horner3_user;
 assign s_math_horner3_tvalid = s_math_horner3_valid;
-assign s_math_horner3_tready = n_117;
+assign s_math_horner3_tready = n_or_117;
 assign s_math_horner2_tdata = s_math_horner2_data;
 assign s_math_horner2_tkeep = s_math_horner2_keep;
 assign s_math_horner2_tlast = s_math_horner2_last;
 assign s_math_horner2_tuser = s_math_horner2_user;
 assign s_math_horner2_tvalid = s_math_horner2_valid;
-assign s_math_horner2_tready = n_134;
+assign s_math_horner2_tready = n_or_134;
 assign s_math_horner1_tdata = s_math_horner1_data;
 assign s_math_horner1_tkeep = s_math_horner1_keep;
 assign s_math_horner1_tlast = s_math_horner1_last;
 assign s_math_horner1_tuser = s_math_horner1_user;
 assign s_math_horner1_tvalid = s_math_horner1_valid;
-assign s_math_horner1_tready = n_151;
+assign s_math_horner1_tready = n_or_151;
 assign s_math_horner0_tdata = s_math_horner0_data;
 assign s_math_horner0_tkeep = s_math_horner0_keep;
 assign s_math_horner0_tlast = s_math_horner0_last;
 assign s_math_horner0_tuser = s_math_horner0_user;
 assign s_math_horner0_tvalid = s_math_horner0_valid;
 assign s_math_horner0_tready = s_math_result_tready;
-assign s_math_result_tdata = n_184;
+assign s_math_result_tdata = n_resize_184;
 assign s_math_result_tkeep = 3'd7;
 assign s_math_result_tlast = s_math_horner0_tlast;
 assign s_math_result_tuser = s_math_horner0_tuser;
@@ -976,61 +976,61 @@ always @(posedge clk) begin
     s_math_horner0_last <= 1'd0;
     s_math_horner0_user <= 8'd0;
   end else begin
-    s_math_reduce_valid <= n_4;
-    s_math_reduce_data <= n_10;
-    s_math_reduce_keep <= n_11;
-    s_math_reduce_last <= n_12;
-    s_math_reduce_user <= n_13;
-    s_math_horner9_valid <= n_16;
-    s_math_horner9_data <= n_27;
-    s_math_horner9_keep <= n_28;
-    s_math_horner9_last <= n_29;
-    s_math_horner9_user <= n_30;
-    s_math_horner8_valid <= n_33;
-    s_math_horner8_data <= n_44;
-    s_math_horner8_keep <= n_45;
-    s_math_horner8_last <= n_46;
-    s_math_horner8_user <= n_47;
-    s_math_horner7_valid <= n_50;
-    s_math_horner7_data <= n_61;
-    s_math_horner7_keep <= n_62;
-    s_math_horner7_last <= n_63;
-    s_math_horner7_user <= n_64;
-    s_math_horner6_valid <= n_67;
-    s_math_horner6_data <= n_78;
-    s_math_horner6_keep <= n_79;
-    s_math_horner6_last <= n_80;
-    s_math_horner6_user <= n_81;
-    s_math_horner5_valid <= n_84;
-    s_math_horner5_data <= n_95;
-    s_math_horner5_keep <= n_96;
-    s_math_horner5_last <= n_97;
-    s_math_horner5_user <= n_98;
-    s_math_horner4_valid <= n_101;
-    s_math_horner4_data <= n_112;
-    s_math_horner4_keep <= n_113;
-    s_math_horner4_last <= n_114;
-    s_math_horner4_user <= n_115;
-    s_math_horner3_valid <= n_118;
-    s_math_horner3_data <= n_129;
-    s_math_horner3_keep <= n_130;
-    s_math_horner3_last <= n_131;
-    s_math_horner3_user <= n_132;
-    s_math_horner2_valid <= n_135;
-    s_math_horner2_data <= n_146;
-    s_math_horner2_keep <= n_147;
-    s_math_horner2_last <= n_148;
-    s_math_horner2_user <= n_149;
-    s_math_horner1_valid <= n_152;
-    s_math_horner1_data <= n_163;
-    s_math_horner1_keep <= n_164;
-    s_math_horner1_last <= n_165;
-    s_math_horner1_user <= n_166;
-    s_math_horner0_valid <= n_167;
-    s_math_horner0_data <= n_178;
-    s_math_horner0_keep <= n_179;
-    s_math_horner0_last <= n_180;
-    s_math_horner0_user <= n_181;
+    s_math_reduce_valid <= n_mux_4;
+    s_math_reduce_data <= n_mux_10;
+    s_math_reduce_keep <= n_mux_11;
+    s_math_reduce_last <= n_mux_12;
+    s_math_reduce_user <= n_mux_13;
+    s_math_horner9_valid <= n_mux_16;
+    s_math_horner9_data <= n_mux_27;
+    s_math_horner9_keep <= n_mux_28;
+    s_math_horner9_last <= n_mux_29;
+    s_math_horner9_user <= n_mux_30;
+    s_math_horner8_valid <= n_mux_33;
+    s_math_horner8_data <= n_mux_44;
+    s_math_horner8_keep <= n_mux_45;
+    s_math_horner8_last <= n_mux_46;
+    s_math_horner8_user <= n_mux_47;
+    s_math_horner7_valid <= n_mux_50;
+    s_math_horner7_data <= n_mux_61;
+    s_math_horner7_keep <= n_mux_62;
+    s_math_horner7_last <= n_mux_63;
+    s_math_horner7_user <= n_mux_64;
+    s_math_horner6_valid <= n_mux_67;
+    s_math_horner6_data <= n_mux_78;
+    s_math_horner6_keep <= n_mux_79;
+    s_math_horner6_last <= n_mux_80;
+    s_math_horner6_user <= n_mux_81;
+    s_math_horner5_valid <= n_mux_84;
+    s_math_horner5_data <= n_mux_95;
+    s_math_horner5_keep <= n_mux_96;
+    s_math_horner5_last <= n_mux_97;
+    s_math_horner5_user <= n_mux_98;
+    s_math_horner4_valid <= n_mux_101;
+    s_math_horner4_data <= n_mux_112;
+    s_math_horner4_keep <= n_mux_113;
+    s_math_horner4_last <= n_mux_114;
+    s_math_horner4_user <= n_mux_115;
+    s_math_horner3_valid <= n_mux_118;
+    s_math_horner3_data <= n_mux_129;
+    s_math_horner3_keep <= n_mux_130;
+    s_math_horner3_last <= n_mux_131;
+    s_math_horner3_user <= n_mux_132;
+    s_math_horner2_valid <= n_mux_135;
+    s_math_horner2_data <= n_mux_146;
+    s_math_horner2_keep <= n_mux_147;
+    s_math_horner2_last <= n_mux_148;
+    s_math_horner2_user <= n_mux_149;
+    s_math_horner1_valid <= n_mux_152;
+    s_math_horner1_data <= n_mux_163;
+    s_math_horner1_keep <= n_mux_164;
+    s_math_horner1_last <= n_mux_165;
+    s_math_horner1_user <= n_mux_166;
+    s_math_horner0_valid <= n_mux_167;
+    s_math_horner0_data <= n_mux_178;
+    s_math_horner0_keep <= n_mux_179;
+    s_math_horner0_last <= n_mux_180;
+    s_math_horner0_user <= n_mux_181;
   end
 end
 endmodule

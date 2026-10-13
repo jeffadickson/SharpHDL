@@ -16,53 +16,53 @@ module h_CilCsLogicalShift(
   output wire [0:0] s_fault
 );
 // LogicalShift IL_0004 and; native 32-bit arithmetic.
-wire [31:0] n_0;
+wire [31:0] n_LogicalShift_IL_0004_and;
 // Extract source bits [4:4], rebase to bit 0.
-wire [0:0] n_1;
+wire [0:0] n_bits_4_4_0;
 // Extract source bits [3:3], rebase to bit 0.
-wire [0:0] n_2;
+wire [0:0] n_bits_3_3_1;
 // Extract source bits [2:2], rebase to bit 0.
-wire [0:0] n_3;
+wire [0:0] n_bits_2_2_2;
 // Extract source bits [1:1], rebase to bit 0.
-wire [0:0] n_4;
+wire [0:0] n_bits_1_1_3;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_5;
+wire [0:0] n_bits_0_0_4;
 // Operation '>>'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_6;
+wire [31:0] n_shr_5;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_7;
+wire [31:0] n_mux_6;
 // Operation '>>'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_8;
+wire [31:0] n_shr_7;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_9;
+wire [31:0] n_mux_8;
 // Operation '>>'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_10;
+wire [31:0] n_shr_9;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_11;
+wire [31:0] n_mux_10;
 // Operation '>>'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_12;
+wire [31:0] n_shr_11;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_13;
+wire [31:0] n_mux_12;
 // Operation '>>'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_14;
+wire [31:0] n_shr_13;
 // Behavioral CIL result from Behavioral.CSharpFunctions.LogicalShift; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_15;
-assign n_0 = s_b & 32'd31;
-assign n_1 = n_0 >> 4;
-assign n_2 = n_0 >> 3;
-assign n_3 = n_0 >> 2;
-assign n_4 = n_0 >> 1;
-assign n_5 = n_0 >> 0;
-assign n_6 = s_a >> 1;
-assign n_7 = n_5 ? n_6 : s_a;
-assign n_8 = n_7 >> 2;
-assign n_9 = n_4 ? n_8 : n_7;
-assign n_10 = n_9 >> 4;
-assign n_11 = n_3 ? n_10 : n_9;
-assign n_12 = n_11 >> 8;
-assign n_13 = n_2 ? n_12 : n_11;
-assign n_14 = n_13 >> 16;
-assign n_15 = n_1 ? n_14 : n_13;
-assign s_y = n_15;
+wire [31:0] n_mux_14;
+assign n_LogicalShift_IL_0004_and = s_b & 32'd31;
+assign n_bits_4_4_0 = n_LogicalShift_IL_0004_and >> 4;
+assign n_bits_3_3_1 = n_LogicalShift_IL_0004_and >> 3;
+assign n_bits_2_2_2 = n_LogicalShift_IL_0004_and >> 2;
+assign n_bits_1_1_3 = n_LogicalShift_IL_0004_and >> 1;
+assign n_bits_0_0_4 = n_LogicalShift_IL_0004_and >> 0;
+assign n_shr_5 = s_a >> 1;
+assign n_mux_6 = n_bits_0_0_4 ? n_shr_5 : s_a;
+assign n_shr_7 = n_mux_6 >> 2;
+assign n_mux_8 = n_bits_1_1_3 ? n_shr_7 : n_mux_6;
+assign n_shr_9 = n_mux_8 >> 4;
+assign n_mux_10 = n_bits_2_2_2 ? n_shr_9 : n_mux_8;
+assign n_shr_11 = n_mux_10 >> 8;
+assign n_mux_12 = n_bits_3_3_1 ? n_shr_11 : n_mux_10;
+assign n_shr_13 = n_mux_12 >> 16;
+assign n_mux_14 = n_bits_4_4_0 ? n_shr_13 : n_mux_12;
+assign s_y = n_mux_14;
 assign s_fault = 1'd0;
 endmodule

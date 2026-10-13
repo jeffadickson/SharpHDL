@@ -14,17 +14,17 @@ module h_Counter(
 // State register; synchronous active-high reset value 0; updates at rising clk.
 reg [7:0] s_count;
 // Operation '+'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_0;
+wire [7:0] n_add_0;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_1;
-assign n_0 = s_count + 8'd1;
-assign n_1 = s_enable ? n_0 : s_count;
+wire [7:0] n_mux_1;
+assign n_add_0 = s_count + 8'd1;
+assign n_mux_1 = s_enable ? n_add_0 : s_count;
 assign s_value = s_count;
 always @(posedge clk) begin
   if (rst) begin
     s_count <= 8'd0;
   end else begin
-    s_count <= n_1;
+    s_count <= n_mux_1;
   end
 end
 endmodule

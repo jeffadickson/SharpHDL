@@ -70,95 +70,95 @@ reg [0:0] s_result_last;
 // result: registered TUSER metadata [7:0].
 reg [7:0] s_result_user;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_not_0;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_or_1;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_eq_2;
 // Operation '+'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_3;
+wire [15:0] n_add_3;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_4;
+wire [15:0] n_mux_4;
 // Extract source bits [15:15], rebase to bit 0.
-wire [0:0] n_5;
+wire [0:0] n_bits_15_15_5;
 // Operation '-'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_6;
+wire [15:0] n_sub_6;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_7;
+wire [15:0] n_mux_7;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_8;
+wire [0:0] n_lt_8;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_9;
+wire [15:0] n_mux_9;
 // Packed bus: [31:16] = high operand; [15:0] = low operand.
-wire [31:0] n_10;
+wire [31:0] n_concat_10;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_11;
+wire [0:0] n_and_11;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_12;
+wire [0:0] n_not_12;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_13;
+wire [0:0] n_or_13;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_14;
+wire [0:0] n_and_14;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_15;
+wire [15:0] n_mux_15;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_16;
+wire [15:0] n_mux_16;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_17;
+wire [0:0] n_and_17;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_18;
+wire [15:0] n_mux_18;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_19;
+wire [15:0] n_mux_19;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_20;
+wire [0:0] n_mux_20;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_21;
+wire [0:0] n_and_21;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_22;
+wire [31:0] n_mux_22;
 // Select true operand when condition is 1; false operand otherwise.
-wire [3:0] n_23;
+wire [3:0] n_mux_23;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_24;
+wire [0:0] n_mux_24;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_25;
-assign n_0 = ~s_s_axis_tlast;
-assign n_1 = n_0 | s_reduced_tready;
-assign n_2 = s_count == 16'd65535;
-assign n_3 = s_count + 16'd1;
-assign n_4 = n_2 ? s_count : n_3;
-assign n_5 = s_s_axis_tdata >> 15;
-assign n_6 = 16'd0 - s_s_axis_tdata;
-assign n_7 = n_5 ? n_6 : s_s_axis_tdata;
-assign n_8 = s_peak < n_7;
-assign n_9 = n_8 ? n_7 : s_peak;
-assign n_10 = {n_4, n_9};
-assign n_11 = s_s_axis_tvalid & s_s_axis_tlast;
-assign n_12 = ~s_result_valid;
-assign n_13 = n_12 | s_result_tready;
-assign n_14 = s_s_axis_tvalid & s_s_axis_tready;
-assign n_15 = s_s_axis_tlast ? 16'd0 : n_9;
-assign n_16 = n_14 ? n_15 : s_peak;
-assign n_17 = s_s_axis_tvalid & s_s_axis_tready;
-assign n_18 = s_s_axis_tlast ? 16'd0 : n_4;
-assign n_19 = n_17 ? n_18 : s_count;
-assign n_20 = n_13 ? s_reduced_tvalid : s_result_valid;
-assign n_21 = n_13 & s_reduced_tvalid;
-assign n_22 = n_21 ? s_reduced_tdata : s_result_data;
-assign n_23 = n_21 ? s_reduced_tkeep : s_result_keep;
-assign n_24 = n_21 ? s_reduced_tlast : s_result_last;
-assign n_25 = n_21 ? s_reduced_tuser : s_result_user;
-assign s_s_axis_tready = n_1;
+wire [7:0] n_mux_25;
+assign n_not_0 = ~s_s_axis_tlast;
+assign n_or_1 = n_not_0 | s_reduced_tready;
+assign n_eq_2 = s_count == 16'd65535;
+assign n_add_3 = s_count + 16'd1;
+assign n_mux_4 = n_eq_2 ? s_count : n_add_3;
+assign n_bits_15_15_5 = s_s_axis_tdata >> 15;
+assign n_sub_6 = 16'd0 - s_s_axis_tdata;
+assign n_mux_7 = n_bits_15_15_5 ? n_sub_6 : s_s_axis_tdata;
+assign n_lt_8 = s_peak < n_mux_7;
+assign n_mux_9 = n_lt_8 ? n_mux_7 : s_peak;
+assign n_concat_10 = {n_mux_4, n_mux_9};
+assign n_and_11 = s_s_axis_tvalid & s_s_axis_tlast;
+assign n_not_12 = ~s_result_valid;
+assign n_or_13 = n_not_12 | s_result_tready;
+assign n_and_14 = s_s_axis_tvalid & s_s_axis_tready;
+assign n_mux_15 = s_s_axis_tlast ? 16'd0 : n_mux_9;
+assign n_mux_16 = n_and_14 ? n_mux_15 : s_peak;
+assign n_and_17 = s_s_axis_tvalid & s_s_axis_tready;
+assign n_mux_18 = s_s_axis_tlast ? 16'd0 : n_mux_4;
+assign n_mux_19 = n_and_17 ? n_mux_18 : s_count;
+assign n_mux_20 = n_or_13 ? s_reduced_tvalid : s_result_valid;
+assign n_and_21 = n_or_13 & s_reduced_tvalid;
+assign n_mux_22 = n_and_21 ? s_reduced_tdata : s_result_data;
+assign n_mux_23 = n_and_21 ? s_reduced_tkeep : s_result_keep;
+assign n_mux_24 = n_and_21 ? s_reduced_tlast : s_result_last;
+assign n_mux_25 = n_and_21 ? s_reduced_tuser : s_result_user;
+assign s_s_axis_tready = n_or_1;
 assign s_m_axis_tdata = s_result_tdata;
 assign s_m_axis_tkeep = s_result_tkeep;
 assign s_m_axis_tlast = s_result_tlast;
 assign s_m_axis_tuser = s_result_tuser;
 assign s_m_axis_tvalid = s_result_tvalid;
-assign s_reduced_tdata = n_10;
+assign s_reduced_tdata = n_concat_10;
 assign s_reduced_tkeep = 4'd15;
 assign s_reduced_tlast = 1'd1;
 assign s_reduced_tuser = s_s_axis_tuser;
-assign s_reduced_tvalid = n_11;
-assign s_reduced_tready = n_13;
+assign s_reduced_tvalid = n_and_11;
+assign s_reduced_tready = n_or_13;
 assign s_result_tdata = s_result_data;
 assign s_result_tkeep = s_result_keep;
 assign s_result_tlast = s_result_last;
@@ -175,13 +175,13 @@ always @(posedge clk) begin
     s_result_last <= 1'd0;
     s_result_user <= 8'd0;
   end else begin
-    s_peak <= n_16;
-    s_count <= n_19;
-    s_result_valid <= n_20;
-    s_result_data <= n_22;
-    s_result_keep <= n_23;
-    s_result_last <= n_24;
-    s_result_user <= n_25;
+    s_peak <= n_mux_16;
+    s_count <= n_mux_19;
+    s_result_valid <= n_mux_20;
+    s_result_data <= n_mux_22;
+    s_result_keep <= n_mux_23;
+    s_result_last <= n_mux_24;
+    s_result_user <= n_mux_25;
   end
 end
 endmodule

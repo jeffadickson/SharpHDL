@@ -21,7 +21,7 @@ Removed 0 unused modules.
 Cleaned up 0 empty switches.
 
 3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
-Marked 1 switch rules as full_case in process $proc$generated/DebugUartController.v:145$53 in module h_DebugUartController.
+Marked 1 switch rules as full_case in process $proc$generated/DebugUartController.v:225$53 in module h_DebugUartController.
 Removed a total of 0 dead cases.
 
 3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
@@ -33,7 +33,7 @@ Promoted 0 assignments to connections.
 3.5. Executing PROC_ARST pass (detect async resets in processes).
 
 3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
-Creating decoders for process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating decoders for process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
      1/7: $0\s_tag[7:0]
      2/7: $0\s_index[1:0]
      3/7: $0\s_length[2:0]
@@ -45,26 +45,26 @@ Creating decoders for process `\h_DebugUartController.$proc$generated/DebugUartC
 3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
 
 3.8. Executing PROC_DFF pass (convert process syncs to FFs).
-Creating register for signal `\h_DebugUartController.\s_control' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_control' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$75' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_counter' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_counter' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$76' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_state' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_state' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$77' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_reply' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_reply' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$78' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_length' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_length' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$79' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_index' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_index' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$80' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_tag' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_tag' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$81' with positive edge clock.
 
 3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
 3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
-Found and cleaned up 1 empty switch in `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
-Removing empty process `h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Found and cleaned up 1 empty switch in `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
+Removing empty process `h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
 Cleaned up 1 empty switch.
 
 3.11. Executing OPT_EXPR pass (perform const folding).
@@ -98,18 +98,18 @@ Finding identical cells in module `\h_DebugUartController'.
 Removed a total of 0 cells.
 
 4.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$81 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:136$52_Y, Q = \s_tag, rval = 8'00000000).
+Adding SRST signal on $procdff$81 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:216$52_Y, Q = \s_tag, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$82 ($sdff) from module h_DebugUartController (D = \s_rx_tuser, Q = \s_tag).
-Adding SRST signal on $procdff$80 ($dff) from module h_DebugUartController (D = \n_51, Q = \s_index, rval = 2'00).
-Adding SRST signal on $procdff$79 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:128$44_Y, Q = \s_length, rval = 3'001).
-Adding EN signal on $auto$ff.cc:266:slice$87 ($sdff) from module h_DebugUartController (D = \n_45, Q = \s_length).
-Adding SRST signal on $procdff$78 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:125$41_Y, Q = \s_reply, rval = 0).
-Adding EN signal on $auto$ff.cc:266:slice$89 ($sdff) from module h_DebugUartController (D = \n_42, Q = \s_reply).
-Adding SRST signal on $procdff$77 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:113$31_Y, Q = \s_state, rval = 2'00).
-Adding EN signal on $auto$ff.cc:266:slice$91 ($sdff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:113$31_Y, Q = \s_state).
-Adding SRST signal on $procdff$76 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:103$21_Y, Q = \s_counter, rval = 0).
-Adding EN signal on $auto$ff.cc:266:slice$95 ($sdff) from module h_DebugUartController (D = \n_20, Q = \s_counter).
-Adding SRST signal on $procdff$75 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:100$18_Y, Q = \s_control, rval = 8'00000001).
+Adding SRST signal on $procdff$80 ($dff) from module h_DebugUartController (D = \n_mux_51, Q = \s_index, rval = 2'00).
+Adding SRST signal on $procdff$79 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:208$44_Y, Q = \s_length, rval = 3'001).
+Adding EN signal on $auto$ff.cc:266:slice$87 ($sdff) from module h_DebugUartController (D = \n_mux_45, Q = \s_length).
+Adding SRST signal on $procdff$78 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:205$41_Y, Q = \s_reply, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$89 ($sdff) from module h_DebugUartController (D = \n_mux_42, Q = \s_reply).
+Adding SRST signal on $procdff$77 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:193$31_Y, Q = \s_state, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$91 ($sdff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:193$31_Y, Q = \s_state).
+Adding SRST signal on $procdff$76 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:183$21_Y, Q = \s_counter, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$95 ($sdff) from module h_DebugUartController (D = \n_add_20, Q = \s_counter).
+Adding SRST signal on $procdff$75 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:180$18_Y, Q = \s_control, rval = 8'00000001).
 Adding EN signal on $auto$ff.cc:266:slice$97 ($sdff) from module h_DebugUartController (D = \s_rx_tdata, Q = \s_control).
 
 4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
@@ -140,7 +140,7 @@ Finding identical cells in module `\h_DebugUartController'.
 Removed a total of 0 cells.
 
 4.13. Executing OPT_DFF pass (perform DFF optimizations).
-Adding EN signal on $auto$ff.cc:266:slice$84 ($sdff) from module h_DebugUartController (D = \n_50, Q = \s_index).
+Adding EN signal on $auto$ff.cc:266:slice$84 ($sdff) from module h_DebugUartController (D = \n_add_50, Q = \s_index).
 
 4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \h_DebugUartController..

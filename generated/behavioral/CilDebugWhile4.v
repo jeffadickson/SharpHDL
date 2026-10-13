@@ -16,17 +16,17 @@ module h_CilDebugWhile4(
   output wire [0:0] s_fault
 );
 // While4 IL_0008 add; native 32-bit arithmetic.
-wire [31:0] n_0;
+wire [31:0] n_While4_IL_0008_add;
 // While4 IL_0008 add; native 32-bit arithmetic.
-wire [31:0] n_1;
+wire [31:0] n_While4_IL_0008_add_2;
 // While4 IL_0008 add; native 32-bit arithmetic.
-wire [31:0] n_2;
+wire [31:0] n_While4_IL_0008_add_3;
 // Behavioral CIL result from Behavioral.CSharpFunctions.While4; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_3;
-assign n_0 = s_a + s_b;
-assign n_1 = n_0 + s_b;
-assign n_2 = n_1 + s_b;
-assign n_3 = n_2 + s_b;
-assign s_y = n_3;
+wire [31:0] n_While4_IL_0008_add_4;
+assign n_While4_IL_0008_add = s_a + s_b;
+assign n_While4_IL_0008_add_2 = n_While4_IL_0008_add + s_b;
+assign n_While4_IL_0008_add_3 = n_While4_IL_0008_add_2 + s_b;
+assign n_While4_IL_0008_add_4 = n_While4_IL_0008_add_3 + s_b;
+assign s_y = n_While4_IL_0008_add_4;
 assign s_fault = 1'd0;
 endmodule

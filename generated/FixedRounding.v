@@ -14,49 +14,49 @@ module h_FixedRounding(
   output wire [3:0] s_result
 );
 // Signed two's-complement extension.
-wire [8:0] n_0;
+wire [8:0] n_signextend_0;
 // Operation 'asr'; result limited to 9 bits. Signed interpretation only for slt/asr/signextend.
-wire [8:0] n_1;
+wire [8:0] n_asr_1;
 // Extract source bits [2:0], rebase to bit 0.
-wire [2:0] n_2;
+wire [2:0] n_bits_2_0_2;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_3;
+wire [0:0] n_lt_3;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_4;
+wire [0:0] n_eq_4;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_5;
+wire [0:0] n_bits_0_0_5;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_6;
+wire [0:0] n_and_6;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_7;
+wire [0:0] n_or_7;
 // Unsigned resize: zero extend (or preserve width).
-wire [8:0] n_8;
+wire [8:0] n_resize_8;
 // Operation '+'; result limited to 9 bits. Signed interpretation only for slt/asr/signextend.
-wire [8:0] n_9;
+wire [8:0] n_add_9;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_10;
+wire [0:0] n_slt_10;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_11;
+wire [0:0] n_slt_11;
 // Select true operand when condition is 1; false operand otherwise.
-wire [8:0] n_12;
+wire [8:0] n_mux_12;
 // Select true operand when condition is 1; false operand otherwise.
-wire [8:0] n_13;
+wire [8:0] n_mux_13;
 // Signed fixed-point result: 4 total bits, 1 fractional bits; rounding NearestEven, overflow Saturate.
-wire [3:0] n_14;
-assign n_0 = $signed(s_a);
-assign n_1 = $signed(n_0) >>> 3;
-assign n_2 = n_0 >> 0;
-assign n_3 = 3'd4 < n_2;
-assign n_4 = 3'd4 == n_2;
-assign n_5 = n_1 >> 0;
-assign n_6 = n_4 & n_5;
-assign n_7 = n_3 | n_6;
-assign n_8 = n_7;
-assign n_9 = n_1 + n_8;
-assign n_10 = $signed(n_9) < $signed(9'd504);
-assign n_11 = $signed(9'd7) < $signed(n_9);
-assign n_12 = n_11 ? 9'd7 : n_9;
-assign n_13 = n_10 ? 9'd504 : n_12;
-assign n_14 = n_13;
-assign s_result = n_14;
+wire [3:0] n_resize_14;
+assign n_signextend_0 = $signed(s_a);
+assign n_asr_1 = $signed(n_signextend_0) >>> 3;
+assign n_bits_2_0_2 = n_signextend_0 >> 0;
+assign n_lt_3 = 3'd4 < n_bits_2_0_2;
+assign n_eq_4 = 3'd4 == n_bits_2_0_2;
+assign n_bits_0_0_5 = n_asr_1 >> 0;
+assign n_and_6 = n_eq_4 & n_bits_0_0_5;
+assign n_or_7 = n_lt_3 | n_and_6;
+assign n_resize_8 = n_or_7;
+assign n_add_9 = n_asr_1 + n_resize_8;
+assign n_slt_10 = $signed(n_add_9) < $signed(9'd504);
+assign n_slt_11 = $signed(9'd7) < $signed(n_add_9);
+assign n_mux_12 = n_slt_11 ? 9'd7 : n_add_9;
+assign n_mux_13 = n_slt_10 ? 9'd504 : n_mux_12;
+assign n_resize_14 = n_mux_13;
+assign s_result = n_resize_14;
 endmodule

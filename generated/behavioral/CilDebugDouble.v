@@ -16,8 +16,8 @@ module h_CilDebugDouble(
   output wire [0:0] s_fault
 );
 // Behavioral CIL result from Behavioral.CSharpFunctions.Double; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_0;
-assign n_0 = s_a << 1;
-assign s_y = n_0;
+wire [31:0] n_Double_IL_0003_mul;
+assign n_Double_IL_0003_mul = s_a << 1;
+assign s_y = n_Double_IL_0003_mul;
 assign s_fault = 1'd0;
 endmodule

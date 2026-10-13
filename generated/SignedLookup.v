@@ -22,32 +22,32 @@ module h_SignedLookup(
   output wire [7:0] s_lut
 );
 // Operation 'asr'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_0;
+wire [7:0] n_asr_0;
 // Signed two's-complement extension.
-wire [15:0] n_1;
+wire [15:0] n_signextend_1;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_slt_2;
 // Constant ROM: 5 entries; unsigned address; out-of-range reads return zero.
-wire [7:0] n_3;
-function [7:0] rom_n_3;
+wire [7:0] n_lookup_3;
+function [7:0] rom_n_lookup_3;
   input [2:0] address;
   begin
     case (address)
-      3'd0: rom_n_3 = 8'd3;
-      3'd1: rom_n_3 = 8'd17;
-      3'd2: rom_n_3 = 8'd255;
-      3'd3: rom_n_3 = 8'd0;
-      3'd4: rom_n_3 = 8'd128;
-      default: rom_n_3 = 8'd0;
+      3'd0: rom_n_lookup_3 = 8'd3;
+      3'd1: rom_n_lookup_3 = 8'd17;
+      3'd2: rom_n_lookup_3 = 8'd255;
+      3'd3: rom_n_lookup_3 = 8'd0;
+      3'd4: rom_n_lookup_3 = 8'd128;
+      default: rom_n_lookup_3 = 8'd0;
     endcase
   end
 endfunction
-assign n_0 = $signed(s_a) >>> 3;
-assign n_1 = $signed(s_a);
-assign n_2 = $signed(s_a) < $signed(s_b);
-assign n_3 = rom_n_3(s_address);
-assign s_asr = n_0;
-assign s_sext = n_1;
-assign s_less = n_2;
-assign s_lut = n_3;
+assign n_asr_0 = $signed(s_a) >>> 3;
+assign n_signextend_1 = $signed(s_a);
+assign n_slt_2 = $signed(s_a) < $signed(s_b);
+assign n_lookup_3 = rom_n_lookup_3(s_address);
+assign s_asr = n_asr_0;
+assign s_sext = n_signextend_1;
+assign s_less = n_slt_2;
+assign s_lut = n_lookup_3;
 endmodule

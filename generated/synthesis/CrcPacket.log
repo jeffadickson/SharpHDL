@@ -21,7 +21,7 @@ Removed 0 unused modules.
 Cleaned up 0 empty switches.
 
 3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
-Marked 1 switch rules as full_case in process $proc$generated/CrcPacket.v:440$190 in module h_CrcPacket.
+Marked 1 switch rules as full_case in process $proc$generated/CrcPacket.v:667$190 in module h_CrcPacket.
 Removed a total of 0 dead cases.
 
 3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
@@ -33,7 +33,7 @@ Promoted 0 assignments to connections.
 3.5. Executing PROC_ARST pass (detect async resets in processes).
 
 3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
-Creating decoders for process `\h_CrcPacket.$proc$generated/CrcPacket.v:440$190'.
+Creating decoders for process `\h_CrcPacket.$proc$generated/CrcPacket.v:667$190'.
      1/6: $0\s_buffer_user[31:0]
      2/6: $0\s_buffer_last[0:0]
      3/6: $0\s_buffer_keep[3:0]
@@ -44,24 +44,196 @@ Creating decoders for process `\h_CrcPacket.$proc$generated/CrcPacket.v:440$190'
 3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
 
 3.8. Executing PROC_DFF pass (convert process syncs to FFs).
-Creating register for signal `\h_CrcPacket.\s_crc_crc' using process `\h_CrcPacket.$proc$generated/CrcPacket.v:440$190'.
+Creating register for signal `\h_CrcPacket.\s_crc_crc' using process `\h_CrcPacket.$proc$generated/CrcPacket.v:667$190'.
   created $dff cell `$procdff$209' with positive edge clock.
-Creating register for signal `\h_CrcPacket.\s_buffer_valid' using process `\h_CrcPacket.$proc$generated/CrcPacket.v:440$190'.
+Creating register for signal `\h_CrcPacket.\s_buffer_valid' using process `\h_CrcPacket.$proc$generated/CrcPacket.v:667$190'.
   created $dff cell `$procdff$210' with positive edge clock.
-Creating register for signal `\h_CrcPacket.\s_buffer_data' using process `\h_CrcPacket.$proc$generated/CrcPacket.v:440$190'.
+Creating register for signal `\h_CrcPacket.\s_buffer_data' using process `\h_CrcPacket.$proc$generated/CrcPacket.v:667$190'.
   created $dff cell `$procdff$211' with positive edge clock.
-Creating register for signal `\h_CrcPacket.\s_buffer_keep' using process `\h_CrcPacket.$proc$generated/CrcPacket.v:440$190'.
+Creating register for signal `\h_CrcPacket.\s_buffer_keep' using process `\h_CrcPacket.$proc$generated/CrcPacket.v:667$190'.
   created $dff cell `$procdff$212' with positive edge clock.
-Creating register for signal `\h_CrcPacket.\s_buffer_last' using process `\h_CrcPacket.$proc$generated/CrcPacket.v:440$190'.
+Creating register for signal `\h_CrcPacket.\s_buffer_last' using process `\h_CrcPacket.$proc$generated/CrcPacket.v:667$190'.
   created $dff cell `$procdff$213' with positive edge clock.
-Creating register for signal `\h_CrcPacket.\s_buffer_user' using process `\h_CrcPacket.$proc$generated/CrcPacket.v:440$190'.
+Creating register for signal `\h_CrcPacket.\s_buffer_user' using process `\h_CrcPacket.$proc$generated/CrcPacket.v:667$190'.
   created $dff cell `$procdff$214' with positive edge clock.
 
 3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
 3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
-Found and cleaned up 1 empty switch in `\h_CrcPacket.$proc$generated/CrcPacket.v:440$190'.
-Removing empty process `h_CrcPacket.$proc$generated/CrcPacket.v:440$190'.
+Found and cleaned up 1 empty switch in `\h_CrcPacket.$proc$generated/CrcPacket.v:667$190'.
+Removing empty process `h_CrcPacket.$proc$generated/CrcPacket.v:667$190'.
 Cleaned up 1 empty switch.
 
 3.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CrcPacket.
+<suppressed ~136 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CrcPacket.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CrcPacket'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CrcPacket..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~38 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CrcPacket.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CrcPacket'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$214 ($dff) from module h_CrcPacket (D = $ternary$generated/CrcPacket.v:648$189_Y, Q = \s_buffer_user, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$279 ($sdff) from module h_CrcPacket (D = \s_crc_tuser, Q = \s_buffer_user).
+Adding SRST signal on $procdff$213 ($dff) from module h_CrcPacket (D = $ternary$generated/CrcPacket.v:647$188_Y, Q = \s_buffer_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$281 ($sdff) from module h_CrcPacket (D = \s_crc_tlast, Q = \s_buffer_last).
+Adding SRST signal on $procdff$212 ($dff) from module h_CrcPacket (D = $ternary$generated/CrcPacket.v:646$187_Y, Q = \s_buffer_keep, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:266:slice$283 ($sdff) from module h_CrcPacket (D = \s_crc_tkeep, Q = \s_buffer_keep).
+Adding SRST signal on $procdff$211 ($dff) from module h_CrcPacket (D = $ternary$generated/CrcPacket.v:645$186_Y, Q = \s_buffer_data, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$285 ($sdff) from module h_CrcPacket (D = \s_crc_tdata, Q = \s_buffer_data).
+Adding SRST signal on $procdff$210 ($dff) from module h_CrcPacket (D = $ternary$generated/CrcPacket.v:643$184_Y, Q = \s_buffer_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$287 ($sdff) from module h_CrcPacket (D = \s_crc_tvalid, Q = \s_buffer_valid).
+Adding SRST signal on $procdff$209 ($dff) from module h_CrcPacket (D = $ternary$generated/CrcPacket.v:642$183_Y, Q = \s_crc_crc, rval = 32'11111111111111111111111111111111).
+Adding EN signal on $auto$ff.cc:266:slice$289 ($sdff) from module h_CrcPacket (D = \n_mux_185, Q = \s_crc_crc).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CrcPacket..
+Removed 12 unused cells and 245 unused wires.
+<suppressed ~19 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CrcPacket.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CrcPacket..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~34 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CrcPacket.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CrcPacket'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CrcPacket..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CrcPacket.
+
+4.16. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing MEMORY pass.
+
+5.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+5.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+5.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+5.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+5.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+5.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CrcPacket..
+
+5.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+5.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+5.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CrcPacket..
+
+5.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CrcPacket.
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CrcPacket'.
+Removed a total of 0 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CrcPacket..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~34 debug messages>
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CrcPacket.
+Performed a total of 0 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CrcPacket'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CrcPacket..
+
+6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CrcPacket.
+
+6.9. Finished OPT passes. (There is nothing left to do.)
+
+7. Executing CHECK pass (checking for obvious problems).
+Checking module h_CrcPacket...
+Found and reported 0 problems.
+
+8. Printing statistics.
+
+=== h_CrcPacket ===
+
+   Number of wires:                219
+   Number of wire bits:           5005
+   Number of public wires:         219
+   Number of public wire bits:    5005
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 84
+     $and                            1
+     $mux                           38
+     $not                           34
+     $or                             1
+     $sdffe                          6
+     $xor                            4
+
+9. Executing Verilog backend.
+
+9.1. Executing BMUXMAP pass.
+
+9.2. Executing DEMUXMAP pass.
+Dumping module `\h_CrcPacket'.

@@ -52,84 +52,84 @@ reg [0:0] s_skid_valid;
 // Spill occupied. Input ready is its inverse, independent of downstream ready.
 reg [0:0] s_skid_spill_valid;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_not_0;
 // Extract source bits [15:0], rebase to bit 0.
-wire [15:0] n_1;
+wire [15:0] n_bits_15_0_1;
 // Extract source bits [17:16], rebase to bit 0.
-wire [1:0] n_2;
+wire [1:0] n_bits_17_16_2;
 // Extract source bits [18:18], rebase to bit 0.
-wire [0:0] n_3;
+wire [0:0] n_bits_18_18_3;
 // Extract source bits [26:19], rebase to bit 0.
-wire [7:0] n_4;
+wire [7:0] n_bits_26_19_4;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_5;
+wire [0:0] n_not_5;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_6;
+wire [0:0] n_or_6;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_7;
+wire [0:0] n_or_7;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_8;
+wire [0:0] n_and_8;
 // Packed bus: [17:16] = high operand; [15:0] = low operand.
-wire [17:0] n_9;
+wire [17:0] n_concat_9;
 // Packed bus: [18:18] = high operand; [17:0] = low operand.
-wire [18:0] n_10;
+wire [18:0] n_concat_10;
 // Packed stream beat: DATA [15:0], KEEP [17:16], LAST [18], USER [26:19].
-wire [26:0] n_11;
+wire [26:0] n_concat_11;
 // Select true operand when condition is 1; false operand otherwise.
-wire [26:0] n_12;
+wire [26:0] n_mux_12;
 // Select true operand when condition is 1; false operand otherwise.
-wire [26:0] n_13;
+wire [26:0] n_mux_13;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_14;
+wire [0:0] n_not_14;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_15;
+wire [0:0] n_and_15;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_16;
+wire [0:0] n_and_16;
 // Select true operand when condition is 1; false operand otherwise.
-wire [26:0] n_17;
+wire [26:0] n_mux_17;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_18;
+wire [0:0] n_or_18;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_19;
+wire [0:0] n_mux_19;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_20;
+wire [0:0] n_and_20;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_21;
+wire [0:0] n_or_21;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_22;
-assign n_0 = ~s_skid_spill_valid;
-assign n_1 = s_skid_head >> 0;
-assign n_2 = s_skid_head >> 16;
-assign n_3 = s_skid_head >> 18;
-assign n_4 = s_skid_head >> 19;
-assign n_5 = ~s_skid_valid;
-assign n_6 = n_5 | s_skid_tready;
-assign n_7 = s_skid_spill_valid | s_input_tvalid;
-assign n_8 = n_6 & n_7;
-assign n_9 = {s_input_tkeep, s_input_tdata};
-assign n_10 = {s_input_tlast, n_9};
-assign n_11 = {s_input_tuser, n_10};
-assign n_12 = s_skid_spill_valid ? s_skid_spill : n_11;
-assign n_13 = n_8 ? n_12 : s_skid_head;
-assign n_14 = ~n_6;
-assign n_15 = s_input_tvalid & s_input_tready;
-assign n_16 = n_14 & n_15;
-assign n_17 = n_16 ? n_11 : s_skid_spill;
-assign n_18 = s_skid_spill_valid | s_input_tvalid;
-assign n_19 = n_6 ? n_18 : s_skid_valid;
-assign n_20 = s_input_tvalid & s_input_tready;
-assign n_21 = s_skid_spill_valid | n_20;
-assign n_22 = n_6 ? 1'd0 : n_21;
-assign s_input_tready = n_0;
+wire [0:0] n_mux_22;
+assign n_not_0 = ~s_skid_spill_valid;
+assign n_bits_15_0_1 = s_skid_head >> 0;
+assign n_bits_17_16_2 = s_skid_head >> 16;
+assign n_bits_18_18_3 = s_skid_head >> 18;
+assign n_bits_26_19_4 = s_skid_head >> 19;
+assign n_not_5 = ~s_skid_valid;
+assign n_or_6 = n_not_5 | s_skid_tready;
+assign n_or_7 = s_skid_spill_valid | s_input_tvalid;
+assign n_and_8 = n_or_6 & n_or_7;
+assign n_concat_9 = {s_input_tkeep, s_input_tdata};
+assign n_concat_10 = {s_input_tlast, n_concat_9};
+assign n_concat_11 = {s_input_tuser, n_concat_10};
+assign n_mux_12 = s_skid_spill_valid ? s_skid_spill : n_concat_11;
+assign n_mux_13 = n_and_8 ? n_mux_12 : s_skid_head;
+assign n_not_14 = ~n_or_6;
+assign n_and_15 = s_input_tvalid & s_input_tready;
+assign n_and_16 = n_not_14 & n_and_15;
+assign n_mux_17 = n_and_16 ? n_concat_11 : s_skid_spill;
+assign n_or_18 = s_skid_spill_valid | s_input_tvalid;
+assign n_mux_19 = n_or_6 ? n_or_18 : s_skid_valid;
+assign n_and_20 = s_input_tvalid & s_input_tready;
+assign n_or_21 = s_skid_spill_valid | n_and_20;
+assign n_mux_22 = n_or_6 ? 1'd0 : n_or_21;
+assign s_input_tready = n_not_0;
 assign s_output_tdata = s_skid_tdata;
 assign s_output_tkeep = s_skid_tkeep;
 assign s_output_tlast = s_skid_tlast;
 assign s_output_tuser = s_skid_tuser;
 assign s_output_tvalid = s_skid_tvalid;
-assign s_skid_tdata = n_1;
-assign s_skid_tkeep = n_2;
-assign s_skid_tlast = n_3;
-assign s_skid_tuser = n_4;
+assign s_skid_tdata = n_bits_15_0_1;
+assign s_skid_tkeep = n_bits_17_16_2;
+assign s_skid_tlast = n_bits_18_18_3;
+assign s_skid_tuser = n_bits_26_19_4;
 assign s_skid_tvalid = s_skid_valid;
 assign s_skid_tready = s_output_tready;
 always @(posedge clk) begin
@@ -139,10 +139,10 @@ always @(posedge clk) begin
     s_skid_valid <= 1'd0;
     s_skid_spill_valid <= 1'd0;
   end else begin
-    s_skid_head <= n_13;
-    s_skid_spill <= n_17;
-    s_skid_valid <= n_19;
-    s_skid_spill_valid <= n_22;
+    s_skid_head <= n_mux_13;
+    s_skid_spill <= n_mux_17;
+    s_skid_valid <= n_mux_19;
+    s_skid_spill_valid <= n_mux_22;
   end
 end
 endmodule

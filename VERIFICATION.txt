@@ -1,3 +1,30 @@
+Full regeneration audit after semantic net naming (13 October 2026)
+
+- Core suite: 516,474 assertions; 204 generated RTL benches passed.
+- F#: 8,597 assertions / 8 RTL benches; three languages: 3,002 / 7.
+- Behavioral CIL: 70,360 / 70; advanced CIL: 7,917 / 36.
+- Learning: 8,970 assertions / 2 RTL benches; 11,139 browser graph comparisons.
+- TinyRisc: 4,304 checks / 11 RTL benches; naming collision/truncation tests pass.
+- All existing synthesis scripts plus added example synthesis runner passed:
+  core blocks, numeric blocks, multiply/divide, behavioral RAM, F# filters,
+  AddTwo mapping, debug UART, and TinyRisc; post-synthesis traces passed.
+- Serial UART pin-level test passed 11 reply bytes. F# AXI wrappers compile.
+- Go Board shell and correct/incorrect lesson predictions tested. Fresh image
+  packed after placement/routing: 230/1280 logic cells, 0 block RAM, 23 I/O;
+  final internal timing estimate 154.63 MHz, passing requested 25 MHz.
+  No physical board was programmed or measured. Source/image hashes refreshed.
+- All generated .v files scanned: no legacy bare n_<number> identifiers remain.
+  Compiler/FIR/AddTwo actual-output excerpts now checked against emitted RTL.
+- Both HTML artifacts and three VeriSim links regenerated. Payload tests pass;
+  TinyRisc actual Chromium/WebAssembly run passes (verified local engine files).
+- Workbook rebuilt: 25 pages; original 24 render pixel-identically to previous
+  version; new named-wire page visually reviewed. Historical results below
+  retain their original dates/scopes; they are not extra current test counts.
+- Fixed naming-test Main collision in default test source collection. Added
+  direct SDK builds for core/learning suites and a complete run-all.sh entry.
+
+Audit, reproduction and requirements: REGENERATION_AUDIT.md.
+
 TinyRisc HTML extension verification (13 October 2026)
 
 - Actual generated RTL demo bench: PASS, RAM/load and LED sum15.

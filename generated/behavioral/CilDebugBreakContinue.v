@@ -16,20 +16,20 @@ module h_CilDebugBreakContinue(
   output wire [0:0] s_fault
 );
 // BreakContinue IL_001c add; native 32-bit arithmetic.
-wire [31:0] n_0;
+wire [31:0] n_BreakContinue_IL_001c_add;
 // BreakContinue IL_001c add; native 32-bit arithmetic.
-wire [31:0] n_1;
+wire [31:0] n_BreakContinue_IL_001c_add_2;
 // BreakContinue IL_001c add; native 32-bit arithmetic.
-wire [31:0] n_2;
+wire [31:0] n_BreakContinue_IL_001c_add_3;
 // BreakContinue IL_001c add; native 32-bit arithmetic.
-wire [31:0] n_3;
+wire [31:0] n_BreakContinue_IL_001c_add_4;
 // Behavioral CIL result from Behavioral.CSharpFunctions.BreakContinue; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_4;
-assign n_0 = s_a + s_b;
-assign n_1 = n_0 + s_b;
-assign n_2 = n_1 + s_b;
-assign n_3 = n_2 + s_b;
-assign n_4 = n_3 + s_b;
-assign s_y = n_4;
+wire [31:0] n_BreakContinue_IL_001c_add_5;
+assign n_BreakContinue_IL_001c_add = s_a + s_b;
+assign n_BreakContinue_IL_001c_add_2 = n_BreakContinue_IL_001c_add + s_b;
+assign n_BreakContinue_IL_001c_add_3 = n_BreakContinue_IL_001c_add_2 + s_b;
+assign n_BreakContinue_IL_001c_add_4 = n_BreakContinue_IL_001c_add_3 + s_b;
+assign n_BreakContinue_IL_001c_add_5 = n_BreakContinue_IL_001c_add_4 + s_b;
+assign s_y = n_BreakContinue_IL_001c_add_5;
 assign s_fault = 1'd0;
 endmodule

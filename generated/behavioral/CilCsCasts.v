@@ -16,20 +16,20 @@ module h_CilCsCasts(
   output wire [0:0] s_fault
 );
 // Narrow: retain low bits; upper bits discarded.
-wire [7:0] n_0;
+wire [7:0] n_resize_0;
 // Signed two's-complement extension.
-wire [31:0] n_1;
+wire [31:0] n_signextend_1;
 // Narrow: retain low bits; upper bits discarded.
-wire [15:0] n_2;
+wire [15:0] n_resize_2;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_3;
+wire [31:0] n_resize_3;
 // Behavioral CIL result from Behavioral.CSharpFunctions.Casts; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_4;
-assign n_0 = s_a;
-assign n_1 = $signed(n_0);
-assign n_2 = s_b;
-assign n_3 = n_2;
-assign n_4 = n_1 + n_3;
-assign s_y = n_4;
+wire [31:0] n_Casts_IL_0004_add;
+assign n_resize_0 = s_a;
+assign n_signextend_1 = $signed(n_resize_0);
+assign n_resize_2 = s_b;
+assign n_resize_3 = n_resize_2;
+assign n_Casts_IL_0004_add = n_signextend_1 + n_resize_3;
+assign s_y = n_Casts_IL_0004_add;
 assign s_fault = 1'd0;
 endmodule

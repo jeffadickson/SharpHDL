@@ -474,32 +474,32 @@ Finding identical cells in module `\h_Divide8SignedIterativeFloorWrap'.
 Removed a total of 0 cells.
 
 3.12.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$563 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_78, Q = \s_div_user, rval = 4'0000).
+Adding SRST signal on $procdff$563 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_78, Q = \s_div_user, rval = 4'0000).
 Adding EN signal on $auto$ff.cc:266:slice$564 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \s_input_tuser, Q = \s_div_user).
-Adding SRST signal on $procdff$562 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_77, Q = \s_div_last, rval = 1'0).
+Adding SRST signal on $procdff$562 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_77, Q = \s_div_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$566 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \s_input_tlast, Q = \s_div_last).
-Adding SRST signal on $procdff$561 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_76, Q = \s_div_result, rval = 24'000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$568 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = { 5'00000 \n_59 \n_57 \n_67 \n_71 }, Q = \s_div_result).
-Adding SRST signal on $procdff$560 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_46, Q = \s_div_index, rval = 3'000).
-Adding EN signal on $auto$ff.cc:266:slice$570 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_45, Q = \s_div_index).
-Adding SRST signal on $procdff$559 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_44, Q = \s_div_negative_q, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$574 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_43, Q = \s_div_negative_q).
-Adding SRST signal on $procdff$558 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_42, Q = \s_div_sign_a, rval = 1'0).
+Adding SRST signal on $procdff$561 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_76, Q = \s_div_result, rval = 24'000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$568 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = { 5'00000 \n_and_59 \n_eq_57 \n_mux_67 \n_mux_71 }, Q = \s_div_result).
+Adding SRST signal on $procdff$560 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_46, Q = \s_div_index, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$570 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_add_45, Q = \s_div_index).
+Adding SRST signal on $procdff$559 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_44, Q = \s_div_negative_q, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$574 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_xor_43, Q = \s_div_negative_q).
+Adding SRST signal on $procdff$558 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_42, Q = \s_div_sign_a, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$576 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \s_input_tdata [7], Q = \s_div_sign_a).
-Adding SRST signal on $procdff$557 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_41, Q = \s_div_original_a, rval = 8'00000000).
+Adding SRST signal on $procdff$557 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_41, Q = \s_div_original_a, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$578 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \s_input_tdata [7:0], Q = \s_div_original_a).
-Adding SRST signal on $procdff$556 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_39, Q = \s_div_r, rval = 9'000000000).
-Adding EN signal on $auto$ff.cc:266:slice$580 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_38, Q = \s_div_r).
-Adding SRST signal on $procdff$555 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_34, Q = \s_div_q, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$584 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_33, Q = \s_div_q).
-Adding SRST signal on $procdff$554 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_23, Q = \s_div_abs_b, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$588 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_22, Q = \s_div_abs_b).
-Adding SRST signal on $procdff$553 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_18, Q = \s_div_shift_a, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$590 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_18, Q = \s_div_shift_a).
-Adding SRST signal on $procdff$552 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_11, Q = \s_div_valid, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$594 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_11, Q = \s_div_valid).
-Adding SRST signal on $procdff$551 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_8, Q = \s_div_busy, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$598 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_8, Q = \s_div_busy).
+Adding SRST signal on $procdff$556 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_39, Q = \s_div_r, rval = 9'000000000).
+Adding EN signal on $auto$ff.cc:266:slice$580 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_38, Q = \s_div_r).
+Adding SRST signal on $procdff$555 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_34, Q = \s_div_q, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$584 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_or_33, Q = \s_div_q).
+Adding SRST signal on $procdff$554 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_23, Q = \s_div_abs_b, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$588 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_22, Q = \s_div_abs_b).
+Adding SRST signal on $procdff$553 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_18, Q = \s_div_shift_a, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$590 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_18, Q = \s_div_shift_a).
+Adding SRST signal on $procdff$552 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_11, Q = \s_div_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$594 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_11, Q = \s_div_valid).
+Adding SRST signal on $procdff$551 ($dff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_8, Q = \s_div_busy, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$598 ($sdff) from module h_Divide8SignedIterativeFloorWrap (D = \n_mux_8, Q = \s_div_busy).
 Setting constant 0-bit at position 19 on $auto$ff.cc:266:slice$569 ($sdffe) from module h_Divide8SignedIterativeFloorWrap.
 Setting constant 0-bit at position 20 on $auto$ff.cc:266:slice$569 ($sdffe) from module h_Divide8SignedIterativeFloorWrap.
 Setting constant 0-bit at position 21 on $auto$ff.cc:266:slice$569 ($sdffe) from module h_Divide8SignedIterativeFloorWrap.
@@ -591,7 +591,7 @@ Removed top 1 bits (of 8) from FF cell h_Divide8SignedIterativeFloorWrap.$auto$f
 Removed top 1 bits (of 9) from FF cell h_Divide8SignedIterativeFloorWrap.$auto$ff.cc:266:slice$583 ($sdffe).
 Removed top 1 bits (of 9) from port Y of cell h_Divide8SignedIterativeFloorWrap.$sub$generated/Divide8SignedIterativeFloorWrap.v:298$61 ($sub).
 Removed top 1 bits (of 9) from port B of cell h_Divide8SignedIterativeFloorWrap.$sub$generated/Divide8SignedIterativeFloorWrap.v:298$61 ($sub).
-Removed top 1 bits (of 9) from wire h_Divide8SignedIterativeFloorWrap.n_68.
+Removed top 1 bits (of 9) from wire h_Divide8SignedIterativeFloorWrap.n_sub_68.
 Removed top 1 bits (of 8) from wire h_Divide8SignedIterativeFloorWrap.s_div_q.
 Removed top 1 bits (of 9) from wire h_Divide8SignedIterativeFloorWrap.s_div_r.
 Removed top 5 bits (of 24) from wire h_Divide8SignedIterativeFloorWrap.s_div_result.
@@ -1195,7 +1195,7 @@ No more expansions possible.
 Removed 0 unused cells and 389 unused wires.
 
 3.45. Executing AUTONAME pass.
-Renamed 1588 objects in module h_Divide8SignedIterativeFloorWrap (15 iterations).
+Renamed 1419 objects in module h_Divide8SignedIterativeFloorWrap (14 iterations).
 <suppressed ~349 debug messages>
 
 3.46. Executing HIERARCHY pass (managing design hierarchy).

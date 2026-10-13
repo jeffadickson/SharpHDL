@@ -3,24 +3,24 @@
 module h_FsScramblerRoundTrip(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axis_tlast, s_s_axis_tuser, s_s_axis_tvalid, s_s_axis_tready, s_m_axis_tdata, s_m_axis_tkeep, s_m_axis_tlast, s_m_axis_tuser, s_m_axis_tvalid, s_m_axis_tready);
   input clk;
   wire clk;
-  wire n_0;
-  wire n_1;
-  wire n_11;
-  wire [7:0] n_12;
-  wire n_17;
-  wire [7:0] n_18;
-  wire n_19;
-  wire n_2;
-  wire [7:0] n_20;
-  wire [7:0] n_21;
-  wire n_24;
-  wire [7:0] n_25;
-  wire [7:0] n_3;
-  wire n_4;
-  wire [7:0] n_5;
-  wire [7:0] n_6;
-  wire n_8;
-  wire n_9;
+  wire n_and_11;
+  wire n_and_17;
+  wire n_and_2;
+  wire n_and_24;
+  wire n_bits_0_0_19;
+  wire n_bits_0_0_4;
+  wire [7:0] n_mux_20;
+  wire [7:0] n_mux_5;
+  wire n_not_0;
+  wire n_not_8;
+  wire n_or_1;
+  wire n_or_9;
+  wire [7:0] n_shr_18;
+  wire [7:0] n_shr_3;
+  wire [7:0] n_xor_12;
+  wire [7:0] n_xor_21;
+  wire [7:0] n_xor_25;
+  wire [7:0] n_xor_6;
   input rst;
   wire rst;
   reg [7:0] s_decode_data;
@@ -71,60 +71,60 @@ module h_FsScramblerRoundTrip(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axis
   wire [7:0] s_s_axis_tuser;
   input s_s_axis_tvalid;
   wire s_s_axis_tvalid;
-  assign n_11 = n_1 & s_s_axis_tvalid;
-  assign n_17 = n_9 & s_encode_valid;
+  assign n_and_11 = n_or_1 & s_s_axis_tvalid;
+  assign n_and_17 = n_or_9 & s_encode_valid;
   always @(posedge clk)
     if (rst) s_encode_last <= 1'h0;
-    else if (n_11) s_encode_last <= s_s_axis_tlast;
+    else if (n_and_11) s_encode_last <= s_s_axis_tlast;
   always @(posedge clk)
     if (rst) s_encode_user <= 8'h00;
-    else if (n_11) s_encode_user <= s_s_axis_tuser;
+    else if (n_and_11) s_encode_user <= s_s_axis_tuser;
   always @(posedge clk)
     if (rst) s_decode_lfsr <= 8'ha5;
-    else if (n_17) s_decode_lfsr <= n_21;
+    else if (n_and_17) s_decode_lfsr <= n_xor_21;
   always @(posedge clk)
     if (rst) s_decode_user <= 8'h00;
-    else if (n_17) s_decode_user <= s_encode_user;
+    else if (n_and_17) s_decode_user <= s_encode_user;
   always @(posedge clk)
     if (rst) s_decode_last <= 1'h0;
-    else if (n_17) s_decode_last <= s_encode_last;
+    else if (n_and_17) s_decode_last <= s_encode_last;
   always @(posedge clk)
     if (rst) s_decode_valid <= 1'h0;
-    else if (n_9) s_decode_valid <= s_encode_valid;
+    else if (n_or_9) s_decode_valid <= s_encode_valid;
   always @(posedge clk)
     if (rst) s_decode_keep <= 1'h0;
-    else if (n_17) s_decode_keep <= s_encode_keep;
+    else if (n_and_17) s_decode_keep <= s_encode_keep;
   always @(posedge clk)
     if (rst) s_decode_data <= 8'h00;
-    else if (n_17) s_decode_data <= n_25;
+    else if (n_and_17) s_decode_data <= n_xor_25;
   always @(posedge clk)
     if (rst) s_encode_lfsr <= 8'ha5;
-    else if (n_11) s_encode_lfsr <= n_6;
+    else if (n_and_11) s_encode_lfsr <= n_xor_6;
   always @(posedge clk)
     if (rst) s_encode_valid <= 1'h0;
-    else if (n_1) s_encode_valid <= s_s_axis_tvalid;
+    else if (n_or_1) s_encode_valid <= s_s_axis_tvalid;
   always @(posedge clk)
     if (rst) s_encode_data <= 8'h00;
-    else if (n_11) s_encode_data <= n_12;
+    else if (n_and_11) s_encode_data <= n_xor_12;
   always @(posedge clk)
     if (rst) s_encode_keep <= 1'h0;
-    else if (n_11) s_encode_keep <= s_s_axis_tkeep;
-  assign n_0 = ~ s_encode_valid;
-  assign n_8 = ~ s_decode_valid;
-  assign n_1 = n_0 | n_9;
-  assign n_9 = n_8 | s_m_axis_tready;
-  assign n_5 = s_encode_lfsr[0] ? 8'hb8 : 8'h00;
-  assign n_20 = s_decode_lfsr[0] ? 8'hb8 : 8'h00;
-  assign n_6 = { 1'h0, s_encode_lfsr[7:1] } ^ n_5;
-  assign n_12 = s_s_axis_tdata ^ s_encode_lfsr;
-  assign n_21 = { 1'h0, s_decode_lfsr[7:1] } ^ n_20;
-  assign n_25 = s_encode_data ^ s_decode_lfsr;
-  assign n_18 = { 1'h0, s_decode_lfsr[7:1] };
-  assign n_19 = s_decode_lfsr[0];
-  assign n_2 = n_11;
-  assign n_24 = n_17;
-  assign n_3 = { 1'h0, s_encode_lfsr[7:1] };
-  assign n_4 = s_encode_lfsr[0];
+    else if (n_and_11) s_encode_keep <= s_s_axis_tkeep;
+  assign n_not_0 = ~ s_encode_valid;
+  assign n_not_8 = ~ s_decode_valid;
+  assign n_or_1 = n_not_0 | n_or_9;
+  assign n_or_9 = n_not_8 | s_m_axis_tready;
+  assign n_mux_5 = s_encode_lfsr[0] ? 8'hb8 : 8'h00;
+  assign n_mux_20 = s_decode_lfsr[0] ? 8'hb8 : 8'h00;
+  assign n_xor_6 = { 1'h0, s_encode_lfsr[7:1] } ^ n_mux_5;
+  assign n_xor_12 = s_s_axis_tdata ^ s_encode_lfsr;
+  assign n_xor_21 = { 1'h0, s_decode_lfsr[7:1] } ^ n_mux_20;
+  assign n_xor_25 = s_encode_data ^ s_decode_lfsr;
+  assign n_and_2 = n_and_11;
+  assign n_and_24 = n_and_17;
+  assign n_bits_0_0_19 = s_decode_lfsr[0];
+  assign n_bits_0_0_4 = s_encode_lfsr[0];
+  assign n_shr_18 = { 1'h0, s_decode_lfsr[7:1] };
+  assign n_shr_3 = { 1'h0, s_encode_lfsr[7:1] };
   assign s_decode_tdata = s_decode_data;
   assign s_decode_tkeep = s_decode_keep;
   assign s_decode_tlast = s_decode_last;
@@ -134,7 +134,7 @@ module h_FsScramblerRoundTrip(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axis
   assign s_encode_tdata = s_encode_data;
   assign s_encode_tkeep = s_encode_keep;
   assign s_encode_tlast = s_encode_last;
-  assign s_encode_tready = n_9;
+  assign s_encode_tready = n_or_9;
   assign s_encode_tuser = s_encode_user;
   assign s_encode_tvalid = s_encode_valid;
   assign s_m_axis_tdata = s_decode_data;
@@ -142,5 +142,5 @@ module h_FsScramblerRoundTrip(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axis
   assign s_m_axis_tlast = s_decode_last;
   assign s_m_axis_tuser = s_decode_user;
   assign s_m_axis_tvalid = s_decode_valid;
-  assign s_s_axis_tready = n_1;
+  assign s_s_axis_tready = n_or_1;
 endmodule

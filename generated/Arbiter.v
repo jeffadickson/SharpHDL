@@ -62,83 +62,83 @@ reg [0:0] s_arb_selected;
 // State register; synchronous active-high reset value 0; updates at rising clk.
 reg [0:0] s_arb_turn;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_and_0;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_not_1;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_2;
+wire [0:0] n_mux_2;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_3;
+wire [0:0] n_mux_3;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_4;
+wire [0:0] n_not_4;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_5;
+wire [0:0] n_and_5;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_6;
+wire [0:0] n_and_6;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_7;
+wire [31:0] n_mux_7;
 // Select true operand when condition is 1; false operand otherwise.
-wire [3:0] n_8;
+wire [3:0] n_mux_8;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_9;
+wire [0:0] n_mux_9;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_10;
+wire [7:0] n_mux_10;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_11;
+wire [0:0] n_mux_11;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_12;
+wire [0:0] n_and_12;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_13;
+wire [0:0] n_and_13;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_14;
+wire [0:0] n_not_14;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_15;
+wire [0:0] n_and_15;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_16;
+wire [0:0] n_mux_16;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_17;
+wire [0:0] n_mux_17;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_18;
+wire [0:0] n_mux_18;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_19;
+wire [0:0] n_and_19;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_20;
+wire [0:0] n_not_20;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_21;
-assign n_0 = s_a_axis_tvalid & s_b_axis_tvalid;
-assign n_1 = ~s_a_axis_tvalid;
-assign n_2 = n_0 ? s_arb_turn : n_1;
-assign n_3 = s_arb_locked ? s_arb_selected : n_2;
-assign n_4 = ~n_3;
-assign n_5 = s_arb_tready & n_4;
-assign n_6 = s_arb_tready & n_3;
-assign n_7 = n_3 ? s_b_axis_tdata : s_a_axis_tdata;
-assign n_8 = n_3 ? s_b_axis_tkeep : s_a_axis_tkeep;
-assign n_9 = n_3 ? s_b_axis_tlast : s_a_axis_tlast;
-assign n_10 = n_3 ? s_b_axis_tuser : s_a_axis_tuser;
-assign n_11 = n_3 ? s_b_axis_tvalid : s_a_axis_tvalid;
-assign n_12 = n_11 & s_arb_tready;
-assign n_13 = n_12 & n_9;
-assign n_14 = ~s_arb_locked;
-assign n_15 = n_11 & n_14;
-assign n_16 = n_15 ? 1'd1 : s_arb_locked;
-assign n_17 = n_13 ? 1'd0 : n_16;
-assign n_18 = n_15 ? n_3 : s_arb_selected;
-assign n_19 = n_12 & n_9;
-assign n_20 = ~n_3;
-assign n_21 = n_19 ? n_20 : s_arb_turn;
-assign s_a_axis_tready = n_5;
-assign s_b_axis_tready = n_6;
+wire [0:0] n_mux_21;
+assign n_and_0 = s_a_axis_tvalid & s_b_axis_tvalid;
+assign n_not_1 = ~s_a_axis_tvalid;
+assign n_mux_2 = n_and_0 ? s_arb_turn : n_not_1;
+assign n_mux_3 = s_arb_locked ? s_arb_selected : n_mux_2;
+assign n_not_4 = ~n_mux_3;
+assign n_and_5 = s_arb_tready & n_not_4;
+assign n_and_6 = s_arb_tready & n_mux_3;
+assign n_mux_7 = n_mux_3 ? s_b_axis_tdata : s_a_axis_tdata;
+assign n_mux_8 = n_mux_3 ? s_b_axis_tkeep : s_a_axis_tkeep;
+assign n_mux_9 = n_mux_3 ? s_b_axis_tlast : s_a_axis_tlast;
+assign n_mux_10 = n_mux_3 ? s_b_axis_tuser : s_a_axis_tuser;
+assign n_mux_11 = n_mux_3 ? s_b_axis_tvalid : s_a_axis_tvalid;
+assign n_and_12 = n_mux_11 & s_arb_tready;
+assign n_and_13 = n_and_12 & n_mux_9;
+assign n_not_14 = ~s_arb_locked;
+assign n_and_15 = n_mux_11 & n_not_14;
+assign n_mux_16 = n_and_15 ? 1'd1 : s_arb_locked;
+assign n_mux_17 = n_and_13 ? 1'd0 : n_mux_16;
+assign n_mux_18 = n_and_15 ? n_mux_3 : s_arb_selected;
+assign n_and_19 = n_and_12 & n_mux_9;
+assign n_not_20 = ~n_mux_3;
+assign n_mux_21 = n_and_19 ? n_not_20 : s_arb_turn;
+assign s_a_axis_tready = n_and_5;
+assign s_b_axis_tready = n_and_6;
 assign s_m_axis_tdata = s_arb_tdata;
 assign s_m_axis_tkeep = s_arb_tkeep;
 assign s_m_axis_tlast = s_arb_tlast;
 assign s_m_axis_tuser = s_arb_tuser;
 assign s_m_axis_tvalid = s_arb_tvalid;
-assign s_arb_tdata = n_7;
-assign s_arb_tkeep = n_8;
-assign s_arb_tlast = n_9;
-assign s_arb_tuser = n_10;
-assign s_arb_tvalid = n_11;
+assign s_arb_tdata = n_mux_7;
+assign s_arb_tkeep = n_mux_8;
+assign s_arb_tlast = n_mux_9;
+assign s_arb_tuser = n_mux_10;
+assign s_arb_tvalid = n_mux_11;
 assign s_arb_tready = s_m_axis_tready;
 always @(posedge clk) begin
   if (rst) begin
@@ -146,9 +146,9 @@ always @(posedge clk) begin
     s_arb_selected <= 1'd0;
     s_arb_turn <= 1'd0;
   end else begin
-    s_arb_locked <= n_17;
-    s_arb_selected <= n_18;
-    s_arb_turn <= n_21;
+    s_arb_locked <= n_mux_17;
+    s_arb_selected <= n_mux_18;
+    s_arb_turn <= n_mux_21;
   end
 end
 endmodule

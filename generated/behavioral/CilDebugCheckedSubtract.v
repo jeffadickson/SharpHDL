@@ -16,26 +16,26 @@ module h_CilDebugCheckedSubtract(
   output wire [0:0] s_fault
 );
 // Behavioral CIL result from Behavioral.CSharpFunctions.CheckedSubtract; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_0;
+wire [31:0] n_CheckedSubtract_IL_0003_sub_ovf;
 // Signed two's-complement extension.
-wire [63:0] n_1;
+wire [63:0] n_signextend_0;
 // Signed two's-complement extension.
-wire [63:0] n_2;
+wire [63:0] n_signextend_1;
 // Operation '-'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_3;
+wire [63:0] n_sub_2;
 // Signed two's-complement extension.
-wire [63:0] n_4;
+wire [63:0] n_signextend_3;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_5;
+wire [0:0] n_eq_4;
 // CIL arithmetic fault: checked overflow, divide exception, or assertion failure on the selected execution path. Reset/exception handlers are not synthesized.
-wire [0:0] n_6;
-assign n_0 = s_a - s_b;
-assign n_1 = $signed(s_a);
-assign n_2 = $signed(s_b);
-assign n_3 = n_1 - n_2;
-assign n_4 = $signed(n_0);
-assign n_5 = n_3 == n_4;
-assign n_6 = ~n_5;
-assign s_y = n_0;
-assign s_fault = n_6;
+wire [0:0] n_not_5;
+assign n_CheckedSubtract_IL_0003_sub_ovf = s_a - s_b;
+assign n_signextend_0 = $signed(s_a);
+assign n_signextend_1 = $signed(s_b);
+assign n_sub_2 = n_signextend_0 - n_signextend_1;
+assign n_signextend_3 = $signed(n_CheckedSubtract_IL_0003_sub_ovf);
+assign n_eq_4 = n_sub_2 == n_signextend_3;
+assign n_not_5 = ~n_eq_4;
+assign s_y = n_CheckedSubtract_IL_0003_sub_ovf;
+assign s_fault = n_not_5;
 endmodule

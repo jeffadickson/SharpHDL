@@ -461,26 +461,26 @@ Finding identical cells in module `\h_Multiply8UnsignedBitSerial'.
 Removed a total of 0 cells.
 
 3.12.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$514 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_35, Q = \s_mul_user, rval = 4'0000).
+Adding SRST signal on $procdff$514 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_35, Q = \s_mul_user, rval = 4'0000).
 Adding EN signal on $auto$ff.cc:266:slice$515 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \s_input_tuser, Q = \s_mul_user).
-Adding SRST signal on $procdff$513 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_34, Q = \s_mul_last, rval = 1'0).
+Adding SRST signal on $procdff$513 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_34, Q = \s_mul_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$517 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \s_input_tlast, Q = \s_mul_last).
-Adding SRST signal on $procdff$512 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_33, Q = \s_mul_product, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$519 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_18, Q = \s_mul_product).
-Adding SRST signal on $procdff$511 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_31, Q = \s_mul_bit_index, rval = 3'000).
-Adding EN signal on $auto$ff.cc:266:slice$521 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_30, Q = \s_mul_bit_index).
-Adding SRST signal on $procdff$510 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_29, Q = \s_mul_remaining_b, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$525 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_29, Q = \s_mul_remaining_b).
-Adding SRST signal on $procdff$509 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_25 [7:0], Q = \s_mul_shifted_a [7:0], rval = 8'00000000).
-Adding SRST signal on $procdff$509 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_24 [15:8], Q = \s_mul_shifted_a [15:8], rval = 8'00000000).
+Adding SRST signal on $procdff$512 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_33, Q = \s_mul_product, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$519 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_add_18, Q = \s_mul_product).
+Adding SRST signal on $procdff$511 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_31, Q = \s_mul_bit_index, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$521 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_add_30, Q = \s_mul_bit_index).
+Adding SRST signal on $procdff$510 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_29, Q = \s_mul_remaining_b, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$525 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_29, Q = \s_mul_remaining_b).
+Adding SRST signal on $procdff$509 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_25 [7:0], Q = \s_mul_shifted_a [7:0], rval = 8'00000000).
+Adding SRST signal on $procdff$509 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_24 [15:8], Q = \s_mul_shifted_a [15:8], rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$530 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \s_mul_shifted_a [14:7], Q = \s_mul_shifted_a [15:8]).
-Adding EN signal on $auto$ff.cc:266:slice$529 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_25 [7:0], Q = \s_mul_shifted_a [7:0]).
-Adding SRST signal on $procdff$508 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_19, Q = \s_mul_acc, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$537 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_18, Q = \s_mul_acc).
-Adding SRST signal on $procdff$507 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_11, Q = \s_mul_valid, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$541 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_11, Q = \s_mul_valid).
-Adding SRST signal on $procdff$506 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_8, Q = \s_mul_busy, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$545 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_8, Q = \s_mul_busy).
+Adding EN signal on $auto$ff.cc:266:slice$529 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_25 [7:0], Q = \s_mul_shifted_a [7:0]).
+Adding SRST signal on $procdff$508 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_19, Q = \s_mul_acc, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$537 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_add_18, Q = \s_mul_acc).
+Adding SRST signal on $procdff$507 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_11, Q = \s_mul_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$541 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_11, Q = \s_mul_valid).
+Adding SRST signal on $procdff$506 ($dff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_8, Q = \s_mul_busy, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$545 ($sdff) from module h_Multiply8UnsignedBitSerial (D = \n_mux_8, Q = \s_mul_busy).
 
 3.12.7. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \h_Multiply8UnsignedBitSerial..
@@ -552,9 +552,9 @@ Optimizing module h_Multiply8UnsignedBitSerial.
 Removed top 8 bits (of 16) from mux cell h_Multiply8UnsignedBitSerial.$ternary$generated/Multiply8UnsignedBitSerial.v:161$23 ($mux).
 Removed top 2 bits (of 3) from port B of cell h_Multiply8UnsignedBitSerial.$add$generated/Multiply8UnsignedBitSerial.v:166$28 ($add).
 Removed top 8 bits (of 16) from mux cell h_Multiply8UnsignedBitSerial.$ternary$generated/Multiply8UnsignedBitSerial.v:160$22 ($mux).
-Removed top 8 bits (of 16) from wire h_Multiply8UnsignedBitSerial.n_24.
-Removed top 8 bits (of 16) from wire h_Multiply8UnsignedBitSerial.n_25.
-Removed top 1 bits (of 8) from wire h_Multiply8UnsignedBitSerial.n_27.
+Removed top 8 bits (of 16) from wire h_Multiply8UnsignedBitSerial.n_mux_24.
+Removed top 8 bits (of 16) from wire h_Multiply8UnsignedBitSerial.n_mux_25.
+Removed top 1 bits (of 8) from wire h_Multiply8UnsignedBitSerial.n_shr_27.
 
 3.14. Executing PEEPOPT pass (run peephole optimizers).
 
@@ -1058,7 +1058,7 @@ No more expansions possible.
 Removed 0 unused cells and 118 unused wires.
 
 3.45. Executing AUTONAME pass.
-Renamed 312 objects in module h_Multiply8UnsignedBitSerial (9 iterations).
+Renamed 275 objects in module h_Multiply8UnsignedBitSerial (8 iterations).
 <suppressed ~149 debug messages>
 
 3.46. Executing HIERARCHY pass (managing design hierarchy).

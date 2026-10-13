@@ -50,176 +50,176 @@ reg [1:0] s_index;
 // State register; synchronous active-high reset value 0; updates at rising clk.
 reg [7:0] s_tag;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_eq_0;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_not_1;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_eq_2;
 // Extract source bits [7:0], rebase to bit 0.
-wire [7:0] n_3;
+wire [7:0] n_bits_7_0_3;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_4;
+wire [0:0] n_eq_4;
 // Extract source bits [15:8], rebase to bit 0.
-wire [7:0] n_5;
+wire [7:0] n_bits_15_8_5;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_6;
+wire [0:0] n_eq_6;
 // Extract source bits [23:16], rebase to bit 0.
-wire [7:0] n_7;
+wire [7:0] n_bits_23_16_7;
 // Extract source bits [31:24], rebase to bit 0.
-wire [7:0] n_8;
+wire [7:0] n_bits_31_24_8;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_9;
+wire [7:0] n_mux_9;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_10;
+wire [7:0] n_mux_10;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_11;
+wire [7:0] n_mux_11;
 // Unsigned resize: zero extend (or preserve width).
-wire [2:0] n_12;
+wire [2:0] n_resize_12;
 // Operation '-'; result limited to 3 bits. Signed interpretation only for slt/asr/signextend.
-wire [2:0] n_13;
+wire [2:0] n_sub_13;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_14;
+wire [0:0] n_eq_14;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_15;
+wire [0:0] n_and_15;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_16;
+wire [0:0] n_eq_16;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_17;
+wire [0:0] n_and_17;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_18;
+wire [7:0] n_mux_18;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_19;
+wire [0:0] n_bits_0_0_19;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_20;
+wire [31:0] n_add_20;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_21;
+wire [31:0] n_mux_21;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_22;
+wire [0:0] n_eq_22;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_23;
+wire [0:0] n_eq_23;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_24;
+wire [0:0] n_eq_24;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_25;
+wire [1:0] n_mux_25;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_26;
+wire [1:0] n_mux_26;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_27;
+wire [1:0] n_mux_27;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_28;
+wire [0:0] n_and_28;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_29;
+wire [0:0] n_and_29;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_30;
+wire [1:0] n_mux_30;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_31;
+wire [1:0] n_mux_31;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_32;
+wire [0:0] n_eq_32;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_33;
+wire [0:0] n_eq_33;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_34;
+wire [31:0] n_resize_34;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_35;
+wire [0:0] n_eq_35;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_36;
+wire [31:0] n_mux_36;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_37;
+wire [31:0] n_mux_37;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_38;
+wire [31:0] n_mux_38;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_39;
+wire [0:0] n_eq_39;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_40;
+wire [31:0] n_resize_40;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_41;
+wire [31:0] n_mux_41;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_42;
+wire [31:0] n_mux_42;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_43;
+wire [31:0] n_mux_43;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_44;
+wire [0:0] n_and_44;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_45;
+wire [2:0] n_mux_45;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_46;
+wire [2:0] n_mux_46;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_47;
+wire [0:0] n_and_47;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_48;
+wire [0:0] n_not_48;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_49;
+wire [0:0] n_and_49;
 // Operation '+'; result limited to 2 bits. Signed interpretation only for slt/asr/signextend.
-wire [1:0] n_50;
+wire [1:0] n_add_50;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_51;
+wire [1:0] n_mux_51;
 // Select true operand when condition is 1; false operand otherwise.
-wire [1:0] n_52;
+wire [1:0] n_mux_52;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_53;
+wire [0:0] n_and_53;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_54;
-assign n_0 = s_state == 2'd3;
-assign n_1 = ~n_0;
-assign n_2 = s_index == 2'd0;
-assign n_3 = s_reply >> 0;
-assign n_4 = s_index == 2'd1;
-assign n_5 = s_reply >> 8;
-assign n_6 = s_index == 2'd2;
-assign n_7 = s_reply >> 16;
-assign n_8 = s_reply >> 24;
-assign n_9 = n_6 ? n_7 : n_8;
-assign n_10 = n_4 ? n_5 : n_9;
-assign n_11 = n_2 ? n_3 : n_10;
-assign n_12 = s_index;
-assign n_13 = s_length - 3'd1;
-assign n_14 = n_12 == n_13;
-assign n_15 = s_rx_tvalid & s_rx_tready;
-assign n_16 = s_state == 2'd2;
-assign n_17 = n_15 & n_16;
-assign n_18 = n_17 ? s_rx_tdata : s_control;
-assign n_19 = s_control >> 0;
-assign n_20 = s_counter + 32'd1;
-assign n_21 = n_19 ? n_20 : s_counter;
-assign n_22 = s_state == 2'd0;
-assign n_23 = s_rx_tdata == 8'd1;
-assign n_24 = s_rx_tdata == 8'd3;
-assign n_25 = n_24 ? 2'd2 : 2'd3;
-assign n_26 = n_23 ? 2'd1 : n_25;
-assign n_27 = n_22 ? n_26 : 2'd3;
-assign n_28 = s_tx_tvalid & s_tx_tready;
-assign n_29 = n_28 & n_14;
-assign n_30 = n_29 ? 2'd0 : s_state;
-assign n_31 = n_15 ? n_27 : n_30;
-assign n_32 = s_rx_tdata == 8'd2;
-assign n_33 = s_rx_tdata == 8'd4;
-assign n_34 = s_control;
-assign n_35 = s_rx_tdata == 8'd0;
-assign n_36 = n_35 ? 32'd165 : 32'd224;
-assign n_37 = n_33 ? n_34 : n_36;
-assign n_38 = n_32 ? s_counter : n_37;
-assign n_39 = s_state == 2'd1;
-assign n_40 = s_rx_tdata;
-assign n_41 = n_39 ? n_40 : 32'd6;
-assign n_42 = n_22 ? n_38 : n_41;
-assign n_43 = n_15 ? n_42 : s_reply;
-assign n_44 = n_22 & n_32;
-assign n_45 = n_44 ? 3'd4 : 3'd1;
-assign n_46 = n_15 ? n_45 : s_length;
-assign n_47 = s_tx_tvalid & s_tx_tready;
-assign n_48 = ~n_14;
-assign n_49 = n_47 & n_48;
-assign n_50 = s_index + 2'd1;
-assign n_51 = n_49 ? n_50 : s_index;
-assign n_52 = n_15 ? 2'd0 : n_51;
-assign n_53 = n_15 & n_22;
-assign n_54 = n_53 ? s_rx_tuser : s_tag;
-assign s_rx_tready = n_1;
-assign s_tx_tdata = n_11;
+wire [7:0] n_mux_54;
+assign n_eq_0 = s_state == 2'd3;
+assign n_not_1 = ~n_eq_0;
+assign n_eq_2 = s_index == 2'd0;
+assign n_bits_7_0_3 = s_reply >> 0;
+assign n_eq_4 = s_index == 2'd1;
+assign n_bits_15_8_5 = s_reply >> 8;
+assign n_eq_6 = s_index == 2'd2;
+assign n_bits_23_16_7 = s_reply >> 16;
+assign n_bits_31_24_8 = s_reply >> 24;
+assign n_mux_9 = n_eq_6 ? n_bits_23_16_7 : n_bits_31_24_8;
+assign n_mux_10 = n_eq_4 ? n_bits_15_8_5 : n_mux_9;
+assign n_mux_11 = n_eq_2 ? n_bits_7_0_3 : n_mux_10;
+assign n_resize_12 = s_index;
+assign n_sub_13 = s_length - 3'd1;
+assign n_eq_14 = n_resize_12 == n_sub_13;
+assign n_and_15 = s_rx_tvalid & s_rx_tready;
+assign n_eq_16 = s_state == 2'd2;
+assign n_and_17 = n_and_15 & n_eq_16;
+assign n_mux_18 = n_and_17 ? s_rx_tdata : s_control;
+assign n_bits_0_0_19 = s_control >> 0;
+assign n_add_20 = s_counter + 32'd1;
+assign n_mux_21 = n_bits_0_0_19 ? n_add_20 : s_counter;
+assign n_eq_22 = s_state == 2'd0;
+assign n_eq_23 = s_rx_tdata == 8'd1;
+assign n_eq_24 = s_rx_tdata == 8'd3;
+assign n_mux_25 = n_eq_24 ? 2'd2 : 2'd3;
+assign n_mux_26 = n_eq_23 ? 2'd1 : n_mux_25;
+assign n_mux_27 = n_eq_22 ? n_mux_26 : 2'd3;
+assign n_and_28 = s_tx_tvalid & s_tx_tready;
+assign n_and_29 = n_and_28 & n_eq_14;
+assign n_mux_30 = n_and_29 ? 2'd0 : s_state;
+assign n_mux_31 = n_and_15 ? n_mux_27 : n_mux_30;
+assign n_eq_32 = s_rx_tdata == 8'd2;
+assign n_eq_33 = s_rx_tdata == 8'd4;
+assign n_resize_34 = s_control;
+assign n_eq_35 = s_rx_tdata == 8'd0;
+assign n_mux_36 = n_eq_35 ? 32'd165 : 32'd224;
+assign n_mux_37 = n_eq_33 ? n_resize_34 : n_mux_36;
+assign n_mux_38 = n_eq_32 ? s_counter : n_mux_37;
+assign n_eq_39 = s_state == 2'd1;
+assign n_resize_40 = s_rx_tdata;
+assign n_mux_41 = n_eq_39 ? n_resize_40 : 32'd6;
+assign n_mux_42 = n_eq_22 ? n_mux_38 : n_mux_41;
+assign n_mux_43 = n_and_15 ? n_mux_42 : s_reply;
+assign n_and_44 = n_eq_22 & n_eq_32;
+assign n_mux_45 = n_and_44 ? 3'd4 : 3'd1;
+assign n_mux_46 = n_and_15 ? n_mux_45 : s_length;
+assign n_and_47 = s_tx_tvalid & s_tx_tready;
+assign n_not_48 = ~n_eq_14;
+assign n_and_49 = n_and_47 & n_not_48;
+assign n_add_50 = s_index + 2'd1;
+assign n_mux_51 = n_and_49 ? n_add_50 : s_index;
+assign n_mux_52 = n_and_15 ? 2'd0 : n_mux_51;
+assign n_and_53 = n_and_15 & n_eq_22;
+assign n_mux_54 = n_and_53 ? s_rx_tuser : s_tag;
+assign s_rx_tready = n_not_1;
+assign s_tx_tdata = n_mux_11;
 assign s_tx_tkeep = 1'd1;
-assign s_tx_tlast = n_14;
+assign s_tx_tlast = n_eq_14;
 assign s_tx_tuser = s_tag;
-assign s_tx_tvalid = n_0;
+assign s_tx_tvalid = n_eq_0;
 assign s_control_out = s_control;
 assign s_counter_out = s_counter;
 always @(posedge clk) begin
@@ -232,13 +232,13 @@ always @(posedge clk) begin
     s_index <= 2'd0;
     s_tag <= 8'd0;
   end else begin
-    s_control <= n_18;
-    s_counter <= n_21;
-    s_state <= n_31;
-    s_reply <= n_43;
-    s_length <= n_46;
-    s_index <= n_52;
-    s_tag <= n_54;
+    s_control <= n_mux_18;
+    s_counter <= n_mux_21;
+    s_state <= n_mux_31;
+    s_reply <= n_mux_43;
+    s_length <= n_mux_46;
+    s_index <= n_mux_52;
+    s_tag <= n_mux_54;
   end
 end
 endmodule

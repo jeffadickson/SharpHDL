@@ -116,264 +116,264 @@ reg [80:0] s_queue_one_slot2;
 // FIFO packed beat: DATA [63:0], KEEP [71:64], LAST [72], USER [80:73].
 reg [80:0] s_queue_one_slot3;
 // Packet field type: source bits [59:48].
-wire [11:0] n_0;
+wire [11:0] n_bits_59_48_0;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_eq_1;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_2;
+wire [0:0] n_mux_2;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_3;
+wire [0:0] n_mux_3;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_4;
+wire [0:0] n_and_4;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_5;
+wire [0:0] n_not_5;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_6;
+wire [0:0] n_mux_6;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_7;
+wire [0:0] n_and_7;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_8;
+wire [0:0] n_not_8;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_9;
+wire [0:0] n_and_9;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_10;
+wire [0:0] n_mux_10;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_11;
+wire [0:0] n_not_11;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_12;
+wire [0:0] n_and_12;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_13;
+wire [0:0] n_lt_13;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_14;
+wire [0:0] n_eq_14;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_15;
+wire [0:0] n_not_15;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_16;
+wire [0:0] n_and_16;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_17;
+wire [0:0] n_or_17;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_18;
+wire [0:0] n_and_18;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_19;
+wire [0:0] n_lt_19;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_20;
+wire [0:0] n_eq_20;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_21;
+wire [0:0] n_not_21;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_22;
+wire [0:0] n_and_22;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_23;
+wire [0:0] n_or_23;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_24;
+wire [0:0] n_and_24;
 // Operation '^'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_25;
+wire [0:0] n_xor_25;
 // Operation '+'; result limited to 3 bits. Signed interpretation only for slt/asr/signextend.
-wire [2:0] n_26;
+wire [2:0] n_add_26;
 // Operation '-'; result limited to 3 bits. Signed interpretation only for slt/asr/signextend.
-wire [2:0] n_27;
+wire [2:0] n_sub_27;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_28;
+wire [2:0] n_mux_28;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_29;
+wire [2:0] n_mux_29;
 // Extract source bits [63:0], rebase to bit 0.
-wire [63:0] n_30;
+wire [63:0] n_bits_63_0_30;
 // Extract source bits [71:64], rebase to bit 0.
-wire [7:0] n_31;
+wire [7:0] n_bits_71_64_31;
 // Extract source bits [72:72], rebase to bit 0.
-wire [0:0] n_32;
+wire [0:0] n_bits_72_72_32;
 // Extract source bits [80:73], rebase to bit 0.
-wire [7:0] n_33;
+wire [7:0] n_bits_80_73_33;
 // Operation '-'; result limited to 3 bits. Signed interpretation only for slt/asr/signextend.
-wire [2:0] n_34;
+wire [2:0] n_sub_34;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_35;
+wire [2:0] n_mux_35;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_36;
+wire [0:0] n_eq_36;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_37;
+wire [0:0] n_and_37;
 // Packed bus: [71:64] = high operand; [63:0] = low operand.
-wire [71:0] n_38;
+wire [71:0] n_concat_38;
 // Packed bus: [72:72] = high operand; [71:0] = low operand.
-wire [72:0] n_39;
+wire [72:0] n_concat_39;
 // Packed bus: [80:73] = high operand; [72:0] = low operand.
-wire [80:0] n_40;
+wire [80:0] n_concat_40;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_41;
+wire [80:0] n_mux_41;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_42;
+wire [80:0] n_mux_42;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_43;
+wire [0:0] n_eq_43;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_44;
+wire [0:0] n_and_44;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_45;
+wire [80:0] n_mux_45;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_46;
+wire [80:0] n_mux_46;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_47;
+wire [0:0] n_eq_47;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_48;
+wire [0:0] n_and_48;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_49;
+wire [80:0] n_mux_49;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_50;
+wire [80:0] n_mux_50;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_51;
+wire [0:0] n_eq_51;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_52;
+wire [0:0] n_and_52;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_53;
+wire [80:0] n_mux_53;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_54;
+wire [80:0] n_mux_54;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_55;
+wire [0:0] n_and_55;
 // Operation '^'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_56;
+wire [0:0] n_xor_56;
 // Operation '+'; result limited to 3 bits. Signed interpretation only for slt/asr/signextend.
-wire [2:0] n_57;
+wire [2:0] n_add_57;
 // Operation '-'; result limited to 3 bits. Signed interpretation only for slt/asr/signextend.
-wire [2:0] n_58;
+wire [2:0] n_sub_58;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_59;
+wire [2:0] n_mux_59;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_60;
+wire [2:0] n_mux_60;
 // Extract source bits [63:0], rebase to bit 0.
-wire [63:0] n_61;
+wire [63:0] n_bits_63_0_61;
 // Extract source bits [71:64], rebase to bit 0.
-wire [7:0] n_62;
+wire [7:0] n_bits_71_64_62;
 // Extract source bits [72:72], rebase to bit 0.
-wire [0:0] n_63;
+wire [0:0] n_bits_72_72_63;
 // Extract source bits [80:73], rebase to bit 0.
-wire [7:0] n_64;
+wire [7:0] n_bits_80_73_64;
 // Operation '-'; result limited to 3 bits. Signed interpretation only for slt/asr/signextend.
-wire [2:0] n_65;
+wire [2:0] n_sub_65;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_66;
+wire [2:0] n_mux_66;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_67;
+wire [0:0] n_eq_67;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_68;
+wire [0:0] n_and_68;
 // Packed bus: [71:64] = high operand; [63:0] = low operand.
-wire [71:0] n_69;
+wire [71:0] n_concat_69;
 // Packed bus: [72:72] = high operand; [71:0] = low operand.
-wire [72:0] n_70;
+wire [72:0] n_concat_70;
 // Packed bus: [80:73] = high operand; [72:0] = low operand.
-wire [80:0] n_71;
+wire [80:0] n_concat_71;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_72;
+wire [80:0] n_mux_72;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_73;
+wire [80:0] n_mux_73;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_74;
+wire [0:0] n_eq_74;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_75;
+wire [0:0] n_and_75;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_76;
+wire [80:0] n_mux_76;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_77;
+wire [80:0] n_mux_77;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_78;
+wire [0:0] n_eq_78;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_79;
+wire [0:0] n_and_79;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_80;
+wire [80:0] n_mux_80;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_81;
+wire [80:0] n_mux_81;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_82;
+wire [0:0] n_eq_82;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_83;
+wire [0:0] n_and_83;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_84;
+wire [80:0] n_mux_84;
 // Select true operand when condition is 1; false operand otherwise.
-wire [80:0] n_85;
-assign n_0 = s_s_axis_tdata >> 48;
-assign n_1 = n_0 == 12'd1;
-assign n_2 = s_in_packet ? s_packet_route : n_1;
-assign n_3 = n_2 ? s_route_one_tready : s_route_zero_tready;
-assign n_4 = s_s_axis_tvalid & s_s_axis_tready;
-assign n_5 = ~s_s_axis_tlast;
-assign n_6 = n_4 ? n_5 : s_in_packet;
-assign n_7 = s_s_axis_tvalid & s_s_axis_tready;
-assign n_8 = ~s_in_packet;
-assign n_9 = n_7 & n_8;
-assign n_10 = n_9 ? n_1 : s_packet_route;
-assign n_11 = ~n_2;
-assign n_12 = s_s_axis_tvalid & n_11;
-assign n_13 = s_queue_zero_count < 3'd4;
-assign n_14 = s_queue_zero_count == 3'd0;
-assign n_15 = ~n_14;
-assign n_16 = n_15 & s_queue_zero_tready;
-assign n_17 = n_13 | n_16;
-assign n_18 = s_s_axis_tvalid & n_2;
-assign n_19 = s_queue_one_count < 3'd4;
-assign n_20 = s_queue_one_count == 3'd0;
-assign n_21 = ~n_20;
-assign n_22 = n_21 & s_queue_one_tready;
-assign n_23 = n_19 | n_22;
-assign n_24 = s_route_zero_tvalid & n_17;
-assign n_25 = n_24 ^ n_16;
-assign n_26 = s_queue_zero_count + 3'd1;
-assign n_27 = s_queue_zero_count - 3'd1;
-assign n_28 = n_24 ? n_26 : n_27;
-assign n_29 = n_25 ? n_28 : s_queue_zero_count;
-assign n_30 = s_queue_zero_slot0 >> 0;
-assign n_31 = s_queue_zero_slot0 >> 64;
-assign n_32 = s_queue_zero_slot0 >> 72;
-assign n_33 = s_queue_zero_slot0 >> 73;
-assign n_34 = s_queue_zero_count - 3'd1;
-assign n_35 = n_16 ? n_34 : s_queue_zero_count;
-assign n_36 = n_35 == 3'd0;
-assign n_37 = n_24 & n_36;
-assign n_38 = {s_route_zero_tkeep, s_route_zero_tdata};
-assign n_39 = {s_route_zero_tlast, n_38};
-assign n_40 = {s_route_zero_tuser, n_39};
-assign n_41 = n_16 ? s_queue_zero_slot1 : s_queue_zero_slot0;
-assign n_42 = n_37 ? n_40 : n_41;
-assign n_43 = n_35 == 3'd1;
-assign n_44 = n_24 & n_43;
-assign n_45 = n_16 ? s_queue_zero_slot2 : s_queue_zero_slot1;
-assign n_46 = n_44 ? n_40 : n_45;
-assign n_47 = n_35 == 3'd2;
-assign n_48 = n_24 & n_47;
-assign n_49 = n_16 ? s_queue_zero_slot3 : s_queue_zero_slot2;
-assign n_50 = n_48 ? n_40 : n_49;
-assign n_51 = n_35 == 3'd3;
-assign n_52 = n_24 & n_51;
-assign n_53 = n_16 ? 81'd0 : s_queue_zero_slot3;
-assign n_54 = n_52 ? n_40 : n_53;
-assign n_55 = s_route_one_tvalid & n_23;
-assign n_56 = n_55 ^ n_22;
-assign n_57 = s_queue_one_count + 3'd1;
-assign n_58 = s_queue_one_count - 3'd1;
-assign n_59 = n_55 ? n_57 : n_58;
-assign n_60 = n_56 ? n_59 : s_queue_one_count;
-assign n_61 = s_queue_one_slot0 >> 0;
-assign n_62 = s_queue_one_slot0 >> 64;
-assign n_63 = s_queue_one_slot0 >> 72;
-assign n_64 = s_queue_one_slot0 >> 73;
-assign n_65 = s_queue_one_count - 3'd1;
-assign n_66 = n_22 ? n_65 : s_queue_one_count;
-assign n_67 = n_66 == 3'd0;
-assign n_68 = n_55 & n_67;
-assign n_69 = {s_route_one_tkeep, s_route_one_tdata};
-assign n_70 = {s_route_one_tlast, n_69};
-assign n_71 = {s_route_one_tuser, n_70};
-assign n_72 = n_22 ? s_queue_one_slot1 : s_queue_one_slot0;
-assign n_73 = n_68 ? n_71 : n_72;
-assign n_74 = n_66 == 3'd1;
-assign n_75 = n_55 & n_74;
-assign n_76 = n_22 ? s_queue_one_slot2 : s_queue_one_slot1;
-assign n_77 = n_75 ? n_71 : n_76;
-assign n_78 = n_66 == 3'd2;
-assign n_79 = n_55 & n_78;
-assign n_80 = n_22 ? s_queue_one_slot3 : s_queue_one_slot2;
-assign n_81 = n_79 ? n_71 : n_80;
-assign n_82 = n_66 == 3'd3;
-assign n_83 = n_55 & n_82;
-assign n_84 = n_22 ? 81'd0 : s_queue_one_slot3;
-assign n_85 = n_83 ? n_71 : n_84;
-assign s_s_axis_tready = n_3;
+wire [80:0] n_mux_85;
+assign n_bits_59_48_0 = s_s_axis_tdata >> 48;
+assign n_eq_1 = n_bits_59_48_0 == 12'd1;
+assign n_mux_2 = s_in_packet ? s_packet_route : n_eq_1;
+assign n_mux_3 = n_mux_2 ? s_route_one_tready : s_route_zero_tready;
+assign n_and_4 = s_s_axis_tvalid & s_s_axis_tready;
+assign n_not_5 = ~s_s_axis_tlast;
+assign n_mux_6 = n_and_4 ? n_not_5 : s_in_packet;
+assign n_and_7 = s_s_axis_tvalid & s_s_axis_tready;
+assign n_not_8 = ~s_in_packet;
+assign n_and_9 = n_and_7 & n_not_8;
+assign n_mux_10 = n_and_9 ? n_eq_1 : s_packet_route;
+assign n_not_11 = ~n_mux_2;
+assign n_and_12 = s_s_axis_tvalid & n_not_11;
+assign n_lt_13 = s_queue_zero_count < 3'd4;
+assign n_eq_14 = s_queue_zero_count == 3'd0;
+assign n_not_15 = ~n_eq_14;
+assign n_and_16 = n_not_15 & s_queue_zero_tready;
+assign n_or_17 = n_lt_13 | n_and_16;
+assign n_and_18 = s_s_axis_tvalid & n_mux_2;
+assign n_lt_19 = s_queue_one_count < 3'd4;
+assign n_eq_20 = s_queue_one_count == 3'd0;
+assign n_not_21 = ~n_eq_20;
+assign n_and_22 = n_not_21 & s_queue_one_tready;
+assign n_or_23 = n_lt_19 | n_and_22;
+assign n_and_24 = s_route_zero_tvalid & n_or_17;
+assign n_xor_25 = n_and_24 ^ n_and_16;
+assign n_add_26 = s_queue_zero_count + 3'd1;
+assign n_sub_27 = s_queue_zero_count - 3'd1;
+assign n_mux_28 = n_and_24 ? n_add_26 : n_sub_27;
+assign n_mux_29 = n_xor_25 ? n_mux_28 : s_queue_zero_count;
+assign n_bits_63_0_30 = s_queue_zero_slot0 >> 0;
+assign n_bits_71_64_31 = s_queue_zero_slot0 >> 64;
+assign n_bits_72_72_32 = s_queue_zero_slot0 >> 72;
+assign n_bits_80_73_33 = s_queue_zero_slot0 >> 73;
+assign n_sub_34 = s_queue_zero_count - 3'd1;
+assign n_mux_35 = n_and_16 ? n_sub_34 : s_queue_zero_count;
+assign n_eq_36 = n_mux_35 == 3'd0;
+assign n_and_37 = n_and_24 & n_eq_36;
+assign n_concat_38 = {s_route_zero_tkeep, s_route_zero_tdata};
+assign n_concat_39 = {s_route_zero_tlast, n_concat_38};
+assign n_concat_40 = {s_route_zero_tuser, n_concat_39};
+assign n_mux_41 = n_and_16 ? s_queue_zero_slot1 : s_queue_zero_slot0;
+assign n_mux_42 = n_and_37 ? n_concat_40 : n_mux_41;
+assign n_eq_43 = n_mux_35 == 3'd1;
+assign n_and_44 = n_and_24 & n_eq_43;
+assign n_mux_45 = n_and_16 ? s_queue_zero_slot2 : s_queue_zero_slot1;
+assign n_mux_46 = n_and_44 ? n_concat_40 : n_mux_45;
+assign n_eq_47 = n_mux_35 == 3'd2;
+assign n_and_48 = n_and_24 & n_eq_47;
+assign n_mux_49 = n_and_16 ? s_queue_zero_slot3 : s_queue_zero_slot2;
+assign n_mux_50 = n_and_48 ? n_concat_40 : n_mux_49;
+assign n_eq_51 = n_mux_35 == 3'd3;
+assign n_and_52 = n_and_24 & n_eq_51;
+assign n_mux_53 = n_and_16 ? 81'd0 : s_queue_zero_slot3;
+assign n_mux_54 = n_and_52 ? n_concat_40 : n_mux_53;
+assign n_and_55 = s_route_one_tvalid & n_or_23;
+assign n_xor_56 = n_and_55 ^ n_and_22;
+assign n_add_57 = s_queue_one_count + 3'd1;
+assign n_sub_58 = s_queue_one_count - 3'd1;
+assign n_mux_59 = n_and_55 ? n_add_57 : n_sub_58;
+assign n_mux_60 = n_xor_56 ? n_mux_59 : s_queue_one_count;
+assign n_bits_63_0_61 = s_queue_one_slot0 >> 0;
+assign n_bits_71_64_62 = s_queue_one_slot0 >> 64;
+assign n_bits_72_72_63 = s_queue_one_slot0 >> 72;
+assign n_bits_80_73_64 = s_queue_one_slot0 >> 73;
+assign n_sub_65 = s_queue_one_count - 3'd1;
+assign n_mux_66 = n_and_22 ? n_sub_65 : s_queue_one_count;
+assign n_eq_67 = n_mux_66 == 3'd0;
+assign n_and_68 = n_and_55 & n_eq_67;
+assign n_concat_69 = {s_route_one_tkeep, s_route_one_tdata};
+assign n_concat_70 = {s_route_one_tlast, n_concat_69};
+assign n_concat_71 = {s_route_one_tuser, n_concat_70};
+assign n_mux_72 = n_and_22 ? s_queue_one_slot1 : s_queue_one_slot0;
+assign n_mux_73 = n_and_68 ? n_concat_71 : n_mux_72;
+assign n_eq_74 = n_mux_66 == 3'd1;
+assign n_and_75 = n_and_55 & n_eq_74;
+assign n_mux_76 = n_and_22 ? s_queue_one_slot2 : s_queue_one_slot1;
+assign n_mux_77 = n_and_75 ? n_concat_71 : n_mux_76;
+assign n_eq_78 = n_mux_66 == 3'd2;
+assign n_and_79 = n_and_55 & n_eq_78;
+assign n_mux_80 = n_and_22 ? s_queue_one_slot3 : s_queue_one_slot2;
+assign n_mux_81 = n_and_79 ? n_concat_71 : n_mux_80;
+assign n_eq_82 = n_mux_66 == 3'd3;
+assign n_and_83 = n_and_55 & n_eq_82;
+assign n_mux_84 = n_and_22 ? 81'd0 : s_queue_one_slot3;
+assign n_mux_85 = n_and_83 ? n_concat_71 : n_mux_84;
+assign s_s_axis_tready = n_mux_3;
 assign s_m_axis_zero_tdata = s_queue_zero_tdata;
 assign s_m_axis_zero_tkeep = s_queue_zero_tkeep;
 assign s_m_axis_zero_tlast = s_queue_zero_tlast;
@@ -388,25 +388,25 @@ assign s_route_zero_tdata = s_s_axis_tdata;
 assign s_route_zero_tkeep = s_s_axis_tkeep;
 assign s_route_zero_tlast = s_s_axis_tlast;
 assign s_route_zero_tuser = s_s_axis_tuser;
-assign s_route_zero_tvalid = n_12;
-assign s_route_zero_tready = n_17;
+assign s_route_zero_tvalid = n_and_12;
+assign s_route_zero_tready = n_or_17;
 assign s_route_one_tdata = s_s_axis_tdata;
 assign s_route_one_tkeep = s_s_axis_tkeep;
 assign s_route_one_tlast = s_s_axis_tlast;
 assign s_route_one_tuser = s_s_axis_tuser;
-assign s_route_one_tvalid = n_18;
-assign s_route_one_tready = n_23;
-assign s_queue_zero_tdata = n_30;
-assign s_queue_zero_tkeep = n_31;
-assign s_queue_zero_tlast = n_32;
-assign s_queue_zero_tuser = n_33;
-assign s_queue_zero_tvalid = n_15;
+assign s_route_one_tvalid = n_and_18;
+assign s_route_one_tready = n_or_23;
+assign s_queue_zero_tdata = n_bits_63_0_30;
+assign s_queue_zero_tkeep = n_bits_71_64_31;
+assign s_queue_zero_tlast = n_bits_72_72_32;
+assign s_queue_zero_tuser = n_bits_80_73_33;
+assign s_queue_zero_tvalid = n_not_15;
 assign s_queue_zero_tready = s_m_axis_zero_tready;
-assign s_queue_one_tdata = n_61;
-assign s_queue_one_tkeep = n_62;
-assign s_queue_one_tlast = n_63;
-assign s_queue_one_tuser = n_64;
-assign s_queue_one_tvalid = n_21;
+assign s_queue_one_tdata = n_bits_63_0_61;
+assign s_queue_one_tkeep = n_bits_71_64_62;
+assign s_queue_one_tlast = n_bits_72_72_63;
+assign s_queue_one_tuser = n_bits_80_73_64;
+assign s_queue_one_tvalid = n_not_21;
 assign s_queue_one_tready = s_m_axis_one_tready;
 always @(posedge clk) begin
   if (rst) begin
@@ -423,18 +423,18 @@ always @(posedge clk) begin
     s_queue_one_slot2 <= 81'd0;
     s_queue_one_slot3 <= 81'd0;
   end else begin
-    s_in_packet <= n_6;
-    s_packet_route <= n_10;
-    s_queue_zero_count <= n_29;
-    s_queue_zero_slot0 <= n_42;
-    s_queue_zero_slot1 <= n_46;
-    s_queue_zero_slot2 <= n_50;
-    s_queue_zero_slot3 <= n_54;
-    s_queue_one_count <= n_60;
-    s_queue_one_slot0 <= n_73;
-    s_queue_one_slot1 <= n_77;
-    s_queue_one_slot2 <= n_81;
-    s_queue_one_slot3 <= n_85;
+    s_in_packet <= n_mux_6;
+    s_packet_route <= n_mux_10;
+    s_queue_zero_count <= n_mux_29;
+    s_queue_zero_slot0 <= n_mux_42;
+    s_queue_zero_slot1 <= n_mux_46;
+    s_queue_zero_slot2 <= n_mux_50;
+    s_queue_zero_slot3 <= n_mux_54;
+    s_queue_one_count <= n_mux_60;
+    s_queue_one_slot0 <= n_mux_73;
+    s_queue_one_slot1 <= n_mux_77;
+    s_queue_one_slot2 <= n_mux_81;
+    s_queue_one_slot3 <= n_mux_85;
   end
 end
 endmodule

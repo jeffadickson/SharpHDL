@@ -130,22 +130,22 @@ Adding EN signal on $auto$ff.cc:266:slice$112 ($sdff) from module h_CilMixedPipe
 Adding SRST signal on $procdff$107 ($dff) from module h_CilMixedPipeline (D = $ternary$generated/behavioral/CilMixedPipeline.v:278$50_Y, Q = \s_vb_keep, rval = 5'00000).
 Adding EN signal on $auto$ff.cc:266:slice$114 ($sdff) from module h_CilMixedPipeline (D = \s_skid_tkeep, Q = \s_vb_keep).
 Adding SRST signal on $procdff$106 ($dff) from module h_CilMixedPipeline (D = $ternary$generated/behavioral/CilMixedPipeline.v:277$49_Y, Q = \s_vb_data, rval = 40'0000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$116 ($sdff) from module h_CilMixedPipeline (D = \n_56, Q = \s_vb_data).
+Adding EN signal on $auto$ff.cc:266:slice$116 ($sdff) from module h_CilMixedPipeline (D = \n_resize_55, Q = \s_vb_data).
 Adding SRST signal on $procdff$105 ($dff) from module h_CilMixedPipeline (D = $ternary$generated/behavioral/CilMixedPipeline.v:260$36_Y, Q = \s_vb_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$118 ($sdff) from module h_CilMixedPipeline (D = \s_skid_tvalid, Q = \s_vb_valid).
-Adding SRST signal on $procdff$104 ($dff) from module h_CilMixedPipeline (D = \n_38, Q = \s_skid_spill_valid, rval = 1'0).
+Adding SRST signal on $procdff$104 ($dff) from module h_CilMixedPipeline (D = \n_or_38, Q = \s_skid_spill_valid, rval = 1'0).
 Adding SRST signal on $procdff$100 ($dff) from module h_CilMixedPipeline (D = $ternary$generated/behavioral/CilMixedPipeline.v:235$14_Y, Q = \s_fsharp_user, rval = 4'0000).
 Adding EN signal on $auto$ff.cc:266:slice$123 ($sdff) from module h_CilMixedPipeline (D = \s_input_tuser, Q = \s_fsharp_user).
 Adding SRST signal on $procdff$101 ($dff) from module h_CilMixedPipeline (D = $ternary$generated/behavioral/CilMixedPipeline.v:250$26_Y, Q = \s_skid_head, rval = 50'00000000000000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$125 ($sdff) from module h_CilMixedPipeline (D = \n_29, Q = \s_skid_head).
+Adding EN signal on $auto$ff.cc:266:slice$125 ($sdff) from module h_CilMixedPipeline (D = \n_mux_29, Q = \s_skid_head).
 Adding SRST signal on $procdff$103 ($dff) from module h_CilMixedPipeline (D = $ternary$generated/behavioral/CilMixedPipeline.v:256$32_Y, Q = \s_skid_valid, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$127 ($sdff) from module h_CilMixedPipeline (D = \n_35, Q = \s_skid_valid).
+Adding EN signal on $auto$ff.cc:266:slice$127 ($sdff) from module h_CilMixedPipeline (D = \n_or_35, Q = \s_skid_valid).
 Adding SRST signal on $procdff$102 ($dff) from module h_CilMixedPipeline (D = $ternary$generated/behavioral/CilMixedPipeline.v:254$30_Y, Q = \s_skid_spill, rval = 50'00000000000000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$129 ($sdff) from module h_CilMixedPipeline (D = \n_28, Q = \s_skid_spill).
+Adding EN signal on $auto$ff.cc:266:slice$129 ($sdff) from module h_CilMixedPipeline (D = \n_concat_28, Q = \s_skid_spill).
 Adding SRST signal on $procdff$96 ($dff) from module h_CilMixedPipeline (D = $ternary$generated/behavioral/CilMixedPipeline.v:223$4_Y, Q = \s_fsharp_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$131 ($sdff) from module h_CilMixedPipeline (D = \s_input_tvalid, Q = \s_fsharp_valid).
 Adding SRST signal on $procdff$97 ($dff) from module h_CilMixedPipeline (D = $ternary$generated/behavioral/CilMixedPipeline.v:232$11_Y, Q = \s_fsharp_data, rval = 40'0000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$133 ($sdff) from module h_CilMixedPipeline (D = \n_11, Q = \s_fsharp_data).
+Adding EN signal on $auto$ff.cc:266:slice$133 ($sdff) from module h_CilMixedPipeline (D = \n_resize_11, Q = \s_fsharp_data).
 Adding SRST signal on $procdff$98 ($dff) from module h_CilMixedPipeline (D = $ternary$generated/behavioral/CilMixedPipeline.v:233$12_Y, Q = \s_fsharp_keep, rval = 5'00000).
 Adding EN signal on $auto$ff.cc:266:slice$135 ($sdff) from module h_CilMixedPipeline (D = 5'11111, Q = \s_fsharp_keep).
 Adding SRST signal on $procdff$99 ($dff) from module h_CilMixedPipeline (D = $ternary$generated/behavioral/CilMixedPipeline.v:234$13_Y, Q = \s_fsharp_last, rval = 1'0).
@@ -908,9 +908,9 @@ Removed 0 multiplexer ports.
 7.29.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \h_CilMixedPipeline.
     Consolidated identical input bits for $mux cell $ternary$generated/behavioral/CilMixedPipeline.v:249$25:
-      Old ports: A={ \s_fsharp_user \s_fsharp_last \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_keep [0] 8'00000000 \s_fsharp_data }, B={ \s_skid_spill [49:40] 8'00000000 \s_skid_spill [31:0] }, Y=\n_29
-      New ports: A={ \s_fsharp_user \s_fsharp_last \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_data }, B={ \s_skid_spill [49:40] \s_skid_spill [31:0] }, Y={ \n_29 [49:40] \n_29 [31:0] }
-      New connections: \n_29 [39:32] = 8'00000000
+      Old ports: A={ \s_fsharp_user \s_fsharp_last \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_keep [0] 8'00000000 \s_fsharp_data }, B={ \s_skid_spill [49:40] 8'00000000 \s_skid_spill [31:0] }, Y=\n_mux_29
+      New ports: A={ \s_fsharp_user \s_fsharp_last \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_keep [0] \s_fsharp_data }, B={ \s_skid_spill [49:40] \s_skid_spill [31:0] }, Y={ \n_mux_29 [49:40] \n_mux_29 [31:0] }
+      New connections: \n_mux_29 [39:32] = 8'00000000
   Optimizing cells in module \h_CilMixedPipeline.
 Performed a total of 1 changes.
 
@@ -1243,7 +1243,7 @@ ABC: Participating nodes from the first network   =     193. (  79.10 % of nodes
 ABC: Participating nodes from the second network  =     195. (  79.92 % of nodes)
 ABC: Node pairs (any polarity)                    =     193. (  79.10 % of names can be moved)
 ABC: Node pairs (same polarity)                   =     184. (  75.41 % of names can be moved)
-ABC: Total runtime =     0.09 sec
+ABC: Total runtime =     0.11 sec
 ABC: + write_blif <abc-temp-dir>/output.blif 
 
 7.40.1.2. Re-integrating ABC results.
@@ -1364,7 +1364,7 @@ No more expansions possible.
 Removed 0 unused cells and 705 unused wires.
 
 7.45. Executing AUTONAME pass.
-Renamed 5297 objects in module h_CilMixedPipeline (23 iterations).
+Renamed 5082 objects in module h_CilMixedPipeline (22 iterations).
 <suppressed ~684 debug messages>
 
 7.46. Executing HIERARCHY pass (managing design hierarchy).

@@ -7,3 +7,4 @@ yosys -Q -p 'read_verilog generated/three-languages/ClassroomCore.v boards/GoBoa
 nextpnr-ice40 --hx1k --package vq100 --json build/goboard/classroom.json --pcf boards/GoBoard/classroom.pcf --freq 25 --asc build/goboard/classroom.asc > build/goboard/place-route.log 2>&1
 icepack build/goboard/classroom.asc build/goboard/classroom.bin
 printf 'Built build/goboard/classroom.bin. Programming the board is a separate teacher step.\n'
+python3 tools/archive_goboard_build.py

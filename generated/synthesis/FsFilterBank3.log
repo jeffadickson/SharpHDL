@@ -1,5 +1,5 @@
 
--- Running command `read_verilog generated/fsharp/FsFilterBank3.v; hierarchy -check -top h_FsFilterBank3; proc -norom; opt; check -assert; stat; write_verilog -noattr generated/synthesis/FsFilterBank3_rtl.v' --
+-- Running command `read_verilog generated/fsharp/FsFilterBank3.v; hierarchy -check -top h_FsFilterBank3; proc -norom; opt; memory; opt; check -assert; stat; write_verilog -noattr generated/synthesis/FsFilterBank3_rtl.v' --
 
 1. Executing Verilog-2005 frontend: generated/fsharp/FsFilterBank3.v
 Parsing Verilog input from `generated/fsharp/FsFilterBank3.v' to AST representation.
@@ -21,7 +21,7 @@ Removed 0 unused modules.
 Cleaned up 0 empty switches.
 
 3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
-Marked 1 switch rules as full_case in process $proc$generated/fsharp/FsFilterBank3.v:694$210 in module h_FsFilterBank3.
+Marked 1 switch rules as full_case in process $proc$generated/fsharp/FsFilterBank3.v:1066$210 in module h_FsFilterBank3.
 Removed a total of 0 dead cases.
 
 3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
@@ -33,7 +33,7 @@ Promoted 0 assignments to connections.
 3.5. Executing PROC_ARST pass (detect async resets in processes).
 
 3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
-Creating decoders for process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating decoders for process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
      1/42: $0\s_merge_1_0_turn[0:0]
      2/42: $0\s_merge_1_0_selected[0:0]
      3/42: $0\s_merge_1_0_locked[0:0]
@@ -80,96 +80,96 @@ Creating decoders for process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterB
 3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
 
 3.8. Executing PROC_DFF pass (convert process syncs to FFs).
-Creating register for signal `\h_FsFilterBank3.\s_fanout_accepted0' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_fanout_accepted0' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$337' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_fanout_accepted1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_fanout_accepted1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$338' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_fanout_accepted2' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_fanout_accepted2' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$339' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_delay1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_delay1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$340' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_delay2' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_delay2' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$341' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_delay3' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_delay3' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$342' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_fir_valid' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_fir_valid' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$343' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_fir_data' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_fir_data' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$344' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_fir_keep' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_fir_keep' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$345' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_fir_last' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_fir_last' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$346' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_fir_user' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_fir_user' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$347' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_queue_count' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_queue_count' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$348' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_queue_slot0' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_queue_slot0' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$349' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_queue_slot1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_queue_slot1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$350' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_queue_slot2' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_queue_slot2' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$351' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_smooth_queue_slot3' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_smooth_queue_slot3' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$352' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_slope_delay1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_slope_delay1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$353' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_slope_fir_valid' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_slope_fir_valid' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$354' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_slope_fir_data' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_slope_fir_data' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$355' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_slope_fir_keep' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_slope_fir_keep' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$356' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_slope_fir_last' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_slope_fir_last' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$357' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_slope_fir_user' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_slope_fir_user' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$358' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_slope_queue_count' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_slope_queue_count' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$359' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_slope_queue_slot0' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_slope_queue_slot0' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$360' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_slope_queue_slot1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_slope_queue_slot1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$361' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_curvature_delay1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_curvature_delay1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$362' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_curvature_delay2' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_curvature_delay2' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$363' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_curvature_fir_valid' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_curvature_fir_valid' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$364' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_curvature_fir_data' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_curvature_fir_data' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$365' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_curvature_fir_keep' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_curvature_fir_keep' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$366' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_curvature_fir_last' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_curvature_fir_last' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$367' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_curvature_fir_user' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_curvature_fir_user' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$368' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_curvature_queue_count' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_curvature_queue_count' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$369' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_curvature_queue_slot0' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_curvature_queue_slot0' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$370' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_curvature_queue_slot1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_curvature_queue_slot1' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$371' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_curvature_queue_slot2' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_curvature_queue_slot2' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$372' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_merge_0_0_locked' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_merge_0_0_locked' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$373' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_merge_0_0_selected' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_merge_0_0_selected' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$374' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_merge_0_0_turn' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_merge_0_0_turn' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$375' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_merge_1_0_locked' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_merge_1_0_locked' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$376' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_merge_1_0_selected' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_merge_1_0_selected' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$377' with positive edge clock.
-Creating register for signal `\h_FsFilterBank3.\s_merge_1_0_turn' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Creating register for signal `\h_FsFilterBank3.\s_merge_1_0_turn' using process `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
   created $dff cell `$procdff$378' with positive edge clock.
 
 3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
 3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
-Found and cleaned up 1 empty switch in `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
-Removing empty process `h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:694$210'.
+Found and cleaned up 1 empty switch in `\h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
+Removing empty process `h_FsFilterBank3.$proc$generated/fsharp/FsFilterBank3.v:1066$210'.
 Cleaned up 1 empty switch.
 
 3.11. Executing OPT_EXPR pass (perform const folding).
@@ -204,85 +204,85 @@ Finding identical cells in module `\h_FsFilterBank3'.
 Removed a total of 0 cells.
 
 4.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$377 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:600$206_Y, Q = \s_merge_1_0_selected, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$379 ($sdff) from module h_FsFilterBank3 (D = \n_196, Q = \s_merge_1_0_selected).
-Adding SRST signal on $procdff$337 ($dff) from module h_FsFilterBank3 (D = \n_12, Q = \s_fanout_accepted0, rval = 1'0).
-Adding SRST signal on $procdff$338 ($dff) from module h_FsFilterBank3 (D = \n_20, Q = \s_fanout_accepted1, rval = 1'0).
-Adding SRST signal on $procdff$339 ($dff) from module h_FsFilterBank3 (D = \n_28, Q = \s_fanout_accepted2, rval = 1'0).
-Adding SRST signal on $procdff$340 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:405$32_Y, Q = \s_smooth_delay1, rval = 16'0000000000000000).
+Adding SRST signal on $procdff$377 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:972$206_Y, Q = \s_merge_1_0_selected, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$379 ($sdff) from module h_FsFilterBank3 (D = \n_mux_196, Q = \s_merge_1_0_selected).
+Adding SRST signal on $procdff$337 ($dff) from module h_FsFilterBank3 (D = \n_or_12, Q = \s_fanout_accepted0, rval = 1'0).
+Adding SRST signal on $procdff$338 ($dff) from module h_FsFilterBank3 (D = \n_or_20, Q = \s_fanout_accepted1, rval = 1'0).
+Adding SRST signal on $procdff$339 ($dff) from module h_FsFilterBank3 (D = \n_or_28, Q = \s_fanout_accepted2, rval = 1'0).
+Adding SRST signal on $procdff$340 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:777$32_Y, Q = \s_smooth_delay1, rval = 16'0000000000000000).
 Adding EN signal on $auto$ff.cc:266:slice$390 ($sdff) from module h_FsFilterBank3 (D = \s_fanout_0_tdata, Q = \s_smooth_delay1).
-Adding SRST signal on $procdff$341 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:407$34_Y, Q = \s_smooth_delay2, rval = 16'0000000000000000).
+Adding SRST signal on $procdff$341 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:779$34_Y, Q = \s_smooth_delay2, rval = 16'0000000000000000).
 Adding EN signal on $auto$ff.cc:266:slice$392 ($sdff) from module h_FsFilterBank3 (D = \s_smooth_delay1, Q = \s_smooth_delay2).
-Adding SRST signal on $procdff$342 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:409$36_Y, Q = \s_smooth_delay3, rval = 16'0000000000000000).
+Adding SRST signal on $procdff$342 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:781$36_Y, Q = \s_smooth_delay3, rval = 16'0000000000000000).
 Adding EN signal on $auto$ff.cc:266:slice$394 ($sdff) from module h_FsFilterBank3 (D = \s_smooth_delay2, Q = \s_smooth_delay3).
-Adding SRST signal on $procdff$343 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:415$42_Y, Q = \s_smooth_fir_valid, rval = 1'0).
+Adding SRST signal on $procdff$343 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:787$42_Y, Q = \s_smooth_fir_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$396 ($sdff) from module h_FsFilterBank3 (D = \s_fanout_0_tvalid, Q = \s_smooth_fir_valid).
-Adding SRST signal on $procdff$358 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:489$106_Y, Q = \s_slope_fir_user, rval = 8'00000000).
+Adding SRST signal on $procdff$358 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:861$106_Y, Q = \s_slope_fir_user, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$398 ($sdff) from module h_FsFilterBank3 (D = \s_fanout_1_tuser, Q = \s_slope_fir_user).
-Adding SRST signal on $procdff$344 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:429$52_Y, Q = \s_smooth_fir_data, rval = 0).
-Adding EN signal on $auto$ff.cc:266:slice$400 ($sdff) from module h_FsFilterBank3 (D = \n_54, Q = \s_smooth_fir_data).
-Adding SRST signal on $procdff$357 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:488$105_Y, Q = \s_slope_fir_last, rval = 1'0).
+Adding SRST signal on $procdff$344 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:801$52_Y, Q = \s_smooth_fir_data, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$400 ($sdff) from module h_FsFilterBank3 (D = \n_add_54, Q = \s_smooth_fir_data).
+Adding SRST signal on $procdff$357 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:860$105_Y, Q = \s_slope_fir_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$402 ($sdff) from module h_FsFilterBank3 (D = \s_fanout_1_tlast, Q = \s_slope_fir_last).
-Adding SRST signal on $procdff$345 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:430$53_Y, Q = \s_smooth_fir_keep, rval = 4'0000).
+Adding SRST signal on $procdff$345 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:802$53_Y, Q = \s_smooth_fir_keep, rval = 4'0000).
 Adding EN signal on $auto$ff.cc:266:slice$404 ($sdff) from module h_FsFilterBank3 (D = 4'1111, Q = \s_smooth_fir_keep).
-Adding SRST signal on $procdff$376 ($dff) from module h_FsFilterBank3 (D = \n_224, Q = \s_merge_1_0_locked, rval = 1'0).
-Adding SRST signal on $procdff$375 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:588$194_Y, Q = \s_merge_0_0_turn, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$409 ($sdff) from module h_FsFilterBank3 (D = \n_213, Q = \s_merge_0_0_turn).
-Adding SRST signal on $procdff$374 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:585$191_Y, Q = \s_merge_0_0_selected, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$411 ($sdff) from module h_FsFilterBank3 (D = \n_94, Q = \s_merge_0_0_selected).
-Adding SRST signal on $procdff$373 ($dff) from module h_FsFilterBank3 (D = \n_209, Q = \s_merge_0_0_locked, rval = 1'0).
-Adding SRST signal on $procdff$378 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:603$209_Y, Q = \s_merge_1_0_turn, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$416 ($sdff) from module h_FsFilterBank3 (D = \n_228, Q = \s_merge_1_0_turn).
-Adding SRST signal on $procdff$346 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:431$54_Y, Q = \s_smooth_fir_last, rval = 1'0).
+Adding SRST signal on $procdff$376 ($dff) from module h_FsFilterBank3 (D = \n_mux_224, Q = \s_merge_1_0_locked, rval = 1'0).
+Adding SRST signal on $procdff$375 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:960$194_Y, Q = \s_merge_0_0_turn, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$409 ($sdff) from module h_FsFilterBank3 (D = \n_not_213, Q = \s_merge_0_0_turn).
+Adding SRST signal on $procdff$374 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:957$191_Y, Q = \s_merge_0_0_selected, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$411 ($sdff) from module h_FsFilterBank3 (D = \n_mux_94, Q = \s_merge_0_0_selected).
+Adding SRST signal on $procdff$373 ($dff) from module h_FsFilterBank3 (D = \n_mux_209, Q = \s_merge_0_0_locked, rval = 1'0).
+Adding SRST signal on $procdff$378 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:975$209_Y, Q = \s_merge_1_0_turn, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$416 ($sdff) from module h_FsFilterBank3 (D = \n_not_228, Q = \s_merge_1_0_turn).
+Adding SRST signal on $procdff$346 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:803$54_Y, Q = \s_smooth_fir_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$418 ($sdff) from module h_FsFilterBank3 (D = \s_fanout_0_tlast, Q = \s_smooth_fir_last).
-Adding SRST signal on $procdff$347 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:432$55_Y, Q = \s_smooth_fir_user, rval = 8'00000000).
+Adding SRST signal on $procdff$347 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:804$55_Y, Q = \s_smooth_fir_user, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$420 ($sdff) from module h_FsFilterBank3 (D = \s_fanout_0_tuser, Q = \s_smooth_fir_user).
-Adding SRST signal on $procdff$356 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:487$104_Y, Q = \s_slope_fir_keep, rval = 4'0000).
+Adding SRST signal on $procdff$356 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:859$104_Y, Q = \s_slope_fir_keep, rval = 4'0000).
 Adding EN signal on $auto$ff.cc:266:slice$422 ($sdff) from module h_FsFilterBank3 (D = 4'1111, Q = \s_slope_fir_keep).
-Adding SRST signal on $procdff$348 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:438$61_Y, Q = \s_smooth_queue_count, rval = 3'000).
-Adding EN signal on $auto$ff.cc:266:slice$424 ($sdff) from module h_FsFilterBank3 (D = \n_63, Q = \s_smooth_queue_count).
-Adding SRST signal on $procdff$349 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:451$71_Y, Q = \s_smooth_queue_slot0, rval = 45'000000000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$426 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:451$71_Y, Q = \s_smooth_queue_slot0).
-Adding SRST signal on $procdff$372 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:565$172_Y, Q = \s_curvature_queue_slot2, rval = 45'000000000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$430 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:565$172_Y, Q = \s_curvature_queue_slot2).
-Adding SRST signal on $procdff$371 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:561$168_Y, Q = \s_curvature_queue_slot1, rval = 45'000000000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$434 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:561$168_Y, Q = \s_curvature_queue_slot1).
-Adding SRST signal on $procdff$370 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:557$164_Y, Q = \s_curvature_queue_slot0, rval = 45'000000000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$438 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:557$164_Y, Q = \s_curvature_queue_slot0).
-Adding SRST signal on $procdff$369 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:544$154_Y, Q = \s_curvature_queue_count, rval = 2'00).
-Adding EN signal on $auto$ff.cc:266:slice$442 ($sdff) from module h_FsFilterBank3 (D = \n_169, Q = \s_curvature_queue_count).
-Adding SRST signal on $procdff$350 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:455$75_Y, Q = \s_smooth_queue_slot1, rval = 45'000000000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$444 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:455$75_Y, Q = \s_smooth_queue_slot1).
-Adding SRST signal on $procdff$351 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:459$79_Y, Q = \s_smooth_queue_slot2, rval = 45'000000000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$448 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:459$79_Y, Q = \s_smooth_queue_slot2).
-Adding SRST signal on $procdff$355 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:486$103_Y, Q = \s_slope_fir_data, rval = 0).
-Adding EN signal on $auto$ff.cc:266:slice$452 ($sdff) from module h_FsFilterBank3 (D = \n_111, Q = \s_slope_fir_data).
-Adding SRST signal on $procdff$354 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:478$97_Y, Q = \s_slope_fir_valid, rval = 1'0).
+Adding SRST signal on $procdff$348 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:810$61_Y, Q = \s_smooth_queue_count, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$424 ($sdff) from module h_FsFilterBank3 (D = \n_mux_63, Q = \s_smooth_queue_count).
+Adding SRST signal on $procdff$349 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:823$71_Y, Q = \s_smooth_queue_slot0, rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$426 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:823$71_Y, Q = \s_smooth_queue_slot0).
+Adding SRST signal on $procdff$372 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:937$172_Y, Q = \s_curvature_queue_slot2, rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$430 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:937$172_Y, Q = \s_curvature_queue_slot2).
+Adding SRST signal on $procdff$371 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:933$168_Y, Q = \s_curvature_queue_slot1, rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$434 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:933$168_Y, Q = \s_curvature_queue_slot1).
+Adding SRST signal on $procdff$370 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:929$164_Y, Q = \s_curvature_queue_slot0, rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$438 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:929$164_Y, Q = \s_curvature_queue_slot0).
+Adding SRST signal on $procdff$369 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:916$154_Y, Q = \s_curvature_queue_count, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$442 ($sdff) from module h_FsFilterBank3 (D = \n_mux_169, Q = \s_curvature_queue_count).
+Adding SRST signal on $procdff$350 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:827$75_Y, Q = \s_smooth_queue_slot1, rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$444 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:827$75_Y, Q = \s_smooth_queue_slot1).
+Adding SRST signal on $procdff$351 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:831$79_Y, Q = \s_smooth_queue_slot2, rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$448 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:831$79_Y, Q = \s_smooth_queue_slot2).
+Adding SRST signal on $procdff$355 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:858$103_Y, Q = \s_slope_fir_data, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$452 ($sdff) from module h_FsFilterBank3 (D = \n_add_111, Q = \s_slope_fir_data).
+Adding SRST signal on $procdff$354 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:850$97_Y, Q = \s_slope_fir_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$454 ($sdff) from module h_FsFilterBank3 (D = \s_fanout_1_tvalid, Q = \s_slope_fir_valid).
-Adding SRST signal on $procdff$352 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:463$83_Y, Q = \s_smooth_queue_slot3, rval = 45'000000000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$456 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:463$83_Y, Q = \s_smooth_queue_slot3).
-Adding SRST signal on $procdff$368 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:538$148_Y, Q = \s_curvature_fir_user, rval = 8'00000000).
+Adding SRST signal on $procdff$352 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:835$83_Y, Q = \s_smooth_queue_slot3, rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$456 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:835$83_Y, Q = \s_smooth_queue_slot3).
+Adding SRST signal on $procdff$368 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:910$148_Y, Q = \s_curvature_fir_user, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$460 ($sdff) from module h_FsFilterBank3 (D = \s_fanout_2_tuser, Q = \s_curvature_fir_user).
-Adding SRST signal on $procdff$367 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:537$147_Y, Q = \s_curvature_fir_last, rval = 1'0).
+Adding SRST signal on $procdff$367 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:909$147_Y, Q = \s_curvature_fir_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$462 ($sdff) from module h_FsFilterBank3 (D = \s_fanout_2_tlast, Q = \s_curvature_fir_last).
-Adding SRST signal on $procdff$366 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:536$146_Y, Q = \s_curvature_fir_keep, rval = 4'0000).
+Adding SRST signal on $procdff$366 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:908$146_Y, Q = \s_curvature_fir_keep, rval = 4'0000).
 Adding EN signal on $auto$ff.cc:266:slice$464 ($sdff) from module h_FsFilterBank3 (D = 4'1111, Q = \s_curvature_fir_keep).
-Adding SRST signal on $procdff$365 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:535$145_Y, Q = \s_curvature_fir_data, rval = 0).
-Adding EN signal on $auto$ff.cc:266:slice$466 ($sdff) from module h_FsFilterBank3 (D = \n_160, Q = \s_curvature_fir_data).
-Adding SRST signal on $procdff$364 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:524$137_Y, Q = \s_curvature_fir_valid, rval = 1'0).
+Adding SRST signal on $procdff$365 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:907$145_Y, Q = \s_curvature_fir_data, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$466 ($sdff) from module h_FsFilterBank3 (D = \n_add_160, Q = \s_curvature_fir_data).
+Adding SRST signal on $procdff$364 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:896$137_Y, Q = \s_curvature_fir_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$468 ($sdff) from module h_FsFilterBank3 (D = \s_fanout_2_tvalid, Q = \s_curvature_fir_valid).
-Adding SRST signal on $procdff$353 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:472$91_Y, Q = \s_slope_delay1, rval = 16'0000000000000000).
+Adding SRST signal on $procdff$353 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:844$91_Y, Q = \s_slope_delay1, rval = 16'0000000000000000).
 Adding EN signal on $auto$ff.cc:266:slice$470 ($sdff) from module h_FsFilterBank3 (D = \s_fanout_1_tdata, Q = \s_slope_delay1).
-Adding SRST signal on $procdff$363 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:518$131_Y, Q = \s_curvature_delay2, rval = 16'0000000000000000).
+Adding SRST signal on $procdff$363 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:890$131_Y, Q = \s_curvature_delay2, rval = 16'0000000000000000).
 Adding EN signal on $auto$ff.cc:266:slice$472 ($sdff) from module h_FsFilterBank3 (D = \s_curvature_delay1, Q = \s_curvature_delay2).
-Adding SRST signal on $procdff$362 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:516$129_Y, Q = \s_curvature_delay1, rval = 16'0000000000000000).
+Adding SRST signal on $procdff$362 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:888$129_Y, Q = \s_curvature_delay1, rval = 16'0000000000000000).
 Adding EN signal on $auto$ff.cc:266:slice$474 ($sdff) from module h_FsFilterBank3 (D = \s_fanout_2_tdata, Q = \s_curvature_delay1).
-Adding SRST signal on $procdff$361 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:512$126_Y, Q = \s_slope_queue_slot1, rval = 45'000000000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$476 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:512$126_Y, Q = \s_slope_queue_slot1).
-Adding SRST signal on $procdff$360 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:508$122_Y, Q = \s_slope_queue_slot0, rval = 45'000000000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$480 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:508$122_Y, Q = \s_slope_queue_slot0).
-Adding SRST signal on $procdff$359 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:495$112_Y, Q = \s_slope_queue_count, rval = 2'00).
-Adding EN signal on $auto$ff.cc:266:slice$484 ($sdff) from module h_FsFilterBank3 (D = \n_120, Q = \s_slope_queue_count).
+Adding SRST signal on $procdff$361 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:884$126_Y, Q = \s_slope_queue_slot1, rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$476 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:884$126_Y, Q = \s_slope_queue_slot1).
+Adding SRST signal on $procdff$360 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:880$122_Y, Q = \s_slope_queue_slot0, rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$480 ($sdff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:880$122_Y, Q = \s_slope_queue_slot0).
+Adding SRST signal on $procdff$359 ($dff) from module h_FsFilterBank3 (D = $ternary$generated/fsharp/FsFilterBank3.v:867$112_Y, Q = \s_slope_queue_count, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$484 ($sdff) from module h_FsFilterBank3 (D = \n_mux_120, Q = \s_slope_queue_count).
 
 4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \h_FsFilterBank3..
@@ -352,11 +352,75 @@ Optimizing module h_FsFilterBank3.
 
 4.23. Finished OPT passes. (There is nothing left to do.)
 
-5. Executing CHECK pass (checking for obvious problems).
+5. Executing MEMORY pass.
+
+5.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+5.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+5.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+5.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+5.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+5.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsFilterBank3..
+
+5.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+5.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+5.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsFilterBank3..
+
+5.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsFilterBank3.
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsFilterBank3'.
+Removed a total of 0 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsFilterBank3..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsFilterBank3.
+Performed a total of 0 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsFilterBank3'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsFilterBank3..
+
+6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsFilterBank3.
+
+6.9. Finished OPT passes. (There is nothing left to do.)
+
+7. Executing CHECK pass (checking for obvious problems).
 Checking module h_FsFilterBank3...
 Found and reported 0 problems.
 
-6. Printing statistics.
+8. Printing statistics.
 
 === h_FsFilterBank3 ===
 
@@ -384,9 +448,9 @@ Found and reported 0 problems.
      $sub                            3
      $xor                            3
 
-7. Executing Verilog backend.
+9. Executing Verilog backend.
 
-7.1. Executing BMUXMAP pass.
+9.1. Executing BMUXMAP pass.
 
-7.2. Executing DEMUXMAP pass.
+9.2. Executing DEMUXMAP pass.
 Dumping module `\h_FsFilterBank3'.

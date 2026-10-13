@@ -25,7 +25,7 @@ Removed 1 dead cases from process $proc$generated/RomReciprocalMantissa.v:0$35 i
 Marked 1 switch rules as full_case in process $proc$generated/RomReciprocalMantissa.v:0$35 in module h_RomReciprocalMantissa.
 Removed 1 dead cases from process $proc$generated/RomReciprocalMantissa.v:0$30 in module h_RomReciprocalMantissa.
 Marked 1 switch rules as full_case in process $proc$generated/RomReciprocalMantissa.v:0$30 in module h_RomReciprocalMantissa.
-Marked 1 switch rules as full_case in process $proc$generated/RomReciprocalMantissa.v:652$29 in module h_RomReciprocalMantissa.
+Marked 1 switch rules as full_case in process $proc$generated/RomReciprocalMantissa.v:723$29 in module h_RomReciprocalMantissa.
 Removed a total of 2 dead cases.
 
 3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
@@ -38,10 +38,10 @@ Promoted 6 assignments to connections.
 
 3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
 Creating decoders for process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$35'.
-     1/1: $1\rom_n_8$func$generated/RomReciprocalMantissa.v:609$4.$result[23:0]$39
+     1/1: $1\rom_n_lookup_8$func$generated/RomReciprocalMantissa.v:680$4.$result[23:0]$39
 Creating decoders for process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$30'.
-     1/1: $1\rom_n_7$func$generated/RomReciprocalMantissa.v:608$3.$result[25:0]$34
-Creating decoders for process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
+     1/1: $1\rom_n_lookup_7$func$generated/RomReciprocalMantissa.v:679$3.$result[25:0]$34
+Creating decoders for process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
      1/10: $0\s_math_interpolate_user[7:0]
      2/10: $0\s_math_interpolate_last[0:0]
      3/10: $0\s_math_interpolate_keep[2:0]
@@ -54,33 +54,33 @@ Creating decoders for process `\h_RomReciprocalMantissa.$proc$generated/RomRecip
     10/10: $0\s_math_rom_valid[0:0]
 
 3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
-No latch inferred for signal `\h_RomReciprocalMantissa.\rom_n_8$func$generated/RomReciprocalMantissa.v:609$2.$result' from process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$35'.
-No latch inferred for signal `\h_RomReciprocalMantissa.\rom_n_8$func$generated/RomReciprocalMantissa.v:609$4.$result' from process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$35'.
-No latch inferred for signal `\h_RomReciprocalMantissa.\rom_n_8$func$generated/RomReciprocalMantissa.v:609$4.address' from process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$35'.
-No latch inferred for signal `\h_RomReciprocalMantissa.\rom_n_7$func$generated/RomReciprocalMantissa.v:608$1.$result' from process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$30'.
-No latch inferred for signal `\h_RomReciprocalMantissa.\rom_n_7$func$generated/RomReciprocalMantissa.v:608$3.$result' from process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$30'.
-No latch inferred for signal `\h_RomReciprocalMantissa.\rom_n_7$func$generated/RomReciprocalMantissa.v:608$3.address' from process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$30'.
+No latch inferred for signal `\h_RomReciprocalMantissa.\rom_n_lookup_8$func$generated/RomReciprocalMantissa.v:680$2.$result' from process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$35'.
+No latch inferred for signal `\h_RomReciprocalMantissa.\rom_n_lookup_8$func$generated/RomReciprocalMantissa.v:680$4.$result' from process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$35'.
+No latch inferred for signal `\h_RomReciprocalMantissa.\rom_n_lookup_8$func$generated/RomReciprocalMantissa.v:680$4.address' from process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$35'.
+No latch inferred for signal `\h_RomReciprocalMantissa.\rom_n_lookup_7$func$generated/RomReciprocalMantissa.v:679$1.$result' from process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$30'.
+No latch inferred for signal `\h_RomReciprocalMantissa.\rom_n_lookup_7$func$generated/RomReciprocalMantissa.v:679$3.$result' from process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$30'.
+No latch inferred for signal `\h_RomReciprocalMantissa.\rom_n_lookup_7$func$generated/RomReciprocalMantissa.v:679$3.address' from process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$30'.
 
 3.8. Executing PROC_DFF pass (convert process syncs to FFs).
-Creating register for signal `\h_RomReciprocalMantissa.\s_math_rom_valid' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
+Creating register for signal `\h_RomReciprocalMantissa.\s_math_rom_valid' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
   created $dff cell `$procdff$584' with positive edge clock.
-Creating register for signal `\h_RomReciprocalMantissa.\s_math_rom_data' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
+Creating register for signal `\h_RomReciprocalMantissa.\s_math_rom_data' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
   created $dff cell `$procdff$585' with positive edge clock.
-Creating register for signal `\h_RomReciprocalMantissa.\s_math_rom_keep' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
+Creating register for signal `\h_RomReciprocalMantissa.\s_math_rom_keep' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
   created $dff cell `$procdff$586' with positive edge clock.
-Creating register for signal `\h_RomReciprocalMantissa.\s_math_rom_last' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
+Creating register for signal `\h_RomReciprocalMantissa.\s_math_rom_last' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
   created $dff cell `$procdff$587' with positive edge clock.
-Creating register for signal `\h_RomReciprocalMantissa.\s_math_rom_user' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
+Creating register for signal `\h_RomReciprocalMantissa.\s_math_rom_user' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
   created $dff cell `$procdff$588' with positive edge clock.
-Creating register for signal `\h_RomReciprocalMantissa.\s_math_interpolate_valid' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
+Creating register for signal `\h_RomReciprocalMantissa.\s_math_interpolate_valid' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
   created $dff cell `$procdff$589' with positive edge clock.
-Creating register for signal `\h_RomReciprocalMantissa.\s_math_interpolate_data' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
+Creating register for signal `\h_RomReciprocalMantissa.\s_math_interpolate_data' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
   created $dff cell `$procdff$590' with positive edge clock.
-Creating register for signal `\h_RomReciprocalMantissa.\s_math_interpolate_keep' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
+Creating register for signal `\h_RomReciprocalMantissa.\s_math_interpolate_keep' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
   created $dff cell `$procdff$591' with positive edge clock.
-Creating register for signal `\h_RomReciprocalMantissa.\s_math_interpolate_last' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
+Creating register for signal `\h_RomReciprocalMantissa.\s_math_interpolate_last' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
   created $dff cell `$procdff$592' with positive edge clock.
-Creating register for signal `\h_RomReciprocalMantissa.\s_math_interpolate_user' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
+Creating register for signal `\h_RomReciprocalMantissa.\s_math_interpolate_user' using process `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
   created $dff cell `$procdff$593' with positive edge clock.
 
 3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
@@ -90,8 +90,8 @@ Found and cleaned up 1 empty switch in `\h_RomReciprocalMantissa.$proc$generated
 Removing empty process `h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$35'.
 Found and cleaned up 1 empty switch in `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$30'.
 Removing empty process `h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:0$30'.
-Found and cleaned up 1 empty switch in `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
-Removing empty process `h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:652$29'.
+Found and cleaned up 1 empty switch in `\h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
+Removing empty process `h_RomReciprocalMantissa.$proc$generated/RomReciprocalMantissa.v:723$29'.
 Cleaned up 3 empty switches.
 
 3.11. Executing OPT_EXPR pass (perform const folding).
@@ -125,25 +125,25 @@ Finding identical cells in module `\h_RomReciprocalMantissa'.
 Removed a total of 0 cells.
 
 4.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$593 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:633$28_Y, Q = \s_math_interpolate_user, rval = 8'00000000).
+Adding SRST signal on $procdff$593 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:704$28_Y, Q = \s_math_interpolate_user, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$594 ($sdff) from module h_RomReciprocalMantissa (D = \s_math_rom_tuser, Q = \s_math_interpolate_user).
-Adding SRST signal on $procdff$592 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:632$27_Y, Q = \s_math_interpolate_last, rval = 1'0).
+Adding SRST signal on $procdff$592 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:703$27_Y, Q = \s_math_interpolate_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$596 ($sdff) from module h_RomReciprocalMantissa (D = \s_math_rom_tlast, Q = \s_math_interpolate_last).
-Adding SRST signal on $procdff$591 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:631$26_Y, Q = \s_math_interpolate_keep, rval = 3'000).
+Adding SRST signal on $procdff$591 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:702$26_Y, Q = \s_math_interpolate_keep, rval = 3'000).
 Adding EN signal on $auto$ff.cc:266:slice$598 ($sdff) from module h_RomReciprocalMantissa (D = 3'111, Q = \s_math_interpolate_keep).
-Adding SRST signal on $procdff$590 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:630$25_Y, Q = \s_math_interpolate_data, rval = 24'000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$600 ($sdff) from module h_RomReciprocalMantissa (D = \n_28, Q = \s_math_interpolate_data).
-Adding SRST signal on $procdff$589 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:618$17_Y, Q = \s_math_interpolate_valid, rval = 1'0).
+Adding SRST signal on $procdff$590 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:701$25_Y, Q = \s_math_interpolate_data, rval = 24'000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$600 ($sdff) from module h_RomReciprocalMantissa (D = \n_resize_28, Q = \s_math_interpolate_data).
+Adding SRST signal on $procdff$589 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:689$17_Y, Q = \s_math_interpolate_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$602 ($sdff) from module h_RomReciprocalMantissa (D = \s_math_rom_tvalid, Q = \s_math_interpolate_valid).
-Adding SRST signal on $procdff$588 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:617$16_Y, Q = \s_math_rom_user, rval = 8'00000000).
+Adding SRST signal on $procdff$588 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:688$16_Y, Q = \s_math_rom_user, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$604 ($sdff) from module h_RomReciprocalMantissa (D = \s_s_axis_tuser, Q = \s_math_rom_user).
-Adding SRST signal on $procdff$584 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:605$9_Y, Q = \s_math_rom_valid, rval = 1'0).
+Adding SRST signal on $procdff$584 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:676$9_Y, Q = \s_math_rom_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$606 ($sdff) from module h_RomReciprocalMantissa (D = \s_s_axis_tvalid, Q = \s_math_rom_valid).
-Adding SRST signal on $procdff$585 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:614$13_Y, Q = \s_math_rom_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$608 ($sdff) from module h_RomReciprocalMantissa (D = \n_12, Q = \s_math_rom_data).
-Adding SRST signal on $procdff$586 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:615$14_Y, Q = \s_math_rom_keep, rval = 8'00000000).
+Adding SRST signal on $procdff$585 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:685$13_Y, Q = \s_math_rom_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$608 ($sdff) from module h_RomReciprocalMantissa (D = \n_resize_12, Q = \s_math_rom_data).
+Adding SRST signal on $procdff$586 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:686$14_Y, Q = \s_math_rom_keep, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$610 ($sdff) from module h_RomReciprocalMantissa (D = 8'11111111, Q = \s_math_rom_keep).
-Adding SRST signal on $procdff$587 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:616$15_Y, Q = \s_math_rom_last, rval = 1'0).
+Adding SRST signal on $procdff$587 ($dff) from module h_RomReciprocalMantissa (D = $ternary$generated/RomReciprocalMantissa.v:687$15_Y, Q = \s_math_rom_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$612 ($sdff) from module h_RomReciprocalMantissa (D = \s_s_axis_tlast, Q = \s_math_rom_last).
 
 4.7. Executing OPT_CLEAN pass (remove unused cells and wires).

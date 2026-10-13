@@ -16,14 +16,14 @@ module h_CilDebugCall(
   output wire [0:0] s_fault
 );
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_slt_0;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_1;
+wire [31:0] n_mux_1;
 // Behavioral CIL result from Behavioral.CSharpFunctions.Call; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_2;
-assign n_0 = $signed(s_a) < $signed(s_b);
-assign n_1 = n_0 ? s_a : s_b;
-assign n_2 = n_1 + 32'd3;
-assign s_y = n_2;
+wire [31:0] n_Call_IL_0009_add;
+assign n_slt_0 = $signed(s_a) < $signed(s_b);
+assign n_mux_1 = n_slt_0 ? s_a : s_b;
+assign n_Call_IL_0009_add = n_mux_1 + 32'd3;
+assign s_y = n_Call_IL_0009_add;
 assign s_fault = 1'd0;
 endmodule

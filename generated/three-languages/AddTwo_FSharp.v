@@ -12,7 +12,7 @@ module h_AddTwo(
   output wire [7:0] s_a
 );
 // Operation '+'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_0;
-assign n_0 = s_b + 8'd2;
-assign s_a = n_0;
+wire [7:0] n_add_0;
+assign n_add_0 = s_b + 8'd2;
+assign s_a = n_add_0;
 endmodule

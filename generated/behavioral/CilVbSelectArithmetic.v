@@ -16,53 +16,53 @@ module h_CilVbSelectArithmetic(
   output wire [0:0] s_fault
 );
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_slt_0;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_not_1;
 // SelectArithmetic IL_000c sub.ovf; native 32-bit arithmetic.
-wire [31:0] n_2;
+wire [31:0] n_SelectArithmetic_IL_000c_sub_ovf;
 // SelectArithmetic IL_0006 add.ovf; native 32-bit arithmetic.
-wire [31:0] n_3;
+wire [31:0] n_SelectArithmetic_IL_0006_add_ovf;
 // Behavioral CIL result from Behavioral.VisualBasicFunctions.SelectArithmetic; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_4;
+wire [31:0] n_mux_2;
 // Signed two's-complement extension.
-wire [63:0] n_5;
+wire [63:0] n_signextend_3;
 // Operation '-'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_6;
+wire [63:0] n_sub_4;
 // Signed two's-complement extension.
-wire [63:0] n_7;
+wire [63:0] n_signextend_5;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_8;
+wire [0:0] n_eq_6;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_9;
+wire [0:0] n_not_7;
 // Signed two's-complement extension.
-wire [63:0] n_10;
+wire [63:0] n_signextend_8;
 // Operation '+'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_11;
+wire [63:0] n_add_9;
 // Signed two's-complement extension.
-wire [63:0] n_12;
+wire [63:0] n_signextend_10;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_13;
+wire [0:0] n_eq_11;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_14;
+wire [0:0] n_not_12;
 // CIL arithmetic fault: checked overflow, divide exception, or assertion failure on the selected execution path. Reset/exception handlers are not synthesized.
-wire [0:0] n_15;
-assign n_0 = $signed(s_b) < $signed(s_a);
-assign n_1 = ~n_0;
-assign n_2 = s_b - 32'd1;
-assign n_3 = s_a + 32'd2;
-assign n_4 = n_1 ? n_2 : n_3;
-assign n_5 = $signed(s_b);
-assign n_6 = n_5 - 64'd1;
-assign n_7 = $signed(n_2);
-assign n_8 = n_6 == n_7;
-assign n_9 = ~n_8;
-assign n_10 = $signed(s_a);
-assign n_11 = n_10 + 64'd2;
-assign n_12 = $signed(n_3);
-assign n_13 = n_11 == n_12;
-assign n_14 = ~n_13;
-assign n_15 = n_1 ? n_9 : n_14;
-assign s_y = n_4;
-assign s_fault = n_15;
+wire [0:0] n_mux_13;
+assign n_slt_0 = $signed(s_b) < $signed(s_a);
+assign n_not_1 = ~n_slt_0;
+assign n_SelectArithmetic_IL_000c_sub_ovf = s_b - 32'd1;
+assign n_SelectArithmetic_IL_0006_add_ovf = s_a + 32'd2;
+assign n_mux_2 = n_not_1 ? n_SelectArithmetic_IL_000c_sub_ovf : n_SelectArithmetic_IL_0006_add_ovf;
+assign n_signextend_3 = $signed(s_b);
+assign n_sub_4 = n_signextend_3 - 64'd1;
+assign n_signextend_5 = $signed(n_SelectArithmetic_IL_000c_sub_ovf);
+assign n_eq_6 = n_sub_4 == n_signextend_5;
+assign n_not_7 = ~n_eq_6;
+assign n_signextend_8 = $signed(s_a);
+assign n_add_9 = n_signextend_8 + 64'd2;
+assign n_signextend_10 = $signed(n_SelectArithmetic_IL_0006_add_ovf);
+assign n_eq_11 = n_add_9 == n_signextend_10;
+assign n_not_12 = ~n_eq_11;
+assign n_mux_13 = n_not_1 ? n_not_7 : n_not_12;
+assign s_y = n_mux_2;
+assign s_fault = n_mux_13;
 endmodule

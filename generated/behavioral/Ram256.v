@@ -281,20 +281,20 @@ initial begin
   mem_storage[255] = 16'd4335;
 end
 // Unsigned resize: zero extend (or preserve width).
-wire [8:0] n_0;
+wire [8:0] n_resize_0;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_lt_1;
 // Operation 'memory'; result limited to 16 bits. Signed interpretation only for slt/asr/signextend.
-wire [15:0] n_2;
+wire [15:0] n_memory_2;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_3;
+wire [15:0] n_mux_3;
 // Select true operand when condition is 1; false operand otherwise.
-wire [15:0] n_4;
-assign n_0 = s_address;
-assign n_1 = n_0 < 9'd256;
-assign n_2 = mem_storage[s_address];
-assign n_3 = n_1 ? n_2 : 16'd0;
-assign n_4 = s_re ? n_3 : s_storage_read_data;
+wire [15:0] n_mux_4;
+assign n_resize_0 = s_address;
+assign n_lt_1 = n_resize_0 < 9'd256;
+assign n_memory_2 = mem_storage[s_address];
+assign n_mux_3 = n_lt_1 ? n_memory_2 : 16'd0;
+assign n_mux_4 = s_re ? n_mux_3 : s_storage_read_data;
 always @(posedge clk) begin
   if (!rst && s_we && ({1'b0,s_address} < 9'd256))
     mem_storage[s_address] <= s_wd;
@@ -304,7 +304,7 @@ always @(posedge clk) begin
   if (rst) begin
     s_storage_read_data <= 16'd0;
   end else begin
-    s_storage_read_data <= n_4;
+    s_storage_read_data <= n_mux_4;
   end
 end
 endmodule

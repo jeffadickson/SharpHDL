@@ -474,32 +474,32 @@ Finding identical cells in module `\h_Divide8SignedIterativeNearestEvenSaturate'
 Removed a total of 0 cells.
 
 3.12.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$567 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_83, Q = \s_div_user, rval = 4'0000).
+Adding SRST signal on $procdff$567 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_83, Q = \s_div_user, rval = 4'0000).
 Adding EN signal on $auto$ff.cc:266:slice$568 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \s_input_tuser, Q = \s_div_user).
-Adding SRST signal on $procdff$566 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_82, Q = \s_div_last, rval = 1'0).
+Adding SRST signal on $procdff$566 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_82, Q = \s_div_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$570 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \s_input_tlast, Q = \s_div_last).
-Adding SRST signal on $procdff$565 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_81, Q = \s_div_result, rval = 24'000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$572 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = { 5'00000 \n_63 \n_61 \n_71 \n_76 }, Q = \s_div_result).
-Adding SRST signal on $procdff$564 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_46, Q = \s_div_index, rval = 3'000).
-Adding EN signal on $auto$ff.cc:266:slice$574 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_45, Q = \s_div_index).
-Adding SRST signal on $procdff$563 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_44, Q = \s_div_negative_q, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$578 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_43, Q = \s_div_negative_q).
-Adding SRST signal on $procdff$562 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_42, Q = \s_div_sign_a, rval = 1'0).
+Adding SRST signal on $procdff$565 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_81, Q = \s_div_result, rval = 24'000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$572 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = { 5'00000 \n_and_63 \n_eq_61 \n_mux_71 \n_mux_76 }, Q = \s_div_result).
+Adding SRST signal on $procdff$564 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_46, Q = \s_div_index, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$574 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_add_45, Q = \s_div_index).
+Adding SRST signal on $procdff$563 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_44, Q = \s_div_negative_q, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$578 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_xor_43, Q = \s_div_negative_q).
+Adding SRST signal on $procdff$562 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_42, Q = \s_div_sign_a, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$580 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \s_input_tdata [7], Q = \s_div_sign_a).
-Adding SRST signal on $procdff$561 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_41, Q = \s_div_original_a, rval = 8'00000000).
+Adding SRST signal on $procdff$561 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_41, Q = \s_div_original_a, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$582 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \s_input_tdata [7:0], Q = \s_div_original_a).
-Adding SRST signal on $procdff$560 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_39, Q = \s_div_r, rval = 9'000000000).
-Adding EN signal on $auto$ff.cc:266:slice$584 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_38, Q = \s_div_r).
-Adding SRST signal on $procdff$559 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_34, Q = \s_div_q, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$588 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_33, Q = \s_div_q).
-Adding SRST signal on $procdff$558 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_23, Q = \s_div_abs_b, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$592 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_22, Q = \s_div_abs_b).
-Adding SRST signal on $procdff$557 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_18, Q = \s_div_shift_a, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$594 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_18, Q = \s_div_shift_a).
-Adding SRST signal on $procdff$556 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_11, Q = \s_div_valid, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$598 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_11, Q = \s_div_valid).
-Adding SRST signal on $procdff$555 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_8, Q = \s_div_busy, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$602 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_8, Q = \s_div_busy).
+Adding SRST signal on $procdff$560 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_39, Q = \s_div_r, rval = 9'000000000).
+Adding EN signal on $auto$ff.cc:266:slice$584 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_38, Q = \s_div_r).
+Adding SRST signal on $procdff$559 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_34, Q = \s_div_q, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$588 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_or_33, Q = \s_div_q).
+Adding SRST signal on $procdff$558 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_23, Q = \s_div_abs_b, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$592 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_22, Q = \s_div_abs_b).
+Adding SRST signal on $procdff$557 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_18, Q = \s_div_shift_a, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$594 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_18, Q = \s_div_shift_a).
+Adding SRST signal on $procdff$556 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_11, Q = \s_div_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$598 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_11, Q = \s_div_valid).
+Adding SRST signal on $procdff$555 ($dff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_8, Q = \s_div_busy, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$602 ($sdff) from module h_Divide8SignedIterativeNearestEvenSaturate (D = \n_mux_8, Q = \s_div_busy).
 Setting constant 0-bit at position 19 on $auto$ff.cc:266:slice$573 ($sdffe) from module h_Divide8SignedIterativeNearestEvenSaturate.
 Setting constant 0-bit at position 20 on $auto$ff.cc:266:slice$573 ($sdffe) from module h_Divide8SignedIterativeNearestEvenSaturate.
 Setting constant 0-bit at position 21 on $auto$ff.cc:266:slice$573 ($sdffe) from module h_Divide8SignedIterativeNearestEvenSaturate.
@@ -593,7 +593,7 @@ Removed top 1 bits (of 8) from FF cell h_Divide8SignedIterativeNearestEvenSatura
 Removed top 1 bits (of 9) from FF cell h_Divide8SignedIterativeNearestEvenSaturate.$auto$ff.cc:266:slice$587 ($sdffe).
 Removed top 1 bits (of 9) from port Y of cell h_Divide8SignedIterativeNearestEvenSaturate.$sub$generated/Divide8SignedIterativeNearestEvenSaturate.v:312$64 ($sub).
 Removed top 1 bits (of 9) from port B of cell h_Divide8SignedIterativeNearestEvenSaturate.$sub$generated/Divide8SignedIterativeNearestEvenSaturate.v:312$64 ($sub).
-Removed top 1 bits (of 9) from wire h_Divide8SignedIterativeNearestEvenSaturate.n_72.
+Removed top 1 bits (of 9) from wire h_Divide8SignedIterativeNearestEvenSaturate.n_sub_72.
 Removed top 1 bits (of 8) from wire h_Divide8SignedIterativeNearestEvenSaturate.s_div_q.
 Removed top 1 bits (of 9) from wire h_Divide8SignedIterativeNearestEvenSaturate.s_div_r.
 Removed top 5 bits (of 24) from wire h_Divide8SignedIterativeNearestEvenSaturate.s_div_result.
@@ -1204,7 +1204,7 @@ No more expansions possible.
 Removed 0 unused cells and 441 unused wires.
 
 3.45. Executing AUTONAME pass.
-Renamed 1642 objects in module h_Divide8SignedIterativeNearestEvenSaturate (13 iterations).
+Renamed 1439 objects in module h_Divide8SignedIterativeNearestEvenSaturate (12 iterations).
 <suppressed ~393 debug messages>
 
 3.46. Executing HIERARCHY pass (managing design hierarchy).

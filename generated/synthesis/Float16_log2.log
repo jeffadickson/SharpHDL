@@ -37,17 +37,17 @@ Promoted 6 assignments to connections.
 
 3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
 Creating decoders for process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$726'.
-     1/1: $1\rom_n_21$func$generated/Float16_log2.v:3797$4.$result[40:0]$730
+     1/1: $1\rom_n_lookup_21$func$generated/Float16_log2.v:3797$4.$result[40:0]$730
 Creating decoders for process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$721'.
-     1/1: $1\rom_n_20$func$generated/Float16_log2.v:3796$3.$result[39:0]$725
+     1/1: $1\rom_n_lookup_20$func$generated/Float16_log2.v:3796$3.$result[39:0]$725
 
 3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
-No latch inferred for signal `\h_Float16_log2.\rom_n_21$func$generated/Float16_log2.v:3797$2.$result' from process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$726'.
-No latch inferred for signal `\h_Float16_log2.\rom_n_21$func$generated/Float16_log2.v:3797$4.$result' from process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$726'.
-No latch inferred for signal `\h_Float16_log2.\rom_n_21$func$generated/Float16_log2.v:3797$4.address' from process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$726'.
-No latch inferred for signal `\h_Float16_log2.\rom_n_20$func$generated/Float16_log2.v:3796$1.$result' from process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$721'.
-No latch inferred for signal `\h_Float16_log2.\rom_n_20$func$generated/Float16_log2.v:3796$3.$result' from process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$721'.
-No latch inferred for signal `\h_Float16_log2.\rom_n_20$func$generated/Float16_log2.v:3796$3.address' from process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$721'.
+No latch inferred for signal `\h_Float16_log2.\rom_n_lookup_21$func$generated/Float16_log2.v:3797$2.$result' from process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$726'.
+No latch inferred for signal `\h_Float16_log2.\rom_n_lookup_21$func$generated/Float16_log2.v:3797$4.$result' from process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$726'.
+No latch inferred for signal `\h_Float16_log2.\rom_n_lookup_21$func$generated/Float16_log2.v:3797$4.address' from process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$726'.
+No latch inferred for signal `\h_Float16_log2.\rom_n_lookup_20$func$generated/Float16_log2.v:3796$1.$result' from process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$721'.
+No latch inferred for signal `\h_Float16_log2.\rom_n_lookup_20$func$generated/Float16_log2.v:3796$3.$result' from process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$721'.
+No latch inferred for signal `\h_Float16_log2.\rom_n_lookup_20$func$generated/Float16_log2.v:3796$3.address' from process `\h_Float16_log2.$proc$generated/Float16_log2.v:0$721'.
 
 3.8. Executing PROC_DFF pass (convert process syncs to FFs).
 
@@ -79,20 +79,20 @@ Removed a total of 1025 cells.
 Running muxtree optimizer on module \h_Float16_log2..
   Creating internal representation of mux trees.
   Evaluating internal representation of mux trees.
-      Replacing known input bits on port A of cell $ternary$generated/Float16_log2.v:4617$717: \n_829 -> { 1'0 \n_829 [10:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4617$717: \n_840 -> { \n_840 [11] 1'1 \n_840 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4552$655: \n_745 -> { 2'01 \n_745 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4551$654: \n_747 -> { 2'01 \n_747 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4550$653: \n_749 -> { 2'01 \n_749 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4549$652: \n_751 -> { 2'01 \n_751 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4548$651: \n_753 -> { 2'01 \n_753 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4547$650: \n_755 -> { 2'01 \n_755 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4546$649: \n_757 -> { 2'01 \n_757 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4545$648: \n_759 -> { 2'01 \n_759 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4544$647: \n_761 -> { 2'01 \n_761 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4543$646: \n_763 -> { 2'01 \n_763 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4542$645: \n_765 -> { 2'01 \n_765 [9:0] }
-      Replacing known input bits on port A of cell $ternary$generated/Float16_log2.v:3809$29: \n_30 -> { 1'0 \n_30 [62:0] }
+      Replacing known input bits on port A of cell $ternary$generated/Float16_log2.v:4617$717: \n_mux_829 -> { 1'0 \n_mux_829 [10:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4617$717: \n_shr_840 -> { \n_shr_840 [11] 1'1 \n_shr_840 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4552$655: \n_shl_745 -> { 2'01 \n_shl_745 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4551$654: \n_shl_747 -> { 2'01 \n_shl_747 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4550$653: \n_shl_749 -> { 2'01 \n_shl_749 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4549$652: \n_shl_751 -> { 2'01 \n_shl_751 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4548$651: \n_shl_753 -> { 2'01 \n_shl_753 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4547$650: \n_shl_755 -> { 2'01 \n_shl_755 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4546$649: \n_shl_757 -> { 2'01 \n_shl_757 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4545$648: \n_shl_759 -> { 2'01 \n_shl_759 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4544$647: \n_shl_761 -> { 2'01 \n_shl_761 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4543$646: \n_shl_763 -> { 2'01 \n_shl_763 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_log2.v:4542$645: \n_shl_765 -> { 2'01 \n_shl_765 [9:0] }
+      Replacing known input bits on port A of cell $ternary$generated/Float16_log2.v:3809$29: \n_add_30 -> { 1'0 \n_add_30 [62:0] }
   Analyzing evaluation results.
     dead port 1/1025 on $pmux $procmux$731.
     dead port 2/1025 on $pmux $procmux$731.
@@ -1197,3 +1197,35 @@ Optimizing module h_Float16_log2.
 4.23. Finished OPT passes. (There is nothing left to do.)
 
 5. Executing CHECK pass (checking for obvious problems).
+Checking module h_Float16_log2...
+Found and reported 0 problems.
+
+6. Printing statistics.
+
+=== h_Float16_log2 ===
+
+   Number of wires:               1875
+   Number of wire bits:          11273
+   Number of public wires:         851
+   Number of public wire bits:   10249
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               1433
+     $add                           57
+     $and                           54
+     $eq                          1024
+     $logic_not                     54
+     $lt                             2
+     $mux                          132
+     $not                           52
+     $or                            55
+     $pmux                           1
+     $sub                            2
+
+7. Executing Verilog backend.
+
+7.1. Executing BMUXMAP pass.
+
+7.2. Executing DEMUXMAP pass.
+Dumping module `\h_Float16_log2'.

@@ -16,41 +16,41 @@ module h_CilDebugLoop12(
   output wire [0:0] s_fault
 );
 // Loop12 IL_0007 add; native 32-bit arithmetic.
-wire [31:0] n_0;
+wire [31:0] n_Loop12_IL_0007_add;
 // Loop12 IL_0007 add; native 32-bit arithmetic.
-wire [31:0] n_1;
+wire [31:0] n_Loop12_IL_0007_add_2;
 // Loop12 IL_0007 add; native 32-bit arithmetic.
-wire [31:0] n_2;
+wire [31:0] n_Loop12_IL_0007_add_3;
 // Loop12 IL_0007 add; native 32-bit arithmetic.
-wire [31:0] n_3;
+wire [31:0] n_Loop12_IL_0007_add_4;
 // Loop12 IL_0007 add; native 32-bit arithmetic.
-wire [31:0] n_4;
+wire [31:0] n_Loop12_IL_0007_add_5;
 // Loop12 IL_0007 add; native 32-bit arithmetic.
-wire [31:0] n_5;
+wire [31:0] n_Loop12_IL_0007_add_6;
 // Loop12 IL_0007 add; native 32-bit arithmetic.
-wire [31:0] n_6;
+wire [31:0] n_Loop12_IL_0007_add_7;
 // Loop12 IL_0007 add; native 32-bit arithmetic.
-wire [31:0] n_7;
+wire [31:0] n_Loop12_IL_0007_add_8;
 // Loop12 IL_0007 add; native 32-bit arithmetic.
-wire [31:0] n_8;
+wire [31:0] n_Loop12_IL_0007_add_9;
 // Loop12 IL_0007 add; native 32-bit arithmetic.
-wire [31:0] n_9;
+wire [31:0] n_Loop12_IL_0007_add_10;
 // Loop12 IL_0007 add; native 32-bit arithmetic.
-wire [31:0] n_10;
+wire [31:0] n_Loop12_IL_0007_add_11;
 // Behavioral CIL result from Behavioral.CSharpFunctions.Loop12; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_11;
-assign n_0 = s_a + s_b;
-assign n_1 = n_0 + s_b;
-assign n_2 = n_1 + s_b;
-assign n_3 = n_2 + s_b;
-assign n_4 = n_3 + s_b;
-assign n_5 = n_4 + s_b;
-assign n_6 = n_5 + s_b;
-assign n_7 = n_6 + s_b;
-assign n_8 = n_7 + s_b;
-assign n_9 = n_8 + s_b;
-assign n_10 = n_9 + s_b;
-assign n_11 = n_10 + s_b;
-assign s_y = n_11;
+wire [31:0] n_Loop12_IL_0007_add_12;
+assign n_Loop12_IL_0007_add = s_a + s_b;
+assign n_Loop12_IL_0007_add_2 = n_Loop12_IL_0007_add + s_b;
+assign n_Loop12_IL_0007_add_3 = n_Loop12_IL_0007_add_2 + s_b;
+assign n_Loop12_IL_0007_add_4 = n_Loop12_IL_0007_add_3 + s_b;
+assign n_Loop12_IL_0007_add_5 = n_Loop12_IL_0007_add_4 + s_b;
+assign n_Loop12_IL_0007_add_6 = n_Loop12_IL_0007_add_5 + s_b;
+assign n_Loop12_IL_0007_add_7 = n_Loop12_IL_0007_add_6 + s_b;
+assign n_Loop12_IL_0007_add_8 = n_Loop12_IL_0007_add_7 + s_b;
+assign n_Loop12_IL_0007_add_9 = n_Loop12_IL_0007_add_8 + s_b;
+assign n_Loop12_IL_0007_add_10 = n_Loop12_IL_0007_add_9 + s_b;
+assign n_Loop12_IL_0007_add_11 = n_Loop12_IL_0007_add_10 + s_b;
+assign n_Loop12_IL_0007_add_12 = n_Loop12_IL_0007_add_11 + s_b;
+assign s_y = n_Loop12_IL_0007_add_12;
 assign s_fault = 1'd0;
 endmodule

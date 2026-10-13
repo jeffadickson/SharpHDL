@@ -16,26 +16,26 @@ module h_CilDebugCheckedUnsigned(
   output wire [0:0] s_fault
 );
 // Behavioral CIL result from Behavioral.CSharpFunctions.CheckedUnsigned; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_0;
+wire [31:0] n_CheckedUnsigned_IL_0003_add_ovf_un;
 // Unsigned resize: zero extend (or preserve width).
-wire [63:0] n_1;
+wire [63:0] n_resize_0;
 // Unsigned resize: zero extend (or preserve width).
-wire [63:0] n_2;
+wire [63:0] n_resize_1;
 // Operation '+'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_3;
+wire [63:0] n_add_2;
 // Unsigned resize: zero extend (or preserve width).
-wire [63:0] n_4;
+wire [63:0] n_resize_3;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_5;
+wire [0:0] n_eq_4;
 // CIL arithmetic fault: checked overflow, divide exception, or assertion failure on the selected execution path. Reset/exception handlers are not synthesized.
-wire [0:0] n_6;
-assign n_0 = s_a + s_b;
-assign n_1 = s_a;
-assign n_2 = s_b;
-assign n_3 = n_1 + n_2;
-assign n_4 = n_0;
-assign n_5 = n_3 == n_4;
-assign n_6 = ~n_5;
-assign s_y = n_0;
-assign s_fault = n_6;
+wire [0:0] n_not_5;
+assign n_CheckedUnsigned_IL_0003_add_ovf_un = s_a + s_b;
+assign n_resize_0 = s_a;
+assign n_resize_1 = s_b;
+assign n_add_2 = n_resize_0 + n_resize_1;
+assign n_resize_3 = n_CheckedUnsigned_IL_0003_add_ovf_un;
+assign n_eq_4 = n_add_2 == n_resize_3;
+assign n_not_5 = ~n_eq_4;
+assign s_y = n_CheckedUnsigned_IL_0003_add_ovf_un;
+assign s_fault = n_not_5;
 endmodule

@@ -16,23 +16,23 @@ module h_CilCsHalfRemainder(
   output wire [0:0] s_fault
 );
 // Extract source bits [31:31], rebase to bit 0.
-wire [0:0] n_0;
+wire [0:0] n_bits_31_31_0;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_1;
+wire [31:0] n_mux_1;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_2;
+wire [31:0] n_add_2;
 // Operation 'asr'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_3;
+wire [31:0] n_asr_3;
 // Operation '<<'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_4;
+wire [31:0] n_shl_4;
 // Behavioral CIL result from Behavioral.CSharpFunctions.HalfRemainder; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_5;
-assign n_0 = s_a >> 31;
-assign n_1 = n_0 ? 32'd1 : 32'd0;
-assign n_2 = s_a + n_1;
-assign n_3 = $signed(n_2) >>> 1;
-assign n_4 = n_3 << 1;
-assign n_5 = s_a - n_4;
-assign s_y = n_5;
+wire [31:0] n_sub_5;
+assign n_bits_31_31_0 = s_a >> 31;
+assign n_mux_1 = n_bits_31_31_0 ? 32'd1 : 32'd0;
+assign n_add_2 = s_a + n_mux_1;
+assign n_asr_3 = $signed(n_add_2) >>> 1;
+assign n_shl_4 = n_asr_3 << 1;
+assign n_sub_5 = s_a - n_shl_4;
+assign s_y = n_sub_5;
 assign s_fault = 1'd0;
 endmodule

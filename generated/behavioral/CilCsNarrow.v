@@ -16,26 +16,26 @@ module h_CilCsNarrow(
   output wire [0:0] s_fault
 );
 // Signed two's-complement extension.
-wire [31:0] n_0;
+wire [31:0] n_signextend_0;
 // Signed two's-complement extension.
-wire [31:0] n_1;
+wire [31:0] n_signextend_1;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_slt_2;
 // Narrow IL_000a add; native 32-bit arithmetic.
-wire [31:0] n_3;
+wire [31:0] n_Narrow_IL_000a_add;
 // Narrow IL_0006 sub; native 32-bit arithmetic.
-wire [31:0] n_4;
+wire [31:0] n_Narrow_IL_0006_sub;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_5;
+wire [31:0] n_mux_3;
 // Behavioral CIL result from Behavioral.CSharpFunctions.Narrow; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 8 bits. Undefined when fault=1.
-wire [7:0] n_6;
-assign n_0 = $signed(s_a);
-assign n_1 = $signed(s_b);
-assign n_2 = $signed(n_0) < $signed(n_1);
-assign n_3 = n_0 + 32'd2;
-assign n_4 = n_1 - 32'd1;
-assign n_5 = n_2 ? n_3 : n_4;
-assign n_6 = n_5;
-assign s_y = n_6;
+wire [7:0] n_resize_4;
+assign n_signextend_0 = $signed(s_a);
+assign n_signextend_1 = $signed(s_b);
+assign n_slt_2 = $signed(n_signextend_0) < $signed(n_signextend_1);
+assign n_Narrow_IL_000a_add = n_signextend_0 + 32'd2;
+assign n_Narrow_IL_0006_sub = n_signextend_1 - 32'd1;
+assign n_mux_3 = n_slt_2 ? n_Narrow_IL_000a_add : n_Narrow_IL_0006_sub;
+assign n_resize_4 = n_mux_3;
+assign s_y = n_resize_4;
 assign s_fault = 1'd0;
 endmodule

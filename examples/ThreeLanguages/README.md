@@ -87,9 +87,9 @@ a <- e1
 The actual generated Verilog contains:
 
 ```verilog
-wire [7:0] n_0;
-assign n_0 = s_b + 8'd2;
-assign s_a = n_0;
+wire [7:0] n_add_0;
+assign n_add_0 = s_b + 8'd2;
+assign s_a = n_add_0;
 ```
 
 This is one combinational eight-bit add-by-two network. It is modulo 256:

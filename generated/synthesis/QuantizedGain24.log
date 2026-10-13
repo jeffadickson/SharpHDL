@@ -117,13 +117,13 @@ Finding identical cells in module `\h_QuantizedGain24'.
 Removed a total of 0 cells.
 
 4.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$114 ($dff) from module h_QuantizedGain24 (D = \n_70, Q = \s_output_cut_spill_valid, rval = 1'0).
+Adding SRST signal on $procdff$114 ($dff) from module h_QuantizedGain24 (D = \n_or_70, Q = \s_output_cut_spill_valid, rval = 1'0).
 Adding SRST signal on $procdff$113 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:308$58_Y, Q = \s_output_cut_valid, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$118 ($sdff) from module h_QuantizedGain24 (D = \n_67, Q = \s_output_cut_valid).
+Adding EN signal on $auto$ff.cc:266:slice$118 ($sdff) from module h_QuantizedGain24 (D = \n_or_67, Q = \s_output_cut_valid).
 Adding SRST signal on $procdff$112 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:306$56_Y, Q = \s_output_cut_spill, rval = 36'000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$120 ($sdff) from module h_QuantizedGain24 (D = \n_60, Q = \s_output_cut_spill).
+Adding EN signal on $auto$ff.cc:266:slice$120 ($sdff) from module h_QuantizedGain24 (D = \n_concat_60, Q = \s_output_cut_spill).
 Adding SRST signal on $procdff$111 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:302$52_Y, Q = \s_output_cut_head, rval = 36'000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$122 ($sdff) from module h_QuantizedGain24 (D = \n_61, Q = \s_output_cut_head).
+Adding EN signal on $auto$ff.cc:266:slice$122 ($sdff) from module h_QuantizedGain24 (D = \n_mux_61, Q = \s_output_cut_head).
 Adding SRST signal on $procdff$110 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:289$42_Y, Q = \s_gain_user, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$124 ($sdff) from module h_QuantizedGain24 (D = \s_input_cut_tuser, Q = \s_gain_user).
 Adding SRST signal on $procdff$109 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:288$41_Y, Q = \s_gain_last, rval = 1'0).
@@ -131,16 +131,16 @@ Adding EN signal on $auto$ff.cc:266:slice$126 ($sdff) from module h_QuantizedGai
 Adding SRST signal on $procdff$108 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:287$40_Y, Q = \s_gain_keep, rval = 3'000).
 Adding EN signal on $auto$ff.cc:266:slice$128 ($sdff) from module h_QuantizedGain24 (D = \s_input_cut_tkeep, Q = \s_gain_keep).
 Adding SRST signal on $procdff$107 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:286$39_Y, Q = \s_gain_data, rval = 24'000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$130 ($sdff) from module h_QuantizedGain24 (D = \n_45, Q = \s_gain_data).
+Adding EN signal on $auto$ff.cc:266:slice$130 ($sdff) from module h_QuantizedGain24 (D = \n_resize_45, Q = \s_gain_data).
 Adding SRST signal on $procdff$106 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:266$24_Y, Q = \s_gain_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$132 ($sdff) from module h_QuantizedGain24 (D = \s_input_cut_tvalid, Q = \s_gain_valid).
-Adding SRST signal on $procdff$105 ($dff) from module h_QuantizedGain24 (D = \n_23, Q = \s_input_cut_spill_valid, rval = 1'0).
+Adding SRST signal on $procdff$105 ($dff) from module h_QuantizedGain24 (D = \n_or_23, Q = \s_input_cut_spill_valid, rval = 1'0).
 Adding SRST signal on $procdff$104 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:261$19_Y, Q = \s_input_cut_valid, rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$137 ($sdff) from module h_QuantizedGain24 (D = \n_20, Q = \s_input_cut_valid).
+Adding EN signal on $auto$ff.cc:266:slice$137 ($sdff) from module h_QuantizedGain24 (D = \n_or_20, Q = \s_input_cut_valid).
 Adding SRST signal on $procdff$102 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:255$13_Y, Q = \s_input_cut_head, rval = 36'000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$139 ($sdff) from module h_QuantizedGain24 (D = \n_14, Q = \s_input_cut_head).
+Adding EN signal on $auto$ff.cc:266:slice$139 ($sdff) from module h_QuantizedGain24 (D = \n_mux_14, Q = \s_input_cut_head).
 Adding SRST signal on $procdff$103 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:259$17_Y, Q = \s_input_cut_spill, rval = 36'000000000000000000000000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$141 ($sdff) from module h_QuantizedGain24 (D = \n_13, Q = \s_input_cut_spill).
+Adding EN signal on $auto$ff.cc:266:slice$141 ($sdff) from module h_QuantizedGain24 (D = \n_concat_13, Q = \s_input_cut_spill).
 
 4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \h_QuantizedGain24..

@@ -16,20 +16,20 @@ module h_CilCsSelectArithmetic(
   output wire [0:0] s_fault
 );
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_slt_0;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_not_1;
 // SelectArithmetic IL_000a sub; native 32-bit arithmetic.
-wire [31:0] n_2;
+wire [31:0] n_SelectArithmetic_IL_000a_sub;
 // SelectArithmetic IL_0006 add; native 32-bit arithmetic.
-wire [31:0] n_3;
+wire [31:0] n_SelectArithmetic_IL_0006_add;
 // Behavioral CIL result from Behavioral.CSharpFunctions.SelectArithmetic; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_4;
-assign n_0 = $signed(s_b) < $signed(s_a);
-assign n_1 = ~n_0;
-assign n_2 = s_b - 32'd1;
-assign n_3 = s_a + 32'd2;
-assign n_4 = n_1 ? n_2 : n_3;
-assign s_y = n_4;
+wire [31:0] n_mux_2;
+assign n_slt_0 = $signed(s_b) < $signed(s_a);
+assign n_not_1 = ~n_slt_0;
+assign n_SelectArithmetic_IL_000a_sub = s_b - 32'd1;
+assign n_SelectArithmetic_IL_0006_add = s_a + 32'd2;
+assign n_mux_2 = n_not_1 ? n_SelectArithmetic_IL_000a_sub : n_SelectArithmetic_IL_0006_add;
+assign s_y = n_mux_2;
 assign s_fault = 1'd0;
 endmodule

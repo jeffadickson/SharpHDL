@@ -96,129 +96,129 @@ reg [0:0] s_vb_multiply_last;
 // vb_multiply: registered TUSER metadata [7:0].
 reg [7:0] s_vb_multiply_user;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_not_0;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_or_1;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_not_2;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_3;
+wire [0:0] n_mux_3;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_4;
+wire [0:0] n_and_4;
 // Operation '+'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_5;
+wire [7:0] n_add_5;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_6;
+wire [7:0] n_mux_6;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_7;
+wire [0:0] n_mux_7;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_8;
+wire [0:0] n_mux_8;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_9;
+wire [7:0] n_mux_9;
 // Extract source bits [7:0], rebase to bit 0.
-wire [7:0] n_10;
+wire [7:0] n_bits_7_0_10;
 // Extract source bits [8:8], rebase to bit 0.
-wire [0:0] n_11;
+wire [0:0] n_bits_8_8_11;
 // Extract source bits [9:9], rebase to bit 0.
-wire [0:0] n_12;
+wire [0:0] n_bits_9_9_12;
 // Extract source bits [17:10], rebase to bit 0.
-wire [7:0] n_13;
+wire [7:0] n_bits_17_10_13;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_14;
+wire [0:0] n_not_14;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_15;
+wire [0:0] n_or_15;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_16;
+wire [0:0] n_not_16;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_17;
+wire [0:0] n_or_17;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_18;
+wire [0:0] n_or_18;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_19;
+wire [0:0] n_and_19;
 // Packed bus: [8:8] = high operand; [7:0] = low operand.
-wire [8:0] n_20;
+wire [8:0] n_concat_20;
 // Packed bus: [9:9] = high operand; [8:0] = low operand.
-wire [9:0] n_21;
+wire [9:0] n_concat_21;
 // Packed stream beat: DATA [7:0], KEEP [8:8], LAST [9], USER [17:10].
-wire [17:0] n_22;
+wire [17:0] n_concat_22;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_23;
+wire [17:0] n_mux_23;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_24;
+wire [17:0] n_mux_24;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_25;
+wire [0:0] n_not_25;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_26;
+wire [0:0] n_and_26;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_27;
+wire [0:0] n_and_27;
 // Select true operand when condition is 1; false operand otherwise.
-wire [17:0] n_28;
+wire [17:0] n_mux_28;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_29;
+wire [0:0] n_or_29;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_30;
+wire [0:0] n_mux_30;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_31;
+wire [0:0] n_and_31;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_32;
+wire [0:0] n_or_32;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_33;
+wire [0:0] n_mux_33;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_34;
+wire [0:0] n_mux_34;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_35;
+wire [0:0] n_and_35;
 // Operation '*'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_36;
+wire [7:0] n_mul_36;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_37;
+wire [7:0] n_mux_37;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_38;
+wire [0:0] n_mux_38;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_39;
+wire [0:0] n_mux_39;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_40;
-assign n_0 = ~s_fsharp_add_valid;
-assign n_1 = n_0 | s_fsharp_add_tready;
-assign n_2 = ~s_csharp_skid_spill_valid;
-assign n_3 = n_1 ? s_input_tvalid : s_fsharp_add_valid;
-assign n_4 = n_1 & s_input_tvalid;
-assign n_5 = s_input_tdata + 8'd2;
-assign n_6 = n_4 ? n_5 : s_fsharp_add_data;
-assign n_7 = n_4 ? s_input_tkeep : s_fsharp_add_keep;
-assign n_8 = n_4 ? s_input_tlast : s_fsharp_add_last;
-assign n_9 = n_4 ? s_input_tuser : s_fsharp_add_user;
-assign n_10 = s_csharp_skid_head >> 0;
-assign n_11 = s_csharp_skid_head >> 8;
-assign n_12 = s_csharp_skid_head >> 9;
-assign n_13 = s_csharp_skid_head >> 10;
-assign n_14 = ~s_vb_multiply_valid;
-assign n_15 = n_14 | s_vb_multiply_tready;
-assign n_16 = ~s_csharp_skid_valid;
-assign n_17 = n_16 | s_csharp_skid_tready;
-assign n_18 = s_csharp_skid_spill_valid | s_fsharp_add_tvalid;
-assign n_19 = n_17 & n_18;
-assign n_20 = {s_fsharp_add_tkeep, s_fsharp_add_tdata};
-assign n_21 = {s_fsharp_add_tlast, n_20};
-assign n_22 = {s_fsharp_add_tuser, n_21};
-assign n_23 = s_csharp_skid_spill_valid ? s_csharp_skid_spill : n_22;
-assign n_24 = n_19 ? n_23 : s_csharp_skid_head;
-assign n_25 = ~n_17;
-assign n_26 = s_fsharp_add_tvalid & s_fsharp_add_tready;
-assign n_27 = n_25 & n_26;
-assign n_28 = n_27 ? n_22 : s_csharp_skid_spill;
-assign n_29 = s_csharp_skid_spill_valid | s_fsharp_add_tvalid;
-assign n_30 = n_17 ? n_29 : s_csharp_skid_valid;
-assign n_31 = s_fsharp_add_tvalid & s_fsharp_add_tready;
-assign n_32 = s_csharp_skid_spill_valid | n_31;
-assign n_33 = n_17 ? 1'd0 : n_32;
-assign n_34 = n_15 ? s_csharp_skid_tvalid : s_vb_multiply_valid;
-assign n_35 = n_15 & s_csharp_skid_tvalid;
-assign n_36 = s_csharp_skid_tdata * 8'd3;
-assign n_37 = n_35 ? n_36 : s_vb_multiply_data;
-assign n_38 = n_35 ? s_csharp_skid_tkeep : s_vb_multiply_keep;
-assign n_39 = n_35 ? s_csharp_skid_tlast : s_vb_multiply_last;
-assign n_40 = n_35 ? s_csharp_skid_tuser : s_vb_multiply_user;
-assign s_input_tready = n_1;
+wire [7:0] n_mux_40;
+assign n_not_0 = ~s_fsharp_add_valid;
+assign n_or_1 = n_not_0 | s_fsharp_add_tready;
+assign n_not_2 = ~s_csharp_skid_spill_valid;
+assign n_mux_3 = n_or_1 ? s_input_tvalid : s_fsharp_add_valid;
+assign n_and_4 = n_or_1 & s_input_tvalid;
+assign n_add_5 = s_input_tdata + 8'd2;
+assign n_mux_6 = n_and_4 ? n_add_5 : s_fsharp_add_data;
+assign n_mux_7 = n_and_4 ? s_input_tkeep : s_fsharp_add_keep;
+assign n_mux_8 = n_and_4 ? s_input_tlast : s_fsharp_add_last;
+assign n_mux_9 = n_and_4 ? s_input_tuser : s_fsharp_add_user;
+assign n_bits_7_0_10 = s_csharp_skid_head >> 0;
+assign n_bits_8_8_11 = s_csharp_skid_head >> 8;
+assign n_bits_9_9_12 = s_csharp_skid_head >> 9;
+assign n_bits_17_10_13 = s_csharp_skid_head >> 10;
+assign n_not_14 = ~s_vb_multiply_valid;
+assign n_or_15 = n_not_14 | s_vb_multiply_tready;
+assign n_not_16 = ~s_csharp_skid_valid;
+assign n_or_17 = n_not_16 | s_csharp_skid_tready;
+assign n_or_18 = s_csharp_skid_spill_valid | s_fsharp_add_tvalid;
+assign n_and_19 = n_or_17 & n_or_18;
+assign n_concat_20 = {s_fsharp_add_tkeep, s_fsharp_add_tdata};
+assign n_concat_21 = {s_fsharp_add_tlast, n_concat_20};
+assign n_concat_22 = {s_fsharp_add_tuser, n_concat_21};
+assign n_mux_23 = s_csharp_skid_spill_valid ? s_csharp_skid_spill : n_concat_22;
+assign n_mux_24 = n_and_19 ? n_mux_23 : s_csharp_skid_head;
+assign n_not_25 = ~n_or_17;
+assign n_and_26 = s_fsharp_add_tvalid & s_fsharp_add_tready;
+assign n_and_27 = n_not_25 & n_and_26;
+assign n_mux_28 = n_and_27 ? n_concat_22 : s_csharp_skid_spill;
+assign n_or_29 = s_csharp_skid_spill_valid | s_fsharp_add_tvalid;
+assign n_mux_30 = n_or_17 ? n_or_29 : s_csharp_skid_valid;
+assign n_and_31 = s_fsharp_add_tvalid & s_fsharp_add_tready;
+assign n_or_32 = s_csharp_skid_spill_valid | n_and_31;
+assign n_mux_33 = n_or_17 ? 1'd0 : n_or_32;
+assign n_mux_34 = n_or_15 ? s_csharp_skid_tvalid : s_vb_multiply_valid;
+assign n_and_35 = n_or_15 & s_csharp_skid_tvalid;
+assign n_mul_36 = s_csharp_skid_tdata * 8'd3;
+assign n_mux_37 = n_and_35 ? n_mul_36 : s_vb_multiply_data;
+assign n_mux_38 = n_and_35 ? s_csharp_skid_tkeep : s_vb_multiply_keep;
+assign n_mux_39 = n_and_35 ? s_csharp_skid_tlast : s_vb_multiply_last;
+assign n_mux_40 = n_and_35 ? s_csharp_skid_tuser : s_vb_multiply_user;
+assign s_input_tready = n_or_1;
 assign s_output_tdata = s_vb_multiply_tdata;
 assign s_output_tkeep = s_vb_multiply_tkeep;
 assign s_output_tlast = s_vb_multiply_tlast;
@@ -229,13 +229,13 @@ assign s_fsharp_add_tkeep = s_fsharp_add_keep;
 assign s_fsharp_add_tlast = s_fsharp_add_last;
 assign s_fsharp_add_tuser = s_fsharp_add_user;
 assign s_fsharp_add_tvalid = s_fsharp_add_valid;
-assign s_fsharp_add_tready = n_2;
-assign s_csharp_skid_tdata = n_10;
-assign s_csharp_skid_tkeep = n_11;
-assign s_csharp_skid_tlast = n_12;
-assign s_csharp_skid_tuser = n_13;
+assign s_fsharp_add_tready = n_not_2;
+assign s_csharp_skid_tdata = n_bits_7_0_10;
+assign s_csharp_skid_tkeep = n_bits_8_8_11;
+assign s_csharp_skid_tlast = n_bits_9_9_12;
+assign s_csharp_skid_tuser = n_bits_17_10_13;
 assign s_csharp_skid_tvalid = s_csharp_skid_valid;
-assign s_csharp_skid_tready = n_15;
+assign s_csharp_skid_tready = n_or_15;
 assign s_vb_multiply_tdata = s_vb_multiply_data;
 assign s_vb_multiply_tkeep = s_vb_multiply_keep;
 assign s_vb_multiply_tlast = s_vb_multiply_last;
@@ -259,20 +259,20 @@ always @(posedge clk) begin
     s_vb_multiply_last <= 1'd0;
     s_vb_multiply_user <= 8'd0;
   end else begin
-    s_fsharp_add_valid <= n_3;
-    s_fsharp_add_data <= n_6;
-    s_fsharp_add_keep <= n_7;
-    s_fsharp_add_last <= n_8;
-    s_fsharp_add_user <= n_9;
-    s_csharp_skid_head <= n_24;
-    s_csharp_skid_spill <= n_28;
-    s_csharp_skid_valid <= n_30;
-    s_csharp_skid_spill_valid <= n_33;
-    s_vb_multiply_valid <= n_34;
-    s_vb_multiply_data <= n_37;
-    s_vb_multiply_keep <= n_38;
-    s_vb_multiply_last <= n_39;
-    s_vb_multiply_user <= n_40;
+    s_fsharp_add_valid <= n_mux_3;
+    s_fsharp_add_data <= n_mux_6;
+    s_fsharp_add_keep <= n_mux_7;
+    s_fsharp_add_last <= n_mux_8;
+    s_fsharp_add_user <= n_mux_9;
+    s_csharp_skid_head <= n_mux_24;
+    s_csharp_skid_spill <= n_mux_28;
+    s_csharp_skid_valid <= n_mux_30;
+    s_csharp_skid_spill_valid <= n_mux_33;
+    s_vb_multiply_valid <= n_mux_34;
+    s_vb_multiply_data <= n_mux_37;
+    s_vb_multiply_keep <= n_mux_38;
+    s_vb_multiply_last <= n_mux_39;
+    s_vb_multiply_user <= n_mux_40;
   end
 end
 endmodule

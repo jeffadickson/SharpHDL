@@ -61,20 +61,20 @@ Removed a total of 11 cells.
 Running muxtree optimizer on module \h_Float16_cos..
   Creating internal representation of mux trees.
   Evaluating internal representation of mux trees.
-      Replacing known input bits on port A of cell $ternary$generated/Float16_cos.v:3028$653: \n_681 -> { 1'0 \n_681 [38:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3459$1015: \n_1084 -> { 2'01 \n_1084 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3458$1014: \n_1086 -> { 2'01 \n_1086 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3457$1013: \n_1088 -> { 2'01 \n_1088 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3456$1012: \n_1090 -> { 2'01 \n_1090 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3455$1011: \n_1092 -> { 2'01 \n_1092 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3454$1010: \n_1094 -> { 2'01 \n_1094 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3453$1009: \n_1096 -> { 2'01 \n_1096 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3452$1008: \n_1098 -> { 2'01 \n_1098 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3451$1007: \n_1100 -> { 2'01 \n_1100 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3450$1006: \n_1102 -> { 2'01 \n_1102 [9:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3449$1005: \n_1104 -> { 2'01 \n_1104 [9:0] }
-      Replacing known input bits on port A of cell $ternary$generated/Float16_cos.v:3500$1053: \n_1144 -> { 1'0 \n_1144 [10:0] }
-      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3500$1053: \n_1155 -> { \n_1155 [11] 1'1 \n_1155 [9:0] }
+      Replacing known input bits on port A of cell $ternary$generated/Float16_cos.v:3028$653: \n_mux_681 -> { 1'0 \n_mux_681 [38:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3459$1015: \n_shl_1084 -> { 2'01 \n_shl_1084 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3458$1014: \n_shl_1086 -> { 2'01 \n_shl_1086 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3457$1013: \n_shl_1088 -> { 2'01 \n_shl_1088 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3456$1012: \n_shl_1090 -> { 2'01 \n_shl_1090 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3455$1011: \n_shl_1092 -> { 2'01 \n_shl_1092 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3454$1010: \n_shl_1094 -> { 2'01 \n_shl_1094 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3453$1009: \n_shl_1096 -> { 2'01 \n_shl_1096 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3452$1008: \n_shl_1098 -> { 2'01 \n_shl_1098 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3451$1007: \n_shl_1100 -> { 2'01 \n_shl_1100 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3450$1006: \n_shl_1102 -> { 2'01 \n_shl_1102 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3449$1005: \n_shl_1104 -> { 2'01 \n_shl_1104 [9:0] }
+      Replacing known input bits on port A of cell $ternary$generated/Float16_cos.v:3500$1053: \n_mux_1144 -> { 1'0 \n_mux_1144 [10:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_cos.v:3500$1053: \n_shr_1155 -> { \n_shr_1155 [11] 1'1 \n_shr_1155 [9:0] }
   Analyzing evaluation results.
 Removed 0 multiplexer ports.
 <suppressed ~103 debug messages>

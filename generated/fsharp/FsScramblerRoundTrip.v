@@ -80,96 +80,96 @@ reg [0:0] s_decode_last;
 // decode: registered TUSER metadata [7:0].
 reg [7:0] s_decode_user;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_not_0;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_or_1;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_and_2;
 // Operation '>>'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_3;
+wire [7:0] n_shr_3;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_4;
+wire [0:0] n_bits_0_0_4;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_5;
+wire [7:0] n_mux_5;
 // Operation '^'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_6;
+wire [7:0] n_xor_6;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_7;
+wire [7:0] n_mux_7;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_8;
+wire [0:0] n_not_8;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_9;
+wire [0:0] n_or_9;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_10;
+wire [0:0] n_mux_10;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_11;
+wire [0:0] n_and_11;
 // Operation '^'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_12;
+wire [7:0] n_xor_12;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_13;
+wire [7:0] n_mux_13;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_14;
+wire [0:0] n_mux_14;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_15;
+wire [0:0] n_mux_15;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_16;
+wire [7:0] n_mux_16;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_17;
+wire [0:0] n_and_17;
 // Operation '>>'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_18;
+wire [7:0] n_shr_18;
 // Extract source bits [0:0], rebase to bit 0.
-wire [0:0] n_19;
+wire [0:0] n_bits_0_0_19;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_20;
+wire [7:0] n_mux_20;
 // Operation '^'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_21;
+wire [7:0] n_xor_21;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_22;
+wire [7:0] n_mux_22;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_23;
+wire [0:0] n_mux_23;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_24;
+wire [0:0] n_and_24;
 // Operation '^'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_25;
+wire [7:0] n_xor_25;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_26;
+wire [7:0] n_mux_26;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_27;
+wire [0:0] n_mux_27;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_28;
+wire [0:0] n_mux_28;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_29;
-assign n_0 = ~s_encode_valid;
-assign n_1 = n_0 | s_encode_tready;
-assign n_2 = s_s_axis_tvalid & s_s_axis_tready;
-assign n_3 = s_encode_lfsr >> 1;
-assign n_4 = s_encode_lfsr >> 0;
-assign n_5 = n_4 ? 8'd184 : 8'd0;
-assign n_6 = n_3 ^ n_5;
-assign n_7 = n_2 ? n_6 : s_encode_lfsr;
-assign n_8 = ~s_decode_valid;
-assign n_9 = n_8 | s_decode_tready;
-assign n_10 = n_1 ? s_s_axis_tvalid : s_encode_valid;
-assign n_11 = n_1 & s_s_axis_tvalid;
-assign n_12 = s_s_axis_tdata ^ s_encode_lfsr;
-assign n_13 = n_11 ? n_12 : s_encode_data;
-assign n_14 = n_11 ? s_s_axis_tkeep : s_encode_keep;
-assign n_15 = n_11 ? s_s_axis_tlast : s_encode_last;
-assign n_16 = n_11 ? s_s_axis_tuser : s_encode_user;
-assign n_17 = s_encode_tvalid & s_encode_tready;
-assign n_18 = s_decode_lfsr >> 1;
-assign n_19 = s_decode_lfsr >> 0;
-assign n_20 = n_19 ? 8'd184 : 8'd0;
-assign n_21 = n_18 ^ n_20;
-assign n_22 = n_17 ? n_21 : s_decode_lfsr;
-assign n_23 = n_9 ? s_encode_tvalid : s_decode_valid;
-assign n_24 = n_9 & s_encode_tvalid;
-assign n_25 = s_encode_tdata ^ s_decode_lfsr;
-assign n_26 = n_24 ? n_25 : s_decode_data;
-assign n_27 = n_24 ? s_encode_tkeep : s_decode_keep;
-assign n_28 = n_24 ? s_encode_tlast : s_decode_last;
-assign n_29 = n_24 ? s_encode_tuser : s_decode_user;
-assign s_s_axis_tready = n_1;
+wire [7:0] n_mux_29;
+assign n_not_0 = ~s_encode_valid;
+assign n_or_1 = n_not_0 | s_encode_tready;
+assign n_and_2 = s_s_axis_tvalid & s_s_axis_tready;
+assign n_shr_3 = s_encode_lfsr >> 1;
+assign n_bits_0_0_4 = s_encode_lfsr >> 0;
+assign n_mux_5 = n_bits_0_0_4 ? 8'd184 : 8'd0;
+assign n_xor_6 = n_shr_3 ^ n_mux_5;
+assign n_mux_7 = n_and_2 ? n_xor_6 : s_encode_lfsr;
+assign n_not_8 = ~s_decode_valid;
+assign n_or_9 = n_not_8 | s_decode_tready;
+assign n_mux_10 = n_or_1 ? s_s_axis_tvalid : s_encode_valid;
+assign n_and_11 = n_or_1 & s_s_axis_tvalid;
+assign n_xor_12 = s_s_axis_tdata ^ s_encode_lfsr;
+assign n_mux_13 = n_and_11 ? n_xor_12 : s_encode_data;
+assign n_mux_14 = n_and_11 ? s_s_axis_tkeep : s_encode_keep;
+assign n_mux_15 = n_and_11 ? s_s_axis_tlast : s_encode_last;
+assign n_mux_16 = n_and_11 ? s_s_axis_tuser : s_encode_user;
+assign n_and_17 = s_encode_tvalid & s_encode_tready;
+assign n_shr_18 = s_decode_lfsr >> 1;
+assign n_bits_0_0_19 = s_decode_lfsr >> 0;
+assign n_mux_20 = n_bits_0_0_19 ? 8'd184 : 8'd0;
+assign n_xor_21 = n_shr_18 ^ n_mux_20;
+assign n_mux_22 = n_and_17 ? n_xor_21 : s_decode_lfsr;
+assign n_mux_23 = n_or_9 ? s_encode_tvalid : s_decode_valid;
+assign n_and_24 = n_or_9 & s_encode_tvalid;
+assign n_xor_25 = s_encode_tdata ^ s_decode_lfsr;
+assign n_mux_26 = n_and_24 ? n_xor_25 : s_decode_data;
+assign n_mux_27 = n_and_24 ? s_encode_tkeep : s_decode_keep;
+assign n_mux_28 = n_and_24 ? s_encode_tlast : s_decode_last;
+assign n_mux_29 = n_and_24 ? s_encode_tuser : s_decode_user;
+assign s_s_axis_tready = n_or_1;
 assign s_m_axis_tdata = s_decode_tdata;
 assign s_m_axis_tkeep = s_decode_tkeep;
 assign s_m_axis_tlast = s_decode_tlast;
@@ -180,7 +180,7 @@ assign s_encode_tkeep = s_encode_keep;
 assign s_encode_tlast = s_encode_last;
 assign s_encode_tuser = s_encode_user;
 assign s_encode_tvalid = s_encode_valid;
-assign s_encode_tready = n_9;
+assign s_encode_tready = n_or_9;
 assign s_decode_tdata = s_decode_data;
 assign s_decode_tkeep = s_decode_keep;
 assign s_decode_tlast = s_decode_last;
@@ -202,18 +202,18 @@ always @(posedge clk) begin
     s_decode_last <= 1'd0;
     s_decode_user <= 8'd0;
   end else begin
-    s_encode_lfsr <= n_7;
-    s_encode_valid <= n_10;
-    s_encode_data <= n_13;
-    s_encode_keep <= n_14;
-    s_encode_last <= n_15;
-    s_encode_user <= n_16;
-    s_decode_lfsr <= n_22;
-    s_decode_valid <= n_23;
-    s_decode_data <= n_26;
-    s_decode_keep <= n_27;
-    s_decode_last <= n_28;
-    s_decode_user <= n_29;
+    s_encode_lfsr <= n_mux_7;
+    s_encode_valid <= n_mux_10;
+    s_encode_data <= n_mux_13;
+    s_encode_keep <= n_mux_14;
+    s_encode_last <= n_mux_15;
+    s_encode_user <= n_mux_16;
+    s_decode_lfsr <= n_mux_22;
+    s_decode_valid <= n_mux_23;
+    s_decode_data <= n_mux_26;
+    s_decode_keep <= n_mux_27;
+    s_decode_last <= n_mux_28;
+    s_decode_user <= n_mux_29;
   end
 end
 endmodule

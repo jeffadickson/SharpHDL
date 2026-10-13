@@ -3,7 +3,7 @@
 module h_AddTwo(clk, rst, s_b, s_a);
   input clk;
   wire clk;
-  wire [7:0] n_0;
+  wire [7:0] n_add_0;
   input rst;
   wire rst;
   output [7:0] s_a;
@@ -105,6 +105,6 @@ module h_AddTwo(clk, rst, s_b, s_a);
     .I1(s_b[3])
   );
   assign s_a_SB_LUT4_O_4_I3[1:0] = { s_b[1], 1'h0 };
-  assign n_0 = { s_a[7:1], s_b[0] };
+  assign n_add_0 = { s_a[7:1], s_b[0] };
   assign s_a[0] = s_b[0];
 endmodule

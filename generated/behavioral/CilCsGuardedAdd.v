@@ -16,38 +16,38 @@ module h_CilCsGuardedAdd(
   output wire [0:0] s_fault
 );
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_eq_0;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_not_1;
 // GuardedAdd IL_0007 add.ovf; native 32-bit arithmetic.
-wire [31:0] n_2;
+wire [31:0] n_GuardedAdd_IL_0007_add_ovf;
 // Behavioral CIL result from Behavioral.CSharpFunctions.GuardedAdd; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_3;
+wire [31:0] n_mux_2;
 // Signed two's-complement extension.
-wire [63:0] n_4;
+wire [63:0] n_signextend_3;
 // Signed two's-complement extension.
-wire [63:0] n_5;
+wire [63:0] n_signextend_4;
 // Operation '+'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_6;
+wire [63:0] n_add_5;
 // Signed two's-complement extension.
-wire [63:0] n_7;
+wire [63:0] n_signextend_6;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_8;
+wire [0:0] n_eq_7;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_9;
+wire [0:0] n_not_8;
 // CIL arithmetic fault: checked overflow, divide exception, or assertion failure on the selected execution path. Reset/exception handlers are not synthesized.
-wire [0:0] n_10;
-assign n_0 = s_b == 32'd0;
-assign n_1 = ~n_0;
-assign n_2 = s_a + s_b;
-assign n_3 = n_1 ? n_2 : s_a;
-assign n_4 = $signed(s_a);
-assign n_5 = $signed(s_b);
-assign n_6 = n_4 + n_5;
-assign n_7 = $signed(n_2);
-assign n_8 = n_6 == n_7;
-assign n_9 = ~n_8;
-assign n_10 = n_1 ? n_9 : 1'd0;
-assign s_y = n_3;
-assign s_fault = n_10;
+wire [0:0] n_mux_9;
+assign n_eq_0 = s_b == 32'd0;
+assign n_not_1 = ~n_eq_0;
+assign n_GuardedAdd_IL_0007_add_ovf = s_a + s_b;
+assign n_mux_2 = n_not_1 ? n_GuardedAdd_IL_0007_add_ovf : s_a;
+assign n_signextend_3 = $signed(s_a);
+assign n_signextend_4 = $signed(s_b);
+assign n_add_5 = n_signextend_3 + n_signextend_4;
+assign n_signextend_6 = $signed(n_GuardedAdd_IL_0007_add_ovf);
+assign n_eq_7 = n_add_5 == n_signextend_6;
+assign n_not_8 = ~n_eq_7;
+assign n_mux_9 = n_not_1 ? n_not_8 : 1'd0;
+assign s_y = n_mux_2;
+assign s_fault = n_mux_9;
 endmodule

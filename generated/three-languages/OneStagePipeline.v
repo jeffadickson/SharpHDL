@@ -54,36 +54,36 @@ reg [0:0] s_one_stage_last;
 // one_stage: registered TUSER metadata [7:0].
 reg [7:0] s_one_stage_user;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_not_0;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_or_1;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_2;
+wire [0:0] n_mux_2;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_3;
+wire [0:0] n_and_3;
 // Operation '+'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_4;
+wire [7:0] n_add_4;
 // Operation '*'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_5;
+wire [7:0] n_mul_5;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_6;
+wire [7:0] n_mux_6;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_7;
+wire [0:0] n_mux_7;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_8;
+wire [0:0] n_mux_8;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_9;
-assign n_0 = ~s_one_stage_valid;
-assign n_1 = n_0 | s_one_stage_tready;
-assign n_2 = n_1 ? s_input_tvalid : s_one_stage_valid;
-assign n_3 = n_1 & s_input_tvalid;
-assign n_4 = s_input_tdata + 8'd2;
-assign n_5 = n_4 * 8'd3;
-assign n_6 = n_3 ? n_5 : s_one_stage_data;
-assign n_7 = n_3 ? s_input_tkeep : s_one_stage_keep;
-assign n_8 = n_3 ? s_input_tlast : s_one_stage_last;
-assign n_9 = n_3 ? s_input_tuser : s_one_stage_user;
-assign s_input_tready = n_1;
+wire [7:0] n_mux_9;
+assign n_not_0 = ~s_one_stage_valid;
+assign n_or_1 = n_not_0 | s_one_stage_tready;
+assign n_mux_2 = n_or_1 ? s_input_tvalid : s_one_stage_valid;
+assign n_and_3 = n_or_1 & s_input_tvalid;
+assign n_add_4 = s_input_tdata + 8'd2;
+assign n_mul_5 = n_add_4 * 8'd3;
+assign n_mux_6 = n_and_3 ? n_mul_5 : s_one_stage_data;
+assign n_mux_7 = n_and_3 ? s_input_tkeep : s_one_stage_keep;
+assign n_mux_8 = n_and_3 ? s_input_tlast : s_one_stage_last;
+assign n_mux_9 = n_and_3 ? s_input_tuser : s_one_stage_user;
+assign s_input_tready = n_or_1;
 assign s_output_tdata = s_one_stage_tdata;
 assign s_output_tkeep = s_one_stage_tkeep;
 assign s_output_tlast = s_one_stage_tlast;
@@ -103,11 +103,11 @@ always @(posedge clk) begin
     s_one_stage_last <= 1'd0;
     s_one_stage_user <= 8'd0;
   end else begin
-    s_one_stage_valid <= n_2;
-    s_one_stage_data <= n_6;
-    s_one_stage_keep <= n_7;
-    s_one_stage_last <= n_8;
-    s_one_stage_user <= n_9;
+    s_one_stage_valid <= n_mux_2;
+    s_one_stage_data <= n_mux_6;
+    s_one_stage_keep <= n_mux_7;
+    s_one_stage_last <= n_mux_8;
+    s_one_stage_user <= n_mux_9;
   end
 end
 endmodule

@@ -3,24 +3,24 @@
 module h_FsFir(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axis_tlast, s_s_axis_tuser, s_s_axis_tvalid, s_s_axis_tready, s_m_axis_tdata, s_m_axis_tkeep, s_m_axis_tlast, s_m_axis_tuser, s_m_axis_tvalid, s_m_axis_tready);
   input clk;
   wire clk;
-  wire n_0;
-  wire n_1;
-  wire [31:0] n_10;
-  wire [31:0] n_11;
-  wire [31:0] n_12;
-  wire [31:0] n_13;
-  wire [31:0] n_14;
-  wire [31:0] n_15;
-  wire [31:0] n_16;
-  wire [31:0] n_17;
-  wire [31:0] n_18;
-  wire [31:0] n_19;
-  wire n_2;
-  wire [31:0] n_20;
-  wire [31:0] n_21;
-  wire n_4;
-  wire n_6;
-  wire n_9;
+  wire [31:0] n_add_12;
+  wire [31:0] n_add_15;
+  wire [31:0] n_add_18;
+  wire [31:0] n_add_21;
+  wire n_and_2;
+  wire n_and_4;
+  wire n_and_6;
+  wire n_and_9;
+  wire [31:0] n_mul_11;
+  wire [31:0] n_mul_14;
+  wire [31:0] n_mul_17;
+  wire [31:0] n_mul_20;
+  wire n_not_0;
+  wire n_or_1;
+  wire [31:0] n_signextend_10;
+  wire [31:0] n_signextend_13;
+  wire [31:0] n_signextend_16;
+  wire [31:0] n_signextend_19;
   input rst;
   wire rst;
   reg [15:0] s_delay_1;
@@ -61,48 +61,48 @@ module h_FsFir(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axis_tlast, s_s_axi
   wire [7:0] s_s_axis_tuser;
   input s_s_axis_tvalid;
   wire s_s_axis_tvalid;
-  assign n_15 = { s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata } + n_14;
-  assign n_18 = n_15 + n_17;
-  assign n_21 = n_18 + { s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3 };
-  assign n_2 = n_1 & s_s_axis_tvalid;
+  assign n_add_15 = { s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata } + n_mul_14;
+  assign n_add_18 = n_add_15 + n_mul_17;
+  assign n_add_21 = n_add_18 + { s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3 };
+  assign n_and_2 = n_or_1 & s_s_axis_tvalid;
   always @(posedge clk)
     if (rst) s_fir_valid <= 1'h0;
-    else if (n_1) s_fir_valid <= s_s_axis_tvalid;
+    else if (n_or_1) s_fir_valid <= s_s_axis_tvalid;
   always @(posedge clk)
     if (rst) s_fir_data <= 32'd0;
-    else if (n_2) s_fir_data <= n_21;
+    else if (n_and_2) s_fir_data <= n_add_21;
   always @(posedge clk)
     if (rst) s_fir_keep <= 4'h0;
-    else if (n_2) s_fir_keep <= 4'hf;
+    else if (n_and_2) s_fir_keep <= 4'hf;
   always @(posedge clk)
     if (rst) s_fir_user <= 8'h00;
-    else if (n_2) s_fir_user <= s_s_axis_tuser;
+    else if (n_and_2) s_fir_user <= s_s_axis_tuser;
   always @(posedge clk)
     if (rst) s_fir_last <= 1'h0;
-    else if (n_2) s_fir_last <= s_s_axis_tlast;
+    else if (n_and_2) s_fir_last <= s_s_axis_tlast;
   always @(posedge clk)
     if (rst) s_delay_1 <= 16'h0000;
-    else if (n_2) s_delay_1 <= s_s_axis_tdata;
+    else if (n_and_2) s_delay_1 <= s_s_axis_tdata;
   always @(posedge clk)
     if (rst) s_delay_2 <= 16'h0000;
-    else if (n_2) s_delay_2 <= s_delay_1;
+    else if (n_and_2) s_delay_2 <= s_delay_1;
   always @(posedge clk)
     if (rst) s_delay_3 <= 16'h0000;
-    else if (n_2) s_delay_3 <= s_delay_2;
-  assign n_14 = { s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1 } * 32'd3;
-  assign n_17 = { s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2 } * 32'd3;
-  assign n_0 = ~ s_fir_valid;
-  assign n_1 = n_0 | s_m_axis_tready;
-  assign n_10 = { s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata };
-  assign n_11 = { s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata };
-  assign n_12 = { s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata };
-  assign n_13 = { s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1 };
-  assign n_16 = { s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2 };
-  assign n_19 = { s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3 };
-  assign n_20 = { s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3 };
-  assign n_4 = n_2;
-  assign n_6 = n_2;
-  assign n_9 = n_2;
+    else if (n_and_2) s_delay_3 <= s_delay_2;
+  assign n_mul_14 = { s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1 } * 32'd3;
+  assign n_mul_17 = { s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2 } * 32'd3;
+  assign n_not_0 = ~ s_fir_valid;
+  assign n_or_1 = n_not_0 | s_m_axis_tready;
+  assign n_add_12 = { s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata };
+  assign n_and_4 = n_and_2;
+  assign n_and_6 = n_and_2;
+  assign n_and_9 = n_and_2;
+  assign n_mul_11 = { s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata };
+  assign n_mul_20 = { s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3 };
+  assign n_signextend_10 = { s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata[15], s_s_axis_tdata };
+  assign n_signextend_13 = { s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1[15], s_delay_1 };
+  assign n_signextend_16 = { s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2[15], s_delay_2 };
+  assign n_signextend_19 = { s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3[15], s_delay_3 };
   assign s_fir_tdata = s_fir_data;
   assign s_fir_tkeep = s_fir_keep;
   assign s_fir_tlast = s_fir_last;
@@ -114,5 +114,5 @@ module h_FsFir(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axis_tlast, s_s_axi
   assign s_m_axis_tlast = s_fir_last;
   assign s_m_axis_tuser = s_fir_user;
   assign s_m_axis_tvalid = s_fir_valid;
-  assign s_s_axis_tready = n_1;
+  assign s_s_axis_tready = n_or_1;
 endmodule

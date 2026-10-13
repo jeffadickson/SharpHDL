@@ -12,7 +12,7 @@
     "boards/GoBoard/ClassroomCore.cs": "60fd549e025ea980c6b760bbe592f9c304e5069d4c6af8fa24f295083fc21b4f",
     "boards/GoBoard/classroom_top.v": "6a4af00770cdcb168a589badc6c754e4e0e574c1150bee7d00cca55e575ac835",
     "boards/GoBoard/classroom.pcf": "74473d9bfbd794de63750fac5aa7256a3f75028f116db7af513203b719315251",
-    "generated/three-languages/ClassroomCore.v": "4821e24d4a7b304eebb98abf069d51a98f9ec7aa6fcf7a40f10d294b883e576a",
-    "generated/goboard/classroom.bin": "29bcd9127d6e99cac348954efe846b65c4cd58acb20a71e472f178c85769be9d"
+    "generated/three-languages/ClassroomCore.v": "d94d03eb51c26e4d3201d00fd75d756cdc5b86cf6dde323c9235911f794ac2ba",
+    "generated/goboard/classroom.bin": "4d6758b1e5f45bf9c8bd9691c374da658f77203737d1488f1a5d832db9f0a0d3"
   }
 }

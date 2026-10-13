@@ -1,5 +1,5 @@
 
--- Running command `read_verilog generated/DebugUartController.v examples/Verilog/debug_uart_serial.v; hierarchy -check -top debug_uart_serial; proc -norom; opt; check -assert; stat' --
+-- Running command `read_verilog generated/DebugUartController.v examples/Verilog/debug_uart_serial.v; hierarchy -check -top debug_uart_serial; proc; opt; check -assert; stat' --
 
 1. Executing Verilog-2005 frontend: generated/DebugUartController.v
 Parsing Verilog input from `generated/DebugUartController.v' to AST representation.
@@ -32,7 +32,7 @@ Marked 4 switch rules as full_case in process $proc$examples/Verilog/debug_uart_
 Removed 1 dead cases from process $proc$examples/Verilog/debug_uart_serial.v:20$59 in module debug_uart_serial.
 Marked 9 switch rules as full_case in process $proc$examples/Verilog/debug_uart_serial.v:20$59 in module debug_uart_serial.
 Marked 1 switch rules as full_case in process $proc$examples/Verilog/debug_uart_serial.v:10$57 in module debug_uart_serial.
-Marked 1 switch rules as full_case in process $proc$generated/DebugUartController.v:145$53 in module h_DebugUartController.
+Marked 1 switch rules as full_case in process $proc$generated/DebugUartController.v:225$53 in module h_DebugUartController.
 Removed a total of 1 dead cases.
 
 4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
@@ -43,7 +43,11 @@ Promoted 5 assignments to connections.
 
 4.5. Executing PROC_ARST pass (detect async resets in processes).
 
-4.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~18 debug messages>
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
 Creating decoders for process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:55$102'.
      1/4: $0\tx_bit[3:0]
      2/4: $0\tx_timer[31:0]
@@ -72,7 +76,7 @@ Creating decoders for process `\debug_uart_serial.$proc$examples/Verilog/debug_u
 Creating decoders for process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:10$57'.
      1/2: $0\rx_sync[0:0]
      2/2: $0\rx_meta[0:0]
-Creating decoders for process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating decoders for process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
      1/7: $0\s_tag[7:0]
      2/7: $0\s_index[1:0]
      3/7: $0\s_length[2:0]
@@ -81,9 +85,9 @@ Creating decoders for process `\h_DebugUartController.$proc$generated/DebugUartC
      6/7: $0\s_counter[31:0]
      7/7: $0\s_control[7:0]
 
-4.7. Executing PROC_DLATCH pass (convert process syncs to latches).
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
 
-4.8. Executing PROC_DFF pass (convert process syncs to FFs).
+4.9. Executing PROC_DFF pass (convert process syncs to FFs).
 Creating register for signal `\debug_uart_serial.\tx_busy' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:55$102'.
   created $dff cell `$procdff$386' with positive edge clock.
 Creating register for signal `\debug_uart_serial.\tx_shift' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:55$102'.
@@ -120,35 +124,35 @@ Creating register for signal `\debug_uart_serial.\rx_meta' using process `\debug
   created $dff cell `$procdff$402' with positive edge clock.
 Creating register for signal `\debug_uart_serial.\rx_sync' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:10$57'.
   created $dff cell `$procdff$403' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_control' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_control' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$404' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_counter' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_counter' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$405' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_state' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_state' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$406' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_reply' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_reply' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$407' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_length' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_length' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$408' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_index' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_index' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$409' with positive edge clock.
-Creating register for signal `\h_DebugUartController.\s_tag' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Creating register for signal `\h_DebugUartController.\s_tag' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
   created $dff cell `$procdff$410' with positive edge clock.
 
-4.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
+4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
-4.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
 Found and cleaned up 5 empty switches in `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:55$102'.
 Removing empty process `debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:55$102'.
 Found and cleaned up 11 empty switches in `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
 Removing empty process `debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
 Found and cleaned up 1 empty switch in `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:10$57'.
 Removing empty process `debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:10$57'.
-Found and cleaned up 1 empty switch in `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
-Removing empty process `h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Found and cleaned up 1 empty switch in `\h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
+Removing empty process `h_DebugUartController.$proc$generated/DebugUartController.v:225$53'.
 Cleaned up 18 empty switches.
 
-4.11. Executing OPT_EXPR pass (perform const folding).
+4.12. Executing OPT_EXPR pass (perform const folding).
 Optimizing module debug_uart_serial.
 <suppressed ~24 debug messages>
 Optimizing module h_DebugUartController.
@@ -278,18 +282,18 @@ Setting constant 1-bit at position 7 on $procdff$401 ($dff) from module debug_ua
 Setting constant 1-bit at position 0 on $procdff$400 ($dff) from module debug_uart_serial.
 Setting constant 1-bit at position 1 on $procdff$400 ($dff) from module debug_uart_serial.
 Setting constant 1-bit at position 2 on $procdff$400 ($dff) from module debug_uart_serial.
-Adding SRST signal on $procdff$410 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:136$52_Y, Q = \s_tag, rval = 8'00000000).
+Adding SRST signal on $procdff$410 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:216$52_Y, Q = \s_tag, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$504 ($sdff) from module h_DebugUartController (D = \s_rx_tuser, Q = \s_tag).
-Adding SRST signal on $procdff$409 ($dff) from module h_DebugUartController (D = \n_51, Q = \s_index, rval = 2'00).
-Adding SRST signal on $procdff$408 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:128$44_Y, Q = \s_length, rval = 3'001).
-Adding EN signal on $auto$ff.cc:266:slice$509 ($sdff) from module h_DebugUartController (D = \n_45, Q = \s_length).
-Adding SRST signal on $procdff$407 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:125$41_Y, Q = \s_reply, rval = 0).
-Adding EN signal on $auto$ff.cc:266:slice$511 ($sdff) from module h_DebugUartController (D = \n_42, Q = \s_reply).
-Adding SRST signal on $procdff$406 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:113$31_Y, Q = \s_state, rval = 2'00).
-Adding EN signal on $auto$ff.cc:266:slice$513 ($sdff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:113$31_Y, Q = \s_state).
-Adding SRST signal on $procdff$405 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:103$21_Y, Q = \s_counter, rval = 0).
-Adding EN signal on $auto$ff.cc:266:slice$517 ($sdff) from module h_DebugUartController (D = \n_20, Q = \s_counter).
-Adding SRST signal on $procdff$404 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:100$18_Y, Q = \s_control, rval = 8'00000001).
+Adding SRST signal on $procdff$409 ($dff) from module h_DebugUartController (D = \n_mux_51, Q = \s_index, rval = 2'00).
+Adding SRST signal on $procdff$408 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:208$44_Y, Q = \s_length, rval = 3'001).
+Adding EN signal on $auto$ff.cc:266:slice$509 ($sdff) from module h_DebugUartController (D = \n_mux_45, Q = \s_length).
+Adding SRST signal on $procdff$407 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:205$41_Y, Q = \s_reply, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$511 ($sdff) from module h_DebugUartController (D = \n_mux_42, Q = \s_reply).
+Adding SRST signal on $procdff$406 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:193$31_Y, Q = \s_state, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$513 ($sdff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:193$31_Y, Q = \s_state).
+Adding SRST signal on $procdff$405 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:183$21_Y, Q = \s_counter, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$517 ($sdff) from module h_DebugUartController (D = \n_add_20, Q = \s_counter).
+Adding SRST signal on $procdff$404 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:180$18_Y, Q = \s_control, rval = 8'00000001).
 Adding EN signal on $auto$ff.cc:266:slice$519 ($sdff) from module h_DebugUartController (D = \s_rx_tdata, Q = \s_control).
 
 5.7. Executing OPT_CLEAN pass (remove unused cells and wires).
@@ -331,7 +335,7 @@ Removed a total of 10 cells.
 
 5.13. Executing OPT_DFF pass (perform DFF optimizations).
 Adding EN signal on $auto$ff.cc:266:slice$441 ($sdff) from module debug_uart_serial (D = $2$lookahead\rx_shift$58[7:0]$72, Q = \rx_shift).
-Adding EN signal on $auto$ff.cc:266:slice$506 ($sdff) from module h_DebugUartController (D = \n_50, Q = \s_index).
+Adding EN signal on $auto$ff.cc:266:slice$506 ($sdff) from module h_DebugUartController (D = \n_add_50, Q = \s_index).
 
 5.14. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \debug_uart_serial..

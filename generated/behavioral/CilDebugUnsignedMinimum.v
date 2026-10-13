@@ -16,11 +16,11 @@ module h_CilDebugUnsignedMinimum(
   output wire [0:0] s_fault
 );
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_lt_0;
 // Behavioral CIL result from Behavioral.CSharpFunctions.UnsignedMinimum; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_1;
-assign n_0 = s_a < s_b;
-assign n_1 = n_0 ? s_a : s_b;
-assign s_y = n_1;
+wire [31:0] n_mux_1;
+assign n_lt_0 = s_a < s_b;
+assign n_mux_1 = n_lt_0 ? s_a : s_b;
+assign s_y = n_mux_1;
 assign s_fault = 1'd0;
 endmodule

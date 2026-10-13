@@ -1,5 +1,5 @@
 
--- Running command `read_verilog generated/fsharp/FsScramblerRoundTrip.v; hierarchy -check -top h_FsScramblerRoundTrip; proc -norom; opt; check -assert; stat; write_verilog -noattr generated/synthesis/FsScramblerRoundTrip_rtl.v' --
+-- Running command `read_verilog generated/fsharp/FsScramblerRoundTrip.v; hierarchy -check -top h_FsScramblerRoundTrip; proc -norom; opt; memory; opt; check -assert; stat; write_verilog -noattr generated/synthesis/FsScramblerRoundTrip_rtl.v' --
 
 1. Executing Verilog-2005 frontend: generated/fsharp/FsScramblerRoundTrip.v
 Parsing Verilog input from `generated/fsharp/FsScramblerRoundTrip.v' to AST representation.
@@ -21,7 +21,7 @@ Removed 0 unused modules.
 Cleaned up 0 empty switches.
 
 3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
-Marked 1 switch rules as full_case in process $proc$generated/fsharp/FsScramblerRoundTrip.v:120$31 in module h_FsScramblerRoundTrip.
+Marked 1 switch rules as full_case in process $proc$generated/fsharp/FsScramblerRoundTrip.v:190$31 in module h_FsScramblerRoundTrip.
 Removed a total of 0 dead cases.
 
 3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
@@ -33,7 +33,7 @@ Promoted 0 assignments to connections.
 3.5. Executing PROC_ARST pass (detect async resets in processes).
 
 3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
-Creating decoders for process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating decoders for process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
      1/12: $0\s_decode_user[7:0]
      2/12: $0\s_decode_last[0:0]
      3/12: $0\s_decode_keep[0:0]
@@ -50,36 +50,36 @@ Creating decoders for process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/Fs
 3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
 
 3.8. Executing PROC_DFF pass (convert process syncs to FFs).
-Creating register for signal `\h_FsScramblerRoundTrip.\s_encode_lfsr' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating register for signal `\h_FsScramblerRoundTrip.\s_encode_lfsr' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
   created $dff cell `$procdff$68' with positive edge clock.
-Creating register for signal `\h_FsScramblerRoundTrip.\s_encode_valid' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating register for signal `\h_FsScramblerRoundTrip.\s_encode_valid' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
   created $dff cell `$procdff$69' with positive edge clock.
-Creating register for signal `\h_FsScramblerRoundTrip.\s_encode_data' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating register for signal `\h_FsScramblerRoundTrip.\s_encode_data' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
   created $dff cell `$procdff$70' with positive edge clock.
-Creating register for signal `\h_FsScramblerRoundTrip.\s_encode_keep' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating register for signal `\h_FsScramblerRoundTrip.\s_encode_keep' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
   created $dff cell `$procdff$71' with positive edge clock.
-Creating register for signal `\h_FsScramblerRoundTrip.\s_encode_last' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating register for signal `\h_FsScramblerRoundTrip.\s_encode_last' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
   created $dff cell `$procdff$72' with positive edge clock.
-Creating register for signal `\h_FsScramblerRoundTrip.\s_encode_user' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating register for signal `\h_FsScramblerRoundTrip.\s_encode_user' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
   created $dff cell `$procdff$73' with positive edge clock.
-Creating register for signal `\h_FsScramblerRoundTrip.\s_decode_lfsr' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating register for signal `\h_FsScramblerRoundTrip.\s_decode_lfsr' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
   created $dff cell `$procdff$74' with positive edge clock.
-Creating register for signal `\h_FsScramblerRoundTrip.\s_decode_valid' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating register for signal `\h_FsScramblerRoundTrip.\s_decode_valid' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
   created $dff cell `$procdff$75' with positive edge clock.
-Creating register for signal `\h_FsScramblerRoundTrip.\s_decode_data' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating register for signal `\h_FsScramblerRoundTrip.\s_decode_data' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
   created $dff cell `$procdff$76' with positive edge clock.
-Creating register for signal `\h_FsScramblerRoundTrip.\s_decode_keep' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating register for signal `\h_FsScramblerRoundTrip.\s_decode_keep' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
   created $dff cell `$procdff$77' with positive edge clock.
-Creating register for signal `\h_FsScramblerRoundTrip.\s_decode_last' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating register for signal `\h_FsScramblerRoundTrip.\s_decode_last' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
   created $dff cell `$procdff$78' with positive edge clock.
-Creating register for signal `\h_FsScramblerRoundTrip.\s_decode_user' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Creating register for signal `\h_FsScramblerRoundTrip.\s_decode_user' using process `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
   created $dff cell `$procdff$79' with positive edge clock.
 
 3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
 3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
-Found and cleaned up 1 empty switch in `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
-Removing empty process `h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:120$31'.
+Found and cleaned up 1 empty switch in `\h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
+Removing empty process `h_FsScramblerRoundTrip.$proc$generated/fsharp/FsScramblerRoundTrip.v:190$31'.
 Cleaned up 1 empty switch.
 
 3.11. Executing OPT_EXPR pass (perform const folding).
@@ -113,29 +113,29 @@ Finding identical cells in module `\h_FsScramblerRoundTrip'.
 Removed a total of 0 cells.
 
 4.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$74 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:94$23_Y, Q = \s_decode_lfsr, rval = 8'10100101).
-Adding EN signal on $auto$ff.cc:266:slice$80 ($sdff) from module h_FsScramblerRoundTrip (D = \n_21, Q = \s_decode_lfsr).
-Adding SRST signal on $procdff$79 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:101$30_Y, Q = \s_decode_user, rval = 8'00000000).
+Adding SRST signal on $procdff$74 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:164$23_Y, Q = \s_decode_lfsr, rval = 8'10100101).
+Adding EN signal on $auto$ff.cc:266:slice$80 ($sdff) from module h_FsScramblerRoundTrip (D = \n_xor_21, Q = \s_decode_lfsr).
+Adding SRST signal on $procdff$79 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:171$30_Y, Q = \s_decode_user, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$82 ($sdff) from module h_FsScramblerRoundTrip (D = \s_encode_tuser, Q = \s_decode_user).
-Adding SRST signal on $procdff$78 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:100$29_Y, Q = \s_decode_last, rval = 1'0).
+Adding SRST signal on $procdff$78 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:170$29_Y, Q = \s_decode_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$84 ($sdff) from module h_FsScramblerRoundTrip (D = \s_encode_tlast, Q = \s_decode_last).
-Adding SRST signal on $procdff$75 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:95$24_Y, Q = \s_decode_valid, rval = 1'0).
+Adding SRST signal on $procdff$75 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:165$24_Y, Q = \s_decode_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$86 ($sdff) from module h_FsScramblerRoundTrip (D = \s_encode_tvalid, Q = \s_decode_valid).
-Adding SRST signal on $procdff$77 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:99$28_Y, Q = \s_decode_keep, rval = 1'0).
+Adding SRST signal on $procdff$77 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:169$28_Y, Q = \s_decode_keep, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$88 ($sdff) from module h_FsScramblerRoundTrip (D = \s_encode_tkeep, Q = \s_decode_keep).
-Adding SRST signal on $procdff$76 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:98$27_Y, Q = \s_decode_data, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$90 ($sdff) from module h_FsScramblerRoundTrip (D = \n_25, Q = \s_decode_data).
-Adding SRST signal on $procdff$68 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:79$8_Y, Q = \s_encode_lfsr, rval = 8'10100101).
-Adding EN signal on $auto$ff.cc:266:slice$92 ($sdff) from module h_FsScramblerRoundTrip (D = \n_6, Q = \s_encode_lfsr).
-Adding SRST signal on $procdff$69 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:82$11_Y, Q = \s_encode_valid, rval = 1'0).
+Adding SRST signal on $procdff$76 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:168$27_Y, Q = \s_decode_data, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$90 ($sdff) from module h_FsScramblerRoundTrip (D = \n_xor_25, Q = \s_decode_data).
+Adding SRST signal on $procdff$68 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:149$8_Y, Q = \s_encode_lfsr, rval = 8'10100101).
+Adding EN signal on $auto$ff.cc:266:slice$92 ($sdff) from module h_FsScramblerRoundTrip (D = \n_xor_6, Q = \s_encode_lfsr).
+Adding SRST signal on $procdff$69 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:152$11_Y, Q = \s_encode_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$94 ($sdff) from module h_FsScramblerRoundTrip (D = \s_s_axis_tvalid, Q = \s_encode_valid).
-Adding SRST signal on $procdff$70 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:85$14_Y, Q = \s_encode_data, rval = 8'00000000).
-Adding EN signal on $auto$ff.cc:266:slice$96 ($sdff) from module h_FsScramblerRoundTrip (D = \n_12, Q = \s_encode_data).
-Adding SRST signal on $procdff$71 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:86$15_Y, Q = \s_encode_keep, rval = 1'0).
+Adding SRST signal on $procdff$70 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:155$14_Y, Q = \s_encode_data, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$96 ($sdff) from module h_FsScramblerRoundTrip (D = \n_xor_12, Q = \s_encode_data).
+Adding SRST signal on $procdff$71 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:156$15_Y, Q = \s_encode_keep, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$98 ($sdff) from module h_FsScramblerRoundTrip (D = \s_s_axis_tkeep, Q = \s_encode_keep).
-Adding SRST signal on $procdff$72 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:87$16_Y, Q = \s_encode_last, rval = 1'0).
+Adding SRST signal on $procdff$72 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:157$16_Y, Q = \s_encode_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$100 ($sdff) from module h_FsScramblerRoundTrip (D = \s_s_axis_tlast, Q = \s_encode_last).
-Adding SRST signal on $procdff$73 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:88$17_Y, Q = \s_encode_user, rval = 8'00000000).
+Adding SRST signal on $procdff$73 ($dff) from module h_FsScramblerRoundTrip (D = $ternary$generated/fsharp/FsScramblerRoundTrip.v:158$17_Y, Q = \s_encode_user, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$102 ($sdff) from module h_FsScramblerRoundTrip (D = \s_s_axis_tuser, Q = \s_encode_user).
 
 4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
@@ -174,11 +174,75 @@ Optimizing module h_FsScramblerRoundTrip.
 
 4.16. Finished OPT passes. (There is nothing left to do.)
 
-5. Executing CHECK pass (checking for obvious problems).
+5. Executing MEMORY pass.
+
+5.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+5.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+5.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+5.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+5.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+5.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsScramblerRoundTrip..
+
+5.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+5.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+5.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsScramblerRoundTrip..
+
+5.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsScramblerRoundTrip.
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsScramblerRoundTrip'.
+Removed a total of 0 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsScramblerRoundTrip..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsScramblerRoundTrip.
+Performed a total of 0 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsScramblerRoundTrip'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsScramblerRoundTrip..
+
+6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsScramblerRoundTrip.
+
+6.9. Finished OPT passes. (There is nothing left to do.)
+
+7. Executing CHECK pass (checking for obvious problems).
 Checking module h_FsScramblerRoundTrip...
 Found and reported 0 problems.
 
-6. Printing statistics.
+8. Printing statistics.
 
 === h_FsScramblerRoundTrip ===
 
@@ -197,9 +261,9 @@ Found and reported 0 problems.
      $sdffe                         12
      $xor                            4
 
-7. Executing Verilog backend.
+9. Executing Verilog backend.
 
-7.1. Executing BMUXMAP pass.
+9.1. Executing BMUXMAP pass.
 
-7.2. Executing DEMUXMAP pass.
+9.2. Executing DEMUXMAP pass.
 Dumping module `\h_FsScramblerRoundTrip'.

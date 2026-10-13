@@ -12,16 +12,16 @@ module h_HeaderRewrite(
   output wire [63:0] s_word_out
 );
 // Operation '&'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_0;
+wire [63:0] n_and_0;
 // Unsigned resize: zero extend (or preserve width).
-wire [63:0] n_1;
+wire [63:0] n_resize_1;
 // Operation '<<'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_2;
+wire [63:0] n_shl_2;
 // Operation '|'; result limited to 64 bits. Signed interpretation only for slt/asr/signextend.
-wire [63:0] n_3;
-assign n_0 = s_word & 64'd17294104044079415295;
-assign n_1 = 12'd7;
-assign n_2 = n_1 << 48;
-assign n_3 = n_0 | n_2;
-assign s_word_out = n_3;
+wire [63:0] n_or_3;
+assign n_and_0 = s_word & 64'd17294104044079415295;
+assign n_resize_1 = 12'd7;
+assign n_shl_2 = n_resize_1 << 48;
+assign n_or_3 = n_and_0 | n_shl_2;
+assign s_word_out = n_or_3;
 endmodule

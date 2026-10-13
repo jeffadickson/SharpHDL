@@ -448,15 +448,15 @@ Finding identical cells in module `\h_Multiply8SignedParallel'.
 Removed a total of 0 cells.
 
 3.12.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$476 ($dff) from module h_Multiply8SignedParallel (D = \n_12, Q = \s_mul_user, rval = 4'0000).
+Adding SRST signal on $procdff$476 ($dff) from module h_Multiply8SignedParallel (D = \n_mux_12, Q = \s_mul_user, rval = 4'0000).
 Adding EN signal on $auto$ff.cc:266:slice$477 ($sdff) from module h_Multiply8SignedParallel (D = \s_input_tuser, Q = \s_mul_user).
-Adding SRST signal on $procdff$475 ($dff) from module h_Multiply8SignedParallel (D = \n_11, Q = \s_mul_last, rval = 1'0).
+Adding SRST signal on $procdff$475 ($dff) from module h_Multiply8SignedParallel (D = \n_mux_11, Q = \s_mul_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$479 ($sdff) from module h_Multiply8SignedParallel (D = \s_input_tlast, Q = \s_mul_last).
-Adding SRST signal on $procdff$474 ($dff) from module h_Multiply8SignedParallel (D = \n_10, Q = \s_mul_keep, rval = 2'00).
+Adding SRST signal on $procdff$474 ($dff) from module h_Multiply8SignedParallel (D = \n_mux_10, Q = \s_mul_keep, rval = 2'00).
 Adding EN signal on $auto$ff.cc:266:slice$481 ($sdff) from module h_Multiply8SignedParallel (D = \s_input_tkeep, Q = \s_mul_keep).
-Adding SRST signal on $procdff$473 ($dff) from module h_Multiply8SignedParallel (D = \n_9, Q = \s_mul_data, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$483 ($sdff) from module h_Multiply8SignedParallel (D = \n_8, Q = \s_mul_data).
-Adding SRST signal on $procdff$472 ($dff) from module h_Multiply8SignedParallel (D = \n_2, Q = \s_mul_valid, rval = 1'0).
+Adding SRST signal on $procdff$473 ($dff) from module h_Multiply8SignedParallel (D = \n_mux_9, Q = \s_mul_data, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$483 ($sdff) from module h_Multiply8SignedParallel (D = \n_mul_8, Q = \s_mul_data).
+Adding SRST signal on $procdff$472 ($dff) from module h_Multiply8SignedParallel (D = \n_mux_2, Q = \s_mul_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$485 ($sdff) from module h_Multiply8SignedParallel (D = \s_input_tvalid, Q = \s_mul_valid).
 
 3.12.7. Executing OPT_CLEAN pass (remove unused cells and wires).
@@ -1139,7 +1139,7 @@ No more expansions possible.
 Removed 0 unused cells and 596 unused wires.
 
 3.45. Executing AUTONAME pass.
-Renamed 4202 objects in module h_Multiply8SignedParallel (50 iterations).
+Renamed 4200 objects in module h_Multiply8SignedParallel (50 iterations).
 <suppressed ~381 debug messages>
 
 3.46. Executing HIERARCHY pass (managing design hierarchy).

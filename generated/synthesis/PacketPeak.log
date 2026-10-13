@@ -1,5 +1,5 @@
 
--- Running command `read_verilog generated/PacketPeak.v; hierarchy -check -top h_PacketPeak; proc -norom; opt; check -assert; stat; write_verilog -noattr generated/synthesis/PacketPeak_rtl.v' --
+-- Running command `read_verilog generated/PacketPeak.v; hierarchy -check -top h_PacketPeak; proc -norom; opt; memory; opt; check -assert; stat; write_verilog -noattr generated/synthesis/PacketPeak_rtl.v' --
 
 1. Executing Verilog-2005 frontend: generated/PacketPeak.v
 Parsing Verilog input from `generated/PacketPeak.v' to AST representation.
@@ -21,7 +21,7 @@ Removed 0 unused modules.
 Cleaned up 0 empty switches.
 
 3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
-Marked 1 switch rules as full_case in process $proc$generated/PacketPeak.v:107$26 in module h_PacketPeak.
+Marked 1 switch rules as full_case in process $proc$generated/PacketPeak.v:168$26 in module h_PacketPeak.
 Removed a total of 0 dead cases.
 
 3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
@@ -33,7 +33,7 @@ Promoted 0 assignments to connections.
 3.5. Executing PROC_ARST pass (detect async resets in processes).
 
 3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
-Creating decoders for process `\h_PacketPeak.$proc$generated/PacketPeak.v:107$26'.
+Creating decoders for process `\h_PacketPeak.$proc$generated/PacketPeak.v:168$26'.
      1/7: $0\s_result_user[7:0]
      2/7: $0\s_result_last[0:0]
      3/7: $0\s_result_keep[3:0]
@@ -45,26 +45,26 @@ Creating decoders for process `\h_PacketPeak.$proc$generated/PacketPeak.v:107$26
 3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
 
 3.8. Executing PROC_DFF pass (convert process syncs to FFs).
-Creating register for signal `\h_PacketPeak.\s_peak' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:107$26'.
+Creating register for signal `\h_PacketPeak.\s_peak' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:168$26'.
   created $dff cell `$procdff$48' with positive edge clock.
-Creating register for signal `\h_PacketPeak.\s_count' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:107$26'.
+Creating register for signal `\h_PacketPeak.\s_count' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:168$26'.
   created $dff cell `$procdff$49' with positive edge clock.
-Creating register for signal `\h_PacketPeak.\s_result_valid' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:107$26'.
+Creating register for signal `\h_PacketPeak.\s_result_valid' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:168$26'.
   created $dff cell `$procdff$50' with positive edge clock.
-Creating register for signal `\h_PacketPeak.\s_result_data' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:107$26'.
+Creating register for signal `\h_PacketPeak.\s_result_data' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:168$26'.
   created $dff cell `$procdff$51' with positive edge clock.
-Creating register for signal `\h_PacketPeak.\s_result_keep' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:107$26'.
+Creating register for signal `\h_PacketPeak.\s_result_keep' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:168$26'.
   created $dff cell `$procdff$52' with positive edge clock.
-Creating register for signal `\h_PacketPeak.\s_result_last' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:107$26'.
+Creating register for signal `\h_PacketPeak.\s_result_last' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:168$26'.
   created $dff cell `$procdff$53' with positive edge clock.
-Creating register for signal `\h_PacketPeak.\s_result_user' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:107$26'.
+Creating register for signal `\h_PacketPeak.\s_result_user' using process `\h_PacketPeak.$proc$generated/PacketPeak.v:168$26'.
   created $dff cell `$procdff$54' with positive edge clock.
 
 3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
 3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
-Found and cleaned up 1 empty switch in `\h_PacketPeak.$proc$generated/PacketPeak.v:107$26'.
-Removing empty process `h_PacketPeak.$proc$generated/PacketPeak.v:107$26'.
+Found and cleaned up 1 empty switch in `\h_PacketPeak.$proc$generated/PacketPeak.v:168$26'.
+Removing empty process `h_PacketPeak.$proc$generated/PacketPeak.v:168$26'.
 Cleaned up 1 empty switch.
 
 3.11. Executing OPT_EXPR pass (perform const folding).
@@ -85,7 +85,7 @@ Removed a total of 1 cells.
 Running muxtree optimizer on module \h_PacketPeak..
   Creating internal representation of mux trees.
   Evaluating internal representation of mux trees.
-      Replacing known input bits on port A of cell $ternary$generated/PacketPeak.v:70$8: \s_s_axis_tdata -> { 1'0 \s_s_axis_tdata [14:0] }
+      Replacing known input bits on port A of cell $ternary$generated/PacketPeak.v:131$8: \s_s_axis_tdata -> { 1'0 \s_s_axis_tdata [14:0] }
   Analyzing evaluation results.
 Removed 0 multiplexer ports.
 <suppressed ~10 debug messages>
@@ -99,19 +99,19 @@ Finding identical cells in module `\h_PacketPeak'.
 Removed a total of 0 cells.
 
 4.6. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $procdff$54 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:88$25_Y, Q = \s_result_user, rval = 8'00000000).
+Adding SRST signal on $procdff$54 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:149$25_Y, Q = \s_result_user, rval = 8'00000000).
 Adding EN signal on $auto$ff.cc:266:slice$55 ($sdff) from module h_PacketPeak (D = \s_reduced_tuser, Q = \s_result_user).
-Adding SRST signal on $procdff$53 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:87$24_Y, Q = \s_result_last, rval = 1'0).
+Adding SRST signal on $procdff$53 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:148$24_Y, Q = \s_result_last, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$57 ($sdff) from module h_PacketPeak (D = 1'1, Q = \s_result_last).
-Adding SRST signal on $procdff$48 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:79$16_Y, Q = \s_peak, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$59 ($sdff) from module h_PacketPeak (D = \n_15, Q = \s_peak).
-Adding SRST signal on $procdff$49 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:82$19_Y, Q = \s_count, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$61 ($sdff) from module h_PacketPeak (D = \n_18, Q = \s_count).
-Adding SRST signal on $procdff$50 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:83$20_Y, Q = \s_result_valid, rval = 1'0).
+Adding SRST signal on $procdff$48 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:140$16_Y, Q = \s_peak, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$59 ($sdff) from module h_PacketPeak (D = \n_mux_15, Q = \s_peak).
+Adding SRST signal on $procdff$49 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:143$19_Y, Q = \s_count, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$61 ($sdff) from module h_PacketPeak (D = \n_mux_18, Q = \s_count).
+Adding SRST signal on $procdff$50 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:144$20_Y, Q = \s_result_valid, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$63 ($sdff) from module h_PacketPeak (D = \s_reduced_tvalid, Q = \s_result_valid).
-Adding SRST signal on $procdff$51 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:85$22_Y, Q = \s_result_data, rval = 0).
+Adding SRST signal on $procdff$51 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:146$22_Y, Q = \s_result_data, rval = 0).
 Adding EN signal on $auto$ff.cc:266:slice$65 ($sdff) from module h_PacketPeak (D = \s_reduced_tdata, Q = \s_result_data).
-Adding SRST signal on $procdff$52 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:86$23_Y, Q = \s_result_keep, rval = 4'0000).
+Adding SRST signal on $procdff$52 ($dff) from module h_PacketPeak (D = $ternary$generated/PacketPeak.v:147$23_Y, Q = \s_result_keep, rval = 4'0000).
 Adding EN signal on $auto$ff.cc:266:slice$67 ($sdff) from module h_PacketPeak (D = 4'1111, Q = \s_result_keep).
 
 4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
@@ -150,11 +150,75 @@ Optimizing module h_PacketPeak.
 
 4.16. Finished OPT passes. (There is nothing left to do.)
 
-5. Executing CHECK pass (checking for obvious problems).
+5. Executing MEMORY pass.
+
+5.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+5.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+5.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+5.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+5.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+5.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PacketPeak..
+
+5.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+5.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+5.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PacketPeak..
+
+5.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PacketPeak.
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PacketPeak'.
+Removed a total of 0 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_PacketPeak..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~5 debug messages>
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_PacketPeak.
+Performed a total of 0 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PacketPeak'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PacketPeak..
+
+6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PacketPeak.
+
+6.9. Finished OPT passes. (There is nothing left to do.)
+
+7. Executing CHECK pass (checking for obvious problems).
 Checking module h_PacketPeak...
 Found and reported 0 problems.
 
-6. Printing statistics.
+8. Printing statistics.
 
 === h_PacketPeak ===
 
@@ -176,9 +240,9 @@ Found and reported 0 problems.
      $sdffe                          7
      $sub                            1
 
-7. Executing Verilog backend.
+9. Executing Verilog backend.
 
-7.1. Executing BMUXMAP pass.
+9.1. Executing BMUXMAP pass.
 
-7.2. Executing DEMUXMAP pass.
+9.2. Executing DEMUXMAP pass.
 Dumping module `\h_PacketPeak'.

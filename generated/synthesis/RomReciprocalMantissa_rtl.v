@@ -259,31 +259,31 @@ module h_RomReciprocalMantissa(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axi
   wire _255_;
   input clk;
   wire clk;
-  wire n_0;
-  wire n_1;
-  wire [31:0] n_10;
-  wire [57:0] n_11;
-  wire [63:0] n_12;
-  wire n_18;
-  wire [23:0] n_19;
-  wire n_2;
-  wire [34:0] n_20;
-  wire [25:0] n_21;
-  wire [34:0] n_22;
-  wire [7:0] n_23;
-  wire [34:0] n_24;
-  wire [34:0] n_25;
-  wire [34:0] n_26;
-  wire [34:0] n_27;
-  wire [23:0] n_28;
-  wire n_3;
-  wire n_5;
-  wire [7:0] n_6;
-  wire [25:0] n_7;
-  wire [23:0] n_8;
-  wire [7:0] n_9;
-  wire [7:0] \rom_n_7$func$generated/RomReciprocalMantissa.v:608$3.address ;
-  wire [7:0] \rom_n_8$func$generated/RomReciprocalMantissa.v:609$4.address ;
+  wire [34:0] n_add_27;
+  wire n_and_18;
+  wire n_and_5;
+  wire [34:0] n_asr_26;
+  wire [7:0] n_bits_15_8_6;
+  wire [23:0] n_bits_31_8_19;
+  wire [25:0] n_bits_57_32_21;
+  wire [7:0] n_bits_7_0_23;
+  wire [7:0] n_bits_7_0_9;
+  wire [31:0] n_concat_10;
+  wire [57:0] n_concat_11;
+  wire [25:0] n_lookup_7;
+  wire [23:0] n_lookup_8;
+  wire [34:0] n_mul_25;
+  wire n_not_0;
+  wire n_not_2;
+  wire n_or_1;
+  wire n_or_3;
+  wire [63:0] n_resize_12;
+  wire [34:0] n_resize_20;
+  wire [34:0] n_resize_24;
+  wire [23:0] n_resize_28;
+  wire [34:0] n_signextend_22;
+  wire [7:0] \rom_n_lookup_7$func$generated/RomReciprocalMantissa.v:679$3.address ;
+  wire [7:0] \rom_n_lookup_8$func$generated/RomReciprocalMantissa.v:680$4.address ;
   input rst;
   wire rst;
   output [23:0] s_m_axis_tdata;
@@ -330,43 +330,43 @@ module h_RomReciprocalMantissa(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axi
   wire [7:0] s_s_axis_tuser;
   input s_s_axis_tvalid;
   wire s_s_axis_tvalid;
-  assign n_27 = { 11'h000, s_math_rom_data[31:8] } + { n_25[34], n_25[34], n_25[34], n_25[34], n_25[34], n_25[34], n_25[34], n_25[34], n_25[34:8] };
-  assign n_5 = n_1 & s_s_axis_tvalid;
-  assign n_18 = n_3 & s_math_rom_valid;
+  assign n_add_27 = { 11'h000, s_math_rom_data[31:8] } + { n_mul_25[34], n_mul_25[34], n_mul_25[34], n_mul_25[34], n_mul_25[34], n_mul_25[34], n_mul_25[34], n_mul_25[34], n_mul_25[34:8] };
+  assign n_and_5 = n_or_1 & s_s_axis_tvalid;
+  assign n_and_18 = n_or_3 & s_math_rom_valid;
   always @(posedge clk)
     if (rst) s_math_interpolate_user <= 8'h00;
-    else if (n_18) s_math_interpolate_user <= s_math_rom_user;
+    else if (n_and_18) s_math_interpolate_user <= s_math_rom_user;
   always @(posedge clk)
     if (rst) s_math_interpolate_last <= 1'h0;
-    else if (n_18) s_math_interpolate_last <= s_math_rom_last;
+    else if (n_and_18) s_math_interpolate_last <= s_math_rom_last;
   always @(posedge clk)
     if (rst) s_math_interpolate_keep <= 3'h0;
-    else if (n_18) s_math_interpolate_keep <= 3'h7;
+    else if (n_and_18) s_math_interpolate_keep <= 3'h7;
   always @(posedge clk)
     if (rst) s_math_interpolate_data <= 24'h000000;
-    else if (n_18) s_math_interpolate_data <= n_27[23:0];
+    else if (n_and_18) s_math_interpolate_data <= n_add_27[23:0];
   always @(posedge clk)
     if (rst) s_math_interpolate_valid <= 1'h0;
-    else if (n_3) s_math_interpolate_valid <= s_math_rom_valid;
+    else if (n_or_3) s_math_interpolate_valid <= s_math_rom_valid;
   always @(posedge clk)
     if (rst) s_math_rom_user <= 8'h00;
-    else if (n_5) s_math_rom_user <= s_s_axis_tuser;
+    else if (n_and_5) s_math_rom_user <= s_s_axis_tuser;
   always @(posedge clk)
     if (rst) s_math_rom_valid <= 1'h0;
-    else if (n_1) s_math_rom_valid <= s_s_axis_tvalid;
+    else if (n_or_1) s_math_rom_valid <= s_s_axis_tvalid;
   always @(posedge clk)
     if (rst) s_math_rom_last <= 1'h0;
-    else if (n_5) s_math_rom_last <= s_s_axis_tlast;
+    else if (n_and_5) s_math_rom_last <= s_s_axis_tlast;
   reg [57:0] _267_;
   always @(posedge clk)
     if (rst) _267_ <= 58'h000000000000000;
-    else if (n_5) _267_ <= { n_7, n_8, s_s_axis_tdata[7:0] };
+    else if (n_and_5) _267_ <= { n_lookup_7, n_lookup_8, s_s_axis_tdata[7:0] };
   assign s_math_rom_data[57:0] = _267_;
-  assign n_25 = { s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57:32] } * { 27'h0000000, s_math_rom_data[7:0] };
-  assign n_0 = ~ s_math_rom_valid;
-  assign n_2 = ~ s_math_interpolate_valid;
-  assign n_1 = n_0 | n_3;
-  assign n_3 = n_2 | s_m_axis_tready;
+  assign n_mul_25 = { s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57:32] } * { 27'h0000000, s_math_rom_data[7:0] };
+  assign n_not_0 = ~ s_math_rom_valid;
+  assign n_not_2 = ~ s_math_interpolate_valid;
+  assign n_or_1 = n_not_0 | n_or_3;
+  assign n_or_3 = n_not_2 | s_m_axis_tready;
   function [25:0] _273_;
     input [25:0] a;
     input [6655:0] b;
@@ -888,7 +888,7 @@ module h_RomReciprocalMantissa(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axi
         _273_ = a;
     endcase
   endfunction
-  assign n_7 = _273_(26'hxxxxxxx, 6656'hfffc043fff030fffc13bfff06efffc233fff0abfffc323fff0e6fffc40ffff120fffc4f3fff159fffc5d3fff190fffc6b3fff1c6fffc787fff1fbfffc85bfff22ffffc927fff262fffc9effff294fffcab3fff2c5fffcb73fff2f4fffcc33fff323fffcce7fff351fffcd9bfff37efffce4ffff3a9fffcefbfff3d4fffcfa7fff3fefffd04bfff427fffd0effff450fffd18ffff477fffd22ffff49dfffd2c7fff4c4fffd35ffff4e9fffd3effff50efffd483fff531fffd50ffff555fffd59bfff577fffd627fff599fffd6a7fff5bbfffd72ffff5dafffd7b3fff5fafffd82ffff61bfffd8abfff639fffd923fff658fffd99bfff676fffda0ffff693fffda87fff6affffdaf7fff6ccfffdb67fff6e7fffdbd7fff702fffdc43fff71dfffdcabfff737fffdd13fff751fffdd7bfff76afffdddffff784fffde3ffff79cfffdea3fff7b4fffdf03fff7ccfffdf5ffff7e3fffdfbffff7f9fffe01bfff810fffe073fff826fffe0cbfff83cfffe11ffff852fffe177fff867fffe1c7fff87cfffe21bfff890fffe26bfff8a5fffe2bbfff8b8fffe30bfff8ccfffe357fff8dffffe3a3fff8f2fffe3effff904fffe437fff917fffe483fff928fffe4cbfff93afffe50ffff94cfffe557fff95dfffe59bfff96efffe5dbfff97ffffe61ffff98ffffe663fff99ffffe6a3fff9affffe6dffff9c0fffe71ffff9cefffe75ffff9defffe797fff9eefffe7d3fff9fcfffe80ffffa0bfffe84bfffa19fffe883fffa27fffe8bffffa35fffe8f3fffa44fffe92bfffa51fffe95ffffa5efffe997fffa6cfffe9cbfffa79fffe9fffffa85fffea33fffa93fffea63fffa9ffffea97fffaabfffeacbfffab7fffeafbfffac3fffeb2bfffacffffeb5bfffadbfffeb87fffae7fffebb3fffaf2fffebe3fffafefffec0ffffb08fffec3bfffb14fffec67fffb1ffffec93fffb29fffecbbfffb34fffece7fffb3efffed13fffb48fffed3bfffb53fffed5ffffb5dfffed8bfffb66fffedb3fffb71fffedd7fffb7afffedfffffb84fffee23fffb8dfffee4bfffb97fffee6ffffb9ffffee97fffba9fffeeb7fffbb2fffeedbfffbbbfffeefffffbc3fffef23fffbccfffef43fffbd5fffef67fffbddfffef87fffbe6fffefa7fffbeefffefcbfffbf6fffefebfffbfe, { _196_, _195_, _194_, _193_, _192_, _191_, _190_, _189_, _188_, _187_, _186_, _185_, _184_, _183_, _182_, _181_, _180_, _179_, _178_, _177_, _176_, _175_, _174_, _173_, _172_, _171_, _170_, _169_, _168_, _167_, _166_, _165_, _164_, _163_, _162_, _161_, _160_, _159_, _158_, _157_, _156_, _155_, _154_, _153_, _152_, _151_, _150_, _149_, _148_, _147_, _146_, _145_, _144_, _143_, _142_, _141_, _140_, _139_, _138_, _137_, _136_, _135_, _134_, _133_, _132_, _131_, _130_, _129_, _128_, _127_, _126_, _125_, _124_, _123_, _122_, _121_, _120_, _119_, _118_, _117_, _116_, _115_, _114_, _113_, _112_, _111_, _110_, _109_, _108_, _107_, _106_, _105_, _104_, _103_, _102_, _101_, _100_, _099_, _098_, _097_, _096_, _095_, _094_, _093_, _092_, _091_, _090_, _089_, _088_, _087_, _086_, _085_, _084_, _083_, _082_, _081_, _080_, _079_, _078_, _077_, _076_, _075_, _074_, _073_, _072_, _071_, _070_, _069_, _068_, _067_, _066_, _065_, _064_, _063_, _062_, _061_, _060_, _059_, _058_, _057_, _056_, _055_, _054_, _053_, _052_, _051_, _050_, _049_, _048_, _047_, _046_, _045_, _044_, _043_, _042_, _041_, _040_, _039_, _038_, _037_, _036_, _035_, _034_, _033_, _032_, _031_, _030_, _029_, _028_, _027_, _026_, _025_, _024_, _023_, _022_, _021_, _020_, _019_, _018_, _017_, _016_, _015_, _014_, _013_, _012_, _011_, _010_, _009_, _008_, _007_, _006_, _005_, _004_, _003_, _002_, _001_, _000_, _255_, _254_, _253_, _252_, _251_, _250_, _249_, _248_, _247_, _246_, _245_, _244_, _243_, _242_, _241_, _240_, _239_, _238_, _237_, _236_, _235_, _234_, _233_, _232_, _231_, _230_, _229_, _228_, _227_, _226_, _225_, _224_, _223_, _222_, _221_, _220_, _219_, _218_, _217_, _216_, _215_, _214_, _213_, _212_, _211_, _210_, _209_, _208_, _207_, _206_, _205_, _204_, _203_, _202_, _201_, _200_, _199_, _198_, _197_ });
+  assign n_lookup_7 = _273_(26'hxxxxxxx, 6656'hfffc043fff030fffc13bfff06efffc233fff0abfffc323fff0e6fffc40ffff120fffc4f3fff159fffc5d3fff190fffc6b3fff1c6fffc787fff1fbfffc85bfff22ffffc927fff262fffc9effff294fffcab3fff2c5fffcb73fff2f4fffcc33fff323fffcce7fff351fffcd9bfff37efffce4ffff3a9fffcefbfff3d4fffcfa7fff3fefffd04bfff427fffd0effff450fffd18ffff477fffd22ffff49dfffd2c7fff4c4fffd35ffff4e9fffd3effff50efffd483fff531fffd50ffff555fffd59bfff577fffd627fff599fffd6a7fff5bbfffd72ffff5dafffd7b3fff5fafffd82ffff61bfffd8abfff639fffd923fff658fffd99bfff676fffda0ffff693fffda87fff6affffdaf7fff6ccfffdb67fff6e7fffdbd7fff702fffdc43fff71dfffdcabfff737fffdd13fff751fffdd7bfff76afffdddffff784fffde3ffff79cfffdea3fff7b4fffdf03fff7ccfffdf5ffff7e3fffdfbffff7f9fffe01bfff810fffe073fff826fffe0cbfff83cfffe11ffff852fffe177fff867fffe1c7fff87cfffe21bfff890fffe26bfff8a5fffe2bbfff8b8fffe30bfff8ccfffe357fff8dffffe3a3fff8f2fffe3effff904fffe437fff917fffe483fff928fffe4cbfff93afffe50ffff94cfffe557fff95dfffe59bfff96efffe5dbfff97ffffe61ffff98ffffe663fff99ffffe6a3fff9affffe6dffff9c0fffe71ffff9cefffe75ffff9defffe797fff9eefffe7d3fff9fcfffe80ffffa0bfffe84bfffa19fffe883fffa27fffe8bffffa35fffe8f3fffa44fffe92bfffa51fffe95ffffa5efffe997fffa6cfffe9cbfffa79fffe9fffffa85fffea33fffa93fffea63fffa9ffffea97fffaabfffeacbfffab7fffeafbfffac3fffeb2bfffacffffeb5bfffadbfffeb87fffae7fffebb3fffaf2fffebe3fffafefffec0ffffb08fffec3bfffb14fffec67fffb1ffffec93fffb29fffecbbfffb34fffece7fffb3efffed13fffb48fffed3bfffb53fffed5ffffb5dfffed8bfffb66fffedb3fffb71fffedd7fffb7afffedfffffb84fffee23fffb8dfffee4bfffb97fffee6ffffb9ffffee97fffba9fffeeb7fffbb2fffeedbfffbbbfffeefffffbc3fffef23fffbccfffef43fffbd5fffef67fffbddfffef87fffbe6fffefa7fffbeefffefcbfffbf6fffefebfffbfe, { _196_, _195_, _194_, _193_, _192_, _191_, _190_, _189_, _188_, _187_, _186_, _185_, _184_, _183_, _182_, _181_, _180_, _179_, _178_, _177_, _176_, _175_, _174_, _173_, _172_, _171_, _170_, _169_, _168_, _167_, _166_, _165_, _164_, _163_, _162_, _161_, _160_, _159_, _158_, _157_, _156_, _155_, _154_, _153_, _152_, _151_, _150_, _149_, _148_, _147_, _146_, _145_, _144_, _143_, _142_, _141_, _140_, _139_, _138_, _137_, _136_, _135_, _134_, _133_, _132_, _131_, _130_, _129_, _128_, _127_, _126_, _125_, _124_, _123_, _122_, _121_, _120_, _119_, _118_, _117_, _116_, _115_, _114_, _113_, _112_, _111_, _110_, _109_, _108_, _107_, _106_, _105_, _104_, _103_, _102_, _101_, _100_, _099_, _098_, _097_, _096_, _095_, _094_, _093_, _092_, _091_, _090_, _089_, _088_, _087_, _086_, _085_, _084_, _083_, _082_, _081_, _080_, _079_, _078_, _077_, _076_, _075_, _074_, _073_, _072_, _071_, _070_, _069_, _068_, _067_, _066_, _065_, _064_, _063_, _062_, _061_, _060_, _059_, _058_, _057_, _056_, _055_, _054_, _053_, _052_, _051_, _050_, _049_, _048_, _047_, _046_, _045_, _044_, _043_, _042_, _041_, _040_, _039_, _038_, _037_, _036_, _035_, _034_, _033_, _032_, _031_, _030_, _029_, _028_, _027_, _026_, _025_, _024_, _023_, _022_, _021_, _020_, _019_, _018_, _017_, _016_, _015_, _014_, _013_, _012_, _011_, _010_, _009_, _008_, _007_, _006_, _005_, _004_, _003_, _002_, _001_, _000_, _255_, _254_, _253_, _252_, _251_, _250_, _249_, _248_, _247_, _246_, _245_, _244_, _243_, _242_, _241_, _240_, _239_, _238_, _237_, _236_, _235_, _234_, _233_, _232_, _231_, _230_, _229_, _228_, _227_, _226_, _225_, _224_, _223_, _222_, _221_, _220_, _219_, _218_, _217_, _216_, _215_, _214_, _213_, _212_, _211_, _210_, _209_, _208_, _207_, _206_, _205_, _204_, _203_, _202_, _201_, _200_, _199_, _198_, _197_ });
   assign _197_ = s_s_axis_tdata[15:8] == 8'hff;
   assign _198_ = s_s_axis_tdata[15:8] == 8'hfe;
   assign _199_ = s_s_axis_tdata[15:8] == 8'hfd;
@@ -1512,7 +1512,7 @@ module h_RomReciprocalMantissa(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axi
         _376_ = a;
     endcase
   endfunction
-  assign n_8 = _376_(24'hxxxxxx, 6144'h1000000ff0100fe0400fd08e0fc0fc0fb1880fa2330f92fb0f83e10f74e40f66040f57400f48990f3a0d0f2b9d0f1d490f0f0f0f00f00ef2eb0ee5010ed7300ec9790ebbdb0eae560ea0ea0e93960e865b0e79370e6c2b0e5f370e525a0e45930e38e40e2c4a0e1fc80e135b0e07040dfac20dee960de27f0dd67d0dca8f0dbeb60db2f10da7410d9ba40d901b0d84a60d79430d6df40d62b80d578f0d4c780d41730d36810d2ba10d20d20d16150d0b6a0d00d00cf6470cebd00ce1690cd7120ccccd0cc2980cb8720cae5e0ca4580c9a630c907e0c86a80c7ce10c73290c69810c5fe70c565d0c4ce00c43730c3a140c30c30c27800c1e4c0c15250c0c0c0c03010bfa030bf1130be8300bdf5a0bd6910bcdd50bc5260bbc840bb3ee0bab650ba2e90b9a780b92140b89bc0b81700b79300b70fc0b68d30b60b60b58a50b509e0b48a40b40b40b38d00b30f60b29280b21640b19ab0b11fd0b0a5a0b02c10afb320af3ae0aec340ae4c40add5e0ad6030aceb10ac7690ac02b0ab8f70ab1cc0aaaab0aa3930a9c850a95800a8e840a87910a80a80a79c80a72f00a6c220a655c0a5e9f0a57eb0a51400a4a9d0a44030a3d710a36e70a30660a29ed0a237c0a1d140a16b30a105b0a0a0a0a03c109fd8109f74809f11609eaed09e4cb09deb009d89e09d29209cc8e09c69109c09c09baae09b4c709aee709a90e09a33d099d720997ae0991f2098c3c09868d0980e4097b420975a7097013096a850964fe095f7d095a0209548e094f210949b9094458093efd0939a809345a092f110929cf092492091f5c091a2b091501090fdc090abd0905a409009008fb8208f67a08f17808ec7b08e78308e29108dda508d8be08d3dd08cf0108ca2a08c55808c08c08bbc508b70308b24708ad8f08a8dd08a430089f87089ae40896460891ac088d180888890883fe087f78087af708767b087203086d900869220864b9086054085bf3085798085341084eee084aa0084656084211083dd008399308355b083127082cf70828cc0824a5082082081c63081849081432081020080c12080808080402, { _196_, _195_, _194_, _193_, _192_, _191_, _190_, _189_, _188_, _187_, _186_, _185_, _184_, _183_, _182_, _181_, _180_, _179_, _178_, _177_, _176_, _175_, _174_, _173_, _172_, _171_, _170_, _169_, _168_, _167_, _166_, _165_, _164_, _163_, _162_, _161_, _160_, _159_, _158_, _157_, _156_, _155_, _154_, _153_, _152_, _151_, _150_, _149_, _148_, _147_, _146_, _145_, _144_, _143_, _142_, _141_, _140_, _139_, _138_, _137_, _136_, _135_, _134_, _133_, _132_, _131_, _130_, _129_, _128_, _127_, _126_, _125_, _124_, _123_, _122_, _121_, _120_, _119_, _118_, _117_, _116_, _115_, _114_, _113_, _112_, _111_, _110_, _109_, _108_, _107_, _106_, _105_, _104_, _103_, _102_, _101_, _100_, _099_, _098_, _097_, _096_, _095_, _094_, _093_, _092_, _091_, _090_, _089_, _088_, _087_, _086_, _085_, _084_, _083_, _082_, _081_, _080_, _079_, _078_, _077_, _076_, _075_, _074_, _073_, _072_, _071_, _070_, _069_, _068_, _067_, _066_, _065_, _064_, _063_, _062_, _061_, _060_, _059_, _058_, _057_, _056_, _055_, _054_, _053_, _052_, _051_, _050_, _049_, _048_, _047_, _046_, _045_, _044_, _043_, _042_, _041_, _040_, _039_, _038_, _037_, _036_, _035_, _034_, _033_, _032_, _031_, _030_, _029_, _028_, _027_, _026_, _025_, _024_, _023_, _022_, _021_, _020_, _019_, _018_, _017_, _016_, _015_, _014_, _013_, _012_, _011_, _010_, _009_, _008_, _007_, _006_, _005_, _004_, _003_, _002_, _001_, _000_, _255_, _254_, _253_, _252_, _251_, _250_, _249_, _248_, _247_, _246_, _245_, _244_, _243_, _242_, _241_, _240_, _239_, _238_, _237_, _236_, _235_, _234_, _233_, _232_, _231_, _230_, _229_, _228_, _227_, _226_, _225_, _224_, _223_, _222_, _221_, _220_, _219_, _218_, _217_, _216_, _215_, _214_, _213_, _212_, _211_, _210_, _209_, _208_, _207_, _206_, _205_, _204_, _203_, _202_, _201_, _200_, _199_, _198_, _197_ });
+  assign n_lookup_8 = _376_(24'hxxxxxx, 6144'h1000000ff0100fe0400fd08e0fc0fc0fb1880fa2330f92fb0f83e10f74e40f66040f57400f48990f3a0d0f2b9d0f1d490f0f0f0f00f00ef2eb0ee5010ed7300ec9790ebbdb0eae560ea0ea0e93960e865b0e79370e6c2b0e5f370e525a0e45930e38e40e2c4a0e1fc80e135b0e07040dfac20dee960de27f0dd67d0dca8f0dbeb60db2f10da7410d9ba40d901b0d84a60d79430d6df40d62b80d578f0d4c780d41730d36810d2ba10d20d20d16150d0b6a0d00d00cf6470cebd00ce1690cd7120ccccd0cc2980cb8720cae5e0ca4580c9a630c907e0c86a80c7ce10c73290c69810c5fe70c565d0c4ce00c43730c3a140c30c30c27800c1e4c0c15250c0c0c0c03010bfa030bf1130be8300bdf5a0bd6910bcdd50bc5260bbc840bb3ee0bab650ba2e90b9a780b92140b89bc0b81700b79300b70fc0b68d30b60b60b58a50b509e0b48a40b40b40b38d00b30f60b29280b21640b19ab0b11fd0b0a5a0b02c10afb320af3ae0aec340ae4c40add5e0ad6030aceb10ac7690ac02b0ab8f70ab1cc0aaaab0aa3930a9c850a95800a8e840a87910a80a80a79c80a72f00a6c220a655c0a5e9f0a57eb0a51400a4a9d0a44030a3d710a36e70a30660a29ed0a237c0a1d140a16b30a105b0a0a0a0a03c109fd8109f74809f11609eaed09e4cb09deb009d89e09d29209cc8e09c69109c09c09baae09b4c709aee709a90e09a33d099d720997ae0991f2098c3c09868d0980e4097b420975a7097013096a850964fe095f7d095a0209548e094f210949b9094458093efd0939a809345a092f110929cf092492091f5c091a2b091501090fdc090abd0905a409009008fb8208f67a08f17808ec7b08e78308e29108dda508d8be08d3dd08cf0108ca2a08c55808c08c08bbc508b70308b24708ad8f08a8dd08a430089f87089ae40896460891ac088d180888890883fe087f78087af708767b087203086d900869220864b9086054085bf3085798085341084eee084aa0084656084211083dd008399308355b083127082cf70828cc0824a5082082081c63081849081432081020080c12080808080402, { _196_, _195_, _194_, _193_, _192_, _191_, _190_, _189_, _188_, _187_, _186_, _185_, _184_, _183_, _182_, _181_, _180_, _179_, _178_, _177_, _176_, _175_, _174_, _173_, _172_, _171_, _170_, _169_, _168_, _167_, _166_, _165_, _164_, _163_, _162_, _161_, _160_, _159_, _158_, _157_, _156_, _155_, _154_, _153_, _152_, _151_, _150_, _149_, _148_, _147_, _146_, _145_, _144_, _143_, _142_, _141_, _140_, _139_, _138_, _137_, _136_, _135_, _134_, _133_, _132_, _131_, _130_, _129_, _128_, _127_, _126_, _125_, _124_, _123_, _122_, _121_, _120_, _119_, _118_, _117_, _116_, _115_, _114_, _113_, _112_, _111_, _110_, _109_, _108_, _107_, _106_, _105_, _104_, _103_, _102_, _101_, _100_, _099_, _098_, _097_, _096_, _095_, _094_, _093_, _092_, _091_, _090_, _089_, _088_, _087_, _086_, _085_, _084_, _083_, _082_, _081_, _080_, _079_, _078_, _077_, _076_, _075_, _074_, _073_, _072_, _071_, _070_, _069_, _068_, _067_, _066_, _065_, _064_, _063_, _062_, _061_, _060_, _059_, _058_, _057_, _056_, _055_, _054_, _053_, _052_, _051_, _050_, _049_, _048_, _047_, _046_, _045_, _044_, _043_, _042_, _041_, _040_, _039_, _038_, _037_, _036_, _035_, _034_, _033_, _032_, _031_, _030_, _029_, _028_, _027_, _026_, _025_, _024_, _023_, _022_, _021_, _020_, _019_, _018_, _017_, _016_, _015_, _014_, _013_, _012_, _011_, _010_, _009_, _008_, _007_, _006_, _005_, _004_, _003_, _002_, _001_, _000_, _255_, _254_, _253_, _252_, _251_, _250_, _249_, _248_, _247_, _246_, _245_, _244_, _243_, _242_, _241_, _240_, _239_, _238_, _237_, _236_, _235_, _234_, _233_, _232_, _231_, _230_, _229_, _228_, _227_, _226_, _225_, _224_, _223_, _222_, _221_, _220_, _219_, _218_, _217_, _216_, _215_, _214_, _213_, _212_, _211_, _210_, _209_, _208_, _207_, _206_, _205_, _204_, _203_, _202_, _201_, _200_, _199_, _198_, _197_ });
   assign _043_ = s_s_axis_tdata[15:8] == 8'h99;
   assign _044_ = s_s_axis_tdata[15:8] == 8'h98;
   assign _045_ = s_s_axis_tdata[15:8] == 8'h97;
@@ -1667,21 +1667,21 @@ module h_RomReciprocalMantissa(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axi
   assign _194_ = s_s_axis_tdata[15:8] == 8'h02;
   assign _195_ = s_s_axis_tdata[15:8] == 8'h01;
   assign _196_ = ! s_s_axis_tdata[15:8];
-  assign n_10 = { n_8, s_s_axis_tdata[7:0] };
-  assign n_11 = { n_7, n_8, s_s_axis_tdata[7:0] };
-  assign n_12 = { 6'h00, n_7, n_8, s_s_axis_tdata[7:0] };
-  assign n_19 = s_math_rom_data[31:8];
-  assign n_20 = { 11'h000, s_math_rom_data[31:8] };
-  assign n_21 = s_math_rom_data[57:32];
-  assign n_22 = { s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57:32] };
-  assign n_23 = s_math_rom_data[7:0];
-  assign n_24 = { 27'h0000000, s_math_rom_data[7:0] };
-  assign n_26 = { n_25[34], n_25[34], n_25[34], n_25[34], n_25[34], n_25[34], n_25[34], n_25[34], n_25[34:8] };
-  assign n_28 = n_27[23:0];
-  assign n_6 = s_s_axis_tdata[15:8];
-  assign n_9 = s_s_axis_tdata[7:0];
-  assign \rom_n_7$func$generated/RomReciprocalMantissa.v:608$3.address  = 8'hxx;
-  assign \rom_n_8$func$generated/RomReciprocalMantissa.v:609$4.address  = 8'hxx;
+  assign n_asr_26 = { n_mul_25[34], n_mul_25[34], n_mul_25[34], n_mul_25[34], n_mul_25[34], n_mul_25[34], n_mul_25[34], n_mul_25[34], n_mul_25[34:8] };
+  assign n_bits_15_8_6 = s_s_axis_tdata[15:8];
+  assign n_bits_31_8_19 = s_math_rom_data[31:8];
+  assign n_bits_57_32_21 = s_math_rom_data[57:32];
+  assign n_bits_7_0_23 = s_math_rom_data[7:0];
+  assign n_bits_7_0_9 = s_s_axis_tdata[7:0];
+  assign n_concat_10 = { n_lookup_8, s_s_axis_tdata[7:0] };
+  assign n_concat_11 = { n_lookup_7, n_lookup_8, s_s_axis_tdata[7:0] };
+  assign n_resize_12 = { 6'h00, n_lookup_7, n_lookup_8, s_s_axis_tdata[7:0] };
+  assign n_resize_20 = { 11'h000, s_math_rom_data[31:8] };
+  assign n_resize_24 = { 27'h0000000, s_math_rom_data[7:0] };
+  assign n_resize_28 = n_add_27[23:0];
+  assign n_signextend_22 = { s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57], s_math_rom_data[57:32] };
+  assign \rom_n_lookup_7$func$generated/RomReciprocalMantissa.v:679$3.address  = 8'hxx;
+  assign \rom_n_lookup_8$func$generated/RomReciprocalMantissa.v:680$4.address  = 8'hxx;
   assign s_m_axis_tdata = s_math_interpolate_data;
   assign s_m_axis_tkeep = s_math_interpolate_keep;
   assign s_m_axis_tlast = s_math_interpolate_last;
@@ -1696,8 +1696,8 @@ module h_RomReciprocalMantissa(clk, rst, s_s_axis_tdata, s_s_axis_tkeep, s_s_axi
   assign s_math_rom_data[63:58] = 6'h00;
   assign s_math_rom_tdata = { 6'h00, s_math_rom_data[57:0] };
   assign s_math_rom_tlast = s_math_rom_last;
-  assign s_math_rom_tready = n_3;
+  assign s_math_rom_tready = n_or_3;
   assign s_math_rom_tuser = s_math_rom_user;
   assign s_math_rom_tvalid = s_math_rom_valid;
-  assign s_s_axis_tready = n_1;
+  assign s_s_axis_tready = n_or_1;
 endmodule

@@ -76,60 +76,60 @@ reg [0:0] s_multiply_stage_last;
 // multiply_stage: registered TUSER metadata [7:0].
 reg [7:0] s_multiply_stage_user;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_not_0;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_or_1;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_not_2;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_3;
+wire [0:0] n_or_3;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_4;
+wire [0:0] n_mux_4;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_5;
+wire [0:0] n_and_5;
 // Operation '+'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_6;
+wire [7:0] n_add_6;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_7;
+wire [7:0] n_mux_7;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_8;
+wire [0:0] n_mux_8;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_9;
+wire [0:0] n_mux_9;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_10;
+wire [7:0] n_mux_10;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_11;
+wire [0:0] n_mux_11;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_12;
+wire [0:0] n_and_12;
 // Operation '*'; result limited to 8 bits. Signed interpretation only for slt/asr/signextend.
-wire [7:0] n_13;
+wire [7:0] n_mul_13;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_14;
+wire [7:0] n_mux_14;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_15;
+wire [0:0] n_mux_15;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_16;
+wire [0:0] n_mux_16;
 // Select true operand when condition is 1; false operand otherwise.
-wire [7:0] n_17;
-assign n_0 = ~s_add_stage_valid;
-assign n_1 = n_0 | s_add_stage_tready;
-assign n_2 = ~s_multiply_stage_valid;
-assign n_3 = n_2 | s_multiply_stage_tready;
-assign n_4 = n_1 ? s_input_tvalid : s_add_stage_valid;
-assign n_5 = n_1 & s_input_tvalid;
-assign n_6 = s_input_tdata + 8'd2;
-assign n_7 = n_5 ? n_6 : s_add_stage_data;
-assign n_8 = n_5 ? s_input_tkeep : s_add_stage_keep;
-assign n_9 = n_5 ? s_input_tlast : s_add_stage_last;
-assign n_10 = n_5 ? s_input_tuser : s_add_stage_user;
-assign n_11 = n_3 ? s_add_stage_tvalid : s_multiply_stage_valid;
-assign n_12 = n_3 & s_add_stage_tvalid;
-assign n_13 = s_add_stage_tdata * 8'd3;
-assign n_14 = n_12 ? n_13 : s_multiply_stage_data;
-assign n_15 = n_12 ? s_add_stage_tkeep : s_multiply_stage_keep;
-assign n_16 = n_12 ? s_add_stage_tlast : s_multiply_stage_last;
-assign n_17 = n_12 ? s_add_stage_tuser : s_multiply_stage_user;
-assign s_input_tready = n_1;
+wire [7:0] n_mux_17;
+assign n_not_0 = ~s_add_stage_valid;
+assign n_or_1 = n_not_0 | s_add_stage_tready;
+assign n_not_2 = ~s_multiply_stage_valid;
+assign n_or_3 = n_not_2 | s_multiply_stage_tready;
+assign n_mux_4 = n_or_1 ? s_input_tvalid : s_add_stage_valid;
+assign n_and_5 = n_or_1 & s_input_tvalid;
+assign n_add_6 = s_input_tdata + 8'd2;
+assign n_mux_7 = n_and_5 ? n_add_6 : s_add_stage_data;
+assign n_mux_8 = n_and_5 ? s_input_tkeep : s_add_stage_keep;
+assign n_mux_9 = n_and_5 ? s_input_tlast : s_add_stage_last;
+assign n_mux_10 = n_and_5 ? s_input_tuser : s_add_stage_user;
+assign n_mux_11 = n_or_3 ? s_add_stage_tvalid : s_multiply_stage_valid;
+assign n_and_12 = n_or_3 & s_add_stage_tvalid;
+assign n_mul_13 = s_add_stage_tdata * 8'd3;
+assign n_mux_14 = n_and_12 ? n_mul_13 : s_multiply_stage_data;
+assign n_mux_15 = n_and_12 ? s_add_stage_tkeep : s_multiply_stage_keep;
+assign n_mux_16 = n_and_12 ? s_add_stage_tlast : s_multiply_stage_last;
+assign n_mux_17 = n_and_12 ? s_add_stage_tuser : s_multiply_stage_user;
+assign s_input_tready = n_or_1;
 assign s_output_tdata = s_multiply_stage_tdata;
 assign s_output_tkeep = s_multiply_stage_tkeep;
 assign s_output_tlast = s_multiply_stage_tlast;
@@ -140,7 +140,7 @@ assign s_add_stage_tkeep = s_add_stage_keep;
 assign s_add_stage_tlast = s_add_stage_last;
 assign s_add_stage_tuser = s_add_stage_user;
 assign s_add_stage_tvalid = s_add_stage_valid;
-assign s_add_stage_tready = n_3;
+assign s_add_stage_tready = n_or_3;
 assign s_multiply_stage_tdata = s_multiply_stage_data;
 assign s_multiply_stage_tkeep = s_multiply_stage_keep;
 assign s_multiply_stage_tlast = s_multiply_stage_last;
@@ -160,16 +160,16 @@ always @(posedge clk) begin
     s_multiply_stage_last <= 1'd0;
     s_multiply_stage_user <= 8'd0;
   end else begin
-    s_add_stage_valid <= n_4;
-    s_add_stage_data <= n_7;
-    s_add_stage_keep <= n_8;
-    s_add_stage_last <= n_9;
-    s_add_stage_user <= n_10;
-    s_multiply_stage_valid <= n_11;
-    s_multiply_stage_data <= n_14;
-    s_multiply_stage_keep <= n_15;
-    s_multiply_stage_last <= n_16;
-    s_multiply_stage_user <= n_17;
+    s_add_stage_valid <= n_mux_4;
+    s_add_stage_data <= n_mux_7;
+    s_add_stage_keep <= n_mux_8;
+    s_add_stage_last <= n_mux_9;
+    s_add_stage_user <= n_mux_10;
+    s_multiply_stage_valid <= n_mux_11;
+    s_multiply_stage_data <= n_mux_14;
+    s_multiply_stage_keep <= n_mux_15;
+    s_multiply_stage_last <= n_mux_16;
+    s_multiply_stage_user <= n_mux_17;
   end
 end
 endmodule
