@@ -1,0 +1,1166 @@
+
+-- Running command `read_verilog generated/behavioral/CilCsLoop12.v; hierarchy -top h_CilCsLoop12; proc; opt; memory_collect; stat; synth_ice40 -top h_CilCsLoop12; stat; write_verilog -noattr build/behavioral-check/CilCsLoop12-mapped.v' --
+
+1. Executing Verilog-2005 frontend: generated/behavioral/CilCsLoop12.v
+Parsing Verilog input from `generated/behavioral/CilCsLoop12.v' to AST representation.
+Generating RTLIL representation for module `\h_CilCsLoop12'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \h_CilCsLoop12
+
+2.2. Analyzing design hierarchy..
+Top module:  \h_CilCsLoop12
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CilCsLoop12..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CilCsLoop12.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+Removed 0 unused cells and 12 unused wires.
+<suppressed ~1 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CilCsLoop12..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CilCsLoop12.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+4.16. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+6. Printing statistics.
+
+=== h_CilCsLoop12 ===
+
+   Number of wires:                 18
+   Number of wire bits:            483
+   Number of public wires:          18
+   Number of public wire bits:     483
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 12
+     $add                           12
+
+7. Executing SYNTH_ICE40 pass.
+
+7.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v' to AST representation.
+Generating RTLIL representation for module `\SB_IO'.
+Generating RTLIL representation for module `\SB_GB_IO'.
+Generating RTLIL representation for module `\SB_GB'.
+Generating RTLIL representation for module `\SB_LUT4'.
+Generating RTLIL representation for module `\SB_CARRY'.
+Generating RTLIL representation for module `\SB_DFF'.
+Generating RTLIL representation for module `\SB_DFFE'.
+Generating RTLIL representation for module `\SB_DFFSR'.
+Generating RTLIL representation for module `\SB_DFFR'.
+Generating RTLIL representation for module `\SB_DFFSS'.
+Generating RTLIL representation for module `\SB_DFFS'.
+Generating RTLIL representation for module `\SB_DFFESR'.
+Generating RTLIL representation for module `\SB_DFFER'.
+Generating RTLIL representation for module `\SB_DFFESS'.
+Generating RTLIL representation for module `\SB_DFFES'.
+Generating RTLIL representation for module `\SB_DFFN'.
+Generating RTLIL representation for module `\SB_DFFNE'.
+Generating RTLIL representation for module `\SB_DFFNSR'.
+Generating RTLIL representation for module `\SB_DFFNR'.
+Generating RTLIL representation for module `\SB_DFFNSS'.
+Generating RTLIL representation for module `\SB_DFFNS'.
+Generating RTLIL representation for module `\SB_DFFNESR'.
+Generating RTLIL representation for module `\SB_DFFNER'.
+Generating RTLIL representation for module `\SB_DFFNESS'.
+Generating RTLIL representation for module `\SB_DFFNES'.
+Generating RTLIL representation for module `\SB_RAM40_4K'.
+Generating RTLIL representation for module `\SB_RAM40_4KNR'.
+Generating RTLIL representation for module `\SB_RAM40_4KNW'.
+Generating RTLIL representation for module `\SB_RAM40_4KNRNW'.
+Generating RTLIL representation for module `\ICESTORM_LC'.
+Generating RTLIL representation for module `\SB_PLL40_CORE'.
+Generating RTLIL representation for module `\SB_PLL40_PAD'.
+Generating RTLIL representation for module `\SB_PLL40_2_PAD'.
+Generating RTLIL representation for module `\SB_PLL40_2F_CORE'.
+Generating RTLIL representation for module `\SB_PLL40_2F_PAD'.
+Generating RTLIL representation for module `\SB_WARMBOOT'.
+Generating RTLIL representation for module `\SB_SPRAM256KA'.
+Generating RTLIL representation for module `\SB_HFOSC'.
+Generating RTLIL representation for module `\SB_LFOSC'.
+Generating RTLIL representation for module `\SB_RGBA_DRV'.
+Generating RTLIL representation for module `\SB_LED_DRV_CUR'.
+Generating RTLIL representation for module `\SB_RGB_DRV'.
+Generating RTLIL representation for module `\SB_I2C'.
+Generating RTLIL representation for module `\SB_SPI'.
+Generating RTLIL representation for module `\SB_LEDDA_IP'.
+Generating RTLIL representation for module `\SB_FILTER_50NS'.
+Generating RTLIL representation for module `\SB_IO_I3C'.
+Generating RTLIL representation for module `\SB_IO_OD'.
+Generating RTLIL representation for module `\SB_MAC16'.
+Generating RTLIL representation for module `\ICESTORM_RAM'.
+Successfully finished Verilog frontend.
+
+7.2. Executing HIERARCHY pass (managing design hierarchy).
+
+7.2.1. Analyzing design hierarchy..
+Top module:  \h_CilCsLoop12
+
+7.2.2. Analyzing design hierarchy..
+Top module:  \h_CilCsLoop12
+Removed 0 unused modules.
+
+7.3. Executing PROC pass (convert processes to netlists).
+
+7.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+7.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$253 in module SB_DFFNES.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$246 in module SB_DFFNESS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$242 in module SB_DFFNER.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$235 in module SB_DFFNESR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$232 in module SB_DFFNS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$229 in module SB_DFFNSS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$226 in module SB_DFFNR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$223 in module SB_DFFNSR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$215 in module SB_DFFES.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$208 in module SB_DFFESS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$204 in module SB_DFFER.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$197 in module SB_DFFESR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$194 in module SB_DFFS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$191 in module SB_DFFSS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$188 in module SB_DFFR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$185 in module SB_DFFSR.
+Removed a total of 0 dead cases.
+
+7.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 8 redundant assignments.
+Promoted 22 assignments to connections.
+
+7.3.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$256'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$252'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$245'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$241'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$234'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$231'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$228'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$225'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$222'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$220'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$218'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$214'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$207'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$203'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$196'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$193'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$190'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$187'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$184'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$182'.
+  Set init value: \Q = 1'0
+
+7.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \S in `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$253'.
+Found async reset \R in `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$242'.
+Found async reset \S in `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$232'.
+Found async reset \R in `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$226'.
+Found async reset \S in `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$215'.
+Found async reset \R in `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$204'.
+Found async reset \S in `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$194'.
+Found async reset \R in `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$188'.
+
+7.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~18 debug messages>
+
+7.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$256'.
+Creating decoders for process `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$253'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$252'.
+Creating decoders for process `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$246'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$245'.
+Creating decoders for process `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$242'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$241'.
+Creating decoders for process `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$235'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$234'.
+Creating decoders for process `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$232'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$231'.
+Creating decoders for process `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$229'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$228'.
+Creating decoders for process `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$226'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$225'.
+Creating decoders for process `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$223'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$222'.
+Creating decoders for process `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:922$221'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$220'.
+Creating decoders for process `\SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:882$219'.
+Creating decoders for process `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$218'.
+Creating decoders for process `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$215'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$214'.
+Creating decoders for process `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$208'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$207'.
+Creating decoders for process `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$204'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$203'.
+Creating decoders for process `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$197'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$196'.
+Creating decoders for process `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$194'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$193'.
+Creating decoders for process `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$191'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$190'.
+Creating decoders for process `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$188'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$187'.
+Creating decoders for process `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$185'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$184'.
+Creating decoders for process `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:311$183'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$182'.
+Creating decoders for process `\SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:271$181'.
+
+7.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+7.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\SB_DFFNES.\Q' using process `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$253'.
+  created $adff cell `$procdff$437' with negative edge clock and positive level reset.
+Creating register for signal `\SB_DFFNESS.\Q' using process `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$246'.
+  created $dff cell `$procdff$438' with negative edge clock.
+Creating register for signal `\SB_DFFNER.\Q' using process `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$242'.
+  created $adff cell `$procdff$439' with negative edge clock and positive level reset.
+Creating register for signal `\SB_DFFNESR.\Q' using process `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$235'.
+  created $dff cell `$procdff$440' with negative edge clock.
+Creating register for signal `\SB_DFFNS.\Q' using process `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$232'.
+  created $adff cell `$procdff$441' with negative edge clock and positive level reset.
+Creating register for signal `\SB_DFFNSS.\Q' using process `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$229'.
+  created $dff cell `$procdff$442' with negative edge clock.
+Creating register for signal `\SB_DFFNR.\Q' using process `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$226'.
+  created $adff cell `$procdff$443' with negative edge clock and positive level reset.
+Creating register for signal `\SB_DFFNSR.\Q' using process `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$223'.
+  created $dff cell `$procdff$444' with negative edge clock.
+Creating register for signal `\SB_DFFNE.\Q' using process `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:922$221'.
+  created $dff cell `$procdff$445' with negative edge clock.
+Creating register for signal `\SB_DFFN.\Q' using process `\SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:882$219'.
+  created $dff cell `$procdff$446' with negative edge clock.
+Creating register for signal `\SB_DFFES.\Q' using process `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$215'.
+  created $adff cell `$procdff$447' with positive edge clock and positive level reset.
+Creating register for signal `\SB_DFFESS.\Q' using process `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$208'.
+  created $dff cell `$procdff$448' with positive edge clock.
+Creating register for signal `\SB_DFFER.\Q' using process `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$204'.
+  created $adff cell `$procdff$449' with positive edge clock and positive level reset.
+Creating register for signal `\SB_DFFESR.\Q' using process `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$197'.
+  created $dff cell `$procdff$450' with positive edge clock.
+Creating register for signal `\SB_DFFS.\Q' using process `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$194'.
+  created $adff cell `$procdff$451' with positive edge clock and positive level reset.
+Creating register for signal `\SB_DFFSS.\Q' using process `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$191'.
+  created $dff cell `$procdff$452' with positive edge clock.
+Creating register for signal `\SB_DFFR.\Q' using process `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$188'.
+  created $adff cell `$procdff$453' with positive edge clock and positive level reset.
+Creating register for signal `\SB_DFFSR.\Q' using process `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$185'.
+  created $dff cell `$procdff$454' with positive edge clock.
+Creating register for signal `\SB_DFFE.\Q' using process `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:311$183'.
+  created $dff cell `$procdff$455' with positive edge clock.
+Creating register for signal `\SB_DFF.\Q' using process `\SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:271$181'.
+  created $dff cell `$procdff$456' with positive edge clock.
+
+7.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+7.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$256'.
+Found and cleaned up 1 empty switch in `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$253'.
+Removing empty process `SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$253'.
+Removing empty process `SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$252'.
+Found and cleaned up 2 empty switches in `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$246'.
+Removing empty process `SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$246'.
+Removing empty process `SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$245'.
+Found and cleaned up 1 empty switch in `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$242'.
+Removing empty process `SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$242'.
+Removing empty process `SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$241'.
+Found and cleaned up 2 empty switches in `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$235'.
+Removing empty process `SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$235'.
+Removing empty process `SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$234'.
+Removing empty process `SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$232'.
+Removing empty process `SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$231'.
+Found and cleaned up 1 empty switch in `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$229'.
+Removing empty process `SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$229'.
+Removing empty process `SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$228'.
+Removing empty process `SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$226'.
+Removing empty process `SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$225'.
+Found and cleaned up 1 empty switch in `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$223'.
+Removing empty process `SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$223'.
+Removing empty process `SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$222'.
+Found and cleaned up 1 empty switch in `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:922$221'.
+Removing empty process `SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:922$221'.
+Removing empty process `SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$220'.
+Removing empty process `SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:882$219'.
+Removing empty process `SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$218'.
+Found and cleaned up 1 empty switch in `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$215'.
+Removing empty process `SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$215'.
+Removing empty process `SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$214'.
+Found and cleaned up 2 empty switches in `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$208'.
+Removing empty process `SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$208'.
+Removing empty process `SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$207'.
+Found and cleaned up 1 empty switch in `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$204'.
+Removing empty process `SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$204'.
+Removing empty process `SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$203'.
+Found and cleaned up 2 empty switches in `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$197'.
+Removing empty process `SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$197'.
+Removing empty process `SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$196'.
+Removing empty process `SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$194'.
+Removing empty process `SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$193'.
+Found and cleaned up 1 empty switch in `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$191'.
+Removing empty process `SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$191'.
+Removing empty process `SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$190'.
+Removing empty process `SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$188'.
+Removing empty process `SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$187'.
+Found and cleaned up 1 empty switch in `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$185'.
+Removing empty process `SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$185'.
+Removing empty process `SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$184'.
+Found and cleaned up 1 empty switch in `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:311$183'.
+Removing empty process `SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:311$183'.
+Removing empty process `SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$182'.
+Removing empty process `SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:271$181'.
+Cleaned up 18 empty switches.
+
+7.3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.4. Executing FLATTEN pass (flatten design).
+
+7.5. Executing TRIBUF pass.
+
+7.6. Executing DEMINOUT pass (demote inout ports to input or output).
+
+7.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.9. Executing CHECK pass (checking for obvious problems).
+Checking module h_CilCsLoop12...
+Found and reported 0 problems.
+
+7.10. Executing OPT pass (performing simple optimizations).
+
+7.10.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.10.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CilCsLoop12..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+7.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CilCsLoop12.
+Performed a total of 0 changes.
+
+7.10.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.10.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.10.9. Finished OPT passes. (There is nothing left to do.)
+
+7.11. Executing FSM pass (extract and optimize FSM).
+
+7.11.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+7.11.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+7.11.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+7.11.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.11.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+7.11.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+7.11.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+7.11.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+7.12. Executing OPT pass (performing simple optimizations).
+
+7.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.12.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CilCsLoop12..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+7.12.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CilCsLoop12.
+Performed a total of 0 changes.
+
+7.12.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.12.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.12.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.12.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.12.9. Finished OPT passes. (There is nothing left to do.)
+
+7.13. Executing WREDUCE pass (reducing word size of cells).
+
+7.14. Executing PEEPOPT pass (run peephole optimizers).
+
+7.15. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.16. Executing SHARE pass (SAT-based resource sharing).
+
+7.17. Executing TECHMAP pass (map to technology primitives).
+
+7.17.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/cmp2lut.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/cmp2lut.v' to AST representation.
+Generating RTLIL representation for module `\_90_lut_cmp_'.
+Successfully finished Verilog frontend.
+
+7.17.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~6 debug messages>
+
+7.18. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.19. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.20. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module h_CilCsLoop12:
+  creating $macc model for $add$generated/behavioral/CilCsLoop12.v:42$1 ($add).
+  creating $macc model for $add$generated/behavioral/CilCsLoop12.v:43$2 ($add).
+  creating $macc model for $add$generated/behavioral/CilCsLoop12.v:44$3 ($add).
+  creating $macc model for $add$generated/behavioral/CilCsLoop12.v:45$4 ($add).
+  creating $macc model for $add$generated/behavioral/CilCsLoop12.v:46$5 ($add).
+  creating $macc model for $add$generated/behavioral/CilCsLoop12.v:47$6 ($add).
+  creating $macc model for $add$generated/behavioral/CilCsLoop12.v:48$7 ($add).
+  creating $macc model for $add$generated/behavioral/CilCsLoop12.v:49$8 ($add).
+  creating $macc model for $add$generated/behavioral/CilCsLoop12.v:50$9 ($add).
+  creating $macc model for $add$generated/behavioral/CilCsLoop12.v:51$10 ($add).
+  creating $macc model for $add$generated/behavioral/CilCsLoop12.v:52$11 ($add).
+  creating $macc model for $add$generated/behavioral/CilCsLoop12.v:53$12 ($add).
+  merging $macc model for $add$generated/behavioral/CilCsLoop12.v:52$11 into $add$generated/behavioral/CilCsLoop12.v:53$12.
+  merging $macc model for $add$generated/behavioral/CilCsLoop12.v:51$10 into $add$generated/behavioral/CilCsLoop12.v:53$12.
+  merging $macc model for $add$generated/behavioral/CilCsLoop12.v:50$9 into $add$generated/behavioral/CilCsLoop12.v:53$12.
+  merging $macc model for $add$generated/behavioral/CilCsLoop12.v:49$8 into $add$generated/behavioral/CilCsLoop12.v:53$12.
+  merging $macc model for $add$generated/behavioral/CilCsLoop12.v:48$7 into $add$generated/behavioral/CilCsLoop12.v:53$12.
+  merging $macc model for $add$generated/behavioral/CilCsLoop12.v:47$6 into $add$generated/behavioral/CilCsLoop12.v:53$12.
+  merging $macc model for $add$generated/behavioral/CilCsLoop12.v:46$5 into $add$generated/behavioral/CilCsLoop12.v:53$12.
+  merging $macc model for $add$generated/behavioral/CilCsLoop12.v:45$4 into $add$generated/behavioral/CilCsLoop12.v:53$12.
+  merging $macc model for $add$generated/behavioral/CilCsLoop12.v:44$3 into $add$generated/behavioral/CilCsLoop12.v:53$12.
+  merging $macc model for $add$generated/behavioral/CilCsLoop12.v:43$2 into $add$generated/behavioral/CilCsLoop12.v:53$12.
+  merging $macc model for $add$generated/behavioral/CilCsLoop12.v:42$1 into $add$generated/behavioral/CilCsLoop12.v:53$12.
+  creating $macc cell for $add$generated/behavioral/CilCsLoop12.v:53$12: $auto$alumacc.cc:365:replace_macc$458
+  created 0 $alu and 1 $macc cells.
+
+7.21. Executing OPT pass (performing simple optimizations).
+
+7.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.21.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CilCsLoop12..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+7.21.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CilCsLoop12.
+Performed a total of 0 changes.
+
+7.21.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.21.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.21.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+Removed 11 unused cells and 11 unused wires.
+<suppressed ~22 debug messages>
+
+7.21.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.21.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.21.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CilCsLoop12..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+7.21.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CilCsLoop12.
+Performed a total of 0 changes.
+
+7.21.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.21.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.21.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.21.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.21.16. Finished OPT passes. (There is nothing left to do.)
+
+7.22. Executing MEMORY pass.
+
+7.22.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+7.22.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+7.22.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+7.22.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+7.22.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+7.22.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.22.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+7.22.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+7.22.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.22.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+7.23. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.24. Executing MEMORY_LIBMAP pass (mapping memories to cells).
+
+7.25. Executing TECHMAP pass (map to technology primitives).
+
+7.25.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/brams_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/brams_map.v' to AST representation.
+Generating RTLIL representation for module `\$__ICE40_RAM4K_'.
+Successfully finished Verilog frontend.
+
+7.25.2. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/spram_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/spram_map.v' to AST representation.
+Generating RTLIL representation for module `\$__ICE40_SPRAM_'.
+Successfully finished Verilog frontend.
+
+7.25.3. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+7.26. Executing ICE40_BRAMINIT pass.
+
+7.27. Executing OPT pass (performing simple optimizations).
+
+7.27.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.27.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.27.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.27.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.27.5. Finished fast OPT passes.
+
+7.28. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+7.29. Executing OPT pass (performing simple optimizations).
+
+7.29.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.29.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.29.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CilCsLoop12..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+7.29.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CilCsLoop12.
+Performed a total of 0 changes.
+
+7.29.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.29.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.29.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.29.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.29.9. Finished OPT passes. (There is nothing left to do.)
+
+7.30. Executing ICE40_WRAPCARRY pass (wrap carries).
+
+7.31. Executing TECHMAP pass (map to technology primitives).
+
+7.31.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+7.31.2. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v' to AST representation.
+Generating RTLIL representation for module `\_80_ice40_alu'.
+Successfully finished Verilog frontend.
+
+7.31.3. Continuing TECHMAP pass.
+Using extmapper maccmap for cells of type $macc.
+  add \s_a (32 bits, unsigned)
+  add \s_b (32 bits, unsigned)
+  add \s_b (32 bits, unsigned)
+  add \s_b (32 bits, unsigned)
+  add \s_b (32 bits, unsigned)
+  add \s_b (32 bits, unsigned)
+  add \s_b (32 bits, unsigned)
+  add \s_b (32 bits, unsigned)
+  add \s_b (32 bits, unsigned)
+  add \s_b (32 bits, unsigned)
+  add \s_b (32 bits, unsigned)
+  add \s_b (32 bits, unsigned)
+  add \s_b (32 bits, unsigned)
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100000 for cells of type $fa.
+Using template $paramod$fbc7873bff55778c0b3173955b7e4bce1d9d6834\_80_ice40_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $pos.
+No more expansions possible.
+<suppressed ~116 debug messages>
+
+7.32. Executing OPT pass (performing simple optimizations).
+
+7.32.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+<suppressed ~51 debug messages>
+
+7.32.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.32.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.32.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+Removed 61 unused cells and 27 unused wires.
+<suppressed ~62 debug messages>
+
+7.32.5. Finished fast OPT passes.
+
+7.33. Executing ICE40_OPT pass (performing simple optimizations).
+
+7.33.1. Running ICE40 specific optimizations.
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_CilCsLoop12.$auto$maccmap.cc:240:synth$562.slice[0].carry: CO=1'0
+
+7.33.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.33.3. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.33.4. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.33.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.33.6. Rerunning OPT passes. (Removed registers in this run.)
+
+7.33.7. Running ICE40 specific optimizations.
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_CilCsLoop12.$auto$maccmap.cc:240:synth$562.slice[1].carry: CO=1'0
+
+7.33.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.33.9. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.33.10. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.33.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.33.12. Rerunning OPT passes. (Removed registers in this run.)
+
+7.33.13. Running ICE40 specific optimizations.
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_CilCsLoop12.$auto$maccmap.cc:240:synth$562.slice[2].carry: CO=1'0
+
+7.33.14. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.33.15. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.33.16. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.33.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.33.18. Rerunning OPT passes. (Removed registers in this run.)
+
+7.33.19. Running ICE40 specific optimizations.
+
+7.33.20. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.33.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.33.22. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.33.23. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.33.24. Finished OPT passes. (There is nothing left to do.)
+
+7.34. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+
+7.35. Executing TECHMAP pass (map to technology primitives).
+
+7.35.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/ff_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/ff_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DFF_N_'.
+Generating RTLIL representation for module `\$_DFF_P_'.
+Generating RTLIL representation for module `\$_DFFE_NP_'.
+Generating RTLIL representation for module `\$_DFFE_PP_'.
+Generating RTLIL representation for module `\$_DFF_NP0_'.
+Generating RTLIL representation for module `\$_DFF_NP1_'.
+Generating RTLIL representation for module `\$_DFF_PP0_'.
+Generating RTLIL representation for module `\$_DFF_PP1_'.
+Generating RTLIL representation for module `\$_DFFE_NP0P_'.
+Generating RTLIL representation for module `\$_DFFE_NP1P_'.
+Generating RTLIL representation for module `\$_DFFE_PP0P_'.
+Generating RTLIL representation for module `\$_DFFE_PP1P_'.
+Generating RTLIL representation for module `\$_SDFF_NP0_'.
+Generating RTLIL representation for module `\$_SDFF_NP1_'.
+Generating RTLIL representation for module `\$_SDFF_PP0_'.
+Generating RTLIL representation for module `\$_SDFF_PP1_'.
+Generating RTLIL representation for module `\$_SDFFCE_NP0P_'.
+Generating RTLIL representation for module `\$_SDFFCE_NP1P_'.
+Generating RTLIL representation for module `\$_SDFFCE_PP0P_'.
+Generating RTLIL representation for module `\$_SDFFCE_PP1P_'.
+Successfully finished Verilog frontend.
+
+7.35.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~22 debug messages>
+
+7.36. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.37. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+Mapping h_CilCsLoop12.$auto$maccmap.cc:240:synth$562.slice[0].carry ($lut).
+Mapping h_CilCsLoop12.$auto$maccmap.cc:240:synth$562.slice[1].carry ($lut).
+Mapping h_CilCsLoop12.$auto$maccmap.cc:240:synth$562.slice[2].carry ($lut).
+
+7.38. Executing ICE40_OPT pass (performing simple optimizations).
+
+7.38.1. Running ICE40 specific optimizations.
+
+7.38.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+<suppressed ~39 debug messages>
+
+7.38.3. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+7.38.4. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.38.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+Removed 3 unused cells and 12 unused wires.
+<suppressed ~4 debug messages>
+
+7.38.6. Rerunning OPT passes. (Removed registers in this run.)
+
+7.38.7. Running ICE40 specific optimizations.
+
+7.38.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CilCsLoop12.
+
+7.38.9. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CilCsLoop12'.
+Removed a total of 0 cells.
+
+7.38.10. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.38.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CilCsLoop12..
+
+7.38.12. Finished OPT passes. (There is nothing left to do.)
+
+7.39. Executing TECHMAP pass (map to technology primitives).
+
+7.39.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/latches_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/latches_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DLATCH_N_'.
+Generating RTLIL representation for module `\$_DLATCH_P_'.
+Successfully finished Verilog frontend.
+
+7.39.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+7.40. Executing ABC pass (technology mapping using ABC).
+
+7.40.1. Extracting gate netlist of module `\h_CilCsLoop12' to `<abc-temp-dir>/input.blif'..
+Extracted 144 gates and 204 wires to a netlist network with 60 inputs and 59 outputs.
+
+7.40.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_lut <abc-temp-dir>/lutdefs.txt 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + dch -f 
+ABC: + if 
+ABC: + mfs2 
+ABC: + lutpack -S 1 
+ABC: + dress <abc-temp-dir>/input.blif 
+ABC: Total number of equiv classes                =      60.
+ABC: Participating nodes from both networks       =     118.
+ABC: Participating nodes from the first network   =      59. (  98.33 % of nodes)
+ABC: Participating nodes from the second network  =      59. (  98.33 % of nodes)
+ABC: Node pairs (any polarity)                    =      59. (  98.33 % of names can be moved)
+ABC: Node pairs (same polarity)                   =      59. (  98.33 % of names can be moved)
+ABC: Total runtime =     0.01 sec
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+7.40.1.2. Re-integrating ABC results.
+ABC RESULTS:              $lut cells:       59
+ABC RESULTS:        internal signals:       85
+ABC RESULTS:           input signals:       60
+ABC RESULTS:          output signals:       59
+Removing temp directory.
+
+7.41. Executing ICE40_WRAPCARRY pass (wrap carries).
+
+7.42. Executing TECHMAP pass (map to technology primitives).
+
+7.42.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/ff_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/ff_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DFF_N_'.
+Generating RTLIL representation for module `\$_DFF_P_'.
+Generating RTLIL representation for module `\$_DFFE_NP_'.
+Generating RTLIL representation for module `\$_DFFE_PP_'.
+Generating RTLIL representation for module `\$_DFF_NP0_'.
+Generating RTLIL representation for module `\$_DFF_NP1_'.
+Generating RTLIL representation for module `\$_DFF_PP0_'.
+Generating RTLIL representation for module `\$_DFF_PP1_'.
+Generating RTLIL representation for module `\$_DFFE_NP0P_'.
+Generating RTLIL representation for module `\$_DFFE_NP1P_'.
+Generating RTLIL representation for module `\$_DFFE_PP0P_'.
+Generating RTLIL representation for module `\$_DFFE_PP1P_'.
+Generating RTLIL representation for module `\$_SDFF_NP0_'.
+Generating RTLIL representation for module `\$_SDFF_NP1_'.
+Generating RTLIL representation for module `\$_SDFF_PP0_'.
+Generating RTLIL representation for module `\$_SDFF_PP1_'.
+Generating RTLIL representation for module `\$_SDFFCE_NP0P_'.
+Generating RTLIL representation for module `\$_SDFFCE_NP1P_'.
+Generating RTLIL representation for module `\$_SDFFCE_PP0P_'.
+Generating RTLIL representation for module `\$_SDFFCE_PP1P_'.
+Successfully finished Verilog frontend.
+
+7.42.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~22 debug messages>
+Removed 1 unused cells and 123 unused wires.
+
+7.43. Executing OPT_LUT pass (optimize LUTs).
+Discovering LUTs.
+Number of LUTs:       88
+  2-LUT                2
+  3-LUT               86
+  with \SB_CARRY    (#0)   28
+  with \SB_CARRY    (#1)   28
+
+Eliminating LUTs.
+Number of LUTs:       88
+  2-LUT                2
+  3-LUT               86
+  with \SB_CARRY    (#0)   28
+  with \SB_CARRY    (#1)   28
+
+Combining LUTs.
+Number of LUTs:       88
+  2-LUT                2
+  3-LUT               86
+  with \SB_CARRY    (#0)   28
+  with \SB_CARRY    (#1)   28
+
+Eliminated 0 LUTs.
+Combined 0 LUTs.
+<suppressed ~246 debug messages>
+
+7.44. Executing TECHMAP pass (map to technology primitives).
+
+7.44.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v' to AST representation.
+Generating RTLIL representation for module `\$lut'.
+Successfully finished Verilog frontend.
+
+7.44.2. Continuing TECHMAP pass.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0110 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1000 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10010110 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11101000 for cells of type $lut.
+Using template $paramod$fd904e9e35cfd343a9df248824bd3f1408724879\$lut for cells of type $lut.
+No more expansions possible.
+<suppressed ~156 debug messages>
+Removed 0 unused cells and 176 unused wires.
+
+7.45. Executing AUTONAME pass.
+Renamed 177 objects in module h_CilCsLoop12 (4 iterations).
+<suppressed ~119 debug messages>
+
+7.46. Executing HIERARCHY pass (managing design hierarchy).
+
+7.46.1. Analyzing design hierarchy..
+Top module:  \h_CilCsLoop12
+
+7.46.2. Analyzing design hierarchy..
+Top module:  \h_CilCsLoop12
+Removed 0 unused modules.
+
+7.47. Printing statistics.
+
+=== h_CilCsLoop12 ===
+
+   Number of wires:                 10
+   Number of wire bits:            227
+   Number of public wires:          10
+   Number of public wire bits:     227
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                116
+     SB_CARRY                       28
+     SB_LUT4                        88
+
+7.48. Executing CHECK pass (checking for obvious problems).
+Checking module h_CilCsLoop12...
+Found and reported 0 problems.
+
+8. Printing statistics.
+
+=== h_CilCsLoop12 ===
+
+   Number of wires:                 10
+   Number of wire bits:            227
+   Number of public wires:          10
+   Number of public wire bits:     227
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                116
+     SB_CARRY                       28
+     SB_LUT4                        88
+
+9. Executing Verilog backend.
+
+9.1. Executing BMUXMAP pass.
+
+9.2. Executing DEMUXMAP pass.
+Dumping module `\h_CilCsLoop12'.

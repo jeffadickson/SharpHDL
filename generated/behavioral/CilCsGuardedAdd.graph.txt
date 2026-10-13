@@ -1,0 +1,22 @@
+module CilCsGuardedAdd
+input a : bits[32]
+input b : bits[32]
+output y : bits[32]
+output fault : bits[1]
+expressions:
+e0 : bits[32] const 0
+e1 : bits[1] == (b, e0)
+e2 : bits[1] ~ (e1)
+e3 : bits[32] + (a, b)
+e4 : bits[32] mux (e2, e3, a)
+e5 : bits[64] signextend (a)
+e6 : bits[64] signextend (b)
+e7 : bits[64] + (e5, e6)
+e8 : bits[64] signextend (e3)
+e9 : bits[1] == (e7, e8)
+e10 : bits[1] ~ (e9)
+e11 : bits[1] const 0
+e12 : bits[1] mux (e2, e10, e11)
+connections:
+y <- e4
+fault <- e12

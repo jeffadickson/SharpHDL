@@ -1,0 +1,39 @@
+AdvancedFunctions.Nested
+IL_0000: nop 
+IL_0001: ldc.i4.0 
+IL_0002: stloc.0 
+IL_0003: br.s 32
+IL_0005: ldc.i4.0 
+IL_0006: stloc.1 
+IL_0007: br.s 20
+IL_0009: ldarg.1 
+IL_000a: ldloc.0 
+IL_000b: add 
+IL_000c: ldloc.1 
+IL_000d: add 
+IL_000e: starg.s 1
+IL_0010: ldloc.1 
+IL_0011: ldc.i4.1 
+IL_0012: add 
+IL_0013: stloc.1 
+IL_0014: ldloc.1 
+IL_0015: ldc.i4.3 
+IL_0016: clt 
+IL_0018: stloc.2 
+IL_0019: ldloc.2 
+IL_001a: brtrue.s 9
+IL_001c: ldloc.0 
+IL_001d: ldc.i4.1 
+IL_001e: add 
+IL_001f: stloc.0 
+IL_0020: ldloc.0 
+IL_0021: ldarg.0 
+IL_0022: clt 
+IL_0024: stloc.3 
+IL_0025: ldloc.3 
+IL_0026: brtrue.s 5
+IL_0028: ldarg.1 
+IL_0029: stloc.s 4
+IL_002b: br.s 45
+IL_002d: ldloc.s 4
+IL_002f: ret 

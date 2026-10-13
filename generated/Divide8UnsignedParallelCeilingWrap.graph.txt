@@ -1,0 +1,207 @@
+module Divide8UnsignedParallelCeilingWrap
+input input_tdata : bits[16]
+input input_tkeep : bits[2]
+input input_tlast : bits[1]
+input input_tuser : bits[4]
+input input_tvalid : bits[1]
+output input_tready : bits[1]
+output output_tdata : bits[24]
+output output_tkeep : bits[3]
+output output_tlast : bits[1]
+output output_tuser : bits[4]
+output output_tvalid : bits[1]
+input output_tready : bits[1]
+wire div_tdata : bits[24]
+wire div_tkeep : bits[3]
+wire div_tlast : bits[1]
+wire div_tuser : bits[4]
+wire div_tvalid : bits[1]
+wire div_tready : bits[1]
+reg div_valid : bits[1] reset=0
+reg div_data : bits[24] reset=0
+reg div_keep : bits[3] reset=0
+reg div_last : bits[1] reset=0
+reg div_user : bits[4] reset=0
+expressions:
+e0 : bits[1] ~ (div_valid)
+e1 : bits[1] | (e0, div_tready)
+e2 : bits[1] mux (e1, input_tvalid, div_valid)
+e3 : bits[1] & (e1, input_tvalid)
+e4 : bits[1] const 0
+e5 : bits[1] const 0
+e6 : bits[8] const 0
+e7 : bits[8] slice (input_tdata) offset=8
+e8 : bits[8] - (e6, e7)
+e9 : bits[8] mux (e5, e8, e7)
+e10 : bits[8] const 0
+e11 : bits[1] == (e9, e10)
+e12 : bits[8] slice (input_tdata) offset=0
+e13 : bits[9] resize (e12)
+e14 : bits[9] const 0
+e15 : bits[1] const 0
+e16 : bits[9] const 0
+e17 : bits[1] ^ (e15, e5)
+e18 : bits[1] ~ (e17)
+e19 : bits[9] const 0
+e20 : bits[9] << (e19) offset=1
+e21 : bits[8] const 0
+e22 : bits[8] - (e21, e12)
+e23 : bits[8] mux (e15, e22, e12)
+e24 : bits[1] slice (e23) offset=7
+e25 : bits[9] resize (e24)
+e26 : bits[9] | (e20, e25)
+e27 : bits[9] resize (e9)
+e28 : bits[1] < (e26, e27)
+e29 : bits[1] ~ (e28)
+e30 : bits[9] resize (e9)
+e31 : bits[9] - (e26, e30)
+e32 : bits[9] mux (e29, e31, e26)
+e33 : bits[9] << (e32) offset=1
+e34 : bits[8] << (e23) offset=1
+e35 : bits[1] slice (e34) offset=7
+e36 : bits[9] resize (e35)
+e37 : bits[9] | (e33, e36)
+e38 : bits[9] resize (e9)
+e39 : bits[1] < (e37, e38)
+e40 : bits[1] ~ (e39)
+e41 : bits[9] resize (e9)
+e42 : bits[9] - (e37, e41)
+e43 : bits[9] mux (e40, e42, e37)
+e44 : bits[9] << (e43) offset=1
+e45 : bits[8] << (e34) offset=1
+e46 : bits[1] slice (e45) offset=7
+e47 : bits[9] resize (e46)
+e48 : bits[9] | (e44, e47)
+e49 : bits[9] resize (e9)
+e50 : bits[1] < (e48, e49)
+e51 : bits[1] ~ (e50)
+e52 : bits[9] resize (e9)
+e53 : bits[9] - (e48, e52)
+e54 : bits[9] mux (e51, e53, e48)
+e55 : bits[9] << (e54) offset=1
+e56 : bits[8] << (e45) offset=1
+e57 : bits[1] slice (e56) offset=7
+e58 : bits[9] resize (e57)
+e59 : bits[9] | (e55, e58)
+e60 : bits[9] resize (e9)
+e61 : bits[1] < (e59, e60)
+e62 : bits[1] ~ (e61)
+e63 : bits[9] resize (e9)
+e64 : bits[9] - (e59, e63)
+e65 : bits[9] mux (e62, e64, e59)
+e66 : bits[9] << (e65) offset=1
+e67 : bits[8] << (e56) offset=1
+e68 : bits[1] slice (e67) offset=7
+e69 : bits[9] resize (e68)
+e70 : bits[9] | (e66, e69)
+e71 : bits[9] resize (e9)
+e72 : bits[1] < (e70, e71)
+e73 : bits[1] ~ (e72)
+e74 : bits[9] resize (e9)
+e75 : bits[9] - (e70, e74)
+e76 : bits[9] mux (e73, e75, e70)
+e77 : bits[9] << (e76) offset=1
+e78 : bits[8] << (e67) offset=1
+e79 : bits[1] slice (e78) offset=7
+e80 : bits[9] resize (e79)
+e81 : bits[9] | (e77, e80)
+e82 : bits[9] resize (e9)
+e83 : bits[1] < (e81, e82)
+e84 : bits[1] ~ (e83)
+e85 : bits[9] resize (e9)
+e86 : bits[9] - (e81, e85)
+e87 : bits[9] mux (e84, e86, e81)
+e88 : bits[9] << (e87) offset=1
+e89 : bits[8] << (e78) offset=1
+e90 : bits[1] slice (e89) offset=7
+e91 : bits[9] resize (e90)
+e92 : bits[9] | (e88, e91)
+e93 : bits[9] resize (e9)
+e94 : bits[1] < (e92, e93)
+e95 : bits[1] ~ (e94)
+e96 : bits[9] resize (e9)
+e97 : bits[9] - (e92, e96)
+e98 : bits[9] mux (e95, e97, e92)
+e99 : bits[9] << (e98) offset=1
+e100 : bits[8] << (e89) offset=1
+e101 : bits[1] slice (e100) offset=7
+e102 : bits[9] resize (e101)
+e103 : bits[9] | (e99, e102)
+e104 : bits[9] resize (e9)
+e105 : bits[1] < (e103, e104)
+e106 : bits[1] ~ (e105)
+e107 : bits[9] resize (e9)
+e108 : bits[9] - (e103, e107)
+e109 : bits[9] mux (e106, e108, e103)
+e110 : bits[9] const 0
+e111 : bits[1] == (e109, e110)
+e112 : bits[1] ~ (e111)
+e113 : bits[1] & (e18, e112)
+e114 : bits[9] resize (e9)
+e115 : bits[9] - (e109, e114)
+e116 : bits[9] mux (e113, e115, e109)
+e117 : bits[9] - (e16, e116)
+e118 : bits[9] mux (e15, e117, e116)
+e119 : bits[9] mux (e4, e14, e118)
+e120 : bits[9] mux (e11, e13, e119)
+e121 : bits[8] const 0
+e122 : bits[9] const 0
+e123 : bits[8] const 0
+e124 : bits[8] << (e123) offset=1
+e125 : bits[8] resize (e29)
+e126 : bits[8] | (e124, e125)
+e127 : bits[8] << (e126) offset=1
+e128 : bits[8] resize (e40)
+e129 : bits[8] | (e127, e128)
+e130 : bits[8] << (e129) offset=1
+e131 : bits[8] resize (e51)
+e132 : bits[8] | (e130, e131)
+e133 : bits[8] << (e132) offset=1
+e134 : bits[8] resize (e62)
+e135 : bits[8] | (e133, e134)
+e136 : bits[8] << (e135) offset=1
+e137 : bits[8] resize (e73)
+e138 : bits[8] | (e136, e137)
+e139 : bits[8] << (e138) offset=1
+e140 : bits[8] resize (e84)
+e141 : bits[8] | (e139, e140)
+e142 : bits[8] << (e141) offset=1
+e143 : bits[8] resize (e95)
+e144 : bits[8] | (e142, e143)
+e145 : bits[8] << (e144) offset=1
+e146 : bits[8] resize (e106)
+e147 : bits[8] | (e145, e146)
+e148 : bits[9] resize (e147)
+e149 : bits[9] resize (e113)
+e150 : bits[9] + (e148, e149)
+e151 : bits[9] - (e122, e150)
+e152 : bits[9] mux (e17, e151, e150)
+e153 : bits[8] resize (e152)
+e154 : bits[8] mux (e11, e121, e153)
+e155 : bits[17] concat (e120, e154)
+e156 : bits[18] concat (e11, e155)
+e157 : bits[19] concat (e4, e156)
+e158 : bits[24] resize (e157)
+e159 : bits[24] mux (e3, e158, div_data)
+e160 : bits[3] const 7
+e161 : bits[3] mux (e3, e160, div_keep)
+e162 : bits[1] mux (e3, input_tlast, div_last)
+e163 : bits[4] mux (e3, input_tuser, div_user)
+connections:
+input_tready <- e1
+output_tdata <- div_tdata
+output_tkeep <- div_tkeep
+output_tlast <- div_tlast
+output_tuser <- div_tuser
+output_tvalid <- div_tvalid
+div_tdata <- div_data
+div_tkeep <- div_keep
+div_tlast <- div_last
+div_tuser <- div_user
+div_tvalid <- div_valid
+div_tready <- output_tready
+div_valid.next <- e2
+div_data.next <- e159
+div_keep.next <- e161
+div_last.next <- e162
+div_user.next <- e163

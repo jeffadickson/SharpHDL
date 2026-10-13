@@ -1,0 +1,214 @@
+
+-- Running command `read_verilog generated/QuantizedGain24.v; hierarchy -check -top h_QuantizedGain24; proc -norom; opt; check -assert; stat; write_verilog -noattr generated/synthesis/QuantizedGain24_rtl.v' --
+
+1. Executing Verilog-2005 frontend: generated/QuantizedGain24.v
+Parsing Verilog input from `generated/QuantizedGain24.v' to AST representation.
+Generating RTLIL representation for module `\h_QuantizedGain24'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \h_QuantizedGain24
+
+2.2. Analyzing design hierarchy..
+Top module:  \h_QuantizedGain24
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$generated/QuantizedGain24.v:336$62 in module h_QuantizedGain24.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 13 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+     1/13: $0\s_output_cut_spill_valid[0:0]
+     2/13: $0\s_output_cut_valid[0:0]
+     3/13: $0\s_output_cut_spill[35:0]
+     4/13: $0\s_output_cut_head[35:0]
+     5/13: $0\s_gain_user[7:0]
+     6/13: $0\s_gain_last[0:0]
+     7/13: $0\s_gain_keep[2:0]
+     8/13: $0\s_gain_data[23:0]
+     9/13: $0\s_gain_valid[0:0]
+    10/13: $0\s_input_cut_spill_valid[0:0]
+    11/13: $0\s_input_cut_valid[0:0]
+    12/13: $0\s_input_cut_spill[35:0]
+    13/13: $0\s_input_cut_head[35:0]
+
+3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.8. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\h_QuantizedGain24.\s_input_cut_head' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$102' with positive edge clock.
+Creating register for signal `\h_QuantizedGain24.\s_input_cut_spill' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$103' with positive edge clock.
+Creating register for signal `\h_QuantizedGain24.\s_input_cut_valid' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$104' with positive edge clock.
+Creating register for signal `\h_QuantizedGain24.\s_input_cut_spill_valid' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$105' with positive edge clock.
+Creating register for signal `\h_QuantizedGain24.\s_gain_valid' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$106' with positive edge clock.
+Creating register for signal `\h_QuantizedGain24.\s_gain_data' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$107' with positive edge clock.
+Creating register for signal `\h_QuantizedGain24.\s_gain_keep' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$108' with positive edge clock.
+Creating register for signal `\h_QuantizedGain24.\s_gain_last' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$109' with positive edge clock.
+Creating register for signal `\h_QuantizedGain24.\s_gain_user' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$110' with positive edge clock.
+Creating register for signal `\h_QuantizedGain24.\s_output_cut_head' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$111' with positive edge clock.
+Creating register for signal `\h_QuantizedGain24.\s_output_cut_spill' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$112' with positive edge clock.
+Creating register for signal `\h_QuantizedGain24.\s_output_cut_valid' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$113' with positive edge clock.
+Creating register for signal `\h_QuantizedGain24.\s_output_cut_spill_valid' using process `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+  created $dff cell `$procdff$114' with positive edge clock.
+
+3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+Removing empty process `h_QuantizedGain24.$proc$generated/QuantizedGain24.v:336$62'.
+Cleaned up 1 empty switch.
+
+3.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_QuantizedGain24.
+<suppressed ~11 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_QuantizedGain24.
+<suppressed ~1 debug messages>
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_QuantizedGain24'.
+<suppressed ~12 debug messages>
+Removed a total of 4 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_QuantizedGain24..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~13 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_QuantizedGain24.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_QuantizedGain24'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$114 ($dff) from module h_QuantizedGain24 (D = \n_70, Q = \s_output_cut_spill_valid, rval = 1'0).
+Adding SRST signal on $procdff$113 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:308$58_Y, Q = \s_output_cut_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$118 ($sdff) from module h_QuantizedGain24 (D = \n_67, Q = \s_output_cut_valid).
+Adding SRST signal on $procdff$112 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:306$56_Y, Q = \s_output_cut_spill, rval = 36'000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$120 ($sdff) from module h_QuantizedGain24 (D = \n_60, Q = \s_output_cut_spill).
+Adding SRST signal on $procdff$111 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:302$52_Y, Q = \s_output_cut_head, rval = 36'000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$122 ($sdff) from module h_QuantizedGain24 (D = \n_61, Q = \s_output_cut_head).
+Adding SRST signal on $procdff$110 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:289$42_Y, Q = \s_gain_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$124 ($sdff) from module h_QuantizedGain24 (D = \s_input_cut_tuser, Q = \s_gain_user).
+Adding SRST signal on $procdff$109 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:288$41_Y, Q = \s_gain_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$126 ($sdff) from module h_QuantizedGain24 (D = \s_input_cut_tlast, Q = \s_gain_last).
+Adding SRST signal on $procdff$108 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:287$40_Y, Q = \s_gain_keep, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$128 ($sdff) from module h_QuantizedGain24 (D = \s_input_cut_tkeep, Q = \s_gain_keep).
+Adding SRST signal on $procdff$107 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:286$39_Y, Q = \s_gain_data, rval = 24'000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$130 ($sdff) from module h_QuantizedGain24 (D = \n_45, Q = \s_gain_data).
+Adding SRST signal on $procdff$106 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:266$24_Y, Q = \s_gain_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$132 ($sdff) from module h_QuantizedGain24 (D = \s_input_cut_tvalid, Q = \s_gain_valid).
+Adding SRST signal on $procdff$105 ($dff) from module h_QuantizedGain24 (D = \n_23, Q = \s_input_cut_spill_valid, rval = 1'0).
+Adding SRST signal on $procdff$104 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:261$19_Y, Q = \s_input_cut_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$137 ($sdff) from module h_QuantizedGain24 (D = \n_20, Q = \s_input_cut_valid).
+Adding SRST signal on $procdff$102 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:255$13_Y, Q = \s_input_cut_head, rval = 36'000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$139 ($sdff) from module h_QuantizedGain24 (D = \n_14, Q = \s_input_cut_head).
+Adding SRST signal on $procdff$103 ($dff) from module h_QuantizedGain24 (D = $ternary$generated/QuantizedGain24.v:259$17_Y, Q = \s_input_cut_spill, rval = 36'000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$141 ($sdff) from module h_QuantizedGain24 (D = \n_13, Q = \s_input_cut_spill).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_QuantizedGain24..
+Removed 26 unused cells and 113 unused wires.
+<suppressed ~40 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_QuantizedGain24.
+<suppressed ~1 debug messages>
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_QuantizedGain24..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_QuantizedGain24.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_QuantizedGain24'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_QuantizedGain24..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_QuantizedGain24.
+
+4.16. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing CHECK pass (checking for obvious problems).
+Checking module h_QuantizedGain24...
+Found and reported 0 problems.
+
+6. Printing statistics.
+
+=== h_QuantizedGain24 ===
+
+   Number of wires:                106
+   Number of wire bits:           1215
+   Number of public wires:         104
+   Number of public wire bits:    1213
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 47
+     $add                            1
+     $and                            8
+     $lt                             3
+     $mul                            1
+     $mux                            4
+     $not                            7
+     $or                             8
+     $reduce_or                      2
+     $sdff                           2
+     $sdffe                         11
+
+7. Executing Verilog backend.
+
+7.1. Executing BMUXMAP pass.
+
+7.2. Executing DEMUXMAP pass.
+Dumping module `\h_QuantizedGain24'.

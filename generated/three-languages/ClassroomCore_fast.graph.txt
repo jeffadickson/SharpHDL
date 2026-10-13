@@ -1,0 +1,58 @@
+module ClassroomCore
+input buttons : bits[4]
+reg previous_buttons : bits[4] reset=0
+reg b : bits[4] reset=0
+reg run : bits[1] reset=0
+reg counter_mode : bits[1] reset=0
+reg divider : bits[2] reset=0
+reg count : bits[8] reset=0
+output left_digit : bits[4]
+output right_digit : bits[4]
+output leds : bits[4]
+expressions:
+e0 : bits[4] ~ (previous_buttons)
+e1 : bits[4] & (buttons, e0)
+e2 : bits[1] slice (e1) offset=0
+e3 : bits[4] const 0
+e4 : bits[1] slice (e1) offset=1
+e5 : bits[4] const 1
+e6 : bits[4] + (b, e5)
+e7 : bits[4] mux (e4, e6, b)
+e8 : bits[4] mux (e2, e3, e7)
+e9 : bits[1] slice (e1) offset=2
+e10 : bits[1] ~ (run)
+e11 : bits[1] mux (e9, e10, run)
+e12 : bits[1] slice (e1) offset=3
+e13 : bits[1] ~ (counter_mode)
+e14 : bits[1] mux (e12, e13, counter_mode)
+e15 : bits[2] const 3
+e16 : bits[1] == (divider, e15)
+e17 : bits[2] const 0
+e18 : bits[2] const 1
+e19 : bits[2] + (divider, e18)
+e20 : bits[2] mux (e16, e17, e19)
+e21 : bits[1] slice (e1) offset=0
+e22 : bits[8] const 0
+e23 : bits[1] & (run, e16)
+e24 : bits[8] const 1
+e25 : bits[8] + (count, e24)
+e26 : bits[8] mux (e23, e25, count)
+e27 : bits[8] mux (e21, e22, e26)
+e28 : bits[4] slice (count) offset=4
+e29 : bits[4] mux (counter_mode, e28, b)
+e30 : bits[4] slice (count) offset=0
+e31 : bits[4] const 2
+e32 : bits[4] + (b, e31)
+e33 : bits[4] mux (counter_mode, e30, e32)
+e34 : bits[4] slice (count) offset=0
+e35 : bits[4] mux (counter_mode, e34, b)
+connections:
+previous_buttons.next <- buttons
+b.next <- e8
+run.next <- e11
+counter_mode.next <- e14
+divider.next <- e20
+count.next <- e27
+left_digit <- e29
+right_digit <- e33
+leds <- e35

@@ -1,0 +1,1 @@
+PASS 7917 independent assertions; 36 generated RTL benches.

@@ -1,0 +1,12 @@
+module HeaderRewrite
+input word : bits[64]
+output word_out : bits[64]
+expressions:
+e0 : bits[64] const 17294104044079415295
+e1 : bits[64] & (word, e0)
+e2 : bits[12] const 7
+e3 : bits[64] resize (e2)
+e4 : bits[64] << (e3) offset=48
+e5 : bits[64] | (e1, e4)
+connections:
+word_out <- e5

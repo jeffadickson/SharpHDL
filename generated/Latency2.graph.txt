@@ -1,0 +1,474 @@
+module Latency2
+input s_axis_tdata : bits[16]
+input s_axis_tkeep : bits[2]
+input s_axis_tlast : bits[1]
+input s_axis_tuser : bits[8]
+input s_axis_tvalid : bits[1]
+output s_axis_tready : bits[1]
+output m_axis_tdata : bits[24]
+output m_axis_tkeep : bits[3]
+output m_axis_tlast : bits[1]
+output m_axis_tuser : bits[8]
+output m_axis_tvalid : bits[1]
+input m_axis_tready : bits[1]
+wire math_reduce_tdata : bits[64]
+wire math_reduce_tkeep : bits[8]
+wire math_reduce_tlast : bits[1]
+wire math_reduce_tuser : bits[8]
+wire math_reduce_tvalid : bits[1]
+wire math_reduce_tready : bits[1]
+reg math_reduce_valid : bits[1] reset=0
+reg math_reduce_data : bits[64] reset=0
+reg math_reduce_keep : bits[8] reset=0
+reg math_reduce_last : bits[1] reset=0
+reg math_reduce_user : bits[8] reset=0
+wire math_horner9_tdata : bits[64]
+wire math_horner9_tkeep : bits[8]
+wire math_horner9_tlast : bits[1]
+wire math_horner9_tuser : bits[8]
+wire math_horner9_tvalid : bits[1]
+wire math_horner9_tready : bits[1]
+reg math_horner9_valid : bits[1] reset=0
+reg math_horner9_data : bits[64] reset=0
+reg math_horner9_keep : bits[8] reset=0
+reg math_horner9_last : bits[1] reset=0
+reg math_horner9_user : bits[8] reset=0
+wire math_horner8_tdata : bits[64]
+wire math_horner8_tkeep : bits[8]
+wire math_horner8_tlast : bits[1]
+wire math_horner8_tuser : bits[8]
+wire math_horner8_tvalid : bits[1]
+wire math_horner8_tready : bits[1]
+reg math_horner8_valid : bits[1] reset=0
+reg math_horner8_data : bits[64] reset=0
+reg math_horner8_keep : bits[8] reset=0
+reg math_horner8_last : bits[1] reset=0
+reg math_horner8_user : bits[8] reset=0
+wire math_horner7_tdata : bits[64]
+wire math_horner7_tkeep : bits[8]
+wire math_horner7_tlast : bits[1]
+wire math_horner7_tuser : bits[8]
+wire math_horner7_tvalid : bits[1]
+wire math_horner7_tready : bits[1]
+reg math_horner7_valid : bits[1] reset=0
+reg math_horner7_data : bits[64] reset=0
+reg math_horner7_keep : bits[8] reset=0
+reg math_horner7_last : bits[1] reset=0
+reg math_horner7_user : bits[8] reset=0
+wire math_horner6_tdata : bits[64]
+wire math_horner6_tkeep : bits[8]
+wire math_horner6_tlast : bits[1]
+wire math_horner6_tuser : bits[8]
+wire math_horner6_tvalid : bits[1]
+wire math_horner6_tready : bits[1]
+reg math_horner6_valid : bits[1] reset=0
+reg math_horner6_data : bits[64] reset=0
+reg math_horner6_keep : bits[8] reset=0
+reg math_horner6_last : bits[1] reset=0
+reg math_horner6_user : bits[8] reset=0
+wire math_horner5_tdata : bits[64]
+wire math_horner5_tkeep : bits[8]
+wire math_horner5_tlast : bits[1]
+wire math_horner5_tuser : bits[8]
+wire math_horner5_tvalid : bits[1]
+wire math_horner5_tready : bits[1]
+reg math_horner5_valid : bits[1] reset=0
+reg math_horner5_data : bits[64] reset=0
+reg math_horner5_keep : bits[8] reset=0
+reg math_horner5_last : bits[1] reset=0
+reg math_horner5_user : bits[8] reset=0
+wire math_horner4_tdata : bits[64]
+wire math_horner4_tkeep : bits[8]
+wire math_horner4_tlast : bits[1]
+wire math_horner4_tuser : bits[8]
+wire math_horner4_tvalid : bits[1]
+wire math_horner4_tready : bits[1]
+reg math_horner4_valid : bits[1] reset=0
+reg math_horner4_data : bits[64] reset=0
+reg math_horner4_keep : bits[8] reset=0
+reg math_horner4_last : bits[1] reset=0
+reg math_horner4_user : bits[8] reset=0
+wire math_horner3_tdata : bits[64]
+wire math_horner3_tkeep : bits[8]
+wire math_horner3_tlast : bits[1]
+wire math_horner3_tuser : bits[8]
+wire math_horner3_tvalid : bits[1]
+wire math_horner3_tready : bits[1]
+reg math_horner3_valid : bits[1] reset=0
+reg math_horner3_data : bits[64] reset=0
+reg math_horner3_keep : bits[8] reset=0
+reg math_horner3_last : bits[1] reset=0
+reg math_horner3_user : bits[8] reset=0
+wire math_horner2_tdata : bits[64]
+wire math_horner2_tkeep : bits[8]
+wire math_horner2_tlast : bits[1]
+wire math_horner2_tuser : bits[8]
+wire math_horner2_tvalid : bits[1]
+wire math_horner2_tready : bits[1]
+reg math_horner2_valid : bits[1] reset=0
+reg math_horner2_data : bits[64] reset=0
+reg math_horner2_keep : bits[8] reset=0
+reg math_horner2_last : bits[1] reset=0
+reg math_horner2_user : bits[8] reset=0
+wire math_horner1_tdata : bits[64]
+wire math_horner1_tkeep : bits[8]
+wire math_horner1_tlast : bits[1]
+wire math_horner1_tuser : bits[8]
+wire math_horner1_tvalid : bits[1]
+wire math_horner1_tready : bits[1]
+reg math_horner1_valid : bits[1] reset=0
+reg math_horner1_data : bits[64] reset=0
+reg math_horner1_keep : bits[8] reset=0
+reg math_horner1_last : bits[1] reset=0
+reg math_horner1_user : bits[8] reset=0
+wire math_horner0_tdata : bits[64]
+wire math_horner0_tkeep : bits[8]
+wire math_horner0_tlast : bits[1]
+wire math_horner0_tuser : bits[8]
+wire math_horner0_tvalid : bits[1]
+wire math_horner0_tready : bits[1]
+reg math_horner0_valid : bits[1] reset=0
+reg math_horner0_data : bits[64] reset=0
+reg math_horner0_keep : bits[8] reset=0
+reg math_horner0_last : bits[1] reset=0
+reg math_horner0_user : bits[8] reset=0
+wire math_result_tdata : bits[24]
+wire math_result_tkeep : bits[3]
+wire math_result_tlast : bits[1]
+wire math_result_tuser : bits[8]
+wire math_result_tvalid : bits[1]
+wire math_result_tready : bits[1]
+expressions:
+e0 : bits[1] ~ (math_reduce_valid)
+e1 : bits[1] | (e0, math_reduce_tready)
+e2 : bits[1] ~ (math_horner9_valid)
+e3 : bits[1] | (e2, math_horner9_tready)
+e4 : bits[1] mux (e1, s_axis_tvalid, math_reduce_valid)
+e5 : bits[1] & (e1, s_axis_tvalid)
+e6 : bits[32] const 4294295710
+e7 : bits[32] resize (s_axis_tdata)
+e8 : bits[32] << (e7) offset=12
+e9 : bits[32] const 134217728
+e10 : bits[32] - (e8, e9)
+e11 : bits[64] concat (e6, e10)
+e12 : bits[64] mux (e5, e11, math_reduce_data)
+e13 : bits[8] const 255
+e14 : bits[8] mux (e5, e13, math_reduce_keep)
+e15 : bits[1] mux (e5, s_axis_tlast, math_reduce_last)
+e16 : bits[8] mux (e5, s_axis_tuser, math_reduce_user)
+e17 : bits[1] ~ (math_horner8_valid)
+e18 : bits[1] | (e17, math_horner8_tready)
+e19 : bits[1] mux (e3, math_reduce_tvalid, math_horner9_valid)
+e20 : bits[1] & (e3, math_reduce_tvalid)
+e21 : bits[32] slice (math_reduce_tdata) offset=32
+e22 : bits[64] signextend (e21)
+e23 : bits[32] slice (math_reduce_tdata) offset=0
+e24 : bits[64] signextend (e23)
+e25 : bits[64] * (e22, e24)
+e26 : bits[64] asr (e25) offset=28
+e27 : bits[32] resize (e26)
+e28 : bits[32] const 1119310
+e29 : bits[32] + (e27, e28)
+e30 : bits[64] concat (e29, e23)
+e31 : bits[64] mux (e20, e30, math_horner9_data)
+e32 : bits[8] mux (e20, math_reduce_tkeep, math_horner9_keep)
+e33 : bits[1] mux (e20, math_reduce_tlast, math_horner9_last)
+e34 : bits[8] mux (e20, math_reduce_tuser, math_horner9_user)
+e35 : bits[1] ~ (math_horner7_valid)
+e36 : bits[1] | (e35, math_horner7_tready)
+e37 : bits[1] mux (e18, math_horner9_tvalid, math_horner8_valid)
+e38 : bits[1] & (e18, math_horner9_tvalid)
+e39 : bits[32] slice (math_horner9_tdata) offset=32
+e40 : bits[64] signextend (e39)
+e41 : bits[32] slice (math_horner9_tdata) offset=0
+e42 : bits[64] signextend (e41)
+e43 : bits[64] * (e40, e42)
+e44 : bits[64] asr (e43) offset=28
+e45 : bits[32] resize (e44)
+e46 : bits[32] const 4293078460
+e47 : bits[32] + (e45, e46)
+e48 : bits[64] concat (e47, e41)
+e49 : bits[64] mux (e38, e48, math_horner8_data)
+e50 : bits[8] mux (e38, math_horner9_tkeep, math_horner8_keep)
+e51 : bits[1] mux (e38, math_horner9_tlast, math_horner8_last)
+e52 : bits[8] mux (e38, math_horner9_tuser, math_horner8_user)
+e53 : bits[1] ~ (math_horner6_valid)
+e54 : bits[1] | (e53, math_horner6_tready)
+e55 : bits[1] mux (e36, math_horner8_tvalid, math_horner7_valid)
+e56 : bits[1] & (e36, math_horner8_tvalid)
+e57 : bits[32] slice (math_horner8_tdata) offset=32
+e58 : bits[64] signextend (e57)
+e59 : bits[32] slice (math_horner8_tdata) offset=0
+e60 : bits[64] signextend (e59)
+e61 : bits[64] * (e58, e60)
+e62 : bits[64] asr (e61) offset=28
+e63 : bits[32] resize (e62)
+e64 : bits[32] const 3238005
+e65 : bits[32] + (e63, e64)
+e66 : bits[64] concat (e65, e59)
+e67 : bits[64] mux (e56, e66, math_horner7_data)
+e68 : bits[8] mux (e56, math_horner8_tkeep, math_horner7_keep)
+e69 : bits[1] mux (e56, math_horner8_tlast, math_horner7_last)
+e70 : bits[8] mux (e56, math_horner8_tuser, math_horner7_user)
+e71 : bits[1] ~ (math_horner5_valid)
+e72 : bits[1] | (e71, math_horner5_tready)
+e73 : bits[1] mux (e54, math_horner7_tvalid, math_horner6_valid)
+e74 : bits[1] & (e54, math_horner7_tvalid)
+e75 : bits[32] slice (math_horner7_tdata) offset=32
+e76 : bits[64] signextend (e75)
+e77 : bits[32] slice (math_horner7_tdata) offset=0
+e78 : bits[64] signextend (e77)
+e79 : bits[64] * (e76, e78)
+e80 : bits[64] asr (e79) offset=28
+e81 : bits[32] resize (e80)
+e82 : bits[32] const 4289300787
+e83 : bits[32] + (e81, e82)
+e84 : bits[64] concat (e83, e77)
+e85 : bits[64] mux (e74, e84, math_horner6_data)
+e86 : bits[8] mux (e74, math_horner7_tkeep, math_horner6_keep)
+e87 : bits[1] mux (e74, math_horner7_tlast, math_horner6_last)
+e88 : bits[8] mux (e74, math_horner7_tuser, math_horner6_user)
+e89 : bits[1] ~ (math_horner4_valid)
+e90 : bits[1] | (e89, math_horner4_tready)
+e91 : bits[1] mux (e72, math_horner6_tvalid, math_horner5_valid)
+e92 : bits[1] & (e72, math_horner6_tvalid)
+e93 : bits[32] slice (math_horner6_tdata) offset=32
+e94 : bits[64] signextend (e93)
+e95 : bits[32] slice (math_horner6_tdata) offset=0
+e96 : bits[64] signextend (e95)
+e97 : bits[64] * (e94, e96)
+e98 : bits[64] asr (e97) offset=28
+e99 : bits[32] resize (e98)
+e100 : bits[32] const 10199717
+e101 : bits[32] + (e99, e100)
+e102 : bits[64] concat (e101, e95)
+e103 : bits[64] mux (e92, e102, math_horner5_data)
+e104 : bits[8] mux (e92, math_horner6_tkeep, math_horner5_keep)
+e105 : bits[1] mux (e92, math_horner6_tlast, math_horner5_last)
+e106 : bits[8] mux (e92, math_horner6_tuser, math_horner5_user)
+e107 : bits[1] ~ (math_horner3_valid)
+e108 : bits[1] | (e107, math_horner3_tready)
+e109 : bits[1] mux (e90, math_horner5_tvalid, math_horner4_valid)
+e110 : bits[1] & (e90, math_horner5_tvalid)
+e111 : bits[32] slice (math_horner5_tdata) offset=32
+e112 : bits[64] signextend (e111)
+e113 : bits[32] slice (math_horner5_tdata) offset=0
+e114 : bits[64] signextend (e113)
+e115 : bits[64] * (e112, e114)
+e116 : bits[64] asr (e115) offset=28
+e117 : bits[32] resize (e116)
+e118 : bits[32] const 4275842827
+e119 : bits[32] + (e117, e118)
+e120 : bits[64] concat (e119, e113)
+e121 : bits[64] mux (e110, e120, math_horner4_data)
+e122 : bits[8] mux (e110, math_horner5_tkeep, math_horner4_keep)
+e123 : bits[1] mux (e110, math_horner5_tlast, math_horner4_last)
+e124 : bits[8] mux (e110, math_horner5_tuser, math_horner4_user)
+e125 : bits[1] ~ (math_horner2_valid)
+e126 : bits[1] | (e125, math_horner2_tready)
+e127 : bits[1] mux (e108, math_horner4_tvalid, math_horner3_valid)
+e128 : bits[1] & (e108, math_horner4_tvalid)
+e129 : bits[32] slice (math_horner4_tdata) offset=32
+e130 : bits[64] signextend (e129)
+e131 : bits[32] slice (math_horner4_tdata) offset=0
+e132 : bits[64] signextend (e131)
+e133 : bits[64] * (e130, e132)
+e134 : bits[64] asr (e133) offset=28
+e135 : bits[32] resize (e134)
+e136 : bits[32] const 38248938
+e137 : bits[32] + (e135, e136)
+e138 : bits[64] concat (e137, e131)
+e139 : bits[64] mux (e128, e138, math_horner3_data)
+e140 : bits[8] mux (e128, math_horner4_tkeep, math_horner3_keep)
+e141 : bits[1] mux (e128, math_horner4_tlast, math_horner3_last)
+e142 : bits[8] mux (e128, math_horner4_tuser, math_horner3_user)
+e143 : bits[1] ~ (math_horner1_valid)
+e144 : bits[1] | (e143, math_horner1_tready)
+e145 : bits[1] mux (e126, math_horner3_tvalid, math_horner2_valid)
+e146 : bits[1] & (e126, math_horner3_tvalid)
+e147 : bits[32] slice (math_horner3_tdata) offset=32
+e148 : bits[64] signextend (e147)
+e149 : bits[32] slice (math_horner3_tdata) offset=0
+e150 : bits[64] signextend (e149)
+e151 : bits[64] * (e148, e150)
+e152 : bits[64] asr (e151) offset=28
+e153 : bits[32] resize (e152)
+e154 : bits[32] const 4208907185
+e155 : bits[32] + (e153, e154)
+e156 : bits[64] concat (e155, e149)
+e157 : bits[64] mux (e146, e156, math_horner2_data)
+e158 : bits[8] mux (e146, math_horner3_tkeep, math_horner2_keep)
+e159 : bits[1] mux (e146, math_horner3_tlast, math_horner2_last)
+e160 : bits[8] mux (e146, math_horner3_tuser, math_horner2_user)
+e161 : bits[1] ~ (math_horner0_valid)
+e162 : bits[1] | (e161, math_horner0_tready)
+e163 : bits[1] mux (e144, math_horner2_tvalid, math_horner1_valid)
+e164 : bits[1] & (e144, math_horner2_tvalid)
+e165 : bits[32] slice (math_horner2_tdata) offset=32
+e166 : bits[64] signextend (e165)
+e167 : bits[32] slice (math_horner2_tdata) offset=0
+e168 : bits[64] signextend (e167)
+e169 : bits[64] * (e166, e168)
+e170 : bits[64] asr (e169) offset=28
+e171 : bits[32] resize (e170)
+e172 : bits[32] const 258180334
+e173 : bits[32] + (e171, e172)
+e174 : bits[64] concat (e173, e167)
+e175 : bits[64] mux (e164, e174, math_horner1_data)
+e176 : bits[8] mux (e164, math_horner2_tkeep, math_horner1_keep)
+e177 : bits[1] mux (e164, math_horner2_tlast, math_horner1_last)
+e178 : bits[8] mux (e164, math_horner2_tuser, math_horner1_user)
+e179 : bits[1] mux (e162, math_horner1_tvalid, math_horner0_valid)
+e180 : bits[1] & (e162, math_horner1_tvalid)
+e181 : bits[32] slice (math_horner1_tdata) offset=32
+e182 : bits[64] signextend (e181)
+e183 : bits[32] slice (math_horner1_tdata) offset=0
+e184 : bits[64] signextend (e183)
+e185 : bits[64] * (e182, e184)
+e186 : bits[64] asr (e185) offset=28
+e187 : bits[32] resize (e186)
+e188 : bits[32] const 157024676
+e189 : bits[32] + (e187, e188)
+e190 : bits[64] concat (e189, e183)
+e191 : bits[64] mux (e180, e190, math_horner0_data)
+e192 : bits[8] mux (e180, math_horner1_tkeep, math_horner0_keep)
+e193 : bits[1] mux (e180, math_horner1_tlast, math_horner0_last)
+e194 : bits[8] mux (e180, math_horner1_tuser, math_horner0_user)
+e195 : bits[32] slice (math_horner0_tdata) offset=32
+e196 : bits[32] asr (e195) offset=8
+e197 : bits[24] resize (e196)
+e198 : bits[3] const 7
+connections:
+s_axis_tready <- e1
+m_axis_tdata <- math_result_tdata
+m_axis_tkeep <- math_result_tkeep
+m_axis_tlast <- math_result_tlast
+m_axis_tuser <- math_result_tuser
+m_axis_tvalid <- math_result_tvalid
+math_reduce_tdata <- math_reduce_data
+math_reduce_tkeep <- math_reduce_keep
+math_reduce_tlast <- math_reduce_last
+math_reduce_tuser <- math_reduce_user
+math_reduce_tvalid <- math_reduce_valid
+math_reduce_tready <- e3
+math_reduce_valid.next <- e4
+math_reduce_data.next <- e12
+math_reduce_keep.next <- e14
+math_reduce_last.next <- e15
+math_reduce_user.next <- e16
+math_horner9_tdata <- math_horner9_data
+math_horner9_tkeep <- math_horner9_keep
+math_horner9_tlast <- math_horner9_last
+math_horner9_tuser <- math_horner9_user
+math_horner9_tvalid <- math_horner9_valid
+math_horner9_tready <- e18
+math_horner9_valid.next <- e19
+math_horner9_data.next <- e31
+math_horner9_keep.next <- e32
+math_horner9_last.next <- e33
+math_horner9_user.next <- e34
+math_horner8_tdata <- math_horner8_data
+math_horner8_tkeep <- math_horner8_keep
+math_horner8_tlast <- math_horner8_last
+math_horner8_tuser <- math_horner8_user
+math_horner8_tvalid <- math_horner8_valid
+math_horner8_tready <- e36
+math_horner8_valid.next <- e37
+math_horner8_data.next <- e49
+math_horner8_keep.next <- e50
+math_horner8_last.next <- e51
+math_horner8_user.next <- e52
+math_horner7_tdata <- math_horner7_data
+math_horner7_tkeep <- math_horner7_keep
+math_horner7_tlast <- math_horner7_last
+math_horner7_tuser <- math_horner7_user
+math_horner7_tvalid <- math_horner7_valid
+math_horner7_tready <- e54
+math_horner7_valid.next <- e55
+math_horner7_data.next <- e67
+math_horner7_keep.next <- e68
+math_horner7_last.next <- e69
+math_horner7_user.next <- e70
+math_horner6_tdata <- math_horner6_data
+math_horner6_tkeep <- math_horner6_keep
+math_horner6_tlast <- math_horner6_last
+math_horner6_tuser <- math_horner6_user
+math_horner6_tvalid <- math_horner6_valid
+math_horner6_tready <- e72
+math_horner6_valid.next <- e73
+math_horner6_data.next <- e85
+math_horner6_keep.next <- e86
+math_horner6_last.next <- e87
+math_horner6_user.next <- e88
+math_horner5_tdata <- math_horner5_data
+math_horner5_tkeep <- math_horner5_keep
+math_horner5_tlast <- math_horner5_last
+math_horner5_tuser <- math_horner5_user
+math_horner5_tvalid <- math_horner5_valid
+math_horner5_tready <- e90
+math_horner5_valid.next <- e91
+math_horner5_data.next <- e103
+math_horner5_keep.next <- e104
+math_horner5_last.next <- e105
+math_horner5_user.next <- e106
+math_horner4_tdata <- math_horner4_data
+math_horner4_tkeep <- math_horner4_keep
+math_horner4_tlast <- math_horner4_last
+math_horner4_tuser <- math_horner4_user
+math_horner4_tvalid <- math_horner4_valid
+math_horner4_tready <- e108
+math_horner4_valid.next <- e109
+math_horner4_data.next <- e121
+math_horner4_keep.next <- e122
+math_horner4_last.next <- e123
+math_horner4_user.next <- e124
+math_horner3_tdata <- math_horner3_data
+math_horner3_tkeep <- math_horner3_keep
+math_horner3_tlast <- math_horner3_last
+math_horner3_tuser <- math_horner3_user
+math_horner3_tvalid <- math_horner3_valid
+math_horner3_tready <- e126
+math_horner3_valid.next <- e127
+math_horner3_data.next <- e139
+math_horner3_keep.next <- e140
+math_horner3_last.next <- e141
+math_horner3_user.next <- e142
+math_horner2_tdata <- math_horner2_data
+math_horner2_tkeep <- math_horner2_keep
+math_horner2_tlast <- math_horner2_last
+math_horner2_tuser <- math_horner2_user
+math_horner2_tvalid <- math_horner2_valid
+math_horner2_tready <- e144
+math_horner2_valid.next <- e145
+math_horner2_data.next <- e157
+math_horner2_keep.next <- e158
+math_horner2_last.next <- e159
+math_horner2_user.next <- e160
+math_horner1_tdata <- math_horner1_data
+math_horner1_tkeep <- math_horner1_keep
+math_horner1_tlast <- math_horner1_last
+math_horner1_tuser <- math_horner1_user
+math_horner1_tvalid <- math_horner1_valid
+math_horner1_tready <- e162
+math_horner1_valid.next <- e163
+math_horner1_data.next <- e175
+math_horner1_keep.next <- e176
+math_horner1_last.next <- e177
+math_horner1_user.next <- e178
+math_horner0_tdata <- math_horner0_data
+math_horner0_tkeep <- math_horner0_keep
+math_horner0_tlast <- math_horner0_last
+math_horner0_tuser <- math_horner0_user
+math_horner0_tvalid <- math_horner0_valid
+math_horner0_tready <- math_result_tready
+math_horner0_valid.next <- e179
+math_horner0_data.next <- e191
+math_horner0_keep.next <- e192
+math_horner0_last.next <- e193
+math_horner0_user.next <- e194
+math_result_tdata <- e197
+math_result_tkeep <- e198
+math_result_tlast <- math_horner0_tlast
+math_result_tuser <- math_horner0_tuser
+math_result_tvalid <- math_horner0_tvalid
+math_result_tready <- m_axis_tready

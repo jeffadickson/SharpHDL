@@ -1,0 +1,1058 @@
+module Cordic
+input s_axis_tdata : bits[24]
+input s_axis_tkeep : bits[3]
+input s_axis_tlast : bits[1]
+input s_axis_tuser : bits[8]
+input s_axis_tvalid : bits[1]
+output s_axis_tready : bits[1]
+output m_axis_tdata : bits[64]
+output m_axis_tkeep : bits[8]
+output m_axis_tlast : bits[1]
+output m_axis_tuser : bits[8]
+output m_axis_tvalid : bits[1]
+input m_axis_tready : bits[1]
+wire trig_reduce_tdata : bits[88]
+wire trig_reduce_tkeep : bits[11]
+wire trig_reduce_tlast : bits[1]
+wire trig_reduce_tuser : bits[8]
+wire trig_reduce_tvalid : bits[1]
+wire trig_reduce_tready : bits[1]
+reg trig_reduce_valid : bits[1] reset=0
+reg trig_reduce_data : bits[88] reset=0
+reg trig_reduce_keep : bits[11] reset=0
+reg trig_reduce_last : bits[1] reset=0
+reg trig_reduce_user : bits[8] reset=0
+wire trig_rotate0_tdata : bits[88]
+wire trig_rotate0_tkeep : bits[11]
+wire trig_rotate0_tlast : bits[1]
+wire trig_rotate0_tuser : bits[8]
+wire trig_rotate0_tvalid : bits[1]
+wire trig_rotate0_tready : bits[1]
+reg trig_rotate0_valid : bits[1] reset=0
+reg trig_rotate0_data : bits[88] reset=0
+reg trig_rotate0_keep : bits[11] reset=0
+reg trig_rotate0_last : bits[1] reset=0
+reg trig_rotate0_user : bits[8] reset=0
+wire trig_rotate1_tdata : bits[88]
+wire trig_rotate1_tkeep : bits[11]
+wire trig_rotate1_tlast : bits[1]
+wire trig_rotate1_tuser : bits[8]
+wire trig_rotate1_tvalid : bits[1]
+wire trig_rotate1_tready : bits[1]
+reg trig_rotate1_valid : bits[1] reset=0
+reg trig_rotate1_data : bits[88] reset=0
+reg trig_rotate1_keep : bits[11] reset=0
+reg trig_rotate1_last : bits[1] reset=0
+reg trig_rotate1_user : bits[8] reset=0
+wire trig_rotate2_tdata : bits[88]
+wire trig_rotate2_tkeep : bits[11]
+wire trig_rotate2_tlast : bits[1]
+wire trig_rotate2_tuser : bits[8]
+wire trig_rotate2_tvalid : bits[1]
+wire trig_rotate2_tready : bits[1]
+reg trig_rotate2_valid : bits[1] reset=0
+reg trig_rotate2_data : bits[88] reset=0
+reg trig_rotate2_keep : bits[11] reset=0
+reg trig_rotate2_last : bits[1] reset=0
+reg trig_rotate2_user : bits[8] reset=0
+wire trig_rotate3_tdata : bits[88]
+wire trig_rotate3_tkeep : bits[11]
+wire trig_rotate3_tlast : bits[1]
+wire trig_rotate3_tuser : bits[8]
+wire trig_rotate3_tvalid : bits[1]
+wire trig_rotate3_tready : bits[1]
+reg trig_rotate3_valid : bits[1] reset=0
+reg trig_rotate3_data : bits[88] reset=0
+reg trig_rotate3_keep : bits[11] reset=0
+reg trig_rotate3_last : bits[1] reset=0
+reg trig_rotate3_user : bits[8] reset=0
+wire trig_rotate4_tdata : bits[88]
+wire trig_rotate4_tkeep : bits[11]
+wire trig_rotate4_tlast : bits[1]
+wire trig_rotate4_tuser : bits[8]
+wire trig_rotate4_tvalid : bits[1]
+wire trig_rotate4_tready : bits[1]
+reg trig_rotate4_valid : bits[1] reset=0
+reg trig_rotate4_data : bits[88] reset=0
+reg trig_rotate4_keep : bits[11] reset=0
+reg trig_rotate4_last : bits[1] reset=0
+reg trig_rotate4_user : bits[8] reset=0
+wire trig_rotate5_tdata : bits[88]
+wire trig_rotate5_tkeep : bits[11]
+wire trig_rotate5_tlast : bits[1]
+wire trig_rotate5_tuser : bits[8]
+wire trig_rotate5_tvalid : bits[1]
+wire trig_rotate5_tready : bits[1]
+reg trig_rotate5_valid : bits[1] reset=0
+reg trig_rotate5_data : bits[88] reset=0
+reg trig_rotate5_keep : bits[11] reset=0
+reg trig_rotate5_last : bits[1] reset=0
+reg trig_rotate5_user : bits[8] reset=0
+wire trig_rotate6_tdata : bits[88]
+wire trig_rotate6_tkeep : bits[11]
+wire trig_rotate6_tlast : bits[1]
+wire trig_rotate6_tuser : bits[8]
+wire trig_rotate6_tvalid : bits[1]
+wire trig_rotate6_tready : bits[1]
+reg trig_rotate6_valid : bits[1] reset=0
+reg trig_rotate6_data : bits[88] reset=0
+reg trig_rotate6_keep : bits[11] reset=0
+reg trig_rotate6_last : bits[1] reset=0
+reg trig_rotate6_user : bits[8] reset=0
+wire trig_rotate7_tdata : bits[88]
+wire trig_rotate7_tkeep : bits[11]
+wire trig_rotate7_tlast : bits[1]
+wire trig_rotate7_tuser : bits[8]
+wire trig_rotate7_tvalid : bits[1]
+wire trig_rotate7_tready : bits[1]
+reg trig_rotate7_valid : bits[1] reset=0
+reg trig_rotate7_data : bits[88] reset=0
+reg trig_rotate7_keep : bits[11] reset=0
+reg trig_rotate7_last : bits[1] reset=0
+reg trig_rotate7_user : bits[8] reset=0
+wire trig_rotate8_tdata : bits[88]
+wire trig_rotate8_tkeep : bits[11]
+wire trig_rotate8_tlast : bits[1]
+wire trig_rotate8_tuser : bits[8]
+wire trig_rotate8_tvalid : bits[1]
+wire trig_rotate8_tready : bits[1]
+reg trig_rotate8_valid : bits[1] reset=0
+reg trig_rotate8_data : bits[88] reset=0
+reg trig_rotate8_keep : bits[11] reset=0
+reg trig_rotate8_last : bits[1] reset=0
+reg trig_rotate8_user : bits[8] reset=0
+wire trig_rotate9_tdata : bits[88]
+wire trig_rotate9_tkeep : bits[11]
+wire trig_rotate9_tlast : bits[1]
+wire trig_rotate9_tuser : bits[8]
+wire trig_rotate9_tvalid : bits[1]
+wire trig_rotate9_tready : bits[1]
+reg trig_rotate9_valid : bits[1] reset=0
+reg trig_rotate9_data : bits[88] reset=0
+reg trig_rotate9_keep : bits[11] reset=0
+reg trig_rotate9_last : bits[1] reset=0
+reg trig_rotate9_user : bits[8] reset=0
+wire trig_rotate10_tdata : bits[88]
+wire trig_rotate10_tkeep : bits[11]
+wire trig_rotate10_tlast : bits[1]
+wire trig_rotate10_tuser : bits[8]
+wire trig_rotate10_tvalid : bits[1]
+wire trig_rotate10_tready : bits[1]
+reg trig_rotate10_valid : bits[1] reset=0
+reg trig_rotate10_data : bits[88] reset=0
+reg trig_rotate10_keep : bits[11] reset=0
+reg trig_rotate10_last : bits[1] reset=0
+reg trig_rotate10_user : bits[8] reset=0
+wire trig_rotate11_tdata : bits[88]
+wire trig_rotate11_tkeep : bits[11]
+wire trig_rotate11_tlast : bits[1]
+wire trig_rotate11_tuser : bits[8]
+wire trig_rotate11_tvalid : bits[1]
+wire trig_rotate11_tready : bits[1]
+reg trig_rotate11_valid : bits[1] reset=0
+reg trig_rotate11_data : bits[88] reset=0
+reg trig_rotate11_keep : bits[11] reset=0
+reg trig_rotate11_last : bits[1] reset=0
+reg trig_rotate11_user : bits[8] reset=0
+wire trig_rotate12_tdata : bits[88]
+wire trig_rotate12_tkeep : bits[11]
+wire trig_rotate12_tlast : bits[1]
+wire trig_rotate12_tuser : bits[8]
+wire trig_rotate12_tvalid : bits[1]
+wire trig_rotate12_tready : bits[1]
+reg trig_rotate12_valid : bits[1] reset=0
+reg trig_rotate12_data : bits[88] reset=0
+reg trig_rotate12_keep : bits[11] reset=0
+reg trig_rotate12_last : bits[1] reset=0
+reg trig_rotate12_user : bits[8] reset=0
+wire trig_rotate13_tdata : bits[88]
+wire trig_rotate13_tkeep : bits[11]
+wire trig_rotate13_tlast : bits[1]
+wire trig_rotate13_tuser : bits[8]
+wire trig_rotate13_tvalid : bits[1]
+wire trig_rotate13_tready : bits[1]
+reg trig_rotate13_valid : bits[1] reset=0
+reg trig_rotate13_data : bits[88] reset=0
+reg trig_rotate13_keep : bits[11] reset=0
+reg trig_rotate13_last : bits[1] reset=0
+reg trig_rotate13_user : bits[8] reset=0
+wire trig_rotate14_tdata : bits[88]
+wire trig_rotate14_tkeep : bits[11]
+wire trig_rotate14_tlast : bits[1]
+wire trig_rotate14_tuser : bits[8]
+wire trig_rotate14_tvalid : bits[1]
+wire trig_rotate14_tready : bits[1]
+reg trig_rotate14_valid : bits[1] reset=0
+reg trig_rotate14_data : bits[88] reset=0
+reg trig_rotate14_keep : bits[11] reset=0
+reg trig_rotate14_last : bits[1] reset=0
+reg trig_rotate14_user : bits[8] reset=0
+wire trig_rotate15_tdata : bits[88]
+wire trig_rotate15_tkeep : bits[11]
+wire trig_rotate15_tlast : bits[1]
+wire trig_rotate15_tuser : bits[8]
+wire trig_rotate15_tvalid : bits[1]
+wire trig_rotate15_tready : bits[1]
+reg trig_rotate15_valid : bits[1] reset=0
+reg trig_rotate15_data : bits[88] reset=0
+reg trig_rotate15_keep : bits[11] reset=0
+reg trig_rotate15_last : bits[1] reset=0
+reg trig_rotate15_user : bits[8] reset=0
+wire trig_rotate16_tdata : bits[88]
+wire trig_rotate16_tkeep : bits[11]
+wire trig_rotate16_tlast : bits[1]
+wire trig_rotate16_tuser : bits[8]
+wire trig_rotate16_tvalid : bits[1]
+wire trig_rotate16_tready : bits[1]
+reg trig_rotate16_valid : bits[1] reset=0
+reg trig_rotate16_data : bits[88] reset=0
+reg trig_rotate16_keep : bits[11] reset=0
+reg trig_rotate16_last : bits[1] reset=0
+reg trig_rotate16_user : bits[8] reset=0
+wire trig_rotate17_tdata : bits[88]
+wire trig_rotate17_tkeep : bits[11]
+wire trig_rotate17_tlast : bits[1]
+wire trig_rotate17_tuser : bits[8]
+wire trig_rotate17_tvalid : bits[1]
+wire trig_rotate17_tready : bits[1]
+reg trig_rotate17_valid : bits[1] reset=0
+reg trig_rotate17_data : bits[88] reset=0
+reg trig_rotate17_keep : bits[11] reset=0
+reg trig_rotate17_last : bits[1] reset=0
+reg trig_rotate17_user : bits[8] reset=0
+wire trig_rotate18_tdata : bits[88]
+wire trig_rotate18_tkeep : bits[11]
+wire trig_rotate18_tlast : bits[1]
+wire trig_rotate18_tuser : bits[8]
+wire trig_rotate18_tvalid : bits[1]
+wire trig_rotate18_tready : bits[1]
+reg trig_rotate18_valid : bits[1] reset=0
+reg trig_rotate18_data : bits[88] reset=0
+reg trig_rotate18_keep : bits[11] reset=0
+reg trig_rotate18_last : bits[1] reset=0
+reg trig_rotate18_user : bits[8] reset=0
+wire trig_rotate19_tdata : bits[88]
+wire trig_rotate19_tkeep : bits[11]
+wire trig_rotate19_tlast : bits[1]
+wire trig_rotate19_tuser : bits[8]
+wire trig_rotate19_tvalid : bits[1]
+wire trig_rotate19_tready : bits[1]
+reg trig_rotate19_valid : bits[1] reset=0
+reg trig_rotate19_data : bits[88] reset=0
+reg trig_rotate19_keep : bits[11] reset=0
+reg trig_rotate19_last : bits[1] reset=0
+reg trig_rotate19_user : bits[8] reset=0
+wire trig_result_tdata : bits[64]
+wire trig_result_tkeep : bits[8]
+wire trig_result_tlast : bits[1]
+wire trig_result_tuser : bits[8]
+wire trig_result_tvalid : bits[1]
+wire trig_result_tready : bits[1]
+expressions:
+e0 : bits[1] ~ (trig_reduce_valid)
+e1 : bits[1] | (e0, trig_reduce_tready)
+e2 : bits[1] ~ (trig_rotate0_valid)
+e3 : bits[1] | (e2, trig_rotate0_tready)
+e4 : bits[1] mux (e1, s_axis_tvalid, trig_reduce_valid)
+e5 : bits[1] & (e1, s_axis_tvalid)
+e6 : bits[1] slice (s_axis_tdata) offset=23
+e7 : bits[1] slice (s_axis_tdata) offset=22
+e8 : bits[1] ^ (e6, e7)
+e9 : bits[24] const 8388608
+e10 : bits[24] - (s_axis_tdata, e9)
+e11 : bits[24] mux (e8, e10, s_axis_tdata)
+e12 : bits[32] const 0
+e13 : bits[32] const 4284779282
+e14 : bits[32] const 10188014
+e15 : bits[32] mux (e8, e13, e14)
+e16 : bits[64] concat (e12, e15)
+e17 : bits[88] concat (e11, e16)
+e18 : bits[88] mux (e5, e17, trig_reduce_data)
+e19 : bits[11] const 2047
+e20 : bits[11] mux (e5, e19, trig_reduce_keep)
+e21 : bits[1] mux (e5, s_axis_tlast, trig_reduce_last)
+e22 : bits[8] mux (e5, s_axis_tuser, trig_reduce_user)
+e23 : bits[1] ~ (trig_rotate1_valid)
+e24 : bits[1] | (e23, trig_rotate1_tready)
+e25 : bits[1] mux (e3, trig_reduce_tvalid, trig_rotate0_valid)
+e26 : bits[1] & (e3, trig_reduce_tvalid)
+e27 : bits[24] slice (trig_reduce_tdata) offset=64
+e28 : bits[1] slice (e27) offset=23
+e29 : bits[24] const 2097152
+e30 : bits[24] + (e27, e29)
+e31 : bits[24] const 2097152
+e32 : bits[24] - (e27, e31)
+e33 : bits[24] mux (e28, e30, e32)
+e34 : bits[32] slice (trig_reduce_tdata) offset=32
+e35 : bits[32] slice (trig_reduce_tdata) offset=0
+e36 : bits[32] asr (e35) offset=0
+e37 : bits[32] - (e34, e36)
+e38 : bits[32] + (e34, e36)
+e39 : bits[32] mux (e28, e37, e38)
+e40 : bits[32] asr (e34) offset=0
+e41 : bits[32] + (e35, e40)
+e42 : bits[32] - (e35, e40)
+e43 : bits[32] mux (e28, e41, e42)
+e44 : bits[64] concat (e39, e43)
+e45 : bits[88] concat (e33, e44)
+e46 : bits[88] mux (e26, e45, trig_rotate0_data)
+e47 : bits[11] mux (e26, trig_reduce_tkeep, trig_rotate0_keep)
+e48 : bits[1] mux (e26, trig_reduce_tlast, trig_rotate0_last)
+e49 : bits[8] mux (e26, trig_reduce_tuser, trig_rotate0_user)
+e50 : bits[1] ~ (trig_rotate2_valid)
+e51 : bits[1] | (e50, trig_rotate2_tready)
+e52 : bits[1] mux (e24, trig_rotate0_tvalid, trig_rotate1_valid)
+e53 : bits[1] & (e24, trig_rotate0_tvalid)
+e54 : bits[24] slice (trig_rotate0_tdata) offset=64
+e55 : bits[1] slice (e54) offset=23
+e56 : bits[24] const 1238021
+e57 : bits[24] + (e54, e56)
+e58 : bits[24] const 1238021
+e59 : bits[24] - (e54, e58)
+e60 : bits[24] mux (e55, e57, e59)
+e61 : bits[32] slice (trig_rotate0_tdata) offset=32
+e62 : bits[32] slice (trig_rotate0_tdata) offset=0
+e63 : bits[32] asr (e62) offset=1
+e64 : bits[32] - (e61, e63)
+e65 : bits[32] + (e61, e63)
+e66 : bits[32] mux (e55, e64, e65)
+e67 : bits[32] asr (e61) offset=1
+e68 : bits[32] + (e62, e67)
+e69 : bits[32] - (e62, e67)
+e70 : bits[32] mux (e55, e68, e69)
+e71 : bits[64] concat (e66, e70)
+e72 : bits[88] concat (e60, e71)
+e73 : bits[88] mux (e53, e72, trig_rotate1_data)
+e74 : bits[11] mux (e53, trig_rotate0_tkeep, trig_rotate1_keep)
+e75 : bits[1] mux (e53, trig_rotate0_tlast, trig_rotate1_last)
+e76 : bits[8] mux (e53, trig_rotate0_tuser, trig_rotate1_user)
+e77 : bits[1] ~ (trig_rotate3_valid)
+e78 : bits[1] | (e77, trig_rotate3_tready)
+e79 : bits[1] mux (e51, trig_rotate1_tvalid, trig_rotate2_valid)
+e80 : bits[1] & (e51, trig_rotate1_tvalid)
+e81 : bits[24] slice (trig_rotate1_tdata) offset=64
+e82 : bits[1] slice (e81) offset=23
+e83 : bits[24] const 654136
+e84 : bits[24] + (e81, e83)
+e85 : bits[24] const 654136
+e86 : bits[24] - (e81, e85)
+e87 : bits[24] mux (e82, e84, e86)
+e88 : bits[32] slice (trig_rotate1_tdata) offset=32
+e89 : bits[32] slice (trig_rotate1_tdata) offset=0
+e90 : bits[32] asr (e89) offset=2
+e91 : bits[32] - (e88, e90)
+e92 : bits[32] + (e88, e90)
+e93 : bits[32] mux (e82, e91, e92)
+e94 : bits[32] asr (e88) offset=2
+e95 : bits[32] + (e89, e94)
+e96 : bits[32] - (e89, e94)
+e97 : bits[32] mux (e82, e95, e96)
+e98 : bits[64] concat (e93, e97)
+e99 : bits[88] concat (e87, e98)
+e100 : bits[88] mux (e80, e99, trig_rotate2_data)
+e101 : bits[11] mux (e80, trig_rotate1_tkeep, trig_rotate2_keep)
+e102 : bits[1] mux (e80, trig_rotate1_tlast, trig_rotate2_last)
+e103 : bits[8] mux (e80, trig_rotate1_tuser, trig_rotate2_user)
+e104 : bits[1] ~ (trig_rotate4_valid)
+e105 : bits[1] | (e104, trig_rotate4_tready)
+e106 : bits[1] mux (e78, trig_rotate2_tvalid, trig_rotate3_valid)
+e107 : bits[1] & (e78, trig_rotate2_tvalid)
+e108 : bits[24] slice (trig_rotate2_tdata) offset=64
+e109 : bits[1] slice (e108) offset=23
+e110 : bits[24] const 332050
+e111 : bits[24] + (e108, e110)
+e112 : bits[24] const 332050
+e113 : bits[24] - (e108, e112)
+e114 : bits[24] mux (e109, e111, e113)
+e115 : bits[32] slice (trig_rotate2_tdata) offset=32
+e116 : bits[32] slice (trig_rotate2_tdata) offset=0
+e117 : bits[32] asr (e116) offset=3
+e118 : bits[32] - (e115, e117)
+e119 : bits[32] + (e115, e117)
+e120 : bits[32] mux (e109, e118, e119)
+e121 : bits[32] asr (e115) offset=3
+e122 : bits[32] + (e116, e121)
+e123 : bits[32] - (e116, e121)
+e124 : bits[32] mux (e109, e122, e123)
+e125 : bits[64] concat (e120, e124)
+e126 : bits[88] concat (e114, e125)
+e127 : bits[88] mux (e107, e126, trig_rotate3_data)
+e128 : bits[11] mux (e107, trig_rotate2_tkeep, trig_rotate3_keep)
+e129 : bits[1] mux (e107, trig_rotate2_tlast, trig_rotate3_last)
+e130 : bits[8] mux (e107, trig_rotate2_tuser, trig_rotate3_user)
+e131 : bits[1] ~ (trig_rotate5_valid)
+e132 : bits[1] | (e131, trig_rotate5_tready)
+e133 : bits[1] mux (e105, trig_rotate3_tvalid, trig_rotate4_valid)
+e134 : bits[1] & (e105, trig_rotate3_tvalid)
+e135 : bits[24] slice (trig_rotate3_tdata) offset=64
+e136 : bits[1] slice (e135) offset=23
+e137 : bits[24] const 166669
+e138 : bits[24] + (e135, e137)
+e139 : bits[24] const 166669
+e140 : bits[24] - (e135, e139)
+e141 : bits[24] mux (e136, e138, e140)
+e142 : bits[32] slice (trig_rotate3_tdata) offset=32
+e143 : bits[32] slice (trig_rotate3_tdata) offset=0
+e144 : bits[32] asr (e143) offset=4
+e145 : bits[32] - (e142, e144)
+e146 : bits[32] + (e142, e144)
+e147 : bits[32] mux (e136, e145, e146)
+e148 : bits[32] asr (e142) offset=4
+e149 : bits[32] + (e143, e148)
+e150 : bits[32] - (e143, e148)
+e151 : bits[32] mux (e136, e149, e150)
+e152 : bits[64] concat (e147, e151)
+e153 : bits[88] concat (e141, e152)
+e154 : bits[88] mux (e134, e153, trig_rotate4_data)
+e155 : bits[11] mux (e134, trig_rotate3_tkeep, trig_rotate4_keep)
+e156 : bits[1] mux (e134, trig_rotate3_tlast, trig_rotate4_last)
+e157 : bits[8] mux (e134, trig_rotate3_tuser, trig_rotate4_user)
+e158 : bits[1] ~ (trig_rotate6_valid)
+e159 : bits[1] | (e158, trig_rotate6_tready)
+e160 : bits[1] mux (e132, trig_rotate4_tvalid, trig_rotate5_valid)
+e161 : bits[1] & (e132, trig_rotate4_tvalid)
+e162 : bits[24] slice (trig_rotate4_tdata) offset=64
+e163 : bits[1] slice (e162) offset=23
+e164 : bits[24] const 83416
+e165 : bits[24] + (e162, e164)
+e166 : bits[24] const 83416
+e167 : bits[24] - (e162, e166)
+e168 : bits[24] mux (e163, e165, e167)
+e169 : bits[32] slice (trig_rotate4_tdata) offset=32
+e170 : bits[32] slice (trig_rotate4_tdata) offset=0
+e171 : bits[32] asr (e170) offset=5
+e172 : bits[32] - (e169, e171)
+e173 : bits[32] + (e169, e171)
+e174 : bits[32] mux (e163, e172, e173)
+e175 : bits[32] asr (e169) offset=5
+e176 : bits[32] + (e170, e175)
+e177 : bits[32] - (e170, e175)
+e178 : bits[32] mux (e163, e176, e177)
+e179 : bits[64] concat (e174, e178)
+e180 : bits[88] concat (e168, e179)
+e181 : bits[88] mux (e161, e180, trig_rotate5_data)
+e182 : bits[11] mux (e161, trig_rotate4_tkeep, trig_rotate5_keep)
+e183 : bits[1] mux (e161, trig_rotate4_tlast, trig_rotate5_last)
+e184 : bits[8] mux (e161, trig_rotate4_tuser, trig_rotate5_user)
+e185 : bits[1] ~ (trig_rotate7_valid)
+e186 : bits[1] | (e185, trig_rotate7_tready)
+e187 : bits[1] mux (e159, trig_rotate5_tvalid, trig_rotate6_valid)
+e188 : bits[1] & (e159, trig_rotate5_tvalid)
+e189 : bits[24] slice (trig_rotate5_tdata) offset=64
+e190 : bits[1] slice (e189) offset=23
+e191 : bits[24] const 41718
+e192 : bits[24] + (e189, e191)
+e193 : bits[24] const 41718
+e194 : bits[24] - (e189, e193)
+e195 : bits[24] mux (e190, e192, e194)
+e196 : bits[32] slice (trig_rotate5_tdata) offset=32
+e197 : bits[32] slice (trig_rotate5_tdata) offset=0
+e198 : bits[32] asr (e197) offset=6
+e199 : bits[32] - (e196, e198)
+e200 : bits[32] + (e196, e198)
+e201 : bits[32] mux (e190, e199, e200)
+e202 : bits[32] asr (e196) offset=6
+e203 : bits[32] + (e197, e202)
+e204 : bits[32] - (e197, e202)
+e205 : bits[32] mux (e190, e203, e204)
+e206 : bits[64] concat (e201, e205)
+e207 : bits[88] concat (e195, e206)
+e208 : bits[88] mux (e188, e207, trig_rotate6_data)
+e209 : bits[11] mux (e188, trig_rotate5_tkeep, trig_rotate6_keep)
+e210 : bits[1] mux (e188, trig_rotate5_tlast, trig_rotate6_last)
+e211 : bits[8] mux (e188, trig_rotate5_tuser, trig_rotate6_user)
+e212 : bits[1] ~ (trig_rotate8_valid)
+e213 : bits[1] | (e212, trig_rotate8_tready)
+e214 : bits[1] mux (e186, trig_rotate6_tvalid, trig_rotate7_valid)
+e215 : bits[1] & (e186, trig_rotate6_tvalid)
+e216 : bits[24] slice (trig_rotate6_tdata) offset=64
+e217 : bits[1] slice (e216) offset=23
+e218 : bits[24] const 20860
+e219 : bits[24] + (e216, e218)
+e220 : bits[24] const 20860
+e221 : bits[24] - (e216, e220)
+e222 : bits[24] mux (e217, e219, e221)
+e223 : bits[32] slice (trig_rotate6_tdata) offset=32
+e224 : bits[32] slice (trig_rotate6_tdata) offset=0
+e225 : bits[32] asr (e224) offset=7
+e226 : bits[32] - (e223, e225)
+e227 : bits[32] + (e223, e225)
+e228 : bits[32] mux (e217, e226, e227)
+e229 : bits[32] asr (e223) offset=7
+e230 : bits[32] + (e224, e229)
+e231 : bits[32] - (e224, e229)
+e232 : bits[32] mux (e217, e230, e231)
+e233 : bits[64] concat (e228, e232)
+e234 : bits[88] concat (e222, e233)
+e235 : bits[88] mux (e215, e234, trig_rotate7_data)
+e236 : bits[11] mux (e215, trig_rotate6_tkeep, trig_rotate7_keep)
+e237 : bits[1] mux (e215, trig_rotate6_tlast, trig_rotate7_last)
+e238 : bits[8] mux (e215, trig_rotate6_tuser, trig_rotate7_user)
+e239 : bits[1] ~ (trig_rotate9_valid)
+e240 : bits[1] | (e239, trig_rotate9_tready)
+e241 : bits[1] mux (e213, trig_rotate7_tvalid, trig_rotate8_valid)
+e242 : bits[1] & (e213, trig_rotate7_tvalid)
+e243 : bits[24] slice (trig_rotate7_tdata) offset=64
+e244 : bits[1] slice (e243) offset=23
+e245 : bits[24] const 10430
+e246 : bits[24] + (e243, e245)
+e247 : bits[24] const 10430
+e248 : bits[24] - (e243, e247)
+e249 : bits[24] mux (e244, e246, e248)
+e250 : bits[32] slice (trig_rotate7_tdata) offset=32
+e251 : bits[32] slice (trig_rotate7_tdata) offset=0
+e252 : bits[32] asr (e251) offset=8
+e253 : bits[32] - (e250, e252)
+e254 : bits[32] + (e250, e252)
+e255 : bits[32] mux (e244, e253, e254)
+e256 : bits[32] asr (e250) offset=8
+e257 : bits[32] + (e251, e256)
+e258 : bits[32] - (e251, e256)
+e259 : bits[32] mux (e244, e257, e258)
+e260 : bits[64] concat (e255, e259)
+e261 : bits[88] concat (e249, e260)
+e262 : bits[88] mux (e242, e261, trig_rotate8_data)
+e263 : bits[11] mux (e242, trig_rotate7_tkeep, trig_rotate8_keep)
+e264 : bits[1] mux (e242, trig_rotate7_tlast, trig_rotate8_last)
+e265 : bits[8] mux (e242, trig_rotate7_tuser, trig_rotate8_user)
+e266 : bits[1] ~ (trig_rotate10_valid)
+e267 : bits[1] | (e266, trig_rotate10_tready)
+e268 : bits[1] mux (e240, trig_rotate8_tvalid, trig_rotate9_valid)
+e269 : bits[1] & (e240, trig_rotate8_tvalid)
+e270 : bits[24] slice (trig_rotate8_tdata) offset=64
+e271 : bits[1] slice (e270) offset=23
+e272 : bits[24] const 5215
+e273 : bits[24] + (e270, e272)
+e274 : bits[24] const 5215
+e275 : bits[24] - (e270, e274)
+e276 : bits[24] mux (e271, e273, e275)
+e277 : bits[32] slice (trig_rotate8_tdata) offset=32
+e278 : bits[32] slice (trig_rotate8_tdata) offset=0
+e279 : bits[32] asr (e278) offset=9
+e280 : bits[32] - (e277, e279)
+e281 : bits[32] + (e277, e279)
+e282 : bits[32] mux (e271, e280, e281)
+e283 : bits[32] asr (e277) offset=9
+e284 : bits[32] + (e278, e283)
+e285 : bits[32] - (e278, e283)
+e286 : bits[32] mux (e271, e284, e285)
+e287 : bits[64] concat (e282, e286)
+e288 : bits[88] concat (e276, e287)
+e289 : bits[88] mux (e269, e288, trig_rotate9_data)
+e290 : bits[11] mux (e269, trig_rotate8_tkeep, trig_rotate9_keep)
+e291 : bits[1] mux (e269, trig_rotate8_tlast, trig_rotate9_last)
+e292 : bits[8] mux (e269, trig_rotate8_tuser, trig_rotate9_user)
+e293 : bits[1] ~ (trig_rotate11_valid)
+e294 : bits[1] | (e293, trig_rotate11_tready)
+e295 : bits[1] mux (e267, trig_rotate9_tvalid, trig_rotate10_valid)
+e296 : bits[1] & (e267, trig_rotate9_tvalid)
+e297 : bits[24] slice (trig_rotate9_tdata) offset=64
+e298 : bits[1] slice (e297) offset=23
+e299 : bits[24] const 2608
+e300 : bits[24] + (e297, e299)
+e301 : bits[24] const 2608
+e302 : bits[24] - (e297, e301)
+e303 : bits[24] mux (e298, e300, e302)
+e304 : bits[32] slice (trig_rotate9_tdata) offset=32
+e305 : bits[32] slice (trig_rotate9_tdata) offset=0
+e306 : bits[32] asr (e305) offset=10
+e307 : bits[32] - (e304, e306)
+e308 : bits[32] + (e304, e306)
+e309 : bits[32] mux (e298, e307, e308)
+e310 : bits[32] asr (e304) offset=10
+e311 : bits[32] + (e305, e310)
+e312 : bits[32] - (e305, e310)
+e313 : bits[32] mux (e298, e311, e312)
+e314 : bits[64] concat (e309, e313)
+e315 : bits[88] concat (e303, e314)
+e316 : bits[88] mux (e296, e315, trig_rotate10_data)
+e317 : bits[11] mux (e296, trig_rotate9_tkeep, trig_rotate10_keep)
+e318 : bits[1] mux (e296, trig_rotate9_tlast, trig_rotate10_last)
+e319 : bits[8] mux (e296, trig_rotate9_tuser, trig_rotate10_user)
+e320 : bits[1] ~ (trig_rotate12_valid)
+e321 : bits[1] | (e320, trig_rotate12_tready)
+e322 : bits[1] mux (e294, trig_rotate10_tvalid, trig_rotate11_valid)
+e323 : bits[1] & (e294, trig_rotate10_tvalid)
+e324 : bits[24] slice (trig_rotate10_tdata) offset=64
+e325 : bits[1] slice (e324) offset=23
+e326 : bits[24] const 1304
+e327 : bits[24] + (e324, e326)
+e328 : bits[24] const 1304
+e329 : bits[24] - (e324, e328)
+e330 : bits[24] mux (e325, e327, e329)
+e331 : bits[32] slice (trig_rotate10_tdata) offset=32
+e332 : bits[32] slice (trig_rotate10_tdata) offset=0
+e333 : bits[32] asr (e332) offset=11
+e334 : bits[32] - (e331, e333)
+e335 : bits[32] + (e331, e333)
+e336 : bits[32] mux (e325, e334, e335)
+e337 : bits[32] asr (e331) offset=11
+e338 : bits[32] + (e332, e337)
+e339 : bits[32] - (e332, e337)
+e340 : bits[32] mux (e325, e338, e339)
+e341 : bits[64] concat (e336, e340)
+e342 : bits[88] concat (e330, e341)
+e343 : bits[88] mux (e323, e342, trig_rotate11_data)
+e344 : bits[11] mux (e323, trig_rotate10_tkeep, trig_rotate11_keep)
+e345 : bits[1] mux (e323, trig_rotate10_tlast, trig_rotate11_last)
+e346 : bits[8] mux (e323, trig_rotate10_tuser, trig_rotate11_user)
+e347 : bits[1] ~ (trig_rotate13_valid)
+e348 : bits[1] | (e347, trig_rotate13_tready)
+e349 : bits[1] mux (e321, trig_rotate11_tvalid, trig_rotate12_valid)
+e350 : bits[1] & (e321, trig_rotate11_tvalid)
+e351 : bits[24] slice (trig_rotate11_tdata) offset=64
+e352 : bits[1] slice (e351) offset=23
+e353 : bits[24] const 652
+e354 : bits[24] + (e351, e353)
+e355 : bits[24] const 652
+e356 : bits[24] - (e351, e355)
+e357 : bits[24] mux (e352, e354, e356)
+e358 : bits[32] slice (trig_rotate11_tdata) offset=32
+e359 : bits[32] slice (trig_rotate11_tdata) offset=0
+e360 : bits[32] asr (e359) offset=12
+e361 : bits[32] - (e358, e360)
+e362 : bits[32] + (e358, e360)
+e363 : bits[32] mux (e352, e361, e362)
+e364 : bits[32] asr (e358) offset=12
+e365 : bits[32] + (e359, e364)
+e366 : bits[32] - (e359, e364)
+e367 : bits[32] mux (e352, e365, e366)
+e368 : bits[64] concat (e363, e367)
+e369 : bits[88] concat (e357, e368)
+e370 : bits[88] mux (e350, e369, trig_rotate12_data)
+e371 : bits[11] mux (e350, trig_rotate11_tkeep, trig_rotate12_keep)
+e372 : bits[1] mux (e350, trig_rotate11_tlast, trig_rotate12_last)
+e373 : bits[8] mux (e350, trig_rotate11_tuser, trig_rotate12_user)
+e374 : bits[1] ~ (trig_rotate14_valid)
+e375 : bits[1] | (e374, trig_rotate14_tready)
+e376 : bits[1] mux (e348, trig_rotate12_tvalid, trig_rotate13_valid)
+e377 : bits[1] & (e348, trig_rotate12_tvalid)
+e378 : bits[24] slice (trig_rotate12_tdata) offset=64
+e379 : bits[1] slice (e378) offset=23
+e380 : bits[24] const 326
+e381 : bits[24] + (e378, e380)
+e382 : bits[24] const 326
+e383 : bits[24] - (e378, e382)
+e384 : bits[24] mux (e379, e381, e383)
+e385 : bits[32] slice (trig_rotate12_tdata) offset=32
+e386 : bits[32] slice (trig_rotate12_tdata) offset=0
+e387 : bits[32] asr (e386) offset=13
+e388 : bits[32] - (e385, e387)
+e389 : bits[32] + (e385, e387)
+e390 : bits[32] mux (e379, e388, e389)
+e391 : bits[32] asr (e385) offset=13
+e392 : bits[32] + (e386, e391)
+e393 : bits[32] - (e386, e391)
+e394 : bits[32] mux (e379, e392, e393)
+e395 : bits[64] concat (e390, e394)
+e396 : bits[88] concat (e384, e395)
+e397 : bits[88] mux (e377, e396, trig_rotate13_data)
+e398 : bits[11] mux (e377, trig_rotate12_tkeep, trig_rotate13_keep)
+e399 : bits[1] mux (e377, trig_rotate12_tlast, trig_rotate13_last)
+e400 : bits[8] mux (e377, trig_rotate12_tuser, trig_rotate13_user)
+e401 : bits[1] ~ (trig_rotate15_valid)
+e402 : bits[1] | (e401, trig_rotate15_tready)
+e403 : bits[1] mux (e375, trig_rotate13_tvalid, trig_rotate14_valid)
+e404 : bits[1] & (e375, trig_rotate13_tvalid)
+e405 : bits[24] slice (trig_rotate13_tdata) offset=64
+e406 : bits[1] slice (e405) offset=23
+e407 : bits[24] const 163
+e408 : bits[24] + (e405, e407)
+e409 : bits[24] const 163
+e410 : bits[24] - (e405, e409)
+e411 : bits[24] mux (e406, e408, e410)
+e412 : bits[32] slice (trig_rotate13_tdata) offset=32
+e413 : bits[32] slice (trig_rotate13_tdata) offset=0
+e414 : bits[32] asr (e413) offset=14
+e415 : bits[32] - (e412, e414)
+e416 : bits[32] + (e412, e414)
+e417 : bits[32] mux (e406, e415, e416)
+e418 : bits[32] asr (e412) offset=14
+e419 : bits[32] + (e413, e418)
+e420 : bits[32] - (e413, e418)
+e421 : bits[32] mux (e406, e419, e420)
+e422 : bits[64] concat (e417, e421)
+e423 : bits[88] concat (e411, e422)
+e424 : bits[88] mux (e404, e423, trig_rotate14_data)
+e425 : bits[11] mux (e404, trig_rotate13_tkeep, trig_rotate14_keep)
+e426 : bits[1] mux (e404, trig_rotate13_tlast, trig_rotate14_last)
+e427 : bits[8] mux (e404, trig_rotate13_tuser, trig_rotate14_user)
+e428 : bits[1] ~ (trig_rotate16_valid)
+e429 : bits[1] | (e428, trig_rotate16_tready)
+e430 : bits[1] mux (e402, trig_rotate14_tvalid, trig_rotate15_valid)
+e431 : bits[1] & (e402, trig_rotate14_tvalid)
+e432 : bits[24] slice (trig_rotate14_tdata) offset=64
+e433 : bits[1] slice (e432) offset=23
+e434 : bits[24] const 81
+e435 : bits[24] + (e432, e434)
+e436 : bits[24] const 81
+e437 : bits[24] - (e432, e436)
+e438 : bits[24] mux (e433, e435, e437)
+e439 : bits[32] slice (trig_rotate14_tdata) offset=32
+e440 : bits[32] slice (trig_rotate14_tdata) offset=0
+e441 : bits[32] asr (e440) offset=15
+e442 : bits[32] - (e439, e441)
+e443 : bits[32] + (e439, e441)
+e444 : bits[32] mux (e433, e442, e443)
+e445 : bits[32] asr (e439) offset=15
+e446 : bits[32] + (e440, e445)
+e447 : bits[32] - (e440, e445)
+e448 : bits[32] mux (e433, e446, e447)
+e449 : bits[64] concat (e444, e448)
+e450 : bits[88] concat (e438, e449)
+e451 : bits[88] mux (e431, e450, trig_rotate15_data)
+e452 : bits[11] mux (e431, trig_rotate14_tkeep, trig_rotate15_keep)
+e453 : bits[1] mux (e431, trig_rotate14_tlast, trig_rotate15_last)
+e454 : bits[8] mux (e431, trig_rotate14_tuser, trig_rotate15_user)
+e455 : bits[1] ~ (trig_rotate17_valid)
+e456 : bits[1] | (e455, trig_rotate17_tready)
+e457 : bits[1] mux (e429, trig_rotate15_tvalid, trig_rotate16_valid)
+e458 : bits[1] & (e429, trig_rotate15_tvalid)
+e459 : bits[24] slice (trig_rotate15_tdata) offset=64
+e460 : bits[1] slice (e459) offset=23
+e461 : bits[24] const 41
+e462 : bits[24] + (e459, e461)
+e463 : bits[24] const 41
+e464 : bits[24] - (e459, e463)
+e465 : bits[24] mux (e460, e462, e464)
+e466 : bits[32] slice (trig_rotate15_tdata) offset=32
+e467 : bits[32] slice (trig_rotate15_tdata) offset=0
+e468 : bits[32] asr (e467) offset=16
+e469 : bits[32] - (e466, e468)
+e470 : bits[32] + (e466, e468)
+e471 : bits[32] mux (e460, e469, e470)
+e472 : bits[32] asr (e466) offset=16
+e473 : bits[32] + (e467, e472)
+e474 : bits[32] - (e467, e472)
+e475 : bits[32] mux (e460, e473, e474)
+e476 : bits[64] concat (e471, e475)
+e477 : bits[88] concat (e465, e476)
+e478 : bits[88] mux (e458, e477, trig_rotate16_data)
+e479 : bits[11] mux (e458, trig_rotate15_tkeep, trig_rotate16_keep)
+e480 : bits[1] mux (e458, trig_rotate15_tlast, trig_rotate16_last)
+e481 : bits[8] mux (e458, trig_rotate15_tuser, trig_rotate16_user)
+e482 : bits[1] ~ (trig_rotate18_valid)
+e483 : bits[1] | (e482, trig_rotate18_tready)
+e484 : bits[1] mux (e456, trig_rotate16_tvalid, trig_rotate17_valid)
+e485 : bits[1] & (e456, trig_rotate16_tvalid)
+e486 : bits[24] slice (trig_rotate16_tdata) offset=64
+e487 : bits[1] slice (e486) offset=23
+e488 : bits[24] const 20
+e489 : bits[24] + (e486, e488)
+e490 : bits[24] const 20
+e491 : bits[24] - (e486, e490)
+e492 : bits[24] mux (e487, e489, e491)
+e493 : bits[32] slice (trig_rotate16_tdata) offset=32
+e494 : bits[32] slice (trig_rotate16_tdata) offset=0
+e495 : bits[32] asr (e494) offset=17
+e496 : bits[32] - (e493, e495)
+e497 : bits[32] + (e493, e495)
+e498 : bits[32] mux (e487, e496, e497)
+e499 : bits[32] asr (e493) offset=17
+e500 : bits[32] + (e494, e499)
+e501 : bits[32] - (e494, e499)
+e502 : bits[32] mux (e487, e500, e501)
+e503 : bits[64] concat (e498, e502)
+e504 : bits[88] concat (e492, e503)
+e505 : bits[88] mux (e485, e504, trig_rotate17_data)
+e506 : bits[11] mux (e485, trig_rotate16_tkeep, trig_rotate17_keep)
+e507 : bits[1] mux (e485, trig_rotate16_tlast, trig_rotate17_last)
+e508 : bits[8] mux (e485, trig_rotate16_tuser, trig_rotate17_user)
+e509 : bits[1] ~ (trig_rotate19_valid)
+e510 : bits[1] | (e509, trig_rotate19_tready)
+e511 : bits[1] mux (e483, trig_rotate17_tvalid, trig_rotate18_valid)
+e512 : bits[1] & (e483, trig_rotate17_tvalid)
+e513 : bits[24] slice (trig_rotate17_tdata) offset=64
+e514 : bits[1] slice (e513) offset=23
+e515 : bits[24] const 10
+e516 : bits[24] + (e513, e515)
+e517 : bits[24] const 10
+e518 : bits[24] - (e513, e517)
+e519 : bits[24] mux (e514, e516, e518)
+e520 : bits[32] slice (trig_rotate17_tdata) offset=32
+e521 : bits[32] slice (trig_rotate17_tdata) offset=0
+e522 : bits[32] asr (e521) offset=18
+e523 : bits[32] - (e520, e522)
+e524 : bits[32] + (e520, e522)
+e525 : bits[32] mux (e514, e523, e524)
+e526 : bits[32] asr (e520) offset=18
+e527 : bits[32] + (e521, e526)
+e528 : bits[32] - (e521, e526)
+e529 : bits[32] mux (e514, e527, e528)
+e530 : bits[64] concat (e525, e529)
+e531 : bits[88] concat (e519, e530)
+e532 : bits[88] mux (e512, e531, trig_rotate18_data)
+e533 : bits[11] mux (e512, trig_rotate17_tkeep, trig_rotate18_keep)
+e534 : bits[1] mux (e512, trig_rotate17_tlast, trig_rotate18_last)
+e535 : bits[8] mux (e512, trig_rotate17_tuser, trig_rotate18_user)
+e536 : bits[1] mux (e510, trig_rotate18_tvalid, trig_rotate19_valid)
+e537 : bits[1] & (e510, trig_rotate18_tvalid)
+e538 : bits[24] slice (trig_rotate18_tdata) offset=64
+e539 : bits[1] slice (e538) offset=23
+e540 : bits[24] const 5
+e541 : bits[24] + (e538, e540)
+e542 : bits[24] const 5
+e543 : bits[24] - (e538, e542)
+e544 : bits[24] mux (e539, e541, e543)
+e545 : bits[32] slice (trig_rotate18_tdata) offset=32
+e546 : bits[32] slice (trig_rotate18_tdata) offset=0
+e547 : bits[32] asr (e546) offset=19
+e548 : bits[32] - (e545, e547)
+e549 : bits[32] + (e545, e547)
+e550 : bits[32] mux (e539, e548, e549)
+e551 : bits[32] asr (e545) offset=19
+e552 : bits[32] + (e546, e551)
+e553 : bits[32] - (e546, e551)
+e554 : bits[32] mux (e539, e552, e553)
+e555 : bits[64] concat (e550, e554)
+e556 : bits[88] concat (e544, e555)
+e557 : bits[88] mux (e537, e556, trig_rotate19_data)
+e558 : bits[11] mux (e537, trig_rotate18_tkeep, trig_rotate19_keep)
+e559 : bits[1] mux (e537, trig_rotate18_tlast, trig_rotate19_last)
+e560 : bits[8] mux (e537, trig_rotate18_tuser, trig_rotate19_user)
+e561 : bits[64] slice (trig_rotate19_tdata) offset=0
+e562 : bits[8] const 255
+connections:
+s_axis_tready <- e1
+m_axis_tdata <- trig_result_tdata
+m_axis_tkeep <- trig_result_tkeep
+m_axis_tlast <- trig_result_tlast
+m_axis_tuser <- trig_result_tuser
+m_axis_tvalid <- trig_result_tvalid
+trig_reduce_tdata <- trig_reduce_data
+trig_reduce_tkeep <- trig_reduce_keep
+trig_reduce_tlast <- trig_reduce_last
+trig_reduce_tuser <- trig_reduce_user
+trig_reduce_tvalid <- trig_reduce_valid
+trig_reduce_tready <- e3
+trig_reduce_valid.next <- e4
+trig_reduce_data.next <- e18
+trig_reduce_keep.next <- e20
+trig_reduce_last.next <- e21
+trig_reduce_user.next <- e22
+trig_rotate0_tdata <- trig_rotate0_data
+trig_rotate0_tkeep <- trig_rotate0_keep
+trig_rotate0_tlast <- trig_rotate0_last
+trig_rotate0_tuser <- trig_rotate0_user
+trig_rotate0_tvalid <- trig_rotate0_valid
+trig_rotate0_tready <- e24
+trig_rotate0_valid.next <- e25
+trig_rotate0_data.next <- e46
+trig_rotate0_keep.next <- e47
+trig_rotate0_last.next <- e48
+trig_rotate0_user.next <- e49
+trig_rotate1_tdata <- trig_rotate1_data
+trig_rotate1_tkeep <- trig_rotate1_keep
+trig_rotate1_tlast <- trig_rotate1_last
+trig_rotate1_tuser <- trig_rotate1_user
+trig_rotate1_tvalid <- trig_rotate1_valid
+trig_rotate1_tready <- e51
+trig_rotate1_valid.next <- e52
+trig_rotate1_data.next <- e73
+trig_rotate1_keep.next <- e74
+trig_rotate1_last.next <- e75
+trig_rotate1_user.next <- e76
+trig_rotate2_tdata <- trig_rotate2_data
+trig_rotate2_tkeep <- trig_rotate2_keep
+trig_rotate2_tlast <- trig_rotate2_last
+trig_rotate2_tuser <- trig_rotate2_user
+trig_rotate2_tvalid <- trig_rotate2_valid
+trig_rotate2_tready <- e78
+trig_rotate2_valid.next <- e79
+trig_rotate2_data.next <- e100
+trig_rotate2_keep.next <- e101
+trig_rotate2_last.next <- e102
+trig_rotate2_user.next <- e103
+trig_rotate3_tdata <- trig_rotate3_data
+trig_rotate3_tkeep <- trig_rotate3_keep
+trig_rotate3_tlast <- trig_rotate3_last
+trig_rotate3_tuser <- trig_rotate3_user
+trig_rotate3_tvalid <- trig_rotate3_valid
+trig_rotate3_tready <- e105
+trig_rotate3_valid.next <- e106
+trig_rotate3_data.next <- e127
+trig_rotate3_keep.next <- e128
+trig_rotate3_last.next <- e129
+trig_rotate3_user.next <- e130
+trig_rotate4_tdata <- trig_rotate4_data
+trig_rotate4_tkeep <- trig_rotate4_keep
+trig_rotate4_tlast <- trig_rotate4_last
+trig_rotate4_tuser <- trig_rotate4_user
+trig_rotate4_tvalid <- trig_rotate4_valid
+trig_rotate4_tready <- e132
+trig_rotate4_valid.next <- e133
+trig_rotate4_data.next <- e154
+trig_rotate4_keep.next <- e155
+trig_rotate4_last.next <- e156
+trig_rotate4_user.next <- e157
+trig_rotate5_tdata <- trig_rotate5_data
+trig_rotate5_tkeep <- trig_rotate5_keep
+trig_rotate5_tlast <- trig_rotate5_last
+trig_rotate5_tuser <- trig_rotate5_user
+trig_rotate5_tvalid <- trig_rotate5_valid
+trig_rotate5_tready <- e159
+trig_rotate5_valid.next <- e160
+trig_rotate5_data.next <- e181
+trig_rotate5_keep.next <- e182
+trig_rotate5_last.next <- e183
+trig_rotate5_user.next <- e184
+trig_rotate6_tdata <- trig_rotate6_data
+trig_rotate6_tkeep <- trig_rotate6_keep
+trig_rotate6_tlast <- trig_rotate6_last
+trig_rotate6_tuser <- trig_rotate6_user
+trig_rotate6_tvalid <- trig_rotate6_valid
+trig_rotate6_tready <- e186
+trig_rotate6_valid.next <- e187
+trig_rotate6_data.next <- e208
+trig_rotate6_keep.next <- e209
+trig_rotate6_last.next <- e210
+trig_rotate6_user.next <- e211
+trig_rotate7_tdata <- trig_rotate7_data
+trig_rotate7_tkeep <- trig_rotate7_keep
+trig_rotate7_tlast <- trig_rotate7_last
+trig_rotate7_tuser <- trig_rotate7_user
+trig_rotate7_tvalid <- trig_rotate7_valid
+trig_rotate7_tready <- e213
+trig_rotate7_valid.next <- e214
+trig_rotate7_data.next <- e235
+trig_rotate7_keep.next <- e236
+trig_rotate7_last.next <- e237
+trig_rotate7_user.next <- e238
+trig_rotate8_tdata <- trig_rotate8_data
+trig_rotate8_tkeep <- trig_rotate8_keep
+trig_rotate8_tlast <- trig_rotate8_last
+trig_rotate8_tuser <- trig_rotate8_user
+trig_rotate8_tvalid <- trig_rotate8_valid
+trig_rotate8_tready <- e240
+trig_rotate8_valid.next <- e241
+trig_rotate8_data.next <- e262
+trig_rotate8_keep.next <- e263
+trig_rotate8_last.next <- e264
+trig_rotate8_user.next <- e265
+trig_rotate9_tdata <- trig_rotate9_data
+trig_rotate9_tkeep <- trig_rotate9_keep
+trig_rotate9_tlast <- trig_rotate9_last
+trig_rotate9_tuser <- trig_rotate9_user
+trig_rotate9_tvalid <- trig_rotate9_valid
+trig_rotate9_tready <- e267
+trig_rotate9_valid.next <- e268
+trig_rotate9_data.next <- e289
+trig_rotate9_keep.next <- e290
+trig_rotate9_last.next <- e291
+trig_rotate9_user.next <- e292
+trig_rotate10_tdata <- trig_rotate10_data
+trig_rotate10_tkeep <- trig_rotate10_keep
+trig_rotate10_tlast <- trig_rotate10_last
+trig_rotate10_tuser <- trig_rotate10_user
+trig_rotate10_tvalid <- trig_rotate10_valid
+trig_rotate10_tready <- e294
+trig_rotate10_valid.next <- e295
+trig_rotate10_data.next <- e316
+trig_rotate10_keep.next <- e317
+trig_rotate10_last.next <- e318
+trig_rotate10_user.next <- e319
+trig_rotate11_tdata <- trig_rotate11_data
+trig_rotate11_tkeep <- trig_rotate11_keep
+trig_rotate11_tlast <- trig_rotate11_last
+trig_rotate11_tuser <- trig_rotate11_user
+trig_rotate11_tvalid <- trig_rotate11_valid
+trig_rotate11_tready <- e321
+trig_rotate11_valid.next <- e322
+trig_rotate11_data.next <- e343
+trig_rotate11_keep.next <- e344
+trig_rotate11_last.next <- e345
+trig_rotate11_user.next <- e346
+trig_rotate12_tdata <- trig_rotate12_data
+trig_rotate12_tkeep <- trig_rotate12_keep
+trig_rotate12_tlast <- trig_rotate12_last
+trig_rotate12_tuser <- trig_rotate12_user
+trig_rotate12_tvalid <- trig_rotate12_valid
+trig_rotate12_tready <- e348
+trig_rotate12_valid.next <- e349
+trig_rotate12_data.next <- e370
+trig_rotate12_keep.next <- e371
+trig_rotate12_last.next <- e372
+trig_rotate12_user.next <- e373
+trig_rotate13_tdata <- trig_rotate13_data
+trig_rotate13_tkeep <- trig_rotate13_keep
+trig_rotate13_tlast <- trig_rotate13_last
+trig_rotate13_tuser <- trig_rotate13_user
+trig_rotate13_tvalid <- trig_rotate13_valid
+trig_rotate13_tready <- e375
+trig_rotate13_valid.next <- e376
+trig_rotate13_data.next <- e397
+trig_rotate13_keep.next <- e398
+trig_rotate13_last.next <- e399
+trig_rotate13_user.next <- e400
+trig_rotate14_tdata <- trig_rotate14_data
+trig_rotate14_tkeep <- trig_rotate14_keep
+trig_rotate14_tlast <- trig_rotate14_last
+trig_rotate14_tuser <- trig_rotate14_user
+trig_rotate14_tvalid <- trig_rotate14_valid
+trig_rotate14_tready <- e402
+trig_rotate14_valid.next <- e403
+trig_rotate14_data.next <- e424
+trig_rotate14_keep.next <- e425
+trig_rotate14_last.next <- e426
+trig_rotate14_user.next <- e427
+trig_rotate15_tdata <- trig_rotate15_data
+trig_rotate15_tkeep <- trig_rotate15_keep
+trig_rotate15_tlast <- trig_rotate15_last
+trig_rotate15_tuser <- trig_rotate15_user
+trig_rotate15_tvalid <- trig_rotate15_valid
+trig_rotate15_tready <- e429
+trig_rotate15_valid.next <- e430
+trig_rotate15_data.next <- e451
+trig_rotate15_keep.next <- e452
+trig_rotate15_last.next <- e453
+trig_rotate15_user.next <- e454
+trig_rotate16_tdata <- trig_rotate16_data
+trig_rotate16_tkeep <- trig_rotate16_keep
+trig_rotate16_tlast <- trig_rotate16_last
+trig_rotate16_tuser <- trig_rotate16_user
+trig_rotate16_tvalid <- trig_rotate16_valid
+trig_rotate16_tready <- e456
+trig_rotate16_valid.next <- e457
+trig_rotate16_data.next <- e478
+trig_rotate16_keep.next <- e479
+trig_rotate16_last.next <- e480
+trig_rotate16_user.next <- e481
+trig_rotate17_tdata <- trig_rotate17_data
+trig_rotate17_tkeep <- trig_rotate17_keep
+trig_rotate17_tlast <- trig_rotate17_last
+trig_rotate17_tuser <- trig_rotate17_user
+trig_rotate17_tvalid <- trig_rotate17_valid
+trig_rotate17_tready <- e483
+trig_rotate17_valid.next <- e484
+trig_rotate17_data.next <- e505
+trig_rotate17_keep.next <- e506
+trig_rotate17_last.next <- e507
+trig_rotate17_user.next <- e508
+trig_rotate18_tdata <- trig_rotate18_data
+trig_rotate18_tkeep <- trig_rotate18_keep
+trig_rotate18_tlast <- trig_rotate18_last
+trig_rotate18_tuser <- trig_rotate18_user
+trig_rotate18_tvalid <- trig_rotate18_valid
+trig_rotate18_tready <- e510
+trig_rotate18_valid.next <- e511
+trig_rotate18_data.next <- e532
+trig_rotate18_keep.next <- e533
+trig_rotate18_last.next <- e534
+trig_rotate18_user.next <- e535
+trig_rotate19_tdata <- trig_rotate19_data
+trig_rotate19_tkeep <- trig_rotate19_keep
+trig_rotate19_tlast <- trig_rotate19_last
+trig_rotate19_tuser <- trig_rotate19_user
+trig_rotate19_tvalid <- trig_rotate19_valid
+trig_rotate19_tready <- trig_result_tready
+trig_rotate19_valid.next <- e536
+trig_rotate19_data.next <- e557
+trig_rotate19_keep.next <- e558
+trig_rotate19_last.next <- e559
+trig_rotate19_user.next <- e560
+trig_result_tdata <- e561
+trig_result_tkeep <- e562
+trig_result_tlast <- trig_rotate19_tlast
+trig_result_tuser <- trig_rotate19_tuser
+trig_result_tvalid <- trig_rotate19_tvalid
+trig_result_tready <- m_axis_tready

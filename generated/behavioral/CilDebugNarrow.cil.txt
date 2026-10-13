@@ -1,0 +1,18 @@
+Behavioral.CSharpFunctions.Narrow
+IL_0000: nop 
+IL_0001: ldarg.0 
+IL_0002: ldarg.1 
+IL_0003: blt.s 10
+IL_0005: ldarg.1 
+IL_0006: ldc.i4.1 
+IL_0007: sub 
+IL_0008: br.s 13
+IL_000a: ldarg.0 
+IL_000b: ldc.i4.2 
+IL_000c: add 
+IL_000d: stloc.0 
+IL_000e: br.s 16
+IL_0010: ldloc.0 
+IL_0011: ret 
+
+Instructions visited: 19; symbolic branches: 1; method bodies: 1

@@ -1,0 +1,149 @@
+module Divide32UnsignedIterativeTowardZeroWrap
+input input_tdata : bits[64]
+input input_tkeep : bits[8]
+input input_tlast : bits[1]
+input input_tuser : bits[4]
+input input_tvalid : bits[1]
+output input_tready : bits[1]
+output output_tdata : bits[72]
+output output_tkeep : bits[9]
+output output_tlast : bits[1]
+output output_tuser : bits[4]
+output output_tvalid : bits[1]
+input output_tready : bits[1]
+wire div_tdata : bits[72]
+wire div_tkeep : bits[9]
+wire div_tlast : bits[1]
+wire div_tuser : bits[4]
+wire div_tvalid : bits[1]
+wire div_tready : bits[1]
+reg div_busy : bits[1] reset=0
+reg div_valid : bits[1] reset=0
+reg div_shift_a : bits[32] reset=0
+reg div_abs_b : bits[32] reset=0
+reg div_q : bits[32] reset=0
+reg div_r : bits[33] reset=0
+reg div_original_a : bits[32] reset=0
+reg div_sign_a : bits[1] reset=0
+reg div_negative_q : bits[1] reset=0
+reg div_index : bits[5] reset=0
+reg div_result : bits[72] reset=0
+reg div_last : bits[1] reset=0
+reg div_user : bits[4] reset=0
+expressions:
+e0 : bits[1] ~ (div_busy)
+e1 : bits[1] ~ (div_valid)
+e2 : bits[1] | (e1, div_tready)
+e3 : bits[1] & (e0, e2)
+e4 : bits[9] const 511
+e5 : bits[1] & (input_tvalid, input_tready)
+e6 : bits[1] const 1
+e7 : bits[5] const 31
+e8 : bits[1] == (div_index, e7)
+e9 : bits[1] & (div_busy, e8)
+e10 : bits[1] const 0
+e11 : bits[1] mux (e9, e10, div_busy)
+e12 : bits[1] mux (e5, e6, e11)
+e13 : bits[1] const 1
+e14 : bits[1] & (div_tvalid, div_tready)
+e15 : bits[1] const 0
+e16 : bits[1] mux (e14, e15, div_valid)
+e17 : bits[1] mux (e9, e13, e16)
+e18 : bits[1] const 0
+e19 : bits[32] const 0
+e20 : bits[32] slice (input_tdata) offset=0
+e21 : bits[32] - (e19, e20)
+e22 : bits[32] mux (e18, e21, e20)
+e23 : bits[32] << (div_shift_a) offset=1
+e24 : bits[32] mux (div_busy, e23, div_shift_a)
+e25 : bits[32] mux (e5, e22, e24)
+e26 : bits[1] const 0
+e27 : bits[32] const 0
+e28 : bits[32] slice (input_tdata) offset=32
+e29 : bits[32] - (e27, e28)
+e30 : bits[32] mux (e26, e29, e28)
+e31 : bits[32] mux (e5, e30, div_abs_b)
+e32 : bits[32] const 0
+e33 : bits[32] << (div_q) offset=1
+e34 : bits[33] << (div_r) offset=1
+e35 : bits[1] slice (div_shift_a) offset=31
+e36 : bits[33] resize (e35)
+e37 : bits[33] | (e34, e36)
+e38 : bits[33] resize (div_abs_b)
+e39 : bits[1] < (e37, e38)
+e40 : bits[1] ~ (e39)
+e41 : bits[32] resize (e40)
+e42 : bits[32] | (e33, e41)
+e43 : bits[32] mux (div_busy, e42, div_q)
+e44 : bits[32] mux (e5, e32, e43)
+e45 : bits[33] const 0
+e46 : bits[33] resize (div_abs_b)
+e47 : bits[33] - (e37, e46)
+e48 : bits[33] mux (e40, e47, e37)
+e49 : bits[33] mux (div_busy, e48, div_r)
+e50 : bits[33] mux (e5, e45, e49)
+e51 : bits[32] mux (e5, e20, div_original_a)
+e52 : bits[1] mux (e5, e18, div_sign_a)
+e53 : bits[1] ^ (e18, e26)
+e54 : bits[1] mux (e5, e53, div_negative_q)
+e55 : bits[5] const 0
+e56 : bits[5] const 1
+e57 : bits[5] + (div_index, e56)
+e58 : bits[5] mux (div_busy, e57, div_index)
+e59 : bits[5] mux (e5, e55, e58)
+e60 : bits[1] const 0
+e61 : bits[32] const 0
+e62 : bits[1] == (div_abs_b, e61)
+e63 : bits[33] resize (div_original_a)
+e64 : bits[33] const 0
+e65 : bits[33] const 0
+e66 : bits[1] const 0
+e67 : bits[33] resize (div_abs_b)
+e68 : bits[33] - (e48, e67)
+e69 : bits[33] mux (e66, e68, e48)
+e70 : bits[33] - (e65, e69)
+e71 : bits[33] mux (div_sign_a, e70, e69)
+e72 : bits[33] mux (e60, e64, e71)
+e73 : bits[33] mux (e62, e63, e72)
+e74 : bits[32] const 0
+e75 : bits[33] const 0
+e76 : bits[33] resize (e42)
+e77 : bits[33] resize (e66)
+e78 : bits[33] + (e76, e77)
+e79 : bits[33] - (e75, e78)
+e80 : bits[33] mux (div_negative_q, e79, e78)
+e81 : bits[32] resize (e80)
+e82 : bits[32] mux (e62, e74, e81)
+e83 : bits[65] concat (e73, e82)
+e84 : bits[66] concat (e62, e83)
+e85 : bits[67] concat (e60, e84)
+e86 : bits[72] resize (e85)
+e87 : bits[72] mux (e9, e86, div_result)
+e88 : bits[1] mux (e5, input_tlast, div_last)
+e89 : bits[4] mux (e5, input_tuser, div_user)
+connections:
+input_tready <- e3
+output_tdata <- div_tdata
+output_tkeep <- div_tkeep
+output_tlast <- div_tlast
+output_tuser <- div_tuser
+output_tvalid <- div_tvalid
+div_tdata <- div_result
+div_tkeep <- e4
+div_tlast <- div_last
+div_tuser <- div_user
+div_tvalid <- div_valid
+div_tready <- output_tready
+div_busy.next <- e12
+div_valid.next <- e17
+div_shift_a.next <- e25
+div_abs_b.next <- e31
+div_q.next <- e44
+div_r.next <- e50
+div_original_a.next <- e51
+div_sign_a.next <- e52
+div_negative_q.next <- e54
+div_index.next <- e59
+div_result.next <- e87
+div_last.next <- e88
+div_user.next <- e89

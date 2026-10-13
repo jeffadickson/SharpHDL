@@ -1,0 +1,18 @@
+Behavioral.CSharpFunctions.Call
+IL_0000: ldarg.0 
+IL_0001: ldarg.1 
+IL_0002: call Int32 Helper(Int32, Int32)
+IL_0007: ldc.i4.3 
+IL_0008: add 
+IL_0009: ret 
+
+Behavioral.CSharpFunctions.Helper
+IL_0000: ldarg.0 
+IL_0001: ldarg.1 
+IL_0002: blt.s 6
+IL_0004: ldarg.1 
+IL_0005: ret 
+IL_0006: ldarg.0 
+IL_0007: ret 
+
+Instructions visited: 13; symbolic branches: 1; method bodies: 2

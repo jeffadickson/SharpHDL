@@ -1,0 +1,17 @@
+Behavioral.VisualBasicFunctions.SelectArithmetic
+IL_0000: ldarg.0 
+IL_0001: ldarg.1 
+IL_0002: ble.s 10
+IL_0004: ldarg.0 
+IL_0005: ldc.i4.2 
+IL_0006: add.ovf 
+IL_0007: stloc.0 
+IL_0008: br.s 14
+IL_000a: ldarg.1 
+IL_000b: ldc.i4.1 
+IL_000c: sub.ovf 
+IL_000d: stloc.0 
+IL_000e: ldloc.0 
+IL_000f: ret 
+
+Instructions visited: 16; symbolic branches: 1; method bodies: 1

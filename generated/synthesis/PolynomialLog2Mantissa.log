@@ -1,0 +1,516 @@
+
+-- Running command `read_verilog generated/PolynomialLog2Mantissa.v; hierarchy -check -top h_PolynomialLog2Mantissa; proc -norom; opt; memory; opt; check -assert; stat; write_verilog -noattr generated/synthesis/PolynomialLog2Mantissa_rtl.v' --
+
+1. Executing Verilog-2005 frontend: generated/PolynomialLog2Mantissa.v
+Parsing Verilog input from `generated/PolynomialLog2Mantissa.v' to AST representation.
+Generating RTLIL representation for module `\h_PolynomialLog2Mantissa'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \h_PolynomialLog2Mantissa
+
+2.2. Analyzing design hierarchy..
+Top module:  \h_PolynomialLog2Mantissa
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$generated/PolynomialLog2Mantissa.v:593$143 in module h_PolynomialLog2Mantissa.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 55 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+     1/55: $0\s_math_horner0_user[7:0]
+     2/55: $0\s_math_horner0_last[0:0]
+     3/55: $0\s_math_horner0_keep[7:0]
+     4/55: $0\s_math_horner0_data[63:0]
+     5/55: $0\s_math_horner0_valid[0:0]
+     6/55: $0\s_math_horner1_user[7:0]
+     7/55: $0\s_math_horner1_last[0:0]
+     8/55: $0\s_math_horner1_keep[7:0]
+     9/55: $0\s_math_horner1_data[63:0]
+    10/55: $0\s_math_horner1_valid[0:0]
+    11/55: $0\s_math_horner2_user[7:0]
+    12/55: $0\s_math_horner2_last[0:0]
+    13/55: $0\s_math_horner2_keep[7:0]
+    14/55: $0\s_math_horner2_data[63:0]
+    15/55: $0\s_math_horner2_valid[0:0]
+    16/55: $0\s_math_horner3_user[7:0]
+    17/55: $0\s_math_horner3_last[0:0]
+    18/55: $0\s_math_horner3_keep[7:0]
+    19/55: $0\s_math_horner3_data[63:0]
+    20/55: $0\s_math_horner3_valid[0:0]
+    21/55: $0\s_math_horner4_user[7:0]
+    22/55: $0\s_math_horner4_last[0:0]
+    23/55: $0\s_math_horner4_keep[7:0]
+    24/55: $0\s_math_horner4_data[63:0]
+    25/55: $0\s_math_horner4_valid[0:0]
+    26/55: $0\s_math_horner5_user[7:0]
+    27/55: $0\s_math_horner5_last[0:0]
+    28/55: $0\s_math_horner5_keep[7:0]
+    29/55: $0\s_math_horner5_data[63:0]
+    30/55: $0\s_math_horner5_valid[0:0]
+    31/55: $0\s_math_horner6_user[7:0]
+    32/55: $0\s_math_horner6_last[0:0]
+    33/55: $0\s_math_horner6_keep[7:0]
+    34/55: $0\s_math_horner6_data[63:0]
+    35/55: $0\s_math_horner6_valid[0:0]
+    36/55: $0\s_math_horner7_user[7:0]
+    37/55: $0\s_math_horner7_last[0:0]
+    38/55: $0\s_math_horner7_keep[7:0]
+    39/55: $0\s_math_horner7_data[63:0]
+    40/55: $0\s_math_horner7_valid[0:0]
+    41/55: $0\s_math_horner8_user[7:0]
+    42/55: $0\s_math_horner8_last[0:0]
+    43/55: $0\s_math_horner8_keep[7:0]
+    44/55: $0\s_math_horner8_data[63:0]
+    45/55: $0\s_math_horner8_valid[0:0]
+    46/55: $0\s_math_horner9_user[7:0]
+    47/55: $0\s_math_horner9_last[0:0]
+    48/55: $0\s_math_horner9_keep[7:0]
+    49/55: $0\s_math_horner9_data[63:0]
+    50/55: $0\s_math_horner9_valid[0:0]
+    51/55: $0\s_math_reduce_user[7:0]
+    52/55: $0\s_math_reduce_last[0:0]
+    53/55: $0\s_math_reduce_keep[7:0]
+    54/55: $0\s_math_reduce_data[63:0]
+    55/55: $0\s_math_reduce_valid[0:0]
+
+3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.8. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_reduce_valid' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$309' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_reduce_data' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$310' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_reduce_keep' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$311' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_reduce_last' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$312' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_reduce_user' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$313' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner9_valid' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$314' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner9_data' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$315' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner9_keep' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$316' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner9_last' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$317' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner9_user' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$318' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner8_valid' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$319' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner8_data' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$320' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner8_keep' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$321' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner8_last' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$322' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner8_user' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$323' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner7_valid' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$324' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner7_data' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$325' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner7_keep' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$326' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner7_last' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$327' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner7_user' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$328' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner6_valid' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$329' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner6_data' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$330' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner6_keep' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$331' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner6_last' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$332' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner6_user' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$333' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner5_valid' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$334' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner5_data' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$335' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner5_keep' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$336' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner5_last' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$337' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner5_user' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$338' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner4_valid' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$339' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner4_data' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$340' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner4_keep' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$341' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner4_last' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$342' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner4_user' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$343' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner3_valid' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$344' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner3_data' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$345' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner3_keep' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$346' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner3_last' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$347' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner3_user' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$348' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner2_valid' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$349' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner2_data' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$350' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner2_keep' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$351' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner2_last' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$352' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner2_user' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$353' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner1_valid' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$354' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner1_data' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$355' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner1_keep' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$356' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner1_last' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$357' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner1_user' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$358' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner0_valid' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$359' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner0_data' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$360' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner0_keep' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$361' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner0_last' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$362' with positive edge clock.
+Creating register for signal `\h_PolynomialLog2Mantissa.\s_math_horner0_user' using process `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+  created $dff cell `$procdff$363' with positive edge clock.
+
+3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+Removing empty process `h_PolynomialLog2Mantissa.$proc$generated/PolynomialLog2Mantissa.v:593$143'.
+Cleaned up 1 empty switch.
+
+3.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PolynomialLog2Mantissa.
+<suppressed ~33 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PolynomialLog2Mantissa.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PolynomialLog2Mantissa'.
+Removed a total of 0 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_PolynomialLog2Mantissa..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~55 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_PolynomialLog2Mantissa.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PolynomialLog2Mantissa'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$363 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:511$140_Y, Q = \s_math_horner0_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$364 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner1_tuser, Q = \s_math_horner0_user).
+Adding SRST signal on $procdff$362 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:510$139_Y, Q = \s_math_horner0_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$366 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner1_tlast, Q = \s_math_horner0_last).
+Adding SRST signal on $procdff$361 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:509$138_Y, Q = \s_math_horner0_keep, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$368 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner1_tkeep, Q = \s_math_horner0_keep).
+Adding SRST signal on $procdff$360 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:508$137_Y, Q = \s_math_horner0_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$370 ($sdff) from module h_PolynomialLog2Mantissa (D = \n_177, Q = \s_math_horner0_data).
+Adding SRST signal on $procdff$359 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:497$130_Y, Q = \s_math_horner0_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$372 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner1_tvalid, Q = \s_math_horner0_valid).
+Adding SRST signal on $procdff$358 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:496$129_Y, Q = \s_math_horner1_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$374 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner2_tuser, Q = \s_math_horner1_user).
+Adding SRST signal on $procdff$357 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:495$128_Y, Q = \s_math_horner1_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$376 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner2_tlast, Q = \s_math_horner1_last).
+Adding SRST signal on $procdff$356 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:494$127_Y, Q = \s_math_horner1_keep, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$378 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner2_tkeep, Q = \s_math_horner1_keep).
+Adding SRST signal on $procdff$355 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:493$126_Y, Q = \s_math_horner1_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$380 ($sdff) from module h_PolynomialLog2Mantissa (D = \n_162, Q = \s_math_horner1_data).
+Adding SRST signal on $procdff$354 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:482$119_Y, Q = \s_math_horner1_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$382 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner2_tvalid, Q = \s_math_horner1_valid).
+Adding SRST signal on $procdff$353 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:479$116_Y, Q = \s_math_horner2_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$384 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner3_tuser, Q = \s_math_horner2_user).
+Adding SRST signal on $procdff$352 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:478$115_Y, Q = \s_math_horner2_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$386 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner3_tlast, Q = \s_math_horner2_last).
+Adding SRST signal on $procdff$351 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:477$114_Y, Q = \s_math_horner2_keep, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$388 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner3_tkeep, Q = \s_math_horner2_keep).
+Adding SRST signal on $procdff$350 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:476$113_Y, Q = \s_math_horner2_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$390 ($sdff) from module h_PolynomialLog2Mantissa (D = \n_145, Q = \s_math_horner2_data).
+Adding SRST signal on $procdff$349 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:465$106_Y, Q = \s_math_horner2_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$392 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner3_tvalid, Q = \s_math_horner2_valid).
+Adding SRST signal on $procdff$348 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:462$103_Y, Q = \s_math_horner3_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$394 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner4_tuser, Q = \s_math_horner3_user).
+Adding SRST signal on $procdff$347 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:461$102_Y, Q = \s_math_horner3_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$396 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner4_tlast, Q = \s_math_horner3_last).
+Adding SRST signal on $procdff$346 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:460$101_Y, Q = \s_math_horner3_keep, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$398 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner4_tkeep, Q = \s_math_horner3_keep).
+Adding SRST signal on $procdff$345 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:459$100_Y, Q = \s_math_horner3_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$400 ($sdff) from module h_PolynomialLog2Mantissa (D = \n_128, Q = \s_math_horner3_data).
+Adding SRST signal on $procdff$344 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:448$93_Y, Q = \s_math_horner3_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$402 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner4_tvalid, Q = \s_math_horner3_valid).
+Adding SRST signal on $procdff$343 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:445$90_Y, Q = \s_math_horner4_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$404 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner5_tuser, Q = \s_math_horner4_user).
+Adding SRST signal on $procdff$342 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:444$89_Y, Q = \s_math_horner4_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$406 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner5_tlast, Q = \s_math_horner4_last).
+Adding SRST signal on $procdff$341 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:443$88_Y, Q = \s_math_horner4_keep, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$408 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner5_tkeep, Q = \s_math_horner4_keep).
+Adding SRST signal on $procdff$340 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:442$87_Y, Q = \s_math_horner4_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$410 ($sdff) from module h_PolynomialLog2Mantissa (D = \n_111, Q = \s_math_horner4_data).
+Adding SRST signal on $procdff$339 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:431$80_Y, Q = \s_math_horner4_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$412 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner5_tvalid, Q = \s_math_horner4_valid).
+Adding SRST signal on $procdff$338 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:428$77_Y, Q = \s_math_horner5_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$414 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner6_tuser, Q = \s_math_horner5_user).
+Adding SRST signal on $procdff$337 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:427$76_Y, Q = \s_math_horner5_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$416 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner6_tlast, Q = \s_math_horner5_last).
+Adding SRST signal on $procdff$336 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:426$75_Y, Q = \s_math_horner5_keep, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$418 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner6_tkeep, Q = \s_math_horner5_keep).
+Adding SRST signal on $procdff$335 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:425$74_Y, Q = \s_math_horner5_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$420 ($sdff) from module h_PolynomialLog2Mantissa (D = \n_94, Q = \s_math_horner5_data).
+Adding SRST signal on $procdff$334 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:414$67_Y, Q = \s_math_horner5_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$422 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner6_tvalid, Q = \s_math_horner5_valid).
+Adding SRST signal on $procdff$333 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:411$64_Y, Q = \s_math_horner6_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$424 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner7_tuser, Q = \s_math_horner6_user).
+Adding SRST signal on $procdff$332 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:410$63_Y, Q = \s_math_horner6_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$426 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner7_tlast, Q = \s_math_horner6_last).
+Adding SRST signal on $procdff$331 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:409$62_Y, Q = \s_math_horner6_keep, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$428 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner7_tkeep, Q = \s_math_horner6_keep).
+Adding SRST signal on $procdff$309 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:334$5_Y, Q = \s_math_reduce_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$430 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_s_axis_tvalid, Q = \s_math_reduce_valid).
+Adding SRST signal on $procdff$310 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:340$9_Y, Q = \s_math_reduce_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$432 ($sdff) from module h_PolynomialLog2Mantissa (D = \n_9, Q = \s_math_reduce_data).
+Adding SRST signal on $procdff$311 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:341$10_Y, Q = \s_math_reduce_keep, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$434 ($sdff) from module h_PolynomialLog2Mantissa (D = 8'11111111, Q = \s_math_reduce_keep).
+Adding SRST signal on $procdff$312 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:342$11_Y, Q = \s_math_reduce_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$436 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_s_axis_tlast, Q = \s_math_reduce_last).
+Adding SRST signal on $procdff$313 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:343$12_Y, Q = \s_math_reduce_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$438 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_s_axis_tuser, Q = \s_math_reduce_user).
+Adding SRST signal on $procdff$314 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:346$15_Y, Q = \s_math_horner9_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$440 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_reduce_tvalid, Q = \s_math_horner9_valid).
+Adding SRST signal on $procdff$315 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:357$22_Y, Q = \s_math_horner9_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$442 ($sdff) from module h_PolynomialLog2Mantissa (D = \n_26, Q = \s_math_horner9_data).
+Adding SRST signal on $procdff$316 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:358$23_Y, Q = \s_math_horner9_keep, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$444 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_reduce_tkeep, Q = \s_math_horner9_keep).
+Adding SRST signal on $procdff$317 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:359$24_Y, Q = \s_math_horner9_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$446 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_reduce_tlast, Q = \s_math_horner9_last).
+Adding SRST signal on $procdff$318 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:360$25_Y, Q = \s_math_horner9_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$448 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_reduce_tuser, Q = \s_math_horner9_user).
+Adding SRST signal on $procdff$319 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:363$28_Y, Q = \s_math_horner8_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$450 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner9_tvalid, Q = \s_math_horner8_valid).
+Adding SRST signal on $procdff$320 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:374$35_Y, Q = \s_math_horner8_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$452 ($sdff) from module h_PolynomialLog2Mantissa (D = \n_43, Q = \s_math_horner8_data).
+Adding SRST signal on $procdff$321 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:375$36_Y, Q = \s_math_horner8_keep, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$454 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner9_tkeep, Q = \s_math_horner8_keep).
+Adding SRST signal on $procdff$322 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:376$37_Y, Q = \s_math_horner8_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$456 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner9_tlast, Q = \s_math_horner8_last).
+Adding SRST signal on $procdff$323 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:377$38_Y, Q = \s_math_horner8_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$458 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner9_tuser, Q = \s_math_horner8_user).
+Adding SRST signal on $procdff$324 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:380$41_Y, Q = \s_math_horner7_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$460 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner8_tvalid, Q = \s_math_horner7_valid).
+Adding SRST signal on $procdff$325 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:391$48_Y, Q = \s_math_horner7_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$462 ($sdff) from module h_PolynomialLog2Mantissa (D = \n_60, Q = \s_math_horner7_data).
+Adding SRST signal on $procdff$326 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:392$49_Y, Q = \s_math_horner7_keep, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$464 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner8_tkeep, Q = \s_math_horner7_keep).
+Adding SRST signal on $procdff$327 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:393$50_Y, Q = \s_math_horner7_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$466 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner8_tlast, Q = \s_math_horner7_last).
+Adding SRST signal on $procdff$328 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:394$51_Y, Q = \s_math_horner7_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$468 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner8_tuser, Q = \s_math_horner7_user).
+Adding SRST signal on $procdff$329 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:397$54_Y, Q = \s_math_horner6_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$470 ($sdff) from module h_PolynomialLog2Mantissa (D = \s_math_horner7_tvalid, Q = \s_math_horner6_valid).
+Adding SRST signal on $procdff$330 ($dff) from module h_PolynomialLog2Mantissa (D = $ternary$generated/PolynomialLog2Mantissa.v:408$61_Y, Q = \s_math_horner6_data, rval = 64'0000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$472 ($sdff) from module h_PolynomialLog2Mantissa (D = \n_77, Q = \s_math_horner6_data).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PolynomialLog2Mantissa..
+Removed 121 unused cells and 384 unused wires.
+<suppressed ~199 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PolynomialLog2Mantissa.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_PolynomialLog2Mantissa..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_PolynomialLog2Mantissa.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PolynomialLog2Mantissa'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 32 on $auto$ff.cc:266:slice$433 ($sdffe) from module h_PolynomialLog2Mantissa.
+Setting constant 0-bit at position 37 on $auto$ff.cc:266:slice$433 ($sdffe) from module h_PolynomialLog2Mantissa.
+Setting constant 0-bit at position 38 on $auto$ff.cc:266:slice$433 ($sdffe) from module h_PolynomialLog2Mantissa.
+Setting constant 0-bit at position 40 on $auto$ff.cc:266:slice$433 ($sdffe) from module h_PolynomialLog2Mantissa.
+Setting constant 0-bit at position 41 on $auto$ff.cc:266:slice$433 ($sdffe) from module h_PolynomialLog2Mantissa.
+Setting constant 0-bit at position 42 on $auto$ff.cc:266:slice$433 ($sdffe) from module h_PolynomialLog2Mantissa.
+Setting constant 0-bit at position 43 on $auto$ff.cc:266:slice$433 ($sdffe) from module h_PolynomialLog2Mantissa.
+Setting constant 0-bit at position 44 on $auto$ff.cc:266:slice$433 ($sdffe) from module h_PolynomialLog2Mantissa.
+Setting constant 0-bit at position 45 on $auto$ff.cc:266:slice$433 ($sdffe) from module h_PolynomialLog2Mantissa.
+Setting constant 0-bit at position 49 on $auto$ff.cc:266:slice$433 ($sdffe) from module h_PolynomialLog2Mantissa.
+Setting constant 0-bit at position 51 on $auto$ff.cc:266:slice$433 ($sdffe) from module h_PolynomialLog2Mantissa.
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PolynomialLog2Mantissa..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PolynomialLog2Mantissa.
+<suppressed ~1 debug messages>
+
+4.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_PolynomialLog2Mantissa..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+4.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_PolynomialLog2Mantissa.
+Performed a total of 0 changes.
+
+4.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PolynomialLog2Mantissa'.
+Removed a total of 0 cells.
+
+4.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PolynomialLog2Mantissa..
+
+4.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PolynomialLog2Mantissa.
+
+4.23. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing MEMORY pass.
+
+5.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+5.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+5.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+5.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+5.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+5.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PolynomialLog2Mantissa..
+
+5.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+5.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+5.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PolynomialLog2Mantissa..
+
+5.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PolynomialLog2Mantissa.
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PolynomialLog2Mantissa'.
+Removed a total of 0 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_PolynomialLog2Mantissa..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_PolynomialLog2Mantissa.
+Performed a total of 0 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PolynomialLog2Mantissa'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PolynomialLog2Mantissa..
+
+6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PolynomialLog2Mantissa.
+
+6.9. Finished OPT passes. (There is nothing left to do.)
+
+7. Executing CHECK pass (checking for obvious problems).
+Checking module h_PolynomialLog2Mantissa...
+Found and reported 0 problems.
+
+8. Printing statistics.
+
+=== h_PolynomialLog2Mantissa ===
+
+   Number of wires:                249
+   Number of wire bits:           6507
+   Number of public wires:         249
+   Number of public wire bits:    6507
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 98
+     $add                           10
+     $and                           11
+     $mul                           10
+     $not                           11
+     $or                            11
+     $sdffe                         44
+     $sub                            1
+
+9. Executing Verilog backend.
+
+9.1. Executing BMUXMAP pass.
+
+9.2. Executing DEMUXMAP pass.
+Dumping module `\h_PolynomialLog2Mantissa'.

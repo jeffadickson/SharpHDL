@@ -1,0 +1,85 @@
+module TwoStagePipeline
+input input_tdata : bits[8]
+input input_tkeep : bits[1]
+input input_tlast : bits[1]
+input input_tuser : bits[8]
+input input_tvalid : bits[1]
+output input_tready : bits[1]
+output output_tdata : bits[8]
+output output_tkeep : bits[1]
+output output_tlast : bits[1]
+output output_tuser : bits[8]
+output output_tvalid : bits[1]
+input output_tready : bits[1]
+wire add_stage_tdata : bits[8]
+wire add_stage_tkeep : bits[1]
+wire add_stage_tlast : bits[1]
+wire add_stage_tuser : bits[8]
+wire add_stage_tvalid : bits[1]
+wire add_stage_tready : bits[1]
+reg add_stage_valid : bits[1] reset=0
+reg add_stage_data : bits[8] reset=0
+reg add_stage_keep : bits[1] reset=0
+reg add_stage_last : bits[1] reset=0
+reg add_stage_user : bits[8] reset=0
+wire multiply_stage_tdata : bits[8]
+wire multiply_stage_tkeep : bits[1]
+wire multiply_stage_tlast : bits[1]
+wire multiply_stage_tuser : bits[8]
+wire multiply_stage_tvalid : bits[1]
+wire multiply_stage_tready : bits[1]
+reg multiply_stage_valid : bits[1] reset=0
+reg multiply_stage_data : bits[8] reset=0
+reg multiply_stage_keep : bits[1] reset=0
+reg multiply_stage_last : bits[1] reset=0
+reg multiply_stage_user : bits[8] reset=0
+expressions:
+e0 : bits[1] ~ (add_stage_valid)
+e1 : bits[1] | (e0, add_stage_tready)
+e2 : bits[1] ~ (multiply_stage_valid)
+e3 : bits[1] | (e2, multiply_stage_tready)
+e4 : bits[1] mux (e1, input_tvalid, add_stage_valid)
+e5 : bits[1] & (e1, input_tvalid)
+e6 : bits[8] const 2
+e7 : bits[8] + (input_tdata, e6)
+e8 : bits[8] mux (e5, e7, add_stage_data)
+e9 : bits[1] mux (e5, input_tkeep, add_stage_keep)
+e10 : bits[1] mux (e5, input_tlast, add_stage_last)
+e11 : bits[8] mux (e5, input_tuser, add_stage_user)
+e12 : bits[1] mux (e3, add_stage_tvalid, multiply_stage_valid)
+e13 : bits[1] & (e3, add_stage_tvalid)
+e14 : bits[8] const 3
+e15 : bits[8] * (add_stage_tdata, e14)
+e16 : bits[8] mux (e13, e15, multiply_stage_data)
+e17 : bits[1] mux (e13, add_stage_tkeep, multiply_stage_keep)
+e18 : bits[1] mux (e13, add_stage_tlast, multiply_stage_last)
+e19 : bits[8] mux (e13, add_stage_tuser, multiply_stage_user)
+connections:
+input_tready <- e1
+output_tdata <- multiply_stage_tdata
+output_tkeep <- multiply_stage_tkeep
+output_tlast <- multiply_stage_tlast
+output_tuser <- multiply_stage_tuser
+output_tvalid <- multiply_stage_tvalid
+add_stage_tdata <- add_stage_data
+add_stage_tkeep <- add_stage_keep
+add_stage_tlast <- add_stage_last
+add_stage_tuser <- add_stage_user
+add_stage_tvalid <- add_stage_valid
+add_stage_tready <- e3
+add_stage_valid.next <- e4
+add_stage_data.next <- e8
+add_stage_keep.next <- e9
+add_stage_last.next <- e10
+add_stage_user.next <- e11
+multiply_stage_tdata <- multiply_stage_data
+multiply_stage_tkeep <- multiply_stage_keep
+multiply_stage_tlast <- multiply_stage_last
+multiply_stage_tuser <- multiply_stage_user
+multiply_stage_tvalid <- multiply_stage_valid
+multiply_stage_tready <- output_tready
+multiply_stage_valid.next <- e12
+multiply_stage_data.next <- e16
+multiply_stage_keep.next <- e17
+multiply_stage_last.next <- e18
+multiply_stage_user.next <- e19

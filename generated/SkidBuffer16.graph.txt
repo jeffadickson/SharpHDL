@@ -1,0 +1,65 @@
+module SkidBuffer16
+input input_tdata : bits[16]
+input input_tkeep : bits[2]
+input input_tlast : bits[1]
+input input_tuser : bits[8]
+input input_tvalid : bits[1]
+output input_tready : bits[1]
+output output_tdata : bits[16]
+output output_tkeep : bits[2]
+output output_tlast : bits[1]
+output output_tuser : bits[8]
+output output_tvalid : bits[1]
+input output_tready : bits[1]
+wire skid_tdata : bits[16]
+wire skid_tkeep : bits[2]
+wire skid_tlast : bits[1]
+wire skid_tuser : bits[8]
+wire skid_tvalid : bits[1]
+wire skid_tready : bits[1]
+reg skid_head : bits[27] reset=0
+reg skid_spill : bits[27] reset=0
+reg skid_valid : bits[1] reset=0
+reg skid_spill_valid : bits[1] reset=0
+expressions:
+e0 : bits[1] ~ (skid_spill_valid)
+e1 : bits[16] slice (skid_head) offset=0
+e2 : bits[2] slice (skid_head) offset=16
+e3 : bits[1] slice (skid_head) offset=18
+e4 : bits[8] slice (skid_head) offset=19
+e5 : bits[1] ~ (skid_valid)
+e6 : bits[1] | (e5, skid_tready)
+e7 : bits[1] | (skid_spill_valid, input_tvalid)
+e8 : bits[1] & (e6, e7)
+e9 : bits[18] concat (input_tkeep, input_tdata)
+e10 : bits[19] concat (input_tlast, e9)
+e11 : bits[27] concat (input_tuser, e10)
+e12 : bits[27] mux (skid_spill_valid, skid_spill, e11)
+e13 : bits[27] mux (e8, e12, skid_head)
+e14 : bits[1] ~ (e6)
+e15 : bits[1] & (input_tvalid, input_tready)
+e16 : bits[1] & (e14, e15)
+e17 : bits[27] mux (e16, e11, skid_spill)
+e18 : bits[1] | (skid_spill_valid, input_tvalid)
+e19 : bits[1] mux (e6, e18, skid_valid)
+e20 : bits[1] const 0
+e21 : bits[1] & (input_tvalid, input_tready)
+e22 : bits[1] | (skid_spill_valid, e21)
+e23 : bits[1] mux (e6, e20, e22)
+connections:
+input_tready <- e0
+output_tdata <- skid_tdata
+output_tkeep <- skid_tkeep
+output_tlast <- skid_tlast
+output_tuser <- skid_tuser
+output_tvalid <- skid_tvalid
+skid_tdata <- e1
+skid_tkeep <- e2
+skid_tlast <- e3
+skid_tuser <- e4
+skid_tvalid <- skid_valid
+skid_tready <- output_tready
+skid_head.next <- e13
+skid_spill.next <- e17
+skid_valid.next <- e19
+skid_spill_valid.next <- e23

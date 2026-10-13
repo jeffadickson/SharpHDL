@@ -1,0 +1,8 @@
+module AddTwo
+input b : bits[8]
+output a : bits[8]
+expressions:
+e0 : bits[8] const 2
+e1 : bits[8] + (b, e0)
+connections:
+a <- e1

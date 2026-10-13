@@ -1,0 +1,73 @@
+PASS 7917 assertions; 36 benches
+PASS HDL CsAssertBranch
+generated/advanced/CsAssertBranch_tb.v:974: $finish called at 162000 (1ps)
+PASS HDL CsPacket
+generated/advanced/CsPacket_tb.v:974: $finish called at 162000 (1ps)
+PASS HDL CsSeqAssertLoop
+generated/advanced/CsSeqAssertLoop_tb.v:7693: $finish called at 1512000 (1ps)
+PASS HDL CsSeqChecked
+generated/advanced/CsSeqChecked_tb.v:1483: $finish called at 270000 (1ps)
+PASS HDL CsSeqChoice
+generated/advanced/CsSeqChoice_tb.v:1933: $finish called at 360000 (1ps)
+PASS HDL CsSeqDivide
+generated/advanced/CsSeqDivide_tb.v:1443: $finish called at 262000 (1ps)
+PASS HDL CsSeqInfinite
+generated/advanced/CsSeqInfinite_tb.v:1948: $finish called at 384000 (1ps)
+PASS HDL CsSeqMemory
+generated/advanced/CsSeqMemory_tb.v:42393: $finish called at 8452000 (1ps)
+PASS HDL CsSeqNested
+generated/advanced/CsSeqNested_tb.v:36883: $finish called at 7350000 (1ps)
+PASS HDL CsSeqReadWord
+generated/advanced/CsSeqReadWord_tb.v:1783: $finish called at 330000 (1ps)
+PASS HDL CsSeqRemainder
+generated/advanced/CsSeqRemainder_tb.v:1443: $finish called at 262000 (1ps)
+PASS HDL CsSeqRuntimeDo
+generated/advanced/CsSeqRuntimeDo_tb.v:9043: $finish called at 1782000 (1ps)
+PASS HDL CsSeqRuntimeFor
+generated/advanced/CsSeqRuntimeFor_tb.v:13423: $finish called at 2658000 (1ps)
+PASS HDL CsSeqRuntimeWhile
+generated/advanced/CsSeqRuntimeWhile_tb.v:9823: $finish called at 1938000 (1ps)
+PASS HDL CsSeqTypedAccumulate
+generated/advanced/CsSeqTypedAccumulate_tb.v:3763: $finish called at 726000 (1ps)
+PASS HDL CsSeqWriteThenAssert
+generated/advanced/CsSeqWriteThenAssert_tb.v:3643: $finish called at 702000 (1ps)
+PASS HDL CsSeqWriteThenRead
+generated/advanced/CsSeqWriteThenRead_tb.v:2653: $finish called at 504000 (1ps)
+PASS HDL CsTypedAccumulate
+generated/advanced/CsTypedAccumulate_tb.v:974: $finish called at 162000 (1ps)
+PASS HDL DebugAssertBranch
+generated/advanced/DebugAssertBranch_tb.v:974: $finish called at 162000 (1ps)
+PASS HDL DebugPacket
+generated/advanced/DebugPacket_tb.v:974: $finish called at 162000 (1ps)
+PASS HDL DebugSeqAssertLoop
+generated/advanced/DebugSeqAssertLoop_tb.v:11893: $finish called at 2352000 (1ps)
+PASS HDL DebugSeqChecked
+generated/advanced/DebugSeqChecked_tb.v:2083: $finish called at 390000 (1ps)
+PASS HDL DebugSeqChoice
+generated/advanced/DebugSeqChoice_tb.v:3853: $finish called at 744000 (1ps)
+PASS HDL DebugSeqDivide
+generated/advanced/DebugSeqDivide_tb.v:1923: $finish called at 358000 (1ps)
+PASS HDL DebugSeqInfinite
+generated/advanced/DebugSeqInfinite_tb.v:1948: $finish called at 384000 (1ps)
+PASS HDL DebugSeqMemory
+generated/advanced/DebugSeqMemory_tb.v:52523: $finish called at 10478000 (1ps)
+PASS HDL DebugSeqNested
+generated/advanced/DebugSeqNested_tb.v:48463: $finish called at 9666000 (1ps)
+PASS HDL DebugSeqReadWord
+generated/advanced/DebugSeqReadWord_tb.v:2653: $finish called at 504000 (1ps)
+PASS HDL DebugSeqRemainder
+generated/advanced/DebugSeqRemainder_tb.v:1923: $finish called at 358000 (1ps)
+PASS HDL DebugSeqRuntimeDo
+generated/advanced/DebugSeqRuntimeDo_tb.v:13603: $finish called at 2694000 (1ps)
+PASS HDL DebugSeqRuntimeFor
+generated/advanced/DebugSeqRuntimeFor_tb.v:22003: $finish called at 4374000 (1ps)
+PASS HDL DebugSeqRuntimeWhile
+generated/advanced/DebugSeqRuntimeWhile_tb.v:14803: $finish called at 2934000 (1ps)
+PASS HDL DebugSeqTypedAccumulate
+generated/advanced/DebugSeqTypedAccumulate_tb.v:5683: $finish called at 1110000 (1ps)
+PASS HDL DebugSeqWriteThenAssert
+generated/advanced/DebugSeqWriteThenAssert_tb.v:4723: $finish called at 918000 (1ps)
+PASS HDL DebugSeqWriteThenRead
+generated/advanced/DebugSeqWriteThenRead_tb.v:3523: $finish called at 678000 (1ps)
+PASS HDL DebugTypedAccumulate
+generated/advanced/DebugTypedAccumulate_tb.v:974: $finish called at 162000 (1ps)

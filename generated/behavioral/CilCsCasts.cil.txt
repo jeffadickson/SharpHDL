@@ -1,0 +1,9 @@
+Behavioral.CSharpFunctions.Casts
+IL_0000: ldarg.0 
+IL_0001: conv.i1 
+IL_0002: ldarg.1 
+IL_0003: conv.u2 
+IL_0004: add 
+IL_0005: ret 
+
+Instructions visited: 6; symbolic branches: 0; method bodies: 1

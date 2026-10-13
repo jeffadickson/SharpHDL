@@ -1,0 +1,387 @@
+module DebugSeqRuntimeFor
+input start : bits[1]
+reg busy_state : bits[1] reset=0
+reg done_state : bits[1] reset=0
+reg fault_state : bits[1] reset=0
+reg assertion_state : bits[1] reset=0
+reg timeout_state : bits[1] reset=0
+reg pc : bits[6] reset=0
+reg cycles : bits[12] reset=0
+reg result_state : bits[32] reset=0
+input arg0 : bits[32]
+reg saved_arg0 : bits[32] reset=0
+input arg1 : bits[32]
+reg saved_arg1 : bits[32] reset=0
+reg local0 : bits[32] reset=0
+reg local1 : bits[32] reset=0
+reg local2 : bits[32] reset=0
+reg local3 : bits[32] reset=0
+reg local4 : bits[32] reset=0
+reg local5 : bits[32] reset=0
+reg stack0 : bits[32] reset=0
+reg stack1 : bits[32] reset=0
+output busy : bits[1]
+output done : bits[1]
+output fault : bits[1]
+output assertion_failed : bits[1]
+output timeout : bits[1]
+output result : bits[32]
+output accept : bits[1]
+expressions:
+e0 : bits[1] ~ (busy_state)
+e1 : bits[1] & (start, e0)
+e2 : bits[1] const 1
+e3 : bits[1] const 0
+e4 : bits[12] const 2500
+e5 : bits[1] < (cycles, e4)
+e6 : bits[1] ~ (e5)
+e7 : bits[1] & (busy_state, e6)
+e8 : bits[1] const 0
+e9 : bits[1] ~ (e6)
+e10 : bits[1] & (busy_state, e9)
+e11 : bits[6] const 40
+e12 : bits[1] == (pc, e11)
+e13 : bits[1] & (e10, e12)
+e14 : bits[1] const 0
+e15 : bits[1] mux (e13, e14, busy_state)
+e16 : bits[1] mux (e7, e8, e15)
+e17 : bits[1] mux (e1, e3, e16)
+e18 : bits[1] mux (e1, e2, e17)
+e19 : bits[1] const 0
+e20 : bits[1] const 1
+e21 : bits[1] const 1
+e22 : bits[1] mux (e13, e21, done_state)
+e23 : bits[1] mux (e7, e20, e22)
+e24 : bits[1] mux (e1, e19, e23)
+e25 : bits[1] const 0
+e26 : bits[1] const 1
+e27 : bits[1] const 0
+e28 : bits[1] mux (e13, e27, fault_state)
+e29 : bits[1] mux (e7, e26, e28)
+e30 : bits[1] mux (e1, e25, e29)
+e31 : bits[1] const 0
+e32 : bits[1] mux (e1, e31, assertion_state)
+e33 : bits[1] const 0
+e34 : bits[1] & (busy_state, e6)
+e35 : bits[1] const 1
+e36 : bits[1] mux (e34, e35, timeout_state)
+e37 : bits[1] mux (e1, e33, e36)
+e38 : bits[6] const 0
+e39 : bits[6] const 39
+e40 : bits[1] == (pc, e39)
+e41 : bits[1] & (e10, e40)
+e42 : bits[6] const 40
+e43 : bits[6] const 38
+e44 : bits[1] == (pc, e43)
+e45 : bits[1] & (e10, e44)
+e46 : bits[6] const 39
+e47 : bits[6] const 37
+e48 : bits[1] == (pc, e47)
+e49 : bits[1] & (e10, e48)
+e50 : bits[6] const 38
+e51 : bits[6] const 36
+e52 : bits[1] == (pc, e51)
+e53 : bits[1] & (e10, e52)
+e54 : bits[6] const 37
+e55 : bits[6] const 35
+e56 : bits[1] == (pc, e55)
+e57 : bits[1] & (e10, e56)
+e58 : bits[32] const 0
+e59 : bits[1] == (stack0, e58)
+e60 : bits[1] ~ (e59)
+e61 : bits[6] const 6
+e62 : bits[6] const 36
+e63 : bits[6] mux (e60, e61, e62)
+e64 : bits[6] const 36
+e65 : bits[6] const 34
+e66 : bits[1] == (pc, e65)
+e67 : bits[1] & (e10, e66)
+e68 : bits[6] const 35
+e69 : bits[6] const 33
+e70 : bits[1] == (pc, e69)
+e71 : bits[1] & (e10, e70)
+e72 : bits[6] const 34
+e73 : bits[6] const 32
+e74 : bits[1] == (pc, e73)
+e75 : bits[1] & (e10, e74)
+e76 : bits[6] const 33
+e77 : bits[6] const 31
+e78 : bits[1] == (pc, e77)
+e79 : bits[1] & (e10, e78)
+e80 : bits[6] const 32
+e81 : bits[6] const 30
+e82 : bits[1] == (pc, e81)
+e83 : bits[1] & (e10, e82)
+e84 : bits[6] const 31
+e85 : bits[6] const 29
+e86 : bits[1] == (pc, e85)
+e87 : bits[1] & (e10, e86)
+e88 : bits[6] const 30
+e89 : bits[6] const 28
+e90 : bits[1] == (pc, e89)
+e91 : bits[1] & (e10, e90)
+e92 : bits[6] const 29
+e93 : bits[6] const 27
+e94 : bits[1] == (pc, e93)
+e95 : bits[1] & (e10, e94)
+e96 : bits[6] const 28
+e97 : bits[6] const 26
+e98 : bits[1] == (pc, e97)
+e99 : bits[1] & (e10, e98)
+e100 : bits[6] const 27
+e101 : bits[6] const 25
+e102 : bits[1] == (pc, e101)
+e103 : bits[1] & (e10, e102)
+e104 : bits[6] const 26
+e105 : bits[6] const 24
+e106 : bits[1] == (pc, e105)
+e107 : bits[1] & (e10, e106)
+e108 : bits[6] const 25
+e109 : bits[6] const 23
+e110 : bits[1] == (pc, e109)
+e111 : bits[1] & (e10, e110)
+e112 : bits[6] const 24
+e113 : bits[6] const 22
+e114 : bits[1] == (pc, e113)
+e115 : bits[1] & (e10, e114)
+e116 : bits[6] const 23
+e117 : bits[6] const 21
+e118 : bits[1] == (pc, e117)
+e119 : bits[1] & (e10, e118)
+e120 : bits[6] const 22
+e121 : bits[6] const 20
+e122 : bits[1] == (pc, e121)
+e123 : bits[1] & (e10, e122)
+e124 : bits[6] const 36
+e125 : bits[6] const 19
+e126 : bits[1] == (pc, e125)
+e127 : bits[1] & (e10, e126)
+e128 : bits[32] const 0
+e129 : bits[1] == (stack0, e128)
+e130 : bits[6] const 21
+e131 : bits[6] const 20
+e132 : bits[6] mux (e129, e130, e131)
+e133 : bits[6] const 20
+e134 : bits[6] const 18
+e135 : bits[1] == (pc, e134)
+e136 : bits[1] & (e10, e135)
+e137 : bits[6] const 19
+e138 : bits[6] const 17
+e139 : bits[1] == (pc, e138)
+e140 : bits[1] & (e10, e139)
+e141 : bits[6] const 18
+e142 : bits[6] const 16
+e143 : bits[1] == (pc, e142)
+e144 : bits[1] & (e10, e143)
+e145 : bits[6] const 17
+e146 : bits[6] const 15
+e147 : bits[1] == (pc, e146)
+e148 : bits[1] & (e10, e147)
+e149 : bits[6] const 16
+e150 : bits[6] const 14
+e151 : bits[1] == (pc, e150)
+e152 : bits[1] & (e10, e151)
+e153 : bits[6] const 15
+e154 : bits[6] const 13
+e155 : bits[1] == (pc, e154)
+e156 : bits[1] & (e10, e155)
+e157 : bits[6] const 26
+e158 : bits[6] const 12
+e159 : bits[1] == (pc, e158)
+e160 : bits[1] & (e10, e159)
+e161 : bits[32] const 0
+e162 : bits[1] == (stack0, e161)
+e163 : bits[6] const 14
+e164 : bits[6] const 13
+e165 : bits[6] mux (e162, e163, e164)
+e166 : bits[6] const 13
+e167 : bits[6] const 11
+e168 : bits[1] == (pc, e167)
+e169 : bits[1] & (e10, e168)
+e170 : bits[6] const 12
+e171 : bits[6] const 10
+e172 : bits[1] == (pc, e171)
+e173 : bits[1] & (e10, e172)
+e174 : bits[6] const 11
+e175 : bits[6] const 9
+e176 : bits[1] == (pc, e175)
+e177 : bits[1] & (e10, e176)
+e178 : bits[6] const 10
+e179 : bits[6] const 8
+e180 : bits[1] == (pc, e179)
+e181 : bits[1] & (e10, e180)
+e182 : bits[6] const 9
+e183 : bits[6] const 7
+e184 : bits[1] == (pc, e183)
+e185 : bits[1] & (e10, e184)
+e186 : bits[6] const 8
+e187 : bits[6] const 6
+e188 : bits[1] == (pc, e187)
+e189 : bits[1] & (e10, e188)
+e190 : bits[6] const 7
+e191 : bits[6] const 5
+e192 : bits[1] == (pc, e191)
+e193 : bits[1] & (e10, e192)
+e194 : bits[6] const 30
+e195 : bits[6] const 4
+e196 : bits[1] == (pc, e195)
+e197 : bits[1] & (e10, e196)
+e198 : bits[6] const 5
+e199 : bits[6] const 3
+e200 : bits[1] == (pc, e199)
+e201 : bits[1] & (e10, e200)
+e202 : bits[6] const 4
+e203 : bits[6] const 2
+e204 : bits[1] == (pc, e203)
+e205 : bits[1] & (e10, e204)
+e206 : bits[6] const 3
+e207 : bits[6] const 1
+e208 : bits[1] == (pc, e207)
+e209 : bits[1] & (e10, e208)
+e210 : bits[6] const 2
+e211 : bits[6] const 0
+e212 : bits[1] == (pc, e211)
+e213 : bits[1] & (e10, e212)
+e214 : bits[6] const 1
+e215 : bits[6] mux (e213, e214, pc)
+e216 : bits[6] mux (e209, e210, e215)
+e217 : bits[6] mux (e205, e206, e216)
+e218 : bits[6] mux (e201, e202, e217)
+e219 : bits[6] mux (e197, e198, e218)
+e220 : bits[6] mux (e193, e194, e219)
+e221 : bits[6] mux (e189, e190, e220)
+e222 : bits[6] mux (e185, e186, e221)
+e223 : bits[6] mux (e181, e182, e222)
+e224 : bits[6] mux (e177, e178, e223)
+e225 : bits[6] mux (e173, e174, e224)
+e226 : bits[6] mux (e169, e170, e225)
+e227 : bits[6] mux (e160, e166, e226)
+e228 : bits[6] mux (e160, e165, e227)
+e229 : bits[6] mux (e156, e157, e228)
+e230 : bits[6] mux (e152, e153, e229)
+e231 : bits[6] mux (e148, e149, e230)
+e232 : bits[6] mux (e144, e145, e231)
+e233 : bits[6] mux (e140, e141, e232)
+e234 : bits[6] mux (e136, e137, e233)
+e235 : bits[6] mux (e127, e133, e234)
+e236 : bits[6] mux (e127, e132, e235)
+e237 : bits[6] mux (e123, e124, e236)
+e238 : bits[6] mux (e119, e120, e237)
+e239 : bits[6] mux (e115, e116, e238)
+e240 : bits[6] mux (e111, e112, e239)
+e241 : bits[6] mux (e107, e108, e240)
+e242 : bits[6] mux (e103, e104, e241)
+e243 : bits[6] mux (e99, e100, e242)
+e244 : bits[6] mux (e95, e96, e243)
+e245 : bits[6] mux (e91, e92, e244)
+e246 : bits[6] mux (e87, e88, e245)
+e247 : bits[6] mux (e83, e84, e246)
+e248 : bits[6] mux (e79, e80, e247)
+e249 : bits[6] mux (e75, e76, e248)
+e250 : bits[6] mux (e71, e72, e249)
+e251 : bits[6] mux (e67, e68, e250)
+e252 : bits[6] mux (e57, e64, e251)
+e253 : bits[6] mux (e57, e63, e252)
+e254 : bits[6] mux (e53, e54, e253)
+e255 : bits[6] mux (e49, e50, e254)
+e256 : bits[6] mux (e45, e46, e255)
+e257 : bits[6] mux (e41, e42, e256)
+e258 : bits[6] mux (e1, e38, e257)
+e259 : bits[12] const 0
+e260 : bits[12] const 1
+e261 : bits[12] + (cycles, e260)
+e262 : bits[12] mux (e10, e261, cycles)
+e263 : bits[12] mux (e1, e259, e262)
+e264 : bits[32] const 0
+e265 : bits[32] mux (e13, stack0, result_state)
+e266 : bits[32] mux (e1, e264, e265)
+e267 : bits[32] const 0
+e268 : bits[32] mux (e1, e267, saved_arg0)
+e269 : bits[32] mux (e1, arg0, e268)
+e270 : bits[32] const 0
+e271 : bits[32] mux (e1, e270, saved_arg1)
+e272 : bits[32] mux (e1, arg1, e271)
+e273 : bits[32] const 0
+e274 : bits[32] mux (e205, stack0, local0)
+e275 : bits[32] mux (e107, stack0, e274)
+e276 : bits[32] mux (e1, e273, e275)
+e277 : bits[32] const 0
+e278 : bits[32] mux (e197, stack0, local1)
+e279 : bits[32] mux (e87, stack0, e278)
+e280 : bits[32] mux (e1, e277, e279)
+e281 : bits[32] const 0
+e282 : bits[32] mux (e173, stack0, local2)
+e283 : bits[32] mux (e1, e281, e282)
+e284 : bits[32] const 0
+e285 : bits[32] mux (e140, stack0, local3)
+e286 : bits[32] mux (e1, e284, e285)
+e287 : bits[32] const 0
+e288 : bits[32] mux (e71, stack0, local4)
+e289 : bits[32] mux (e1, e287, e288)
+e290 : bits[32] const 0
+e291 : bits[32] mux (e49, stack0, local5)
+e292 : bits[32] mux (e1, e290, e291)
+e293 : bits[32] const 0
+e294 : bits[1] slt (stack0, stack1)
+e295 : bits[32] resize (e294)
+e296 : bits[32] + (stack0, stack1)
+e297 : bits[32] + (stack0, stack1)
+e298 : bits[1] == (stack0, stack1)
+e299 : bits[32] resize (e298)
+e300 : bits[1] == (stack0, stack1)
+e301 : bits[32] resize (e300)
+e302 : bits[32] const 0
+e303 : bits[32] mux (e209, saved_arg1, stack0)
+e304 : bits[32] mux (e201, e302, e303)
+e305 : bits[32] mux (e185, local1, e304)
+e306 : bits[32] mux (e177, e301, e305)
+e307 : bits[32] mux (e169, local2, e306)
+e308 : bits[32] mux (e152, local1, e307)
+e309 : bits[32] mux (e144, e299, e308)
+e310 : bits[32] mux (e136, local3, e309)
+e311 : bits[32] mux (e119, local0, e310)
+e312 : bits[32] mux (e111, e297, e311)
+e313 : bits[32] mux (e99, local1, e312)
+e314 : bits[32] mux (e91, e296, e313)
+e315 : bits[32] mux (e83, local1, e314)
+e316 : bits[32] mux (e75, e295, e315)
+e317 : bits[32] mux (e67, local4, e316)
+e318 : bits[32] mux (e53, local0, e317)
+e319 : bits[32] mux (e41, local5, e318)
+e320 : bits[32] mux (e1, e293, e319)
+e321 : bits[32] const 0
+e322 : bits[32] const 1
+e323 : bits[32] const 7
+e324 : bits[32] const 2
+e325 : bits[32] mux (e181, e324, stack1)
+e326 : bits[32] mux (e148, e323, e325)
+e327 : bits[32] mux (e115, local1, e326)
+e328 : bits[32] mux (e95, e322, e327)
+e329 : bits[32] mux (e79, saved_arg0, e328)
+e330 : bits[32] mux (e1, e321, e329)
+connections:
+busy_state.next <- e18
+done_state.next <- e24
+fault_state.next <- e30
+assertion_state.next <- e32
+timeout_state.next <- e37
+pc.next <- e258
+cycles.next <- e263
+result_state.next <- e266
+saved_arg0.next <- e269
+saved_arg1.next <- e272
+local0.next <- e276
+local1.next <- e280
+local2.next <- e283
+local3.next <- e286
+local4.next <- e289
+local5.next <- e292
+stack0.next <- e320
+stack1.next <- e330
+busy <- busy_state
+done <- done_state
+fault <- fault_state
+assertion_failed <- assertion_state
+timeout <- timeout_state
+result <- result_state
+accept <- e1

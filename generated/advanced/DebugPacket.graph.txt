@@ -1,0 +1,33 @@
+module DebugPacket
+input arg0 : bits[21]
+input arg1 : bits[32]
+output result : bits[32]
+output fault : bits[1]
+output assertion_failed : bits[1]
+expressions:
+e0 : bits[1] slice (arg0) offset=20
+e1 : bits[32] resize (e0)
+e2 : bits[32] const 0
+e3 : bits[1] == (e1, e2)
+e4 : bits[1] ~ (e3)
+e5 : bits[12] slice (arg0) offset=0
+e6 : bits[32] resize (e5)
+e7 : bits[12] resize (e6)
+e8 : bits[32] resize (e7)
+e9 : bits[12] resize (e8)
+e10 : bits[32] resize (e9)
+e11 : bits[8] slice (arg0) offset=12
+e12 : bits[32] resize (e11)
+e13 : bits[32] + (e10, e12)
+e14 : bits[32] mux (e4, e13, e10)
+e15 : bits[1] < (arg1, e10)
+e16 : bits[32] resize (e15)
+e17 : bits[32] const 0
+e18 : bits[1] == (e16, e17)
+e19 : bits[32] resize (e18)
+e20 : bits[32] const 0
+e21 : bits[1] == (e19, e20)
+connections:
+result <- e14
+fault <- e21
+assertion_failed <- e21

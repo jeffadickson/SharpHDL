@@ -1,0 +1,1449 @@
+
+-- Running command `read_verilog examples/Verilog/filter_bank_handwritten.v examples/Verilog/filter_bank_trace_adapter.v; hierarchy -check -top h_FsFilterBank4; proc -norom; opt; memory; opt; check -assert; stat; write_verilog -noattr generated/synthesis/HandwrittenFilterBank_rtl.v' --
+
+1. Executing Verilog-2005 frontend: examples/Verilog/filter_bank_handwritten.v
+Parsing Verilog input from `examples/Verilog/filter_bank_handwritten.v' to AST representation.
+Generating RTLIL representation for module `\filter_bank_handwritten'.
+Generating RTLIL representation for module `\feature_branch'.
+Generating RTLIL representation for module `\feature_fifo'.
+Warning: Replacing memory \slots with list of registers. See examples/Verilog/filter_bank_handwritten.v:149
+Generating RTLIL representation for module `\feature_merge2'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: examples/Verilog/filter_bank_trace_adapter.v
+Parsing Verilog input from `examples/Verilog/filter_bank_trace_adapter.v' to AST representation.
+Generating RTLIL representation for module `\h_FsFilterBank4'.
+Successfully finished Verilog frontend.
+
+3. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1. Analyzing design hierarchy..
+Top module:  \h_FsFilterBank4
+Used module:     \filter_bank_handwritten
+Used module:         \feature_merge2
+Used module:         \feature_branch
+Used module:             \feature_fifo
+Parameter \C0 = 1
+Parameter \C1 = 0
+Parameter \C2 = 0
+Parameter \C3 = 0
+Parameter \DEPTH = 1
+Parameter \CHANNEL = 3
+
+3.2. Executing AST frontend in derive mode using pre-parsed AST for module `\feature_branch'.
+Parameter \C0 = 1
+Parameter \C1 = 0
+Parameter \C2 = 0
+Parameter \C3 = 0
+Parameter \DEPTH = 1
+Parameter \CHANNEL = 3
+Generating RTLIL representation for module `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch'.
+Parameter \C0 = 1
+Parameter \C1 = 32'11111111111111111111111111111110
+Parameter \C2 = 1
+Parameter \C3 = 0
+Parameter \DEPTH = 3
+Parameter \CHANNEL = 2
+
+3.3. Executing AST frontend in derive mode using pre-parsed AST for module `\feature_branch'.
+Parameter \C0 = 1
+Parameter \C1 = 32'11111111111111111111111111111110
+Parameter \C2 = 1
+Parameter \C3 = 0
+Parameter \DEPTH = 3
+Parameter \CHANNEL = 2
+Generating RTLIL representation for module `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch'.
+Parameter \C0 = 1
+Parameter \C1 = 32'11111111111111111111111111111111
+Parameter \C2 = 0
+Parameter \C3 = 0
+Parameter \DEPTH = 2
+Parameter \CHANNEL = 1
+
+3.4. Executing AST frontend in derive mode using pre-parsed AST for module `\feature_branch'.
+Parameter \C0 = 1
+Parameter \C1 = 32'11111111111111111111111111111111
+Parameter \C2 = 0
+Parameter \C3 = 0
+Parameter \DEPTH = 2
+Parameter \CHANNEL = 1
+Generating RTLIL representation for module `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch'.
+Parameter \C0 = 1
+Parameter \C1 = 3
+Parameter \C2 = 3
+Parameter \C3 = 1
+Parameter \DEPTH = 4
+Parameter \CHANNEL = 0
+
+3.5. Executing AST frontend in derive mode using pre-parsed AST for module `\feature_branch'.
+Parameter \C0 = 1
+Parameter \C1 = 3
+Parameter \C2 = 3
+Parameter \C3 = 1
+Parameter \DEPTH = 4
+Parameter \CHANNEL = 0
+Generating RTLIL representation for module `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch'.
+Parameter \WIDTH = 45
+Parameter \DEPTH = 4
+
+3.6. Executing AST frontend in derive mode using pre-parsed AST for module `\feature_fifo'.
+Parameter \WIDTH = 45
+Parameter \DEPTH = 4
+Generating RTLIL representation for module `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo'.
+Warning: Replacing memory \slots with list of registers. See examples/Verilog/filter_bank_handwritten.v:149
+
+3.7. Analyzing design hierarchy..
+Top module:  \h_FsFilterBank4
+Used module:     \filter_bank_handwritten
+Used module:         \feature_merge2
+Used module:         $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch
+Used module:             \feature_fifo
+Used module:         $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch
+Used module:         $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch
+Used module:         $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch
+Parameter \WIDTH = 45
+Parameter \DEPTH = 1
+
+3.8. Executing AST frontend in derive mode using pre-parsed AST for module `\feature_fifo'.
+Parameter \WIDTH = 45
+Parameter \DEPTH = 1
+Generating RTLIL representation for module `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo'.
+Warning: Replacing memory \slots with list of registers. See examples/Verilog/filter_bank_handwritten.v:149
+Parameter \WIDTH = 45
+Parameter \DEPTH = 3
+
+3.9. Executing AST frontend in derive mode using pre-parsed AST for module `\feature_fifo'.
+Parameter \WIDTH = 45
+Parameter \DEPTH = 3
+Generating RTLIL representation for module `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo'.
+Warning: Replacing memory \slots with list of registers. See examples/Verilog/filter_bank_handwritten.v:149
+Parameter \WIDTH = 45
+Parameter \DEPTH = 2
+
+3.10. Executing AST frontend in derive mode using pre-parsed AST for module `\feature_fifo'.
+Parameter \WIDTH = 45
+Parameter \DEPTH = 2
+Generating RTLIL representation for module `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo'.
+Warning: Replacing memory \slots with list of registers. See examples/Verilog/filter_bank_handwritten.v:149
+Parameter \WIDTH = 45
+Parameter \DEPTH = 4
+Found cached RTLIL representation for module `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo'.
+
+3.11. Analyzing design hierarchy..
+Top module:  \h_FsFilterBank4
+Used module:     \filter_bank_handwritten
+Used module:         \feature_merge2
+Used module:         $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch
+Used module:             $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo
+Used module:         $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch
+Used module:             $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo
+Used module:         $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch
+Used module:             $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo
+Used module:         $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch
+Used module:             $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo
+
+3.12. Analyzing design hierarchy..
+Top module:  \h_FsFilterBank4
+Used module:     \filter_bank_handwritten
+Used module:         \feature_merge2
+Used module:         $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch
+Used module:             $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo
+Used module:         $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch
+Used module:             $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo
+Used module:         $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch
+Used module:             $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo
+Used module:         $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch
+Used module:             $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo
+Removing unused module `\feature_fifo'.
+Removing unused module `\feature_branch'.
+Removed 2 unused modules.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$125'.
+Found and cleaned up 4 empty switches in `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$107'.
+Found and cleaned up 2 empty switches in `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$153'.
+Found and cleaned up 3 empty switches in `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$137'.
+Cleaned up 10 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 3 switch rules as full_case in process $proc$examples/Verilog/filter_bank_handwritten.v:146$125 in module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Marked 6 switch rules as full_case in process $proc$examples/Verilog/filter_bank_handwritten.v:146$107 in module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Marked 1 switch rules as full_case in process $proc$examples/Verilog/filter_bank_handwritten.v:108$99 in module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.
+Marked 1 switch rules as full_case in process $proc$examples/Verilog/filter_bank_handwritten.v:108$88 in module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.
+Marked 1 switch rules as full_case in process $proc$examples/Verilog/filter_bank_handwritten.v:108$77 in module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.
+Marked 1 switch rules as full_case in process $proc$examples/Verilog/filter_bank_handwritten.v:108$66 in module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.
+Marked 2 switch rules as full_case in process $proc$examples/Verilog/filter_bank_handwritten.v:189$54 in module feature_merge2.
+Marked 4 switch rules as full_case in process $proc$examples/Verilog/filter_bank_handwritten.v:146$153 in module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Marked 5 switch rules as full_case in process $proc$examples/Verilog/filter_bank_handwritten.v:146$137 in module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Marked 2 switch rules as full_case in process $proc$examples/Verilog/filter_bank_handwritten.v:24$8 in module filter_bank_handwritten.
+Removed a total of 0 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 5 redundant assignments.
+Promoted 4 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$125'.
+     1/3: $1\i[31:0]
+     2/3: $0\count[0:0]
+     3/3: $0\slots[0][44:0]
+Creating decoders for process `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$107'.
+     1/6: $1\i[31:0]
+     2/6: $0\count[2:0]
+     3/6: $0\slots[3][44:0]
+     4/6: $0\slots[2][44:0]
+     5/6: $0\slots[1][44:0]
+     6/6: $0\slots[0][44:0]
+Creating decoders for process `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$99'.
+     1/8: $0\user[7:0]
+     2/8: $0\last[0:0]
+     3/8: $0\data[31:0]
+     4/8: $0\valid[0:0]
+     5/8: $0\delay3[15:0]
+     6/8: $0\delay2[15:0]
+     7/8: $0\delay1[15:0]
+     8/8: $0\keep[3:0]
+Creating decoders for process `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$88'.
+     1/8: $0\user[7:0]
+     2/8: $0\last[0:0]
+     3/8: $0\data[31:0]
+     4/8: $0\valid[0:0]
+     5/8: $0\delay3[15:0]
+     6/8: $0\delay2[15:0]
+     7/8: $0\delay1[15:0]
+     8/8: $0\keep[3:0]
+Creating decoders for process `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$77'.
+     1/8: $0\user[7:0]
+     2/8: $0\last[0:0]
+     3/8: $0\data[31:0]
+     4/8: $0\valid[0:0]
+     5/8: $0\delay3[15:0]
+     6/8: $0\delay2[15:0]
+     7/8: $0\delay1[15:0]
+     8/8: $0\keep[3:0]
+Creating decoders for process `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$66'.
+     1/8: $0\user[7:0]
+     2/8: $0\last[0:0]
+     3/8: $0\data[31:0]
+     4/8: $0\valid[0:0]
+     5/8: $0\delay3[15:0]
+     6/8: $0\delay2[15:0]
+     7/8: $0\delay1[15:0]
+     8/8: $0\keep[3:0]
+Creating decoders for process `\feature_merge2.$proc$examples/Verilog/filter_bank_handwritten.v:189$54'.
+     1/3: $0\turn[0:0]
+     2/3: $0\selected[0:0]
+     3/3: $0\locked[0:0]
+Creating decoders for process `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$153'.
+     1/4: $1\i[31:0]
+     2/4: $0\count[1:0]
+     3/4: $0\slots[1][44:0]
+     4/4: $0\slots[0][44:0]
+Creating decoders for process `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$137'.
+     1/5: $1\i[31:0]
+     2/5: $0\count[1:0]
+     3/5: $0\slots[2][44:0]
+     4/5: $0\slots[1][44:0]
+     5/5: $0\slots[0][44:0]
+Creating decoders for process `\filter_bank_handwritten.$proc$examples/Verilog/filter_bank_handwritten.v:24$8'.
+     1/1: $0\delivered[3:0]
+
+4.7. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+4.8. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.\count' using process `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$125'.
+  created $dff cell `$procdff$461' with positive edge clock.
+Creating register for signal `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.\i' using process `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$125'.
+  created $dff cell `$procdff$462' with positive edge clock.
+Creating register for signal `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.\slots[0]' using process `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$125'.
+  created $dff cell `$procdff$463' with positive edge clock.
+Creating register for signal `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.\count' using process `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$107'.
+  created $dff cell `$procdff$464' with positive edge clock.
+Creating register for signal `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.\i' using process `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$107'.
+  created $dff cell `$procdff$465' with positive edge clock.
+Creating register for signal `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.\slots[0]' using process `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$107'.
+  created $dff cell `$procdff$466' with positive edge clock.
+Creating register for signal `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.\slots[1]' using process `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$107'.
+  created $dff cell `$procdff$467' with positive edge clock.
+Creating register for signal `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.\slots[2]' using process `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$107'.
+  created $dff cell `$procdff$468' with positive edge clock.
+Creating register for signal `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.\slots[3]' using process `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$107'.
+  created $dff cell `$procdff$469' with positive edge clock.
+Creating register for signal `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.\keep' using process `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$99'.
+  created $dff cell `$procdff$470' with positive edge clock.
+Creating register for signal `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.\delay1' using process `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$99'.
+  created $dff cell `$procdff$471' with positive edge clock.
+Creating register for signal `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.\delay2' using process `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$99'.
+  created $dff cell `$procdff$472' with positive edge clock.
+Creating register for signal `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.\delay3' using process `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$99'.
+  created $dff cell `$procdff$473' with positive edge clock.
+Creating register for signal `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.\valid' using process `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$99'.
+  created $dff cell `$procdff$474' with positive edge clock.
+Creating register for signal `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.\data' using process `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$99'.
+  created $dff cell `$procdff$475' with positive edge clock.
+Creating register for signal `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.\last' using process `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$99'.
+  created $dff cell `$procdff$476' with positive edge clock.
+Creating register for signal `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.\user' using process `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$99'.
+  created $dff cell `$procdff$477' with positive edge clock.
+Creating register for signal `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.\keep' using process `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$88'.
+  created $dff cell `$procdff$478' with positive edge clock.
+Creating register for signal `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.\delay1' using process `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$88'.
+  created $dff cell `$procdff$479' with positive edge clock.
+Creating register for signal `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.\delay2' using process `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$88'.
+  created $dff cell `$procdff$480' with positive edge clock.
+Creating register for signal `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.\delay3' using process `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$88'.
+  created $dff cell `$procdff$481' with positive edge clock.
+Creating register for signal `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.\valid' using process `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$88'.
+  created $dff cell `$procdff$482' with positive edge clock.
+Creating register for signal `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.\data' using process `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$88'.
+  created $dff cell `$procdff$483' with positive edge clock.
+Creating register for signal `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.\last' using process `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$88'.
+  created $dff cell `$procdff$484' with positive edge clock.
+Creating register for signal `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.\user' using process `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$88'.
+  created $dff cell `$procdff$485' with positive edge clock.
+Creating register for signal `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.\keep' using process `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$77'.
+  created $dff cell `$procdff$486' with positive edge clock.
+Creating register for signal `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.\delay1' using process `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$77'.
+  created $dff cell `$procdff$487' with positive edge clock.
+Creating register for signal `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.\delay2' using process `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$77'.
+  created $dff cell `$procdff$488' with positive edge clock.
+Creating register for signal `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.\delay3' using process `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$77'.
+  created $dff cell `$procdff$489' with positive edge clock.
+Creating register for signal `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.\valid' using process `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$77'.
+  created $dff cell `$procdff$490' with positive edge clock.
+Creating register for signal `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.\data' using process `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$77'.
+  created $dff cell `$procdff$491' with positive edge clock.
+Creating register for signal `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.\last' using process `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$77'.
+  created $dff cell `$procdff$492' with positive edge clock.
+Creating register for signal `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.\user' using process `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$77'.
+  created $dff cell `$procdff$493' with positive edge clock.
+Creating register for signal `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.\keep' using process `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$66'.
+  created $dff cell `$procdff$494' with positive edge clock.
+Creating register for signal `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.\delay1' using process `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$66'.
+  created $dff cell `$procdff$495' with positive edge clock.
+Creating register for signal `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.\delay2' using process `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$66'.
+  created $dff cell `$procdff$496' with positive edge clock.
+Creating register for signal `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.\delay3' using process `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$66'.
+  created $dff cell `$procdff$497' with positive edge clock.
+Creating register for signal `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.\valid' using process `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$66'.
+  created $dff cell `$procdff$498' with positive edge clock.
+Creating register for signal `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.\data' using process `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$66'.
+  created $dff cell `$procdff$499' with positive edge clock.
+Creating register for signal `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.\last' using process `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$66'.
+  created $dff cell `$procdff$500' with positive edge clock.
+Creating register for signal `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.\user' using process `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$66'.
+  created $dff cell `$procdff$501' with positive edge clock.
+Creating register for signal `\feature_merge2.\locked' using process `\feature_merge2.$proc$examples/Verilog/filter_bank_handwritten.v:189$54'.
+  created $dff cell `$procdff$502' with positive edge clock.
+Creating register for signal `\feature_merge2.\selected' using process `\feature_merge2.$proc$examples/Verilog/filter_bank_handwritten.v:189$54'.
+  created $dff cell `$procdff$503' with positive edge clock.
+Creating register for signal `\feature_merge2.\turn' using process `\feature_merge2.$proc$examples/Verilog/filter_bank_handwritten.v:189$54'.
+  created $dff cell `$procdff$504' with positive edge clock.
+Creating register for signal `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.\count' using process `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$153'.
+  created $dff cell `$procdff$505' with positive edge clock.
+Creating register for signal `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.\i' using process `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$153'.
+  created $dff cell `$procdff$506' with positive edge clock.
+Creating register for signal `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.\slots[0]' using process `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$153'.
+  created $dff cell `$procdff$507' with positive edge clock.
+Creating register for signal `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.\slots[1]' using process `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$153'.
+  created $dff cell `$procdff$508' with positive edge clock.
+Creating register for signal `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.\count' using process `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$137'.
+  created $dff cell `$procdff$509' with positive edge clock.
+Creating register for signal `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.\i' using process `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$137'.
+  created $dff cell `$procdff$510' with positive edge clock.
+Creating register for signal `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.\slots[0]' using process `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$137'.
+  created $dff cell `$procdff$511' with positive edge clock.
+Creating register for signal `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.\slots[1]' using process `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$137'.
+  created $dff cell `$procdff$512' with positive edge clock.
+Creating register for signal `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.\slots[2]' using process `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$137'.
+  created $dff cell `$procdff$513' with positive edge clock.
+Creating register for signal `\filter_bank_handwritten.\delivered' using process `\filter_bank_handwritten.$proc$examples/Verilog/filter_bank_handwritten.v:24$8'.
+  created $dff cell `$procdff$514' with positive edge clock.
+
+4.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 4 empty switches in `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$125'.
+Removing empty process `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$125'.
+Found and cleaned up 10 empty switches in `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$107'.
+Removing empty process `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$107'.
+Found and cleaned up 3 empty switches in `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$99'.
+Removing empty process `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$99'.
+Found and cleaned up 3 empty switches in `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$88'.
+Removing empty process `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$88'.
+Found and cleaned up 3 empty switches in `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$77'.
+Removing empty process `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$77'.
+Found and cleaned up 3 empty switches in `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$66'.
+Removing empty process `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.$proc$examples/Verilog/filter_bank_handwritten.v:108$66'.
+Found and cleaned up 4 empty switches in `\feature_merge2.$proc$examples/Verilog/filter_bank_handwritten.v:189$54'.
+Removing empty process `feature_merge2.$proc$examples/Verilog/filter_bank_handwritten.v:189$54'.
+Found and cleaned up 6 empty switches in `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$153'.
+Removing empty process `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$153'.
+Found and cleaned up 8 empty switches in `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$137'.
+Removing empty process `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.$proc$examples/Verilog/filter_bank_handwritten.v:146$137'.
+Found and cleaned up 2 empty switches in `\filter_bank_handwritten.$proc$examples/Verilog/filter_bank_handwritten.v:24$8'.
+Removing empty process `filter_bank_handwritten.$proc$examples/Verilog/filter_bank_handwritten.v:24$8'.
+Cleaned up 46 empty switches.
+
+4.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+<suppressed ~2 debug messages>
+Optimizing module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+<suppressed ~2 debug messages>
+Optimizing module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.
+Optimizing module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.
+Optimizing module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.
+Optimizing module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.
+Optimizing module h_FsFilterBank4.
+Optimizing module feature_merge2.
+Optimizing module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+<suppressed ~2 debug messages>
+Optimizing module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+<suppressed ~2 debug messages>
+Optimizing module filter_bank_handwritten.
+
+5. Executing OPT pass (performing simple optimizations).
+
+5.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Optimizing module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Optimizing module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.
+<suppressed ~4 debug messages>
+Optimizing module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.
+<suppressed ~7 debug messages>
+Optimizing module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.
+<suppressed ~8 debug messages>
+Optimizing module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.
+<suppressed ~8 debug messages>
+Optimizing module h_FsFilterBank4.
+Optimizing module feature_merge2.
+Optimizing module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Optimizing module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Optimizing module filter_bank_handwritten.
+
+5.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch'.
+Finding identical cells in module `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch'.
+Finding identical cells in module `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch'.
+Finding identical cells in module `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch'.
+Finding identical cells in module `\h_FsFilterBank4'.
+Finding identical cells in module `\feature_merge2'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `\filter_bank_handwritten'.
+Removed a total of 5 cells.
+
+5.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \h_FsFilterBank4..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \feature_merge2..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \filter_bank_handwritten..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~59 debug messages>
+
+5.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+  Optimizing cells in module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+  Optimizing cells in module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.
+  Optimizing cells in module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.
+  Optimizing cells in module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.
+  Optimizing cells in module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.
+  Optimizing cells in module \h_FsFilterBank4.
+  Optimizing cells in module \feature_merge2.
+  Optimizing cells in module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+  Optimizing cells in module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+  Optimizing cells in module \filter_bank_handwritten.
+Performed a total of 0 changes.
+
+5.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo'.
+Finding identical cells in module `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo'.
+Finding identical cells in module `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch'.
+Finding identical cells in module `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch'.
+Finding identical cells in module `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch'.
+Finding identical cells in module `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch'.
+Finding identical cells in module `\h_FsFilterBank4'.
+Finding identical cells in module `\feature_merge2'.
+Finding identical cells in module `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo'.
+Finding identical cells in module `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo'.
+Finding identical cells in module `\filter_bank_handwritten'.
+Removed a total of 0 cells.
+
+5.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$463 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo (D = $procmux$172_Y, Q = \slots[0], rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$515 ($sdff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo (D = $procmux$172_Y, Q = \slots[0]).
+Adding SRST signal on $procdff$461 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo (D = $procmux$163_Y, Q = \count, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$519 ($sdff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo (D = $procmux$163_Y, Q = \count).
+Setting constant 1-bit at position 0 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 1 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 2 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 3 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 4 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 5 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 6 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 7 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 8 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 9 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 10 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 11 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 12 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 13 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 14 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 15 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 16 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 17 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 18 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 19 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 20 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 21 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 22 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 23 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 24 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 25 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 26 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 27 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 28 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 29 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 30 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Setting constant 0-bit at position 31 on $procdff$462 ($dff) from module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Adding SRST signal on $procdff$469 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo (D = $procmux$189_Y, Q = \slots[3], rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$523 ($sdff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo (D = $procmux$189_Y, Q = \slots[3]).
+Adding SRST signal on $procdff$464 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo (D = $procmux$180_Y, Q = \count, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$527 ($sdff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo (D = $procmux$180_Y, Q = \count).
+Adding SRST signal on $procdff$466 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo (D = $procmux$213_Y, Q = \slots[0], rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$531 ($sdff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo (D = $procmux$213_Y, Q = \slots[0]).
+Adding SRST signal on $procdff$467 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo (D = $procmux$205_Y, Q = \slots[1], rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$535 ($sdff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo (D = $procmux$205_Y, Q = \slots[1]).
+Adding SRST signal on $procdff$468 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo (D = $procmux$197_Y, Q = \slots[2], rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$539 ($sdff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo (D = $procmux$197_Y, Q = \slots[2]).
+Setting constant 0-bit at position 0 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 1 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 1-bit at position 2 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 3 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 4 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 5 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 6 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 7 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 8 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 9 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 10 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 11 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 12 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 13 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 14 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 15 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 16 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 17 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 18 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 19 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 20 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 21 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 22 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 23 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 24 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 25 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 26 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 27 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 28 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 29 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 30 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Setting constant 0-bit at position 31 on $procdff$465 ($dff) from module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Adding SRST signal on $procdff$477 ($dff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = $procmux$218_Y, Q = \user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$543 ($sdff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = \s_user, Q = \user).
+Adding SRST signal on $procdff$476 ($dff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = $procmux$223_Y, Q = \last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$545 ($sdff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = \s_last, Q = \last).
+Adding SRST signal on $procdff$470 ($dff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = $procmux$253_Y, Q = \keep, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:266:slice$547 ($sdff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = 4'1111, Q = \keep).
+Adding SRST signal on $procdff$471 ($dff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = $procmux$248_Y, Q = \delay1, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$549 ($sdff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = \s_data, Q = \delay1).
+Adding SRST signal on $procdff$472 ($dff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = $procmux$243_Y, Q = \delay2, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$551 ($sdff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = \delay1, Q = \delay2).
+Adding SRST signal on $procdff$473 ($dff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = $procmux$238_Y, Q = \delay3, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$553 ($sdff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = \delay2, Q = \delay3).
+Adding SRST signal on $procdff$474 ($dff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = $procmux$233_Y, Q = \valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$555 ($sdff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = \s_valid, Q = \valid).
+Adding SRST signal on $procdff$475 ($dff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = $procmux$228_Y, Q = \data, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$557 ($sdff) from module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch (D = $add$examples/Verilog/filter_bank_handwritten.v:98$95_Y, Q = \data).
+Adding SRST signal on $procdff$483 ($dff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = $procmux$268_Y, Q = \data, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$559 ($sdff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = $add$examples/Verilog/filter_bank_handwritten.v:98$84_Y, Q = \data).
+Adding SRST signal on $procdff$485 ($dff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = $procmux$258_Y, Q = \user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$561 ($sdff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = \s_user, Q = \user).
+Adding SRST signal on $procdff$484 ($dff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = $procmux$263_Y, Q = \last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$563 ($sdff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = \s_last, Q = \last).
+Adding SRST signal on $procdff$478 ($dff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = $procmux$293_Y, Q = \keep, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:266:slice$565 ($sdff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = 4'1111, Q = \keep).
+Adding SRST signal on $procdff$479 ($dff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = $procmux$288_Y, Q = \delay1, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$567 ($sdff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = \s_data, Q = \delay1).
+Adding SRST signal on $procdff$480 ($dff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = $procmux$283_Y, Q = \delay2, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$569 ($sdff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = \delay1, Q = \delay2).
+Adding SRST signal on $procdff$481 ($dff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = $procmux$278_Y, Q = \delay3, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$571 ($sdff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = \delay2, Q = \delay3).
+Adding SRST signal on $procdff$482 ($dff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = $procmux$273_Y, Q = \valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$573 ($sdff) from module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch (D = \s_valid, Q = \valid).
+Adding SRST signal on $procdff$492 ($dff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = $procmux$303_Y, Q = \last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$575 ($sdff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = \s_last, Q = \last).
+Adding SRST signal on $procdff$491 ($dff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = $procmux$308_Y, Q = \data, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$577 ($sdff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = $add$examples/Verilog/filter_bank_handwritten.v:98$73_Y, Q = \data).
+Adding SRST signal on $procdff$493 ($dff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = $procmux$298_Y, Q = \user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$579 ($sdff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = \s_user, Q = \user).
+Adding SRST signal on $procdff$486 ($dff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = $procmux$333_Y, Q = \keep, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:266:slice$581 ($sdff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = 4'1111, Q = \keep).
+Adding SRST signal on $procdff$487 ($dff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = $procmux$328_Y, Q = \delay1, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$583 ($sdff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = \s_data, Q = \delay1).
+Adding SRST signal on $procdff$488 ($dff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = $procmux$323_Y, Q = \delay2, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$585 ($sdff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = \delay1, Q = \delay2).
+Adding SRST signal on $procdff$489 ($dff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = $procmux$318_Y, Q = \delay3, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$587 ($sdff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = \delay2, Q = \delay3).
+Adding SRST signal on $procdff$490 ($dff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = $procmux$313_Y, Q = \valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$589 ($sdff) from module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch (D = \s_valid, Q = \valid).
+Adding SRST signal on $procdff$498 ($dff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = $procmux$353_Y, Q = \valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$591 ($sdff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = \s_valid, Q = \valid).
+Adding SRST signal on $procdff$501 ($dff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = $procmux$338_Y, Q = \user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$593 ($sdff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = \s_user, Q = \user).
+Adding SRST signal on $procdff$500 ($dff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = $procmux$343_Y, Q = \last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$595 ($sdff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = \s_last, Q = \last).
+Adding SRST signal on $procdff$499 ($dff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = $procmux$348_Y, Q = \data, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$597 ($sdff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = $add$examples/Verilog/filter_bank_handwritten.v:98$62_Y, Q = \data).
+Adding SRST signal on $procdff$494 ($dff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = $procmux$373_Y, Q = \keep, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:266:slice$599 ($sdff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = 4'1111, Q = \keep).
+Adding SRST signal on $procdff$495 ($dff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = $procmux$368_Y, Q = \delay1, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$601 ($sdff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = \s_data, Q = \delay1).
+Adding SRST signal on $procdff$496 ($dff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = $procmux$363_Y, Q = \delay2, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$603 ($sdff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = \delay1, Q = \delay2).
+Adding SRST signal on $procdff$497 ($dff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = $procmux$358_Y, Q = \delay3, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$605 ($sdff) from module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch (D = \delay2, Q = \delay3).
+Adding SRST signal on $procdff$504 ($dff) from module feature_merge2 (D = $procmux$379_Y, Q = \turn, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$607 ($sdff) from module feature_merge2 (D = $logic_not$examples/Verilog/filter_bank_handwritten.v:193$55_Y, Q = \turn).
+Adding SRST signal on $procdff$502 ($dff) from module feature_merge2 (D = $procmux$389_Y, Q = \locked, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$609 ($sdff) from module feature_merge2 (D = 1'1, Q = \locked).
+Adding SRST signal on $procdff$503 ($dff) from module feature_merge2 (D = $procmux$384_Y, Q = \selected, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$613 ($sdff) from module feature_merge2 (D = $ternary$examples/Verilog/filter_bank_handwritten.v:180$43_Y, Q = \selected).
+Adding SRST signal on $procdff$508 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo (D = $procmux$409_Y, Q = \slots[1], rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$615 ($sdff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo (D = $procmux$409_Y, Q = \slots[1]).
+Adding SRST signal on $procdff$505 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo (D = $procmux$400_Y, Q = \count, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$619 ($sdff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo (D = $procmux$400_Y, Q = \count).
+Adding SRST signal on $procdff$507 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo (D = $procmux$417_Y, Q = \slots[0], rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$623 ($sdff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo (D = $procmux$417_Y, Q = \slots[0]).
+Setting constant 0-bit at position 0 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 1-bit at position 1 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 2 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 3 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 4 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 5 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 6 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 7 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 8 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 9 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 10 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 11 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 12 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 13 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 14 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 15 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 16 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 17 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 18 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 19 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 20 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 21 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 22 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 23 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 24 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 25 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 26 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 27 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 28 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 29 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 30 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Setting constant 0-bit at position 31 on $procdff$506 ($dff) from module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Adding SRST signal on $procdff$513 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo (D = $procmux$434_Y, Q = \slots[2], rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$627 ($sdff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo (D = $procmux$434_Y, Q = \slots[2]).
+Adding SRST signal on $procdff$509 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo (D = $procmux$425_Y, Q = \count, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$631 ($sdff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo (D = $procmux$425_Y, Q = \count).
+Adding SRST signal on $procdff$511 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo (D = $procmux$450_Y, Q = \slots[0], rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$635 ($sdff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo (D = $procmux$450_Y, Q = \slots[0]).
+Adding SRST signal on $procdff$512 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo (D = $procmux$442_Y, Q = \slots[1], rval = 45'000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$639 ($sdff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo (D = $procmux$442_Y, Q = \slots[1]).
+Setting constant 1-bit at position 0 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 1-bit at position 1 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 2 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 3 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 4 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 5 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 6 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 7 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 8 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 9 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 10 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 11 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 12 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 13 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 14 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 15 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 16 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 17 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 18 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 19 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 20 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 21 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 22 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 23 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 24 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 25 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 26 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 27 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 28 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 29 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 30 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Setting constant 0-bit at position 31 on $procdff$510 ($dff) from module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Adding SRST signal on $procdff$514 ($dff) from module filter_bank_handwritten (D = $or$examples/Verilog/filter_bank_handwritten.v:27$10_Y, Q = \delivered, rval = 4'0000).
+
+5.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo..
+Finding unused cells or wires in module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo..
+Finding unused cells or wires in module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch..
+Finding unused cells or wires in module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch..
+Finding unused cells or wires in module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch..
+Finding unused cells or wires in module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch..
+Finding unused cells or wires in module \h_FsFilterBank4..
+Finding unused cells or wires in module \feature_merge2..
+Finding unused cells or wires in module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo..
+Finding unused cells or wires in module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo..
+Finding unused cells or wires in module \filter_bank_handwritten..
+Removed 93 unused cells and 322 unused wires.
+<suppressed ~109 debug messages>
+
+5.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.
+Optimizing module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+<suppressed ~3 debug messages>
+Optimizing module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.
+Optimizing module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.
+Optimizing module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+<suppressed ~5 debug messages>
+Optimizing module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.
+Optimizing module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+<suppressed ~2 debug messages>
+Optimizing module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+<suppressed ~4 debug messages>
+Optimizing module feature_merge2.
+Optimizing module filter_bank_handwritten.
+Optimizing module h_FsFilterBank4.
+
+5.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \feature_merge2..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \filter_bank_handwritten..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \h_FsFilterBank4..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+<suppressed ~23 debug messages>
+
+5.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.
+  Optimizing cells in module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+  Optimizing cells in module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.
+  Optimizing cells in module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.
+  Optimizing cells in module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+  Optimizing cells in module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.
+  Optimizing cells in module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+  Optimizing cells in module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+  Optimizing cells in module \feature_merge2.
+  Optimizing cells in module \filter_bank_handwritten.
+  Optimizing cells in module \h_FsFilterBank4.
+Performed a total of 0 changes.
+
+5.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch'.
+Finding identical cells in module `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo'.
+Finding identical cells in module `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch'.
+Finding identical cells in module `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch'.
+Finding identical cells in module `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo'.
+Finding identical cells in module `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch'.
+Finding identical cells in module `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo'.
+Finding identical cells in module `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo'.
+Finding identical cells in module `\feature_merge2'.
+Finding identical cells in module `\filter_bank_handwritten'.
+Finding identical cells in module `\h_FsFilterBank4'.
+Removed a total of 0 cells.
+
+5.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch..
+Finding unused cells or wires in module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo..
+Finding unused cells or wires in module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch..
+Finding unused cells or wires in module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch..
+Finding unused cells or wires in module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo..
+Finding unused cells or wires in module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch..
+Finding unused cells or wires in module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo..
+Finding unused cells or wires in module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo..
+Finding unused cells or wires in module \feature_merge2..
+Finding unused cells or wires in module \filter_bank_handwritten..
+Finding unused cells or wires in module \h_FsFilterBank4..
+Removed 0 unused cells and 12 unused wires.
+<suppressed ~12 debug messages>
+
+5.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.
+Optimizing module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Optimizing module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.
+Optimizing module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.
+Optimizing module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Optimizing module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.
+Optimizing module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Optimizing module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Optimizing module feature_merge2.
+Optimizing module filter_bank_handwritten.
+Optimizing module h_FsFilterBank4.
+
+5.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \feature_merge2..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \filter_bank_handwritten..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \h_FsFilterBank4..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+<suppressed ~23 debug messages>
+
+5.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.
+  Optimizing cells in module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+  Optimizing cells in module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.
+  Optimizing cells in module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.
+  Optimizing cells in module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+  Optimizing cells in module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.
+  Optimizing cells in module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+  Optimizing cells in module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+  Optimizing cells in module \feature_merge2.
+  Optimizing cells in module \filter_bank_handwritten.
+  Optimizing cells in module \h_FsFilterBank4.
+Performed a total of 0 changes.
+
+5.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch'.
+Finding identical cells in module `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo'.
+Finding identical cells in module `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch'.
+Finding identical cells in module `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch'.
+Finding identical cells in module `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo'.
+Finding identical cells in module `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch'.
+Finding identical cells in module `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo'.
+Finding identical cells in module `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo'.
+Finding identical cells in module `\feature_merge2'.
+Finding identical cells in module `\filter_bank_handwritten'.
+Finding identical cells in module `\h_FsFilterBank4'.
+Removed a total of 0 cells.
+
+5.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch..
+Finding unused cells or wires in module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo..
+Finding unused cells or wires in module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch..
+Finding unused cells or wires in module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch..
+Finding unused cells or wires in module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo..
+Finding unused cells or wires in module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch..
+Finding unused cells or wires in module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo..
+Finding unused cells or wires in module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo..
+Finding unused cells or wires in module \feature_merge2..
+Finding unused cells or wires in module \filter_bank_handwritten..
+Finding unused cells or wires in module \h_FsFilterBank4..
+
+5.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.
+Optimizing module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Optimizing module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.
+Optimizing module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.
+Optimizing module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Optimizing module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.
+Optimizing module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Optimizing module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Optimizing module feature_merge2.
+Optimizing module filter_bank_handwritten.
+Optimizing module h_FsFilterBank4.
+
+5.23. Finished OPT passes. (There is nothing left to do.)
+
+6. Executing MEMORY pass.
+
+6.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+6.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+6.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+6.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+6.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+6.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch..
+Finding unused cells or wires in module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo..
+Finding unused cells or wires in module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch..
+Finding unused cells or wires in module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch..
+Finding unused cells or wires in module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo..
+Finding unused cells or wires in module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch..
+Finding unused cells or wires in module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo..
+Finding unused cells or wires in module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo..
+Finding unused cells or wires in module \feature_merge2..
+Finding unused cells or wires in module \filter_bank_handwritten..
+Finding unused cells or wires in module \h_FsFilterBank4..
+
+6.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+6.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+6.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch..
+Finding unused cells or wires in module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo..
+Finding unused cells or wires in module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch..
+Finding unused cells or wires in module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch..
+Finding unused cells or wires in module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo..
+Finding unused cells or wires in module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch..
+Finding unused cells or wires in module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo..
+Finding unused cells or wires in module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo..
+Finding unused cells or wires in module \feature_merge2..
+Finding unused cells or wires in module \filter_bank_handwritten..
+Finding unused cells or wires in module \h_FsFilterBank4..
+
+6.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+6.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+7. Executing OPT pass (performing simple optimizations).
+
+7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.
+Optimizing module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Optimizing module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.
+Optimizing module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.
+Optimizing module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Optimizing module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.
+Optimizing module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Optimizing module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Optimizing module feature_merge2.
+Optimizing module filter_bank_handwritten.
+Optimizing module h_FsFilterBank4.
+
+7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch'.
+Finding identical cells in module `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo'.
+Finding identical cells in module `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch'.
+Finding identical cells in module `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch'.
+Finding identical cells in module `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo'.
+Finding identical cells in module `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch'.
+Finding identical cells in module `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo'.
+Finding identical cells in module `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo'.
+Finding identical cells in module `\feature_merge2'.
+Finding identical cells in module `\filter_bank_handwritten'.
+Finding identical cells in module `\h_FsFilterBank4'.
+Removed a total of 0 cells.
+
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \feature_merge2..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \filter_bank_handwritten..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Running muxtree optimizer on module \h_FsFilterBank4..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+<suppressed ~23 debug messages>
+
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.
+  Optimizing cells in module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+  Optimizing cells in module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.
+  Optimizing cells in module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.
+  Optimizing cells in module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+  Optimizing cells in module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.
+  Optimizing cells in module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+  Optimizing cells in module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+  Optimizing cells in module \feature_merge2.
+  Optimizing cells in module \filter_bank_handwritten.
+  Optimizing cells in module \h_FsFilterBank4.
+Performed a total of 0 changes.
+
+7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch'.
+Finding identical cells in module `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo'.
+Finding identical cells in module `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch'.
+Finding identical cells in module `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch'.
+Finding identical cells in module `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo'.
+Finding identical cells in module `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch'.
+Finding identical cells in module `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo'.
+Finding identical cells in module `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo'.
+Finding identical cells in module `\feature_merge2'.
+Finding identical cells in module `\filter_bank_handwritten'.
+Finding identical cells in module `\h_FsFilterBank4'.
+Removed a total of 0 cells.
+
+7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch..
+Finding unused cells or wires in module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo..
+Finding unused cells or wires in module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch..
+Finding unused cells or wires in module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch..
+Finding unused cells or wires in module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo..
+Finding unused cells or wires in module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch..
+Finding unused cells or wires in module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo..
+Finding unused cells or wires in module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo..
+Finding unused cells or wires in module \feature_merge2..
+Finding unused cells or wires in module \filter_bank_handwritten..
+Finding unused cells or wires in module \h_FsFilterBank4..
+
+7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch.
+Optimizing module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo.
+Optimizing module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch.
+Optimizing module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch.
+Optimizing module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo.
+Optimizing module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch.
+Optimizing module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo.
+Optimizing module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo.
+Optimizing module feature_merge2.
+Optimizing module filter_bank_handwritten.
+Optimizing module h_FsFilterBank4.
+
+7.9. Finished OPT passes. (There is nothing left to do.)
+
+8. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch...
+Checking module $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo...
+Checking module $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch...
+Checking module $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch...
+Checking module $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo...
+Checking module $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch...
+Checking module $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo...
+Checking module $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo...
+Checking module feature_merge2...
+Checking module filter_bank_handwritten...
+Checking module h_FsFilterBank4...
+Found and reported 0 problems.
+
+9. Printing statistics.
+
+=== $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch ===
+
+   Number of wires:                 35
+   Number of wire bits:            577
+   Number of public wires:          32
+   Number of public wire bits:     512
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 17
+     $add                            3
+     $logic_and                      1
+     $logic_not                      1
+     $logic_or                       1
+     $mul                            2
+     $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo      1
+     $sdffe                          8
+
+=== $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo ===
+
+   Number of wires:                 32
+   Number of wire bits:            420
+   Number of public wires:          15
+   Number of public wire bits:     224
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 25
+     $add                            1
+     $eq                             3
+     $logic_and                      4
+     $logic_not                      1
+     $logic_or                       1
+     $lt                             1
+     $mux                            5
+     $pmux                           1
+     $reduce_bool                    4
+     $sdffe                          3
+     $sub                            1
+
+=== $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch ===
+
+   Number of wires:                 32
+   Number of wire bits:            497
+   Number of public wires:          30
+   Number of public wire bits:     464
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 14
+     $add                            2
+     $logic_and                      1
+     $logic_not                      1
+     $logic_or                       1
+     $neg                            1
+     $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo      1
+     $sdffe                          7
+
+=== $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch ===
+
+   Number of wires:                 27
+   Number of wire bits:            369
+   Number of public wires:          26
+   Number of public wire bits:     368
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  9
+     $logic_and                      1
+     $logic_not                      1
+     $logic_or                       1
+     $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo      1
+     $sdffe                          5
+
+=== $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo ===
+
+   Number of wires:                 44
+   Number of wire bits:            701
+   Number of public wires:          17
+   Number of public wire bits:     316
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 37
+     $add                            1
+     $eq                             5
+     $logic_and                      6
+     $logic_not                      1
+     $logic_or                       1
+     $lt                             1
+     $mux                            9
+     $pmux                           1
+     $reduce_bool                    6
+     $sdffe                          5
+     $sub                            1
+
+=== $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch ===
+
+   Number of wires:                 29
+   Number of wire bits:            417
+   Number of public wires:          28
+   Number of public wire bits:     416
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 12
+     $add                            1
+     $logic_and                      1
+     $logic_not                      1
+     $logic_or                       1
+     $neg                            1
+     $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo      1
+     $sdffe                          6
+
+=== $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo ===
+
+   Number of wires:                 26
+   Number of wire bits:            277
+   Number of public wires:          14
+   Number of public wire bits:     177
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 18
+     $add                            1
+     $eq                             2
+     $logic_and                      3
+     $logic_or                       1
+     $lt                             1
+     $mux                            3
+     $not                            1
+     $pmux                           1
+     $reduce_bool                    2
+     $sdffe                          2
+     $sub                            1
+
+=== $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo ===
+
+   Number of wires:                 38
+   Number of wire bits:            558
+   Number of public wires:          16
+   Number of public wire bits:     269
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 31
+     $add                            1
+     $eq                             4
+     $logic_and                      5
+     $logic_not                      1
+     $logic_or                       1
+     $lt                             1
+     $mux                            7
+     $pmux                           1
+     $reduce_bool                    5
+     $sdffe                          4
+     $sub                            1
+
+=== feature_merge2 ===
+
+   Number of wires:                 29
+   Number of wire bits:            176
+   Number of public wires:          23
+   Number of public wire bits:     170
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 18
+     $logic_and                      5
+     $logic_not                      3
+     $mux                            6
+     $reduce_or                      1
+     $sdffe                          3
+
+=== filter_bank_handwritten ===
+
+   Number of wires:                 38
+   Number of wire bits:            440
+   Number of public wires:          33
+   Number of public wire bits:     423
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 16
+     $and                            2
+     $logic_and                      1
+     $not                            1
+     $or                             2
+     $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch      1
+     $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch      1
+     $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch      1
+     $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch      1
+     $reduce_and                     1
+     $reduce_or                      1
+     $sdff                           1
+     feature_merge2                  3
+
+=== h_FsFilterBank4 ===
+
+   Number of wires:                 14
+   Number of wire bits:             86
+   Number of public wires:          14
+   Number of public wire bits:      86
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     filter_bank_handwritten         1
+
+=== design hierarchy ===
+
+   h_FsFilterBank4                   1
+     filter_bank_handwritten         1
+       $paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch      1
+         $paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo      1
+       $paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch      1
+         $paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo      1
+       $paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch      1
+         $paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo      1
+       $paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch      1
+         $paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo      1
+       feature_merge2                3
+
+   Number of wires:                402
+   Number of wire bits:           4870
+   Number of public wires:         294
+   Number of public wire bits:    3765
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                222
+     $add                           10
+     $and                            2
+     $eq                            14
+     $logic_and                     38
+     $logic_not                     16
+     $logic_or                       8
+     $lt                             4
+     $mul                            2
+     $mux                           42
+     $neg                            2
+     $not                            2
+     $or                             2
+     $pmux                           4
+     $reduce_and                     1
+     $reduce_bool                   17
+     $reduce_or                      4
+     $sdff                           1
+     $sdffe                         49
+     $sub                            4
+
+10. Executing Verilog backend.
+
+10.1. Executing BMUXMAP pass.
+
+10.2. Executing DEMUXMAP pass.
+Dumping module `$paramod$042fc43518578743f8a8505b72450b53986bc93d\feature_branch'.
+Dumping module `$paramod$89a886a931b7c357d82bbf7a44a1a634f15ffa21\feature_fifo'.
+Dumping module `$paramod$9d959f4d31a47eb6a31cacd92dfac5069f69627b\feature_branch'.
+Dumping module `$paramod$a1cbf84acd6686480b40177abfa9c9903ca71305\feature_branch'.
+Dumping module `$paramod$a48bdacf078687c4cb44a8c8f2ceab773ff116d3\feature_fifo'.
+Dumping module `$paramod$cb7105154ef3487e4364427b4d394f0c131f4b8d\feature_branch'.
+Dumping module `$paramod$df50dd15ea515d78b7611b459fecf5564e528ee0\feature_fifo'.
+Dumping module `$paramod$e1fc7313b3b5ed0bb9e2c450c56c0175271df1fd\feature_fifo'.
+Dumping module `\feature_merge2'.
+Dumping module `\filter_bank_handwritten'.
+Dumping module `\h_FsFilterBank4'.

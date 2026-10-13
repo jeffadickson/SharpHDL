@@ -1,0 +1,22 @@
+AdvancedFunctions.TypedAccumulate
+IL_0000: nop 
+IL_0001: ldarg.0 
+IL_0002: ldarg.1 
+IL_0003: call SharpHDL.UBits`1[SharpHDL.W12] op_Addition(SharpHDL.UBits`1[SharpHDL.W12], SharpHDL.UBits`1[SharpHDL.W12])
+IL_0008: stloc.0 
+IL_0009: ldloc.0 
+IL_000a: ldc.i4.3 
+IL_000b: call SharpHDL.UBits`1[SharpHDL.W12] op_Implicit(UInt32)
+IL_0010: call SharpHDL.UBits`1[SharpHDL.W12] op_Multiply(SharpHDL.UBits`1[SharpHDL.W12], SharpHDL.UBits`1[SharpHDL.W12])
+IL_0015: stloc.0 
+IL_0016: ldloc.0 
+IL_0017: ldc.i4.2 
+IL_0018: call SharpHDL.UBits`1[SharpHDL.W12] op_RightShift(SharpHDL.UBits`1[SharpHDL.W12], Int32)
+IL_001d: ldarg.0 
+IL_001e: ldc.i4.1 
+IL_001f: call SharpHDL.UBits`1[SharpHDL.W12] op_LeftShift(SharpHDL.UBits`1[SharpHDL.W12], Int32)
+IL_0024: call SharpHDL.UBits`1[SharpHDL.W12] op_ExclusiveOr(SharpHDL.UBits`1[SharpHDL.W12], SharpHDL.UBits`1[SharpHDL.W12])
+IL_0029: stloc.1 
+IL_002a: br.s 44
+IL_002c: ldloc.1 
+IL_002d: ret 

@@ -1,0 +1,7 @@
+Behavioral.CSharpFunctions.CheckedMultiply
+IL_0000: ldarg.0 
+IL_0001: ldarg.1 
+IL_0002: mul.ovf 
+IL_0003: ret 
+
+Instructions visited: 4; symbolic branches: 0; method bodies: 1

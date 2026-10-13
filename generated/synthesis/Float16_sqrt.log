@@ -1,0 +1,157 @@
+
+-- Running command `read_verilog generated/Float16_sqrt.v; hierarchy -check -top h_Float16_sqrt; proc -norom; opt; check -assert; stat; write_verilog -noattr generated/synthesis/Float16_sqrt_rtl.v' --
+
+1. Executing Verilog-2005 frontend: generated/Float16_sqrt.v
+Parsing Verilog input from `generated/Float16_sqrt.v' to AST representation.
+Generating RTLIL representation for module `\h_Float16_sqrt'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \h_Float16_sqrt
+
+2.2. Analyzing design hierarchy..
+Top module:  \h_Float16_sqrt
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.8. Executing PROC_DFF pass (convert process syncs to FFs).
+
+3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Float16_sqrt.
+<suppressed ~245 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Float16_sqrt.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Float16_sqrt'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Float16_sqrt..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port B of cell $ternary$generated/Float16_sqrt.v:1669$440: \n_494 -> { 2'01 \n_494 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_sqrt.v:1668$439: \n_496 -> { 2'01 \n_496 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_sqrt.v:1667$438: \n_498 -> { 2'01 \n_498 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_sqrt.v:1666$437: \n_500 -> { 2'01 \n_500 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_sqrt.v:1665$436: \n_502 -> { 2'01 \n_502 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_sqrt.v:1664$435: \n_504 -> { 2'01 \n_504 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_sqrt.v:1663$434: \n_506 -> { 2'01 \n_506 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_sqrt.v:1662$433: \n_508 -> { 2'01 \n_508 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_sqrt.v:1661$432: \n_510 -> { 2'01 \n_510 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_sqrt.v:1660$431: \n_512 -> { 2'01 \n_512 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_sqrt.v:1659$430: \n_514 -> { 2'01 \n_514 [9:0] }
+      Replacing known input bits on port A of cell $ternary$generated/Float16_sqrt.v:1700$468: \n_544 -> { 1'0 \n_544 [10:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_sqrt.v:1700$468: \n_555 -> { \n_555 [11] 1'1 \n_555 [9:0] }
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Float16_sqrt.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Float16_sqrt'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Float16_sqrt..
+Removed 2 unused cells and 474 unused wires.
+<suppressed ~5 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Float16_sqrt.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Float16_sqrt..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Float16_sqrt.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Float16_sqrt'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Float16_sqrt..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Float16_sqrt.
+
+4.16. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing CHECK pass (checking for obvious problems).
+Checking module h_Float16_sqrt...
+Found and reported 0 problems.
+
+6. Printing statistics.
+
+=== h_Float16_sqrt ===
+
+   Number of wires:                567
+   Number of wire bits:           7802
+   Number of public wires:         567
+   Number of public wire bits:    7802
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                261
+     $add                           22
+     $and                           21
+     $eq                             1
+     $logic_not                     20
+     $lt                            17
+     $mux                           80
+     $not                           34
+     $or                            49
+     $sub                           17
+
+7. Executing Verilog backend.
+
+7.1. Executing BMUXMAP pass.
+
+7.2. Executing DEMUXMAP pass.
+Dumping module `\h_Float16_sqrt'.

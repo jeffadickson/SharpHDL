@@ -1,0 +1,824 @@
+
+-- Running command `read_verilog generated/Cordic.v; hierarchy -check -top h_Cordic; proc -norom; opt; memory; opt; check -assert; stat; write_verilog -noattr generated/synthesis/Cordic_rtl.v' --
+
+1. Executing Verilog-2005 frontend: generated/Cordic.v
+Parsing Verilog input from `generated/Cordic.v' to AST representation.
+Generating RTLIL representation for module `\h_Cordic'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \h_Cordic
+
+2.2. Analyzing design hierarchy..
+Top module:  \h_Cordic
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$generated/Cordic.v:1427$476 in module h_Cordic.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 105 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+     1/105: $0\s_trig_rotate19_user[7:0]
+     2/105: $0\s_trig_rotate19_last[0:0]
+     3/105: $0\s_trig_rotate19_keep[10:0]
+     4/105: $0\s_trig_rotate19_data[87:0]
+     5/105: $0\s_trig_rotate19_valid[0:0]
+     6/105: $0\s_trig_rotate18_user[7:0]
+     7/105: $0\s_trig_rotate18_last[0:0]
+     8/105: $0\s_trig_rotate18_keep[10:0]
+     9/105: $0\s_trig_rotate18_data[87:0]
+    10/105: $0\s_trig_rotate18_valid[0:0]
+    11/105: $0\s_trig_rotate17_user[7:0]
+    12/105: $0\s_trig_rotate17_last[0:0]
+    13/105: $0\s_trig_rotate17_keep[10:0]
+    14/105: $0\s_trig_rotate17_data[87:0]
+    15/105: $0\s_trig_rotate17_valid[0:0]
+    16/105: $0\s_trig_rotate16_user[7:0]
+    17/105: $0\s_trig_rotate16_last[0:0]
+    18/105: $0\s_trig_rotate16_keep[10:0]
+    19/105: $0\s_trig_rotate16_data[87:0]
+    20/105: $0\s_trig_rotate16_valid[0:0]
+    21/105: $0\s_trig_rotate15_user[7:0]
+    22/105: $0\s_trig_rotate15_last[0:0]
+    23/105: $0\s_trig_rotate15_keep[10:0]
+    24/105: $0\s_trig_rotate15_data[87:0]
+    25/105: $0\s_trig_rotate15_valid[0:0]
+    26/105: $0\s_trig_rotate14_user[7:0]
+    27/105: $0\s_trig_rotate14_last[0:0]
+    28/105: $0\s_trig_rotate14_keep[10:0]
+    29/105: $0\s_trig_rotate14_data[87:0]
+    30/105: $0\s_trig_rotate14_valid[0:0]
+    31/105: $0\s_trig_rotate13_user[7:0]
+    32/105: $0\s_trig_rotate13_last[0:0]
+    33/105: $0\s_trig_rotate13_keep[10:0]
+    34/105: $0\s_trig_rotate13_data[87:0]
+    35/105: $0\s_trig_rotate13_valid[0:0]
+    36/105: $0\s_trig_rotate12_user[7:0]
+    37/105: $0\s_trig_rotate12_last[0:0]
+    38/105: $0\s_trig_rotate12_keep[10:0]
+    39/105: $0\s_trig_rotate12_data[87:0]
+    40/105: $0\s_trig_rotate12_valid[0:0]
+    41/105: $0\s_trig_rotate11_user[7:0]
+    42/105: $0\s_trig_rotate11_last[0:0]
+    43/105: $0\s_trig_rotate11_keep[10:0]
+    44/105: $0\s_trig_rotate11_data[87:0]
+    45/105: $0\s_trig_rotate11_valid[0:0]
+    46/105: $0\s_trig_rotate10_user[7:0]
+    47/105: $0\s_trig_rotate10_last[0:0]
+    48/105: $0\s_trig_rotate10_keep[10:0]
+    49/105: $0\s_trig_rotate10_data[87:0]
+    50/105: $0\s_trig_rotate10_valid[0:0]
+    51/105: $0\s_trig_rotate9_user[7:0]
+    52/105: $0\s_trig_rotate9_last[0:0]
+    53/105: $0\s_trig_rotate9_keep[10:0]
+    54/105: $0\s_trig_rotate9_data[87:0]
+    55/105: $0\s_trig_rotate9_valid[0:0]
+    56/105: $0\s_trig_rotate8_user[7:0]
+    57/105: $0\s_trig_rotate8_last[0:0]
+    58/105: $0\s_trig_rotate8_keep[10:0]
+    59/105: $0\s_trig_rotate8_data[87:0]
+    60/105: $0\s_trig_rotate8_valid[0:0]
+    61/105: $0\s_trig_rotate7_user[7:0]
+    62/105: $0\s_trig_rotate7_last[0:0]
+    63/105: $0\s_trig_rotate7_keep[10:0]
+    64/105: $0\s_trig_rotate7_data[87:0]
+    65/105: $0\s_trig_rotate7_valid[0:0]
+    66/105: $0\s_trig_rotate6_user[7:0]
+    67/105: $0\s_trig_rotate6_last[0:0]
+    68/105: $0\s_trig_rotate6_keep[10:0]
+    69/105: $0\s_trig_rotate6_data[87:0]
+    70/105: $0\s_trig_rotate6_valid[0:0]
+    71/105: $0\s_trig_rotate5_user[7:0]
+    72/105: $0\s_trig_rotate5_last[0:0]
+    73/105: $0\s_trig_rotate5_keep[10:0]
+    74/105: $0\s_trig_rotate5_data[87:0]
+    75/105: $0\s_trig_rotate5_valid[0:0]
+    76/105: $0\s_trig_rotate4_user[7:0]
+    77/105: $0\s_trig_rotate4_last[0:0]
+    78/105: $0\s_trig_rotate4_keep[10:0]
+    79/105: $0\s_trig_rotate4_data[87:0]
+    80/105: $0\s_trig_rotate4_valid[0:0]
+    81/105: $0\s_trig_rotate3_user[7:0]
+    82/105: $0\s_trig_rotate3_last[0:0]
+    83/105: $0\s_trig_rotate3_keep[10:0]
+    84/105: $0\s_trig_rotate3_data[87:0]
+    85/105: $0\s_trig_rotate3_valid[0:0]
+    86/105: $0\s_trig_rotate2_user[7:0]
+    87/105: $0\s_trig_rotate2_last[0:0]
+    88/105: $0\s_trig_rotate2_keep[10:0]
+    89/105: $0\s_trig_rotate2_data[87:0]
+    90/105: $0\s_trig_rotate2_valid[0:0]
+    91/105: $0\s_trig_rotate1_user[7:0]
+    92/105: $0\s_trig_rotate1_last[0:0]
+    93/105: $0\s_trig_rotate1_keep[10:0]
+    94/105: $0\s_trig_rotate1_data[87:0]
+    95/105: $0\s_trig_rotate1_valid[0:0]
+    96/105: $0\s_trig_rotate0_user[7:0]
+    97/105: $0\s_trig_rotate0_last[0:0]
+    98/105: $0\s_trig_rotate0_keep[10:0]
+    99/105: $0\s_trig_rotate0_data[87:0]
+   100/105: $0\s_trig_rotate0_valid[0:0]
+   101/105: $0\s_trig_reduce_user[7:0]
+   102/105: $0\s_trig_reduce_last[0:0]
+   103/105: $0\s_trig_reduce_keep[10:0]
+   104/105: $0\s_trig_reduce_data[87:0]
+   105/105: $0\s_trig_reduce_valid[0:0]
+
+3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.8. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\h_Cordic.\s_trig_reduce_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$792' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_reduce_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$793' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_reduce_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$794' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_reduce_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$795' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_reduce_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$796' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate0_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$797' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate0_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$798' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate0_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$799' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate0_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$800' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate0_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$801' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate1_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$802' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate1_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$803' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate1_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$804' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate1_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$805' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate1_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$806' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate2_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$807' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate2_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$808' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate2_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$809' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate2_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$810' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate2_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$811' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate3_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$812' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate3_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$813' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate3_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$814' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate3_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$815' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate3_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$816' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate4_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$817' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate4_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$818' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate4_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$819' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate4_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$820' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate4_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$821' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate5_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$822' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate5_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$823' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate5_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$824' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate5_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$825' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate5_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$826' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate6_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$827' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate6_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$828' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate6_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$829' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate6_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$830' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate6_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$831' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate7_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$832' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate7_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$833' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate7_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$834' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate7_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$835' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate7_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$836' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate8_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$837' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate8_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$838' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate8_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$839' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate8_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$840' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate8_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$841' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate9_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$842' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate9_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$843' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate9_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$844' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate9_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$845' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate9_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$846' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate10_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$847' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate10_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$848' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate10_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$849' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate10_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$850' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate10_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$851' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate11_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$852' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate11_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$853' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate11_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$854' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate11_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$855' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate11_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$856' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate12_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$857' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate12_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$858' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate12_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$859' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate12_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$860' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate12_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$861' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate13_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$862' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate13_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$863' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate13_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$864' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate13_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$865' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate13_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$866' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate14_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$867' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate14_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$868' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate14_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$869' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate14_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$870' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate14_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$871' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate15_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$872' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate15_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$873' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate15_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$874' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate15_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$875' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate15_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$876' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate16_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$877' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate16_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$878' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate16_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$879' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate16_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$880' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate16_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$881' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate17_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$882' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate17_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$883' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate17_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$884' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate17_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$885' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate17_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$886' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate18_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$887' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate18_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$888' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate18_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$889' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate18_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$890' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate18_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$891' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate19_valid' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$892' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate19_data' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$893' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate19_keep' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$894' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate19_last' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$895' with positive edge clock.
+Creating register for signal `\h_Cordic.\s_trig_rotate19_user' using process `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+  created $dff cell `$procdff$896' with positive edge clock.
+
+3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\h_Cordic.$proc$generated/Cordic.v:1427$476'.
+Removing empty process `h_Cordic.$proc$generated/Cordic.v:1427$476'.
+Cleaned up 1 empty switch.
+
+3.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Cordic.
+<suppressed ~123 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Cordic.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Cordic'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Cordic..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~105 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Cordic.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Cordic'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$896 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1287$474_Y, Q = \s_trig_rotate19_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$897 ($sdff) from module h_Cordic (D = \s_trig_rotate18_tuser, Q = \s_trig_rotate19_user).
+Adding SRST signal on $procdff$895 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1286$473_Y, Q = \s_trig_rotate19_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$899 ($sdff) from module h_Cordic (D = \s_trig_rotate18_tlast, Q = \s_trig_rotate19_last).
+Adding SRST signal on $procdff$894 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1285$472_Y, Q = \s_trig_rotate19_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$901 ($sdff) from module h_Cordic (D = \s_trig_rotate18_tkeep, Q = \s_trig_rotate19_keep).
+Adding SRST signal on $procdff$893 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1284$471_Y, Q = \s_trig_rotate19_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$903 ($sdff) from module h_Cordic (D = \n_511, Q = \s_trig_rotate19_data).
+Adding SRST signal on $procdff$892 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1265$454_Y, Q = \s_trig_rotate19_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$905 ($sdff) from module h_Cordic (D = \s_trig_rotate18_tvalid, Q = \s_trig_rotate19_valid).
+Adding SRST signal on $procdff$891 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1264$453_Y, Q = \s_trig_rotate18_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$907 ($sdff) from module h_Cordic (D = \s_trig_rotate17_tuser, Q = \s_trig_rotate18_user).
+Adding SRST signal on $procdff$890 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1263$452_Y, Q = \s_trig_rotate18_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$909 ($sdff) from module h_Cordic (D = \s_trig_rotate17_tlast, Q = \s_trig_rotate18_last).
+Adding SRST signal on $procdff$889 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1262$451_Y, Q = \s_trig_rotate18_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$911 ($sdff) from module h_Cordic (D = \s_trig_rotate17_tkeep, Q = \s_trig_rotate18_keep).
+Adding SRST signal on $procdff$888 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1261$450_Y, Q = \s_trig_rotate18_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$913 ($sdff) from module h_Cordic (D = \n_488, Q = \s_trig_rotate18_data).
+Adding SRST signal on $procdff$887 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1242$433_Y, Q = \s_trig_rotate18_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$915 ($sdff) from module h_Cordic (D = \s_trig_rotate17_tvalid, Q = \s_trig_rotate18_valid).
+Adding SRST signal on $procdff$886 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1239$430_Y, Q = \s_trig_rotate17_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$917 ($sdff) from module h_Cordic (D = \s_trig_rotate16_tuser, Q = \s_trig_rotate17_user).
+Adding SRST signal on $procdff$885 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1238$429_Y, Q = \s_trig_rotate17_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$919 ($sdff) from module h_Cordic (D = \s_trig_rotate16_tlast, Q = \s_trig_rotate17_last).
+Adding SRST signal on $procdff$884 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1237$428_Y, Q = \s_trig_rotate17_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$921 ($sdff) from module h_Cordic (D = \s_trig_rotate16_tkeep, Q = \s_trig_rotate17_keep).
+Adding SRST signal on $procdff$883 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1236$427_Y, Q = \s_trig_rotate17_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$923 ($sdff) from module h_Cordic (D = \n_463, Q = \s_trig_rotate17_data).
+Adding SRST signal on $procdff$882 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1217$410_Y, Q = \s_trig_rotate17_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$925 ($sdff) from module h_Cordic (D = \s_trig_rotate16_tvalid, Q = \s_trig_rotate17_valid).
+Adding SRST signal on $procdff$881 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1214$407_Y, Q = \s_trig_rotate16_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$927 ($sdff) from module h_Cordic (D = \s_trig_rotate15_tuser, Q = \s_trig_rotate16_user).
+Adding SRST signal on $procdff$880 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1213$406_Y, Q = \s_trig_rotate16_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$929 ($sdff) from module h_Cordic (D = \s_trig_rotate15_tlast, Q = \s_trig_rotate16_last).
+Adding SRST signal on $procdff$879 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1212$405_Y, Q = \s_trig_rotate16_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$931 ($sdff) from module h_Cordic (D = \s_trig_rotate15_tkeep, Q = \s_trig_rotate16_keep).
+Adding SRST signal on $procdff$878 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1211$404_Y, Q = \s_trig_rotate16_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$933 ($sdff) from module h_Cordic (D = \n_438, Q = \s_trig_rotate16_data).
+Adding SRST signal on $procdff$877 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1192$387_Y, Q = \s_trig_rotate16_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$935 ($sdff) from module h_Cordic (D = \s_trig_rotate15_tvalid, Q = \s_trig_rotate16_valid).
+Adding SRST signal on $procdff$876 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1189$384_Y, Q = \s_trig_rotate15_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$937 ($sdff) from module h_Cordic (D = \s_trig_rotate14_tuser, Q = \s_trig_rotate15_user).
+Adding SRST signal on $procdff$875 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1188$383_Y, Q = \s_trig_rotate15_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$939 ($sdff) from module h_Cordic (D = \s_trig_rotate14_tlast, Q = \s_trig_rotate15_last).
+Adding SRST signal on $procdff$874 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1187$382_Y, Q = \s_trig_rotate15_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$941 ($sdff) from module h_Cordic (D = \s_trig_rotate14_tkeep, Q = \s_trig_rotate15_keep).
+Adding SRST signal on $procdff$873 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1186$381_Y, Q = \s_trig_rotate15_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$943 ($sdff) from module h_Cordic (D = \n_413, Q = \s_trig_rotate15_data).
+Adding SRST signal on $procdff$872 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1167$364_Y, Q = \s_trig_rotate15_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$945 ($sdff) from module h_Cordic (D = \s_trig_rotate14_tvalid, Q = \s_trig_rotate15_valid).
+Adding SRST signal on $procdff$871 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1164$361_Y, Q = \s_trig_rotate14_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$947 ($sdff) from module h_Cordic (D = \s_trig_rotate13_tuser, Q = \s_trig_rotate14_user).
+Adding SRST signal on $procdff$870 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1163$360_Y, Q = \s_trig_rotate14_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$949 ($sdff) from module h_Cordic (D = \s_trig_rotate13_tlast, Q = \s_trig_rotate14_last).
+Adding SRST signal on $procdff$869 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1162$359_Y, Q = \s_trig_rotate14_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$951 ($sdff) from module h_Cordic (D = \s_trig_rotate13_tkeep, Q = \s_trig_rotate14_keep).
+Adding SRST signal on $procdff$868 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1161$358_Y, Q = \s_trig_rotate14_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$953 ($sdff) from module h_Cordic (D = \n_388, Q = \s_trig_rotate14_data).
+Adding SRST signal on $procdff$867 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1142$341_Y, Q = \s_trig_rotate14_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$955 ($sdff) from module h_Cordic (D = \s_trig_rotate13_tvalid, Q = \s_trig_rotate14_valid).
+Adding SRST signal on $procdff$866 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1139$338_Y, Q = \s_trig_rotate13_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$957 ($sdff) from module h_Cordic (D = \s_trig_rotate12_tuser, Q = \s_trig_rotate13_user).
+Adding SRST signal on $procdff$865 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1138$337_Y, Q = \s_trig_rotate13_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$959 ($sdff) from module h_Cordic (D = \s_trig_rotate12_tlast, Q = \s_trig_rotate13_last).
+Adding SRST signal on $procdff$864 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1137$336_Y, Q = \s_trig_rotate13_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$961 ($sdff) from module h_Cordic (D = \s_trig_rotate12_tkeep, Q = \s_trig_rotate13_keep).
+Adding SRST signal on $procdff$863 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1136$335_Y, Q = \s_trig_rotate13_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$963 ($sdff) from module h_Cordic (D = \n_363, Q = \s_trig_rotate13_data).
+Adding SRST signal on $procdff$862 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1117$318_Y, Q = \s_trig_rotate13_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$965 ($sdff) from module h_Cordic (D = \s_trig_rotate12_tvalid, Q = \s_trig_rotate13_valid).
+Adding SRST signal on $procdff$861 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1114$315_Y, Q = \s_trig_rotate12_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$967 ($sdff) from module h_Cordic (D = \s_trig_rotate11_tuser, Q = \s_trig_rotate12_user).
+Adding SRST signal on $procdff$860 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1113$314_Y, Q = \s_trig_rotate12_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$969 ($sdff) from module h_Cordic (D = \s_trig_rotate11_tlast, Q = \s_trig_rotate12_last).
+Adding SRST signal on $procdff$859 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1112$313_Y, Q = \s_trig_rotate12_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$971 ($sdff) from module h_Cordic (D = \s_trig_rotate11_tkeep, Q = \s_trig_rotate12_keep).
+Adding SRST signal on $procdff$858 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1111$312_Y, Q = \s_trig_rotate12_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$973 ($sdff) from module h_Cordic (D = \n_338, Q = \s_trig_rotate12_data).
+Adding SRST signal on $procdff$857 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1092$295_Y, Q = \s_trig_rotate12_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$975 ($sdff) from module h_Cordic (D = \s_trig_rotate11_tvalid, Q = \s_trig_rotate12_valid).
+Adding SRST signal on $procdff$856 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1089$292_Y, Q = \s_trig_rotate11_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$977 ($sdff) from module h_Cordic (D = \s_trig_rotate10_tuser, Q = \s_trig_rotate11_user).
+Adding SRST signal on $procdff$855 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1088$291_Y, Q = \s_trig_rotate11_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$979 ($sdff) from module h_Cordic (D = \s_trig_rotate10_tlast, Q = \s_trig_rotate11_last).
+Adding SRST signal on $procdff$854 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1087$290_Y, Q = \s_trig_rotate11_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$981 ($sdff) from module h_Cordic (D = \s_trig_rotate10_tkeep, Q = \s_trig_rotate11_keep).
+Adding SRST signal on $procdff$853 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1086$289_Y, Q = \s_trig_rotate11_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$983 ($sdff) from module h_Cordic (D = \n_313, Q = \s_trig_rotate11_data).
+Adding SRST signal on $procdff$852 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1067$272_Y, Q = \s_trig_rotate11_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$985 ($sdff) from module h_Cordic (D = \s_trig_rotate10_tvalid, Q = \s_trig_rotate11_valid).
+Adding SRST signal on $procdff$851 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1064$269_Y, Q = \s_trig_rotate10_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$987 ($sdff) from module h_Cordic (D = \s_trig_rotate9_tuser, Q = \s_trig_rotate10_user).
+Adding SRST signal on $procdff$850 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1063$268_Y, Q = \s_trig_rotate10_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$989 ($sdff) from module h_Cordic (D = \s_trig_rotate9_tlast, Q = \s_trig_rotate10_last).
+Adding SRST signal on $procdff$849 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1062$267_Y, Q = \s_trig_rotate10_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$991 ($sdff) from module h_Cordic (D = \s_trig_rotate9_tkeep, Q = \s_trig_rotate10_keep).
+Adding SRST signal on $procdff$848 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1061$266_Y, Q = \s_trig_rotate10_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$993 ($sdff) from module h_Cordic (D = \n_288, Q = \s_trig_rotate10_data).
+Adding SRST signal on $procdff$847 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1042$249_Y, Q = \s_trig_rotate10_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$995 ($sdff) from module h_Cordic (D = \s_trig_rotate9_tvalid, Q = \s_trig_rotate10_valid).
+Adding SRST signal on $procdff$846 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1039$246_Y, Q = \s_trig_rotate9_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$997 ($sdff) from module h_Cordic (D = \s_trig_rotate8_tuser, Q = \s_trig_rotate9_user).
+Adding SRST signal on $procdff$845 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1038$245_Y, Q = \s_trig_rotate9_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$999 ($sdff) from module h_Cordic (D = \s_trig_rotate8_tlast, Q = \s_trig_rotate9_last).
+Adding SRST signal on $procdff$844 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1037$244_Y, Q = \s_trig_rotate9_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1001 ($sdff) from module h_Cordic (D = \s_trig_rotate8_tkeep, Q = \s_trig_rotate9_keep).
+Adding SRST signal on $procdff$843 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1036$243_Y, Q = \s_trig_rotate9_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1003 ($sdff) from module h_Cordic (D = \n_263, Q = \s_trig_rotate9_data).
+Adding SRST signal on $procdff$842 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1017$226_Y, Q = \s_trig_rotate9_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1005 ($sdff) from module h_Cordic (D = \s_trig_rotate8_tvalid, Q = \s_trig_rotate9_valid).
+Adding SRST signal on $procdff$841 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1014$223_Y, Q = \s_trig_rotate8_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1007 ($sdff) from module h_Cordic (D = \s_trig_rotate7_tuser, Q = \s_trig_rotate8_user).
+Adding SRST signal on $procdff$840 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1013$222_Y, Q = \s_trig_rotate8_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1009 ($sdff) from module h_Cordic (D = \s_trig_rotate7_tlast, Q = \s_trig_rotate8_last).
+Adding SRST signal on $procdff$839 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1012$221_Y, Q = \s_trig_rotate8_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1011 ($sdff) from module h_Cordic (D = \s_trig_rotate7_tkeep, Q = \s_trig_rotate8_keep).
+Adding SRST signal on $procdff$838 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:1011$220_Y, Q = \s_trig_rotate8_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1013 ($sdff) from module h_Cordic (D = \n_238, Q = \s_trig_rotate8_data).
+Adding SRST signal on $procdff$837 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:992$203_Y, Q = \s_trig_rotate8_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1015 ($sdff) from module h_Cordic (D = \s_trig_rotate7_tvalid, Q = \s_trig_rotate8_valid).
+Adding SRST signal on $procdff$836 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:989$200_Y, Q = \s_trig_rotate7_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1017 ($sdff) from module h_Cordic (D = \s_trig_rotate6_tuser, Q = \s_trig_rotate7_user).
+Adding SRST signal on $procdff$835 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:988$199_Y, Q = \s_trig_rotate7_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1019 ($sdff) from module h_Cordic (D = \s_trig_rotate6_tlast, Q = \s_trig_rotate7_last).
+Adding SRST signal on $procdff$834 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:987$198_Y, Q = \s_trig_rotate7_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1021 ($sdff) from module h_Cordic (D = \s_trig_rotate6_tkeep, Q = \s_trig_rotate7_keep).
+Adding SRST signal on $procdff$833 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:986$197_Y, Q = \s_trig_rotate7_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1023 ($sdff) from module h_Cordic (D = \n_213, Q = \s_trig_rotate7_data).
+Adding SRST signal on $procdff$832 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:967$180_Y, Q = \s_trig_rotate7_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1025 ($sdff) from module h_Cordic (D = \s_trig_rotate6_tvalid, Q = \s_trig_rotate7_valid).
+Adding SRST signal on $procdff$831 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:964$177_Y, Q = \s_trig_rotate6_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1027 ($sdff) from module h_Cordic (D = \s_trig_rotate5_tuser, Q = \s_trig_rotate6_user).
+Adding SRST signal on $procdff$830 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:963$176_Y, Q = \s_trig_rotate6_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1029 ($sdff) from module h_Cordic (D = \s_trig_rotate5_tlast, Q = \s_trig_rotate6_last).
+Adding SRST signal on $procdff$829 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:962$175_Y, Q = \s_trig_rotate6_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1031 ($sdff) from module h_Cordic (D = \s_trig_rotate5_tkeep, Q = \s_trig_rotate6_keep).
+Adding SRST signal on $procdff$828 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:961$174_Y, Q = \s_trig_rotate6_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1033 ($sdff) from module h_Cordic (D = \n_188, Q = \s_trig_rotate6_data).
+Adding SRST signal on $procdff$827 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:942$157_Y, Q = \s_trig_rotate6_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1035 ($sdff) from module h_Cordic (D = \s_trig_rotate5_tvalid, Q = \s_trig_rotate6_valid).
+Adding SRST signal on $procdff$826 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:939$154_Y, Q = \s_trig_rotate5_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1037 ($sdff) from module h_Cordic (D = \s_trig_rotate4_tuser, Q = \s_trig_rotate5_user).
+Adding SRST signal on $procdff$825 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:938$153_Y, Q = \s_trig_rotate5_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1039 ($sdff) from module h_Cordic (D = \s_trig_rotate4_tlast, Q = \s_trig_rotate5_last).
+Adding SRST signal on $procdff$824 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:937$152_Y, Q = \s_trig_rotate5_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1041 ($sdff) from module h_Cordic (D = \s_trig_rotate4_tkeep, Q = \s_trig_rotate5_keep).
+Adding SRST signal on $procdff$823 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:936$151_Y, Q = \s_trig_rotate5_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1043 ($sdff) from module h_Cordic (D = \n_163, Q = \s_trig_rotate5_data).
+Adding SRST signal on $procdff$822 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:917$134_Y, Q = \s_trig_rotate5_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1045 ($sdff) from module h_Cordic (D = \s_trig_rotate4_tvalid, Q = \s_trig_rotate5_valid).
+Adding SRST signal on $procdff$821 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:914$131_Y, Q = \s_trig_rotate4_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1047 ($sdff) from module h_Cordic (D = \s_trig_rotate3_tuser, Q = \s_trig_rotate4_user).
+Adding SRST signal on $procdff$820 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:913$130_Y, Q = \s_trig_rotate4_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1049 ($sdff) from module h_Cordic (D = \s_trig_rotate3_tlast, Q = \s_trig_rotate4_last).
+Adding SRST signal on $procdff$819 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:912$129_Y, Q = \s_trig_rotate4_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1051 ($sdff) from module h_Cordic (D = \s_trig_rotate3_tkeep, Q = \s_trig_rotate4_keep).
+Adding SRST signal on $procdff$818 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:911$128_Y, Q = \s_trig_rotate4_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1053 ($sdff) from module h_Cordic (D = \n_138, Q = \s_trig_rotate4_data).
+Adding SRST signal on $procdff$817 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:892$111_Y, Q = \s_trig_rotate4_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1055 ($sdff) from module h_Cordic (D = \s_trig_rotate3_tvalid, Q = \s_trig_rotate4_valid).
+Adding SRST signal on $procdff$816 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:889$108_Y, Q = \s_trig_rotate3_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1057 ($sdff) from module h_Cordic (D = \s_trig_rotate2_tuser, Q = \s_trig_rotate3_user).
+Adding SRST signal on $procdff$815 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:888$107_Y, Q = \s_trig_rotate3_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1059 ($sdff) from module h_Cordic (D = \s_trig_rotate2_tlast, Q = \s_trig_rotate3_last).
+Adding SRST signal on $procdff$814 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:887$106_Y, Q = \s_trig_rotate3_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1061 ($sdff) from module h_Cordic (D = \s_trig_rotate2_tkeep, Q = \s_trig_rotate3_keep).
+Adding SRST signal on $procdff$813 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:886$105_Y, Q = \s_trig_rotate3_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1063 ($sdff) from module h_Cordic (D = \n_113, Q = \s_trig_rotate3_data).
+Adding SRST signal on $procdff$812 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:867$88_Y, Q = \s_trig_rotate3_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1065 ($sdff) from module h_Cordic (D = \s_trig_rotate2_tvalid, Q = \s_trig_rotate3_valid).
+Adding SRST signal on $procdff$811 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:864$85_Y, Q = \s_trig_rotate2_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1067 ($sdff) from module h_Cordic (D = \s_trig_rotate1_tuser, Q = \s_trig_rotate2_user).
+Adding SRST signal on $procdff$810 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:863$84_Y, Q = \s_trig_rotate2_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1069 ($sdff) from module h_Cordic (D = \s_trig_rotate1_tlast, Q = \s_trig_rotate2_last).
+Adding SRST signal on $procdff$809 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:862$83_Y, Q = \s_trig_rotate2_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1071 ($sdff) from module h_Cordic (D = \s_trig_rotate1_tkeep, Q = \s_trig_rotate2_keep).
+Adding SRST signal on $procdff$808 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:861$82_Y, Q = \s_trig_rotate2_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1073 ($sdff) from module h_Cordic (D = \n_88, Q = \s_trig_rotate2_data).
+Adding SRST signal on $procdff$807 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:842$65_Y, Q = \s_trig_rotate2_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1075 ($sdff) from module h_Cordic (D = \s_trig_rotate1_tvalid, Q = \s_trig_rotate2_valid).
+Adding SRST signal on $procdff$806 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:839$62_Y, Q = \s_trig_rotate1_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1077 ($sdff) from module h_Cordic (D = \s_trig_rotate0_tuser, Q = \s_trig_rotate1_user).
+Adding SRST signal on $procdff$805 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:838$61_Y, Q = \s_trig_rotate1_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1079 ($sdff) from module h_Cordic (D = \s_trig_rotate0_tlast, Q = \s_trig_rotate1_last).
+Adding SRST signal on $procdff$804 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:837$60_Y, Q = \s_trig_rotate1_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1081 ($sdff) from module h_Cordic (D = \s_trig_rotate0_tkeep, Q = \s_trig_rotate1_keep).
+Adding SRST signal on $procdff$803 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:836$59_Y, Q = \s_trig_rotate1_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1083 ($sdff) from module h_Cordic (D = \n_63, Q = \s_trig_rotate1_data).
+Adding SRST signal on $procdff$802 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:817$42_Y, Q = \s_trig_rotate1_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1085 ($sdff) from module h_Cordic (D = \s_trig_rotate0_tvalid, Q = \s_trig_rotate1_valid).
+Adding SRST signal on $procdff$801 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:814$39_Y, Q = \s_trig_rotate0_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1087 ($sdff) from module h_Cordic (D = \s_trig_reduce_tuser, Q = \s_trig_rotate0_user).
+Adding SRST signal on $procdff$800 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:813$38_Y, Q = \s_trig_rotate0_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1089 ($sdff) from module h_Cordic (D = \s_trig_reduce_tlast, Q = \s_trig_rotate0_last).
+Adding SRST signal on $procdff$799 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:812$37_Y, Q = \s_trig_rotate0_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1091 ($sdff) from module h_Cordic (D = \s_trig_reduce_tkeep, Q = \s_trig_rotate0_keep).
+Adding SRST signal on $procdff$798 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:811$36_Y, Q = \s_trig_rotate0_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1093 ($sdff) from module h_Cordic (D = \n_38, Q = \s_trig_rotate0_data).
+Adding SRST signal on $procdff$797 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:792$19_Y, Q = \s_trig_rotate0_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1095 ($sdff) from module h_Cordic (D = \s_trig_reduce_tvalid, Q = \s_trig_rotate0_valid).
+Adding SRST signal on $procdff$796 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:789$16_Y, Q = \s_trig_reduce_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1097 ($sdff) from module h_Cordic (D = \s_s_axis_tuser, Q = \s_trig_reduce_user).
+Adding SRST signal on $procdff$795 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:788$15_Y, Q = \s_trig_reduce_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1099 ($sdff) from module h_Cordic (D = \s_s_axis_tlast, Q = \s_trig_reduce_last).
+Adding SRST signal on $procdff$794 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:787$14_Y, Q = \s_trig_reduce_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1101 ($sdff) from module h_Cordic (D = 11'11111111111, Q = \s_trig_reduce_keep).
+Adding SRST signal on $procdff$793 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:786$13_Y, Q = \s_trig_reduce_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1103 ($sdff) from module h_Cordic (D = \n_13, Q = \s_trig_reduce_data).
+Adding SRST signal on $procdff$792 ($dff) from module h_Cordic (D = $ternary$generated/Cordic.v:776$5_Y, Q = \s_trig_reduce_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1105 ($sdff) from module h_Cordic (D = \s_s_axis_tvalid, Q = \s_trig_reduce_valid).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Cordic..
+Removed 231 unused cells and 937 unused wires.
+<suppressed ~379 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Cordic.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Cordic..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~62 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Cordic.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Cordic'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 32 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 33 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 34 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 35 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 36 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 37 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 38 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 39 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 40 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 41 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 42 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 43 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 44 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 45 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 46 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 47 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 48 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 49 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 50 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 51 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 52 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 53 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 54 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 55 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 56 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 57 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 58 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 59 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 60 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 61 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 62 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+Setting constant 0-bit at position 63 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_Cordic.
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Cordic..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Cordic.
+<suppressed ~2 debug messages>
+
+4.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Cordic..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~62 debug messages>
+
+4.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Cordic.
+Performed a total of 0 changes.
+
+4.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Cordic'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Cordic..
+<suppressed ~1 debug messages>
+
+4.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Cordic.
+<suppressed ~1 debug messages>
+
+4.23. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.24. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Cordic..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.25. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Cordic.
+Performed a total of 0 changes.
+
+4.26. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Cordic'.
+Removed a total of 0 cells.
+
+4.27. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.28. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Cordic..
+
+4.29. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Cordic.
+
+4.30. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing MEMORY pass.
+
+5.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+5.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+5.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+5.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+5.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+5.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Cordic..
+
+5.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+5.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+5.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Cordic..
+
+5.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Cordic.
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Cordic'.
+Removed a total of 0 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Cordic..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Cordic.
+Performed a total of 0 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Cordic'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Cordic..
+
+6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Cordic.
+
+6.9. Finished OPT passes. (There is nothing left to do.)
+
+7. Executing CHECK pass (checking for obvious problems).
+Checking module h_Cordic...
+Found and reported 0 problems.
+
+8. Printing statistics.
+
+=== h_Cordic ===
+
+   Number of wires:                621
+   Number of wire bits:          16085
+   Number of public wires:         621
+   Number of public wire bits:   16085
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                327
+     $add                           58
+     $and                           21
+     $mux                           61
+     $not                           21
+     $or                            21
+     $sdffe                         84
+     $sub                           60
+     $xor                            1
+
+9. Executing Verilog backend.
+
+9.1. Executing BMUXMAP pass.
+
+9.2. Executing DEMUXMAP pass.
+Dumping module `\h_Cordic'.

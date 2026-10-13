@@ -1,0 +1,71 @@
+NEW CHAT TASK: Build a very simple educational computer for nine-year-olds
+
+Context
+We built SharpHDL, a C# hardware-construction library that emits Verilog, with
+simulation, width-aware types, explicit registers and memories. Its separate
+TinyRisc16 example is an engineering demonstration. This task is a simpler
+children's computer/course, not a further expansion of that RISC processor.
+
+Goal
+Let children write a tiny program, assemble it, load it into visible memory,
+single-step it, and watch the program counter choose the next instruction and
+an accumulator change. Begin with familiar decimal numbers. Make it tangible
+and approachable for nine-year-olds; include some hockey examples.
+
+Key distinctions to teach accurately
+- An ALU performs arithmetic/logic. A processor adds instruction decoding,
+  sequencing and registers; memory and I/O make a usable computer system.
+- Decimal presentation does not require decimal circuitry. Show values in
+  decimal first, then reveal binary as an optional view of the same value.
+- A true decimal/BCD datapath is possible but is not necessary for the first
+  course. SharpHDL remains relevant even with a decimal user interface.
+- A microcontroller integrates a processor, memory and peripherals.
+- A PDP-11 or Intel4004 may inspire a later history sidebar; do not emulate
+  their ISA or present this invented teaching machine as historically original.
+
+Suggested first machine (refine and document before implementing)
+One accumulator, a program counter, an instruction register, small instruction
+memory and small data memory; roughly8..10 instructions. Start with SET, ADD,
+SUB, LOAD, STORE, JUMP, JUMPIFZERO, INPUT, OUTPUT and HALT. Decide whether
+arithmetic operands are literals or memory addresses and make the syntax
+unambiguous. A signed decimal teaching range such as -999..999 is reasonable,
+but define overflow visibly (stop with a friendly error, or explain wrapping).
+Keep the UI's decimal values, assembler and hardware representation consistent.
+Use separate program/data views initially so a child cannot accidentally treat
+a number as an instruction. No pipeline, interrupts, stack or complex addressing.
+
+Deliverables
+1. A short requirements/specification document with numeric ranges, instruction
+   encoding, reset/load/step/run behavior, errors, memory rules and test IDs.
+2. An interactive HTML lesson/front panel with:
+   - editable short programs and a clear Assemble -> Load -> Step/Run sequence;
+   - decimal PC/address/value displays, optional binary disclosure;
+   - current instruction highlighting and explanation in plain English;
+   - separate instruction-step and optional clock/microstep views;
+   - accumulator, instruction register, memory, inputs and output;
+   - slow Run, Pause, Reset, execution budget and friendly diagnostics;
+   - accessible keyboard controls and layout usable on tablet/laptop;
+   - a clear distinction between editing source, assembled words and loaded
+     memory. Editing source must not silently change the running program.
+3. A real assembler and independent software reference machine.
+4. Straightforward SharpHDL hardware implementing the declared machine, with
+   heavily commented generated Verilog. Start with explicit structural logic,
+   not an emulator compiled one CIL operation per clock.
+5. Worked lessons: equality/numbers; input plus3; add two scores; countdown;
+   repeat with a jump; a zero test; a tiny hockey scoreboard program.
+6. Kid-friendly diagrams/tables and predict-before-step questions, with answers.
+7. Tests comparing interpreter, SharpHDL simulation and generated RTL. Verify
+   branches, negative values, zero, numeric limits, bad programs, reset, pause,
+   load semantics and infinite-loop limits. Keep children free of testbench
+   syntax while retaining teacher-owned tests.
+8. Optional prepared VeriSim links for real HDL waveforms. The interactive
+   teaching simulation and a genuine Verilog simulator must be labeled honestly.
+
+Scope control
+Do not start with binary drills or the complexity of PDP-11/4004. First let the
+child explain: "The PC points here, this instruction changes this number, and
+then the PC moves here." Introduce binary once that model is understood. Keep
+C# class/function boilerplate in a teacher view. Build the smallest complete
+experience before extending it. Do not modify the existing RISC processor unless
+an explicitly shared library defect requires it. Ask for the current SharpHDL
+archive/repo if it is not available; do not invent its API.

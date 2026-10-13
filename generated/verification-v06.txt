@@ -1,0 +1,248 @@
+SharpHDL 0.6 verification — 2026-10-13 UTC
+
+C# (Mono compilation and execution):
+  15,212 base + 49,234 feature + 6,698 numeric = 71,144 assertions passed.
+F# (direct .NET 8 C#/F# compilers and execution):
+  8,597 assertions passed; eight F# designs generated and tested.
+
+New checks cover typed widening and fixed-point nearest-even saturation;
+independent exact-rational float add/subtract/multiply/divide references;
+float precision conversions; math accuracy using quantized-input double
+references; extreme exponent samples; NaR, canonical zero and domain rules;
+skid capacity/order/sidebands/reset/latency/throughput/ready independence;
+and C#/F# gain and complex-power pipelines with backpressure.
+
+Icarus Verilog differential tests:
+  67 C#-generated RTL benches passed.
+  Eight F#-generated RTL benches passed; AXI wrappers compiled.
+
+Yosys structural RTL synthesis and post-synthesis trace simulation passed for:
+  SkidBuffer16, QuantizedGain24, Float16_add, Float16_mul, Float16_div,
+  Float16_sqrt, Float16_log2, Float16_cos.
+  Used proc -norom to keep explicit coefficient case logic.
+
+Largest observed normalized error |actual-reference|/max(1,|reference|):
+  Tiny16 math: 0.00539015 (sampled power).
+  Compact24 math: 0.000063477 (sampled power).
+These are sampled maxima, not proven bounds or universal tolerances.
+See generated/numeric_accuracy.txt and individual test cases for ranges.
+
+Custom finite formats are not IEEE 754 or historical Level II binary compatible.
+No FPGA placement/routing, resource budget, clock rate or board validation.
+The new float functions are direct combinational networks; stream adapters
+add output storage but do not internally pipeline long arithmetic paths.
+MSBuild remains unavailable in this environment; the SDK compilers were
+invoked directly, as documented in examples/FSharp/build_direct.py.
+
+
+Execution log excerpts:
+
+csharp-v06.log
+PASS: 49234 feature assertions; max CORDIC error 2.4165E-06; max ROM error 5.72205E-06
+  sqrt16 max normalized error 0.00039714
+  reciprocal16 max normalized error 0.00024081
+  log216 max normalized error 0.00043175
+  log16 max normalized error 0.00097238
+  log1016 max normalized error 0.00067244
+  exp216 max normalized error 0.00040253
+  exp16 max normalized error 0.0014158
+  sin16 max normalized error 0.00023342
+  cos16 max normalized error 0.00024188
+  tan16 max normalized error 0.00096548
+  atan16 max normalized error 0.0011316
+  atan216 max normalized error 0.00079248
+  pow16 max normalized error 0.0053901
+  sqrt24 max normalized error 6.5105E-06
+  reciprocal24 max normalized error 3.2883E-06
+  log224 max normalized error 6.7522E-06
+  log24 max normalized error 1.1882E-05
+  log1024 max normalized error 1.3207E-05
+  exp224 max normalized error 5.2032E-06
+  exp24 max normalized error 3.2706E-05
+  sin24 max normalized error 3.4854E-06
+  cos24 max normalized error 3.7854E-06
+  tan24 max normalized error 6.1243E-06
+  atan24 max normalized error 9.6784E-06
+  atan224 max normalized error 1.6812E-05
+  pow24 max normalized error 6.3477E-05
+PASS: 6698 numeric assertions; max normalized transcendental error 0.00539015
+PASS: 15212 C# assertions; generated five HDL differential testbenches.
+
+fsharp-v06.log
+F# oscillator maximum observed error: 2.3320064e-06
+Filter bank 2 channels: 96 input samples, 192 output results, 373 cycles (includes stalls)
+Filter bank 3 channels: 96 input samples, 288 output results, 515 cycles (includes stalls)
+Filter bank 4 channels: 96 input samples, 384 output results, 647 cycles (includes stalls)
+PASS: 8597 F# assertions; eight actual F# hardware designs emitted.
+
+hdl-v06.log
+PASS HDL Arbiter
+generated/Arbiter_tb.v:5994: $finish called at 622000 (1ps)
+PASS HDL ComplexPower24
+generated/ComplexPower24_tb.v:2666: $finish called at 404000 (1ps)
+PASS HDL Cordic
+generated/Cordic_tb.v:8364: $finish called at 1282000 (1ps)
+PASS HDL CrcPacket
+generated/CrcPacket_tb.v:1180: $finish called at 170000 (1ps)
+PASS HDL DebugUartController
+generated/DebugUartController_tb.v:998: $finish called at 128000 (1ps)
+PASS HDL AXI reset/payload/stall adapter
+generated/Fifo1_axi_tb.v:29: $finish called at 15000 (1ps)
+PASS HDL Fifo1
+generated/Fifo1_tb.v:9262: $finish called at 1440000 (1ps)
+PASS HDL Fifo4
+generated/Fifo4_tb.v:8306: $finish called at 1316000 (1ps)
+PASS HDL FixedRounding
+generated/FixedRounding_tb.v:259: $finish called at 256 (1s)
+PASS HDL Float16_add
+generated/Float16_add_tb.v:424: $finish called at 421 (1s)
+PASS HDL Float16_atan2
+generated/Float16_atan2_tb.v:76: $finish called at 73 (1s)
+PASS HDL Float16_atan
+generated/Float16_atan_tb.v:77: $finish called at 74 (1s)
+PASS HDL Float16_cos
+generated/Float16_cos_tb.v:78: $finish called at 75 (1s)
+PASS HDL Float16_div
+generated/Float16_div_tb.v:424: $finish called at 421 (1s)
+PASS HDL Float16_exp2
+generated/Float16_exp2_tb.v:74: $finish called at 71 (1s)
+PASS HDL Float16_exp
+generated/Float16_exp_tb.v:74: $finish called at 71 (1s)
+PASS HDL Float16_log10
+generated/Float16_log10_tb.v:75: $finish called at 72 (1s)
+PASS HDL Float16_log2
+generated/Float16_log2_tb.v:171: $finish called at 168 (1s)
+PASS HDL Float16_log
+generated/Float16_log_tb.v:75: $finish called at 72 (1s)
+PASS HDL Float16_mul
+generated/Float16_mul_tb.v:424: $finish called at 421 (1s)
+PASS HDL Float16_pow
+generated/Float16_pow_tb.v:75: $finish called at 72 (1s)
+PASS HDL Float16_reciprocal
+generated/Float16_reciprocal_tb.v:170: $finish called at 167 (1s)
+PASS HDL Float16_sin
+generated/Float16_sin_tb.v:78: $finish called at 75 (1s)
+PASS HDL Float16_sqrt
+generated/Float16_sqrt_tb.v:171: $finish called at 168 (1s)
+PASS HDL Float16_sub
+generated/Float16_sub_tb.v:424: $finish called at 421 (1s)
+PASS HDL Float16_tan
+generated/Float16_tan_tb.v:75: $finish called at 72 (1s)
+PASS HDL Float24_add
+generated/Float24_add_tb.v:424: $finish called at 421 (1s)
+PASS HDL Float24_atan2
+generated/Float24_atan2_tb.v:76: $finish called at 73 (1s)
+PASS HDL Float24_atan
+generated/Float24_atan_tb.v:77: $finish called at 74 (1s)
+PASS HDL Float24_cos
+generated/Float24_cos_tb.v:78: $finish called at 75 (1s)
+PASS HDL Float24_div
+generated/Float24_div_tb.v:424: $finish called at 421 (1s)
+PASS HDL Float24_exp2
+generated/Float24_exp2_tb.v:74: $finish called at 71 (1s)
+PASS HDL Float24_exp
+generated/Float24_exp_tb.v:74: $finish called at 71 (1s)
+PASS HDL Float24_log10
+generated/Float24_log10_tb.v:75: $finish called at 72 (1s)
+PASS HDL Float24_log2
+generated/Float24_log2_tb.v:174: $finish called at 171 (1s)
+PASS HDL Float24_log
+generated/Float24_log_tb.v:75: $finish called at 72 (1s)
+PASS HDL Float24_mul
+generated/Float24_mul_tb.v:424: $finish called at 421 (1s)
+PASS HDL Float24_pow
+generated/Float24_pow_tb.v:75: $finish called at 72 (1s)
+PASS HDL Float24_reciprocal
+generated/Float24_reciprocal_tb.v:173: $finish called at 170 (1s)
+PASS HDL Float24_sin
+generated/Float24_sin_tb.v:78: $finish called at 75 (1s)
+PASS HDL Float24_sqrt
+generated/Float24_sqrt_tb.v:174: $finish called at 171 (1s)
+PASS HDL Float24_sub
+generated/Float24_sub_tb.v:424: $finish called at 421 (1s)
+PASS HDL Float24_tan
+generated/Float24_tan_tb.v:75: $finish called at 72 (1s)
+PASS HDL FloatConvert16to24
+generated/FloatConvert16to24_tb.v:303: $finish called at 300 (1s)
+PASS HDL FloatConvert24to16
+generated/FloatConvert24to16_tb.v:303: $finish called at 300 (1s)
+PASS HDL HeaderRewrite
+generated/HeaderRewrite_tb.v:10: $finish called at 4000 (1ps)
+PASS HDL Latency0
+generated/Latency0_tb.v:199: $finish called at 46000 (1ps)
+PASS HDL Latency1
+generated/Latency1_tb.v:47: $finish called at 8000 (1ps)
+PASS HDL Latency2
+generated/Latency2_tb.v:119: $finish called at 26000 (1ps)
+PASS HDL PacketPeak
+generated/PacketPeak_tb.v:5572: $finish called at 854000 (1ps)
+PASS HDL PacketRouter
+generated/PacketRouter_tb.v:8526: $finish called at 886000 (1ps)
+PASS HDL PolynomialExp2Fraction
+generated/PolynomialExp2Fraction_tb.v:10678: $finish called at 1636000 (1ps)
+PASS HDL PolynomialLog2Mantissa
+generated/PolynomialLog2Mantissa_tb.v:10600: $finish called at 1618000 (1ps)
+PASS HDL PolynomialReciprocalMantissa
+generated/PolynomialReciprocalMantissa_tb.v:10526: $finish called at 1608000 (1ps)
+PASS HDL PolynomialSqrtMantissa
+generated/PolynomialSqrtMantissa_tb.v:10896: $finish called at 1670000 (1ps)
+PASS HDL QuantizedGain24
+generated/QuantizedGain24_tb.v:2794: $finish called at 424000 (1ps)
+PASS HDL RomExp2Fraction
+generated/RomExp2Fraction_tb.v:11736: $finish called at 1778000 (1ps)
+PASS HDL RomLog2Mantissa
+generated/RomLog2Mantissa_tb.v:11794: $finish called at 1788000 (1ps)
+PASS HDL RomReciprocalMantissa
+generated/RomReciprocalMantissa_tb.v:11426: $finish called at 1728000 (1ps)
+PASS HDL RomSqrtMantissa
+generated/RomSqrtMantissa_tb.v:11838: $finish called at 1800000 (1ps)
+PASS HDL SignedLookup
+generated/SignedLookup_tb.v:2315: $finish called at 514000 (1ps)
+PASS HDL SkidBuffer16
+generated/SkidBuffer16_tb.v:11922: $finish called at 1602000 (1ps)
+PASS HDL width 17
+generated/probe17_tb.v:3386: $finish called at 322 (1s)
+PASS HDL width 1
+generated/probe1_tb.v:3386: $finish called at 322 (1s)
+PASS HDL width 3
+generated/probe3_tb.v:3386: $finish called at 322 (1s)
+PASS HDL width 65
+generated/probe65_tb.v:3386: $finish called at 322 (1s)
+PASS HDL width 8
+generated/probe8_tb.v:3386: $finish called at 322 (1s)
+
+fsharp-hdl-v06.log
+PASS HDL FsComplexPower24
+generated/fsharp/FsComplexPower24_tb.v:2344: $finish called at 358000 (1ps)
+PASS HDL FsFilterBank2
+generated/fsharp/FsFilterBank2_tb.v:5122: $finish called at 748000 (1ps)
+PASS HDL FsFilterBank3
+generated/fsharp/FsFilterBank3_tb.v:7082: $finish called at 1032000 (1ps)
+PASS HDL FsFilterBank4
+generated/fsharp/FsFilterBank4_tb.v:8962: $finish called at 1296000 (1ps)
+PASS HDL FsFir
+generated/fsharp/FsFir_tb.v:6052: $finish called at 926000 (1ps)
+PASS HDL FsOscillator
+generated/fsharp/FsOscillator_tb.v:2540: $finish called at 634000 (1ps)
+PASS HDL FsQuantizedGain24
+generated/fsharp/FsQuantizedGain24_tb.v:2272: $finish called at 350000 (1ps)
+PASS HDL FsScramblerRoundTrip
+generated/fsharp/FsScramblerRoundTrip_tb.v:7074: $finish called at 1096000 (1ps)
+
+synthesis-v06.log
+PASS HDL SkidBuffer16
+generated/SkidBuffer16_tb.v:11922: $finish called at 1602000 (1ps)
+PASS HDL QuantizedGain24
+generated/QuantizedGain24_tb.v:2794: $finish called at 424000 (1ps)
+PASS HDL Float16_add
+generated/Float16_add_tb.v:424: $finish called at 421 (1s)
+PASS HDL Float16_mul
+generated/Float16_mul_tb.v:424: $finish called at 421 (1s)
+PASS HDL Float16_div
+generated/Float16_div_tb.v:424: $finish called at 421 (1s)
+PASS HDL Float16_sqrt
+generated/Float16_sqrt_tb.v:171: $finish called at 168 (1s)
+PASS HDL Float16_log2
+generated/Float16_log2_tb.v:171: $finish called at 168 (1s)
+PASS HDL Float16_cos
+generated/Float16_cos_tb.v:78: $finish called at 75 (1s)

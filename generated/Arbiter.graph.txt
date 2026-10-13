@@ -1,0 +1,70 @@
+module Arbiter
+input a_axis_tdata : bits[32]
+input a_axis_tkeep : bits[4]
+input a_axis_tlast : bits[1]
+input a_axis_tuser : bits[8]
+input a_axis_tvalid : bits[1]
+output a_axis_tready : bits[1]
+input b_axis_tdata : bits[32]
+input b_axis_tkeep : bits[4]
+input b_axis_tlast : bits[1]
+input b_axis_tuser : bits[8]
+input b_axis_tvalid : bits[1]
+output b_axis_tready : bits[1]
+output m_axis_tdata : bits[32]
+output m_axis_tkeep : bits[4]
+output m_axis_tlast : bits[1]
+output m_axis_tuser : bits[8]
+output m_axis_tvalid : bits[1]
+input m_axis_tready : bits[1]
+wire arb_tdata : bits[32]
+wire arb_tkeep : bits[4]
+wire arb_tlast : bits[1]
+wire arb_tuser : bits[8]
+wire arb_tvalid : bits[1]
+wire arb_tready : bits[1]
+reg arb_locked : bits[1] reset=0
+reg arb_selected : bits[1] reset=0
+reg arb_turn : bits[1] reset=0
+expressions:
+e0 : bits[1] & (a_axis_tvalid, b_axis_tvalid)
+e1 : bits[1] ~ (a_axis_tvalid)
+e2 : bits[1] mux (e0, arb_turn, e1)
+e3 : bits[1] mux (arb_locked, arb_selected, e2)
+e4 : bits[1] ~ (e3)
+e5 : bits[1] & (arb_tready, e4)
+e6 : bits[1] & (arb_tready, e3)
+e7 : bits[32] mux (e3, b_axis_tdata, a_axis_tdata)
+e8 : bits[4] mux (e3, b_axis_tkeep, a_axis_tkeep)
+e9 : bits[1] mux (e3, b_axis_tlast, a_axis_tlast)
+e10 : bits[8] mux (e3, b_axis_tuser, a_axis_tuser)
+e11 : bits[1] mux (e3, b_axis_tvalid, a_axis_tvalid)
+e12 : bits[1] & (e11, arb_tready)
+e13 : bits[1] & (e12, e9)
+e14 : bits[1] const 0
+e15 : bits[1] ~ (arb_locked)
+e16 : bits[1] & (e11, e15)
+e17 : bits[1] const 1
+e18 : bits[1] mux (e16, e17, arb_locked)
+e19 : bits[1] mux (e13, e14, e18)
+e20 : bits[1] mux (e16, e3, arb_selected)
+e21 : bits[1] & (e12, e9)
+e22 : bits[1] ~ (e3)
+e23 : bits[1] mux (e21, e22, arb_turn)
+connections:
+a_axis_tready <- e5
+b_axis_tready <- e6
+m_axis_tdata <- arb_tdata
+m_axis_tkeep <- arb_tkeep
+m_axis_tlast <- arb_tlast
+m_axis_tuser <- arb_tuser
+m_axis_tvalid <- arb_tvalid
+arb_tdata <- e7
+arb_tkeep <- e8
+arb_tlast <- e9
+arb_tuser <- e10
+arb_tvalid <- e11
+arb_tready <- m_axis_tready
+arb_locked.next <- e19
+arb_selected.next <- e20
+arb_turn.next <- e23

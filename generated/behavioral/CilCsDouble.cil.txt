@@ -1,0 +1,7 @@
+Behavioral.CSharpFunctions.Double
+IL_0000: ldarg.0 
+IL_0001: ldc.i4.2 
+IL_0002: mul 
+IL_0003: ret 
+
+Instructions visited: 4; symbolic branches: 0; method bodies: 1

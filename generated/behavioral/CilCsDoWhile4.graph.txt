@@ -1,0 +1,14 @@
+module CilCsDoWhile4
+input a : bits[32]
+input b : bits[32]
+output y : bits[32]
+output fault : bits[1]
+expressions:
+e0 : bits[32] ^ (a, b)
+e1 : bits[32] ^ (e0, b)
+e2 : bits[32] ^ (e1, b)
+e3 : bits[32] ^ (e2, b)
+e4 : bits[1] const 0
+connections:
+y <- e3
+fault <- e4

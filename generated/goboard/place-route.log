@@ -1,0 +1,240 @@
+Info: constrained 'i_Clk' to bel 'X0/Y8/io1'
+Info: constrained 'o_LED_1' to bel 'X13/Y6/io1'
+Info: constrained 'o_LED_2' to bel 'X13/Y7/io0'
+Info: constrained 'o_LED_3' to bel 'X13/Y7/io1'
+Info: constrained 'o_LED_4' to bel 'X13/Y8/io0'
+Info: constrained 'i_Switch_1' to bel 'X13/Y4/io1'
+Info: constrained 'i_Switch_2' to bel 'X13/Y3/io1'
+Info: constrained 'i_Switch_3' to bel 'X13/Y6/io0'
+Info: constrained 'i_Switch_4' to bel 'X13/Y4/io0'
+Info: constrained 'o_Segment1_A' to bel 'X0/Y13/io1'
+Info: constrained 'o_Segment1_B' to bel 'X0/Y13/io0'
+Info: constrained 'o_Segment1_C' to bel 'X5/Y17/io1'
+Info: constrained 'o_Segment1_D' to bel 'X6/Y17/io0'
+Info: constrained 'o_Segment1_E' to bel 'X6/Y17/io1'
+Info: constrained 'o_Segment1_F' to bel 'X0/Y14/io1'
+Info: constrained 'o_Segment1_G' to bel 'X0/Y14/io0'
+Info: constrained 'o_Segment2_A' to bel 'X1/Y17/io1'
+Info: constrained 'o_Segment2_B' to bel 'X2/Y17/io1'
+Info: constrained 'o_Segment2_C' to bel 'X3/Y17/io1'
+Info: constrained 'o_Segment2_D' to bel 'X4/Y17/io1'
+Info: constrained 'o_Segment2_E' to bel 'X5/Y17/io0'
+Info: constrained 'o_Segment2_F' to bel 'X0/Y12/io0'
+Info: constrained 'o_Segment2_G' to bel 'X4/Y17/io0'
+
+Info: Packing constants..
+Info: Packing IOs..
+Info: Packing LUT-FFs..
+Info:       80 LCs used as LUT4 only
+Info:      119 LCs used as LUT4 and DFF
+Info: Packing non-LUT FFs..
+Info:       16 LCs used as DFF only
+Info: Packing carries..
+Info:        4 LCs used as CARRY only
+Info: Packing indirect carry+LUT pairs...
+Info:        0 LUTs merged into carry LCs
+Info: Packing RAMs..
+Info: Placing PLLs..
+Info: Packing special functions..
+Info: Packing PLLs..
+Info: Promoting globals..
+Info: promoting i_Clk$SB_IO_IN (fanout 135)
+Info: promoting core.s_run_SB_LUT4_I0_I1_SB_LUT4_I1_O [reset] (fanout 25)
+Info: promoting stable_SB_DFFESR_Q_E_SB_LUT4_O_I0_SB_LUT4_I0_O [reset] (fanout 18)
+Info: promoting stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0_SB_LUT4_I0_O [reset] (fanout 18)
+Info: promoting debounce[2].age_SB_DFFSR_Q_R [reset] (fanout 18)
+Info: Constraining chains...
+Info:        9 LCs used to legalise carry chains.
+Info: Checksum: 0xc96ffaf3
+
+Info: Annotating ports with timing budgets for target frequency 25.00 MHz
+Info: Checksum: 0xb6ea7b38
+
+Info: Device utilisation:
+Info: 	         ICESTORM_LC:   230/ 1280    17%
+Info: 	        ICESTORM_RAM:     0/   16     0%
+Info: 	               SB_IO:    23/  112    20%
+Info: 	               SB_GB:     5/    8    62%
+Info: 	        ICESTORM_PLL:     0/    1     0%
+Info: 	         SB_WARMBOOT:     0/    1     0%
+
+Info: Placed 23 cells based on constraints.
+Info: Creating initial analytic placement for 122 cells, random placement wirelen = 2477.
+Info:     at initial placer iter 0, wirelen = 311
+Info:     at initial placer iter 1, wirelen = 289
+Info:     at initial placer iter 2, wirelen = 294
+Info:     at initial placer iter 3, wirelen = 283
+Info: Running main analytical placer, max placement attempts per cell = 10000.
+Info:     at iteration #1, type ICESTORM_LC: wirelen solved = 295, spread = 722, legal = 809; time = 0.00s
+Info:     at iteration #1, type SB_GB: wirelen solved = 793, spread = 827, legal = 828; time = 0.00s
+Info:     at iteration #1, type ALL: wirelen solved = 287, spread = 890, legal = 936; time = 0.00s
+Info:     at iteration #2, type ICESTORM_LC: wirelen solved = 335, spread = 657, legal = 764; time = 0.00s
+Info:     at iteration #2, type SB_GB: wirelen solved = 748, spread = 775, legal = 764; time = 0.00s
+Info:     at iteration #2, type ALL: wirelen solved = 285, spread = 595, legal = 686; time = 0.00s
+Info:     at iteration #3, type ICESTORM_LC: wirelen solved = 337, spread = 592, legal = 640; time = 0.00s
+Info:     at iteration #3, type SB_GB: wirelen solved = 622, spread = 651, legal = 658; time = 0.00s
+Info:     at iteration #3, type ALL: wirelen solved = 304, spread = 551, legal = 681; time = 0.00s
+Info:     at iteration #4, type ICESTORM_LC: wirelen solved = 344, spread = 598, legal = 645; time = 0.00s
+Info:     at iteration #4, type SB_GB: wirelen solved = 624, spread = 652, legal = 645; time = 0.00s
+Info:     at iteration #4, type ALL: wirelen solved = 306, spread = 543, legal = 614; time = 0.00s
+Info:     at iteration #5, type ICESTORM_LC: wirelen solved = 342, spread = 652, legal = 666; time = 0.00s
+Info:     at iteration #5, type SB_GB: wirelen solved = 647, spread = 675, legal = 690; time = 0.00s
+Info:     at iteration #5, type ALL: wirelen solved = 297, spread = 644, legal = 694; time = 0.00s
+Info:     at iteration #6, type ICESTORM_LC: wirelen solved = 342, spread = 609, legal = 670; time = 0.00s
+Info:     at iteration #6, type SB_GB: wirelen solved = 651, spread = 673, legal = 690; time = 0.00s
+Info:     at iteration #6, type ALL: wirelen solved = 317, spread = 670, legal = 699; time = 0.01s
+Info:     at iteration #7, type ICESTORM_LC: wirelen solved = 350, spread = 710, legal = 764; time = 0.00s
+Info:     at iteration #7, type SB_GB: wirelen solved = 744, spread = 765, legal = 776; time = 0.00s
+Info:     at iteration #7, type ALL: wirelen solved = 314, spread = 692, legal = 740; time = 0.00s
+Info:     at iteration #8, type ICESTORM_LC: wirelen solved = 370, spread = 749, legal = 818; time = 0.00s
+Info:     at iteration #8, type SB_GB: wirelen solved = 796, spread = 837, legal = 841; time = 0.00s
+Info:     at iteration #8, type ALL: wirelen solved = 327, spread = 717, legal = 745; time = 0.00s
+Info:     at iteration #9, type ICESTORM_LC: wirelen solved = 387, spread = 929, legal = 958; time = 0.00s
+Info:     at iteration #9, type SB_GB: wirelen solved = 943, spread = 969, legal = 974; time = 0.00s
+Info:     at iteration #9, type ALL: wirelen solved = 338, spread = 730, legal = 828; time = 0.00s
+Info: HeAP Placer Time: 0.08s
+Info:   of which solving equations: 0.07s
+Info:   of which spreading cells: 0.00s
+Info:   of which strict legalisation: 0.00s
+
+Info: Running simulated annealing placer for refinement.
+Info:   at iteration #1: temp = 0.000000, timing cost = 45, wirelen = 614
+Info:   at iteration #5: temp = 0.000000, timing cost = 37, wirelen = 519
+Info:   at iteration #10: temp = 0.000000, timing cost = 49, wirelen = 473
+Info:   at iteration #15: temp = 0.000000, timing cost = 50, wirelen = 466
+Info:   at iteration #17: temp = 0.000000, timing cost = 35, wirelen = 467 
+Info: SA placement time 0.07s
+
+Info: Max frequency for clock 'i_Clk$SB_IO_IN_$glb_clk': 116.52 MHz (PASS at 25.00 MHz)
+
+Info: Max delay <async>                         -> posedge i_Clk$SB_IO_IN_$glb_clk: 1.95 ns
+Info: Max delay posedge i_Clk$SB_IO_IN_$glb_clk -> <async>                        : 6.06 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 2 endpoint(s)
+Info:          + represents [1,2) endpoint(s)
+Info: [ 31418,  31774) |********+
+Info: [ 31774,  32130) | 
+Info: [ 32130,  32486) |***********+
+Info: [ 32486,  32842) |****************+
+Info: [ 32842,  33198) | 
+Info: [ 33198,  33554) | 
+Info: [ 33554,  33910) |+
+Info: [ 33910,  34266) |**+
+Info: [ 34266,  34622) |*****+
+Info: [ 34622,  34978) |*****+
+Info: [ 34978,  35334) |***********+
+Info: [ 35334,  35690) |****+
+Info: [ 35690,  36046) |******+
+Info: [ 36046,  36402) |***************+
+Info: [ 36402,  36758) |****+
+Info: [ 36758,  37114) |*************+
+Info: [ 37114,  37470) |******+
+Info: [ 37470,  37826) |*********+
+Info: [ 37826,  38182) |*****+
+Info: [ 38182,  38538) |************************************************************ 
+Info: Checksum: 0x0c0669a0
+
+Info: Routing..
+Info: Setting up routing queue.
+Info: Routing 749 arcs.
+Info:            |   (re-)routed arcs  |   delta    | remaining|       time spent     |
+Info:    IterCnt |  w/ripup   wo/ripup |  w/r  wo/r |      arcs| batch(sec) total(sec)|
+Info:        791 |       38        661 |   38   661 |         0|       0.05       0.05|
+Info: Routing complete.
+Info: Router1 time 0.05s
+Info: Checksum: 0xec4b0ef4
+
+Info: Critical path report for clock 'i_Clk$SB_IO_IN_$glb_clk' (posedge -> posedge):
+Info: curr total
+Info:  0.5  0.5  Source debounce[1].age_SB_DFFSR_Q_D_SB_LUT4_O_7_LC.O
+Info:  0.6  1.1    Net debounce[1].age[2] budget 7.490000 ns (5,4) -> (4,4)
+Info:                Sink stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0_SB_LUT4_O_1_I1_SB_LUT4_O_2_LC.I0
+Info:                Defined in:
+Info:                  boards/GoBoard/classroom_top.v:36.23-36.31
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:33.23-33.24
+Info:  0.4  1.6  Source stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0_SB_LUT4_O_1_I1_SB_LUT4_O_2_LC.O
+Info:  0.6  2.2    Net stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0_SB_LUT4_O_1_I1[0] budget 7.490000 ns (4,4) -> (4,5)
+Info:                Sink stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0_SB_LUT4_O_1_LC.I1
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4  2.6  Source stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0_SB_LUT4_O_1_LC.O
+Info:  0.6  3.2    Net stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0[0] budget 7.490000 ns (4,5) -> (5,6)
+Info:                Sink stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0_SB_LUT4_I0_LC.I0
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4  3.6  Source stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0_SB_LUT4_I0_LC.O
+Info:  1.4  5.0    Net stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0_SB_LUT4_I0_O budget 7.489000 ns (5,6) -> (7,0)
+Info:                Sink $gbuf_stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0_SB_LUT4_I0_O_$glb_sr.USER_SIGNAL_TO_GLOBAL_BUFFER
+Info:  0.6  5.7  Source $gbuf_stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0_SB_LUT4_I0_O_$glb_sr.GLOBAL_BUFFER_OUTPUT
+Info:  0.5  6.1    Net stable_SB_DFFESR_Q_1_E_SB_LUT4_O_I0_SB_LUT4_I0_O_$glb_sr budget 7.489000 ns (7,0) -> (5,6)
+Info:                Sink debounce[1].age_SB_DFFSR_Q_D_SB_LUT4_O_9_LC.SR
+Info:  0.1  6.2  Setup debounce[1].age_SB_DFFSR_Q_D_SB_LUT4_O_9_LC.SR
+Info: 2.6 ns logic, 3.7 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> 'posedge i_Clk$SB_IO_IN_$glb_clk':
+Info: curr total
+Info:  0.0  0.0  Source i_Switch_2$sb_io.D_IN_0
+Info:  1.7  1.7    Net i_Switch_2$SB_IO_IN budget 39.532001 ns (13,3) -> (11,8)
+Info:                Sink sync1_SB_DFF_Q_2_DFFLC.I0
+Info:                Defined in:
+Info:                  boards/GoBoard/classroom_top.v:8.23-8.33
+Info:  0.5  2.1  Setup sync1_SB_DFF_Q_2_DFFLC.I0
+Info: 0.5 ns logic, 1.7 ns routing
+
+Info: Critical path report for cross-domain path 'posedge i_Clk$SB_IO_IN_$glb_clk' -> '<async>':
+Info: curr total
+Info:  0.5  0.5  Source core.n_4_SB_LUT4_O_2_LC.O
+Info:  1.3  1.8    Net core.n_24_SB_LUT4_I1_O_SB_LUT4_O_I3[1] budget 9.559000 ns (5,7) -> (5,10)
+Info:                Sink core.n_24_SB_LUT4_O_LC.I3
+Info:                Defined in:
+Info:                  boards/GoBoard/classroom_top.v:41.21-42.77
+Info:                  generated/three-languages/ClassroomCore.v:21.11-21.14
+Info:  0.3  2.1  Source core.n_24_SB_LUT4_O_LC.O
+Info:  0.6  2.7    Net core.n_24[2] budget 9.559000 ns (5,10) -> (5,10)
+Info:                Sink core.n_24_SB_LUT4_I1_LC.I1
+Info:                Defined in:
+Info:                  boards/GoBoard/classroom_top.v:41.21-42.77
+Info:                  generated/three-languages/ClassroomCore.v:79.12-79.16
+Info:  0.4  3.1  Source core.n_24_SB_LUT4_I1_LC.O
+Info:  1.3  4.4    Net core.n_24_SB_LUT4_I1_O[0] budget 9.559000 ns (5,10) -> (2,12)
+Info:                Sink o_Segment2_F_SB_LUT4_O_LC.I0
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4  4.8  Source o_Segment2_F_SB_LUT4_O_LC.O
+Info:  1.0  5.8    Net o_Segment2_F$SB_IO_OUT budget 9.558000 ns (2,12) -> (0,12)
+Info:                Sink o_Segment2_F$sb_io.D_OUT_0
+Info:                Defined in:
+Info:                  boards/GoBoard/classroom_top.v:13.26-13.38
+Info: 1.7 ns logic, 4.1 ns routing
+
+Info: Max frequency for clock 'i_Clk$SB_IO_IN_$glb_clk': 160.77 MHz (PASS at 25.00 MHz)
+
+Info: Max delay <async>                         -> posedge i_Clk$SB_IO_IN_$glb_clk: 2.12 ns
+Info: Max delay posedge i_Clk$SB_IO_IN_$glb_clk -> <async>                        : 5.80 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 2 endpoint(s)
+Info:          + represents [1,2) endpoint(s)
+Info: [ 33780,  34018) |********************+
+Info: [ 34018,  34256) |****************************** 
+Info: [ 34256,  34494) |**+
+Info: [ 34494,  34732) |***+
+Info: [ 34732,  34970) |****+
+Info: [ 34970,  35208) |**+
+Info: [ 35208,  35446) |*+
+Info: [ 35446,  35684) |***+
+Info: [ 35684,  35922) |**********+
+Info: [ 35922,  36160) |******+
+Info: [ 36160,  36398) |*******+
+Info: [ 36398,  36636) |*****+
+Info: [ 36636,  36874) |*****+
+Info: [ 36874,  37112) |**+
+Info: [ 37112,  37350) |****+
+Info: [ 37350,  37588) |*****+
+Info: [ 37588,  37826) |*******+
+Info: [ 37826,  38064) |***+
+Info: [ 38064,  38302) |***+
+Info: [ 38302,  38540) |************************************************************ 
+
+Info: Program finished normally.

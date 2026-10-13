@@ -1,0 +1,13 @@
+Behavioral.VisualBasicFunctions.Minimum
+IL_0000: ldarg.0 
+IL_0001: ldarg.1 
+IL_0002: bge.s 8
+IL_0004: ldarg.0 
+IL_0005: stloc.0 
+IL_0006: br.s 10
+IL_0008: ldarg.1 
+IL_0009: stloc.0 
+IL_000a: ldloc.0 
+IL_000b: ret 
+
+Instructions visited: 12; symbolic branches: 1; method bodies: 1

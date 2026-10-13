@@ -1,0 +1,17 @@
+module CilCsNextCounter
+input a : bits[32]
+input b : bits[1]
+output y : bits[32]
+output fault : bits[1]
+expressions:
+e0 : bits[32] resize (b)
+e1 : bits[32] const 0
+e2 : bits[1] == (e0, e1)
+e3 : bits[1] ~ (e2)
+e4 : bits[32] const 1
+e5 : bits[32] + (a, e4)
+e6 : bits[32] mux (e3, e5, a)
+e7 : bits[1] const 0
+connections:
+y <- e6
+fault <- e7

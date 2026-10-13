@@ -1,0 +1,18 @@
+Microsoft (R) F# Compiler version 12.8.403.0 for F# 8.0
+Copyright (c) Microsoft Corporation. All Rights Reserved.
+Built /workspace/scratch/595e67e9fe87/SharpHDL/build/three-languages/ThreeLanguages.dll
+PASS: 3002 three-language/pipeline/classroom assertions; actual CIL, matching graphs, RTL and benches emitted.
+PASS HDL AddTwo_CSharp
+generated/three-languages/AddTwo_CSharp_tb.v:1029: $finish called at 514 (1s)
+PASS HDL AddTwo_FSharp
+generated/three-languages/AddTwo_FSharp_tb.v:1029: $finish called at 514 (1s)
+PASS HDL AddTwo_VisualBasic
+generated/three-languages/AddTwo_VisualBasic_tb.v:1029: $finish called at 514 (1s)
+PASS HDL ClassroomCore_fast
+generated/three-languages/ClassroomCore_fast_tb.v:1207: $finish called at 402 (1s)
+PASS HDL MixedLanguagePipeline
+generated/three-languages/MixedLanguagePipeline_tb.v:8343: $finish called at 1402 (1s)
+PASS HDL OneStagePipeline
+generated/three-languages/OneStagePipeline_tb.v:8391: $finish called at 1402 (1s)
+PASS HDL TwoStagePipeline
+generated/three-languages/TwoStagePipeline_tb.v:8315: $finish called at 1402 (1s)

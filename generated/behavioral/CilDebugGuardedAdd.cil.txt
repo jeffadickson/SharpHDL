@@ -1,0 +1,20 @@
+Behavioral.CSharpFunctions.GuardedAdd
+IL_0000: nop 
+IL_0001: ldarg.1 
+IL_0002: ldc.i4.0 
+IL_0003: ceq 
+IL_0005: stloc.0 
+IL_0006: ldloc.0 
+IL_0007: brfalse.s 13
+IL_0009: ldarg.0 
+IL_000a: stloc.1 
+IL_000b: br.s 19
+IL_000d: ldarg.0 
+IL_000e: ldarg.1 
+IL_000f: add.ovf 
+IL_0010: stloc.1 
+IL_0011: br.s 19
+IL_0013: ldloc.1 
+IL_0014: ret 
+
+Instructions visited: 19; symbolic branches: 1; method bodies: 1

@@ -1,0 +1,129 @@
+module MixedLanguagePipeline
+input input_tdata : bits[8]
+input input_tkeep : bits[1]
+input input_tlast : bits[1]
+input input_tuser : bits[8]
+input input_tvalid : bits[1]
+output input_tready : bits[1]
+output output_tdata : bits[8]
+output output_tkeep : bits[1]
+output output_tlast : bits[1]
+output output_tuser : bits[8]
+output output_tvalid : bits[1]
+input output_tready : bits[1]
+wire fsharp_add_tdata : bits[8]
+wire fsharp_add_tkeep : bits[1]
+wire fsharp_add_tlast : bits[1]
+wire fsharp_add_tuser : bits[8]
+wire fsharp_add_tvalid : bits[1]
+wire fsharp_add_tready : bits[1]
+reg fsharp_add_valid : bits[1] reset=0
+reg fsharp_add_data : bits[8] reset=0
+reg fsharp_add_keep : bits[1] reset=0
+reg fsharp_add_last : bits[1] reset=0
+reg fsharp_add_user : bits[8] reset=0
+wire csharp_skid_tdata : bits[8]
+wire csharp_skid_tkeep : bits[1]
+wire csharp_skid_tlast : bits[1]
+wire csharp_skid_tuser : bits[8]
+wire csharp_skid_tvalid : bits[1]
+wire csharp_skid_tready : bits[1]
+reg csharp_skid_head : bits[18] reset=0
+reg csharp_skid_spill : bits[18] reset=0
+reg csharp_skid_valid : bits[1] reset=0
+reg csharp_skid_spill_valid : bits[1] reset=0
+wire vb_multiply_tdata : bits[8]
+wire vb_multiply_tkeep : bits[1]
+wire vb_multiply_tlast : bits[1]
+wire vb_multiply_tuser : bits[8]
+wire vb_multiply_tvalid : bits[1]
+wire vb_multiply_tready : bits[1]
+reg vb_multiply_valid : bits[1] reset=0
+reg vb_multiply_data : bits[8] reset=0
+reg vb_multiply_keep : bits[1] reset=0
+reg vb_multiply_last : bits[1] reset=0
+reg vb_multiply_user : bits[8] reset=0
+expressions:
+e0 : bits[1] ~ (fsharp_add_valid)
+e1 : bits[1] | (e0, fsharp_add_tready)
+e2 : bits[1] ~ (csharp_skid_spill_valid)
+e3 : bits[1] mux (e1, input_tvalid, fsharp_add_valid)
+e4 : bits[1] & (e1, input_tvalid)
+e5 : bits[8] const 2
+e6 : bits[8] + (input_tdata, e5)
+e7 : bits[8] mux (e4, e6, fsharp_add_data)
+e8 : bits[1] mux (e4, input_tkeep, fsharp_add_keep)
+e9 : bits[1] mux (e4, input_tlast, fsharp_add_last)
+e10 : bits[8] mux (e4, input_tuser, fsharp_add_user)
+e11 : bits[8] slice (csharp_skid_head) offset=0
+e12 : bits[1] slice (csharp_skid_head) offset=8
+e13 : bits[1] slice (csharp_skid_head) offset=9
+e14 : bits[8] slice (csharp_skid_head) offset=10
+e15 : bits[1] ~ (vb_multiply_valid)
+e16 : bits[1] | (e15, vb_multiply_tready)
+e17 : bits[1] ~ (csharp_skid_valid)
+e18 : bits[1] | (e17, csharp_skid_tready)
+e19 : bits[1] | (csharp_skid_spill_valid, fsharp_add_tvalid)
+e20 : bits[1] & (e18, e19)
+e21 : bits[9] concat (fsharp_add_tkeep, fsharp_add_tdata)
+e22 : bits[10] concat (fsharp_add_tlast, e21)
+e23 : bits[18] concat (fsharp_add_tuser, e22)
+e24 : bits[18] mux (csharp_skid_spill_valid, csharp_skid_spill, e23)
+e25 : bits[18] mux (e20, e24, csharp_skid_head)
+e26 : bits[1] ~ (e18)
+e27 : bits[1] & (fsharp_add_tvalid, fsharp_add_tready)
+e28 : bits[1] & (e26, e27)
+e29 : bits[18] mux (e28, e23, csharp_skid_spill)
+e30 : bits[1] | (csharp_skid_spill_valid, fsharp_add_tvalid)
+e31 : bits[1] mux (e18, e30, csharp_skid_valid)
+e32 : bits[1] const 0
+e33 : bits[1] & (fsharp_add_tvalid, fsharp_add_tready)
+e34 : bits[1] | (csharp_skid_spill_valid, e33)
+e35 : bits[1] mux (e18, e32, e34)
+e36 : bits[1] mux (e16, csharp_skid_tvalid, vb_multiply_valid)
+e37 : bits[1] & (e16, csharp_skid_tvalid)
+e38 : bits[8] const 3
+e39 : bits[8] * (csharp_skid_tdata, e38)
+e40 : bits[8] mux (e37, e39, vb_multiply_data)
+e41 : bits[1] mux (e37, csharp_skid_tkeep, vb_multiply_keep)
+e42 : bits[1] mux (e37, csharp_skid_tlast, vb_multiply_last)
+e43 : bits[8] mux (e37, csharp_skid_tuser, vb_multiply_user)
+connections:
+input_tready <- e1
+output_tdata <- vb_multiply_tdata
+output_tkeep <- vb_multiply_tkeep
+output_tlast <- vb_multiply_tlast
+output_tuser <- vb_multiply_tuser
+output_tvalid <- vb_multiply_tvalid
+fsharp_add_tdata <- fsharp_add_data
+fsharp_add_tkeep <- fsharp_add_keep
+fsharp_add_tlast <- fsharp_add_last
+fsharp_add_tuser <- fsharp_add_user
+fsharp_add_tvalid <- fsharp_add_valid
+fsharp_add_tready <- e2
+fsharp_add_valid.next <- e3
+fsharp_add_data.next <- e7
+fsharp_add_keep.next <- e8
+fsharp_add_last.next <- e9
+fsharp_add_user.next <- e10
+csharp_skid_tdata <- e11
+csharp_skid_tkeep <- e12
+csharp_skid_tlast <- e13
+csharp_skid_tuser <- e14
+csharp_skid_tvalid <- csharp_skid_valid
+csharp_skid_tready <- e16
+csharp_skid_head.next <- e25
+csharp_skid_spill.next <- e29
+csharp_skid_valid.next <- e31
+csharp_skid_spill_valid.next <- e35
+vb_multiply_tdata <- vb_multiply_data
+vb_multiply_tkeep <- vb_multiply_keep
+vb_multiply_tlast <- vb_multiply_last
+vb_multiply_tuser <- vb_multiply_user
+vb_multiply_tvalid <- vb_multiply_valid
+vb_multiply_tready <- output_tready
+vb_multiply_valid.next <- e36
+vb_multiply_data.next <- e40
+vb_multiply_keep.next <- e41
+vb_multiply_last.next <- e42
+vb_multiply_user.next <- e43

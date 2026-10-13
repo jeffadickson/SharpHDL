@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><NuGetAudit>false</NuGetAudit></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../../src/SharpHDL/SharpHDL.csproj"/></ItemGroup>
+  <ItemGroup><Compile Include="Designs.fs"/><Compile Include="NumericDesigns.fs"/><Compile Include="Program.fs"/></ItemGroup>
+</Project>

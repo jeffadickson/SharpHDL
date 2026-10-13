@@ -1,0 +1,1259 @@
+
+-- Running command `read_verilog generated/fsharp/FsOscillator.v; hierarchy -check -top h_FsOscillator; proc -norom; opt; check -assert; stat; write_verilog -noattr generated/synthesis/FsOscillator_rtl.v' --
+
+1. Executing Verilog-2005 frontend: generated/fsharp/FsOscillator.v
+Parsing Verilog input from `generated/fsharp/FsOscillator.v' to AST representation.
+Generating RTLIL representation for module `\h_FsOscillator'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \h_FsOscillator
+
+2.2. Analyzing design hierarchy..
+Top module:  \h_FsOscillator
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$generated/fsharp/FsOscillator.v:1447$482 in module h_FsOscillator.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 107 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+     1/107: $0\s_osc_rotate19_user[7:0]
+     2/107: $0\s_osc_rotate19_last[0:0]
+     3/107: $0\s_osc_rotate19_keep[10:0]
+     4/107: $0\s_osc_rotate19_data[87:0]
+     5/107: $0\s_osc_rotate19_valid[0:0]
+     6/107: $0\s_osc_rotate18_user[7:0]
+     7/107: $0\s_osc_rotate18_last[0:0]
+     8/107: $0\s_osc_rotate18_keep[10:0]
+     9/107: $0\s_osc_rotate18_data[87:0]
+    10/107: $0\s_osc_rotate18_valid[0:0]
+    11/107: $0\s_osc_rotate17_user[7:0]
+    12/107: $0\s_osc_rotate17_last[0:0]
+    13/107: $0\s_osc_rotate17_keep[10:0]
+    14/107: $0\s_osc_rotate17_data[87:0]
+    15/107: $0\s_osc_rotate17_valid[0:0]
+    16/107: $0\s_osc_rotate16_user[7:0]
+    17/107: $0\s_osc_rotate16_last[0:0]
+    18/107: $0\s_osc_rotate16_keep[10:0]
+    19/107: $0\s_osc_rotate16_data[87:0]
+    20/107: $0\s_osc_rotate16_valid[0:0]
+    21/107: $0\s_osc_rotate15_user[7:0]
+    22/107: $0\s_osc_rotate15_last[0:0]
+    23/107: $0\s_osc_rotate15_keep[10:0]
+    24/107: $0\s_osc_rotate15_data[87:0]
+    25/107: $0\s_osc_rotate15_valid[0:0]
+    26/107: $0\s_osc_rotate14_user[7:0]
+    27/107: $0\s_osc_rotate14_last[0:0]
+    28/107: $0\s_osc_rotate14_keep[10:0]
+    29/107: $0\s_osc_rotate14_data[87:0]
+    30/107: $0\s_osc_rotate14_valid[0:0]
+    31/107: $0\s_osc_rotate13_user[7:0]
+    32/107: $0\s_osc_rotate13_last[0:0]
+    33/107: $0\s_osc_rotate13_keep[10:0]
+    34/107: $0\s_osc_rotate13_data[87:0]
+    35/107: $0\s_osc_rotate13_valid[0:0]
+    36/107: $0\s_osc_rotate12_user[7:0]
+    37/107: $0\s_osc_rotate12_last[0:0]
+    38/107: $0\s_osc_rotate12_keep[10:0]
+    39/107: $0\s_osc_rotate12_data[87:0]
+    40/107: $0\s_osc_rotate12_valid[0:0]
+    41/107: $0\s_osc_rotate11_user[7:0]
+    42/107: $0\s_osc_rotate11_last[0:0]
+    43/107: $0\s_osc_rotate11_keep[10:0]
+    44/107: $0\s_osc_rotate11_data[87:0]
+    45/107: $0\s_osc_rotate11_valid[0:0]
+    46/107: $0\s_osc_rotate10_user[7:0]
+    47/107: $0\s_osc_rotate10_last[0:0]
+    48/107: $0\s_osc_rotate10_keep[10:0]
+    49/107: $0\s_osc_rotate10_data[87:0]
+    50/107: $0\s_osc_rotate10_valid[0:0]
+    51/107: $0\s_osc_rotate9_user[7:0]
+    52/107: $0\s_osc_rotate9_last[0:0]
+    53/107: $0\s_osc_rotate9_keep[10:0]
+    54/107: $0\s_osc_rotate9_data[87:0]
+    55/107: $0\s_osc_rotate9_valid[0:0]
+    56/107: $0\s_osc_rotate8_user[7:0]
+    57/107: $0\s_osc_rotate8_last[0:0]
+    58/107: $0\s_osc_rotate8_keep[10:0]
+    59/107: $0\s_osc_rotate8_data[87:0]
+    60/107: $0\s_osc_rotate8_valid[0:0]
+    61/107: $0\s_osc_rotate7_user[7:0]
+    62/107: $0\s_osc_rotate7_last[0:0]
+    63/107: $0\s_osc_rotate7_keep[10:0]
+    64/107: $0\s_osc_rotate7_data[87:0]
+    65/107: $0\s_osc_rotate7_valid[0:0]
+    66/107: $0\s_osc_rotate6_user[7:0]
+    67/107: $0\s_osc_rotate6_last[0:0]
+    68/107: $0\s_osc_rotate6_keep[10:0]
+    69/107: $0\s_osc_rotate6_data[87:0]
+    70/107: $0\s_osc_rotate6_valid[0:0]
+    71/107: $0\s_osc_rotate5_user[7:0]
+    72/107: $0\s_osc_rotate5_last[0:0]
+    73/107: $0\s_osc_rotate5_keep[10:0]
+    74/107: $0\s_osc_rotate5_data[87:0]
+    75/107: $0\s_osc_rotate5_valid[0:0]
+    76/107: $0\s_osc_rotate4_user[7:0]
+    77/107: $0\s_osc_rotate4_last[0:0]
+    78/107: $0\s_osc_rotate4_keep[10:0]
+    79/107: $0\s_osc_rotate4_data[87:0]
+    80/107: $0\s_osc_rotate4_valid[0:0]
+    81/107: $0\s_osc_rotate3_user[7:0]
+    82/107: $0\s_osc_rotate3_last[0:0]
+    83/107: $0\s_osc_rotate3_keep[10:0]
+    84/107: $0\s_osc_rotate3_data[87:0]
+    85/107: $0\s_osc_rotate3_valid[0:0]
+    86/107: $0\s_osc_rotate2_user[7:0]
+    87/107: $0\s_osc_rotate2_last[0:0]
+    88/107: $0\s_osc_rotate2_keep[10:0]
+    89/107: $0\s_osc_rotate2_data[87:0]
+    90/107: $0\s_osc_rotate2_valid[0:0]
+    91/107: $0\s_osc_rotate1_user[7:0]
+    92/107: $0\s_osc_rotate1_last[0:0]
+    93/107: $0\s_osc_rotate1_keep[10:0]
+    94/107: $0\s_osc_rotate1_data[87:0]
+    95/107: $0\s_osc_rotate1_valid[0:0]
+    96/107: $0\s_osc_rotate0_user[7:0]
+    97/107: $0\s_osc_rotate0_last[0:0]
+    98/107: $0\s_osc_rotate0_keep[10:0]
+    99/107: $0\s_osc_rotate0_data[87:0]
+   100/107: $0\s_osc_rotate0_valid[0:0]
+   101/107: $0\s_osc_reduce_user[7:0]
+   102/107: $0\s_osc_reduce_last[0:0]
+   103/107: $0\s_osc_reduce_keep[10:0]
+   104/107: $0\s_osc_reduce_data[87:0]
+   105/107: $0\s_osc_reduce_valid[0:0]
+   106/107: $0\s_sample_tag[7:0]
+   107/107: $0\s_phase[23:0]
+
+3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.8. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\h_FsOscillator.\s_phase' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$804' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_sample_tag' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$805' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_reduce_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$806' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_reduce_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$807' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_reduce_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$808' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_reduce_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$809' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_reduce_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$810' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate0_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$811' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate0_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$812' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate0_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$813' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate0_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$814' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate0_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$815' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate1_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$816' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate1_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$817' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate1_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$818' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate1_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$819' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate1_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$820' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate2_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$821' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate2_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$822' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate2_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$823' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate2_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$824' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate2_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$825' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate3_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$826' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate3_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$827' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate3_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$828' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate3_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$829' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate3_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$830' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate4_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$831' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate4_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$832' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate4_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$833' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate4_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$834' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate4_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$835' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate5_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$836' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate5_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$837' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate5_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$838' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate5_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$839' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate5_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$840' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate6_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$841' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate6_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$842' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate6_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$843' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate6_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$844' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate6_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$845' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate7_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$846' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate7_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$847' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate7_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$848' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate7_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$849' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate7_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$850' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate8_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$851' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate8_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$852' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate8_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$853' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate8_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$854' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate8_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$855' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate9_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$856' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate9_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$857' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate9_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$858' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate9_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$859' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate9_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$860' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate10_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$861' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate10_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$862' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate10_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$863' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate10_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$864' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate10_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$865' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate11_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$866' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate11_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$867' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate11_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$868' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate11_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$869' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate11_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$870' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate12_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$871' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate12_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$872' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate12_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$873' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate12_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$874' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate12_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$875' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate13_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$876' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate13_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$877' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate13_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$878' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate13_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$879' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate13_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$880' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate14_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$881' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate14_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$882' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate14_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$883' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate14_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$884' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate14_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$885' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate15_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$886' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate15_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$887' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate15_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$888' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate15_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$889' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate15_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$890' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate16_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$891' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate16_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$892' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate16_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$893' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate16_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$894' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate16_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$895' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate17_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$896' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate17_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$897' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate17_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$898' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate17_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$899' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate17_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$900' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate18_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$901' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate18_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$902' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate18_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$903' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate18_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$904' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate18_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$905' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate19_valid' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$906' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate19_data' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$907' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate19_keep' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$908' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate19_last' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$909' with positive edge clock.
+Creating register for signal `\h_FsOscillator.\s_osc_rotate19_user' using process `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+  created $dff cell `$procdff$910' with positive edge clock.
+
+3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+Removing empty process `h_FsOscillator.$proc$generated/fsharp/FsOscillator.v:1447$482'.
+Cleaned up 1 empty switch.
+
+3.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+<suppressed ~126 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~107 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$910 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1302$480_Y, Q = \s_osc_rotate19_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$911 ($sdff) from module h_FsOscillator (D = \s_osc_rotate18_tuser, Q = \s_osc_rotate19_user).
+Adding SRST signal on $procdff$909 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1301$479_Y, Q = \s_osc_rotate19_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$913 ($sdff) from module h_FsOscillator (D = \s_osc_rotate18_tlast, Q = \s_osc_rotate19_last).
+Adding SRST signal on $procdff$908 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1300$478_Y, Q = \s_osc_rotate19_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$915 ($sdff) from module h_FsOscillator (D = \s_osc_rotate18_tkeep, Q = \s_osc_rotate19_keep).
+Adding SRST signal on $procdff$907 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1299$477_Y, Q = \s_osc_rotate19_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$917 ($sdff) from module h_FsOscillator (D = \n_517, Q = \s_osc_rotate19_data).
+Adding SRST signal on $procdff$906 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1280$460_Y, Q = \s_osc_rotate19_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$919 ($sdff) from module h_FsOscillator (D = \s_osc_rotate18_tvalid, Q = \s_osc_rotate19_valid).
+Adding SRST signal on $procdff$905 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1279$459_Y, Q = \s_osc_rotate18_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$921 ($sdff) from module h_FsOscillator (D = \s_osc_rotate17_tuser, Q = \s_osc_rotate18_user).
+Adding SRST signal on $procdff$904 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1278$458_Y, Q = \s_osc_rotate18_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$923 ($sdff) from module h_FsOscillator (D = \s_osc_rotate17_tlast, Q = \s_osc_rotate18_last).
+Adding SRST signal on $procdff$903 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1277$457_Y, Q = \s_osc_rotate18_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$925 ($sdff) from module h_FsOscillator (D = \s_osc_rotate17_tkeep, Q = \s_osc_rotate18_keep).
+Adding SRST signal on $procdff$902 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1276$456_Y, Q = \s_osc_rotate18_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$927 ($sdff) from module h_FsOscillator (D = \n_494, Q = \s_osc_rotate18_data).
+Adding SRST signal on $procdff$901 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1257$439_Y, Q = \s_osc_rotate18_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$929 ($sdff) from module h_FsOscillator (D = \s_osc_rotate17_tvalid, Q = \s_osc_rotate18_valid).
+Adding SRST signal on $procdff$900 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1254$436_Y, Q = \s_osc_rotate17_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$931 ($sdff) from module h_FsOscillator (D = \s_osc_rotate16_tuser, Q = \s_osc_rotate17_user).
+Adding SRST signal on $procdff$899 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1253$435_Y, Q = \s_osc_rotate17_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$933 ($sdff) from module h_FsOscillator (D = \s_osc_rotate16_tlast, Q = \s_osc_rotate17_last).
+Adding SRST signal on $procdff$898 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1252$434_Y, Q = \s_osc_rotate17_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$935 ($sdff) from module h_FsOscillator (D = \s_osc_rotate16_tkeep, Q = \s_osc_rotate17_keep).
+Adding SRST signal on $procdff$897 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1251$433_Y, Q = \s_osc_rotate17_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$937 ($sdff) from module h_FsOscillator (D = \n_469, Q = \s_osc_rotate17_data).
+Adding SRST signal on $procdff$896 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1232$416_Y, Q = \s_osc_rotate17_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$939 ($sdff) from module h_FsOscillator (D = \s_osc_rotate16_tvalid, Q = \s_osc_rotate17_valid).
+Adding SRST signal on $procdff$895 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1229$413_Y, Q = \s_osc_rotate16_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$941 ($sdff) from module h_FsOscillator (D = \s_osc_rotate15_tuser, Q = \s_osc_rotate16_user).
+Adding SRST signal on $procdff$894 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1228$412_Y, Q = \s_osc_rotate16_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$943 ($sdff) from module h_FsOscillator (D = \s_osc_rotate15_tlast, Q = \s_osc_rotate16_last).
+Adding SRST signal on $procdff$893 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1227$411_Y, Q = \s_osc_rotate16_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$945 ($sdff) from module h_FsOscillator (D = \s_osc_rotate15_tkeep, Q = \s_osc_rotate16_keep).
+Adding SRST signal on $procdff$892 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1226$410_Y, Q = \s_osc_rotate16_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$947 ($sdff) from module h_FsOscillator (D = \n_444, Q = \s_osc_rotate16_data).
+Adding SRST signal on $procdff$891 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1207$393_Y, Q = \s_osc_rotate16_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$949 ($sdff) from module h_FsOscillator (D = \s_osc_rotate15_tvalid, Q = \s_osc_rotate16_valid).
+Adding SRST signal on $procdff$890 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1204$390_Y, Q = \s_osc_rotate15_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$951 ($sdff) from module h_FsOscillator (D = \s_osc_rotate14_tuser, Q = \s_osc_rotate15_user).
+Adding SRST signal on $procdff$889 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1203$389_Y, Q = \s_osc_rotate15_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$953 ($sdff) from module h_FsOscillator (D = \s_osc_rotate14_tlast, Q = \s_osc_rotate15_last).
+Adding SRST signal on $procdff$888 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1202$388_Y, Q = \s_osc_rotate15_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$955 ($sdff) from module h_FsOscillator (D = \s_osc_rotate14_tkeep, Q = \s_osc_rotate15_keep).
+Adding SRST signal on $procdff$887 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1201$387_Y, Q = \s_osc_rotate15_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$957 ($sdff) from module h_FsOscillator (D = \n_419, Q = \s_osc_rotate15_data).
+Adding SRST signal on $procdff$886 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1182$370_Y, Q = \s_osc_rotate15_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$959 ($sdff) from module h_FsOscillator (D = \s_osc_rotate14_tvalid, Q = \s_osc_rotate15_valid).
+Adding SRST signal on $procdff$885 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1179$367_Y, Q = \s_osc_rotate14_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$961 ($sdff) from module h_FsOscillator (D = \s_osc_rotate13_tuser, Q = \s_osc_rotate14_user).
+Adding SRST signal on $procdff$884 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1178$366_Y, Q = \s_osc_rotate14_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$963 ($sdff) from module h_FsOscillator (D = \s_osc_rotate13_tlast, Q = \s_osc_rotate14_last).
+Adding SRST signal on $procdff$883 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1177$365_Y, Q = \s_osc_rotate14_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$965 ($sdff) from module h_FsOscillator (D = \s_osc_rotate13_tkeep, Q = \s_osc_rotate14_keep).
+Adding SRST signal on $procdff$882 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1176$364_Y, Q = \s_osc_rotate14_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$967 ($sdff) from module h_FsOscillator (D = \n_394, Q = \s_osc_rotate14_data).
+Adding SRST signal on $procdff$881 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1157$347_Y, Q = \s_osc_rotate14_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$969 ($sdff) from module h_FsOscillator (D = \s_osc_rotate13_tvalid, Q = \s_osc_rotate14_valid).
+Adding SRST signal on $procdff$880 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1154$344_Y, Q = \s_osc_rotate13_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$971 ($sdff) from module h_FsOscillator (D = \s_osc_rotate12_tuser, Q = \s_osc_rotate13_user).
+Adding SRST signal on $procdff$879 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1153$343_Y, Q = \s_osc_rotate13_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$973 ($sdff) from module h_FsOscillator (D = \s_osc_rotate12_tlast, Q = \s_osc_rotate13_last).
+Adding SRST signal on $procdff$878 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1152$342_Y, Q = \s_osc_rotate13_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$975 ($sdff) from module h_FsOscillator (D = \s_osc_rotate12_tkeep, Q = \s_osc_rotate13_keep).
+Adding SRST signal on $procdff$877 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1151$341_Y, Q = \s_osc_rotate13_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$977 ($sdff) from module h_FsOscillator (D = \n_369, Q = \s_osc_rotate13_data).
+Adding SRST signal on $procdff$876 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1132$324_Y, Q = \s_osc_rotate13_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$979 ($sdff) from module h_FsOscillator (D = \s_osc_rotate12_tvalid, Q = \s_osc_rotate13_valid).
+Adding SRST signal on $procdff$875 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1129$321_Y, Q = \s_osc_rotate12_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$981 ($sdff) from module h_FsOscillator (D = \s_osc_rotate11_tuser, Q = \s_osc_rotate12_user).
+Adding SRST signal on $procdff$874 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1128$320_Y, Q = \s_osc_rotate12_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$983 ($sdff) from module h_FsOscillator (D = \s_osc_rotate11_tlast, Q = \s_osc_rotate12_last).
+Adding SRST signal on $procdff$873 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1127$319_Y, Q = \s_osc_rotate12_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$985 ($sdff) from module h_FsOscillator (D = \s_osc_rotate11_tkeep, Q = \s_osc_rotate12_keep).
+Adding SRST signal on $procdff$872 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1126$318_Y, Q = \s_osc_rotate12_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$987 ($sdff) from module h_FsOscillator (D = \n_344, Q = \s_osc_rotate12_data).
+Adding SRST signal on $procdff$871 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1107$301_Y, Q = \s_osc_rotate12_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$989 ($sdff) from module h_FsOscillator (D = \s_osc_rotate11_tvalid, Q = \s_osc_rotate12_valid).
+Adding SRST signal on $procdff$870 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1104$298_Y, Q = \s_osc_rotate11_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$991 ($sdff) from module h_FsOscillator (D = \s_osc_rotate10_tuser, Q = \s_osc_rotate11_user).
+Adding SRST signal on $procdff$869 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1103$297_Y, Q = \s_osc_rotate11_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$993 ($sdff) from module h_FsOscillator (D = \s_osc_rotate10_tlast, Q = \s_osc_rotate11_last).
+Adding SRST signal on $procdff$868 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1102$296_Y, Q = \s_osc_rotate11_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$995 ($sdff) from module h_FsOscillator (D = \s_osc_rotate10_tkeep, Q = \s_osc_rotate11_keep).
+Adding SRST signal on $procdff$867 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1101$295_Y, Q = \s_osc_rotate11_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$997 ($sdff) from module h_FsOscillator (D = \n_319, Q = \s_osc_rotate11_data).
+Adding SRST signal on $procdff$866 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1082$278_Y, Q = \s_osc_rotate11_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$999 ($sdff) from module h_FsOscillator (D = \s_osc_rotate10_tvalid, Q = \s_osc_rotate11_valid).
+Adding SRST signal on $procdff$865 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1079$275_Y, Q = \s_osc_rotate10_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1001 ($sdff) from module h_FsOscillator (D = \s_osc_rotate9_tuser, Q = \s_osc_rotate10_user).
+Adding SRST signal on $procdff$864 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1078$274_Y, Q = \s_osc_rotate10_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1003 ($sdff) from module h_FsOscillator (D = \s_osc_rotate9_tlast, Q = \s_osc_rotate10_last).
+Adding SRST signal on $procdff$863 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1077$273_Y, Q = \s_osc_rotate10_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1005 ($sdff) from module h_FsOscillator (D = \s_osc_rotate9_tkeep, Q = \s_osc_rotate10_keep).
+Adding SRST signal on $procdff$862 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1076$272_Y, Q = \s_osc_rotate10_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1007 ($sdff) from module h_FsOscillator (D = \n_294, Q = \s_osc_rotate10_data).
+Adding SRST signal on $procdff$861 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1057$255_Y, Q = \s_osc_rotate10_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1009 ($sdff) from module h_FsOscillator (D = \s_osc_rotate9_tvalid, Q = \s_osc_rotate10_valid).
+Adding SRST signal on $procdff$860 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1054$252_Y, Q = \s_osc_rotate9_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1011 ($sdff) from module h_FsOscillator (D = \s_osc_rotate8_tuser, Q = \s_osc_rotate9_user).
+Adding SRST signal on $procdff$859 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1053$251_Y, Q = \s_osc_rotate9_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1013 ($sdff) from module h_FsOscillator (D = \s_osc_rotate8_tlast, Q = \s_osc_rotate9_last).
+Adding SRST signal on $procdff$858 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1052$250_Y, Q = \s_osc_rotate9_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1015 ($sdff) from module h_FsOscillator (D = \s_osc_rotate8_tkeep, Q = \s_osc_rotate9_keep).
+Adding SRST signal on $procdff$857 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1051$249_Y, Q = \s_osc_rotate9_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1017 ($sdff) from module h_FsOscillator (D = \n_269, Q = \s_osc_rotate9_data).
+Adding SRST signal on $procdff$856 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1032$232_Y, Q = \s_osc_rotate9_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1019 ($sdff) from module h_FsOscillator (D = \s_osc_rotate8_tvalid, Q = \s_osc_rotate9_valid).
+Adding SRST signal on $procdff$855 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1029$229_Y, Q = \s_osc_rotate8_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1021 ($sdff) from module h_FsOscillator (D = \s_osc_rotate7_tuser, Q = \s_osc_rotate8_user).
+Adding SRST signal on $procdff$854 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1028$228_Y, Q = \s_osc_rotate8_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1023 ($sdff) from module h_FsOscillator (D = \s_osc_rotate7_tlast, Q = \s_osc_rotate8_last).
+Adding SRST signal on $procdff$853 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1027$227_Y, Q = \s_osc_rotate8_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1025 ($sdff) from module h_FsOscillator (D = \s_osc_rotate7_tkeep, Q = \s_osc_rotate8_keep).
+Adding SRST signal on $procdff$852 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1026$226_Y, Q = \s_osc_rotate8_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1027 ($sdff) from module h_FsOscillator (D = \n_244, Q = \s_osc_rotate8_data).
+Adding SRST signal on $procdff$851 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1007$209_Y, Q = \s_osc_rotate8_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1029 ($sdff) from module h_FsOscillator (D = \s_osc_rotate7_tvalid, Q = \s_osc_rotate8_valid).
+Adding SRST signal on $procdff$850 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1004$206_Y, Q = \s_osc_rotate7_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1031 ($sdff) from module h_FsOscillator (D = \s_osc_rotate6_tuser, Q = \s_osc_rotate7_user).
+Adding SRST signal on $procdff$849 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1003$205_Y, Q = \s_osc_rotate7_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1033 ($sdff) from module h_FsOscillator (D = \s_osc_rotate6_tlast, Q = \s_osc_rotate7_last).
+Adding SRST signal on $procdff$848 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1002$204_Y, Q = \s_osc_rotate7_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1035 ($sdff) from module h_FsOscillator (D = \s_osc_rotate6_tkeep, Q = \s_osc_rotate7_keep).
+Adding SRST signal on $procdff$847 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:1001$203_Y, Q = \s_osc_rotate7_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1037 ($sdff) from module h_FsOscillator (D = \n_219, Q = \s_osc_rotate7_data).
+Adding SRST signal on $procdff$846 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:982$186_Y, Q = \s_osc_rotate7_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1039 ($sdff) from module h_FsOscillator (D = \s_osc_rotate6_tvalid, Q = \s_osc_rotate7_valid).
+Adding SRST signal on $procdff$845 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:979$183_Y, Q = \s_osc_rotate6_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1041 ($sdff) from module h_FsOscillator (D = \s_osc_rotate5_tuser, Q = \s_osc_rotate6_user).
+Adding SRST signal on $procdff$844 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:978$182_Y, Q = \s_osc_rotate6_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1043 ($sdff) from module h_FsOscillator (D = \s_osc_rotate5_tlast, Q = \s_osc_rotate6_last).
+Adding SRST signal on $procdff$843 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:977$181_Y, Q = \s_osc_rotate6_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1045 ($sdff) from module h_FsOscillator (D = \s_osc_rotate5_tkeep, Q = \s_osc_rotate6_keep).
+Adding SRST signal on $procdff$842 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:976$180_Y, Q = \s_osc_rotate6_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1047 ($sdff) from module h_FsOscillator (D = \n_194, Q = \s_osc_rotate6_data).
+Adding SRST signal on $procdff$841 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:957$163_Y, Q = \s_osc_rotate6_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1049 ($sdff) from module h_FsOscillator (D = \s_osc_rotate5_tvalid, Q = \s_osc_rotate6_valid).
+Adding SRST signal on $procdff$840 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:954$160_Y, Q = \s_osc_rotate5_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1051 ($sdff) from module h_FsOscillator (D = \s_osc_rotate4_tuser, Q = \s_osc_rotate5_user).
+Adding SRST signal on $procdff$839 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:953$159_Y, Q = \s_osc_rotate5_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1053 ($sdff) from module h_FsOscillator (D = \s_osc_rotate4_tlast, Q = \s_osc_rotate5_last).
+Adding SRST signal on $procdff$838 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:952$158_Y, Q = \s_osc_rotate5_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1055 ($sdff) from module h_FsOscillator (D = \s_osc_rotate4_tkeep, Q = \s_osc_rotate5_keep).
+Adding SRST signal on $procdff$837 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:951$157_Y, Q = \s_osc_rotate5_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1057 ($sdff) from module h_FsOscillator (D = \n_169, Q = \s_osc_rotate5_data).
+Adding SRST signal on $procdff$836 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:932$140_Y, Q = \s_osc_rotate5_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1059 ($sdff) from module h_FsOscillator (D = \s_osc_rotate4_tvalid, Q = \s_osc_rotate5_valid).
+Adding SRST signal on $procdff$835 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:929$137_Y, Q = \s_osc_rotate4_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1061 ($sdff) from module h_FsOscillator (D = \s_osc_rotate3_tuser, Q = \s_osc_rotate4_user).
+Adding SRST signal on $procdff$834 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:928$136_Y, Q = \s_osc_rotate4_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1063 ($sdff) from module h_FsOscillator (D = \s_osc_rotate3_tlast, Q = \s_osc_rotate4_last).
+Adding SRST signal on $procdff$833 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:927$135_Y, Q = \s_osc_rotate4_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1065 ($sdff) from module h_FsOscillator (D = \s_osc_rotate3_tkeep, Q = \s_osc_rotate4_keep).
+Adding SRST signal on $procdff$832 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:926$134_Y, Q = \s_osc_rotate4_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1067 ($sdff) from module h_FsOscillator (D = \n_144, Q = \s_osc_rotate4_data).
+Adding SRST signal on $procdff$831 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:907$117_Y, Q = \s_osc_rotate4_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1069 ($sdff) from module h_FsOscillator (D = \s_osc_rotate3_tvalid, Q = \s_osc_rotate4_valid).
+Adding SRST signal on $procdff$830 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:904$114_Y, Q = \s_osc_rotate3_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1071 ($sdff) from module h_FsOscillator (D = \s_osc_rotate2_tuser, Q = \s_osc_rotate3_user).
+Adding SRST signal on $procdff$829 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:903$113_Y, Q = \s_osc_rotate3_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1073 ($sdff) from module h_FsOscillator (D = \s_osc_rotate2_tlast, Q = \s_osc_rotate3_last).
+Adding SRST signal on $procdff$828 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:902$112_Y, Q = \s_osc_rotate3_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1075 ($sdff) from module h_FsOscillator (D = \s_osc_rotate2_tkeep, Q = \s_osc_rotate3_keep).
+Adding SRST signal on $procdff$827 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:901$111_Y, Q = \s_osc_rotate3_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1077 ($sdff) from module h_FsOscillator (D = \n_119, Q = \s_osc_rotate3_data).
+Adding SRST signal on $procdff$826 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:882$94_Y, Q = \s_osc_rotate3_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1079 ($sdff) from module h_FsOscillator (D = \s_osc_rotate2_tvalid, Q = \s_osc_rotate3_valid).
+Adding SRST signal on $procdff$825 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:879$91_Y, Q = \s_osc_rotate2_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1081 ($sdff) from module h_FsOscillator (D = \s_osc_rotate1_tuser, Q = \s_osc_rotate2_user).
+Adding SRST signal on $procdff$824 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:878$90_Y, Q = \s_osc_rotate2_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1083 ($sdff) from module h_FsOscillator (D = \s_osc_rotate1_tlast, Q = \s_osc_rotate2_last).
+Adding SRST signal on $procdff$823 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:877$89_Y, Q = \s_osc_rotate2_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1085 ($sdff) from module h_FsOscillator (D = \s_osc_rotate1_tkeep, Q = \s_osc_rotate2_keep).
+Adding SRST signal on $procdff$822 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:876$88_Y, Q = \s_osc_rotate2_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1087 ($sdff) from module h_FsOscillator (D = \n_94, Q = \s_osc_rotate2_data).
+Adding SRST signal on $procdff$821 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:857$71_Y, Q = \s_osc_rotate2_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1089 ($sdff) from module h_FsOscillator (D = \s_osc_rotate1_tvalid, Q = \s_osc_rotate2_valid).
+Adding SRST signal on $procdff$820 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:854$68_Y, Q = \s_osc_rotate1_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1091 ($sdff) from module h_FsOscillator (D = \s_osc_rotate0_tuser, Q = \s_osc_rotate1_user).
+Adding SRST signal on $procdff$819 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:853$67_Y, Q = \s_osc_rotate1_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1093 ($sdff) from module h_FsOscillator (D = \s_osc_rotate0_tlast, Q = \s_osc_rotate1_last).
+Adding SRST signal on $procdff$818 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:852$66_Y, Q = \s_osc_rotate1_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1095 ($sdff) from module h_FsOscillator (D = \s_osc_rotate0_tkeep, Q = \s_osc_rotate1_keep).
+Adding SRST signal on $procdff$817 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:851$65_Y, Q = \s_osc_rotate1_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1097 ($sdff) from module h_FsOscillator (D = \n_69, Q = \s_osc_rotate1_data).
+Adding SRST signal on $procdff$816 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:832$48_Y, Q = \s_osc_rotate1_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1099 ($sdff) from module h_FsOscillator (D = \s_osc_rotate0_tvalid, Q = \s_osc_rotate1_valid).
+Adding SRST signal on $procdff$815 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:829$45_Y, Q = \s_osc_rotate0_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1101 ($sdff) from module h_FsOscillator (D = \s_osc_reduce_tuser, Q = \s_osc_rotate0_user).
+Adding SRST signal on $procdff$814 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:828$44_Y, Q = \s_osc_rotate0_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1103 ($sdff) from module h_FsOscillator (D = \s_osc_reduce_tlast, Q = \s_osc_rotate0_last).
+Adding SRST signal on $procdff$813 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:827$43_Y, Q = \s_osc_rotate0_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1105 ($sdff) from module h_FsOscillator (D = \s_osc_reduce_tkeep, Q = \s_osc_rotate0_keep).
+Adding SRST signal on $procdff$812 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:826$42_Y, Q = \s_osc_rotate0_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1107 ($sdff) from module h_FsOscillator (D = \n_44, Q = \s_osc_rotate0_data).
+Adding SRST signal on $procdff$811 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:807$25_Y, Q = \s_osc_rotate0_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1109 ($sdff) from module h_FsOscillator (D = \s_osc_reduce_tvalid, Q = \s_osc_rotate0_valid).
+Adding SRST signal on $procdff$810 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:804$22_Y, Q = \s_osc_reduce_user, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1111 ($sdff) from module h_FsOscillator (D = \s_angles_tuser, Q = \s_osc_reduce_user).
+Adding SRST signal on $procdff$809 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:803$21_Y, Q = \s_osc_reduce_last, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1113 ($sdff) from module h_FsOscillator (D = 1'0, Q = \s_osc_reduce_last).
+Adding SRST signal on $procdff$808 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:802$20_Y, Q = \s_osc_reduce_keep, rval = 11'00000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1115 ($sdff) from module h_FsOscillator (D = 11'11111111111, Q = \s_osc_reduce_keep).
+Adding SRST signal on $procdff$807 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:801$19_Y, Q = \s_osc_reduce_data, rval = 88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1117 ($sdff) from module h_FsOscillator (D = \n_19, Q = \s_osc_reduce_data).
+Adding SRST signal on $procdff$806 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:791$11_Y, Q = \s_osc_reduce_valid, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1119 ($sdff) from module h_FsOscillator (D = 1'1, Q = \s_osc_reduce_valid).
+Adding SRST signal on $procdff$805 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:786$6_Y, Q = \s_sample_tag, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$1121 ($sdff) from module h_FsOscillator (D = \n_4, Q = \s_sample_tag).
+Adding SRST signal on $procdff$804 ($dff) from module h_FsOscillator (D = $ternary$generated/fsharp/FsOscillator.v:783$3_Y, Q = \s_phase, rval = 24'000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1123 ($sdff) from module h_FsOscillator (D = \n_1, Q = \s_phase).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1114 ($sdffe) from module h_FsOscillator.
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+Removed 235 unused cells and 951 unused wires.
+<suppressed ~385 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~62 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1104 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 32 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 33 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 34 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 35 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 36 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 37 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 38 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 39 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 40 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 41 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 42 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 43 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 44 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 45 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 46 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 47 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 48 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 49 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 50 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 51 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 52 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 53 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 54 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 55 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 56 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 57 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 58 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 59 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 60 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 61 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 62 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+Setting constant 0-bit at position 63 on $auto$ff.cc:266:slice$1118 ($sdffe) from module h_FsOscillator.
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+<suppressed ~2 debug messages>
+
+4.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~62 debug messages>
+
+4.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.20. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1094 ($sdffe) from module h_FsOscillator.
+
+4.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+<suppressed ~1 debug messages>
+
+4.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+<suppressed ~1 debug messages>
+
+4.23. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.24. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.25. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.26. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.27. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1084 ($sdffe) from module h_FsOscillator.
+
+4.28. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.29. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.30. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.31. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.32. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.33. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.34. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1074 ($sdffe) from module h_FsOscillator.
+
+4.35. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.36. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.37. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.38. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.39. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.40. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.41. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1064 ($sdffe) from module h_FsOscillator.
+
+4.42. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.43. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.44. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.45. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.46. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.47. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.48. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1054 ($sdffe) from module h_FsOscillator.
+
+4.49. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.50. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.51. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.52. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.53. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.54. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.55. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1044 ($sdffe) from module h_FsOscillator.
+
+4.56. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.57. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.58. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.59. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.60. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.61. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.62. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1034 ($sdffe) from module h_FsOscillator.
+
+4.63. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.64. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.65. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.66. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.67. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.68. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.69. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1024 ($sdffe) from module h_FsOscillator.
+
+4.70. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.71. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.72. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.73. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.74. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.75. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.76. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1014 ($sdffe) from module h_FsOscillator.
+
+4.77. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.78. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.79. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.80. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.81. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.82. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.83. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1004 ($sdffe) from module h_FsOscillator.
+
+4.84. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.85. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.86. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.87. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.88. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.89. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.90. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$994 ($sdffe) from module h_FsOscillator.
+
+4.91. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.92. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.93. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.94. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.95. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.96. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.97. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$984 ($sdffe) from module h_FsOscillator.
+
+4.98. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.99. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.100. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.101. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.102. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.103. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.104. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$974 ($sdffe) from module h_FsOscillator.
+
+4.105. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.106. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.107. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.108. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.109. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.110. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.111. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$964 ($sdffe) from module h_FsOscillator.
+
+4.112. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.113. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.114. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.115. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.116. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.117. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.118. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$954 ($sdffe) from module h_FsOscillator.
+
+4.119. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.120. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.121. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.122. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.123. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.124. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.125. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$944 ($sdffe) from module h_FsOscillator.
+
+4.126. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.127. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.128. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.129. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.130. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.131. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.132. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$934 ($sdffe) from module h_FsOscillator.
+
+4.133. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.134. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.135. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.136. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.137. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.138. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.139. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$924 ($sdffe) from module h_FsOscillator.
+
+4.140. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.141. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.142. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.143. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.144. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.145. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.146. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$914 ($sdffe) from module h_FsOscillator.
+
+4.147. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.148. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.149. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.150. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_FsOscillator..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~61 debug messages>
+
+4.151. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_FsOscillator.
+Performed a total of 0 changes.
+
+4.152. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_FsOscillator'.
+Removed a total of 0 cells.
+
+4.153. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.154. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_FsOscillator..
+
+4.155. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_FsOscillator.
+
+4.156. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing CHECK pass (checking for obvious problems).
+Checking module h_FsOscillator...
+Found and reported 0 problems.
+
+6. Printing statistics.
+
+=== h_FsOscillator ===
+
+   Number of wires:                628
+   Number of wire bits:          16175
+   Number of public wires:         628
+   Number of public wire bits:   16175
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                309
+     $add                           60
+     $and                           20
+     $mux                           61
+     $not                           21
+     $or                            21
+     $sdffe                         65
+     $sub                           60
+     $xor                            1
+
+7. Executing Verilog backend.
+
+7.1. Executing BMUXMAP pass.
+
+7.2. Executing DEMUXMAP pass.
+Dumping module `\h_FsOscillator'.

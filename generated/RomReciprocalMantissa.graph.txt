@@ -1,0 +1,100 @@
+module RomReciprocalMantissa
+input s_axis_tdata : bits[16]
+input s_axis_tkeep : bits[2]
+input s_axis_tlast : bits[1]
+input s_axis_tuser : bits[8]
+input s_axis_tvalid : bits[1]
+output s_axis_tready : bits[1]
+output m_axis_tdata : bits[24]
+output m_axis_tkeep : bits[3]
+output m_axis_tlast : bits[1]
+output m_axis_tuser : bits[8]
+output m_axis_tvalid : bits[1]
+input m_axis_tready : bits[1]
+wire math_rom_tdata : bits[64]
+wire math_rom_tkeep : bits[8]
+wire math_rom_tlast : bits[1]
+wire math_rom_tuser : bits[8]
+wire math_rom_tvalid : bits[1]
+wire math_rom_tready : bits[1]
+reg math_rom_valid : bits[1] reset=0
+reg math_rom_data : bits[64] reset=0
+reg math_rom_keep : bits[8] reset=0
+reg math_rom_last : bits[1] reset=0
+reg math_rom_user : bits[8] reset=0
+wire math_interpolate_tdata : bits[24]
+wire math_interpolate_tkeep : bits[3]
+wire math_interpolate_tlast : bits[1]
+wire math_interpolate_tuser : bits[8]
+wire math_interpolate_tvalid : bits[1]
+wire math_interpolate_tready : bits[1]
+reg math_interpolate_valid : bits[1] reset=0
+reg math_interpolate_data : bits[24] reset=0
+reg math_interpolate_keep : bits[3] reset=0
+reg math_interpolate_last : bits[1] reset=0
+reg math_interpolate_user : bits[8] reset=0
+expressions:
+e0 : bits[1] ~ (math_rom_valid)
+e1 : bits[1] | (e0, math_rom_tready)
+e2 : bits[1] ~ (math_interpolate_valid)
+e3 : bits[1] | (e2, math_interpolate_tready)
+e4 : bits[1] mux (e1, s_axis_tvalid, math_rom_valid)
+e5 : bits[1] & (e1, s_axis_tvalid)
+e6 : bits[8] slice (s_axis_tdata) offset=8
+e7 : bits[26] lookup (e6) entries=256
+e8 : bits[24] lookup (e6) entries=256
+e9 : bits[8] slice (s_axis_tdata) offset=0
+e10 : bits[32] concat (e8, e9)
+e11 : bits[58] concat (e7, e10)
+e12 : bits[64] resize (e11)
+e13 : bits[64] mux (e5, e12, math_rom_data)
+e14 : bits[8] const 255
+e15 : bits[8] mux (e5, e14, math_rom_keep)
+e16 : bits[1] mux (e5, s_axis_tlast, math_rom_last)
+e17 : bits[8] mux (e5, s_axis_tuser, math_rom_user)
+e18 : bits[1] mux (e3, math_rom_tvalid, math_interpolate_valid)
+e19 : bits[1] & (e3, math_rom_tvalid)
+e20 : bits[24] slice (math_rom_tdata) offset=8
+e21 : bits[35] resize (e20)
+e22 : bits[26] slice (math_rom_tdata) offset=32
+e23 : bits[35] signextend (e22)
+e24 : bits[8] slice (math_rom_tdata) offset=0
+e25 : bits[35] resize (e24)
+e26 : bits[35] * (e23, e25)
+e27 : bits[35] asr (e26) offset=8
+e28 : bits[35] + (e21, e27)
+e29 : bits[24] resize (e28)
+e30 : bits[24] mux (e19, e29, math_interpolate_data)
+e31 : bits[3] const 7
+e32 : bits[3] mux (e19, e31, math_interpolate_keep)
+e33 : bits[1] mux (e19, math_rom_tlast, math_interpolate_last)
+e34 : bits[8] mux (e19, math_rom_tuser, math_interpolate_user)
+connections:
+s_axis_tready <- e1
+m_axis_tdata <- math_interpolate_tdata
+m_axis_tkeep <- math_interpolate_tkeep
+m_axis_tlast <- math_interpolate_tlast
+m_axis_tuser <- math_interpolate_tuser
+m_axis_tvalid <- math_interpolate_tvalid
+math_rom_tdata <- math_rom_data
+math_rom_tkeep <- math_rom_keep
+math_rom_tlast <- math_rom_last
+math_rom_tuser <- math_rom_user
+math_rom_tvalid <- math_rom_valid
+math_rom_tready <- e3
+math_rom_valid.next <- e4
+math_rom_data.next <- e13
+math_rom_keep.next <- e15
+math_rom_last.next <- e16
+math_rom_user.next <- e17
+math_interpolate_tdata <- math_interpolate_data
+math_interpolate_tkeep <- math_interpolate_keep
+math_interpolate_tlast <- math_interpolate_last
+math_interpolate_tuser <- math_interpolate_user
+math_interpolate_tvalid <- math_interpolate_valid
+math_interpolate_tready <- m_axis_tready
+math_interpolate_valid.next <- e18
+math_interpolate_data.next <- e30
+math_interpolate_keep.next <- e32
+math_interpolate_last.next <- e33
+math_interpolate_user.next <- e34

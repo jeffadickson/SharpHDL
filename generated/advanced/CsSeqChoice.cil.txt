@@ -1,0 +1,18 @@
+AdvancedFunctions.Choice
+IL_0000: ldarg.0 
+IL_0001: switch 20,24,28
+IL_0012: br.s 33
+IL_0014: ldarg.1 
+IL_0015: ldc.i4.1 
+IL_0016: add 
+IL_0017: ret 
+IL_0018: ldarg.1 
+IL_0019: ldc.i4.1 
+IL_001a: sub 
+IL_001b: ret 
+IL_001c: ldarg.1 
+IL_001d: ldc.i4.s 77
+IL_001f: xor 
+IL_0020: ret 
+IL_0021: ldarg.1 
+IL_0022: ret 

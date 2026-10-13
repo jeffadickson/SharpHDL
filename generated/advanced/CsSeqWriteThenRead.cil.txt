@@ -1,0 +1,9 @@
+AdvancedFunctions.WriteThenRead
+IL_0000: ldarg.0 
+IL_0001: ldarg.1 
+IL_0002: ldarg.2 
+IL_0003: stelem.i4 
+IL_0004: ldarg.0 
+IL_0005: ldarg.1 
+IL_0006: ldelem.u4 
+IL_0007: ret 

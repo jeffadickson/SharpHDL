@@ -1,0 +1,18 @@
+module SignedLookup
+input a : bits[8]
+input b : bits[8]
+input address : bits[3]
+output asr : bits[8]
+output sext : bits[16]
+output less : bits[1]
+output lut : bits[8]
+expressions:
+e0 : bits[8] asr (a) offset=3
+e1 : bits[16] signextend (a)
+e2 : bits[1] slt (a, b)
+e3 : bits[8] lookup (address) entries=5
+connections:
+asr <- e0
+sext <- e1
+less <- e2
+lut <- e3

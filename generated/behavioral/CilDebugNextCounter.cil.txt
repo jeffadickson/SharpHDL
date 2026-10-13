@@ -1,0 +1,15 @@
+Behavioral.CSharpFunctions.NextCounter
+IL_0000: nop 
+IL_0001: ldarg.1 
+IL_0002: brtrue.s 7
+IL_0004: ldarg.0 
+IL_0005: br.s 10
+IL_0007: ldarg.0 
+IL_0008: ldc.i4.1 
+IL_0009: add 
+IL_000a: stloc.0 
+IL_000b: br.s 13
+IL_000d: ldloc.0 
+IL_000e: ret 
+
+Instructions visited: 16; symbolic branches: 1; method bodies: 1

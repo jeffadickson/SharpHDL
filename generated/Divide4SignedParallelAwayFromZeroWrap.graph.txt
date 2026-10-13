@@ -1,0 +1,154 @@
+module Divide4SignedParallelAwayFromZeroWrap
+input input_tdata : bits[8]
+input input_tkeep : bits[1]
+input input_tlast : bits[1]
+input input_tuser : bits[4]
+input input_tvalid : bits[1]
+output input_tready : bits[1]
+output output_tdata : bits[16]
+output output_tkeep : bits[2]
+output output_tlast : bits[1]
+output output_tuser : bits[4]
+output output_tvalid : bits[1]
+input output_tready : bits[1]
+wire div_tdata : bits[16]
+wire div_tkeep : bits[2]
+wire div_tlast : bits[1]
+wire div_tuser : bits[4]
+wire div_tvalid : bits[1]
+wire div_tready : bits[1]
+reg div_valid : bits[1] reset=0
+reg div_data : bits[16] reset=0
+reg div_keep : bits[2] reset=0
+reg div_last : bits[1] reset=0
+reg div_user : bits[4] reset=0
+expressions:
+e0 : bits[1] ~ (div_valid)
+e1 : bits[1] | (e0, div_tready)
+e2 : bits[1] mux (e1, input_tvalid, div_valid)
+e3 : bits[1] & (e1, input_tvalid)
+e4 : bits[4] slice (input_tdata) offset=0
+e5 : bits[1] slice (e4) offset=3
+e6 : bits[4] slice (input_tdata) offset=4
+e7 : bits[1] slice (e6) offset=3
+e8 : bits[1] ^ (e5, e7)
+e9 : bits[1] ~ (e8)
+e10 : bits[5] const 7
+e11 : bits[4] const 0
+e12 : bits[4] << (e11) offset=1
+e13 : bits[5] const 0
+e14 : bits[5] << (e13) offset=1
+e15 : bits[4] const 0
+e16 : bits[4] - (e15, e4)
+e17 : bits[4] mux (e5, e16, e4)
+e18 : bits[1] slice (e17) offset=3
+e19 : bits[5] resize (e18)
+e20 : bits[5] | (e14, e19)
+e21 : bits[4] const 0
+e22 : bits[4] - (e21, e6)
+e23 : bits[4] mux (e7, e22, e6)
+e24 : bits[5] resize (e23)
+e25 : bits[1] < (e20, e24)
+e26 : bits[1] ~ (e25)
+e27 : bits[4] resize (e26)
+e28 : bits[4] | (e12, e27)
+e29 : bits[4] << (e28) offset=1
+e30 : bits[5] resize (e23)
+e31 : bits[5] - (e20, e30)
+e32 : bits[5] mux (e26, e31, e20)
+e33 : bits[5] << (e32) offset=1
+e34 : bits[4] << (e17) offset=1
+e35 : bits[1] slice (e34) offset=3
+e36 : bits[5] resize (e35)
+e37 : bits[5] | (e33, e36)
+e38 : bits[5] resize (e23)
+e39 : bits[1] < (e37, e38)
+e40 : bits[1] ~ (e39)
+e41 : bits[4] resize (e40)
+e42 : bits[4] | (e29, e41)
+e43 : bits[4] << (e42) offset=1
+e44 : bits[5] resize (e23)
+e45 : bits[5] - (e37, e44)
+e46 : bits[5] mux (e40, e45, e37)
+e47 : bits[5] << (e46) offset=1
+e48 : bits[4] << (e34) offset=1
+e49 : bits[1] slice (e48) offset=3
+e50 : bits[5] resize (e49)
+e51 : bits[5] | (e47, e50)
+e52 : bits[5] resize (e23)
+e53 : bits[1] < (e51, e52)
+e54 : bits[1] ~ (e53)
+e55 : bits[4] resize (e54)
+e56 : bits[4] | (e43, e55)
+e57 : bits[4] << (e56) offset=1
+e58 : bits[5] resize (e23)
+e59 : bits[5] - (e51, e58)
+e60 : bits[5] mux (e54, e59, e51)
+e61 : bits[5] << (e60) offset=1
+e62 : bits[4] << (e48) offset=1
+e63 : bits[1] slice (e62) offset=3
+e64 : bits[5] resize (e63)
+e65 : bits[5] | (e61, e64)
+e66 : bits[5] resize (e23)
+e67 : bits[1] < (e65, e66)
+e68 : bits[1] ~ (e67)
+e69 : bits[4] resize (e68)
+e70 : bits[4] | (e57, e69)
+e71 : bits[5] resize (e70)
+e72 : bits[5] resize (e23)
+e73 : bits[5] - (e65, e72)
+e74 : bits[5] mux (e68, e73, e65)
+e75 : bits[5] const 0
+e76 : bits[1] == (e74, e75)
+e77 : bits[1] ~ (e76)
+e78 : bits[5] resize (e77)
+e79 : bits[5] + (e71, e78)
+e80 : bits[1] < (e10, e79)
+e81 : bits[1] & (e9, e80)
+e82 : bits[4] const 0
+e83 : bits[1] == (e23, e82)
+e84 : bits[1] ~ (e83)
+e85 : bits[1] & (e81, e84)
+e86 : bits[5] signextend (e4)
+e87 : bits[5] const 0
+e88 : bits[5] const 0
+e89 : bits[5] resize (e23)
+e90 : bits[5] - (e74, e89)
+e91 : bits[5] mux (e77, e90, e74)
+e92 : bits[5] - (e88, e91)
+e93 : bits[5] mux (e5, e92, e91)
+e94 : bits[5] mux (e85, e87, e93)
+e95 : bits[5] mux (e83, e86, e94)
+e96 : bits[4] const 0
+e97 : bits[5] const 0
+e98 : bits[5] - (e97, e79)
+e99 : bits[5] mux (e8, e98, e79)
+e100 : bits[4] resize (e99)
+e101 : bits[4] mux (e83, e96, e100)
+e102 : bits[9] concat (e95, e101)
+e103 : bits[10] concat (e83, e102)
+e104 : bits[11] concat (e85, e103)
+e105 : bits[16] resize (e104)
+e106 : bits[16] mux (e3, e105, div_data)
+e107 : bits[2] const 3
+e108 : bits[2] mux (e3, e107, div_keep)
+e109 : bits[1] mux (e3, input_tlast, div_last)
+e110 : bits[4] mux (e3, input_tuser, div_user)
+connections:
+input_tready <- e1
+output_tdata <- div_tdata
+output_tkeep <- div_tkeep
+output_tlast <- div_tlast
+output_tuser <- div_tuser
+output_tvalid <- div_tvalid
+div_tdata <- div_data
+div_tkeep <- div_keep
+div_tlast <- div_last
+div_tuser <- div_user
+div_tvalid <- div_valid
+div_tready <- output_tready
+div_valid.next <- e2
+div_data.next <- e106
+div_keep.next <- e108
+div_last.next <- e109
+div_user.next <- e110

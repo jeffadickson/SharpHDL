@@ -1,0 +1,122 @@
+module CsSeqInfinite
+input start : bits[1]
+reg busy_state : bits[1] reset=0
+reg done_state : bits[1] reset=0
+reg fault_state : bits[1] reset=0
+reg assertion_state : bits[1] reset=0
+reg timeout_state : bits[1] reset=0
+reg pc : bits[3] reset=0
+reg cycles : bits[6] reset=0
+reg result_state : bits[32] reset=0
+input arg0 : bits[32]
+reg saved_arg0 : bits[32] reset=0
+input arg1 : bits[32]
+reg saved_arg1 : bits[32] reset=0
+reg stack0 : bits[32] reset=0
+reg stack1 : bits[32] reset=0
+output busy : bits[1]
+output done : bits[1]
+output fault : bits[1]
+output assertion_failed : bits[1]
+output timeout : bits[1]
+output result : bits[32]
+output accept : bits[1]
+expressions:
+e0 : bits[1] ~ (busy_state)
+e1 : bits[1] & (start, e0)
+e2 : bits[1] const 1
+e3 : bits[1] const 0
+e4 : bits[6] const 60
+e5 : bits[1] < (cycles, e4)
+e6 : bits[1] ~ (e5)
+e7 : bits[1] & (busy_state, e6)
+e8 : bits[1] const 0
+e9 : bits[1] mux (e7, e8, busy_state)
+e10 : bits[1] mux (e1, e3, e9)
+e11 : bits[1] mux (e1, e2, e10)
+e12 : bits[1] const 0
+e13 : bits[1] const 1
+e14 : bits[1] mux (e7, e13, done_state)
+e15 : bits[1] mux (e1, e12, e14)
+e16 : bits[1] const 0
+e17 : bits[1] const 1
+e18 : bits[1] mux (e7, e17, fault_state)
+e19 : bits[1] mux (e1, e16, e18)
+e20 : bits[1] const 0
+e21 : bits[1] mux (e1, e20, assertion_state)
+e22 : bits[1] const 0
+e23 : bits[1] & (busy_state, e6)
+e24 : bits[1] const 1
+e25 : bits[1] mux (e23, e24, timeout_state)
+e26 : bits[1] mux (e1, e22, e25)
+e27 : bits[3] const 0
+e28 : bits[1] ~ (e6)
+e29 : bits[1] & (busy_state, e28)
+e30 : bits[3] const 4
+e31 : bits[1] == (pc, e30)
+e32 : bits[1] & (e29, e31)
+e33 : bits[3] const 0
+e34 : bits[3] const 3
+e35 : bits[1] == (pc, e34)
+e36 : bits[1] & (e29, e35)
+e37 : bits[3] const 4
+e38 : bits[3] const 2
+e39 : bits[1] == (pc, e38)
+e40 : bits[1] & (e29, e39)
+e41 : bits[3] const 3
+e42 : bits[3] const 1
+e43 : bits[1] == (pc, e42)
+e44 : bits[1] & (e29, e43)
+e45 : bits[3] const 2
+e46 : bits[3] const 0
+e47 : bits[1] == (pc, e46)
+e48 : bits[1] & (e29, e47)
+e49 : bits[3] const 1
+e50 : bits[3] mux (e48, e49, pc)
+e51 : bits[3] mux (e44, e45, e50)
+e52 : bits[3] mux (e40, e41, e51)
+e53 : bits[3] mux (e36, e37, e52)
+e54 : bits[3] mux (e32, e33, e53)
+e55 : bits[3] mux (e1, e27, e54)
+e56 : bits[6] const 0
+e57 : bits[6] const 1
+e58 : bits[6] + (cycles, e57)
+e59 : bits[6] mux (e29, e58, cycles)
+e60 : bits[6] mux (e1, e56, e59)
+e61 : bits[32] const 0
+e62 : bits[32] mux (e1, e61, result_state)
+e63 : bits[32] const 0
+e64 : bits[32] mux (e1, e63, saved_arg0)
+e65 : bits[32] mux (e1, arg0, e64)
+e66 : bits[32] const 0
+e67 : bits[32] mux (e36, stack0, saved_arg1)
+e68 : bits[32] mux (e1, e66, e67)
+e69 : bits[32] mux (e1, arg1, e68)
+e70 : bits[32] const 0
+e71 : bits[32] + (stack0, stack1)
+e72 : bits[32] mux (e48, saved_arg1, stack0)
+e73 : bits[32] mux (e40, e71, e72)
+e74 : bits[32] mux (e1, e70, e73)
+e75 : bits[32] const 0
+e76 : bits[32] mux (e44, saved_arg0, stack1)
+e77 : bits[32] mux (e1, e75, e76)
+connections:
+busy_state.next <- e11
+done_state.next <- e15
+fault_state.next <- e19
+assertion_state.next <- e21
+timeout_state.next <- e26
+pc.next <- e55
+cycles.next <- e60
+result_state.next <- e62
+saved_arg0.next <- e65
+saved_arg1.next <- e69
+stack0.next <- e74
+stack1.next <- e77
+busy <- busy_state
+done <- done_state
+fault <- fault_state
+assertion_failed <- assertion_state
+timeout <- timeout_state
+result <- result_state
+accept <- e1

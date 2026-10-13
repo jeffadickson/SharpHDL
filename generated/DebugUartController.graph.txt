@@ -1,0 +1,121 @@
+module DebugUartController
+input rx_tdata : bits[8]
+input rx_tkeep : bits[1]
+input rx_tlast : bits[1]
+input rx_tuser : bits[8]
+input rx_tvalid : bits[1]
+output rx_tready : bits[1]
+output tx_tdata : bits[8]
+output tx_tkeep : bits[1]
+output tx_tlast : bits[1]
+output tx_tuser : bits[8]
+output tx_tvalid : bits[1]
+input tx_tready : bits[1]
+reg control : bits[8] reset=1
+reg counter : bits[32] reset=0
+output control_out : bits[8]
+output counter_out : bits[32]
+reg state : bits[2] reset=0
+reg reply : bits[32] reset=0
+reg length : bits[3] reset=1
+reg index : bits[2] reset=0
+reg tag : bits[8] reset=0
+expressions:
+e0 : bits[2] const 3
+e1 : bits[1] == (state, e0)
+e2 : bits[1] ~ (e1)
+e3 : bits[2] const 0
+e4 : bits[1] == (index, e3)
+e5 : bits[8] slice (reply) offset=0
+e6 : bits[2] const 1
+e7 : bits[1] == (index, e6)
+e8 : bits[8] slice (reply) offset=8
+e9 : bits[2] const 2
+e10 : bits[1] == (index, e9)
+e11 : bits[8] slice (reply) offset=16
+e12 : bits[8] slice (reply) offset=24
+e13 : bits[8] mux (e10, e11, e12)
+e14 : bits[8] mux (e7, e8, e13)
+e15 : bits[8] mux (e4, e5, e14)
+e16 : bits[1] const 1
+e17 : bits[3] resize (index)
+e18 : bits[3] const 1
+e19 : bits[3] - (length, e18)
+e20 : bits[1] == (e17, e19)
+e21 : bits[1] & (rx_tvalid, rx_tready)
+e22 : bits[2] const 2
+e23 : bits[1] == (state, e22)
+e24 : bits[1] & (e21, e23)
+e25 : bits[8] mux (e24, rx_tdata, control)
+e26 : bits[1] slice (control) offset=0
+e27 : bits[32] const 1
+e28 : bits[32] + (counter, e27)
+e29 : bits[32] mux (e26, e28, counter)
+e30 : bits[2] const 0
+e31 : bits[1] == (state, e30)
+e32 : bits[8] const 1
+e33 : bits[1] == (rx_tdata, e32)
+e34 : bits[2] const 1
+e35 : bits[8] const 3
+e36 : bits[1] == (rx_tdata, e35)
+e37 : bits[2] const 2
+e38 : bits[2] const 3
+e39 : bits[2] mux (e36, e37, e38)
+e40 : bits[2] mux (e33, e34, e39)
+e41 : bits[2] const 3
+e42 : bits[2] mux (e31, e40, e41)
+e43 : bits[1] & (tx_tvalid, tx_tready)
+e44 : bits[1] & (e43, e20)
+e45 : bits[2] const 0
+e46 : bits[2] mux (e44, e45, state)
+e47 : bits[2] mux (e21, e42, e46)
+e48 : bits[8] const 2
+e49 : bits[1] == (rx_tdata, e48)
+e50 : bits[8] const 4
+e51 : bits[1] == (rx_tdata, e50)
+e52 : bits[32] resize (control)
+e53 : bits[8] const 0
+e54 : bits[1] == (rx_tdata, e53)
+e55 : bits[32] const 165
+e56 : bits[32] const 224
+e57 : bits[32] mux (e54, e55, e56)
+e58 : bits[32] mux (e51, e52, e57)
+e59 : bits[32] mux (e49, counter, e58)
+e60 : bits[2] const 1
+e61 : bits[1] == (state, e60)
+e62 : bits[32] resize (rx_tdata)
+e63 : bits[32] const 6
+e64 : bits[32] mux (e61, e62, e63)
+e65 : bits[32] mux (e31, e59, e64)
+e66 : bits[32] mux (e21, e65, reply)
+e67 : bits[1] & (e31, e49)
+e68 : bits[3] const 4
+e69 : bits[3] const 1
+e70 : bits[3] mux (e67, e68, e69)
+e71 : bits[3] mux (e21, e70, length)
+e72 : bits[2] const 0
+e73 : bits[1] & (tx_tvalid, tx_tready)
+e74 : bits[1] ~ (e20)
+e75 : bits[1] & (e73, e74)
+e76 : bits[2] const 1
+e77 : bits[2] + (index, e76)
+e78 : bits[2] mux (e75, e77, index)
+e79 : bits[2] mux (e21, e72, e78)
+e80 : bits[1] & (e21, e31)
+e81 : bits[8] mux (e80, rx_tuser, tag)
+connections:
+rx_tready <- e2
+tx_tdata <- e15
+tx_tkeep <- e16
+tx_tlast <- e20
+tx_tuser <- tag
+tx_tvalid <- e1
+control.next <- e25
+counter.next <- e29
+control_out <- control
+counter_out <- counter
+state.next <- e47
+reply.next <- e66
+length.next <- e71
+index.next <- e79
+tag.next <- e81

@@ -1,0 +1,276 @@
+
+-- Running command `read_verilog generated/PacketRouter.v; hierarchy -check -top h_PacketRouter; proc -norom; opt; memory; opt; check -assert; stat; write_verilog -noattr generated/synthesis/PacketRouter_rtl.v' --
+
+1. Executing Verilog-2005 frontend: generated/PacketRouter.v
+Parsing Verilog input from `generated/PacketRouter.v' to AST representation.
+Generating RTLIL representation for module `\h_PacketRouter'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \h_PacketRouter
+
+2.2. Analyzing design hierarchy..
+Top module:  \h_PacketRouter
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$generated/PacketRouter.v:267$81 in module h_PacketRouter.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 12 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+     1/12: $0\s_queue_one_slot3[80:0]
+     2/12: $0\s_queue_one_slot2[80:0]
+     3/12: $0\s_queue_one_slot1[80:0]
+     4/12: $0\s_queue_one_slot0[80:0]
+     5/12: $0\s_queue_one_count[2:0]
+     6/12: $0\s_queue_zero_slot3[80:0]
+     7/12: $0\s_queue_zero_slot2[80:0]
+     8/12: $0\s_queue_zero_slot1[80:0]
+     9/12: $0\s_queue_zero_slot0[80:0]
+    10/12: $0\s_queue_zero_count[2:0]
+    11/12: $0\s_packet_route[0:0]
+    12/12: $0\s_in_packet[0:0]
+
+3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.8. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\h_PacketRouter.\s_in_packet' using process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+  created $dff cell `$procdff$118' with positive edge clock.
+Creating register for signal `\h_PacketRouter.\s_packet_route' using process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+  created $dff cell `$procdff$119' with positive edge clock.
+Creating register for signal `\h_PacketRouter.\s_queue_zero_count' using process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+  created $dff cell `$procdff$120' with positive edge clock.
+Creating register for signal `\h_PacketRouter.\s_queue_zero_slot0' using process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+  created $dff cell `$procdff$121' with positive edge clock.
+Creating register for signal `\h_PacketRouter.\s_queue_zero_slot1' using process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+  created $dff cell `$procdff$122' with positive edge clock.
+Creating register for signal `\h_PacketRouter.\s_queue_zero_slot2' using process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+  created $dff cell `$procdff$123' with positive edge clock.
+Creating register for signal `\h_PacketRouter.\s_queue_zero_slot3' using process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+  created $dff cell `$procdff$124' with positive edge clock.
+Creating register for signal `\h_PacketRouter.\s_queue_one_count' using process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+  created $dff cell `$procdff$125' with positive edge clock.
+Creating register for signal `\h_PacketRouter.\s_queue_one_slot0' using process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+  created $dff cell `$procdff$126' with positive edge clock.
+Creating register for signal `\h_PacketRouter.\s_queue_one_slot1' using process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+  created $dff cell `$procdff$127' with positive edge clock.
+Creating register for signal `\h_PacketRouter.\s_queue_one_slot2' using process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+  created $dff cell `$procdff$128' with positive edge clock.
+Creating register for signal `\h_PacketRouter.\s_queue_one_slot3' using process `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+  created $dff cell `$procdff$129' with positive edge clock.
+
+3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+Removing empty process `h_PacketRouter.$proc$generated/PacketRouter.v:267$81'.
+Cleaned up 1 empty switch.
+
+3.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PacketRouter.
+<suppressed ~13 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PacketRouter.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PacketRouter'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_PacketRouter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~16 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_PacketRouter.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PacketRouter'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$129 ($dff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:231$80_Y, Q = \s_queue_one_slot3, rval = 81'000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$130 ($sdff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:231$80_Y, Q = \s_queue_one_slot3).
+Adding SRST signal on $procdff$118 ($dff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:152$7_Y, Q = \s_in_packet, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$134 ($sdff) from module h_PacketRouter (D = \n_5, Q = \s_in_packet).
+Adding SRST signal on $procdff$119 ($dff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:156$11_Y, Q = \s_packet_route, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$136 ($sdff) from module h_PacketRouter (D = \n_1, Q = \s_packet_route).
+Adding SRST signal on $procdff$128 ($dff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:227$76_Y, Q = \s_queue_one_slot2, rval = 81'000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$138 ($sdff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:227$76_Y, Q = \s_queue_one_slot2).
+Adding SRST signal on $procdff$127 ($dff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:223$72_Y, Q = \s_queue_one_slot1, rval = 81'000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$142 ($sdff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:223$72_Y, Q = \s_queue_one_slot1).
+Adding SRST signal on $procdff$126 ($dff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:219$68_Y, Q = \s_queue_one_slot0, rval = 81'000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$146 ($sdff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:219$68_Y, Q = \s_queue_one_slot0).
+Adding SRST signal on $procdff$125 ($dff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:206$58_Y, Q = \s_queue_one_count, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$150 ($sdff) from module h_PacketRouter (D = \n_59, Q = \s_queue_one_count).
+Adding SRST signal on $procdff$120 ($dff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:175$30_Y, Q = \s_queue_zero_count, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$152 ($sdff) from module h_PacketRouter (D = \n_28, Q = \s_queue_zero_count).
+Adding SRST signal on $procdff$124 ($dff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:200$52_Y, Q = \s_queue_zero_slot3, rval = 81'000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$154 ($sdff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:200$52_Y, Q = \s_queue_zero_slot3).
+Adding SRST signal on $procdff$123 ($dff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:196$48_Y, Q = \s_queue_zero_slot2, rval = 81'000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$158 ($sdff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:196$48_Y, Q = \s_queue_zero_slot2).
+Adding SRST signal on $procdff$122 ($dff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:192$44_Y, Q = \s_queue_zero_slot1, rval = 81'000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$162 ($sdff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:192$44_Y, Q = \s_queue_zero_slot1).
+Adding SRST signal on $procdff$121 ($dff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:188$40_Y, Q = \s_queue_zero_slot0, rval = 81'000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$166 ($sdff) from module h_PacketRouter (D = $ternary$generated/PacketRouter.v:188$40_Y, Q = \s_queue_zero_slot0).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PacketRouter..
+Removed 16 unused cells and 120 unused wires.
+<suppressed ~21 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PacketRouter.
+<suppressed ~8 debug messages>
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_PacketRouter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~14 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_PacketRouter.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PacketRouter'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PacketRouter..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PacketRouter.
+
+4.16. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing MEMORY pass.
+
+5.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+5.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+5.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+5.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+5.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+5.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PacketRouter..
+
+5.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+5.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+5.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PacketRouter..
+
+5.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PacketRouter.
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PacketRouter'.
+Removed a total of 0 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_PacketRouter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~14 debug messages>
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_PacketRouter.
+Performed a total of 0 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_PacketRouter'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_PacketRouter..
+
+6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_PacketRouter.
+
+6.9. Finished OPT passes. (There is nothing left to do.)
+
+7. Executing CHECK pass (checking for obvious problems).
+Checking module h_PacketRouter...
+Found and reported 0 problems.
+
+8. Printing statistics.
+
+=== h_PacketRouter ===
+
+   Number of wires:                146
+   Number of wire bits:           3240
+   Number of public wires:         138
+   Number of public wire bits:    3232
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 84
+     $add                            2
+     $and                           16
+     $eq                             7
+     $logic_not                      4
+     $lt                             2
+     $mux                           22
+     $not                            5
+     $or                             2
+     $reduce_bool                    8
+     $sdffe                         12
+     $sub                            2
+     $xor                            2
+
+9. Executing Verilog backend.
+
+9.1. Executing BMUXMAP pass.
+
+9.2. Executing DEMUXMAP pass.
+Dumping module `\h_PacketRouter'.

@@ -1,0 +1,284 @@
+module CrcPacket
+input s_axis_tdata : bits[32]
+input s_axis_tkeep : bits[4]
+input s_axis_tlast : bits[1]
+input s_axis_tuser : bits[1]
+input s_axis_tvalid : bits[1]
+output s_axis_tready : bits[1]
+output m_axis_tdata : bits[32]
+output m_axis_tkeep : bits[4]
+output m_axis_tlast : bits[1]
+output m_axis_tuser : bits[32]
+output m_axis_tvalid : bits[1]
+input m_axis_tready : bits[1]
+wire crc_tdata : bits[32]
+wire crc_tkeep : bits[4]
+wire crc_tlast : bits[1]
+wire crc_tuser : bits[32]
+wire crc_tvalid : bits[1]
+wire crc_tready : bits[1]
+reg crc_crc : bits[32] reset=4294967295
+wire buffer_tdata : bits[32]
+wire buffer_tkeep : bits[4]
+wire buffer_tlast : bits[1]
+wire buffer_tuser : bits[32]
+wire buffer_tvalid : bits[1]
+wire buffer_tready : bits[1]
+reg buffer_valid : bits[1] reset=0
+reg buffer_data : bits[32] reset=0
+reg buffer_keep : bits[4] reset=0
+reg buffer_last : bits[1] reset=0
+reg buffer_user : bits[32] reset=0
+expressions:
+e0 : bits[1] slice (s_axis_tkeep) offset=3
+e1 : bits[1] slice (s_axis_tkeep) offset=2
+e2 : bits[1] slice (s_axis_tkeep) offset=1
+e3 : bits[1] slice (s_axis_tkeep) offset=0
+e4 : bits[8] slice (s_axis_tdata) offset=0
+e5 : bits[32] resize (e4)
+e6 : bits[32] ^ (crc_crc, e5)
+e7 : bits[1] slice (e6) offset=0
+e8 : bits[32] >> (e6) offset=1
+e9 : bits[32] const 3988292384
+e10 : bits[32] ^ (e8, e9)
+e11 : bits[32] >> (e6) offset=1
+e12 : bits[32] mux (e7, e10, e11)
+e13 : bits[1] slice (e12) offset=0
+e14 : bits[32] >> (e12) offset=1
+e15 : bits[32] const 3988292384
+e16 : bits[32] ^ (e14, e15)
+e17 : bits[32] >> (e12) offset=1
+e18 : bits[32] mux (e13, e16, e17)
+e19 : bits[1] slice (e18) offset=0
+e20 : bits[32] >> (e18) offset=1
+e21 : bits[32] const 3988292384
+e22 : bits[32] ^ (e20, e21)
+e23 : bits[32] >> (e18) offset=1
+e24 : bits[32] mux (e19, e22, e23)
+e25 : bits[1] slice (e24) offset=0
+e26 : bits[32] >> (e24) offset=1
+e27 : bits[32] const 3988292384
+e28 : bits[32] ^ (e26, e27)
+e29 : bits[32] >> (e24) offset=1
+e30 : bits[32] mux (e25, e28, e29)
+e31 : bits[1] slice (e30) offset=0
+e32 : bits[32] >> (e30) offset=1
+e33 : bits[32] const 3988292384
+e34 : bits[32] ^ (e32, e33)
+e35 : bits[32] >> (e30) offset=1
+e36 : bits[32] mux (e31, e34, e35)
+e37 : bits[1] slice (e36) offset=0
+e38 : bits[32] >> (e36) offset=1
+e39 : bits[32] const 3988292384
+e40 : bits[32] ^ (e38, e39)
+e41 : bits[32] >> (e36) offset=1
+e42 : bits[32] mux (e37, e40, e41)
+e43 : bits[1] slice (e42) offset=0
+e44 : bits[32] >> (e42) offset=1
+e45 : bits[32] const 3988292384
+e46 : bits[32] ^ (e44, e45)
+e47 : bits[32] >> (e42) offset=1
+e48 : bits[32] mux (e43, e46, e47)
+e49 : bits[1] slice (e48) offset=0
+e50 : bits[32] >> (e48) offset=1
+e51 : bits[32] const 3988292384
+e52 : bits[32] ^ (e50, e51)
+e53 : bits[32] >> (e48) offset=1
+e54 : bits[32] mux (e49, e52, e53)
+e55 : bits[32] mux (e3, e54, crc_crc)
+e56 : bits[8] slice (s_axis_tdata) offset=8
+e57 : bits[32] resize (e56)
+e58 : bits[32] ^ (e55, e57)
+e59 : bits[1] slice (e58) offset=0
+e60 : bits[32] >> (e58) offset=1
+e61 : bits[32] const 3988292384
+e62 : bits[32] ^ (e60, e61)
+e63 : bits[32] >> (e58) offset=1
+e64 : bits[32] mux (e59, e62, e63)
+e65 : bits[1] slice (e64) offset=0
+e66 : bits[32] >> (e64) offset=1
+e67 : bits[32] const 3988292384
+e68 : bits[32] ^ (e66, e67)
+e69 : bits[32] >> (e64) offset=1
+e70 : bits[32] mux (e65, e68, e69)
+e71 : bits[1] slice (e70) offset=0
+e72 : bits[32] >> (e70) offset=1
+e73 : bits[32] const 3988292384
+e74 : bits[32] ^ (e72, e73)
+e75 : bits[32] >> (e70) offset=1
+e76 : bits[32] mux (e71, e74, e75)
+e77 : bits[1] slice (e76) offset=0
+e78 : bits[32] >> (e76) offset=1
+e79 : bits[32] const 3988292384
+e80 : bits[32] ^ (e78, e79)
+e81 : bits[32] >> (e76) offset=1
+e82 : bits[32] mux (e77, e80, e81)
+e83 : bits[1] slice (e82) offset=0
+e84 : bits[32] >> (e82) offset=1
+e85 : bits[32] const 3988292384
+e86 : bits[32] ^ (e84, e85)
+e87 : bits[32] >> (e82) offset=1
+e88 : bits[32] mux (e83, e86, e87)
+e89 : bits[1] slice (e88) offset=0
+e90 : bits[32] >> (e88) offset=1
+e91 : bits[32] const 3988292384
+e92 : bits[32] ^ (e90, e91)
+e93 : bits[32] >> (e88) offset=1
+e94 : bits[32] mux (e89, e92, e93)
+e95 : bits[1] slice (e94) offset=0
+e96 : bits[32] >> (e94) offset=1
+e97 : bits[32] const 3988292384
+e98 : bits[32] ^ (e96, e97)
+e99 : bits[32] >> (e94) offset=1
+e100 : bits[32] mux (e95, e98, e99)
+e101 : bits[1] slice (e100) offset=0
+e102 : bits[32] >> (e100) offset=1
+e103 : bits[32] const 3988292384
+e104 : bits[32] ^ (e102, e103)
+e105 : bits[32] >> (e100) offset=1
+e106 : bits[32] mux (e101, e104, e105)
+e107 : bits[32] mux (e2, e106, e55)
+e108 : bits[8] slice (s_axis_tdata) offset=16
+e109 : bits[32] resize (e108)
+e110 : bits[32] ^ (e107, e109)
+e111 : bits[1] slice (e110) offset=0
+e112 : bits[32] >> (e110) offset=1
+e113 : bits[32] const 3988292384
+e114 : bits[32] ^ (e112, e113)
+e115 : bits[32] >> (e110) offset=1
+e116 : bits[32] mux (e111, e114, e115)
+e117 : bits[1] slice (e116) offset=0
+e118 : bits[32] >> (e116) offset=1
+e119 : bits[32] const 3988292384
+e120 : bits[32] ^ (e118, e119)
+e121 : bits[32] >> (e116) offset=1
+e122 : bits[32] mux (e117, e120, e121)
+e123 : bits[1] slice (e122) offset=0
+e124 : bits[32] >> (e122) offset=1
+e125 : bits[32] const 3988292384
+e126 : bits[32] ^ (e124, e125)
+e127 : bits[32] >> (e122) offset=1
+e128 : bits[32] mux (e123, e126, e127)
+e129 : bits[1] slice (e128) offset=0
+e130 : bits[32] >> (e128) offset=1
+e131 : bits[32] const 3988292384
+e132 : bits[32] ^ (e130, e131)
+e133 : bits[32] >> (e128) offset=1
+e134 : bits[32] mux (e129, e132, e133)
+e135 : bits[1] slice (e134) offset=0
+e136 : bits[32] >> (e134) offset=1
+e137 : bits[32] const 3988292384
+e138 : bits[32] ^ (e136, e137)
+e139 : bits[32] >> (e134) offset=1
+e140 : bits[32] mux (e135, e138, e139)
+e141 : bits[1] slice (e140) offset=0
+e142 : bits[32] >> (e140) offset=1
+e143 : bits[32] const 3988292384
+e144 : bits[32] ^ (e142, e143)
+e145 : bits[32] >> (e140) offset=1
+e146 : bits[32] mux (e141, e144, e145)
+e147 : bits[1] slice (e146) offset=0
+e148 : bits[32] >> (e146) offset=1
+e149 : bits[32] const 3988292384
+e150 : bits[32] ^ (e148, e149)
+e151 : bits[32] >> (e146) offset=1
+e152 : bits[32] mux (e147, e150, e151)
+e153 : bits[1] slice (e152) offset=0
+e154 : bits[32] >> (e152) offset=1
+e155 : bits[32] const 3988292384
+e156 : bits[32] ^ (e154, e155)
+e157 : bits[32] >> (e152) offset=1
+e158 : bits[32] mux (e153, e156, e157)
+e159 : bits[32] mux (e1, e158, e107)
+e160 : bits[8] slice (s_axis_tdata) offset=24
+e161 : bits[32] resize (e160)
+e162 : bits[32] ^ (e159, e161)
+e163 : bits[1] slice (e162) offset=0
+e164 : bits[32] >> (e162) offset=1
+e165 : bits[32] const 3988292384
+e166 : bits[32] ^ (e164, e165)
+e167 : bits[32] >> (e162) offset=1
+e168 : bits[32] mux (e163, e166, e167)
+e169 : bits[1] slice (e168) offset=0
+e170 : bits[32] >> (e168) offset=1
+e171 : bits[32] const 3988292384
+e172 : bits[32] ^ (e170, e171)
+e173 : bits[32] >> (e168) offset=1
+e174 : bits[32] mux (e169, e172, e173)
+e175 : bits[1] slice (e174) offset=0
+e176 : bits[32] >> (e174) offset=1
+e177 : bits[32] const 3988292384
+e178 : bits[32] ^ (e176, e177)
+e179 : bits[32] >> (e174) offset=1
+e180 : bits[32] mux (e175, e178, e179)
+e181 : bits[1] slice (e180) offset=0
+e182 : bits[32] >> (e180) offset=1
+e183 : bits[32] const 3988292384
+e184 : bits[32] ^ (e182, e183)
+e185 : bits[32] >> (e180) offset=1
+e186 : bits[32] mux (e181, e184, e185)
+e187 : bits[1] slice (e186) offset=0
+e188 : bits[32] >> (e186) offset=1
+e189 : bits[32] const 3988292384
+e190 : bits[32] ^ (e188, e189)
+e191 : bits[32] >> (e186) offset=1
+e192 : bits[32] mux (e187, e190, e191)
+e193 : bits[1] slice (e192) offset=0
+e194 : bits[32] >> (e192) offset=1
+e195 : bits[32] const 3988292384
+e196 : bits[32] ^ (e194, e195)
+e197 : bits[32] >> (e192) offset=1
+e198 : bits[32] mux (e193, e196, e197)
+e199 : bits[1] slice (e198) offset=0
+e200 : bits[32] >> (e198) offset=1
+e201 : bits[32] const 3988292384
+e202 : bits[32] ^ (e200, e201)
+e203 : bits[32] >> (e198) offset=1
+e204 : bits[32] mux (e199, e202, e203)
+e205 : bits[1] slice (e204) offset=0
+e206 : bits[32] >> (e204) offset=1
+e207 : bits[32] const 3988292384
+e208 : bits[32] ^ (e206, e207)
+e209 : bits[32] >> (e204) offset=1
+e210 : bits[32] mux (e205, e208, e209)
+e211 : bits[32] mux (e0, e210, e159)
+e212 : bits[32] ~ (e211)
+e213 : bits[32] const 0
+e214 : bits[32] mux (s_axis_tlast, e212, e213)
+e215 : bits[1] ~ (buffer_valid)
+e216 : bits[1] | (e215, buffer_tready)
+e217 : bits[1] & (s_axis_tvalid, s_axis_tready)
+e218 : bits[32] const 4294967295
+e219 : bits[32] mux (s_axis_tlast, e218, e211)
+e220 : bits[32] mux (e217, e219, crc_crc)
+e221 : bits[1] mux (e216, crc_tvalid, buffer_valid)
+e222 : bits[1] & (e216, crc_tvalid)
+e223 : bits[32] mux (e222, crc_tdata, buffer_data)
+e224 : bits[4] mux (e222, crc_tkeep, buffer_keep)
+e225 : bits[1] mux (e222, crc_tlast, buffer_last)
+e226 : bits[32] mux (e222, crc_tuser, buffer_user)
+connections:
+s_axis_tready <- crc_tready
+m_axis_tdata <- buffer_tdata
+m_axis_tkeep <- buffer_tkeep
+m_axis_tlast <- buffer_tlast
+m_axis_tuser <- buffer_tuser
+m_axis_tvalid <- buffer_tvalid
+crc_tdata <- s_axis_tdata
+crc_tkeep <- s_axis_tkeep
+crc_tlast <- s_axis_tlast
+crc_tuser <- e214
+crc_tvalid <- s_axis_tvalid
+crc_tready <- e216
+crc_crc.next <- e220
+buffer_tdata <- buffer_data
+buffer_tkeep <- buffer_keep
+buffer_tlast <- buffer_last
+buffer_tuser <- buffer_user
+buffer_tvalid <- buffer_valid
+buffer_tready <- m_axis_tready
+buffer_valid.next <- e221
+buffer_data.next <- e223
+buffer_keep.next <- e224
+buffer_last.next <- e225
+buffer_user.next <- e226

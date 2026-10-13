@@ -1,0 +1,245 @@
+module CsSeqWriteThenAssert
+ram data : words[16] bits[32]; synchronous read-before-write; reset retains cells; init=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
+input start : bits[1]
+reg busy_state : bits[1] reset=0
+reg done_state : bits[1] reset=0
+reg fault_state : bits[1] reset=0
+reg assertion_state : bits[1] reset=0
+reg timeout_state : bits[1] reset=0
+reg pc : bits[4] reset=0
+reg cycles : bits[12] reset=0
+reg result_state : bits[32] reset=0
+input arg1 : bits[32]
+reg saved_arg1 : bits[32] reset=0
+input arg2 : bits[32]
+reg saved_arg2 : bits[32] reset=0
+reg stack0 : bits[32] reset=0
+reg stack1 : bits[32] reset=0
+reg stack2 : bits[32] reset=0
+reg stack3 : bits[32] reset=0
+wire ram_address : bits[32]
+wire ram_write_data : bits[32]
+wire ram_write_enable : bits[1]
+wire ram_read_enable : bits[1]
+reg data_read_data : bits[32] reset=0
+output busy : bits[1]
+output done : bits[1]
+output fault : bits[1]
+output assertion_failed : bits[1]
+output timeout : bits[1]
+output result : bits[32]
+output accept : bits[1]
+expressions:
+e0 : bits[1] ~ (busy_state)
+e1 : bits[1] & (start, e0)
+e2 : bits[1] const 1
+e3 : bits[1] const 0
+e4 : bits[12] const 2500
+e5 : bits[1] < (cycles, e4)
+e6 : bits[1] ~ (e5)
+e7 : bits[1] & (busy_state, e6)
+e8 : bits[1] const 0
+e9 : bits[1] ~ (e6)
+e10 : bits[1] & (busy_state, e9)
+e11 : bits[4] const 11
+e12 : bits[1] == (pc, e11)
+e13 : bits[1] & (e10, e12)
+e14 : bits[1] const 0
+e15 : bits[4] const 10
+e16 : bits[1] == (pc, e15)
+e17 : bits[1] & (e10, e16)
+e18 : bits[32] const 0
+e19 : bits[1] == (stack1, e18)
+e20 : bits[1] & (e17, e19)
+e21 : bits[1] const 0
+e22 : bits[4] const 6
+e23 : bits[1] == (pc, e22)
+e24 : bits[1] & (e10, e23)
+e25 : bits[32] const 16
+e26 : bits[1] < (stack2, e25)
+e27 : bits[1] ~ (e26)
+e28 : bits[1] & (e24, e27)
+e29 : bits[1] const 0
+e30 : bits[4] const 2
+e31 : bits[1] == (pc, e30)
+e32 : bits[1] & (e10, e31)
+e33 : bits[32] const 16
+e34 : bits[1] < (stack1, e33)
+e35 : bits[1] ~ (e34)
+e36 : bits[1] & (e32, e35)
+e37 : bits[1] const 0
+e38 : bits[1] mux (e36, e37, busy_state)
+e39 : bits[1] mux (e28, e29, e38)
+e40 : bits[1] mux (e20, e21, e39)
+e41 : bits[1] mux (e13, e14, e40)
+e42 : bits[1] mux (e7, e8, e41)
+e43 : bits[1] mux (e1, e3, e42)
+e44 : bits[1] mux (e1, e2, e43)
+e45 : bits[1] const 0
+e46 : bits[1] const 1
+e47 : bits[1] const 1
+e48 : bits[1] const 1
+e49 : bits[1] const 1
+e50 : bits[1] const 1
+e51 : bits[1] mux (e36, e50, done_state)
+e52 : bits[1] mux (e28, e49, e51)
+e53 : bits[1] mux (e20, e48, e52)
+e54 : bits[1] mux (e13, e47, e53)
+e55 : bits[1] mux (e7, e46, e54)
+e56 : bits[1] mux (e1, e45, e55)
+e57 : bits[1] const 0
+e58 : bits[1] const 1
+e59 : bits[1] const 0
+e60 : bits[1] const 1
+e61 : bits[1] const 1
+e62 : bits[1] const 1
+e63 : bits[1] mux (e36, e62, fault_state)
+e64 : bits[1] mux (e28, e61, e63)
+e65 : bits[1] mux (e20, e60, e64)
+e66 : bits[1] mux (e13, e59, e65)
+e67 : bits[1] mux (e7, e58, e66)
+e68 : bits[1] mux (e1, e57, e67)
+e69 : bits[1] const 0
+e70 : bits[1] mux (e20, e60, assertion_state)
+e71 : bits[1] mux (e1, e69, e70)
+e72 : bits[1] const 0
+e73 : bits[1] & (busy_state, e6)
+e74 : bits[1] const 1
+e75 : bits[1] mux (e73, e74, timeout_state)
+e76 : bits[1] mux (e1, e72, e75)
+e77 : bits[4] const 0
+e78 : bits[4] const 11
+e79 : bits[4] const 9
+e80 : bits[1] == (pc, e79)
+e81 : bits[1] & (e10, e80)
+e82 : bits[4] const 10
+e83 : bits[4] const 8
+e84 : bits[1] == (pc, e83)
+e85 : bits[1] & (e10, e84)
+e86 : bits[4] const 9
+e87 : bits[4] const 7
+e88 : bits[1] == (pc, e87)
+e89 : bits[1] & (e10, e88)
+e90 : bits[4] const 8
+e91 : bits[4] const 7
+e92 : bits[4] const 5
+e93 : bits[1] == (pc, e92)
+e94 : bits[1] & (e10, e93)
+e95 : bits[4] const 6
+e96 : bits[4] const 4
+e97 : bits[1] == (pc, e96)
+e98 : bits[1] & (e10, e97)
+e99 : bits[4] const 5
+e100 : bits[4] const 3
+e101 : bits[1] == (pc, e100)
+e102 : bits[1] & (e10, e101)
+e103 : bits[4] const 4
+e104 : bits[4] const 12
+e105 : bits[1] == (pc, e104)
+e106 : bits[1] & (e10, e105)
+e107 : bits[4] const 3
+e108 : bits[1] & (e32, e34)
+e109 : bits[4] const 12
+e110 : bits[4] const 3
+e111 : bits[4] const 1
+e112 : bits[1] == (pc, e111)
+e113 : bits[1] & (e10, e112)
+e114 : bits[4] const 2
+e115 : bits[4] const 0
+e116 : bits[1] == (pc, e115)
+e117 : bits[1] & (e10, e116)
+e118 : bits[4] const 1
+e119 : bits[4] mux (e117, e118, pc)
+e120 : bits[4] mux (e113, e114, e119)
+e121 : bits[4] mux (e32, e110, e120)
+e122 : bits[4] mux (e108, e109, e121)
+e123 : bits[4] mux (e106, e107, e122)
+e124 : bits[4] mux (e102, e103, e123)
+e125 : bits[4] mux (e98, e99, e124)
+e126 : bits[4] mux (e94, e95, e125)
+e127 : bits[4] mux (e24, e91, e126)
+e128 : bits[4] mux (e89, e90, e127)
+e129 : bits[4] mux (e85, e86, e128)
+e130 : bits[4] mux (e81, e82, e129)
+e131 : bits[4] mux (e17, e78, e130)
+e132 : bits[4] mux (e1, e77, e131)
+e133 : bits[12] const 0
+e134 : bits[12] const 1
+e135 : bits[12] + (cycles, e134)
+e136 : bits[12] mux (e10, e135, cycles)
+e137 : bits[12] mux (e1, e133, e136)
+e138 : bits[32] const 0
+e139 : bits[32] mux (e13, stack0, result_state)
+e140 : bits[32] mux (e1, e138, e139)
+e141 : bits[32] const 0
+e142 : bits[32] mux (e1, e141, saved_arg1)
+e143 : bits[32] mux (e1, arg1, e142)
+e144 : bits[32] const 0
+e145 : bits[32] mux (e1, e144, saved_arg2)
+e146 : bits[32] mux (e1, arg2, e145)
+e147 : bits[32] const 0
+e148 : bits[32] const 0
+e149 : bits[32] mux (e117, e148, stack0)
+e150 : bits[32] mux (e106, data_read_data, e149)
+e151 : bits[32] mux (e1, e147, e150)
+e152 : bits[32] const 0
+e153 : bits[1] < (stack1, stack2)
+e154 : bits[32] resize (e153)
+e155 : bits[32] mux (e113, saved_arg1, stack1)
+e156 : bits[32] mux (e102, e148, e155)
+e157 : bits[32] mux (e89, saved_arg2, e156)
+e158 : bits[32] mux (e81, e154, e157)
+e159 : bits[32] mux (e1, e152, e158)
+e160 : bits[32] const 0
+e161 : bits[32] const 10
+e162 : bits[32] mux (e98, saved_arg1, stack2)
+e163 : bits[32] mux (e85, e161, e162)
+e164 : bits[32] mux (e1, e160, e163)
+e165 : bits[32] const 0
+e166 : bits[32] mux (e94, saved_arg2, stack3)
+e167 : bits[32] mux (e1, e165, e166)
+e168 : bits[1] & (e24, e26)
+e169 : bits[32] const 0
+e170 : bits[32] mux (e108, stack1, e169)
+e171 : bits[32] mux (e168, stack2, e170)
+e172 : bits[32] const 0
+e173 : bits[32] mux (e168, stack3, e172)
+e174 : bits[1] const 0
+e175 : bits[1] | (e174, e168)
+e176 : bits[1] const 0
+e177 : bits[1] | (e176, e108)
+e178 : bits[33] resize (ram_address)
+e179 : bits[33] const 16
+e180 : bits[1] < (e178, e179)
+e181 : bits[32] memory (ram_address) ram=data
+e182 : bits[32] const 0
+e183 : bits[32] mux (e180, e181, e182)
+e184 : bits[32] mux (ram_read_enable, e183, data_read_data)
+connections:
+data.write <- address ram_address, enable ram_write_enable, data ram_write_data
+busy_state.next <- e44
+done_state.next <- e56
+fault_state.next <- e68
+assertion_state.next <- e71
+timeout_state.next <- e76
+pc.next <- e132
+cycles.next <- e137
+result_state.next <- e140
+saved_arg1.next <- e143
+saved_arg2.next <- e146
+stack0.next <- e151
+stack1.next <- e159
+stack2.next <- e164
+stack3.next <- e167
+ram_address <- e171
+ram_write_data <- e173
+ram_write_enable <- e175
+ram_read_enable <- e177
+data_read_data.next <- e184
+busy <- busy_state
+done <- done_state
+fault <- fault_state
+assertion_failed <- assertion_state
+timeout <- timeout_state
+result <- result_state
+accept <- e1

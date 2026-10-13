@@ -1,0 +1,18 @@
+Behavioral.CSharpFunctions.DoWhile4
+IL_0000: ldc.i4.0 
+IL_0001: stloc.0 
+IL_0002: ldarg.0 
+IL_0003: ldarg.1 
+IL_0004: xor 
+IL_0005: starg.s 0
+IL_0007: ldloc.0 
+IL_0008: ldc.i4.1 
+IL_0009: add 
+IL_000a: stloc.0 
+IL_000b: ldloc.0 
+IL_000c: ldc.i4.4 
+IL_000d: blt.s 2
+IL_000f: ldarg.0 
+IL_0010: ret 
+
+Instructions visited: 48; symbolic branches: 0; method bodies: 1

@@ -1,0 +1,12 @@
+Behavioral.CSharpFunctions.Predicate
+IL_0000: ldarg.0 
+IL_0001: ldarg.1 
+IL_0002: bge.s 9
+IL_0004: ldarg.1 
+IL_0005: ldc.i4.0 
+IL_0006: cgt.un 
+IL_0008: ret 
+IL_0009: ldc.i4.0 
+IL_000a: ret 
+
+Instructions visited: 9; symbolic branches: 1; method bodies: 1

@@ -1,0 +1,42 @@
+AdvancedFunctions.Memory
+IL_0000: ldarg.1 
+IL_0001: ldc.i4.0 
+IL_0002: blt.s 15
+IL_0004: ldarg.1 
+IL_0005: ldarg.0 
+IL_0006: ldlen 
+IL_0007: conv.i4 
+IL_0008: cgt 
+IL_000a: ldc.i4.0 
+IL_000b: ceq 
+IL_000d: br.s 16
+IL_000f: ldc.i4.0 
+IL_0010: call Void Assert(Boolean)
+IL_0015: ldc.i4.0 
+IL_0016: stloc.0 
+IL_0017: ldc.i4.0 
+IL_0018: stloc.1 
+IL_0019: br.s 45
+IL_001b: ldarg.0 
+IL_001c: ldloc.1 
+IL_001d: ldelem.u4 
+IL_001e: stloc.2 
+IL_001f: ldarg.0 
+IL_0020: ldloc.1 
+IL_0021: ldloc.2 
+IL_0022: ldarg.2 
+IL_0023: add 
+IL_0024: stelem.i4 
+IL_0025: ldloc.0 
+IL_0026: ldloc.2 
+IL_0027: add 
+IL_0028: stloc.0 
+IL_0029: ldloc.1 
+IL_002a: ldc.i4.1 
+IL_002b: add 
+IL_002c: stloc.1 
+IL_002d: ldloc.1 
+IL_002e: ldarg.1 
+IL_002f: blt.s 27
+IL_0031: ldloc.0 
+IL_0032: ret 

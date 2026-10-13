@@ -1,0 +1,1416 @@
+
+-- Running command `read_verilog generated/behavioral/Ram256.v; hierarchy -top h_Ram256; proc; opt; memory_collect; stat; synth_ice40 -top h_Ram256; stat; write_verilog -noattr build/behavioral-check/Ram256-mapped.v' --
+
+1. Executing Verilog-2005 frontend: generated/behavioral/Ram256.v
+Parsing Verilog input from `generated/behavioral/Ram256.v' to AST representation.
+Generating RTLIL representation for module `\h_Ram256'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \h_Ram256
+
+2.2. Analyzing design hierarchy..
+Top module:  \h_Ram256
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$generated/behavioral/Ram256.v:303$273 in module h_Ram256.
+Marked 1 switch rules as full_case in process $proc$generated/behavioral/Ram256.v:298$262 in module h_Ram256.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 259 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~2 debug messages>
+
+3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+Creating decoders for process `\h_Ram256.$proc$generated/behavioral/Ram256.v:303$273'.
+     1/1: $0\s_storage_read_data[15:0]
+Creating decoders for process `\h_Ram256.$proc$generated/behavioral/Ram256.v:298$262'.
+     1/3: $1$memwr$\mem_storage$generated/behavioral/Ram256.v:300$257_EN[15:0]$272
+     2/3: $1$memwr$\mem_storage$generated/behavioral/Ram256.v:300$257_DATA[15:0]$271
+     3/3: $1$memwr$\mem_storage$generated/behavioral/Ram256.v:300$257_ADDR[7:0]$270
+
+3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:26$1_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:27$2_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:28$3_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:29$4_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:30$5_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:31$6_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:32$7_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:33$8_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:34$9_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:35$10_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:36$11_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:37$12_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:38$13_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:39$14_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:40$15_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:41$16_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:42$17_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:43$18_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:44$19_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:45$20_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:46$21_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:47$22_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:48$23_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:49$24_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:50$25_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:51$26_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:52$27_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:53$28_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:54$29_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:55$30_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:56$31_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:57$32_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:58$33_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:59$34_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:60$35_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:61$36_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:62$37_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:63$38_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:64$39_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:65$40_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:66$41_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:67$42_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:68$43_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:69$44_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:70$45_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:71$46_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:72$47_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:73$48_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:74$49_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:75$50_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:76$51_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:77$52_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:78$53_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:79$54_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:80$55_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:81$56_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:82$57_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:83$58_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:84$59_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:85$60_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:86$61_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:87$62_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:88$63_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:89$64_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:90$65_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:91$66_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:92$67_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:93$68_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:94$69_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:95$70_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:96$71_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:97$72_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:98$73_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:99$74_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:100$75_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:101$76_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:102$77_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:103$78_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:104$79_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:105$80_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:106$81_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:107$82_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:108$83_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:109$84_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:110$85_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:111$86_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:112$87_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:113$88_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:114$89_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:115$90_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:116$91_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:117$92_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:118$93_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:119$94_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:120$95_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:121$96_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:122$97_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:123$98_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:124$99_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:125$100_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:126$101_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:127$102_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:128$103_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:129$104_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:130$105_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:131$106_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:132$107_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:133$108_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:134$109_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:135$110_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:136$111_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:137$112_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:138$113_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:139$114_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:140$115_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:141$116_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:142$117_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:143$118_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:144$119_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:145$120_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:146$121_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:147$122_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:148$123_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:149$124_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:150$125_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:151$126_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:152$127_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:153$128_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:154$129_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:155$130_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:156$131_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:157$132_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:158$133_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:159$134_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:160$135_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:161$136_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:162$137_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:163$138_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:164$139_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:165$140_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:166$141_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:167$142_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:168$143_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:169$144_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:170$145_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:171$146_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:172$147_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:173$148_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:174$149_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:175$150_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:176$151_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:177$152_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:178$153_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:179$154_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:180$155_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:181$156_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:182$157_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:183$158_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:184$159_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:185$160_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:186$161_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:187$162_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:188$163_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:189$164_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:190$165_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:191$166_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:192$167_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:193$168_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:194$169_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:195$170_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:196$171_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:197$172_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:198$173_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:199$174_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:200$175_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:201$176_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:202$177_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:203$178_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:204$179_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:205$180_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:206$181_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:207$182_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:208$183_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:209$184_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:210$185_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:211$186_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:212$187_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:213$188_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:214$189_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:215$190_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:216$191_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:217$192_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:218$193_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:219$194_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:220$195_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:221$196_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:222$197_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:223$198_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:224$199_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:225$200_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:226$201_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:227$202_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:228$203_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:229$204_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:230$205_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:231$206_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:232$207_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:233$208_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:234$209_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:235$210_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:236$211_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:237$212_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:238$213_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:239$214_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:240$215_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:241$216_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:242$217_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:243$218_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:244$219_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:245$220_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:246$221_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:247$222_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:248$223_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:249$224_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:250$225_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:251$226_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:252$227_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:253$228_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:254$229_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:255$230_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:256$231_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:257$232_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:258$233_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:259$234_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:260$235_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:261$236_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:262$237_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:263$238_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:264$239_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:265$240_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:266$241_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:267$242_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:268$243_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:269$244_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:270$245_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:271$246_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:272$247_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:273$248_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:274$249_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:275$250_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:276$251_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:277$252_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:278$253_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:279$254_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:280$255_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+No latch inferred for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:281$256_EN' from process `\h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+
+3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\h_Ram256.\s_storage_read_data' using process `\h_Ram256.$proc$generated/behavioral/Ram256.v:303$273'.
+  created $dff cell `$procdff$799' with positive edge clock.
+Creating register for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:300$257_ADDR' using process `\h_Ram256.$proc$generated/behavioral/Ram256.v:298$262'.
+  created $dff cell `$procdff$800' with positive edge clock.
+Creating register for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:300$257_DATA' using process `\h_Ram256.$proc$generated/behavioral/Ram256.v:298$262'.
+  created $dff cell `$procdff$801' with positive edge clock.
+Creating register for signal `\h_Ram256.$memwr$\mem_storage$generated/behavioral/Ram256.v:300$257_EN' using process `\h_Ram256.$proc$generated/behavioral/Ram256.v:298$262'.
+  created $dff cell `$procdff$802' with positive edge clock.
+
+3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `h_Ram256.$proc$generated/behavioral/Ram256.v:0$530'.
+Found and cleaned up 1 empty switch in `\h_Ram256.$proc$generated/behavioral/Ram256.v:303$273'.
+Removing empty process `h_Ram256.$proc$generated/behavioral/Ram256.v:303$273'.
+Found and cleaned up 1 empty switch in `\h_Ram256.$proc$generated/behavioral/Ram256.v:298$262'.
+Removing empty process `h_Ram256.$proc$generated/behavioral/Ram256.v:298$262'.
+Cleaned up 2 empty switches.
+
+3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Ram256..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Ram256.
+    Consolidated identical input bits for $mux cell $procmux$791:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$procmux$791_Y
+      New ports: A=1'0, B=1'1, Y=$procmux$791_Y [0]
+      New connections: $procmux$791_Y [15:1] = { $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] $procmux$791_Y [0] }
+  Optimizing cells in module \h_Ram256.
+Performed a total of 1 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$799 ($dff) from module h_Ram256 (D = $ternary$generated/behavioral/Ram256.v:297$261_Y, Q = \s_storage_read_data, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$804 ($sdff) from module h_Ram256 (D = \n_3, Q = \s_storage_read_data).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+Removed 5 unused cells and 533 unused wires.
+<suppressed ~7 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Ram256..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Ram256.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+4.16. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+6. Printing statistics.
+
+=== h_Ram256 ===
+
+   Number of wires:                 18
+   Number of wire bits:            145
+   Number of public wires:          12
+   Number of public wire bits:     102
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 10
+     $logic_and                      2
+     $logic_not                      1
+     $lt                             1
+     $mem_v2                         1
+     $mux                            4
+     $sdffe                          1
+
+7. Executing SYNTH_ICE40 pass.
+
+7.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v' to AST representation.
+Generating RTLIL representation for module `\SB_IO'.
+Generating RTLIL representation for module `\SB_GB_IO'.
+Generating RTLIL representation for module `\SB_GB'.
+Generating RTLIL representation for module `\SB_LUT4'.
+Generating RTLIL representation for module `\SB_CARRY'.
+Generating RTLIL representation for module `\SB_DFF'.
+Generating RTLIL representation for module `\SB_DFFE'.
+Generating RTLIL representation for module `\SB_DFFSR'.
+Generating RTLIL representation for module `\SB_DFFR'.
+Generating RTLIL representation for module `\SB_DFFSS'.
+Generating RTLIL representation for module `\SB_DFFS'.
+Generating RTLIL representation for module `\SB_DFFESR'.
+Generating RTLIL representation for module `\SB_DFFER'.
+Generating RTLIL representation for module `\SB_DFFESS'.
+Generating RTLIL representation for module `\SB_DFFES'.
+Generating RTLIL representation for module `\SB_DFFN'.
+Generating RTLIL representation for module `\SB_DFFNE'.
+Generating RTLIL representation for module `\SB_DFFNSR'.
+Generating RTLIL representation for module `\SB_DFFNR'.
+Generating RTLIL representation for module `\SB_DFFNSS'.
+Generating RTLIL representation for module `\SB_DFFNS'.
+Generating RTLIL representation for module `\SB_DFFNESR'.
+Generating RTLIL representation for module `\SB_DFFNER'.
+Generating RTLIL representation for module `\SB_DFFNESS'.
+Generating RTLIL representation for module `\SB_DFFNES'.
+Generating RTLIL representation for module `\SB_RAM40_4K'.
+Generating RTLIL representation for module `\SB_RAM40_4KNR'.
+Generating RTLIL representation for module `\SB_RAM40_4KNW'.
+Generating RTLIL representation for module `\SB_RAM40_4KNRNW'.
+Generating RTLIL representation for module `\ICESTORM_LC'.
+Generating RTLIL representation for module `\SB_PLL40_CORE'.
+Generating RTLIL representation for module `\SB_PLL40_PAD'.
+Generating RTLIL representation for module `\SB_PLL40_2_PAD'.
+Generating RTLIL representation for module `\SB_PLL40_2F_CORE'.
+Generating RTLIL representation for module `\SB_PLL40_2F_PAD'.
+Generating RTLIL representation for module `\SB_WARMBOOT'.
+Generating RTLIL representation for module `\SB_SPRAM256KA'.
+Generating RTLIL representation for module `\SB_HFOSC'.
+Generating RTLIL representation for module `\SB_LFOSC'.
+Generating RTLIL representation for module `\SB_RGBA_DRV'.
+Generating RTLIL representation for module `\SB_LED_DRV_CUR'.
+Generating RTLIL representation for module `\SB_RGB_DRV'.
+Generating RTLIL representation for module `\SB_I2C'.
+Generating RTLIL representation for module `\SB_SPI'.
+Generating RTLIL representation for module `\SB_LEDDA_IP'.
+Generating RTLIL representation for module `\SB_FILTER_50NS'.
+Generating RTLIL representation for module `\SB_IO_I3C'.
+Generating RTLIL representation for module `\SB_IO_OD'.
+Generating RTLIL representation for module `\SB_MAC16'.
+Generating RTLIL representation for module `\ICESTORM_RAM'.
+Successfully finished Verilog frontend.
+
+7.2. Executing HIERARCHY pass (managing design hierarchy).
+
+7.2.1. Analyzing design hierarchy..
+Top module:  \h_Ram256
+
+7.2.2. Analyzing design hierarchy..
+Top module:  \h_Ram256
+Removed 0 unused modules.
+
+7.3. Executing PROC pass (convert processes to netlists).
+
+7.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+7.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$1046 in module SB_DFFNES.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$1039 in module SB_DFFNESS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$1035 in module SB_DFFNER.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$1028 in module SB_DFFNESR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$1025 in module SB_DFFNS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$1022 in module SB_DFFNSS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$1019 in module SB_DFFNR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$1016 in module SB_DFFNSR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$1008 in module SB_DFFES.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$1001 in module SB_DFFESS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$997 in module SB_DFFER.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$990 in module SB_DFFESR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$987 in module SB_DFFS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$984 in module SB_DFFSS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$981 in module SB_DFFR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$978 in module SB_DFFSR.
+Removed a total of 0 dead cases.
+
+7.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 8 redundant assignments.
+Promoted 22 assignments to connections.
+
+7.3.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1049'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1045'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1038'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1034'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1027'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1024'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1021'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1018'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1015'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1013'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1011'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1007'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1000'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$996'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$989'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$986'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$983'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$980'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$977'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$975'.
+  Set init value: \Q = 1'0
+
+7.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \S in `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$1046'.
+Found async reset \R in `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$1035'.
+Found async reset \S in `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$1025'.
+Found async reset \R in `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$1019'.
+Found async reset \S in `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$1008'.
+Found async reset \R in `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$997'.
+Found async reset \S in `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$987'.
+Found async reset \R in `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$981'.
+
+7.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~18 debug messages>
+
+7.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1049'.
+Creating decoders for process `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$1046'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1045'.
+Creating decoders for process `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$1039'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1038'.
+Creating decoders for process `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$1035'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1034'.
+Creating decoders for process `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$1028'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1027'.
+Creating decoders for process `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$1025'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1024'.
+Creating decoders for process `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$1022'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1021'.
+Creating decoders for process `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$1019'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1018'.
+Creating decoders for process `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$1016'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1015'.
+Creating decoders for process `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:922$1014'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1013'.
+Creating decoders for process `\SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:882$1012'.
+Creating decoders for process `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1011'.
+Creating decoders for process `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$1008'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1007'.
+Creating decoders for process `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$1001'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1000'.
+Creating decoders for process `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$997'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$996'.
+Creating decoders for process `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$990'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$989'.
+Creating decoders for process `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$987'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$986'.
+Creating decoders for process `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$984'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$983'.
+Creating decoders for process `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$981'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$980'.
+Creating decoders for process `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$978'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$977'.
+Creating decoders for process `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:311$976'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$975'.
+Creating decoders for process `\SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:271$974'.
+
+7.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+7.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\SB_DFFNES.\Q' using process `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$1046'.
+  created $adff cell `$procdff$1230' with negative edge clock and positive level reset.
+Creating register for signal `\SB_DFFNESS.\Q' using process `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$1039'.
+  created $dff cell `$procdff$1231' with negative edge clock.
+Creating register for signal `\SB_DFFNER.\Q' using process `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$1035'.
+  created $adff cell `$procdff$1232' with negative edge clock and positive level reset.
+Creating register for signal `\SB_DFFNESR.\Q' using process `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$1028'.
+  created $dff cell `$procdff$1233' with negative edge clock.
+Creating register for signal `\SB_DFFNS.\Q' using process `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$1025'.
+  created $adff cell `$procdff$1234' with negative edge clock and positive level reset.
+Creating register for signal `\SB_DFFNSS.\Q' using process `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$1022'.
+  created $dff cell `$procdff$1235' with negative edge clock.
+Creating register for signal `\SB_DFFNR.\Q' using process `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$1019'.
+  created $adff cell `$procdff$1236' with negative edge clock and positive level reset.
+Creating register for signal `\SB_DFFNSR.\Q' using process `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$1016'.
+  created $dff cell `$procdff$1237' with negative edge clock.
+Creating register for signal `\SB_DFFNE.\Q' using process `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:922$1014'.
+  created $dff cell `$procdff$1238' with negative edge clock.
+Creating register for signal `\SB_DFFN.\Q' using process `\SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:882$1012'.
+  created $dff cell `$procdff$1239' with negative edge clock.
+Creating register for signal `\SB_DFFES.\Q' using process `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$1008'.
+  created $adff cell `$procdff$1240' with positive edge clock and positive level reset.
+Creating register for signal `\SB_DFFESS.\Q' using process `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$1001'.
+  created $dff cell `$procdff$1241' with positive edge clock.
+Creating register for signal `\SB_DFFER.\Q' using process `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$997'.
+  created $adff cell `$procdff$1242' with positive edge clock and positive level reset.
+Creating register for signal `\SB_DFFESR.\Q' using process `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$990'.
+  created $dff cell `$procdff$1243' with positive edge clock.
+Creating register for signal `\SB_DFFS.\Q' using process `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$987'.
+  created $adff cell `$procdff$1244' with positive edge clock and positive level reset.
+Creating register for signal `\SB_DFFSS.\Q' using process `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$984'.
+  created $dff cell `$procdff$1245' with positive edge clock.
+Creating register for signal `\SB_DFFR.\Q' using process `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$981'.
+  created $adff cell `$procdff$1246' with positive edge clock and positive level reset.
+Creating register for signal `\SB_DFFSR.\Q' using process `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$978'.
+  created $dff cell `$procdff$1247' with positive edge clock.
+Creating register for signal `\SB_DFFE.\Q' using process `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:311$976'.
+  created $dff cell `$procdff$1248' with positive edge clock.
+Creating register for signal `\SB_DFF.\Q' using process `\SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:271$974'.
+  created $dff cell `$procdff$1249' with positive edge clock.
+
+7.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+7.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1049'.
+Found and cleaned up 1 empty switch in `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$1046'.
+Removing empty process `SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$1046'.
+Removing empty process `SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1045'.
+Found and cleaned up 2 empty switches in `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$1039'.
+Removing empty process `SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$1039'.
+Removing empty process `SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1038'.
+Found and cleaned up 1 empty switch in `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$1035'.
+Removing empty process `SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$1035'.
+Removing empty process `SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1034'.
+Found and cleaned up 2 empty switches in `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$1028'.
+Removing empty process `SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$1028'.
+Removing empty process `SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1027'.
+Removing empty process `SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$1025'.
+Removing empty process `SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1024'.
+Found and cleaned up 1 empty switch in `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$1022'.
+Removing empty process `SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$1022'.
+Removing empty process `SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1021'.
+Removing empty process `SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$1019'.
+Removing empty process `SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1018'.
+Found and cleaned up 1 empty switch in `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$1016'.
+Removing empty process `SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$1016'.
+Removing empty process `SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1015'.
+Found and cleaned up 1 empty switch in `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:922$1014'.
+Removing empty process `SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:922$1014'.
+Removing empty process `SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1013'.
+Removing empty process `SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:882$1012'.
+Removing empty process `SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1011'.
+Found and cleaned up 1 empty switch in `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$1008'.
+Removing empty process `SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$1008'.
+Removing empty process `SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1007'.
+Found and cleaned up 2 empty switches in `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$1001'.
+Removing empty process `SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$1001'.
+Removing empty process `SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1000'.
+Found and cleaned up 1 empty switch in `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$997'.
+Removing empty process `SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$997'.
+Removing empty process `SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$996'.
+Found and cleaned up 2 empty switches in `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$990'.
+Removing empty process `SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$990'.
+Removing empty process `SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$989'.
+Removing empty process `SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$987'.
+Removing empty process `SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$986'.
+Found and cleaned up 1 empty switch in `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$984'.
+Removing empty process `SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$984'.
+Removing empty process `SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$983'.
+Removing empty process `SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$981'.
+Removing empty process `SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$980'.
+Found and cleaned up 1 empty switch in `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$978'.
+Removing empty process `SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$978'.
+Removing empty process `SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$977'.
+Found and cleaned up 1 empty switch in `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:311$976'.
+Removing empty process `SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:311$976'.
+Removing empty process `SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$975'.
+Removing empty process `SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:271$974'.
+Cleaned up 18 empty switches.
+
+7.3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.4. Executing FLATTEN pass (flatten design).
+
+7.5. Executing TRIBUF pass.
+
+7.6. Executing DEMINOUT pass (demote inout ports to input or output).
+
+7.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+7.9. Executing CHECK pass (checking for obvious problems).
+Checking module h_Ram256...
+Found and reported 0 problems.
+
+7.10. Executing OPT pass (performing simple optimizations).
+
+7.10.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.10.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Ram256..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+7.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Ram256.
+Performed a total of 0 changes.
+
+7.10.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+7.10.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.10.9. Finished OPT passes. (There is nothing left to do.)
+
+7.11. Executing FSM pass (extract and optimize FSM).
+
+7.11.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+7.11.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+7.11.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+7.11.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+7.11.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+7.11.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+7.11.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+7.11.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+7.12. Executing OPT pass (performing simple optimizations).
+
+7.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.12.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Ram256..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+7.12.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Ram256.
+Performed a total of 0 changes.
+
+7.12.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.12.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.12.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+7.12.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.12.9. Finished OPT passes. (There is nothing left to do.)
+
+7.13. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 9) from port A of cell h_Ram256.$lt$generated/behavioral/Ram256.v:299$268 ($lt).
+
+7.14. Executing PEEPOPT pass (run peephole optimizers).
+
+7.15. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+7.16. Executing SHARE pass (SAT-based resource sharing).
+
+7.17. Executing TECHMAP pass (map to technology primitives).
+
+7.17.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/cmp2lut.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/cmp2lut.v' to AST representation.
+Generating RTLIL representation for module `\_90_lut_cmp_'.
+Successfully finished Verilog frontend.
+
+7.17.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~36 debug messages>
+
+7.18. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.19. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+7.20. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module h_Ram256:
+  creating $alu model for $lt$generated/behavioral/Ram256.v:299$268 ($lt): new $alu
+  creating $alu cell for $lt$generated/behavioral/Ram256.v:299$268: $auto$alumacc.cc:485:replace_alu$1252
+  created 1 $alu and 0 $macc cells.
+
+7.21. Executing OPT pass (performing simple optimizations).
+
+7.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+<suppressed ~1 debug messages>
+
+7.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.21.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Ram256..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+7.21.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Ram256.
+Performed a total of 0 changes.
+
+7.21.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.21.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.21.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+7.21.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.21.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.21.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Ram256..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+7.21.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Ram256.
+Performed a total of 0 changes.
+
+7.21.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.21.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.21.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+7.21.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.21.16. Finished OPT passes. (There is nothing left to do.)
+
+7.22. Executing MEMORY pass.
+
+7.22.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+7.22.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+7.22.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+  Analyzing h_Ram256.mem_storage write port 0.
+
+7.22.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+7.22.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+Checking read port `\mem_storage'[0] in module `\h_Ram256': merging output FF to cell.
+    Write port 0: non-transparent.
+
+7.22.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+Removed 2 unused cells and 18 unused wires.
+<suppressed ~5 debug messages>
+
+7.22.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+7.22.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+7.22.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+7.22.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+7.23. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+7.24. Executing MEMORY_LIBMAP pass (mapping memories to cells).
+mapping memory h_Ram256.mem_storage via $__ICE40_RAM4K_
+<suppressed ~72 debug messages>
+
+7.25. Executing TECHMAP pass (map to technology primitives).
+
+7.25.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/brams_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/brams_map.v' to AST representation.
+Generating RTLIL representation for module `\$__ICE40_RAM4K_'.
+Successfully finished Verilog frontend.
+
+7.25.2. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/spram_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/spram_map.v' to AST representation.
+Generating RTLIL representation for module `\$__ICE40_SPRAM_'.
+Successfully finished Verilog frontend.
+
+7.25.3. Continuing TECHMAP pass.
+Using template $paramod$4e4d1780bc9e51253644beaa8ad676df4cba67fa\$__ICE40_RAM4K_ for cells of type $__ICE40_RAM4K_.
+No more expansions possible.
+<suppressed ~28 debug messages>
+
+7.26. Executing ICE40_BRAMINIT pass.
+
+7.27. Executing OPT pass (performing simple optimizations).
+
+7.27.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+<suppressed ~8 debug messages>
+
+7.27.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.27.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.27.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+Removed 8 unused cells and 28 unused wires.
+<suppressed ~9 debug messages>
+
+7.27.5. Finished fast OPT passes.
+
+7.28. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+7.29. Executing OPT pass (performing simple optimizations).
+
+7.29.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.29.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.29.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Ram256..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~1 debug messages>
+
+7.29.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Ram256.
+Performed a total of 0 changes.
+
+7.29.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.29.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.29.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+7.29.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.29.9. Finished OPT passes. (There is nothing left to do.)
+
+7.30. Executing ICE40_WRAPCARRY pass (wrap carries).
+
+7.31. Executing TECHMAP pass (map to technology primitives).
+
+7.31.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+7.31.2. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v' to AST representation.
+Generating RTLIL representation for module `\_80_ice40_alu'.
+Successfully finished Verilog frontend.
+
+7.31.3. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $dff.
+Using extmapper simplemap for cells of type $sdffe.
+Using extmapper simplemap for cells of type $dffe.
+Using template $paramod$adbaf76fa5a3091a329503792521395f8ff4d1a4\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000001 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using extmapper simplemap for cells of type $or.
+No more expansions possible.
+<suppressed ~240 debug messages>
+
+7.32. Executing OPT pass (performing simple optimizations).
+
+7.32.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+<suppressed ~10 debug messages>
+
+7.32.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.32.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.32.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+Removed 0 unused cells and 30 unused wires.
+<suppressed ~1 debug messages>
+
+7.32.5. Finished fast OPT passes.
+
+7.33. Executing ICE40_OPT pass (performing simple optimizations).
+
+7.33.1. Running ICE40 specific optimizations.
+
+7.33.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.33.3. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.33.4. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.33.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+7.33.6. Finished OPT passes. (There is nothing left to do.)
+
+7.34. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+
+7.35. Executing TECHMAP pass (map to technology primitives).
+
+7.35.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/ff_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/ff_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DFF_N_'.
+Generating RTLIL representation for module `\$_DFF_P_'.
+Generating RTLIL representation for module `\$_DFFE_NP_'.
+Generating RTLIL representation for module `\$_DFFE_PP_'.
+Generating RTLIL representation for module `\$_DFF_NP0_'.
+Generating RTLIL representation for module `\$_DFF_NP1_'.
+Generating RTLIL representation for module `\$_DFF_PP0_'.
+Generating RTLIL representation for module `\$_DFF_PP1_'.
+Generating RTLIL representation for module `\$_DFFE_NP0P_'.
+Generating RTLIL representation for module `\$_DFFE_NP1P_'.
+Generating RTLIL representation for module `\$_DFFE_PP0P_'.
+Generating RTLIL representation for module `\$_DFFE_PP1P_'.
+Generating RTLIL representation for module `\$_SDFF_NP0_'.
+Generating RTLIL representation for module `\$_SDFF_NP1_'.
+Generating RTLIL representation for module `\$_SDFF_PP0_'.
+Generating RTLIL representation for module `\$_SDFF_PP1_'.
+Generating RTLIL representation for module `\$_SDFFCE_NP0P_'.
+Generating RTLIL representation for module `\$_SDFFCE_NP1P_'.
+Generating RTLIL representation for module `\$_SDFFCE_PP0P_'.
+Generating RTLIL representation for module `\$_SDFFCE_PP1P_'.
+Successfully finished Verilog frontend.
+
+7.35.2. Continuing TECHMAP pass.
+Using template \$_DFF_P_ for cells of type $_DFF_P_.
+Using template \$_SDFFCE_PP0P_ for cells of type $_SDFFCE_PP0P_.
+Using template \$_DFFE_PP_ for cells of type $_DFFE_PP_.
+No more expansions possible.
+<suppressed ~65 debug messages>
+
+7.36. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.37. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+7.38. Executing ICE40_OPT pass (performing simple optimizations).
+
+7.38.1. Running ICE40 specific optimizations.
+
+7.38.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+<suppressed ~16 debug messages>
+
+7.38.3. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.38.4. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.38.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+Removed 0 unused cells and 191 unused wires.
+<suppressed ~1 debug messages>
+
+7.38.6. Rerunning OPT passes. (Removed registers in this run.)
+
+7.38.7. Running ICE40 specific optimizations.
+
+7.38.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Ram256.
+
+7.38.9. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Ram256'.
+Removed a total of 0 cells.
+
+7.38.10. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.38.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Ram256..
+
+7.38.12. Finished OPT passes. (There is nothing left to do.)
+
+7.39. Executing TECHMAP pass (map to technology primitives).
+
+7.39.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/latches_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/latches_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DLATCH_N_'.
+Generating RTLIL representation for module `\$_DLATCH_P_'.
+Successfully finished Verilog frontend.
+
+7.39.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+7.40. Executing ABC pass (technology mapping using ABC).
+
+7.40.1. Extracting gate netlist of module `\h_Ram256' to `<abc-temp-dir>/input.blif'..
+Extracted 53 gates and 107 wires to a netlist network with 54 inputs and 20 outputs.
+
+7.40.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_lut <abc-temp-dir>/lutdefs.txt 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + dch -f 
+ABC: + if 
+ABC: + mfs2 
+ABC: + lutpack -S 1 
+ABC: + dress <abc-temp-dir>/input.blif 
+ABC: Total number of equiv classes                =      24.
+ABC: Participating nodes from both networks       =      46.
+ABC: Participating nodes from the first network   =      23. (  88.46 % of nodes)
+ABC: Participating nodes from the second network  =      23. (  88.46 % of nodes)
+ABC: Node pairs (any polarity)                    =      23. (  88.46 % of names can be moved)
+ABC: Node pairs (same polarity)                   =      20. (  76.92 % of names can be moved)
+ABC: Total runtime =     0.01 sec
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+7.40.1.2. Re-integrating ABC results.
+ABC RESULTS:              $lut cells:       25
+ABC RESULTS:        internal signals:       33
+ABC RESULTS:           input signals:       54
+ABC RESULTS:          output signals:       20
+Removing temp directory.
+
+7.41. Executing ICE40_WRAPCARRY pass (wrap carries).
+
+7.42. Executing TECHMAP pass (map to technology primitives).
+
+7.42.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/ff_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/ff_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DFF_N_'.
+Generating RTLIL representation for module `\$_DFF_P_'.
+Generating RTLIL representation for module `\$_DFFE_NP_'.
+Generating RTLIL representation for module `\$_DFFE_PP_'.
+Generating RTLIL representation for module `\$_DFF_NP0_'.
+Generating RTLIL representation for module `\$_DFF_NP1_'.
+Generating RTLIL representation for module `\$_DFF_PP0_'.
+Generating RTLIL representation for module `\$_DFF_PP1_'.
+Generating RTLIL representation for module `\$_DFFE_NP0P_'.
+Generating RTLIL representation for module `\$_DFFE_NP1P_'.
+Generating RTLIL representation for module `\$_DFFE_PP0P_'.
+Generating RTLIL representation for module `\$_DFFE_PP1P_'.
+Generating RTLIL representation for module `\$_SDFF_NP0_'.
+Generating RTLIL representation for module `\$_SDFF_NP1_'.
+Generating RTLIL representation for module `\$_SDFF_PP0_'.
+Generating RTLIL representation for module `\$_SDFF_PP1_'.
+Generating RTLIL representation for module `\$_SDFFCE_NP0P_'.
+Generating RTLIL representation for module `\$_SDFFCE_NP1P_'.
+Generating RTLIL representation for module `\$_SDFFCE_PP0P_'.
+Generating RTLIL representation for module `\$_SDFFCE_PP1P_'.
+Successfully finished Verilog frontend.
+
+7.42.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~22 debug messages>
+Removed 0 unused cells and 44 unused wires.
+
+7.43. Executing OPT_LUT pass (optimize LUTs).
+Discovering LUTs.
+Number of LUTs:       25
+  1-LUT                1
+  2-LUT                3
+  4-LUT               21
+  with \SB_CARRY    (#0)    0
+  with \SB_CARRY    (#1)    0
+
+Eliminating LUTs.
+Number of LUTs:       25
+  1-LUT                1
+  2-LUT                3
+  4-LUT               21
+  with \SB_CARRY    (#0)    0
+  with \SB_CARRY    (#1)    0
+
+Combining LUTs.
+Number of LUTs:       25
+  1-LUT                1
+  2-LUT                3
+  4-LUT               21
+  with \SB_CARRY    (#0)    0
+  with \SB_CARRY    (#1)    0
+
+Eliminated 0 LUTs.
+Combined 0 LUTs.
+<suppressed ~85 debug messages>
+
+7.44. Executing TECHMAP pass (map to technology primitives).
+
+7.44.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v' to AST representation.
+Generating RTLIL representation for module `\$lut'.
+Successfully finished Verilog frontend.
+
+7.44.2. Continuing TECHMAP pass.
+Using template $paramod$e49f6e3576ef1a6d2f58c54414dbb786af8cc869\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000001\LUT=2'01 for cells of type $lut.
+Using template $paramod$2d07c1a6c53c7b878509360922c4fa5ebedc3011\$lut for cells of type $lut.
+Using template $paramod$c1a19a87ccbbb03d43a72335db63f692ddf82cc1\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1001 for cells of type $lut.
+Using template $paramod$571404c0889eaf57f492cb5e37f8acb5df5852f9\$lut for cells of type $lut.
+Using template $paramod$df196ed0a1da5c4a58c5e08a1dac304fd3fccaab\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1110 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0100 for cells of type $lut.
+No more expansions possible.
+<suppressed ~145 debug messages>
+Removed 0 unused cells and 75 unused wires.
+
+7.45. Executing AUTONAME pass.
+Renamed 411 objects in module h_Ram256 (12 iterations).
+<suppressed ~96 debug messages>
+
+7.46. Executing HIERARCHY pass (managing design hierarchy).
+
+7.46.1. Analyzing design hierarchy..
+Top module:  \h_Ram256
+
+7.46.2. Analyzing design hierarchy..
+Top module:  \h_Ram256
+Removed 0 unused modules.
+
+7.47. Printing statistics.
+
+=== h_Ram256 ===
+
+   Number of wires:                 38
+   Number of wire bits:            192
+   Number of public wires:          38
+   Number of public wire bits:     192
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 69
+     SB_DFF                         25
+     SB_DFFE                        17
+     SB_DFFESR                       1
+     SB_LUT4                        25
+     SB_RAM40_4K                     1
+
+7.48. Executing CHECK pass (checking for obvious problems).
+Checking module h_Ram256...
+Found and reported 0 problems.
+
+8. Printing statistics.
+
+=== h_Ram256 ===
+
+   Number of wires:                 38
+   Number of wire bits:            192
+   Number of public wires:          38
+   Number of public wire bits:     192
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 69
+     SB_DFF                         25
+     SB_DFFE                        17
+     SB_DFFESR                       1
+     SB_LUT4                        25
+     SB_RAM40_4K                     1
+
+9. Executing Verilog backend.
+
+9.1. Executing BMUXMAP pass.
+
+9.2. Executing DEMUXMAP pass.
+Dumping module `\h_Ram256'.

@@ -1,0 +1,2 @@
+Max CORDIC sine/cosine absolute error: 2.4164981834440269E-06
+Max normalized table/polynomial absolute error: 5.7220458984375E-06

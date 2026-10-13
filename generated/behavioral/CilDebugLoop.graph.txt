@@ -1,0 +1,18 @@
+module CilDebugLoop
+input a : bits[32]
+input b : bits[32]
+output y : bits[32]
+output fault : bits[1]
+expressions:
+e0 : bits[32] << (a) offset=1
+e1 : bits[32] + (e0, b)
+e2 : bits[32] << (e1) offset=1
+e3 : bits[32] + (e2, b)
+e4 : bits[32] << (e3) offset=1
+e5 : bits[32] + (e4, b)
+e6 : bits[32] << (e5) offset=1
+e7 : bits[32] + (e6, b)
+e8 : bits[1] const 0
+connections:
+y <- e7
+fault <- e8

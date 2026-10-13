@@ -1,0 +1,45 @@
+ThreeLanguages.CSharpPiece.AddTwo
+IL_0000: ldarg.0 
+IL_0001: ldc.i4.8 
+IL_0002: ldc.i4.2 
+IL_0003: call System.Numerics.BigInteger::System.Numerics.BigInteger op_Implicit(Int32)
+IL_0008: call SharpHDL.Expr::SharpHDL.Expr Const(Int32, System.Numerics.BigInteger)
+IL_000d: call SharpHDL.Expr::SharpHDL.Expr op_Addition(SharpHDL.Expr, SharpHDL.Expr)
+IL_0012: ret 
+
+ThreeLanguages.CSharpPiece.HostAddTwo
+IL_0000: ldarg.0 
+IL_0001: ldc.i4.2 
+IL_0002: add 
+IL_0003: ret 
+
+ThreeLanguages.FSharpPiece.AddTwo
+IL_0000: ldarg.0 
+IL_0001: ldc.i4.8 
+IL_0002: ldc.i4.2 
+IL_0003: newobj System.Numerics.BigInteger::Void .ctor(Int32)
+IL_0008: call SharpHDL.Expr::SharpHDL.Expr Const(Int32, System.Numerics.BigInteger)
+IL_000d: call SharpHDL.Expr::SharpHDL.Expr op_Addition(SharpHDL.Expr, SharpHDL.Expr)
+IL_0012: ret 
+
+ThreeLanguages.FSharpPiece.HostAddTwo
+IL_0000: ldarg.0 
+IL_0001: ldc.i4.2 
+IL_0002: add 
+IL_0003: ret 
+
+ThreeLanguages.VisualBasicPiece.AddTwo
+IL_0000: ldarg.0 
+IL_0001: ldc.i4.8 
+IL_0002: ldc.i4.2 
+IL_0003: call System.Numerics.BigInteger::System.Numerics.BigInteger op_Implicit(Int32)
+IL_0008: call SharpHDL.Expr::SharpHDL.Expr Const(Int32, System.Numerics.BigInteger)
+IL_000d: call SharpHDL.Expr::SharpHDL.Expr op_Addition(SharpHDL.Expr, SharpHDL.Expr)
+IL_0012: ret 
+
+ThreeLanguages.VisualBasicPiece.HostAddTwo
+IL_0000: ldarg.0 
+IL_0001: ldc.i4.2 
+IL_0002: add.ovf 
+IL_0003: ret 
+

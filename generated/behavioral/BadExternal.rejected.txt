@@ -1,0 +1,1 @@
+Behavioral.CSharpFunctions.BadExternal IL_0001: Only static helpers in the same assembly may be inlined.

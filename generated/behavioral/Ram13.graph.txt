@@ -1,0 +1,20 @@
+module Ram13
+ram storage : words[13] bits[16]; synchronous read-before-write; reset retains cells; init=0,17,34,51,68,85,102,119,136,153,170,187,204
+input address : bits[4]
+input wd : bits[16]
+input we : bits[1]
+input re : bits[1]
+reg storage_read_data : bits[16] reset=0
+output y : bits[16]
+expressions:
+e0 : bits[5] resize (address)
+e1 : bits[5] const 13
+e2 : bits[1] < (e0, e1)
+e3 : bits[16] memory (address) ram=storage
+e4 : bits[16] const 0
+e5 : bits[16] mux (e2, e3, e4)
+e6 : bits[16] mux (re, e5, storage_read_data)
+connections:
+storage.write <- address address, enable we, data wd
+storage_read_data.next <- e6
+y <- storage_read_data

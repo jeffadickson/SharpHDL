@@ -1,0 +1,968 @@
+
+-- Running command `read_verilog generated/tinyrisc/CountRun.v; hierarchy -check -top h_CountRun; proc -norom; opt; memory; opt; check -assert; stat; write_verilog -noattr generated/tinyrisc/CountRun_synth.v' --
+
+1. Executing Verilog-2005 frontend: generated/tinyrisc/CountRun.v
+Parsing Verilog input from `generated/tinyrisc/CountRun.v' to AST representation.
+Generating RTLIL representation for module `\h_CountRun'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \h_CountRun
+
+2.2. Analyzing design hierarchy..
+Top module:  \h_CountRun
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$generated/tinyrisc/CountRun.v:0$579 in module h_CountRun.
+Marked 1 switch rules as full_case in process $proc$generated/tinyrisc/CountRun.v:1338$578 in module h_CountRun.
+Marked 1 switch rules as full_case in process $proc$generated/tinyrisc/CountRun.v:1315$567 in module h_CountRun.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 17 redundant assignments.
+Promoted 262 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+Creating decoders for process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+     1/1: $1\rom_n_146$func$generated/tinyrisc/CountRun.v:1147$2.$result[15:0]$583
+Creating decoders for process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+     1/17: $0\s_scratch_read_data[15:0]
+     2/17: $0\s_r7_state[15:0]
+     3/17: $0\s_r6_state[15:0]
+     4/17: $0\s_r5_state[15:0]
+     5/17: $0\s_r4_state[15:0]
+     6/17: $0\s_r3_state[15:0]
+     7/17: $0\s_r2_state[15:0]
+     8/17: $0\s_r1_state[15:0]
+     9/17: $0\s_previous_step[0:0]
+    10/17: $0\s_last_pc_state[15:0]
+    11/17: $0\s_retired_state[0:0]
+    12/17: $0\s_led_state[15:0]
+    13/17: $0\s_fault_state[0:0]
+    14/17: $0\s_halted_state[0:0]
+    15/17: $0\s_phase_state[1:0]
+    16/17: $0\s_instruction[15:0]
+    17/17: $0\s_pc_state[15:0]
+Creating decoders for process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1315$567'.
+     1/3: $1$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$577
+     2/3: $1$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$576
+     3/3: $1$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_ADDR[15:0]$575
+
+3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:98$3_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:99$4_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:100$5_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:101$6_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:102$7_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:103$8_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:104$9_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:105$10_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:106$11_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:107$12_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:108$13_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:109$14_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:110$15_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:111$16_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:112$17_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:113$18_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:114$19_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:115$20_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:116$21_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:117$22_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:118$23_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:119$24_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:120$25_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:121$26_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:122$27_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:123$28_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:124$29_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:125$30_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:126$31_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:127$32_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:128$33_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:129$34_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:130$35_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:131$36_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:132$37_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:133$38_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:134$39_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:135$40_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:136$41_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:137$42_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:138$43_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:139$44_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:140$45_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:141$46_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:142$47_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:143$48_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:144$49_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:145$50_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:146$51_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:147$52_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:148$53_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:149$54_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:150$55_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:151$56_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:152$57_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:153$58_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:154$59_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:155$60_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:156$61_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:157$62_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:158$63_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:159$64_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:160$65_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:161$66_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:162$67_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:163$68_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:164$69_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:165$70_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:166$71_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:167$72_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:168$73_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:169$74_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:170$75_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:171$76_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:172$77_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:173$78_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:174$79_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:175$80_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:176$81_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:177$82_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:178$83_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:179$84_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:180$85_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:181$86_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:182$87_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:183$88_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:184$89_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:185$90_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:186$91_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:187$92_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:188$93_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:189$94_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:190$95_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:191$96_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:192$97_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:193$98_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:194$99_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:195$100_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:196$101_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:197$102_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:198$103_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:199$104_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:200$105_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:201$106_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:202$107_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:203$108_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:204$109_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:205$110_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:206$111_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:207$112_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:208$113_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:209$114_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:210$115_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:211$116_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:212$117_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:213$118_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:214$119_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:215$120_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:216$121_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:217$122_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:218$123_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:219$124_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:220$125_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:221$126_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:222$127_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:223$128_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:224$129_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:225$130_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:226$131_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:227$132_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:228$133_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:229$134_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:230$135_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:231$136_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:232$137_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:233$138_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:234$139_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:235$140_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:236$141_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:237$142_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:238$143_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:239$144_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:240$145_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:241$146_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:242$147_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:243$148_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:244$149_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:245$150_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:246$151_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:247$152_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:248$153_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:249$154_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:250$155_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:251$156_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:252$157_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:253$158_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:254$159_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:255$160_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:256$161_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:257$162_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:258$163_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:259$164_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:260$165_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:261$166_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:262$167_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:263$168_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:264$169_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:265$170_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:266$171_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:267$172_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:268$173_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:269$174_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:270$175_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:271$176_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:272$177_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:273$178_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:274$179_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:275$180_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:276$181_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:277$182_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:278$183_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:279$184_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:280$185_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:281$186_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:282$187_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:283$188_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:284$189_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:285$190_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:286$191_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:287$192_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:288$193_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:289$194_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:290$195_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:291$196_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:292$197_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:293$198_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:294$199_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:295$200_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:296$201_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:297$202_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:298$203_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:299$204_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:300$205_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:301$206_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:302$207_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:303$208_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:304$209_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:305$210_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:306$211_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:307$212_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:308$213_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:309$214_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:310$215_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:311$216_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:312$217_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:313$218_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:314$219_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:315$220_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:316$221_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:317$222_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:318$223_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:319$224_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:320$225_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:321$226_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:322$227_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:323$228_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:324$229_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:325$230_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:326$231_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:327$232_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:328$233_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:329$234_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:330$235_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:331$236_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:332$237_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:333$238_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:334$239_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:335$240_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:336$241_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:337$242_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:338$243_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:339$244_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:340$245_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:341$246_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:342$247_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:343$248_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:344$249_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:345$250_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:346$251_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:347$252_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:348$253_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:349$254_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:350$255_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:351$256_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:352$257_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:353$258_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.\rom_n_146$func$generated/tinyrisc/CountRun.v:1147$1.$result' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+No latch inferred for signal `\h_CountRun.\rom_n_146$func$generated/tinyrisc/CountRun.v:1147$2.$result' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+No latch inferred for signal `\h_CountRun.\rom_n_146$func$generated/tinyrisc/CountRun.v:1147$2.address' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+
+3.8. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\h_CountRun.\s_pc_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1169' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_instruction' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1170' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_phase_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1171' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_halted_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1172' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_fault_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1173' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_led_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1174' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_retired_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1175' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_last_pc_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1176' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_previous_step' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1177' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r1_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1178' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r2_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1179' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r3_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1180' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r4_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1181' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r5_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1182' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r6_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1183' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r7_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1184' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_scratch_read_data' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1185' with positive edge clock.
+Creating register for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_ADDR' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1315$567'.
+  created $dff cell `$procdff$1186' with positive edge clock.
+Creating register for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1315$567'.
+  created $dff cell `$procdff$1187' with positive edge clock.
+Creating register for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1315$567'.
+  created $dff cell `$procdff$1188' with positive edge clock.
+
+3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+Found and cleaned up 1 empty switch in `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+Removing empty process `h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+Found and cleaned up 1 empty switch in `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+Removing empty process `h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+Found and cleaned up 1 empty switch in `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1315$567'.
+Removing empty process `h_CountRun.$proc$generated/tinyrisc/CountRun.v:1315$567'.
+Cleaned up 3 empty switches.
+
+3.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+<suppressed ~44 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+<suppressed ~174 debug messages>
+Removed a total of 58 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~25 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+    Consolidated identical input bits for $mux cell $procmux$1161:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$procmux$1161_Y
+      New ports: A=1'0, B=1'1, Y=$procmux$1161_Y [0]
+      New connections: $procmux$1161_Y [15:1] = { $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] $procmux$1161_Y [0] }
+  Optimizing cells in module \h_CountRun.
+Performed a total of 1 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+<suppressed ~18 debug messages>
+Removed a total of 6 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$1185 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1305$557_Y, Q = \s_scratch_read_data, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1190 ($sdff) from module h_CountRun (D = \n_303, Q = \s_scratch_read_data).
+Adding SRST signal on $procdff$1184 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1298$551_Y, Q = \s_r7_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1192 ($sdff) from module h_CountRun (D = \n_296, Q = \s_r7_state).
+Adding SRST signal on $procdff$1183 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1292$545_Y, Q = \s_r6_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1194 ($sdff) from module h_CountRun (D = \n_290, Q = \s_r6_state).
+Adding SRST signal on $procdff$1182 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1286$539_Y, Q = \s_r5_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1196 ($sdff) from module h_CountRun (D = \n_284, Q = \s_r5_state).
+Adding SRST signal on $procdff$1181 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1280$533_Y, Q = \s_r4_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1198 ($sdff) from module h_CountRun (D = \n_278, Q = \s_r4_state).
+Adding SRST signal on $procdff$1180 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1274$527_Y, Q = \s_r3_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1200 ($sdff) from module h_CountRun (D = \n_272, Q = \s_r3_state).
+Adding SRST signal on $procdff$1179 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1268$521_Y, Q = \s_r2_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1202 ($sdff) from module h_CountRun (D = \n_266, Q = \s_r2_state).
+Adding SRST signal on $procdff$1178 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1262$515_Y, Q = \s_r1_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1204 ($sdff) from module h_CountRun (D = \n_260, Q = \s_r1_state).
+Adding SRST signal on $procdff$1177 ($dff) from module h_CountRun (D = \s_step, Q = \s_previous_step, rval = 1'0).
+Adding SRST signal on $procdff$1176 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1171$428_Y, Q = \s_last_pc_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1207 ($sdff) from module h_CountRun (D = \s_pc_state, Q = \s_last_pc_state).
+Adding SRST signal on $procdff$1175 ($dff) from module h_CountRun (D = $or$generated/tinyrisc/CountRun.v:1111$369_Y, Q = \s_retired_state, rval = 1'0).
+Adding SRST signal on $procdff$1174 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1170$427_Y, Q = \s_led_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1210 ($sdff) from module h_CountRun (D = \n_127, Q = \s_led_state).
+Adding SRST signal on $procdff$1173 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1166$423_Y, Q = \s_fault_state, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1212 ($sdff) from module h_CountRun (D = 1'1, Q = \s_fault_state).
+Adding SRST signal on $procdff$1172 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1164$421_Y, Q = \s_halted_state, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1214 ($sdff) from module h_CountRun (D = 1'1, Q = \s_halted_state).
+Adding SRST signal on $procdff$1171 ($dff) from module h_CountRun (D = \n_158, Q = \s_phase_state, rval = 2'00).
+Adding SRST signal on $procdff$1170 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1148$405_Y, Q = \s_instruction, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1219 ($sdff) from module h_CountRun (D = \n_146, Q = \s_instruction).
+Adding SRST signal on $procdff$1169 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1138$396_Y, Q = \s_pc_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1221 ($sdff) from module h_CountRun (D = \n_136, Q = \s_pc_state).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 35 unused cells and 905 unused wires.
+<suppressed ~51 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:266:slice$1216 ($sdff) from module h_CountRun (D = \n_157 [0], Q = \s_phase_state [0], rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1216 ($sdff) from module h_CountRun (D = \n_158 [1], Q = \s_phase_state [1]).
+Adding EN signal on $auto$ff.cc:266:slice$1223 ($sdff) from module h_CountRun (D = 1'1, Q = \s_phase_state [0]).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+<suppressed ~1 debug messages>
+
+4.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+4.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+    New input vector for $reduce_or cell $auto$opt_dff.cc:254:combine_resets$1225: { \n_155 \n_153 \rst }
+  Optimizing cells in module \h_CountRun.
+Performed a total of 1 changes.
+
+4.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+4.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+4.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+4.23. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.24. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+4.25. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+Performed a total of 0 changes.
+
+4.26. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+4.27. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.28. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+4.29. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+4.30. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing MEMORY pass.
+
+5.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+5.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+5.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+  Analyzing h_CountRun.mem_scratch write port 0.
+
+5.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+5.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+Checking read port `\mem_scratch'[0] in module `\h_CountRun': merging output FF to cell.
+    Write port 0: don't care on collision.
+
+5.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 2 unused cells and 18 unused wires.
+<suppressed ~5 debug messages>
+
+5.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+5.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+5.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+5.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+Mapping memory \mem_scratch in module \h_CountRun:
+  created 256 $dff cells and 0 static cells of width 16.
+Extracted data FF from read port 0 of h_CountRun.mem_scratch: $\mem_scratch$rdreg[0]
+  read interface: 1 $dff and 255 $mux cells.
+  write interface: 256 write mux blocks.
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+<suppressed ~24 debug messages>
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~268 debug messages>
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+Performed a total of 0 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 0 unused cells and 520 unused wires.
+<suppressed ~1 debug messages>
+
+6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+6.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~268 debug messages>
+
+6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+Performed a total of 0 changes.
+
+6.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+6.13. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $memory\mem_scratch[9]$1266 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[9]).
+Adding EN signal on $memory\mem_scratch[99]$1446 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[99]).
+Adding EN signal on $memory\mem_scratch[98]$1444 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[98]).
+Adding EN signal on $memory\mem_scratch[97]$1442 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[97]).
+Adding EN signal on $memory\mem_scratch[96]$1440 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[96]).
+Adding EN signal on $memory\mem_scratch[95]$1438 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[95]).
+Adding EN signal on $memory\mem_scratch[94]$1436 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[94]).
+Adding EN signal on $memory\mem_scratch[93]$1434 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[93]).
+Adding EN signal on $memory\mem_scratch[92]$1432 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[92]).
+Adding EN signal on $memory\mem_scratch[91]$1430 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[91]).
+Adding EN signal on $memory\mem_scratch[90]$1428 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[90]).
+Adding EN signal on $memory\mem_scratch[8]$1264 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[8]).
+Adding EN signal on $memory\mem_scratch[89]$1426 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[89]).
+Adding EN signal on $memory\mem_scratch[88]$1424 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[88]).
+Adding EN signal on $memory\mem_scratch[87]$1422 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[87]).
+Adding EN signal on $memory\mem_scratch[86]$1420 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[86]).
+Adding EN signal on $memory\mem_scratch[85]$1418 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[85]).
+Adding EN signal on $memory\mem_scratch[84]$1416 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[84]).
+Adding EN signal on $memory\mem_scratch[83]$1414 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[83]).
+Adding EN signal on $memory\mem_scratch[82]$1412 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[82]).
+Adding EN signal on $memory\mem_scratch[81]$1410 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[81]).
+Adding EN signal on $memory\mem_scratch[80]$1408 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[80]).
+Adding EN signal on $memory\mem_scratch[7]$1262 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[7]).
+Adding EN signal on $memory\mem_scratch[79]$1406 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[79]).
+Adding EN signal on $memory\mem_scratch[78]$1404 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[78]).
+Adding EN signal on $memory\mem_scratch[77]$1402 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[77]).
+Adding EN signal on $memory\mem_scratch[76]$1400 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[76]).
+Adding EN signal on $memory\mem_scratch[75]$1398 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[75]).
+Adding EN signal on $memory\mem_scratch[74]$1396 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[74]).
+Adding EN signal on $memory\mem_scratch[73]$1394 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[73]).
+Adding EN signal on $memory\mem_scratch[72]$1392 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[72]).
+Adding EN signal on $memory\mem_scratch[71]$1390 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[71]).
+Adding EN signal on $memory\mem_scratch[70]$1388 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[70]).
+Adding EN signal on $memory\mem_scratch[6]$1260 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[6]).
+Adding EN signal on $memory\mem_scratch[69]$1386 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[69]).
+Adding EN signal on $memory\mem_scratch[68]$1384 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[68]).
+Adding EN signal on $memory\mem_scratch[67]$1382 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[67]).
+Adding EN signal on $memory\mem_scratch[66]$1380 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[66]).
+Adding EN signal on $memory\mem_scratch[65]$1378 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[65]).
+Adding EN signal on $memory\mem_scratch[64]$1376 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[64]).
+Adding EN signal on $memory\mem_scratch[63]$1374 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[63]).
+Adding EN signal on $memory\mem_scratch[62]$1372 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[62]).
+Adding EN signal on $memory\mem_scratch[61]$1370 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[61]).
+Adding EN signal on $memory\mem_scratch[60]$1368 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[60]).
+Adding EN signal on $memory\mem_scratch[5]$1258 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[5]).
+Adding EN signal on $memory\mem_scratch[59]$1366 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[59]).
+Adding EN signal on $memory\mem_scratch[58]$1364 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[58]).
+Adding EN signal on $memory\mem_scratch[57]$1362 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[57]).
+Adding EN signal on $memory\mem_scratch[56]$1360 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[56]).
+Adding EN signal on $memory\mem_scratch[55]$1358 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[55]).
+Adding EN signal on $memory\mem_scratch[54]$1356 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[54]).
+Adding EN signal on $memory\mem_scratch[53]$1354 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[53]).
+Adding EN signal on $memory\mem_scratch[52]$1352 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[52]).
+Adding EN signal on $memory\mem_scratch[51]$1350 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[51]).
+Adding EN signal on $memory\mem_scratch[50]$1348 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[50]).
+Adding EN signal on $memory\mem_scratch[4]$1256 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[4]).
+Adding EN signal on $memory\mem_scratch[49]$1346 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[49]).
+Adding EN signal on $memory\mem_scratch[48]$1344 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[48]).
+Adding EN signal on $memory\mem_scratch[47]$1342 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[47]).
+Adding EN signal on $memory\mem_scratch[46]$1340 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[46]).
+Adding EN signal on $memory\mem_scratch[45]$1338 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[45]).
+Adding EN signal on $memory\mem_scratch[44]$1336 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[44]).
+Adding EN signal on $memory\mem_scratch[43]$1334 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[43]).
+Adding EN signal on $memory\mem_scratch[42]$1332 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[42]).
+Adding EN signal on $memory\mem_scratch[41]$1330 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[41]).
+Adding EN signal on $memory\mem_scratch[40]$1328 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[40]).
+Adding EN signal on $memory\mem_scratch[3]$1254 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[3]).
+Adding EN signal on $memory\mem_scratch[39]$1326 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[39]).
+Adding EN signal on $memory\mem_scratch[38]$1324 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[38]).
+Adding EN signal on $memory\mem_scratch[37]$1322 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[37]).
+Adding EN signal on $memory\mem_scratch[36]$1320 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[36]).
+Adding EN signal on $memory\mem_scratch[35]$1318 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[35]).
+Adding EN signal on $memory\mem_scratch[34]$1316 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[34]).
+Adding EN signal on $memory\mem_scratch[33]$1314 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[33]).
+Adding EN signal on $memory\mem_scratch[32]$1312 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[32]).
+Adding EN signal on $memory\mem_scratch[31]$1310 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[31]).
+Adding EN signal on $memory\mem_scratch[30]$1308 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[30]).
+Adding EN signal on $memory\mem_scratch[2]$1252 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[2]).
+Adding EN signal on $memory\mem_scratch[29]$1306 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[29]).
+Adding EN signal on $memory\mem_scratch[28]$1304 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[28]).
+Adding EN signal on $memory\mem_scratch[27]$1302 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[27]).
+Adding EN signal on $memory\mem_scratch[26]$1300 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[26]).
+Adding EN signal on $memory\mem_scratch[25]$1298 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[25]).
+Adding EN signal on $memory\mem_scratch[255]$1758 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[255]).
+Adding EN signal on $memory\mem_scratch[254]$1756 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[254]).
+Adding EN signal on $memory\mem_scratch[253]$1754 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[253]).
+Adding EN signal on $memory\mem_scratch[252]$1752 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[252]).
+Adding EN signal on $memory\mem_scratch[251]$1750 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[251]).
+Adding EN signal on $memory\mem_scratch[250]$1748 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[250]).
+Adding EN signal on $memory\mem_scratch[24]$1296 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[24]).
+Adding EN signal on $memory\mem_scratch[249]$1746 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[249]).
+Adding EN signal on $memory\mem_scratch[248]$1744 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[248]).
+Adding EN signal on $memory\mem_scratch[247]$1742 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[247]).
+Adding EN signal on $memory\mem_scratch[246]$1740 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[246]).
+Adding EN signal on $memory\mem_scratch[245]$1738 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[245]).
+Adding EN signal on $memory\mem_scratch[244]$1736 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[244]).
+Adding EN signal on $memory\mem_scratch[243]$1734 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[243]).
+Adding EN signal on $memory\mem_scratch[242]$1732 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[242]).
+Adding EN signal on $memory\mem_scratch[241]$1730 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[241]).
+Adding EN signal on $memory\mem_scratch[240]$1728 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[240]).
+Adding EN signal on $memory\mem_scratch[23]$1294 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[23]).
+Adding EN signal on $memory\mem_scratch[239]$1726 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[239]).
+Adding EN signal on $memory\mem_scratch[238]$1724 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[238]).
+Adding EN signal on $memory\mem_scratch[237]$1722 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[237]).
+Adding EN signal on $memory\mem_scratch[236]$1720 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[236]).
+Adding EN signal on $memory\mem_scratch[235]$1718 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[235]).
+Adding EN signal on $memory\mem_scratch[234]$1716 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[234]).
+Adding EN signal on $memory\mem_scratch[233]$1714 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[233]).
+Adding EN signal on $memory\mem_scratch[232]$1712 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[232]).
+Adding EN signal on $memory\mem_scratch[231]$1710 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[231]).
+Adding EN signal on $memory\mem_scratch[230]$1708 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[230]).
+Adding EN signal on $memory\mem_scratch[22]$1292 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[22]).
+Adding EN signal on $memory\mem_scratch[229]$1706 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[229]).
+Adding EN signal on $memory\mem_scratch[228]$1704 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[228]).
+Adding EN signal on $memory\mem_scratch[227]$1702 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[227]).
+Adding EN signal on $memory\mem_scratch[226]$1700 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[226]).
+Adding EN signal on $memory\mem_scratch[225]$1698 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[225]).
+Adding EN signal on $memory\mem_scratch[224]$1696 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[224]).
+Adding EN signal on $memory\mem_scratch[223]$1694 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[223]).
+Adding EN signal on $memory\mem_scratch[222]$1692 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[222]).
+Adding EN signal on $memory\mem_scratch[221]$1690 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[221]).
+Adding EN signal on $memory\mem_scratch[220]$1688 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[220]).
+Adding EN signal on $memory\mem_scratch[21]$1290 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[21]).
+Adding EN signal on $memory\mem_scratch[219]$1686 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[219]).
+Adding EN signal on $memory\mem_scratch[218]$1684 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[218]).
+Adding EN signal on $memory\mem_scratch[217]$1682 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[217]).
+Adding EN signal on $memory\mem_scratch[216]$1680 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[216]).
+Adding EN signal on $memory\mem_scratch[215]$1678 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[215]).
+Adding EN signal on $memory\mem_scratch[214]$1676 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[214]).
+Adding EN signal on $memory\mem_scratch[213]$1674 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[213]).
+Adding EN signal on $memory\mem_scratch[212]$1672 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[212]).
+Adding EN signal on $memory\mem_scratch[211]$1670 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[211]).
+Adding EN signal on $memory\mem_scratch[210]$1668 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[210]).
+Adding EN signal on $memory\mem_scratch[20]$1288 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[20]).
+Adding EN signal on $memory\mem_scratch[209]$1666 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[209]).
+Adding EN signal on $memory\mem_scratch[208]$1664 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[208]).
+Adding EN signal on $memory\mem_scratch[207]$1662 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[207]).
+Adding EN signal on $memory\mem_scratch[206]$1660 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[206]).
+Adding EN signal on $memory\mem_scratch[205]$1658 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[205]).
+Adding EN signal on $memory\mem_scratch[204]$1656 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[204]).
+Adding EN signal on $memory\mem_scratch[203]$1654 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[203]).
+Adding EN signal on $memory\mem_scratch[202]$1652 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[202]).
+Adding EN signal on $memory\mem_scratch[201]$1650 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[201]).
+Adding EN signal on $memory\mem_scratch[200]$1648 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[200]).
+Adding EN signal on $memory\mem_scratch[1]$1250 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[1]).
+Adding EN signal on $memory\mem_scratch[19]$1286 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[19]).
+Adding EN signal on $memory\mem_scratch[199]$1646 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[199]).
+Adding EN signal on $memory\mem_scratch[198]$1644 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[198]).
+Adding EN signal on $memory\mem_scratch[197]$1642 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[197]).
+Adding EN signal on $memory\mem_scratch[196]$1640 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[196]).
+Adding EN signal on $memory\mem_scratch[195]$1638 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[195]).
+Adding EN signal on $memory\mem_scratch[194]$1636 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[194]).
+Adding EN signal on $memory\mem_scratch[193]$1634 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[193]).
+Adding EN signal on $memory\mem_scratch[192]$1632 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[192]).
+Adding EN signal on $memory\mem_scratch[191]$1630 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[191]).
+Adding EN signal on $memory\mem_scratch[190]$1628 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[190]).
+Adding EN signal on $memory\mem_scratch[18]$1284 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[18]).
+Adding EN signal on $memory\mem_scratch[189]$1626 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[189]).
+Adding EN signal on $memory\mem_scratch[188]$1624 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[188]).
+Adding EN signal on $memory\mem_scratch[187]$1622 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[187]).
+Adding EN signal on $memory\mem_scratch[186]$1620 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[186]).
+Adding EN signal on $memory\mem_scratch[185]$1618 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[185]).
+Adding EN signal on $memory\mem_scratch[184]$1616 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[184]).
+Adding EN signal on $memory\mem_scratch[183]$1614 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[183]).
+Adding EN signal on $memory\mem_scratch[182]$1612 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[182]).
+Adding EN signal on $memory\mem_scratch[181]$1610 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[181]).
+Adding EN signal on $memory\mem_scratch[180]$1608 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[180]).
+Adding EN signal on $memory\mem_scratch[17]$1282 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[17]).
+Adding EN signal on $memory\mem_scratch[179]$1606 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[179]).
+Adding EN signal on $memory\mem_scratch[178]$1604 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[178]).
+Adding EN signal on $memory\mem_scratch[177]$1602 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[177]).
+Adding EN signal on $memory\mem_scratch[176]$1600 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[176]).
+Adding EN signal on $memory\mem_scratch[175]$1598 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[175]).
+Adding EN signal on $memory\mem_scratch[174]$1596 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[174]).
+Adding EN signal on $memory\mem_scratch[173]$1594 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[173]).
+Adding EN signal on $memory\mem_scratch[172]$1592 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[172]).
+Adding EN signal on $memory\mem_scratch[171]$1590 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[171]).
+Adding EN signal on $memory\mem_scratch[170]$1588 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[170]).
+Adding EN signal on $memory\mem_scratch[16]$1280 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[16]).
+Adding EN signal on $memory\mem_scratch[169]$1586 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[169]).
+Adding EN signal on $memory\mem_scratch[168]$1584 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[168]).
+Adding EN signal on $memory\mem_scratch[167]$1582 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[167]).
+Adding EN signal on $memory\mem_scratch[166]$1580 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[166]).
+Adding EN signal on $memory\mem_scratch[165]$1578 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[165]).
+Adding EN signal on $memory\mem_scratch[164]$1576 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[164]).
+Adding EN signal on $memory\mem_scratch[163]$1574 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[163]).
+Adding EN signal on $memory\mem_scratch[162]$1572 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[162]).
+Adding EN signal on $memory\mem_scratch[161]$1570 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[161]).
+Adding EN signal on $memory\mem_scratch[160]$1568 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[160]).
+Adding EN signal on $memory\mem_scratch[15]$1278 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[15]).
+Adding EN signal on $memory\mem_scratch[159]$1566 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[159]).
+Adding EN signal on $memory\mem_scratch[158]$1564 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[158]).
+Adding EN signal on $memory\mem_scratch[157]$1562 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[157]).
+Adding EN signal on $memory\mem_scratch[156]$1560 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[156]).
+Adding EN signal on $memory\mem_scratch[155]$1558 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[155]).
+Adding EN signal on $memory\mem_scratch[154]$1556 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[154]).
+Adding EN signal on $memory\mem_scratch[153]$1554 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[153]).
+Adding EN signal on $memory\mem_scratch[152]$1552 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[152]).
+Adding EN signal on $memory\mem_scratch[151]$1550 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[151]).
+Adding EN signal on $memory\mem_scratch[150]$1548 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[150]).
+Adding EN signal on $memory\mem_scratch[14]$1276 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[14]).
+Adding EN signal on $memory\mem_scratch[149]$1546 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[149]).
+Adding EN signal on $memory\mem_scratch[148]$1544 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[148]).
+Adding EN signal on $memory\mem_scratch[147]$1542 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[147]).
+Adding EN signal on $memory\mem_scratch[146]$1540 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[146]).
+Adding EN signal on $memory\mem_scratch[145]$1538 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[145]).
+Adding EN signal on $memory\mem_scratch[144]$1536 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[144]).
+Adding EN signal on $memory\mem_scratch[143]$1534 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[143]).
+Adding EN signal on $memory\mem_scratch[142]$1532 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[142]).
+Adding EN signal on $memory\mem_scratch[141]$1530 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[141]).
+Adding EN signal on $memory\mem_scratch[140]$1528 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[140]).
+Adding EN signal on $memory\mem_scratch[13]$1274 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[13]).
+Adding EN signal on $memory\mem_scratch[139]$1526 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[139]).
+Adding EN signal on $memory\mem_scratch[138]$1524 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[138]).
+Adding EN signal on $memory\mem_scratch[137]$1522 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[137]).
+Adding EN signal on $memory\mem_scratch[136]$1520 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[136]).
+Adding EN signal on $memory\mem_scratch[135]$1518 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[135]).
+Adding EN signal on $memory\mem_scratch[134]$1516 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[134]).
+Adding EN signal on $memory\mem_scratch[133]$1514 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[133]).
+Adding EN signal on $memory\mem_scratch[132]$1512 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[132]).
+Adding EN signal on $memory\mem_scratch[131]$1510 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[131]).
+Adding EN signal on $memory\mem_scratch[130]$1508 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[130]).
+Adding EN signal on $memory\mem_scratch[12]$1272 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[12]).
+Adding EN signal on $memory\mem_scratch[129]$1506 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[129]).
+Adding EN signal on $memory\mem_scratch[128]$1504 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[128]).
+Adding EN signal on $memory\mem_scratch[127]$1502 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[127]).
+Adding EN signal on $memory\mem_scratch[126]$1500 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[126]).
+Adding EN signal on $memory\mem_scratch[125]$1498 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[125]).
+Adding EN signal on $memory\mem_scratch[124]$1496 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[124]).
+Adding EN signal on $memory\mem_scratch[123]$1494 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[123]).
+Adding EN signal on $memory\mem_scratch[122]$1492 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[122]).
+Adding EN signal on $memory\mem_scratch[121]$1490 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[121]).
+Adding EN signal on $memory\mem_scratch[120]$1488 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[120]).
+Adding EN signal on $memory\mem_scratch[11]$1270 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[11]).
+Adding EN signal on $memory\mem_scratch[119]$1486 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[119]).
+Adding EN signal on $memory\mem_scratch[118]$1484 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[118]).
+Adding EN signal on $memory\mem_scratch[117]$1482 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[117]).
+Adding EN signal on $memory\mem_scratch[116]$1480 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[116]).
+Adding EN signal on $memory\mem_scratch[115]$1478 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[115]).
+Adding EN signal on $memory\mem_scratch[114]$1476 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[114]).
+Adding EN signal on $memory\mem_scratch[113]$1474 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[113]).
+Adding EN signal on $memory\mem_scratch[112]$1472 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[112]).
+Adding EN signal on $memory\mem_scratch[111]$1470 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[111]).
+Adding EN signal on $memory\mem_scratch[110]$1468 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[110]).
+Adding EN signal on $memory\mem_scratch[10]$1268 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[10]).
+Adding EN signal on $memory\mem_scratch[109]$1466 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[109]).
+Adding EN signal on $memory\mem_scratch[108]$1464 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[108]).
+Adding EN signal on $memory\mem_scratch[107]$1462 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[107]).
+Adding EN signal on $memory\mem_scratch[106]$1460 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[106]).
+Adding EN signal on $memory\mem_scratch[105]$1458 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[105]).
+Adding EN signal on $memory\mem_scratch[104]$1456 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[104]).
+Adding EN signal on $memory\mem_scratch[103]$1454 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[103]).
+Adding EN signal on $memory\mem_scratch[102]$1452 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[102]).
+Adding EN signal on $memory\mem_scratch[101]$1450 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[101]).
+Adding EN signal on $memory\mem_scratch[100]$1448 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[100]).
+Adding EN signal on $memory\mem_scratch[0]$1248 ($dff) from module h_CountRun (D = $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$569, Q = \mem_scratch[0]).
+
+6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 256 unused cells and 256 unused wires.
+<suppressed ~257 debug messages>
+
+6.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+6.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+6.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+Performed a total of 0 changes.
+
+6.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+6.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+6.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+6.23. Finished OPT passes. (There is nothing left to do.)
+
+7. Executing CHECK pass (checking for obvious problems).
+Checking module h_CountRun...
+Found and reported 0 problems.
+
+8. Printing statistics.
+
+=== h_CountRun ===
+
+   Number of wires:               1714
+   Number of wire bits:          11037
+   Number of public wires:         598
+   Number of public wire bits:    6036
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               1585
+     $add                            4
+     $and                          870
+     $dffe                         256
+     $eq                            54
+     $logic_and                      2
+     $logic_not                      6
+     $lt                             3
+     $mux                          309
+     $not                           26
+     $or                            31
+     $pmux                           1
+     $reduce_bool                    1
+     $reduce_or                      2
+     $sdff                           2
+     $sdffe                         16
+     $sub                            1
+     $xor                            1
+
+9. Executing Verilog backend.
+
+9.1. Executing BMUXMAP pass.
+
+9.2. Executing DEMUXMAP pass.
+Dumping module `\h_CountRun'.

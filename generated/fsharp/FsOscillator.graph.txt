@@ -1,0 +1,1078 @@
+module FsOscillator
+input phase_step : bits[24]
+output m_axis_tdata : bits[64]
+output m_axis_tkeep : bits[8]
+output m_axis_tlast : bits[1]
+output m_axis_tuser : bits[8]
+output m_axis_tvalid : bits[1]
+input m_axis_tready : bits[1]
+reg phase : bits[24] reset=0
+reg sample_tag : bits[8] reset=0
+wire angles_tdata : bits[24]
+wire angles_tkeep : bits[3]
+wire angles_tlast : bits[1]
+wire angles_tuser : bits[8]
+wire angles_tvalid : bits[1]
+wire angles_tready : bits[1]
+wire osc_reduce_tdata : bits[88]
+wire osc_reduce_tkeep : bits[11]
+wire osc_reduce_tlast : bits[1]
+wire osc_reduce_tuser : bits[8]
+wire osc_reduce_tvalid : bits[1]
+wire osc_reduce_tready : bits[1]
+reg osc_reduce_valid : bits[1] reset=0
+reg osc_reduce_data : bits[88] reset=0
+reg osc_reduce_keep : bits[11] reset=0
+reg osc_reduce_last : bits[1] reset=0
+reg osc_reduce_user : bits[8] reset=0
+wire osc_rotate0_tdata : bits[88]
+wire osc_rotate0_tkeep : bits[11]
+wire osc_rotate0_tlast : bits[1]
+wire osc_rotate0_tuser : bits[8]
+wire osc_rotate0_tvalid : bits[1]
+wire osc_rotate0_tready : bits[1]
+reg osc_rotate0_valid : bits[1] reset=0
+reg osc_rotate0_data : bits[88] reset=0
+reg osc_rotate0_keep : bits[11] reset=0
+reg osc_rotate0_last : bits[1] reset=0
+reg osc_rotate0_user : bits[8] reset=0
+wire osc_rotate1_tdata : bits[88]
+wire osc_rotate1_tkeep : bits[11]
+wire osc_rotate1_tlast : bits[1]
+wire osc_rotate1_tuser : bits[8]
+wire osc_rotate1_tvalid : bits[1]
+wire osc_rotate1_tready : bits[1]
+reg osc_rotate1_valid : bits[1] reset=0
+reg osc_rotate1_data : bits[88] reset=0
+reg osc_rotate1_keep : bits[11] reset=0
+reg osc_rotate1_last : bits[1] reset=0
+reg osc_rotate1_user : bits[8] reset=0
+wire osc_rotate2_tdata : bits[88]
+wire osc_rotate2_tkeep : bits[11]
+wire osc_rotate2_tlast : bits[1]
+wire osc_rotate2_tuser : bits[8]
+wire osc_rotate2_tvalid : bits[1]
+wire osc_rotate2_tready : bits[1]
+reg osc_rotate2_valid : bits[1] reset=0
+reg osc_rotate2_data : bits[88] reset=0
+reg osc_rotate2_keep : bits[11] reset=0
+reg osc_rotate2_last : bits[1] reset=0
+reg osc_rotate2_user : bits[8] reset=0
+wire osc_rotate3_tdata : bits[88]
+wire osc_rotate3_tkeep : bits[11]
+wire osc_rotate3_tlast : bits[1]
+wire osc_rotate3_tuser : bits[8]
+wire osc_rotate3_tvalid : bits[1]
+wire osc_rotate3_tready : bits[1]
+reg osc_rotate3_valid : bits[1] reset=0
+reg osc_rotate3_data : bits[88] reset=0
+reg osc_rotate3_keep : bits[11] reset=0
+reg osc_rotate3_last : bits[1] reset=0
+reg osc_rotate3_user : bits[8] reset=0
+wire osc_rotate4_tdata : bits[88]
+wire osc_rotate4_tkeep : bits[11]
+wire osc_rotate4_tlast : bits[1]
+wire osc_rotate4_tuser : bits[8]
+wire osc_rotate4_tvalid : bits[1]
+wire osc_rotate4_tready : bits[1]
+reg osc_rotate4_valid : bits[1] reset=0
+reg osc_rotate4_data : bits[88] reset=0
+reg osc_rotate4_keep : bits[11] reset=0
+reg osc_rotate4_last : bits[1] reset=0
+reg osc_rotate4_user : bits[8] reset=0
+wire osc_rotate5_tdata : bits[88]
+wire osc_rotate5_tkeep : bits[11]
+wire osc_rotate5_tlast : bits[1]
+wire osc_rotate5_tuser : bits[8]
+wire osc_rotate5_tvalid : bits[1]
+wire osc_rotate5_tready : bits[1]
+reg osc_rotate5_valid : bits[1] reset=0
+reg osc_rotate5_data : bits[88] reset=0
+reg osc_rotate5_keep : bits[11] reset=0
+reg osc_rotate5_last : bits[1] reset=0
+reg osc_rotate5_user : bits[8] reset=0
+wire osc_rotate6_tdata : bits[88]
+wire osc_rotate6_tkeep : bits[11]
+wire osc_rotate6_tlast : bits[1]
+wire osc_rotate6_tuser : bits[8]
+wire osc_rotate6_tvalid : bits[1]
+wire osc_rotate6_tready : bits[1]
+reg osc_rotate6_valid : bits[1] reset=0
+reg osc_rotate6_data : bits[88] reset=0
+reg osc_rotate6_keep : bits[11] reset=0
+reg osc_rotate6_last : bits[1] reset=0
+reg osc_rotate6_user : bits[8] reset=0
+wire osc_rotate7_tdata : bits[88]
+wire osc_rotate7_tkeep : bits[11]
+wire osc_rotate7_tlast : bits[1]
+wire osc_rotate7_tuser : bits[8]
+wire osc_rotate7_tvalid : bits[1]
+wire osc_rotate7_tready : bits[1]
+reg osc_rotate7_valid : bits[1] reset=0
+reg osc_rotate7_data : bits[88] reset=0
+reg osc_rotate7_keep : bits[11] reset=0
+reg osc_rotate7_last : bits[1] reset=0
+reg osc_rotate7_user : bits[8] reset=0
+wire osc_rotate8_tdata : bits[88]
+wire osc_rotate8_tkeep : bits[11]
+wire osc_rotate8_tlast : bits[1]
+wire osc_rotate8_tuser : bits[8]
+wire osc_rotate8_tvalid : bits[1]
+wire osc_rotate8_tready : bits[1]
+reg osc_rotate8_valid : bits[1] reset=0
+reg osc_rotate8_data : bits[88] reset=0
+reg osc_rotate8_keep : bits[11] reset=0
+reg osc_rotate8_last : bits[1] reset=0
+reg osc_rotate8_user : bits[8] reset=0
+wire osc_rotate9_tdata : bits[88]
+wire osc_rotate9_tkeep : bits[11]
+wire osc_rotate9_tlast : bits[1]
+wire osc_rotate9_tuser : bits[8]
+wire osc_rotate9_tvalid : bits[1]
+wire osc_rotate9_tready : bits[1]
+reg osc_rotate9_valid : bits[1] reset=0
+reg osc_rotate9_data : bits[88] reset=0
+reg osc_rotate9_keep : bits[11] reset=0
+reg osc_rotate9_last : bits[1] reset=0
+reg osc_rotate9_user : bits[8] reset=0
+wire osc_rotate10_tdata : bits[88]
+wire osc_rotate10_tkeep : bits[11]
+wire osc_rotate10_tlast : bits[1]
+wire osc_rotate10_tuser : bits[8]
+wire osc_rotate10_tvalid : bits[1]
+wire osc_rotate10_tready : bits[1]
+reg osc_rotate10_valid : bits[1] reset=0
+reg osc_rotate10_data : bits[88] reset=0
+reg osc_rotate10_keep : bits[11] reset=0
+reg osc_rotate10_last : bits[1] reset=0
+reg osc_rotate10_user : bits[8] reset=0
+wire osc_rotate11_tdata : bits[88]
+wire osc_rotate11_tkeep : bits[11]
+wire osc_rotate11_tlast : bits[1]
+wire osc_rotate11_tuser : bits[8]
+wire osc_rotate11_tvalid : bits[1]
+wire osc_rotate11_tready : bits[1]
+reg osc_rotate11_valid : bits[1] reset=0
+reg osc_rotate11_data : bits[88] reset=0
+reg osc_rotate11_keep : bits[11] reset=0
+reg osc_rotate11_last : bits[1] reset=0
+reg osc_rotate11_user : bits[8] reset=0
+wire osc_rotate12_tdata : bits[88]
+wire osc_rotate12_tkeep : bits[11]
+wire osc_rotate12_tlast : bits[1]
+wire osc_rotate12_tuser : bits[8]
+wire osc_rotate12_tvalid : bits[1]
+wire osc_rotate12_tready : bits[1]
+reg osc_rotate12_valid : bits[1] reset=0
+reg osc_rotate12_data : bits[88] reset=0
+reg osc_rotate12_keep : bits[11] reset=0
+reg osc_rotate12_last : bits[1] reset=0
+reg osc_rotate12_user : bits[8] reset=0
+wire osc_rotate13_tdata : bits[88]
+wire osc_rotate13_tkeep : bits[11]
+wire osc_rotate13_tlast : bits[1]
+wire osc_rotate13_tuser : bits[8]
+wire osc_rotate13_tvalid : bits[1]
+wire osc_rotate13_tready : bits[1]
+reg osc_rotate13_valid : bits[1] reset=0
+reg osc_rotate13_data : bits[88] reset=0
+reg osc_rotate13_keep : bits[11] reset=0
+reg osc_rotate13_last : bits[1] reset=0
+reg osc_rotate13_user : bits[8] reset=0
+wire osc_rotate14_tdata : bits[88]
+wire osc_rotate14_tkeep : bits[11]
+wire osc_rotate14_tlast : bits[1]
+wire osc_rotate14_tuser : bits[8]
+wire osc_rotate14_tvalid : bits[1]
+wire osc_rotate14_tready : bits[1]
+reg osc_rotate14_valid : bits[1] reset=0
+reg osc_rotate14_data : bits[88] reset=0
+reg osc_rotate14_keep : bits[11] reset=0
+reg osc_rotate14_last : bits[1] reset=0
+reg osc_rotate14_user : bits[8] reset=0
+wire osc_rotate15_tdata : bits[88]
+wire osc_rotate15_tkeep : bits[11]
+wire osc_rotate15_tlast : bits[1]
+wire osc_rotate15_tuser : bits[8]
+wire osc_rotate15_tvalid : bits[1]
+wire osc_rotate15_tready : bits[1]
+reg osc_rotate15_valid : bits[1] reset=0
+reg osc_rotate15_data : bits[88] reset=0
+reg osc_rotate15_keep : bits[11] reset=0
+reg osc_rotate15_last : bits[1] reset=0
+reg osc_rotate15_user : bits[8] reset=0
+wire osc_rotate16_tdata : bits[88]
+wire osc_rotate16_tkeep : bits[11]
+wire osc_rotate16_tlast : bits[1]
+wire osc_rotate16_tuser : bits[8]
+wire osc_rotate16_tvalid : bits[1]
+wire osc_rotate16_tready : bits[1]
+reg osc_rotate16_valid : bits[1] reset=0
+reg osc_rotate16_data : bits[88] reset=0
+reg osc_rotate16_keep : bits[11] reset=0
+reg osc_rotate16_last : bits[1] reset=0
+reg osc_rotate16_user : bits[8] reset=0
+wire osc_rotate17_tdata : bits[88]
+wire osc_rotate17_tkeep : bits[11]
+wire osc_rotate17_tlast : bits[1]
+wire osc_rotate17_tuser : bits[8]
+wire osc_rotate17_tvalid : bits[1]
+wire osc_rotate17_tready : bits[1]
+reg osc_rotate17_valid : bits[1] reset=0
+reg osc_rotate17_data : bits[88] reset=0
+reg osc_rotate17_keep : bits[11] reset=0
+reg osc_rotate17_last : bits[1] reset=0
+reg osc_rotate17_user : bits[8] reset=0
+wire osc_rotate18_tdata : bits[88]
+wire osc_rotate18_tkeep : bits[11]
+wire osc_rotate18_tlast : bits[1]
+wire osc_rotate18_tuser : bits[8]
+wire osc_rotate18_tvalid : bits[1]
+wire osc_rotate18_tready : bits[1]
+reg osc_rotate18_valid : bits[1] reset=0
+reg osc_rotate18_data : bits[88] reset=0
+reg osc_rotate18_keep : bits[11] reset=0
+reg osc_rotate18_last : bits[1] reset=0
+reg osc_rotate18_user : bits[8] reset=0
+wire osc_rotate19_tdata : bits[88]
+wire osc_rotate19_tkeep : bits[11]
+wire osc_rotate19_tlast : bits[1]
+wire osc_rotate19_tuser : bits[8]
+wire osc_rotate19_tvalid : bits[1]
+wire osc_rotate19_tready : bits[1]
+reg osc_rotate19_valid : bits[1] reset=0
+reg osc_rotate19_data : bits[88] reset=0
+reg osc_rotate19_keep : bits[11] reset=0
+reg osc_rotate19_last : bits[1] reset=0
+reg osc_rotate19_user : bits[8] reset=0
+wire osc_result_tdata : bits[64]
+wire osc_result_tkeep : bits[8]
+wire osc_result_tlast : bits[1]
+wire osc_result_tuser : bits[8]
+wire osc_result_tvalid : bits[1]
+wire osc_result_tready : bits[1]
+expressions:
+e0 : bits[1] & (angles_tvalid, angles_tready)
+e1 : bits[24] + (phase, phase_step)
+e2 : bits[24] mux (e0, e1, phase)
+e3 : bits[1] & (angles_tvalid, angles_tready)
+e4 : bits[8] const 1
+e5 : bits[8] + (sample_tag, e4)
+e6 : bits[8] mux (e3, e5, sample_tag)
+e7 : bits[3] const 7
+e8 : bits[1] const 0
+e9 : bits[1] const 1
+e10 : bits[1] ~ (osc_reduce_valid)
+e11 : bits[1] | (e10, osc_reduce_tready)
+e12 : bits[1] ~ (osc_rotate0_valid)
+e13 : bits[1] | (e12, osc_rotate0_tready)
+e14 : bits[1] mux (e11, angles_tvalid, osc_reduce_valid)
+e15 : bits[1] & (e11, angles_tvalid)
+e16 : bits[1] slice (angles_tdata) offset=23
+e17 : bits[1] slice (angles_tdata) offset=22
+e18 : bits[1] ^ (e16, e17)
+e19 : bits[24] const 8388608
+e20 : bits[24] - (angles_tdata, e19)
+e21 : bits[24] mux (e18, e20, angles_tdata)
+e22 : bits[32] const 0
+e23 : bits[32] const 4284779282
+e24 : bits[32] const 10188014
+e25 : bits[32] mux (e18, e23, e24)
+e26 : bits[64] concat (e22, e25)
+e27 : bits[88] concat (e21, e26)
+e28 : bits[88] mux (e15, e27, osc_reduce_data)
+e29 : bits[11] const 2047
+e30 : bits[11] mux (e15, e29, osc_reduce_keep)
+e31 : bits[1] mux (e15, angles_tlast, osc_reduce_last)
+e32 : bits[8] mux (e15, angles_tuser, osc_reduce_user)
+e33 : bits[1] ~ (osc_rotate1_valid)
+e34 : bits[1] | (e33, osc_rotate1_tready)
+e35 : bits[1] mux (e13, osc_reduce_tvalid, osc_rotate0_valid)
+e36 : bits[1] & (e13, osc_reduce_tvalid)
+e37 : bits[24] slice (osc_reduce_tdata) offset=64
+e38 : bits[1] slice (e37) offset=23
+e39 : bits[24] const 2097152
+e40 : bits[24] + (e37, e39)
+e41 : bits[24] const 2097152
+e42 : bits[24] - (e37, e41)
+e43 : bits[24] mux (e38, e40, e42)
+e44 : bits[32] slice (osc_reduce_tdata) offset=32
+e45 : bits[32] slice (osc_reduce_tdata) offset=0
+e46 : bits[32] asr (e45) offset=0
+e47 : bits[32] - (e44, e46)
+e48 : bits[32] + (e44, e46)
+e49 : bits[32] mux (e38, e47, e48)
+e50 : bits[32] asr (e44) offset=0
+e51 : bits[32] + (e45, e50)
+e52 : bits[32] - (e45, e50)
+e53 : bits[32] mux (e38, e51, e52)
+e54 : bits[64] concat (e49, e53)
+e55 : bits[88] concat (e43, e54)
+e56 : bits[88] mux (e36, e55, osc_rotate0_data)
+e57 : bits[11] mux (e36, osc_reduce_tkeep, osc_rotate0_keep)
+e58 : bits[1] mux (e36, osc_reduce_tlast, osc_rotate0_last)
+e59 : bits[8] mux (e36, osc_reduce_tuser, osc_rotate0_user)
+e60 : bits[1] ~ (osc_rotate2_valid)
+e61 : bits[1] | (e60, osc_rotate2_tready)
+e62 : bits[1] mux (e34, osc_rotate0_tvalid, osc_rotate1_valid)
+e63 : bits[1] & (e34, osc_rotate0_tvalid)
+e64 : bits[24] slice (osc_rotate0_tdata) offset=64
+e65 : bits[1] slice (e64) offset=23
+e66 : bits[24] const 1238021
+e67 : bits[24] + (e64, e66)
+e68 : bits[24] const 1238021
+e69 : bits[24] - (e64, e68)
+e70 : bits[24] mux (e65, e67, e69)
+e71 : bits[32] slice (osc_rotate0_tdata) offset=32
+e72 : bits[32] slice (osc_rotate0_tdata) offset=0
+e73 : bits[32] asr (e72) offset=1
+e74 : bits[32] - (e71, e73)
+e75 : bits[32] + (e71, e73)
+e76 : bits[32] mux (e65, e74, e75)
+e77 : bits[32] asr (e71) offset=1
+e78 : bits[32] + (e72, e77)
+e79 : bits[32] - (e72, e77)
+e80 : bits[32] mux (e65, e78, e79)
+e81 : bits[64] concat (e76, e80)
+e82 : bits[88] concat (e70, e81)
+e83 : bits[88] mux (e63, e82, osc_rotate1_data)
+e84 : bits[11] mux (e63, osc_rotate0_tkeep, osc_rotate1_keep)
+e85 : bits[1] mux (e63, osc_rotate0_tlast, osc_rotate1_last)
+e86 : bits[8] mux (e63, osc_rotate0_tuser, osc_rotate1_user)
+e87 : bits[1] ~ (osc_rotate3_valid)
+e88 : bits[1] | (e87, osc_rotate3_tready)
+e89 : bits[1] mux (e61, osc_rotate1_tvalid, osc_rotate2_valid)
+e90 : bits[1] & (e61, osc_rotate1_tvalid)
+e91 : bits[24] slice (osc_rotate1_tdata) offset=64
+e92 : bits[1] slice (e91) offset=23
+e93 : bits[24] const 654136
+e94 : bits[24] + (e91, e93)
+e95 : bits[24] const 654136
+e96 : bits[24] - (e91, e95)
+e97 : bits[24] mux (e92, e94, e96)
+e98 : bits[32] slice (osc_rotate1_tdata) offset=32
+e99 : bits[32] slice (osc_rotate1_tdata) offset=0
+e100 : bits[32] asr (e99) offset=2
+e101 : bits[32] - (e98, e100)
+e102 : bits[32] + (e98, e100)
+e103 : bits[32] mux (e92, e101, e102)
+e104 : bits[32] asr (e98) offset=2
+e105 : bits[32] + (e99, e104)
+e106 : bits[32] - (e99, e104)
+e107 : bits[32] mux (e92, e105, e106)
+e108 : bits[64] concat (e103, e107)
+e109 : bits[88] concat (e97, e108)
+e110 : bits[88] mux (e90, e109, osc_rotate2_data)
+e111 : bits[11] mux (e90, osc_rotate1_tkeep, osc_rotate2_keep)
+e112 : bits[1] mux (e90, osc_rotate1_tlast, osc_rotate2_last)
+e113 : bits[8] mux (e90, osc_rotate1_tuser, osc_rotate2_user)
+e114 : bits[1] ~ (osc_rotate4_valid)
+e115 : bits[1] | (e114, osc_rotate4_tready)
+e116 : bits[1] mux (e88, osc_rotate2_tvalid, osc_rotate3_valid)
+e117 : bits[1] & (e88, osc_rotate2_tvalid)
+e118 : bits[24] slice (osc_rotate2_tdata) offset=64
+e119 : bits[1] slice (e118) offset=23
+e120 : bits[24] const 332050
+e121 : bits[24] + (e118, e120)
+e122 : bits[24] const 332050
+e123 : bits[24] - (e118, e122)
+e124 : bits[24] mux (e119, e121, e123)
+e125 : bits[32] slice (osc_rotate2_tdata) offset=32
+e126 : bits[32] slice (osc_rotate2_tdata) offset=0
+e127 : bits[32] asr (e126) offset=3
+e128 : bits[32] - (e125, e127)
+e129 : bits[32] + (e125, e127)
+e130 : bits[32] mux (e119, e128, e129)
+e131 : bits[32] asr (e125) offset=3
+e132 : bits[32] + (e126, e131)
+e133 : bits[32] - (e126, e131)
+e134 : bits[32] mux (e119, e132, e133)
+e135 : bits[64] concat (e130, e134)
+e136 : bits[88] concat (e124, e135)
+e137 : bits[88] mux (e117, e136, osc_rotate3_data)
+e138 : bits[11] mux (e117, osc_rotate2_tkeep, osc_rotate3_keep)
+e139 : bits[1] mux (e117, osc_rotate2_tlast, osc_rotate3_last)
+e140 : bits[8] mux (e117, osc_rotate2_tuser, osc_rotate3_user)
+e141 : bits[1] ~ (osc_rotate5_valid)
+e142 : bits[1] | (e141, osc_rotate5_tready)
+e143 : bits[1] mux (e115, osc_rotate3_tvalid, osc_rotate4_valid)
+e144 : bits[1] & (e115, osc_rotate3_tvalid)
+e145 : bits[24] slice (osc_rotate3_tdata) offset=64
+e146 : bits[1] slice (e145) offset=23
+e147 : bits[24] const 166669
+e148 : bits[24] + (e145, e147)
+e149 : bits[24] const 166669
+e150 : bits[24] - (e145, e149)
+e151 : bits[24] mux (e146, e148, e150)
+e152 : bits[32] slice (osc_rotate3_tdata) offset=32
+e153 : bits[32] slice (osc_rotate3_tdata) offset=0
+e154 : bits[32] asr (e153) offset=4
+e155 : bits[32] - (e152, e154)
+e156 : bits[32] + (e152, e154)
+e157 : bits[32] mux (e146, e155, e156)
+e158 : bits[32] asr (e152) offset=4
+e159 : bits[32] + (e153, e158)
+e160 : bits[32] - (e153, e158)
+e161 : bits[32] mux (e146, e159, e160)
+e162 : bits[64] concat (e157, e161)
+e163 : bits[88] concat (e151, e162)
+e164 : bits[88] mux (e144, e163, osc_rotate4_data)
+e165 : bits[11] mux (e144, osc_rotate3_tkeep, osc_rotate4_keep)
+e166 : bits[1] mux (e144, osc_rotate3_tlast, osc_rotate4_last)
+e167 : bits[8] mux (e144, osc_rotate3_tuser, osc_rotate4_user)
+e168 : bits[1] ~ (osc_rotate6_valid)
+e169 : bits[1] | (e168, osc_rotate6_tready)
+e170 : bits[1] mux (e142, osc_rotate4_tvalid, osc_rotate5_valid)
+e171 : bits[1] & (e142, osc_rotate4_tvalid)
+e172 : bits[24] slice (osc_rotate4_tdata) offset=64
+e173 : bits[1] slice (e172) offset=23
+e174 : bits[24] const 83416
+e175 : bits[24] + (e172, e174)
+e176 : bits[24] const 83416
+e177 : bits[24] - (e172, e176)
+e178 : bits[24] mux (e173, e175, e177)
+e179 : bits[32] slice (osc_rotate4_tdata) offset=32
+e180 : bits[32] slice (osc_rotate4_tdata) offset=0
+e181 : bits[32] asr (e180) offset=5
+e182 : bits[32] - (e179, e181)
+e183 : bits[32] + (e179, e181)
+e184 : bits[32] mux (e173, e182, e183)
+e185 : bits[32] asr (e179) offset=5
+e186 : bits[32] + (e180, e185)
+e187 : bits[32] - (e180, e185)
+e188 : bits[32] mux (e173, e186, e187)
+e189 : bits[64] concat (e184, e188)
+e190 : bits[88] concat (e178, e189)
+e191 : bits[88] mux (e171, e190, osc_rotate5_data)
+e192 : bits[11] mux (e171, osc_rotate4_tkeep, osc_rotate5_keep)
+e193 : bits[1] mux (e171, osc_rotate4_tlast, osc_rotate5_last)
+e194 : bits[8] mux (e171, osc_rotate4_tuser, osc_rotate5_user)
+e195 : bits[1] ~ (osc_rotate7_valid)
+e196 : bits[1] | (e195, osc_rotate7_tready)
+e197 : bits[1] mux (e169, osc_rotate5_tvalid, osc_rotate6_valid)
+e198 : bits[1] & (e169, osc_rotate5_tvalid)
+e199 : bits[24] slice (osc_rotate5_tdata) offset=64
+e200 : bits[1] slice (e199) offset=23
+e201 : bits[24] const 41718
+e202 : bits[24] + (e199, e201)
+e203 : bits[24] const 41718
+e204 : bits[24] - (e199, e203)
+e205 : bits[24] mux (e200, e202, e204)
+e206 : bits[32] slice (osc_rotate5_tdata) offset=32
+e207 : bits[32] slice (osc_rotate5_tdata) offset=0
+e208 : bits[32] asr (e207) offset=6
+e209 : bits[32] - (e206, e208)
+e210 : bits[32] + (e206, e208)
+e211 : bits[32] mux (e200, e209, e210)
+e212 : bits[32] asr (e206) offset=6
+e213 : bits[32] + (e207, e212)
+e214 : bits[32] - (e207, e212)
+e215 : bits[32] mux (e200, e213, e214)
+e216 : bits[64] concat (e211, e215)
+e217 : bits[88] concat (e205, e216)
+e218 : bits[88] mux (e198, e217, osc_rotate6_data)
+e219 : bits[11] mux (e198, osc_rotate5_tkeep, osc_rotate6_keep)
+e220 : bits[1] mux (e198, osc_rotate5_tlast, osc_rotate6_last)
+e221 : bits[8] mux (e198, osc_rotate5_tuser, osc_rotate6_user)
+e222 : bits[1] ~ (osc_rotate8_valid)
+e223 : bits[1] | (e222, osc_rotate8_tready)
+e224 : bits[1] mux (e196, osc_rotate6_tvalid, osc_rotate7_valid)
+e225 : bits[1] & (e196, osc_rotate6_tvalid)
+e226 : bits[24] slice (osc_rotate6_tdata) offset=64
+e227 : bits[1] slice (e226) offset=23
+e228 : bits[24] const 20860
+e229 : bits[24] + (e226, e228)
+e230 : bits[24] const 20860
+e231 : bits[24] - (e226, e230)
+e232 : bits[24] mux (e227, e229, e231)
+e233 : bits[32] slice (osc_rotate6_tdata) offset=32
+e234 : bits[32] slice (osc_rotate6_tdata) offset=0
+e235 : bits[32] asr (e234) offset=7
+e236 : bits[32] - (e233, e235)
+e237 : bits[32] + (e233, e235)
+e238 : bits[32] mux (e227, e236, e237)
+e239 : bits[32] asr (e233) offset=7
+e240 : bits[32] + (e234, e239)
+e241 : bits[32] - (e234, e239)
+e242 : bits[32] mux (e227, e240, e241)
+e243 : bits[64] concat (e238, e242)
+e244 : bits[88] concat (e232, e243)
+e245 : bits[88] mux (e225, e244, osc_rotate7_data)
+e246 : bits[11] mux (e225, osc_rotate6_tkeep, osc_rotate7_keep)
+e247 : bits[1] mux (e225, osc_rotate6_tlast, osc_rotate7_last)
+e248 : bits[8] mux (e225, osc_rotate6_tuser, osc_rotate7_user)
+e249 : bits[1] ~ (osc_rotate9_valid)
+e250 : bits[1] | (e249, osc_rotate9_tready)
+e251 : bits[1] mux (e223, osc_rotate7_tvalid, osc_rotate8_valid)
+e252 : bits[1] & (e223, osc_rotate7_tvalid)
+e253 : bits[24] slice (osc_rotate7_tdata) offset=64
+e254 : bits[1] slice (e253) offset=23
+e255 : bits[24] const 10430
+e256 : bits[24] + (e253, e255)
+e257 : bits[24] const 10430
+e258 : bits[24] - (e253, e257)
+e259 : bits[24] mux (e254, e256, e258)
+e260 : bits[32] slice (osc_rotate7_tdata) offset=32
+e261 : bits[32] slice (osc_rotate7_tdata) offset=0
+e262 : bits[32] asr (e261) offset=8
+e263 : bits[32] - (e260, e262)
+e264 : bits[32] + (e260, e262)
+e265 : bits[32] mux (e254, e263, e264)
+e266 : bits[32] asr (e260) offset=8
+e267 : bits[32] + (e261, e266)
+e268 : bits[32] - (e261, e266)
+e269 : bits[32] mux (e254, e267, e268)
+e270 : bits[64] concat (e265, e269)
+e271 : bits[88] concat (e259, e270)
+e272 : bits[88] mux (e252, e271, osc_rotate8_data)
+e273 : bits[11] mux (e252, osc_rotate7_tkeep, osc_rotate8_keep)
+e274 : bits[1] mux (e252, osc_rotate7_tlast, osc_rotate8_last)
+e275 : bits[8] mux (e252, osc_rotate7_tuser, osc_rotate8_user)
+e276 : bits[1] ~ (osc_rotate10_valid)
+e277 : bits[1] | (e276, osc_rotate10_tready)
+e278 : bits[1] mux (e250, osc_rotate8_tvalid, osc_rotate9_valid)
+e279 : bits[1] & (e250, osc_rotate8_tvalid)
+e280 : bits[24] slice (osc_rotate8_tdata) offset=64
+e281 : bits[1] slice (e280) offset=23
+e282 : bits[24] const 5215
+e283 : bits[24] + (e280, e282)
+e284 : bits[24] const 5215
+e285 : bits[24] - (e280, e284)
+e286 : bits[24] mux (e281, e283, e285)
+e287 : bits[32] slice (osc_rotate8_tdata) offset=32
+e288 : bits[32] slice (osc_rotate8_tdata) offset=0
+e289 : bits[32] asr (e288) offset=9
+e290 : bits[32] - (e287, e289)
+e291 : bits[32] + (e287, e289)
+e292 : bits[32] mux (e281, e290, e291)
+e293 : bits[32] asr (e287) offset=9
+e294 : bits[32] + (e288, e293)
+e295 : bits[32] - (e288, e293)
+e296 : bits[32] mux (e281, e294, e295)
+e297 : bits[64] concat (e292, e296)
+e298 : bits[88] concat (e286, e297)
+e299 : bits[88] mux (e279, e298, osc_rotate9_data)
+e300 : bits[11] mux (e279, osc_rotate8_tkeep, osc_rotate9_keep)
+e301 : bits[1] mux (e279, osc_rotate8_tlast, osc_rotate9_last)
+e302 : bits[8] mux (e279, osc_rotate8_tuser, osc_rotate9_user)
+e303 : bits[1] ~ (osc_rotate11_valid)
+e304 : bits[1] | (e303, osc_rotate11_tready)
+e305 : bits[1] mux (e277, osc_rotate9_tvalid, osc_rotate10_valid)
+e306 : bits[1] & (e277, osc_rotate9_tvalid)
+e307 : bits[24] slice (osc_rotate9_tdata) offset=64
+e308 : bits[1] slice (e307) offset=23
+e309 : bits[24] const 2608
+e310 : bits[24] + (e307, e309)
+e311 : bits[24] const 2608
+e312 : bits[24] - (e307, e311)
+e313 : bits[24] mux (e308, e310, e312)
+e314 : bits[32] slice (osc_rotate9_tdata) offset=32
+e315 : bits[32] slice (osc_rotate9_tdata) offset=0
+e316 : bits[32] asr (e315) offset=10
+e317 : bits[32] - (e314, e316)
+e318 : bits[32] + (e314, e316)
+e319 : bits[32] mux (e308, e317, e318)
+e320 : bits[32] asr (e314) offset=10
+e321 : bits[32] + (e315, e320)
+e322 : bits[32] - (e315, e320)
+e323 : bits[32] mux (e308, e321, e322)
+e324 : bits[64] concat (e319, e323)
+e325 : bits[88] concat (e313, e324)
+e326 : bits[88] mux (e306, e325, osc_rotate10_data)
+e327 : bits[11] mux (e306, osc_rotate9_tkeep, osc_rotate10_keep)
+e328 : bits[1] mux (e306, osc_rotate9_tlast, osc_rotate10_last)
+e329 : bits[8] mux (e306, osc_rotate9_tuser, osc_rotate10_user)
+e330 : bits[1] ~ (osc_rotate12_valid)
+e331 : bits[1] | (e330, osc_rotate12_tready)
+e332 : bits[1] mux (e304, osc_rotate10_tvalid, osc_rotate11_valid)
+e333 : bits[1] & (e304, osc_rotate10_tvalid)
+e334 : bits[24] slice (osc_rotate10_tdata) offset=64
+e335 : bits[1] slice (e334) offset=23
+e336 : bits[24] const 1304
+e337 : bits[24] + (e334, e336)
+e338 : bits[24] const 1304
+e339 : bits[24] - (e334, e338)
+e340 : bits[24] mux (e335, e337, e339)
+e341 : bits[32] slice (osc_rotate10_tdata) offset=32
+e342 : bits[32] slice (osc_rotate10_tdata) offset=0
+e343 : bits[32] asr (e342) offset=11
+e344 : bits[32] - (e341, e343)
+e345 : bits[32] + (e341, e343)
+e346 : bits[32] mux (e335, e344, e345)
+e347 : bits[32] asr (e341) offset=11
+e348 : bits[32] + (e342, e347)
+e349 : bits[32] - (e342, e347)
+e350 : bits[32] mux (e335, e348, e349)
+e351 : bits[64] concat (e346, e350)
+e352 : bits[88] concat (e340, e351)
+e353 : bits[88] mux (e333, e352, osc_rotate11_data)
+e354 : bits[11] mux (e333, osc_rotate10_tkeep, osc_rotate11_keep)
+e355 : bits[1] mux (e333, osc_rotate10_tlast, osc_rotate11_last)
+e356 : bits[8] mux (e333, osc_rotate10_tuser, osc_rotate11_user)
+e357 : bits[1] ~ (osc_rotate13_valid)
+e358 : bits[1] | (e357, osc_rotate13_tready)
+e359 : bits[1] mux (e331, osc_rotate11_tvalid, osc_rotate12_valid)
+e360 : bits[1] & (e331, osc_rotate11_tvalid)
+e361 : bits[24] slice (osc_rotate11_tdata) offset=64
+e362 : bits[1] slice (e361) offset=23
+e363 : bits[24] const 652
+e364 : bits[24] + (e361, e363)
+e365 : bits[24] const 652
+e366 : bits[24] - (e361, e365)
+e367 : bits[24] mux (e362, e364, e366)
+e368 : bits[32] slice (osc_rotate11_tdata) offset=32
+e369 : bits[32] slice (osc_rotate11_tdata) offset=0
+e370 : bits[32] asr (e369) offset=12
+e371 : bits[32] - (e368, e370)
+e372 : bits[32] + (e368, e370)
+e373 : bits[32] mux (e362, e371, e372)
+e374 : bits[32] asr (e368) offset=12
+e375 : bits[32] + (e369, e374)
+e376 : bits[32] - (e369, e374)
+e377 : bits[32] mux (e362, e375, e376)
+e378 : bits[64] concat (e373, e377)
+e379 : bits[88] concat (e367, e378)
+e380 : bits[88] mux (e360, e379, osc_rotate12_data)
+e381 : bits[11] mux (e360, osc_rotate11_tkeep, osc_rotate12_keep)
+e382 : bits[1] mux (e360, osc_rotate11_tlast, osc_rotate12_last)
+e383 : bits[8] mux (e360, osc_rotate11_tuser, osc_rotate12_user)
+e384 : bits[1] ~ (osc_rotate14_valid)
+e385 : bits[1] | (e384, osc_rotate14_tready)
+e386 : bits[1] mux (e358, osc_rotate12_tvalid, osc_rotate13_valid)
+e387 : bits[1] & (e358, osc_rotate12_tvalid)
+e388 : bits[24] slice (osc_rotate12_tdata) offset=64
+e389 : bits[1] slice (e388) offset=23
+e390 : bits[24] const 326
+e391 : bits[24] + (e388, e390)
+e392 : bits[24] const 326
+e393 : bits[24] - (e388, e392)
+e394 : bits[24] mux (e389, e391, e393)
+e395 : bits[32] slice (osc_rotate12_tdata) offset=32
+e396 : bits[32] slice (osc_rotate12_tdata) offset=0
+e397 : bits[32] asr (e396) offset=13
+e398 : bits[32] - (e395, e397)
+e399 : bits[32] + (e395, e397)
+e400 : bits[32] mux (e389, e398, e399)
+e401 : bits[32] asr (e395) offset=13
+e402 : bits[32] + (e396, e401)
+e403 : bits[32] - (e396, e401)
+e404 : bits[32] mux (e389, e402, e403)
+e405 : bits[64] concat (e400, e404)
+e406 : bits[88] concat (e394, e405)
+e407 : bits[88] mux (e387, e406, osc_rotate13_data)
+e408 : bits[11] mux (e387, osc_rotate12_tkeep, osc_rotate13_keep)
+e409 : bits[1] mux (e387, osc_rotate12_tlast, osc_rotate13_last)
+e410 : bits[8] mux (e387, osc_rotate12_tuser, osc_rotate13_user)
+e411 : bits[1] ~ (osc_rotate15_valid)
+e412 : bits[1] | (e411, osc_rotate15_tready)
+e413 : bits[1] mux (e385, osc_rotate13_tvalid, osc_rotate14_valid)
+e414 : bits[1] & (e385, osc_rotate13_tvalid)
+e415 : bits[24] slice (osc_rotate13_tdata) offset=64
+e416 : bits[1] slice (e415) offset=23
+e417 : bits[24] const 163
+e418 : bits[24] + (e415, e417)
+e419 : bits[24] const 163
+e420 : bits[24] - (e415, e419)
+e421 : bits[24] mux (e416, e418, e420)
+e422 : bits[32] slice (osc_rotate13_tdata) offset=32
+e423 : bits[32] slice (osc_rotate13_tdata) offset=0
+e424 : bits[32] asr (e423) offset=14
+e425 : bits[32] - (e422, e424)
+e426 : bits[32] + (e422, e424)
+e427 : bits[32] mux (e416, e425, e426)
+e428 : bits[32] asr (e422) offset=14
+e429 : bits[32] + (e423, e428)
+e430 : bits[32] - (e423, e428)
+e431 : bits[32] mux (e416, e429, e430)
+e432 : bits[64] concat (e427, e431)
+e433 : bits[88] concat (e421, e432)
+e434 : bits[88] mux (e414, e433, osc_rotate14_data)
+e435 : bits[11] mux (e414, osc_rotate13_tkeep, osc_rotate14_keep)
+e436 : bits[1] mux (e414, osc_rotate13_tlast, osc_rotate14_last)
+e437 : bits[8] mux (e414, osc_rotate13_tuser, osc_rotate14_user)
+e438 : bits[1] ~ (osc_rotate16_valid)
+e439 : bits[1] | (e438, osc_rotate16_tready)
+e440 : bits[1] mux (e412, osc_rotate14_tvalid, osc_rotate15_valid)
+e441 : bits[1] & (e412, osc_rotate14_tvalid)
+e442 : bits[24] slice (osc_rotate14_tdata) offset=64
+e443 : bits[1] slice (e442) offset=23
+e444 : bits[24] const 81
+e445 : bits[24] + (e442, e444)
+e446 : bits[24] const 81
+e447 : bits[24] - (e442, e446)
+e448 : bits[24] mux (e443, e445, e447)
+e449 : bits[32] slice (osc_rotate14_tdata) offset=32
+e450 : bits[32] slice (osc_rotate14_tdata) offset=0
+e451 : bits[32] asr (e450) offset=15
+e452 : bits[32] - (e449, e451)
+e453 : bits[32] + (e449, e451)
+e454 : bits[32] mux (e443, e452, e453)
+e455 : bits[32] asr (e449) offset=15
+e456 : bits[32] + (e450, e455)
+e457 : bits[32] - (e450, e455)
+e458 : bits[32] mux (e443, e456, e457)
+e459 : bits[64] concat (e454, e458)
+e460 : bits[88] concat (e448, e459)
+e461 : bits[88] mux (e441, e460, osc_rotate15_data)
+e462 : bits[11] mux (e441, osc_rotate14_tkeep, osc_rotate15_keep)
+e463 : bits[1] mux (e441, osc_rotate14_tlast, osc_rotate15_last)
+e464 : bits[8] mux (e441, osc_rotate14_tuser, osc_rotate15_user)
+e465 : bits[1] ~ (osc_rotate17_valid)
+e466 : bits[1] | (e465, osc_rotate17_tready)
+e467 : bits[1] mux (e439, osc_rotate15_tvalid, osc_rotate16_valid)
+e468 : bits[1] & (e439, osc_rotate15_tvalid)
+e469 : bits[24] slice (osc_rotate15_tdata) offset=64
+e470 : bits[1] slice (e469) offset=23
+e471 : bits[24] const 41
+e472 : bits[24] + (e469, e471)
+e473 : bits[24] const 41
+e474 : bits[24] - (e469, e473)
+e475 : bits[24] mux (e470, e472, e474)
+e476 : bits[32] slice (osc_rotate15_tdata) offset=32
+e477 : bits[32] slice (osc_rotate15_tdata) offset=0
+e478 : bits[32] asr (e477) offset=16
+e479 : bits[32] - (e476, e478)
+e480 : bits[32] + (e476, e478)
+e481 : bits[32] mux (e470, e479, e480)
+e482 : bits[32] asr (e476) offset=16
+e483 : bits[32] + (e477, e482)
+e484 : bits[32] - (e477, e482)
+e485 : bits[32] mux (e470, e483, e484)
+e486 : bits[64] concat (e481, e485)
+e487 : bits[88] concat (e475, e486)
+e488 : bits[88] mux (e468, e487, osc_rotate16_data)
+e489 : bits[11] mux (e468, osc_rotate15_tkeep, osc_rotate16_keep)
+e490 : bits[1] mux (e468, osc_rotate15_tlast, osc_rotate16_last)
+e491 : bits[8] mux (e468, osc_rotate15_tuser, osc_rotate16_user)
+e492 : bits[1] ~ (osc_rotate18_valid)
+e493 : bits[1] | (e492, osc_rotate18_tready)
+e494 : bits[1] mux (e466, osc_rotate16_tvalid, osc_rotate17_valid)
+e495 : bits[1] & (e466, osc_rotate16_tvalid)
+e496 : bits[24] slice (osc_rotate16_tdata) offset=64
+e497 : bits[1] slice (e496) offset=23
+e498 : bits[24] const 20
+e499 : bits[24] + (e496, e498)
+e500 : bits[24] const 20
+e501 : bits[24] - (e496, e500)
+e502 : bits[24] mux (e497, e499, e501)
+e503 : bits[32] slice (osc_rotate16_tdata) offset=32
+e504 : bits[32] slice (osc_rotate16_tdata) offset=0
+e505 : bits[32] asr (e504) offset=17
+e506 : bits[32] - (e503, e505)
+e507 : bits[32] + (e503, e505)
+e508 : bits[32] mux (e497, e506, e507)
+e509 : bits[32] asr (e503) offset=17
+e510 : bits[32] + (e504, e509)
+e511 : bits[32] - (e504, e509)
+e512 : bits[32] mux (e497, e510, e511)
+e513 : bits[64] concat (e508, e512)
+e514 : bits[88] concat (e502, e513)
+e515 : bits[88] mux (e495, e514, osc_rotate17_data)
+e516 : bits[11] mux (e495, osc_rotate16_tkeep, osc_rotate17_keep)
+e517 : bits[1] mux (e495, osc_rotate16_tlast, osc_rotate17_last)
+e518 : bits[8] mux (e495, osc_rotate16_tuser, osc_rotate17_user)
+e519 : bits[1] ~ (osc_rotate19_valid)
+e520 : bits[1] | (e519, osc_rotate19_tready)
+e521 : bits[1] mux (e493, osc_rotate17_tvalid, osc_rotate18_valid)
+e522 : bits[1] & (e493, osc_rotate17_tvalid)
+e523 : bits[24] slice (osc_rotate17_tdata) offset=64
+e524 : bits[1] slice (e523) offset=23
+e525 : bits[24] const 10
+e526 : bits[24] + (e523, e525)
+e527 : bits[24] const 10
+e528 : bits[24] - (e523, e527)
+e529 : bits[24] mux (e524, e526, e528)
+e530 : bits[32] slice (osc_rotate17_tdata) offset=32
+e531 : bits[32] slice (osc_rotate17_tdata) offset=0
+e532 : bits[32] asr (e531) offset=18
+e533 : bits[32] - (e530, e532)
+e534 : bits[32] + (e530, e532)
+e535 : bits[32] mux (e524, e533, e534)
+e536 : bits[32] asr (e530) offset=18
+e537 : bits[32] + (e531, e536)
+e538 : bits[32] - (e531, e536)
+e539 : bits[32] mux (e524, e537, e538)
+e540 : bits[64] concat (e535, e539)
+e541 : bits[88] concat (e529, e540)
+e542 : bits[88] mux (e522, e541, osc_rotate18_data)
+e543 : bits[11] mux (e522, osc_rotate17_tkeep, osc_rotate18_keep)
+e544 : bits[1] mux (e522, osc_rotate17_tlast, osc_rotate18_last)
+e545 : bits[8] mux (e522, osc_rotate17_tuser, osc_rotate18_user)
+e546 : bits[1] mux (e520, osc_rotate18_tvalid, osc_rotate19_valid)
+e547 : bits[1] & (e520, osc_rotate18_tvalid)
+e548 : bits[24] slice (osc_rotate18_tdata) offset=64
+e549 : bits[1] slice (e548) offset=23
+e550 : bits[24] const 5
+e551 : bits[24] + (e548, e550)
+e552 : bits[24] const 5
+e553 : bits[24] - (e548, e552)
+e554 : bits[24] mux (e549, e551, e553)
+e555 : bits[32] slice (osc_rotate18_tdata) offset=32
+e556 : bits[32] slice (osc_rotate18_tdata) offset=0
+e557 : bits[32] asr (e556) offset=19
+e558 : bits[32] - (e555, e557)
+e559 : bits[32] + (e555, e557)
+e560 : bits[32] mux (e549, e558, e559)
+e561 : bits[32] asr (e555) offset=19
+e562 : bits[32] + (e556, e561)
+e563 : bits[32] - (e556, e561)
+e564 : bits[32] mux (e549, e562, e563)
+e565 : bits[64] concat (e560, e564)
+e566 : bits[88] concat (e554, e565)
+e567 : bits[88] mux (e547, e566, osc_rotate19_data)
+e568 : bits[11] mux (e547, osc_rotate18_tkeep, osc_rotate19_keep)
+e569 : bits[1] mux (e547, osc_rotate18_tlast, osc_rotate19_last)
+e570 : bits[8] mux (e547, osc_rotate18_tuser, osc_rotate19_user)
+e571 : bits[64] slice (osc_rotate19_tdata) offset=0
+e572 : bits[8] const 255
+connections:
+m_axis_tdata <- osc_result_tdata
+m_axis_tkeep <- osc_result_tkeep
+m_axis_tlast <- osc_result_tlast
+m_axis_tuser <- osc_result_tuser
+m_axis_tvalid <- osc_result_tvalid
+phase.next <- e2
+sample_tag.next <- e6
+angles_tdata <- phase
+angles_tkeep <- e7
+angles_tlast <- e8
+angles_tuser <- sample_tag
+angles_tvalid <- e9
+angles_tready <- e11
+osc_reduce_tdata <- osc_reduce_data
+osc_reduce_tkeep <- osc_reduce_keep
+osc_reduce_tlast <- osc_reduce_last
+osc_reduce_tuser <- osc_reduce_user
+osc_reduce_tvalid <- osc_reduce_valid
+osc_reduce_tready <- e13
+osc_reduce_valid.next <- e14
+osc_reduce_data.next <- e28
+osc_reduce_keep.next <- e30
+osc_reduce_last.next <- e31
+osc_reduce_user.next <- e32
+osc_rotate0_tdata <- osc_rotate0_data
+osc_rotate0_tkeep <- osc_rotate0_keep
+osc_rotate0_tlast <- osc_rotate0_last
+osc_rotate0_tuser <- osc_rotate0_user
+osc_rotate0_tvalid <- osc_rotate0_valid
+osc_rotate0_tready <- e34
+osc_rotate0_valid.next <- e35
+osc_rotate0_data.next <- e56
+osc_rotate0_keep.next <- e57
+osc_rotate0_last.next <- e58
+osc_rotate0_user.next <- e59
+osc_rotate1_tdata <- osc_rotate1_data
+osc_rotate1_tkeep <- osc_rotate1_keep
+osc_rotate1_tlast <- osc_rotate1_last
+osc_rotate1_tuser <- osc_rotate1_user
+osc_rotate1_tvalid <- osc_rotate1_valid
+osc_rotate1_tready <- e61
+osc_rotate1_valid.next <- e62
+osc_rotate1_data.next <- e83
+osc_rotate1_keep.next <- e84
+osc_rotate1_last.next <- e85
+osc_rotate1_user.next <- e86
+osc_rotate2_tdata <- osc_rotate2_data
+osc_rotate2_tkeep <- osc_rotate2_keep
+osc_rotate2_tlast <- osc_rotate2_last
+osc_rotate2_tuser <- osc_rotate2_user
+osc_rotate2_tvalid <- osc_rotate2_valid
+osc_rotate2_tready <- e88
+osc_rotate2_valid.next <- e89
+osc_rotate2_data.next <- e110
+osc_rotate2_keep.next <- e111
+osc_rotate2_last.next <- e112
+osc_rotate2_user.next <- e113
+osc_rotate3_tdata <- osc_rotate3_data
+osc_rotate3_tkeep <- osc_rotate3_keep
+osc_rotate3_tlast <- osc_rotate3_last
+osc_rotate3_tuser <- osc_rotate3_user
+osc_rotate3_tvalid <- osc_rotate3_valid
+osc_rotate3_tready <- e115
+osc_rotate3_valid.next <- e116
+osc_rotate3_data.next <- e137
+osc_rotate3_keep.next <- e138
+osc_rotate3_last.next <- e139
+osc_rotate3_user.next <- e140
+osc_rotate4_tdata <- osc_rotate4_data
+osc_rotate4_tkeep <- osc_rotate4_keep
+osc_rotate4_tlast <- osc_rotate4_last
+osc_rotate4_tuser <- osc_rotate4_user
+osc_rotate4_tvalid <- osc_rotate4_valid
+osc_rotate4_tready <- e142
+osc_rotate4_valid.next <- e143
+osc_rotate4_data.next <- e164
+osc_rotate4_keep.next <- e165
+osc_rotate4_last.next <- e166
+osc_rotate4_user.next <- e167
+osc_rotate5_tdata <- osc_rotate5_data
+osc_rotate5_tkeep <- osc_rotate5_keep
+osc_rotate5_tlast <- osc_rotate5_last
+osc_rotate5_tuser <- osc_rotate5_user
+osc_rotate5_tvalid <- osc_rotate5_valid
+osc_rotate5_tready <- e169
+osc_rotate5_valid.next <- e170
+osc_rotate5_data.next <- e191
+osc_rotate5_keep.next <- e192
+osc_rotate5_last.next <- e193
+osc_rotate5_user.next <- e194
+osc_rotate6_tdata <- osc_rotate6_data
+osc_rotate6_tkeep <- osc_rotate6_keep
+osc_rotate6_tlast <- osc_rotate6_last
+osc_rotate6_tuser <- osc_rotate6_user
+osc_rotate6_tvalid <- osc_rotate6_valid
+osc_rotate6_tready <- e196
+osc_rotate6_valid.next <- e197
+osc_rotate6_data.next <- e218
+osc_rotate6_keep.next <- e219
+osc_rotate6_last.next <- e220
+osc_rotate6_user.next <- e221
+osc_rotate7_tdata <- osc_rotate7_data
+osc_rotate7_tkeep <- osc_rotate7_keep
+osc_rotate7_tlast <- osc_rotate7_last
+osc_rotate7_tuser <- osc_rotate7_user
+osc_rotate7_tvalid <- osc_rotate7_valid
+osc_rotate7_tready <- e223
+osc_rotate7_valid.next <- e224
+osc_rotate7_data.next <- e245
+osc_rotate7_keep.next <- e246
+osc_rotate7_last.next <- e247
+osc_rotate7_user.next <- e248
+osc_rotate8_tdata <- osc_rotate8_data
+osc_rotate8_tkeep <- osc_rotate8_keep
+osc_rotate8_tlast <- osc_rotate8_last
+osc_rotate8_tuser <- osc_rotate8_user
+osc_rotate8_tvalid <- osc_rotate8_valid
+osc_rotate8_tready <- e250
+osc_rotate8_valid.next <- e251
+osc_rotate8_data.next <- e272
+osc_rotate8_keep.next <- e273
+osc_rotate8_last.next <- e274
+osc_rotate8_user.next <- e275
+osc_rotate9_tdata <- osc_rotate9_data
+osc_rotate9_tkeep <- osc_rotate9_keep
+osc_rotate9_tlast <- osc_rotate9_last
+osc_rotate9_tuser <- osc_rotate9_user
+osc_rotate9_tvalid <- osc_rotate9_valid
+osc_rotate9_tready <- e277
+osc_rotate9_valid.next <- e278
+osc_rotate9_data.next <- e299
+osc_rotate9_keep.next <- e300
+osc_rotate9_last.next <- e301
+osc_rotate9_user.next <- e302
+osc_rotate10_tdata <- osc_rotate10_data
+osc_rotate10_tkeep <- osc_rotate10_keep
+osc_rotate10_tlast <- osc_rotate10_last
+osc_rotate10_tuser <- osc_rotate10_user
+osc_rotate10_tvalid <- osc_rotate10_valid
+osc_rotate10_tready <- e304
+osc_rotate10_valid.next <- e305
+osc_rotate10_data.next <- e326
+osc_rotate10_keep.next <- e327
+osc_rotate10_last.next <- e328
+osc_rotate10_user.next <- e329
+osc_rotate11_tdata <- osc_rotate11_data
+osc_rotate11_tkeep <- osc_rotate11_keep
+osc_rotate11_tlast <- osc_rotate11_last
+osc_rotate11_tuser <- osc_rotate11_user
+osc_rotate11_tvalid <- osc_rotate11_valid
+osc_rotate11_tready <- e331
+osc_rotate11_valid.next <- e332
+osc_rotate11_data.next <- e353
+osc_rotate11_keep.next <- e354
+osc_rotate11_last.next <- e355
+osc_rotate11_user.next <- e356
+osc_rotate12_tdata <- osc_rotate12_data
+osc_rotate12_tkeep <- osc_rotate12_keep
+osc_rotate12_tlast <- osc_rotate12_last
+osc_rotate12_tuser <- osc_rotate12_user
+osc_rotate12_tvalid <- osc_rotate12_valid
+osc_rotate12_tready <- e358
+osc_rotate12_valid.next <- e359
+osc_rotate12_data.next <- e380
+osc_rotate12_keep.next <- e381
+osc_rotate12_last.next <- e382
+osc_rotate12_user.next <- e383
+osc_rotate13_tdata <- osc_rotate13_data
+osc_rotate13_tkeep <- osc_rotate13_keep
+osc_rotate13_tlast <- osc_rotate13_last
+osc_rotate13_tuser <- osc_rotate13_user
+osc_rotate13_tvalid <- osc_rotate13_valid
+osc_rotate13_tready <- e385
+osc_rotate13_valid.next <- e386
+osc_rotate13_data.next <- e407
+osc_rotate13_keep.next <- e408
+osc_rotate13_last.next <- e409
+osc_rotate13_user.next <- e410
+osc_rotate14_tdata <- osc_rotate14_data
+osc_rotate14_tkeep <- osc_rotate14_keep
+osc_rotate14_tlast <- osc_rotate14_last
+osc_rotate14_tuser <- osc_rotate14_user
+osc_rotate14_tvalid <- osc_rotate14_valid
+osc_rotate14_tready <- e412
+osc_rotate14_valid.next <- e413
+osc_rotate14_data.next <- e434
+osc_rotate14_keep.next <- e435
+osc_rotate14_last.next <- e436
+osc_rotate14_user.next <- e437
+osc_rotate15_tdata <- osc_rotate15_data
+osc_rotate15_tkeep <- osc_rotate15_keep
+osc_rotate15_tlast <- osc_rotate15_last
+osc_rotate15_tuser <- osc_rotate15_user
+osc_rotate15_tvalid <- osc_rotate15_valid
+osc_rotate15_tready <- e439
+osc_rotate15_valid.next <- e440
+osc_rotate15_data.next <- e461
+osc_rotate15_keep.next <- e462
+osc_rotate15_last.next <- e463
+osc_rotate15_user.next <- e464
+osc_rotate16_tdata <- osc_rotate16_data
+osc_rotate16_tkeep <- osc_rotate16_keep
+osc_rotate16_tlast <- osc_rotate16_last
+osc_rotate16_tuser <- osc_rotate16_user
+osc_rotate16_tvalid <- osc_rotate16_valid
+osc_rotate16_tready <- e466
+osc_rotate16_valid.next <- e467
+osc_rotate16_data.next <- e488
+osc_rotate16_keep.next <- e489
+osc_rotate16_last.next <- e490
+osc_rotate16_user.next <- e491
+osc_rotate17_tdata <- osc_rotate17_data
+osc_rotate17_tkeep <- osc_rotate17_keep
+osc_rotate17_tlast <- osc_rotate17_last
+osc_rotate17_tuser <- osc_rotate17_user
+osc_rotate17_tvalid <- osc_rotate17_valid
+osc_rotate17_tready <- e493
+osc_rotate17_valid.next <- e494
+osc_rotate17_data.next <- e515
+osc_rotate17_keep.next <- e516
+osc_rotate17_last.next <- e517
+osc_rotate17_user.next <- e518
+osc_rotate18_tdata <- osc_rotate18_data
+osc_rotate18_tkeep <- osc_rotate18_keep
+osc_rotate18_tlast <- osc_rotate18_last
+osc_rotate18_tuser <- osc_rotate18_user
+osc_rotate18_tvalid <- osc_rotate18_valid
+osc_rotate18_tready <- e520
+osc_rotate18_valid.next <- e521
+osc_rotate18_data.next <- e542
+osc_rotate18_keep.next <- e543
+osc_rotate18_last.next <- e544
+osc_rotate18_user.next <- e545
+osc_rotate19_tdata <- osc_rotate19_data
+osc_rotate19_tkeep <- osc_rotate19_keep
+osc_rotate19_tlast <- osc_rotate19_last
+osc_rotate19_tuser <- osc_rotate19_user
+osc_rotate19_tvalid <- osc_rotate19_valid
+osc_rotate19_tready <- osc_result_tready
+osc_rotate19_valid.next <- e546
+osc_rotate19_data.next <- e567
+osc_rotate19_keep.next <- e568
+osc_rotate19_last.next <- e569
+osc_rotate19_user.next <- e570
+osc_result_tdata <- e571
+osc_result_tkeep <- e572
+osc_result_tlast <- osc_rotate19_tlast
+osc_result_tuser <- osc_rotate19_tuser
+osc_result_tvalid <- osc_rotate19_tvalid
+osc_result_tready <- m_axis_tready

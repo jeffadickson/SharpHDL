@@ -1,0 +1,11 @@
+Behavioral.CSharpFunctions.GuardedAdd
+IL_0000: ldarg.1 
+IL_0001: brtrue.s 5
+IL_0003: ldarg.0 
+IL_0004: ret 
+IL_0005: ldarg.0 
+IL_0006: ldarg.1 
+IL_0007: add.ovf 
+IL_0008: ret 
+
+Instructions visited: 8; symbolic branches: 1; method bodies: 1

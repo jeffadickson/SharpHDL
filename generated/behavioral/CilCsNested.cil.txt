@@ -1,0 +1,28 @@
+Behavioral.CSharpFunctions.Nested
+IL_0000: ldarg.0 
+IL_0001: ldc.i4.0 
+IL_0002: blt.s 16
+IL_0004: ldarg.1 
+IL_0005: ldc.i4.0 
+IL_0006: blt.s 12
+IL_0008: ldarg.0 
+IL_0009: ldarg.1 
+IL_000a: and 
+IL_000b: ret 
+IL_000c: ldarg.0 
+IL_000d: ldarg.1 
+IL_000e: xor 
+IL_000f: ret 
+IL_0010: ldarg.1 
+IL_0011: ldc.i4.0 
+IL_0012: blt.s 24
+IL_0014: ldarg.0 
+IL_0015: ldarg.1 
+IL_0016: add 
+IL_0017: ret 
+IL_0018: ldarg.0 
+IL_0019: ldarg.1 
+IL_001a: sub 
+IL_001b: ret 
+
+Instructions visited: 25; symbolic branches: 3; method bodies: 1

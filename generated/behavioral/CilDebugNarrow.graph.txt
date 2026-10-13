@@ -1,0 +1,19 @@
+module CilDebugNarrow
+input a : bits[8]
+input b : bits[8]
+output y : bits[8]
+output fault : bits[1]
+expressions:
+e0 : bits[32] signextend (a)
+e1 : bits[32] signextend (b)
+e2 : bits[1] slt (e0, e1)
+e3 : bits[32] const 2
+e4 : bits[32] + (e0, e3)
+e5 : bits[32] const 1
+e6 : bits[32] - (e1, e5)
+e7 : bits[32] mux (e2, e4, e6)
+e8 : bits[8] resize (e7)
+e9 : bits[1] const 0
+connections:
+y <- e8
+fault <- e9

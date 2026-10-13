@@ -1,0 +1,81 @@
+module FsFir
+input s_axis_tdata : bits[16]
+input s_axis_tkeep : bits[2]
+input s_axis_tlast : bits[1]
+input s_axis_tuser : bits[8]
+input s_axis_tvalid : bits[1]
+output s_axis_tready : bits[1]
+output m_axis_tdata : bits[32]
+output m_axis_tkeep : bits[4]
+output m_axis_tlast : bits[1]
+output m_axis_tuser : bits[8]
+output m_axis_tvalid : bits[1]
+input m_axis_tready : bits[1]
+reg delay_1 : bits[16] reset=0
+reg delay_2 : bits[16] reset=0
+reg delay_3 : bits[16] reset=0
+wire fir_tdata : bits[32]
+wire fir_tkeep : bits[4]
+wire fir_tlast : bits[1]
+wire fir_tuser : bits[8]
+wire fir_tvalid : bits[1]
+wire fir_tready : bits[1]
+reg fir_valid : bits[1] reset=0
+reg fir_data : bits[32] reset=0
+reg fir_keep : bits[4] reset=0
+reg fir_last : bits[1] reset=0
+reg fir_user : bits[8] reset=0
+expressions:
+e0 : bits[1] ~ (fir_valid)
+e1 : bits[1] | (e0, fir_tready)
+e2 : bits[1] & (s_axis_tvalid, s_axis_tready)
+e3 : bits[16] mux (e2, s_axis_tdata, delay_1)
+e4 : bits[1] & (s_axis_tvalid, s_axis_tready)
+e5 : bits[16] mux (e4, delay_1, delay_2)
+e6 : bits[1] & (s_axis_tvalid, s_axis_tready)
+e7 : bits[16] mux (e6, delay_2, delay_3)
+e8 : bits[1] mux (e1, s_axis_tvalid, fir_valid)
+e9 : bits[1] & (e1, s_axis_tvalid)
+e10 : bits[32] const 0
+e11 : bits[32] signextend (s_axis_tdata)
+e12 : bits[32] const 1
+e13 : bits[32] * (e11, e12)
+e14 : bits[32] + (e10, e13)
+e15 : bits[32] signextend (delay_1)
+e16 : bits[32] const 3
+e17 : bits[32] * (e15, e16)
+e18 : bits[32] + (e14, e17)
+e19 : bits[32] signextend (delay_2)
+e20 : bits[32] const 3
+e21 : bits[32] * (e19, e20)
+e22 : bits[32] + (e18, e21)
+e23 : bits[32] signextend (delay_3)
+e24 : bits[32] const 1
+e25 : bits[32] * (e23, e24)
+e26 : bits[32] + (e22, e25)
+e27 : bits[32] mux (e9, e26, fir_data)
+e28 : bits[4] const 15
+e29 : bits[4] mux (e9, e28, fir_keep)
+e30 : bits[1] mux (e9, s_axis_tlast, fir_last)
+e31 : bits[8] mux (e9, s_axis_tuser, fir_user)
+connections:
+s_axis_tready <- e1
+m_axis_tdata <- fir_tdata
+m_axis_tkeep <- fir_tkeep
+m_axis_tlast <- fir_tlast
+m_axis_tuser <- fir_tuser
+m_axis_tvalid <- fir_tvalid
+delay_1.next <- e3
+delay_2.next <- e5
+delay_3.next <- e7
+fir_tdata <- fir_data
+fir_tkeep <- fir_keep
+fir_tlast <- fir_last
+fir_tuser <- fir_user
+fir_tvalid <- fir_valid
+fir_tready <- m_axis_tready
+fir_valid.next <- e8
+fir_data.next <- e27
+fir_keep.next <- e29
+fir_last.next <- e30
+fir_user.next <- e31

@@ -1,0 +1,22 @@
+Behavioral.CSharpFunctions.SelectArithmetic
+IL_0000: nop 
+IL_0001: ldarg.0 
+IL_0002: ldarg.1 
+IL_0003: cgt 
+IL_0005: stloc.0 
+IL_0006: ldloc.0 
+IL_0007: brfalse.s 15
+IL_0009: ldarg.0 
+IL_000a: ldc.i4.2 
+IL_000b: add 
+IL_000c: stloc.1 
+IL_000d: br.s 21
+IL_000f: ldarg.1 
+IL_0010: ldc.i4.1 
+IL_0011: sub 
+IL_0012: stloc.1 
+IL_0013: br.s 21
+IL_0015: ldloc.1 
+IL_0016: ret 
+
+Instructions visited: 21; symbolic branches: 1; method bodies: 1

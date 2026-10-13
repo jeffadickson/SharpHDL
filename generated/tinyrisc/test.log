@@ -1,0 +1,25 @@
+Assembled 10 words
+examples/TinyRisc/Program.cs(28,114): warning CS0649: Field 'Program.Bench.StepLevel' is never assigned to, and will always have its default value 0
+PASS 4304 independent checks; 257 retired instructions; 752 traced edges; 11 RTL benches.
+PASS HDL BadAddress
+generated/tinyrisc/BadAddress_tb.v:230: $finish called at 18000 (1ps)
+PASS HDL Branches
+generated/tinyrisc/Branches_tb.v:322: $finish called at 26000 (1ps)
+PASS HDL CountRun
+generated/tinyrisc/CountRun_tb.v:1173: $finish called at 100000 (1ps)
+PASS HDL CountStep
+generated/tinyrisc/CountStep_tb.v:4114: $finish called at 352000 (1ps)
+PASS HDL IllegalEncoding
+generated/tinyrisc/IllegalEncoding_tb.v:184: $finish called at 14000 (1ps)
+PASS HDL IllegalOpcode
+generated/tinyrisc/IllegalOpcode_tb.v:184: $finish called at 14000 (1ps)
+PASS HDL JumpAlias
+generated/tinyrisc/JumpAlias_tb.v:322: $finish called at 26000 (1ps)
+PASS HDL PeripheralStalls
+generated/tinyrisc/PeripheralStalls_tb.v:1416: $finish called at 120000 (1ps)
+PASS HDL RandomAlu
+generated/tinyrisc/RandomAlu_tb.v:8786: $finish called at 762000 (1ps)
+PASS HDL ResetRetainsRam
+generated/tinyrisc/ResetRetainsRam_tb.v:661: $finish called at 56000 (1ps)
+PASS HDL RomBounds
+generated/tinyrisc/RomBounds_tb.v:207: $finish called at 16000 (1ps)

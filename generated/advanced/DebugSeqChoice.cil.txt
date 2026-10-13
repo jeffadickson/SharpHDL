@@ -1,0 +1,29 @@
+AdvancedFunctions.Choice
+IL_0000: nop 
+IL_0001: ldarg.0 
+IL_0002: stloc.1 
+IL_0003: ldloc.1 
+IL_0004: stloc.0 
+IL_0005: ldloc.0 
+IL_0006: switch 25,31,37
+IL_0017: br.s 44
+IL_0019: ldarg.1 
+IL_001a: ldc.i4.1 
+IL_001b: add 
+IL_001c: stloc.2 
+IL_001d: br.s 48
+IL_001f: ldarg.1 
+IL_0020: ldc.i4.1 
+IL_0021: sub 
+IL_0022: stloc.2 
+IL_0023: br.s 48
+IL_0025: ldarg.1 
+IL_0026: ldc.i4.s 77
+IL_0028: xor 
+IL_0029: stloc.2 
+IL_002a: br.s 48
+IL_002c: ldarg.1 
+IL_002d: stloc.2 
+IL_002e: br.s 48
+IL_0030: ldloc.2 
+IL_0031: ret 

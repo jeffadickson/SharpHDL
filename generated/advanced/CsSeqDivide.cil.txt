@@ -1,0 +1,5 @@
+AdvancedFunctions.Divide
+IL_0000: ldarg.0 
+IL_0001: ldarg.1 
+IL_0002: div 
+IL_0003: ret 

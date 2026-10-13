@@ -1,0 +1,11 @@
+module CilCsDouble
+input a : bits[32]
+input b : bits[32]
+output y : bits[32]
+output fault : bits[1]
+expressions:
+e0 : bits[32] << (a) offset=1
+e1 : bits[1] const 0
+connections:
+y <- e0
+fault <- e1

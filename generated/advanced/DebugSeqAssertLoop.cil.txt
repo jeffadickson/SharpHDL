@@ -1,0 +1,27 @@
+AdvancedFunctions.AssertLoop
+IL_0000: nop 
+IL_0001: ldc.i4.0 
+IL_0002: stloc.0 
+IL_0003: br.s 21
+IL_0005: nop 
+IL_0006: ldloc.0 
+IL_0007: ldarg.1 
+IL_0008: clt 
+IL_000a: call Void Assert(Boolean)
+IL_000f: nop 
+IL_0010: ldloc.0 
+IL_0011: ldc.i4.1 
+IL_0012: add 
+IL_0013: stloc.0 
+IL_0014: nop 
+IL_0015: ldloc.0 
+IL_0016: ldarg.0 
+IL_0017: clt 
+IL_0019: stloc.1 
+IL_001a: ldloc.1 
+IL_001b: brtrue.s 5
+IL_001d: ldloc.0 
+IL_001e: stloc.2 
+IL_001f: br.s 33
+IL_0021: ldloc.2 
+IL_0022: ret 

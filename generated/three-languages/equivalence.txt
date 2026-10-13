@@ -1,0 +1,1 @@
+Identical hardware graphs and Verilog text for C#, F#, VB. Exhaustive 256-input checks per language passed. This is executed elaboration, not CIL-to-RTL synthesis.

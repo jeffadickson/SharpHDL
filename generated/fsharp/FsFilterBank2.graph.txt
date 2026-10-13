@@ -1,0 +1,366 @@
+module FsFilterBank2
+input s_axis_tdata : bits[16]
+input s_axis_tkeep : bits[2]
+input s_axis_tlast : bits[1]
+input s_axis_tuser : bits[8]
+input s_axis_tvalid : bits[1]
+output s_axis_tready : bits[1]
+output m_axis_tdata : bits[32]
+output m_axis_tkeep : bits[4]
+output m_axis_tlast : bits[1]
+output m_axis_tuser : bits[16]
+output m_axis_tvalid : bits[1]
+input m_axis_tready : bits[1]
+wire fanout_0_tdata : bits[16]
+wire fanout_0_tkeep : bits[2]
+wire fanout_0_tlast : bits[1]
+wire fanout_0_tuser : bits[8]
+wire fanout_0_tvalid : bits[1]
+wire fanout_0_tready : bits[1]
+reg fanout_accepted0 : bits[1] reset=0
+wire fanout_1_tdata : bits[16]
+wire fanout_1_tkeep : bits[2]
+wire fanout_1_tlast : bits[1]
+wire fanout_1_tuser : bits[8]
+wire fanout_1_tvalid : bits[1]
+wire fanout_1_tready : bits[1]
+reg fanout_accepted1 : bits[1] reset=0
+reg smooth_delay1 : bits[16] reset=0
+reg smooth_delay2 : bits[16] reset=0
+reg smooth_delay3 : bits[16] reset=0
+wire smooth_fir_tdata : bits[32]
+wire smooth_fir_tkeep : bits[4]
+wire smooth_fir_tlast : bits[1]
+wire smooth_fir_tuser : bits[8]
+wire smooth_fir_tvalid : bits[1]
+wire smooth_fir_tready : bits[1]
+reg smooth_fir_valid : bits[1] reset=0
+reg smooth_fir_data : bits[32] reset=0
+reg smooth_fir_keep : bits[4] reset=0
+reg smooth_fir_last : bits[1] reset=0
+reg smooth_fir_user : bits[8] reset=0
+reg smooth_queue_count : bits[3] reset=0
+wire smooth_queue_tdata : bits[32]
+wire smooth_queue_tkeep : bits[4]
+wire smooth_queue_tlast : bits[1]
+wire smooth_queue_tuser : bits[8]
+wire smooth_queue_tvalid : bits[1]
+wire smooth_queue_tready : bits[1]
+reg smooth_queue_slot0 : bits[45] reset=0
+reg smooth_queue_slot1 : bits[45] reset=0
+reg smooth_queue_slot2 : bits[45] reset=0
+reg smooth_queue_slot3 : bits[45] reset=0
+wire smooth_tag_tdata : bits[32]
+wire smooth_tag_tkeep : bits[4]
+wire smooth_tag_tlast : bits[1]
+wire smooth_tag_tuser : bits[16]
+wire smooth_tag_tvalid : bits[1]
+wire smooth_tag_tready : bits[1]
+reg slope_delay1 : bits[16] reset=0
+wire slope_fir_tdata : bits[32]
+wire slope_fir_tkeep : bits[4]
+wire slope_fir_tlast : bits[1]
+wire slope_fir_tuser : bits[8]
+wire slope_fir_tvalid : bits[1]
+wire slope_fir_tready : bits[1]
+reg slope_fir_valid : bits[1] reset=0
+reg slope_fir_data : bits[32] reset=0
+reg slope_fir_keep : bits[4] reset=0
+reg slope_fir_last : bits[1] reset=0
+reg slope_fir_user : bits[8] reset=0
+reg slope_queue_count : bits[2] reset=0
+wire slope_queue_tdata : bits[32]
+wire slope_queue_tkeep : bits[4]
+wire slope_queue_tlast : bits[1]
+wire slope_queue_tuser : bits[8]
+wire slope_queue_tvalid : bits[1]
+wire slope_queue_tready : bits[1]
+reg slope_queue_slot0 : bits[45] reset=0
+reg slope_queue_slot1 : bits[45] reset=0
+wire slope_tag_tdata : bits[32]
+wire slope_tag_tkeep : bits[4]
+wire slope_tag_tlast : bits[1]
+wire slope_tag_tuser : bits[16]
+wire slope_tag_tvalid : bits[1]
+wire slope_tag_tready : bits[1]
+wire merge_0_0_tdata : bits[32]
+wire merge_0_0_tkeep : bits[4]
+wire merge_0_0_tlast : bits[1]
+wire merge_0_0_tuser : bits[16]
+wire merge_0_0_tvalid : bits[1]
+wire merge_0_0_tready : bits[1]
+reg merge_0_0_locked : bits[1] reset=0
+reg merge_0_0_selected : bits[1] reset=0
+reg merge_0_0_turn : bits[1] reset=0
+expressions:
+e0 : bits[1] const 1
+e1 : bits[1] | (fanout_accepted0, fanout_0_tready)
+e2 : bits[1] & (e0, e1)
+e3 : bits[1] | (fanout_accepted1, fanout_1_tready)
+e4 : bits[1] & (e2, e3)
+e5 : bits[1] ~ (fanout_accepted0)
+e6 : bits[1] & (s_axis_tvalid, e5)
+e7 : bits[1] ~ (smooth_fir_valid)
+e8 : bits[1] | (e7, smooth_fir_tready)
+e9 : bits[1] & (s_axis_tvalid, s_axis_tready)
+e10 : bits[1] const 0
+e11 : bits[1] & (fanout_0_tvalid, fanout_0_tready)
+e12 : bits[1] | (fanout_accepted0, e11)
+e13 : bits[1] mux (e9, e10, e12)
+e14 : bits[1] ~ (fanout_accepted1)
+e15 : bits[1] & (s_axis_tvalid, e14)
+e16 : bits[1] ~ (slope_fir_valid)
+e17 : bits[1] | (e16, slope_fir_tready)
+e18 : bits[1] & (s_axis_tvalid, s_axis_tready)
+e19 : bits[1] const 0
+e20 : bits[1] & (fanout_1_tvalid, fanout_1_tready)
+e21 : bits[1] | (fanout_accepted1, e20)
+e22 : bits[1] mux (e18, e19, e21)
+e23 : bits[1] & (fanout_0_tvalid, fanout_0_tready)
+e24 : bits[16] mux (e23, fanout_0_tdata, smooth_delay1)
+e25 : bits[1] & (fanout_0_tvalid, fanout_0_tready)
+e26 : bits[16] mux (e25, smooth_delay1, smooth_delay2)
+e27 : bits[1] & (fanout_0_tvalid, fanout_0_tready)
+e28 : bits[16] mux (e27, smooth_delay2, smooth_delay3)
+e29 : bits[3] const 4
+e30 : bits[1] < (smooth_queue_count, e29)
+e31 : bits[3] const 0
+e32 : bits[1] == (smooth_queue_count, e31)
+e33 : bits[1] ~ (e32)
+e34 : bits[1] & (e33, smooth_queue_tready)
+e35 : bits[1] | (e30, e34)
+e36 : bits[1] mux (e8, fanout_0_tvalid, smooth_fir_valid)
+e37 : bits[1] & (e8, fanout_0_tvalid)
+e38 : bits[32] const 0
+e39 : bits[32] signextend (fanout_0_tdata)
+e40 : bits[32] const 1
+e41 : bits[32] * (e39, e40)
+e42 : bits[32] + (e38, e41)
+e43 : bits[32] signextend (smooth_delay1)
+e44 : bits[32] const 3
+e45 : bits[32] * (e43, e44)
+e46 : bits[32] + (e42, e45)
+e47 : bits[32] signextend (smooth_delay2)
+e48 : bits[32] const 3
+e49 : bits[32] * (e47, e48)
+e50 : bits[32] + (e46, e49)
+e51 : bits[32] signextend (smooth_delay3)
+e52 : bits[32] const 1
+e53 : bits[32] * (e51, e52)
+e54 : bits[32] + (e50, e53)
+e55 : bits[32] mux (e37, e54, smooth_fir_data)
+e56 : bits[4] const 15
+e57 : bits[4] mux (e37, e56, smooth_fir_keep)
+e58 : bits[1] mux (e37, fanout_0_tlast, smooth_fir_last)
+e59 : bits[8] mux (e37, fanout_0_tuser, smooth_fir_user)
+e60 : bits[1] & (smooth_fir_tvalid, e35)
+e61 : bits[1] ^ (e60, e34)
+e62 : bits[3] const 1
+e63 : bits[3] + (smooth_queue_count, e62)
+e64 : bits[3] const 1
+e65 : bits[3] - (smooth_queue_count, e64)
+e66 : bits[3] mux (e60, e63, e65)
+e67 : bits[3] mux (e61, e66, smooth_queue_count)
+e68 : bits[32] slice (smooth_queue_slot0) offset=0
+e69 : bits[4] slice (smooth_queue_slot0) offset=32
+e70 : bits[1] slice (smooth_queue_slot0) offset=36
+e71 : bits[8] slice (smooth_queue_slot0) offset=37
+e72 : bits[3] const 1
+e73 : bits[3] - (smooth_queue_count, e72)
+e74 : bits[3] mux (e34, e73, smooth_queue_count)
+e75 : bits[3] const 0
+e76 : bits[1] == (e74, e75)
+e77 : bits[1] & (e60, e76)
+e78 : bits[36] concat (smooth_fir_tkeep, smooth_fir_tdata)
+e79 : bits[37] concat (smooth_fir_tlast, e78)
+e80 : bits[45] concat (smooth_fir_tuser, e79)
+e81 : bits[45] mux (e34, smooth_queue_slot1, smooth_queue_slot0)
+e82 : bits[45] mux (e77, e80, e81)
+e83 : bits[3] const 1
+e84 : bits[1] == (e74, e83)
+e85 : bits[1] & (e60, e84)
+e86 : bits[45] mux (e34, smooth_queue_slot2, smooth_queue_slot1)
+e87 : bits[45] mux (e85, e80, e86)
+e88 : bits[3] const 2
+e89 : bits[1] == (e74, e88)
+e90 : bits[1] & (e60, e89)
+e91 : bits[45] mux (e34, smooth_queue_slot3, smooth_queue_slot2)
+e92 : bits[45] mux (e90, e80, e91)
+e93 : bits[3] const 3
+e94 : bits[1] == (e74, e93)
+e95 : bits[1] & (e60, e94)
+e96 : bits[45] const 0
+e97 : bits[45] mux (e34, e96, smooth_queue_slot3)
+e98 : bits[45] mux (e95, e80, e97)
+e99 : bits[1] const 1
+e100 : bits[8] const 0
+e101 : bits[16] concat (e100, smooth_queue_tuser)
+e102 : bits[1] & (smooth_tag_tvalid, slope_tag_tvalid)
+e103 : bits[1] ~ (smooth_tag_tvalid)
+e104 : bits[1] mux (e102, merge_0_0_turn, e103)
+e105 : bits[1] mux (merge_0_0_locked, merge_0_0_selected, e104)
+e106 : bits[1] ~ (e105)
+e107 : bits[1] & (merge_0_0_tready, e106)
+e108 : bits[1] & (fanout_1_tvalid, fanout_1_tready)
+e109 : bits[16] mux (e108, fanout_1_tdata, slope_delay1)
+e110 : bits[2] const 2
+e111 : bits[1] < (slope_queue_count, e110)
+e112 : bits[2] const 0
+e113 : bits[1] == (slope_queue_count, e112)
+e114 : bits[1] ~ (e113)
+e115 : bits[1] & (e114, slope_queue_tready)
+e116 : bits[1] | (e111, e115)
+e117 : bits[1] mux (e17, fanout_1_tvalid, slope_fir_valid)
+e118 : bits[1] & (e17, fanout_1_tvalid)
+e119 : bits[32] const 0
+e120 : bits[32] signextend (fanout_1_tdata)
+e121 : bits[32] const 1
+e122 : bits[32] * (e120, e121)
+e123 : bits[32] + (e119, e122)
+e124 : bits[32] signextend (slope_delay1)
+e125 : bits[32] const 4294967295
+e126 : bits[32] * (e124, e125)
+e127 : bits[32] + (e123, e126)
+e128 : bits[32] mux (e118, e127, slope_fir_data)
+e129 : bits[4] const 15
+e130 : bits[4] mux (e118, e129, slope_fir_keep)
+e131 : bits[1] mux (e118, fanout_1_tlast, slope_fir_last)
+e132 : bits[8] mux (e118, fanout_1_tuser, slope_fir_user)
+e133 : bits[1] & (slope_fir_tvalid, e116)
+e134 : bits[1] ^ (e133, e115)
+e135 : bits[2] const 1
+e136 : bits[2] + (slope_queue_count, e135)
+e137 : bits[2] const 1
+e138 : bits[2] - (slope_queue_count, e137)
+e139 : bits[2] mux (e133, e136, e138)
+e140 : bits[2] mux (e134, e139, slope_queue_count)
+e141 : bits[32] slice (slope_queue_slot0) offset=0
+e142 : bits[4] slice (slope_queue_slot0) offset=32
+e143 : bits[1] slice (slope_queue_slot0) offset=36
+e144 : bits[8] slice (slope_queue_slot0) offset=37
+e145 : bits[2] const 1
+e146 : bits[2] - (slope_queue_count, e145)
+e147 : bits[2] mux (e115, e146, slope_queue_count)
+e148 : bits[2] const 0
+e149 : bits[1] == (e147, e148)
+e150 : bits[1] & (e133, e149)
+e151 : bits[36] concat (slope_fir_tkeep, slope_fir_tdata)
+e152 : bits[37] concat (slope_fir_tlast, e151)
+e153 : bits[45] concat (slope_fir_tuser, e152)
+e154 : bits[45] mux (e115, slope_queue_slot1, slope_queue_slot0)
+e155 : bits[45] mux (e150, e153, e154)
+e156 : bits[2] const 1
+e157 : bits[1] == (e147, e156)
+e158 : bits[1] & (e133, e157)
+e159 : bits[45] const 0
+e160 : bits[45] mux (e115, e159, slope_queue_slot1)
+e161 : bits[45] mux (e158, e153, e160)
+e162 : bits[1] const 1
+e163 : bits[8] const 1
+e164 : bits[16] concat (e163, slope_queue_tuser)
+e165 : bits[1] & (merge_0_0_tready, e105)
+e166 : bits[32] mux (e105, slope_tag_tdata, smooth_tag_tdata)
+e167 : bits[4] mux (e105, slope_tag_tkeep, smooth_tag_tkeep)
+e168 : bits[1] mux (e105, slope_tag_tlast, smooth_tag_tlast)
+e169 : bits[16] mux (e105, slope_tag_tuser, smooth_tag_tuser)
+e170 : bits[1] mux (e105, slope_tag_tvalid, smooth_tag_tvalid)
+e171 : bits[1] & (e170, merge_0_0_tready)
+e172 : bits[1] & (e171, e168)
+e173 : bits[1] const 0
+e174 : bits[1] ~ (merge_0_0_locked)
+e175 : bits[1] & (e170, e174)
+e176 : bits[1] const 1
+e177 : bits[1] mux (e175, e176, merge_0_0_locked)
+e178 : bits[1] mux (e172, e173, e177)
+e179 : bits[1] mux (e175, e105, merge_0_0_selected)
+e180 : bits[1] & (e171, e168)
+e181 : bits[1] ~ (e105)
+e182 : bits[1] mux (e180, e181, merge_0_0_turn)
+connections:
+s_axis_tready <- e4
+m_axis_tdata <- merge_0_0_tdata
+m_axis_tkeep <- merge_0_0_tkeep
+m_axis_tlast <- merge_0_0_tlast
+m_axis_tuser <- merge_0_0_tuser
+m_axis_tvalid <- merge_0_0_tvalid
+fanout_0_tdata <- s_axis_tdata
+fanout_0_tkeep <- s_axis_tkeep
+fanout_0_tlast <- s_axis_tlast
+fanout_0_tuser <- s_axis_tuser
+fanout_0_tvalid <- e6
+fanout_0_tready <- e8
+fanout_accepted0.next <- e13
+fanout_1_tdata <- s_axis_tdata
+fanout_1_tkeep <- s_axis_tkeep
+fanout_1_tlast <- s_axis_tlast
+fanout_1_tuser <- s_axis_tuser
+fanout_1_tvalid <- e15
+fanout_1_tready <- e17
+fanout_accepted1.next <- e22
+smooth_delay1.next <- e24
+smooth_delay2.next <- e26
+smooth_delay3.next <- e28
+smooth_fir_tdata <- smooth_fir_data
+smooth_fir_tkeep <- smooth_fir_keep
+smooth_fir_tlast <- smooth_fir_last
+smooth_fir_tuser <- smooth_fir_user
+smooth_fir_tvalid <- smooth_fir_valid
+smooth_fir_tready <- e35
+smooth_fir_valid.next <- e36
+smooth_fir_data.next <- e55
+smooth_fir_keep.next <- e57
+smooth_fir_last.next <- e58
+smooth_fir_user.next <- e59
+smooth_queue_count.next <- e67
+smooth_queue_tdata <- e68
+smooth_queue_tkeep <- e69
+smooth_queue_tlast <- e70
+smooth_queue_tuser <- e71
+smooth_queue_tvalid <- e33
+smooth_queue_tready <- smooth_tag_tready
+smooth_queue_slot0.next <- e82
+smooth_queue_slot1.next <- e87
+smooth_queue_slot2.next <- e92
+smooth_queue_slot3.next <- e98
+smooth_tag_tdata <- smooth_queue_tdata
+smooth_tag_tkeep <- smooth_queue_tkeep
+smooth_tag_tlast <- e99
+smooth_tag_tuser <- e101
+smooth_tag_tvalid <- smooth_queue_tvalid
+smooth_tag_tready <- e107
+slope_delay1.next <- e109
+slope_fir_tdata <- slope_fir_data
+slope_fir_tkeep <- slope_fir_keep
+slope_fir_tlast <- slope_fir_last
+slope_fir_tuser <- slope_fir_user
+slope_fir_tvalid <- slope_fir_valid
+slope_fir_tready <- e116
+slope_fir_valid.next <- e117
+slope_fir_data.next <- e128
+slope_fir_keep.next <- e130
+slope_fir_last.next <- e131
+slope_fir_user.next <- e132
+slope_queue_count.next <- e140
+slope_queue_tdata <- e141
+slope_queue_tkeep <- e142
+slope_queue_tlast <- e143
+slope_queue_tuser <- e144
+slope_queue_tvalid <- e114
+slope_queue_tready <- slope_tag_tready
+slope_queue_slot0.next <- e155
+slope_queue_slot1.next <- e161
+slope_tag_tdata <- slope_queue_tdata
+slope_tag_tkeep <- slope_queue_tkeep
+slope_tag_tlast <- e162
+slope_tag_tuser <- e164
+slope_tag_tvalid <- slope_queue_tvalid
+slope_tag_tready <- e165
+merge_0_0_tdata <- e166
+merge_0_0_tkeep <- e167
+merge_0_0_tlast <- e168
+merge_0_0_tuser <- e169
+merge_0_0_tvalid <- e170
+merge_0_0_tready <- m_axis_tready
+merge_0_0_locked.next <- e178
+merge_0_0_selected.next <- e179
+merge_0_0_turn.next <- e182

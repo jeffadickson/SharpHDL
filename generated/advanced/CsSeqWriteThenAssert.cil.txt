@@ -1,0 +1,13 @@
+AdvancedFunctions.WriteThenAssert
+IL_0000: ldarg.0 
+IL_0001: ldarg.1 
+IL_0002: ldelem.u4 
+IL_0003: ldarg.0 
+IL_0004: ldarg.1 
+IL_0005: ldarg.2 
+IL_0006: stelem.i4 
+IL_0007: ldarg.2 
+IL_0008: ldc.i4.s 10
+IL_000a: clt.un 
+IL_000c: call Void Assert(Boolean)
+IL_0011: ret 

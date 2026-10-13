@@ -1,0 +1,2 @@
+PASS HDL Ram256
+generated/behavioral/Ram256_tb.v:602: $finish called at 1202000000000000 (1ps)

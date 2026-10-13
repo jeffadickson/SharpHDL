@@ -1,0 +1,18 @@
+{
+  "board": "Nandland Go Board iCE40HX1K VQ100",
+  "clock_mhz": 25,
+  "tools": {
+    "yosys": "0.33",
+    "nextpnr": "0.6-3build5",
+    "icestorm": "20230218gitd20a5e9"
+  },
+  "physical_board_tested": false,
+  "sha256": {
+    "boards/GoBoard/StudentLogic.cs": "51c383b11ee262eabe4a54c8646eefbbbaa33589d25b38d4beb1ce6856b9f45a",
+    "boards/GoBoard/ClassroomCore.cs": "60fd549e025ea980c6b760bbe592f9c304e5069d4c6af8fa24f295083fc21b4f",
+    "boards/GoBoard/classroom_top.v": "6a4af00770cdcb168a589badc6c754e4e0e574c1150bee7d00cca55e575ac835",
+    "boards/GoBoard/classroom.pcf": "74473d9bfbd794de63750fac5aa7256a3f75028f116db7af513203b719315251",
+    "generated/three-languages/ClassroomCore.v": "4821e24d4a7b304eebb98abf069d51a98f9ec7aa6fcf7a40f10d294b883e576a",
+    "generated/goboard/classroom.bin": "29bcd9127d6e99cac348954efe846b65c4cd58acb20a71e472f178c85769be9d"
+  }
+}

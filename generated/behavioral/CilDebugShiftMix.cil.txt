@@ -1,0 +1,19 @@
+Behavioral.CSharpFunctions.ShiftMix
+IL_0000: nop 
+IL_0001: ldarg.0 
+IL_0002: ldarg.1 
+IL_0003: ldc.i4.s 31
+IL_0005: and 
+IL_0006: shl 
+IL_0007: ldarg.0 
+IL_0008: ldarg.1 
+IL_0009: ldc.i4.s 31
+IL_000b: and 
+IL_000c: shr 
+IL_000d: xor 
+IL_000e: stloc.0 
+IL_000f: br.s 17
+IL_0011: ldloc.0 
+IL_0012: ret 
+
+Instructions visited: 16; symbolic branches: 0; method bodies: 1

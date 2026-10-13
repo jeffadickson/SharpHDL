@@ -1,0 +1,24 @@
+Behavioral.CSharpFunctions.Switch
+IL_0000: ldarg.0 
+IL_0001: switch 24,28,32,36
+IL_0016: br.s 41
+IL_0018: ldarg.1 
+IL_0019: ldc.i4.1 
+IL_001a: add 
+IL_001b: ret 
+IL_001c: ldarg.1 
+IL_001d: ldc.i4.3 
+IL_001e: add 
+IL_001f: ret 
+IL_0020: ldarg.1 
+IL_0021: ldc.i4.2 
+IL_0022: sub 
+IL_0023: ret 
+IL_0024: ldarg.1 
+IL_0025: ldc.i4.s 17
+IL_0027: xor 
+IL_0028: ret 
+IL_0029: ldarg.1 
+IL_002a: ret 
+
+Instructions visited: 21; symbolic branches: 4; method bodies: 1

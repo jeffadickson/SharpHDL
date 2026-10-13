@@ -1,0 +1,513 @@
+
+-- Running command `read_verilog generated/DebugUartController.v examples/Verilog/debug_uart_serial.v; hierarchy -check -top debug_uart_serial; proc -norom; opt; check -assert; stat' --
+
+1. Executing Verilog-2005 frontend: generated/DebugUartController.v
+Parsing Verilog input from `generated/DebugUartController.v' to AST representation.
+Generating RTLIL representation for module `\h_DebugUartController'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: examples/Verilog/debug_uart_serial.v
+Parsing Verilog input from `examples/Verilog/debug_uart_serial.v' to AST representation.
+Generating RTLIL representation for module `\debug_uart_serial'.
+Successfully finished Verilog frontend.
+
+3. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1. Analyzing design hierarchy..
+Top module:  \debug_uart_serial
+Used module:     \h_DebugUartController
+
+3.2. Analyzing design hierarchy..
+Top module:  \debug_uart_serial
+Used module:     \h_DebugUartController
+Removed 0 unused modules.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 4 switch rules as full_case in process $proc$examples/Verilog/debug_uart_serial.v:55$102 in module debug_uart_serial.
+Removed 1 dead cases from process $proc$examples/Verilog/debug_uart_serial.v:20$59 in module debug_uart_serial.
+Marked 9 switch rules as full_case in process $proc$examples/Verilog/debug_uart_serial.v:20$59 in module debug_uart_serial.
+Marked 1 switch rules as full_case in process $proc$examples/Verilog/debug_uart_serial.v:10$57 in module debug_uart_serial.
+Marked 1 switch rules as full_case in process $proc$generated/DebugUartController.v:145$53 in module h_DebugUartController.
+Removed a total of 1 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 9 redundant assignments.
+Promoted 5 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:55$102'.
+     1/4: $0\tx_bit[3:0]
+     2/4: $0\tx_timer[31:0]
+     3/4: $0\tx_shift[9:0]
+     4/4: $0\tx_busy[0:0]
+Creating decoders for process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+     1/19: $3$lookahead\rx_shift$58[7:0]$81
+     2/19: $3$bitselwrite$sel$examples/Verilog/debug_uart_serial.v:33$56[2:0]$80
+     3/19: $3$bitselwrite$data$examples/Verilog/debug_uart_serial.v:33$55[7:0]$79
+     4/19: $3$bitselwrite$mask$examples/Verilog/debug_uart_serial.v:33$54[7:0]$78
+     5/19: $2$lookahead\rx_shift$58[7:0]$72
+     6/19: $2$bitselwrite$sel$examples/Verilog/debug_uart_serial.v:33$56[2:0]$71
+     7/19: $2$bitselwrite$data$examples/Verilog/debug_uart_serial.v:33$55[7:0]$70
+     8/19: $2$bitselwrite$mask$examples/Verilog/debug_uart_serial.v:33$54[7:0]$69
+     9/19: $1$lookahead\rx_shift$58[7:0]$67
+    10/19: $1$bitselwrite$sel$examples/Verilog/debug_uart_serial.v:33$56[2:0]$66
+    11/19: $1$bitselwrite$data$examples/Verilog/debug_uart_serial.v:33$55[7:0]$65
+    12/19: $1$bitselwrite$mask$examples/Verilog/debug_uart_serial.v:33$54[7:0]$64
+    13/19: $0\rx_valid[0:0]
+    14/19: $0\rx_data[7:0]
+    15/19: $0\rx_bit[2:0]
+    16/19: $0\rx_timer[31:0]
+    17/19: $0\rx_state[1:0]
+    18/19: $0\framing_error[0:0]
+    19/19: $0\rx_overrun[0:0]
+Creating decoders for process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:10$57'.
+     1/2: $0\rx_sync[0:0]
+     2/2: $0\rx_meta[0:0]
+Creating decoders for process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+     1/7: $0\s_tag[7:0]
+     2/7: $0\s_index[1:0]
+     3/7: $0\s_length[2:0]
+     4/7: $0\s_reply[31:0]
+     5/7: $0\s_state[1:0]
+     6/7: $0\s_counter[31:0]
+     7/7: $0\s_control[7:0]
+
+4.7. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+4.8. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\debug_uart_serial.\tx_busy' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:55$102'.
+  created $dff cell `$procdff$386' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\tx_shift' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:55$102'.
+  created $dff cell `$procdff$387' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\tx_timer' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:55$102'.
+  created $dff cell `$procdff$388' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\tx_bit' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:55$102'.
+  created $dff cell `$procdff$389' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\rx_overrun' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+  created $dff cell `$procdff$390' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\framing_error' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+  created $dff cell `$procdff$391' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\rx_state' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+  created $dff cell `$procdff$392' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\rx_timer' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+  created $dff cell `$procdff$393' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\rx_bit' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+  created $dff cell `$procdff$394' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\rx_shift' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+  created $dff cell `$procdff$395' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\rx_data' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+  created $dff cell `$procdff$396' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\rx_valid' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+  created $dff cell `$procdff$397' with positive edge clock.
+Creating register for signal `\debug_uart_serial.$bitselwrite$mask$examples/Verilog/debug_uart_serial.v:33$54' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+  created $dff cell `$procdff$398' with positive edge clock.
+Creating register for signal `\debug_uart_serial.$bitselwrite$data$examples/Verilog/debug_uart_serial.v:33$55' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+  created $dff cell `$procdff$399' with positive edge clock.
+Creating register for signal `\debug_uart_serial.$bitselwrite$sel$examples/Verilog/debug_uart_serial.v:33$56' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+  created $dff cell `$procdff$400' with positive edge clock.
+Creating register for signal `\debug_uart_serial.$lookahead\rx_shift$58' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+  created $dff cell `$procdff$401' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\rx_meta' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:10$57'.
+  created $dff cell `$procdff$402' with positive edge clock.
+Creating register for signal `\debug_uart_serial.\rx_sync' using process `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:10$57'.
+  created $dff cell `$procdff$403' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_control' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$404' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_counter' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$405' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_state' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$406' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_reply' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$407' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_length' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$408' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_index' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$409' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_tag' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$410' with positive edge clock.
+
+4.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 5 empty switches in `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:55$102'.
+Removing empty process `debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:55$102'.
+Found and cleaned up 11 empty switches in `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+Removing empty process `debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:20$59'.
+Found and cleaned up 1 empty switch in `\debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:10$57'.
+Removing empty process `debug_uart_serial.$proc$examples/Verilog/debug_uart_serial.v:10$57'.
+Found and cleaned up 1 empty switch in `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Removing empty process `h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Cleaned up 18 empty switches.
+
+4.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module debug_uart_serial.
+<suppressed ~24 debug messages>
+Optimizing module h_DebugUartController.
+<suppressed ~8 debug messages>
+
+5. Executing OPT pass (performing simple optimizations).
+
+5.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module debug_uart_serial.
+<suppressed ~2 debug messages>
+Optimizing module h_DebugUartController.
+
+5.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\debug_uart_serial'.
+<suppressed ~123 debug messages>
+Finding identical cells in module `\h_DebugUartController'.
+<suppressed ~3 debug messages>
+Removed a total of 42 cells.
+
+5.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \debug_uart_serial..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port B of cell $procmux$148: \tx_busy -> 1'1
+      Replacing known input bits on port A of cell $procmux$145: \tx_busy -> 1'1
+      Replacing known input bits on port A of cell $procmux$151: \tx_busy -> 1'0
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$236.
+    dead port 2/2 on $mux $procmux$236.
+    dead port 1/2 on $mux $procmux$233.
+    dead port 2/2 on $mux $procmux$233.
+    dead port 1/2 on $mux $procmux$230.
+    dead port 2/2 on $mux $procmux$230.
+    dead port 1/2 on $mux $procmux$224.
+    dead port 2/2 on $mux $procmux$224.
+    dead port 1/5 on $pmux $procmux$218.
+    dead port 2/5 on $pmux $procmux$218.
+    dead port 3/5 on $pmux $procmux$218.
+    dead port 4/5 on $pmux $procmux$218.
+    dead port 5/5 on $pmux $procmux$218.
+    dead port 1/2 on $mux $procmux$216.
+    dead port 2/2 on $mux $procmux$216.
+    dead port 1/5 on $pmux $procmux$210.
+    dead port 2/5 on $pmux $procmux$210.
+    dead port 3/5 on $pmux $procmux$210.
+    dead port 4/5 on $pmux $procmux$210.
+    dead port 5/5 on $pmux $procmux$210.
+    dead port 1/2 on $mux $procmux$208.
+    dead port 2/2 on $mux $procmux$208.
+    dead port 1/5 on $pmux $procmux$202.
+    dead port 2/5 on $pmux $procmux$202.
+    dead port 3/5 on $pmux $procmux$202.
+    dead port 4/5 on $pmux $procmux$202.
+    dead port 5/5 on $pmux $procmux$202.
+    dead port 1/2 on $mux $procmux$200.
+    dead port 1/2 on $mux $procmux$192.
+    dead port 2/2 on $mux $procmux$192.
+    dead port 1/2 on $mux $procmux$189.
+    dead port 2/2 on $mux $procmux$189.
+    dead port 1/2 on $mux $procmux$187.
+    dead port 2/2 on $mux $procmux$187.
+    dead port 1/2 on $mux $procmux$183.
+    dead port 2/2 on $mux $procmux$183.
+    dead port 1/2 on $mux $procmux$180.
+    dead port 2/2 on $mux $procmux$180.
+    dead port 1/2 on $mux $procmux$178.
+    dead port 2/2 on $mux $procmux$178.
+    dead port 1/2 on $mux $procmux$174.
+    dead port 2/2 on $mux $procmux$174.
+    dead port 1/2 on $mux $procmux$171.
+    dead port 2/2 on $mux $procmux$171.
+    dead port 1/2 on $mux $procmux$169.
+    dead port 2/2 on $mux $procmux$169.
+    dead port 1/2 on $mux $procmux$165.
+    dead port 2/2 on $mux $procmux$162.
+Running muxtree optimizer on module \h_DebugUartController..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 48 multiplexer ports.
+<suppressed ~24 debug messages>
+
+5.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \debug_uart_serial.
+    New ctrl vector for $pmux cell $procmux$194: { $procmux$320_CMP $auto$opt_reduce.cc:134:opt_pmux$412 }
+  Optimizing cells in module \debug_uart_serial.
+  Optimizing cells in module \h_DebugUartController.
+Performed a total of 1 changes.
+
+5.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\debug_uart_serial'.
+Finding identical cells in module `\h_DebugUartController'.
+Removed a total of 0 cells.
+
+5.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$402 ($dff) from module debug_uart_serial (D = \uart_rx, Q = \rx_meta, rval = 1'1).
+Adding SRST signal on $procdff$403 ($dff) from module debug_uart_serial (D = \rx_meta, Q = \rx_sync, rval = 1'1).
+Adding SRST signal on $procdff$393 ($dff) from module debug_uart_serial (D = $procmux$290_Y, Q = \rx_timer, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$415 ($sdff) from module debug_uart_serial (D = $procmux$290_Y, Q = \rx_timer).
+Adding SRST signal on $procdff$394 ($dff) from module debug_uart_serial (D = $procmux$275_Y, Q = \rx_bit, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$427 ($sdff) from module debug_uart_serial (D = $procmux$275_Y, Q = \rx_bit).
+Adding SRST signal on $procdff$395 ($dff) from module debug_uart_serial (D = $2$lookahead\rx_shift$58[7:0]$72, Q = \rx_shift, rval = 8'00000000).
+Adding SRST signal on $procdff$396 ($dff) from module debug_uart_serial (D = $procmux$263_Y, Q = \rx_data, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$442 ($sdff) from module debug_uart_serial (D = \rx_shift, Q = \rx_data).
+Adding SRST signal on $procdff$386 ($dff) from module debug_uart_serial (D = $procmux$153_Y, Q = \tx_busy, rval = 1'0).
+Adding SRST signal on $procdff$387 ($dff) from module debug_uart_serial (D = $procmux$139_Y, Q = \tx_shift, rval = 10'1111111111).
+Adding EN signal on $auto$ff.cc:266:slice$449 ($sdff) from module debug_uart_serial (D = $procmux$139_Y, Q = \tx_shift).
+Adding SRST signal on $procdff$397 ($dff) from module debug_uart_serial (D = $procmux$249_Y, Q = \rx_valid, rval = 1'0).
+Adding SRST signal on $procdff$388 ($dff) from module debug_uart_serial (D = $procmux$128_Y, Q = \tx_timer, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$458 ($sdff) from module debug_uart_serial (D = $procmux$128_Y, Q = \tx_timer).
+Adding SRST signal on $procdff$389 ($dff) from module debug_uart_serial (D = $procmux$117_Y, Q = \tx_bit, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:266:slice$462 ($sdff) from module debug_uart_serial (D = $procmux$117_Y, Q = \tx_bit).
+Adding SRST signal on $procdff$390 ($dff) from module debug_uart_serial (D = $procmux$354_Y, Q = \rx_overrun, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$472 ($sdff) from module debug_uart_serial (D = 1'1, Q = \rx_overrun).
+Adding SRST signal on $procdff$391 ($dff) from module debug_uart_serial (D = $procmux$340_Y, Q = \framing_error, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$480 ($sdff) from module debug_uart_serial (D = 1'1, Q = \framing_error).
+Adding SRST signal on $procdff$392 ($dff) from module debug_uart_serial (D = $procmux$312_Y, Q = \rx_state, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$488 ($sdff) from module debug_uart_serial (D = $procmux$312_Y, Q = \rx_state).
+Setting constant 1-bit at position 0 on $procdff$401 ($dff) from module debug_uart_serial.
+Setting constant 1-bit at position 1 on $procdff$401 ($dff) from module debug_uart_serial.
+Setting constant 1-bit at position 2 on $procdff$401 ($dff) from module debug_uart_serial.
+Setting constant 1-bit at position 3 on $procdff$401 ($dff) from module debug_uart_serial.
+Setting constant 1-bit at position 4 on $procdff$401 ($dff) from module debug_uart_serial.
+Setting constant 1-bit at position 5 on $procdff$401 ($dff) from module debug_uart_serial.
+Setting constant 1-bit at position 6 on $procdff$401 ($dff) from module debug_uart_serial.
+Setting constant 1-bit at position 7 on $procdff$401 ($dff) from module debug_uart_serial.
+Setting constant 1-bit at position 0 on $procdff$400 ($dff) from module debug_uart_serial.
+Setting constant 1-bit at position 1 on $procdff$400 ($dff) from module debug_uart_serial.
+Setting constant 1-bit at position 2 on $procdff$400 ($dff) from module debug_uart_serial.
+Adding SRST signal on $procdff$410 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:136$52_Y, Q = \s_tag, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$504 ($sdff) from module h_DebugUartController (D = \s_rx_tuser, Q = \s_tag).
+Adding SRST signal on $procdff$409 ($dff) from module h_DebugUartController (D = \n_51, Q = \s_index, rval = 2'00).
+Adding SRST signal on $procdff$408 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:128$44_Y, Q = \s_length, rval = 3'001).
+Adding EN signal on $auto$ff.cc:266:slice$509 ($sdff) from module h_DebugUartController (D = \n_45, Q = \s_length).
+Adding SRST signal on $procdff$407 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:125$41_Y, Q = \s_reply, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$511 ($sdff) from module h_DebugUartController (D = \n_42, Q = \s_reply).
+Adding SRST signal on $procdff$406 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:113$31_Y, Q = \s_state, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$513 ($sdff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:113$31_Y, Q = \s_state).
+Adding SRST signal on $procdff$405 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:103$21_Y, Q = \s_counter, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$517 ($sdff) from module h_DebugUartController (D = \n_20, Q = \s_counter).
+Adding SRST signal on $procdff$404 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:100$18_Y, Q = \s_control, rval = 8'00000001).
+Adding EN signal on $auto$ff.cc:266:slice$519 ($sdff) from module h_DebugUartController (D = \s_rx_tdata, Q = \s_control).
+
+5.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \debug_uart_serial..
+Finding unused cells or wires in module \h_DebugUartController..
+Removed 39 unused cells and 273 unused wires.
+<suppressed ~48 debug messages>
+
+5.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module debug_uart_serial.
+<suppressed ~6 debug messages>
+Optimizing module h_DebugUartController.
+<suppressed ~1 debug messages>
+
+5.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \debug_uart_serial..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \h_DebugUartController..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~16 debug messages>
+
+5.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \debug_uart_serial.
+  Optimizing cells in module \h_DebugUartController.
+Performed a total of 0 changes.
+
+5.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\debug_uart_serial'.
+<suppressed ~30 debug messages>
+Finding identical cells in module `\h_DebugUartController'.
+Removed a total of 10 cells.
+
+5.13. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $auto$ff.cc:266:slice$441 ($sdff) from module debug_uart_serial (D = $2$lookahead\rx_shift$58[7:0]$72, Q = \rx_shift).
+Adding EN signal on $auto$ff.cc:266:slice$506 ($sdff) from module h_DebugUartController (D = \n_50, Q = \s_index).
+
+5.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \debug_uart_serial..
+Finding unused cells or wires in module \h_DebugUartController..
+Removed 1 unused cells and 11 unused wires.
+<suppressed ~3 debug messages>
+
+5.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module debug_uart_serial.
+<suppressed ~1 debug messages>
+Optimizing module h_DebugUartController.
+
+5.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \debug_uart_serial..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \h_DebugUartController..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~15 debug messages>
+
+5.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \debug_uart_serial.
+    New ctrl vector for $pmux cell $procmux$194: $procmux$163_CMP
+  Optimizing cells in module \debug_uart_serial.
+  Optimizing cells in module \h_DebugUartController.
+Performed a total of 1 changes.
+
+5.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\debug_uart_serial'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `\h_DebugUartController'.
+Removed a total of 1 cells.
+
+5.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \debug_uart_serial..
+Finding unused cells or wires in module \h_DebugUartController..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+5.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module debug_uart_serial.
+Optimizing module h_DebugUartController.
+
+5.23. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.24. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \debug_uart_serial..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \h_DebugUartController..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~15 debug messages>
+
+5.25. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \debug_uart_serial.
+  Optimizing cells in module \h_DebugUartController.
+Performed a total of 0 changes.
+
+5.26. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\debug_uart_serial'.
+Finding identical cells in module `\h_DebugUartController'.
+Removed a total of 0 cells.
+
+5.27. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.28. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \debug_uart_serial..
+Finding unused cells or wires in module \h_DebugUartController..
+
+5.29. Executing OPT_EXPR pass (perform const folding).
+Optimizing module debug_uart_serial.
+Optimizing module h_DebugUartController.
+
+5.30. Finished OPT passes. (There is nothing left to do.)
+
+6. Executing CHECK pass (checking for obvious problems).
+Checking module debug_uart_serial...
+Checking module h_DebugUartController...
+Found and reported 0 problems.
+
+7. Printing statistics.
+
+=== debug_uart_serial ===
+
+   Number of wires:                114
+   Number of wire bits:            739
+   Number of public wires:          27
+   Number of public wire bits:     170
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                104
+     $add                            2
+     $and                            1
+     $eq                             5
+     $logic_and                      1
+     $logic_not                      3
+     $logic_or                       1
+     $mux                           37
+     $ne                            10
+     $neg                            1
+     $not                            5
+     $or                             1
+     $pmux                           3
+     $reduce_and                     9
+     $reduce_bool                    5
+     $reduce_or                      1
+     $sdff                           4
+     $sdffe                         10
+     $shift                          2
+     $sub                            2
+     h_DebugUartController           1
+
+=== h_DebugUartController ===
+
+   Number of wires:                 73
+   Number of wire bits:            528
+   Number of public wires:          71
+   Number of public wire bits:     526
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 48
+     $add                            2
+     $and                            7
+     $eq                            10
+     $logic_not                      3
+     $mux                           14
+     $not                            2
+     $reduce_bool                    1
+     $reduce_or                      1
+     $sdffe                          7
+     $sub                            1
+
+=== design hierarchy ===
+
+   debug_uart_serial                 1
+     h_DebugUartController           1
+
+   Number of wires:                187
+   Number of wire bits:           1267
+   Number of public wires:          98
+   Number of public wire bits:     696
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                151
+     $add                            4
+     $and                            8
+     $eq                            15
+     $logic_and                      1
+     $logic_not                      6
+     $logic_or                       1
+     $mux                           51
+     $ne                            10
+     $neg                            1
+     $not                            7
+     $or                             1
+     $pmux                           3
+     $reduce_and                     9
+     $reduce_bool                    6
+     $reduce_or                      2
+     $sdff                           4
+     $sdffe                         17
+     $shift                          2
+     $sub                            3
+

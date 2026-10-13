@@ -1,0 +1,722 @@
+module FsFilterBank4
+input s_axis_tdata : bits[16]
+input s_axis_tkeep : bits[2]
+input s_axis_tlast : bits[1]
+input s_axis_tuser : bits[8]
+input s_axis_tvalid : bits[1]
+output s_axis_tready : bits[1]
+output m_axis_tdata : bits[32]
+output m_axis_tkeep : bits[4]
+output m_axis_tlast : bits[1]
+output m_axis_tuser : bits[16]
+output m_axis_tvalid : bits[1]
+input m_axis_tready : bits[1]
+wire fanout_0_tdata : bits[16]
+wire fanout_0_tkeep : bits[2]
+wire fanout_0_tlast : bits[1]
+wire fanout_0_tuser : bits[8]
+wire fanout_0_tvalid : bits[1]
+wire fanout_0_tready : bits[1]
+reg fanout_accepted0 : bits[1] reset=0
+wire fanout_1_tdata : bits[16]
+wire fanout_1_tkeep : bits[2]
+wire fanout_1_tlast : bits[1]
+wire fanout_1_tuser : bits[8]
+wire fanout_1_tvalid : bits[1]
+wire fanout_1_tready : bits[1]
+reg fanout_accepted1 : bits[1] reset=0
+wire fanout_2_tdata : bits[16]
+wire fanout_2_tkeep : bits[2]
+wire fanout_2_tlast : bits[1]
+wire fanout_2_tuser : bits[8]
+wire fanout_2_tvalid : bits[1]
+wire fanout_2_tready : bits[1]
+reg fanout_accepted2 : bits[1] reset=0
+wire fanout_3_tdata : bits[16]
+wire fanout_3_tkeep : bits[2]
+wire fanout_3_tlast : bits[1]
+wire fanout_3_tuser : bits[8]
+wire fanout_3_tvalid : bits[1]
+wire fanout_3_tready : bits[1]
+reg fanout_accepted3 : bits[1] reset=0
+reg smooth_delay1 : bits[16] reset=0
+reg smooth_delay2 : bits[16] reset=0
+reg smooth_delay3 : bits[16] reset=0
+wire smooth_fir_tdata : bits[32]
+wire smooth_fir_tkeep : bits[4]
+wire smooth_fir_tlast : bits[1]
+wire smooth_fir_tuser : bits[8]
+wire smooth_fir_tvalid : bits[1]
+wire smooth_fir_tready : bits[1]
+reg smooth_fir_valid : bits[1] reset=0
+reg smooth_fir_data : bits[32] reset=0
+reg smooth_fir_keep : bits[4] reset=0
+reg smooth_fir_last : bits[1] reset=0
+reg smooth_fir_user : bits[8] reset=0
+reg smooth_queue_count : bits[3] reset=0
+wire smooth_queue_tdata : bits[32]
+wire smooth_queue_tkeep : bits[4]
+wire smooth_queue_tlast : bits[1]
+wire smooth_queue_tuser : bits[8]
+wire smooth_queue_tvalid : bits[1]
+wire smooth_queue_tready : bits[1]
+reg smooth_queue_slot0 : bits[45] reset=0
+reg smooth_queue_slot1 : bits[45] reset=0
+reg smooth_queue_slot2 : bits[45] reset=0
+reg smooth_queue_slot3 : bits[45] reset=0
+wire smooth_tag_tdata : bits[32]
+wire smooth_tag_tkeep : bits[4]
+wire smooth_tag_tlast : bits[1]
+wire smooth_tag_tuser : bits[16]
+wire smooth_tag_tvalid : bits[1]
+wire smooth_tag_tready : bits[1]
+reg slope_delay1 : bits[16] reset=0
+wire slope_fir_tdata : bits[32]
+wire slope_fir_tkeep : bits[4]
+wire slope_fir_tlast : bits[1]
+wire slope_fir_tuser : bits[8]
+wire slope_fir_tvalid : bits[1]
+wire slope_fir_tready : bits[1]
+reg slope_fir_valid : bits[1] reset=0
+reg slope_fir_data : bits[32] reset=0
+reg slope_fir_keep : bits[4] reset=0
+reg slope_fir_last : bits[1] reset=0
+reg slope_fir_user : bits[8] reset=0
+reg slope_queue_count : bits[2] reset=0
+wire slope_queue_tdata : bits[32]
+wire slope_queue_tkeep : bits[4]
+wire slope_queue_tlast : bits[1]
+wire slope_queue_tuser : bits[8]
+wire slope_queue_tvalid : bits[1]
+wire slope_queue_tready : bits[1]
+reg slope_queue_slot0 : bits[45] reset=0
+reg slope_queue_slot1 : bits[45] reset=0
+wire slope_tag_tdata : bits[32]
+wire slope_tag_tkeep : bits[4]
+wire slope_tag_tlast : bits[1]
+wire slope_tag_tuser : bits[16]
+wire slope_tag_tvalid : bits[1]
+wire slope_tag_tready : bits[1]
+reg curvature_delay1 : bits[16] reset=0
+reg curvature_delay2 : bits[16] reset=0
+wire curvature_fir_tdata : bits[32]
+wire curvature_fir_tkeep : bits[4]
+wire curvature_fir_tlast : bits[1]
+wire curvature_fir_tuser : bits[8]
+wire curvature_fir_tvalid : bits[1]
+wire curvature_fir_tready : bits[1]
+reg curvature_fir_valid : bits[1] reset=0
+reg curvature_fir_data : bits[32] reset=0
+reg curvature_fir_keep : bits[4] reset=0
+reg curvature_fir_last : bits[1] reset=0
+reg curvature_fir_user : bits[8] reset=0
+reg curvature_queue_count : bits[2] reset=0
+wire curvature_queue_tdata : bits[32]
+wire curvature_queue_tkeep : bits[4]
+wire curvature_queue_tlast : bits[1]
+wire curvature_queue_tuser : bits[8]
+wire curvature_queue_tvalid : bits[1]
+wire curvature_queue_tready : bits[1]
+reg curvature_queue_slot0 : bits[45] reset=0
+reg curvature_queue_slot1 : bits[45] reset=0
+reg curvature_queue_slot2 : bits[45] reset=0
+wire curvature_tag_tdata : bits[32]
+wire curvature_tag_tkeep : bits[4]
+wire curvature_tag_tlast : bits[1]
+wire curvature_tag_tuser : bits[16]
+wire curvature_tag_tvalid : bits[1]
+wire curvature_tag_tready : bits[1]
+wire raw_fir_tdata : bits[32]
+wire raw_fir_tkeep : bits[4]
+wire raw_fir_tlast : bits[1]
+wire raw_fir_tuser : bits[8]
+wire raw_fir_tvalid : bits[1]
+wire raw_fir_tready : bits[1]
+reg raw_fir_valid : bits[1] reset=0
+reg raw_fir_data : bits[32] reset=0
+reg raw_fir_keep : bits[4] reset=0
+reg raw_fir_last : bits[1] reset=0
+reg raw_fir_user : bits[8] reset=0
+reg raw_queue_count : bits[1] reset=0
+wire raw_queue_tdata : bits[32]
+wire raw_queue_tkeep : bits[4]
+wire raw_queue_tlast : bits[1]
+wire raw_queue_tuser : bits[8]
+wire raw_queue_tvalid : bits[1]
+wire raw_queue_tready : bits[1]
+reg raw_queue_slot0 : bits[45] reset=0
+wire raw_tag_tdata : bits[32]
+wire raw_tag_tkeep : bits[4]
+wire raw_tag_tlast : bits[1]
+wire raw_tag_tuser : bits[16]
+wire raw_tag_tvalid : bits[1]
+wire raw_tag_tready : bits[1]
+wire merge_0_0_tdata : bits[32]
+wire merge_0_0_tkeep : bits[4]
+wire merge_0_0_tlast : bits[1]
+wire merge_0_0_tuser : bits[16]
+wire merge_0_0_tvalid : bits[1]
+wire merge_0_0_tready : bits[1]
+reg merge_0_0_locked : bits[1] reset=0
+reg merge_0_0_selected : bits[1] reset=0
+reg merge_0_0_turn : bits[1] reset=0
+wire merge_0_1_tdata : bits[32]
+wire merge_0_1_tkeep : bits[4]
+wire merge_0_1_tlast : bits[1]
+wire merge_0_1_tuser : bits[16]
+wire merge_0_1_tvalid : bits[1]
+wire merge_0_1_tready : bits[1]
+reg merge_0_1_locked : bits[1] reset=0
+reg merge_0_1_selected : bits[1] reset=0
+reg merge_0_1_turn : bits[1] reset=0
+wire merge_1_0_tdata : bits[32]
+wire merge_1_0_tkeep : bits[4]
+wire merge_1_0_tlast : bits[1]
+wire merge_1_0_tuser : bits[16]
+wire merge_1_0_tvalid : bits[1]
+wire merge_1_0_tready : bits[1]
+reg merge_1_0_locked : bits[1] reset=0
+reg merge_1_0_selected : bits[1] reset=0
+reg merge_1_0_turn : bits[1] reset=0
+expressions:
+e0 : bits[1] const 1
+e1 : bits[1] | (fanout_accepted0, fanout_0_tready)
+e2 : bits[1] & (e0, e1)
+e3 : bits[1] | (fanout_accepted1, fanout_1_tready)
+e4 : bits[1] & (e2, e3)
+e5 : bits[1] | (fanout_accepted2, fanout_2_tready)
+e6 : bits[1] & (e4, e5)
+e7 : bits[1] | (fanout_accepted3, fanout_3_tready)
+e8 : bits[1] & (e6, e7)
+e9 : bits[1] ~ (fanout_accepted0)
+e10 : bits[1] & (s_axis_tvalid, e9)
+e11 : bits[1] ~ (smooth_fir_valid)
+e12 : bits[1] | (e11, smooth_fir_tready)
+e13 : bits[1] & (s_axis_tvalid, s_axis_tready)
+e14 : bits[1] const 0
+e15 : bits[1] & (fanout_0_tvalid, fanout_0_tready)
+e16 : bits[1] | (fanout_accepted0, e15)
+e17 : bits[1] mux (e13, e14, e16)
+e18 : bits[1] ~ (fanout_accepted1)
+e19 : bits[1] & (s_axis_tvalid, e18)
+e20 : bits[1] ~ (slope_fir_valid)
+e21 : bits[1] | (e20, slope_fir_tready)
+e22 : bits[1] & (s_axis_tvalid, s_axis_tready)
+e23 : bits[1] const 0
+e24 : bits[1] & (fanout_1_tvalid, fanout_1_tready)
+e25 : bits[1] | (fanout_accepted1, e24)
+e26 : bits[1] mux (e22, e23, e25)
+e27 : bits[1] ~ (fanout_accepted2)
+e28 : bits[1] & (s_axis_tvalid, e27)
+e29 : bits[1] ~ (curvature_fir_valid)
+e30 : bits[1] | (e29, curvature_fir_tready)
+e31 : bits[1] & (s_axis_tvalid, s_axis_tready)
+e32 : bits[1] const 0
+e33 : bits[1] & (fanout_2_tvalid, fanout_2_tready)
+e34 : bits[1] | (fanout_accepted2, e33)
+e35 : bits[1] mux (e31, e32, e34)
+e36 : bits[1] ~ (fanout_accepted3)
+e37 : bits[1] & (s_axis_tvalid, e36)
+e38 : bits[1] ~ (raw_fir_valid)
+e39 : bits[1] | (e38, raw_fir_tready)
+e40 : bits[1] & (s_axis_tvalid, s_axis_tready)
+e41 : bits[1] const 0
+e42 : bits[1] & (fanout_3_tvalid, fanout_3_tready)
+e43 : bits[1] | (fanout_accepted3, e42)
+e44 : bits[1] mux (e40, e41, e43)
+e45 : bits[1] & (fanout_0_tvalid, fanout_0_tready)
+e46 : bits[16] mux (e45, fanout_0_tdata, smooth_delay1)
+e47 : bits[1] & (fanout_0_tvalid, fanout_0_tready)
+e48 : bits[16] mux (e47, smooth_delay1, smooth_delay2)
+e49 : bits[1] & (fanout_0_tvalid, fanout_0_tready)
+e50 : bits[16] mux (e49, smooth_delay2, smooth_delay3)
+e51 : bits[3] const 4
+e52 : bits[1] < (smooth_queue_count, e51)
+e53 : bits[3] const 0
+e54 : bits[1] == (smooth_queue_count, e53)
+e55 : bits[1] ~ (e54)
+e56 : bits[1] & (e55, smooth_queue_tready)
+e57 : bits[1] | (e52, e56)
+e58 : bits[1] mux (e12, fanout_0_tvalid, smooth_fir_valid)
+e59 : bits[1] & (e12, fanout_0_tvalid)
+e60 : bits[32] const 0
+e61 : bits[32] signextend (fanout_0_tdata)
+e62 : bits[32] const 1
+e63 : bits[32] * (e61, e62)
+e64 : bits[32] + (e60, e63)
+e65 : bits[32] signextend (smooth_delay1)
+e66 : bits[32] const 3
+e67 : bits[32] * (e65, e66)
+e68 : bits[32] + (e64, e67)
+e69 : bits[32] signextend (smooth_delay2)
+e70 : bits[32] const 3
+e71 : bits[32] * (e69, e70)
+e72 : bits[32] + (e68, e71)
+e73 : bits[32] signextend (smooth_delay3)
+e74 : bits[32] const 1
+e75 : bits[32] * (e73, e74)
+e76 : bits[32] + (e72, e75)
+e77 : bits[32] mux (e59, e76, smooth_fir_data)
+e78 : bits[4] const 15
+e79 : bits[4] mux (e59, e78, smooth_fir_keep)
+e80 : bits[1] mux (e59, fanout_0_tlast, smooth_fir_last)
+e81 : bits[8] mux (e59, fanout_0_tuser, smooth_fir_user)
+e82 : bits[1] & (smooth_fir_tvalid, e57)
+e83 : bits[1] ^ (e82, e56)
+e84 : bits[3] const 1
+e85 : bits[3] + (smooth_queue_count, e84)
+e86 : bits[3] const 1
+e87 : bits[3] - (smooth_queue_count, e86)
+e88 : bits[3] mux (e82, e85, e87)
+e89 : bits[3] mux (e83, e88, smooth_queue_count)
+e90 : bits[32] slice (smooth_queue_slot0) offset=0
+e91 : bits[4] slice (smooth_queue_slot0) offset=32
+e92 : bits[1] slice (smooth_queue_slot0) offset=36
+e93 : bits[8] slice (smooth_queue_slot0) offset=37
+e94 : bits[3] const 1
+e95 : bits[3] - (smooth_queue_count, e94)
+e96 : bits[3] mux (e56, e95, smooth_queue_count)
+e97 : bits[3] const 0
+e98 : bits[1] == (e96, e97)
+e99 : bits[1] & (e82, e98)
+e100 : bits[36] concat (smooth_fir_tkeep, smooth_fir_tdata)
+e101 : bits[37] concat (smooth_fir_tlast, e100)
+e102 : bits[45] concat (smooth_fir_tuser, e101)
+e103 : bits[45] mux (e56, smooth_queue_slot1, smooth_queue_slot0)
+e104 : bits[45] mux (e99, e102, e103)
+e105 : bits[3] const 1
+e106 : bits[1] == (e96, e105)
+e107 : bits[1] & (e82, e106)
+e108 : bits[45] mux (e56, smooth_queue_slot2, smooth_queue_slot1)
+e109 : bits[45] mux (e107, e102, e108)
+e110 : bits[3] const 2
+e111 : bits[1] == (e96, e110)
+e112 : bits[1] & (e82, e111)
+e113 : bits[45] mux (e56, smooth_queue_slot3, smooth_queue_slot2)
+e114 : bits[45] mux (e112, e102, e113)
+e115 : bits[3] const 3
+e116 : bits[1] == (e96, e115)
+e117 : bits[1] & (e82, e116)
+e118 : bits[45] const 0
+e119 : bits[45] mux (e56, e118, smooth_queue_slot3)
+e120 : bits[45] mux (e117, e102, e119)
+e121 : bits[1] const 1
+e122 : bits[8] const 0
+e123 : bits[16] concat (e122, smooth_queue_tuser)
+e124 : bits[1] & (smooth_tag_tvalid, slope_tag_tvalid)
+e125 : bits[1] ~ (smooth_tag_tvalid)
+e126 : bits[1] mux (e124, merge_0_0_turn, e125)
+e127 : bits[1] mux (merge_0_0_locked, merge_0_0_selected, e126)
+e128 : bits[1] ~ (e127)
+e129 : bits[1] & (merge_0_0_tready, e128)
+e130 : bits[1] & (fanout_1_tvalid, fanout_1_tready)
+e131 : bits[16] mux (e130, fanout_1_tdata, slope_delay1)
+e132 : bits[2] const 2
+e133 : bits[1] < (slope_queue_count, e132)
+e134 : bits[2] const 0
+e135 : bits[1] == (slope_queue_count, e134)
+e136 : bits[1] ~ (e135)
+e137 : bits[1] & (e136, slope_queue_tready)
+e138 : bits[1] | (e133, e137)
+e139 : bits[1] mux (e21, fanout_1_tvalid, slope_fir_valid)
+e140 : bits[1] & (e21, fanout_1_tvalid)
+e141 : bits[32] const 0
+e142 : bits[32] signextend (fanout_1_tdata)
+e143 : bits[32] const 1
+e144 : bits[32] * (e142, e143)
+e145 : bits[32] + (e141, e144)
+e146 : bits[32] signextend (slope_delay1)
+e147 : bits[32] const 4294967295
+e148 : bits[32] * (e146, e147)
+e149 : bits[32] + (e145, e148)
+e150 : bits[32] mux (e140, e149, slope_fir_data)
+e151 : bits[4] const 15
+e152 : bits[4] mux (e140, e151, slope_fir_keep)
+e153 : bits[1] mux (e140, fanout_1_tlast, slope_fir_last)
+e154 : bits[8] mux (e140, fanout_1_tuser, slope_fir_user)
+e155 : bits[1] & (slope_fir_tvalid, e138)
+e156 : bits[1] ^ (e155, e137)
+e157 : bits[2] const 1
+e158 : bits[2] + (slope_queue_count, e157)
+e159 : bits[2] const 1
+e160 : bits[2] - (slope_queue_count, e159)
+e161 : bits[2] mux (e155, e158, e160)
+e162 : bits[2] mux (e156, e161, slope_queue_count)
+e163 : bits[32] slice (slope_queue_slot0) offset=0
+e164 : bits[4] slice (slope_queue_slot0) offset=32
+e165 : bits[1] slice (slope_queue_slot0) offset=36
+e166 : bits[8] slice (slope_queue_slot0) offset=37
+e167 : bits[2] const 1
+e168 : bits[2] - (slope_queue_count, e167)
+e169 : bits[2] mux (e137, e168, slope_queue_count)
+e170 : bits[2] const 0
+e171 : bits[1] == (e169, e170)
+e172 : bits[1] & (e155, e171)
+e173 : bits[36] concat (slope_fir_tkeep, slope_fir_tdata)
+e174 : bits[37] concat (slope_fir_tlast, e173)
+e175 : bits[45] concat (slope_fir_tuser, e174)
+e176 : bits[45] mux (e137, slope_queue_slot1, slope_queue_slot0)
+e177 : bits[45] mux (e172, e175, e176)
+e178 : bits[2] const 1
+e179 : bits[1] == (e169, e178)
+e180 : bits[1] & (e155, e179)
+e181 : bits[45] const 0
+e182 : bits[45] mux (e137, e181, slope_queue_slot1)
+e183 : bits[45] mux (e180, e175, e182)
+e184 : bits[1] const 1
+e185 : bits[8] const 1
+e186 : bits[16] concat (e185, slope_queue_tuser)
+e187 : bits[1] & (merge_0_0_tready, e127)
+e188 : bits[1] & (fanout_2_tvalid, fanout_2_tready)
+e189 : bits[16] mux (e188, fanout_2_tdata, curvature_delay1)
+e190 : bits[1] & (fanout_2_tvalid, fanout_2_tready)
+e191 : bits[16] mux (e190, curvature_delay1, curvature_delay2)
+e192 : bits[2] const 3
+e193 : bits[1] < (curvature_queue_count, e192)
+e194 : bits[2] const 0
+e195 : bits[1] == (curvature_queue_count, e194)
+e196 : bits[1] ~ (e195)
+e197 : bits[1] & (e196, curvature_queue_tready)
+e198 : bits[1] | (e193, e197)
+e199 : bits[1] mux (e30, fanout_2_tvalid, curvature_fir_valid)
+e200 : bits[1] & (e30, fanout_2_tvalid)
+e201 : bits[32] const 0
+e202 : bits[32] signextend (fanout_2_tdata)
+e203 : bits[32] const 1
+e204 : bits[32] * (e202, e203)
+e205 : bits[32] + (e201, e204)
+e206 : bits[32] signextend (curvature_delay1)
+e207 : bits[32] const 4294967294
+e208 : bits[32] * (e206, e207)
+e209 : bits[32] + (e205, e208)
+e210 : bits[32] signextend (curvature_delay2)
+e211 : bits[32] const 1
+e212 : bits[32] * (e210, e211)
+e213 : bits[32] + (e209, e212)
+e214 : bits[32] mux (e200, e213, curvature_fir_data)
+e215 : bits[4] const 15
+e216 : bits[4] mux (e200, e215, curvature_fir_keep)
+e217 : bits[1] mux (e200, fanout_2_tlast, curvature_fir_last)
+e218 : bits[8] mux (e200, fanout_2_tuser, curvature_fir_user)
+e219 : bits[1] & (curvature_fir_tvalid, e198)
+e220 : bits[1] ^ (e219, e197)
+e221 : bits[2] const 1
+e222 : bits[2] + (curvature_queue_count, e221)
+e223 : bits[2] const 1
+e224 : bits[2] - (curvature_queue_count, e223)
+e225 : bits[2] mux (e219, e222, e224)
+e226 : bits[2] mux (e220, e225, curvature_queue_count)
+e227 : bits[32] slice (curvature_queue_slot0) offset=0
+e228 : bits[4] slice (curvature_queue_slot0) offset=32
+e229 : bits[1] slice (curvature_queue_slot0) offset=36
+e230 : bits[8] slice (curvature_queue_slot0) offset=37
+e231 : bits[2] const 1
+e232 : bits[2] - (curvature_queue_count, e231)
+e233 : bits[2] mux (e197, e232, curvature_queue_count)
+e234 : bits[2] const 0
+e235 : bits[1] == (e233, e234)
+e236 : bits[1] & (e219, e235)
+e237 : bits[36] concat (curvature_fir_tkeep, curvature_fir_tdata)
+e238 : bits[37] concat (curvature_fir_tlast, e237)
+e239 : bits[45] concat (curvature_fir_tuser, e238)
+e240 : bits[45] mux (e197, curvature_queue_slot1, curvature_queue_slot0)
+e241 : bits[45] mux (e236, e239, e240)
+e242 : bits[2] const 1
+e243 : bits[1] == (e233, e242)
+e244 : bits[1] & (e219, e243)
+e245 : bits[45] mux (e197, curvature_queue_slot2, curvature_queue_slot1)
+e246 : bits[45] mux (e244, e239, e245)
+e247 : bits[2] const 2
+e248 : bits[1] == (e233, e247)
+e249 : bits[1] & (e219, e248)
+e250 : bits[45] const 0
+e251 : bits[45] mux (e197, e250, curvature_queue_slot2)
+e252 : bits[45] mux (e249, e239, e251)
+e253 : bits[1] const 1
+e254 : bits[8] const 2
+e255 : bits[16] concat (e254, curvature_queue_tuser)
+e256 : bits[1] & (curvature_tag_tvalid, raw_tag_tvalid)
+e257 : bits[1] ~ (curvature_tag_tvalid)
+e258 : bits[1] mux (e256, merge_0_1_turn, e257)
+e259 : bits[1] mux (merge_0_1_locked, merge_0_1_selected, e258)
+e260 : bits[1] ~ (e259)
+e261 : bits[1] & (merge_0_1_tready, e260)
+e262 : bits[1] const 1
+e263 : bits[1] < (raw_queue_count, e262)
+e264 : bits[1] const 0
+e265 : bits[1] == (raw_queue_count, e264)
+e266 : bits[1] ~ (e265)
+e267 : bits[1] & (e266, raw_queue_tready)
+e268 : bits[1] | (e263, e267)
+e269 : bits[1] mux (e39, fanout_3_tvalid, raw_fir_valid)
+e270 : bits[1] & (e39, fanout_3_tvalid)
+e271 : bits[32] const 0
+e272 : bits[32] signextend (fanout_3_tdata)
+e273 : bits[32] const 1
+e274 : bits[32] * (e272, e273)
+e275 : bits[32] + (e271, e274)
+e276 : bits[32] mux (e270, e275, raw_fir_data)
+e277 : bits[4] const 15
+e278 : bits[4] mux (e270, e277, raw_fir_keep)
+e279 : bits[1] mux (e270, fanout_3_tlast, raw_fir_last)
+e280 : bits[8] mux (e270, fanout_3_tuser, raw_fir_user)
+e281 : bits[1] & (raw_fir_tvalid, e268)
+e282 : bits[1] ^ (e281, e267)
+e283 : bits[1] const 1
+e284 : bits[1] + (raw_queue_count, e283)
+e285 : bits[1] const 1
+e286 : bits[1] - (raw_queue_count, e285)
+e287 : bits[1] mux (e281, e284, e286)
+e288 : bits[1] mux (e282, e287, raw_queue_count)
+e289 : bits[32] slice (raw_queue_slot0) offset=0
+e290 : bits[4] slice (raw_queue_slot0) offset=32
+e291 : bits[1] slice (raw_queue_slot0) offset=36
+e292 : bits[8] slice (raw_queue_slot0) offset=37
+e293 : bits[1] const 1
+e294 : bits[1] - (raw_queue_count, e293)
+e295 : bits[1] mux (e267, e294, raw_queue_count)
+e296 : bits[1] const 0
+e297 : bits[1] == (e295, e296)
+e298 : bits[1] & (e281, e297)
+e299 : bits[36] concat (raw_fir_tkeep, raw_fir_tdata)
+e300 : bits[37] concat (raw_fir_tlast, e299)
+e301 : bits[45] concat (raw_fir_tuser, e300)
+e302 : bits[45] const 0
+e303 : bits[45] mux (e267, e302, raw_queue_slot0)
+e304 : bits[45] mux (e298, e301, e303)
+e305 : bits[1] const 1
+e306 : bits[8] const 3
+e307 : bits[16] concat (e306, raw_queue_tuser)
+e308 : bits[1] & (merge_0_1_tready, e259)
+e309 : bits[32] mux (e127, slope_tag_tdata, smooth_tag_tdata)
+e310 : bits[4] mux (e127, slope_tag_tkeep, smooth_tag_tkeep)
+e311 : bits[1] mux (e127, slope_tag_tlast, smooth_tag_tlast)
+e312 : bits[16] mux (e127, slope_tag_tuser, smooth_tag_tuser)
+e313 : bits[1] mux (e127, slope_tag_tvalid, smooth_tag_tvalid)
+e314 : bits[1] & (merge_0_0_tvalid, merge_0_1_tvalid)
+e315 : bits[1] ~ (merge_0_0_tvalid)
+e316 : bits[1] mux (e314, merge_1_0_turn, e315)
+e317 : bits[1] mux (merge_1_0_locked, merge_1_0_selected, e316)
+e318 : bits[1] ~ (e317)
+e319 : bits[1] & (merge_1_0_tready, e318)
+e320 : bits[1] & (e313, merge_0_0_tready)
+e321 : bits[1] & (e320, e311)
+e322 : bits[1] const 0
+e323 : bits[1] ~ (merge_0_0_locked)
+e324 : bits[1] & (e313, e323)
+e325 : bits[1] const 1
+e326 : bits[1] mux (e324, e325, merge_0_0_locked)
+e327 : bits[1] mux (e321, e322, e326)
+e328 : bits[1] mux (e324, e127, merge_0_0_selected)
+e329 : bits[1] & (e320, e311)
+e330 : bits[1] ~ (e127)
+e331 : bits[1] mux (e329, e330, merge_0_0_turn)
+e332 : bits[32] mux (e259, raw_tag_tdata, curvature_tag_tdata)
+e333 : bits[4] mux (e259, raw_tag_tkeep, curvature_tag_tkeep)
+e334 : bits[1] mux (e259, raw_tag_tlast, curvature_tag_tlast)
+e335 : bits[16] mux (e259, raw_tag_tuser, curvature_tag_tuser)
+e336 : bits[1] mux (e259, raw_tag_tvalid, curvature_tag_tvalid)
+e337 : bits[1] & (merge_1_0_tready, e317)
+e338 : bits[1] & (e336, merge_0_1_tready)
+e339 : bits[1] & (e338, e334)
+e340 : bits[1] const 0
+e341 : bits[1] ~ (merge_0_1_locked)
+e342 : bits[1] & (e336, e341)
+e343 : bits[1] const 1
+e344 : bits[1] mux (e342, e343, merge_0_1_locked)
+e345 : bits[1] mux (e339, e340, e344)
+e346 : bits[1] mux (e342, e259, merge_0_1_selected)
+e347 : bits[1] & (e338, e334)
+e348 : bits[1] ~ (e259)
+e349 : bits[1] mux (e347, e348, merge_0_1_turn)
+e350 : bits[32] mux (e317, merge_0_1_tdata, merge_0_0_tdata)
+e351 : bits[4] mux (e317, merge_0_1_tkeep, merge_0_0_tkeep)
+e352 : bits[1] mux (e317, merge_0_1_tlast, merge_0_0_tlast)
+e353 : bits[16] mux (e317, merge_0_1_tuser, merge_0_0_tuser)
+e354 : bits[1] mux (e317, merge_0_1_tvalid, merge_0_0_tvalid)
+e355 : bits[1] & (e354, merge_1_0_tready)
+e356 : bits[1] & (e355, e352)
+e357 : bits[1] const 0
+e358 : bits[1] ~ (merge_1_0_locked)
+e359 : bits[1] & (e354, e358)
+e360 : bits[1] const 1
+e361 : bits[1] mux (e359, e360, merge_1_0_locked)
+e362 : bits[1] mux (e356, e357, e361)
+e363 : bits[1] mux (e359, e317, merge_1_0_selected)
+e364 : bits[1] & (e355, e352)
+e365 : bits[1] ~ (e317)
+e366 : bits[1] mux (e364, e365, merge_1_0_turn)
+connections:
+s_axis_tready <- e8
+m_axis_tdata <- merge_1_0_tdata
+m_axis_tkeep <- merge_1_0_tkeep
+m_axis_tlast <- merge_1_0_tlast
+m_axis_tuser <- merge_1_0_tuser
+m_axis_tvalid <- merge_1_0_tvalid
+fanout_0_tdata <- s_axis_tdata
+fanout_0_tkeep <- s_axis_tkeep
+fanout_0_tlast <- s_axis_tlast
+fanout_0_tuser <- s_axis_tuser
+fanout_0_tvalid <- e10
+fanout_0_tready <- e12
+fanout_accepted0.next <- e17
+fanout_1_tdata <- s_axis_tdata
+fanout_1_tkeep <- s_axis_tkeep
+fanout_1_tlast <- s_axis_tlast
+fanout_1_tuser <- s_axis_tuser
+fanout_1_tvalid <- e19
+fanout_1_tready <- e21
+fanout_accepted1.next <- e26
+fanout_2_tdata <- s_axis_tdata
+fanout_2_tkeep <- s_axis_tkeep
+fanout_2_tlast <- s_axis_tlast
+fanout_2_tuser <- s_axis_tuser
+fanout_2_tvalid <- e28
+fanout_2_tready <- e30
+fanout_accepted2.next <- e35
+fanout_3_tdata <- s_axis_tdata
+fanout_3_tkeep <- s_axis_tkeep
+fanout_3_tlast <- s_axis_tlast
+fanout_3_tuser <- s_axis_tuser
+fanout_3_tvalid <- e37
+fanout_3_tready <- e39
+fanout_accepted3.next <- e44
+smooth_delay1.next <- e46
+smooth_delay2.next <- e48
+smooth_delay3.next <- e50
+smooth_fir_tdata <- smooth_fir_data
+smooth_fir_tkeep <- smooth_fir_keep
+smooth_fir_tlast <- smooth_fir_last
+smooth_fir_tuser <- smooth_fir_user
+smooth_fir_tvalid <- smooth_fir_valid
+smooth_fir_tready <- e57
+smooth_fir_valid.next <- e58
+smooth_fir_data.next <- e77
+smooth_fir_keep.next <- e79
+smooth_fir_last.next <- e80
+smooth_fir_user.next <- e81
+smooth_queue_count.next <- e89
+smooth_queue_tdata <- e90
+smooth_queue_tkeep <- e91
+smooth_queue_tlast <- e92
+smooth_queue_tuser <- e93
+smooth_queue_tvalid <- e55
+smooth_queue_tready <- smooth_tag_tready
+smooth_queue_slot0.next <- e104
+smooth_queue_slot1.next <- e109
+smooth_queue_slot2.next <- e114
+smooth_queue_slot3.next <- e120
+smooth_tag_tdata <- smooth_queue_tdata
+smooth_tag_tkeep <- smooth_queue_tkeep
+smooth_tag_tlast <- e121
+smooth_tag_tuser <- e123
+smooth_tag_tvalid <- smooth_queue_tvalid
+smooth_tag_tready <- e129
+slope_delay1.next <- e131
+slope_fir_tdata <- slope_fir_data
+slope_fir_tkeep <- slope_fir_keep
+slope_fir_tlast <- slope_fir_last
+slope_fir_tuser <- slope_fir_user
+slope_fir_tvalid <- slope_fir_valid
+slope_fir_tready <- e138
+slope_fir_valid.next <- e139
+slope_fir_data.next <- e150
+slope_fir_keep.next <- e152
+slope_fir_last.next <- e153
+slope_fir_user.next <- e154
+slope_queue_count.next <- e162
+slope_queue_tdata <- e163
+slope_queue_tkeep <- e164
+slope_queue_tlast <- e165
+slope_queue_tuser <- e166
+slope_queue_tvalid <- e136
+slope_queue_tready <- slope_tag_tready
+slope_queue_slot0.next <- e177
+slope_queue_slot1.next <- e183
+slope_tag_tdata <- slope_queue_tdata
+slope_tag_tkeep <- slope_queue_tkeep
+slope_tag_tlast <- e184
+slope_tag_tuser <- e186
+slope_tag_tvalid <- slope_queue_tvalid
+slope_tag_tready <- e187
+curvature_delay1.next <- e189
+curvature_delay2.next <- e191
+curvature_fir_tdata <- curvature_fir_data
+curvature_fir_tkeep <- curvature_fir_keep
+curvature_fir_tlast <- curvature_fir_last
+curvature_fir_tuser <- curvature_fir_user
+curvature_fir_tvalid <- curvature_fir_valid
+curvature_fir_tready <- e198
+curvature_fir_valid.next <- e199
+curvature_fir_data.next <- e214
+curvature_fir_keep.next <- e216
+curvature_fir_last.next <- e217
+curvature_fir_user.next <- e218
+curvature_queue_count.next <- e226
+curvature_queue_tdata <- e227
+curvature_queue_tkeep <- e228
+curvature_queue_tlast <- e229
+curvature_queue_tuser <- e230
+curvature_queue_tvalid <- e196
+curvature_queue_tready <- curvature_tag_tready
+curvature_queue_slot0.next <- e241
+curvature_queue_slot1.next <- e246
+curvature_queue_slot2.next <- e252
+curvature_tag_tdata <- curvature_queue_tdata
+curvature_tag_tkeep <- curvature_queue_tkeep
+curvature_tag_tlast <- e253
+curvature_tag_tuser <- e255
+curvature_tag_tvalid <- curvature_queue_tvalid
+curvature_tag_tready <- e261
+raw_fir_tdata <- raw_fir_data
+raw_fir_tkeep <- raw_fir_keep
+raw_fir_tlast <- raw_fir_last
+raw_fir_tuser <- raw_fir_user
+raw_fir_tvalid <- raw_fir_valid
+raw_fir_tready <- e268
+raw_fir_valid.next <- e269
+raw_fir_data.next <- e276
+raw_fir_keep.next <- e278
+raw_fir_last.next <- e279
+raw_fir_user.next <- e280
+raw_queue_count.next <- e288
+raw_queue_tdata <- e289
+raw_queue_tkeep <- e290
+raw_queue_tlast <- e291
+raw_queue_tuser <- e292
+raw_queue_tvalid <- e266
+raw_queue_tready <- raw_tag_tready
+raw_queue_slot0.next <- e304
+raw_tag_tdata <- raw_queue_tdata
+raw_tag_tkeep <- raw_queue_tkeep
+raw_tag_tlast <- e305
+raw_tag_tuser <- e307
+raw_tag_tvalid <- raw_queue_tvalid
+raw_tag_tready <- e308
+merge_0_0_tdata <- e309
+merge_0_0_tkeep <- e310
+merge_0_0_tlast <- e311
+merge_0_0_tuser <- e312
+merge_0_0_tvalid <- e313
+merge_0_0_tready <- e319
+merge_0_0_locked.next <- e327
+merge_0_0_selected.next <- e328
+merge_0_0_turn.next <- e331
+merge_0_1_tdata <- e332
+merge_0_1_tkeep <- e333
+merge_0_1_tlast <- e334
+merge_0_1_tuser <- e335
+merge_0_1_tvalid <- e336
+merge_0_1_tready <- e337
+merge_0_1_locked.next <- e345
+merge_0_1_selected.next <- e346
+merge_0_1_turn.next <- e349
+merge_1_0_tdata <- e350
+merge_1_0_tkeep <- e351
+merge_1_0_tlast <- e352
+merge_1_0_tuser <- e353
+merge_1_0_tvalid <- e354
+merge_1_0_tready <- m_axis_tready
+merge_1_0_locked.next <- e362
+merge_1_0_selected.next <- e363
+merge_1_0_turn.next <- e366

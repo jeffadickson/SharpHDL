@@ -1,0 +1,1 @@
+PASS: 3002 three-language/pipeline/classroom assertions; actual CIL, matching graphs, RTL and benches emitted.

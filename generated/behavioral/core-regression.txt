@@ -1,0 +1,31 @@
+PASS: 49234 feature assertions; max CORDIC error 2.4165E-06; max ROM error 5.72205E-06
+  sqrt16 max normalized error 0.00039714
+  reciprocal16 max normalized error 0.00024081
+  log216 max normalized error 0.00043175
+  log16 max normalized error 0.00097238
+  log1016 max normalized error 0.00067244
+  exp216 max normalized error 0.00040253
+  exp16 max normalized error 0.0014158
+  sin16 max normalized error 0.00023342
+  cos16 max normalized error 0.00024188
+  tan16 max normalized error 0.00096548
+  atan16 max normalized error 0.0011316
+  atan216 max normalized error 0.00079248
+  pow16 max normalized error 0.0053901
+  sqrt24 max normalized error 6.5105E-06
+  reciprocal24 max normalized error 3.2883E-06
+  log224 max normalized error 6.7522E-06
+  log24 max normalized error 1.1882E-05
+  log1024 max normalized error 1.3207E-05
+  exp224 max normalized error 5.2032E-06
+  exp24 max normalized error 3.2706E-05
+  sin24 max normalized error 3.4854E-06
+  cos24 max normalized error 3.7854E-06
+  tan24 max normalized error 6.1243E-06
+  atan24 max normalized error 9.6784E-06
+  atan224 max normalized error 1.6812E-05
+  pow24 max normalized error 6.3477E-05
+PASS: 6698 numeric assertions; max normalized transcendental error 0.00539015
+PASS: 56479 multiplier assertions; 16 RTL trace benches.
+PASS: 388851 divider assertions; 120 stream RTL trace benches plus operator checks.
+PASS: 15212 C# assertions; generated five HDL differential testbenches.

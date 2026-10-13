@@ -1,0 +1,4 @@
+PASS HDL FixedShifts 6912 values
+generated/learning/FixedShifts_tb.v:7198: $finish called at 256 (1s)
+PASS HDL DrillController 512 cycles and illegal-state recovery
+generated/learning/DrillController_tb.v:514: $finish called at 1030 (1s)

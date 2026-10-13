@@ -1,0 +1,2 @@
+PASS HDL CountRun
+generated/tinyrisc/CountRun_tb.v:1173: $finish called at 100000 (1ps)

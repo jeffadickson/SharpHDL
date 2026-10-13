@@ -1,0 +1,10 @@
+Behavioral.CSharpFunctions.Minimum
+IL_0000: ldarg.0 
+IL_0001: ldarg.1 
+IL_0002: bge.s 6
+IL_0004: ldarg.0 
+IL_0005: ret 
+IL_0006: ldarg.1 
+IL_0007: ret 
+
+Instructions visited: 7; symbolic branches: 1; method bodies: 1

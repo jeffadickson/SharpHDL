@@ -1,0 +1,8 @@
+Behavioral.CSharpFunctions.UnsignedHalf
+IL_0000: ldarg.0 
+IL_0001: ldc.i4.2 
+IL_0002: div.un 
+IL_0003: ret 
+
+Strength reduction IL_0002: div.un by 2 -> logical shift.
+Instructions visited: 4; symbolic branches: 0; method bodies: 1

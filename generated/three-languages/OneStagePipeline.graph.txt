@@ -1,0 +1,55 @@
+module OneStagePipeline
+input input_tdata : bits[8]
+input input_tkeep : bits[1]
+input input_tlast : bits[1]
+input input_tuser : bits[8]
+input input_tvalid : bits[1]
+output input_tready : bits[1]
+output output_tdata : bits[8]
+output output_tkeep : bits[1]
+output output_tlast : bits[1]
+output output_tuser : bits[8]
+output output_tvalid : bits[1]
+input output_tready : bits[1]
+wire one_stage_tdata : bits[8]
+wire one_stage_tkeep : bits[1]
+wire one_stage_tlast : bits[1]
+wire one_stage_tuser : bits[8]
+wire one_stage_tvalid : bits[1]
+wire one_stage_tready : bits[1]
+reg one_stage_valid : bits[1] reset=0
+reg one_stage_data : bits[8] reset=0
+reg one_stage_keep : bits[1] reset=0
+reg one_stage_last : bits[1] reset=0
+reg one_stage_user : bits[8] reset=0
+expressions:
+e0 : bits[1] ~ (one_stage_valid)
+e1 : bits[1] | (e0, one_stage_tready)
+e2 : bits[1] mux (e1, input_tvalid, one_stage_valid)
+e3 : bits[1] & (e1, input_tvalid)
+e4 : bits[8] const 2
+e5 : bits[8] + (input_tdata, e4)
+e6 : bits[8] const 3
+e7 : bits[8] * (e5, e6)
+e8 : bits[8] mux (e3, e7, one_stage_data)
+e9 : bits[1] mux (e3, input_tkeep, one_stage_keep)
+e10 : bits[1] mux (e3, input_tlast, one_stage_last)
+e11 : bits[8] mux (e3, input_tuser, one_stage_user)
+connections:
+input_tready <- e1
+output_tdata <- one_stage_tdata
+output_tkeep <- one_stage_tkeep
+output_tlast <- one_stage_tlast
+output_tuser <- one_stage_tuser
+output_tvalid <- one_stage_tvalid
+one_stage_tdata <- one_stage_data
+one_stage_tkeep <- one_stage_keep
+one_stage_tlast <- one_stage_last
+one_stage_tuser <- one_stage_user
+one_stage_tvalid <- one_stage_valid
+one_stage_tready <- output_tready
+one_stage_valid.next <- e2
+one_stage_data.next <- e8
+one_stage_keep.next <- e9
+one_stage_last.next <- e10
+one_stage_user.next <- e11

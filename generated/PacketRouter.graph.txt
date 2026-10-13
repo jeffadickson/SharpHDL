@@ -1,0 +1,211 @@
+module PacketRouter
+input s_axis_tdata : bits[64]
+input s_axis_tkeep : bits[8]
+input s_axis_tlast : bits[1]
+input s_axis_tuser : bits[8]
+input s_axis_tvalid : bits[1]
+output s_axis_tready : bits[1]
+output m_axis_zero_tdata : bits[64]
+output m_axis_zero_tkeep : bits[8]
+output m_axis_zero_tlast : bits[1]
+output m_axis_zero_tuser : bits[8]
+output m_axis_zero_tvalid : bits[1]
+input m_axis_zero_tready : bits[1]
+output m_axis_one_tdata : bits[64]
+output m_axis_one_tkeep : bits[8]
+output m_axis_one_tlast : bits[1]
+output m_axis_one_tuser : bits[8]
+output m_axis_one_tvalid : bits[1]
+input m_axis_one_tready : bits[1]
+reg in_packet : bits[1] reset=0
+reg packet_route : bits[1] reset=0
+wire route_zero_tdata : bits[64]
+wire route_zero_tkeep : bits[8]
+wire route_zero_tlast : bits[1]
+wire route_zero_tuser : bits[8]
+wire route_zero_tvalid : bits[1]
+wire route_zero_tready : bits[1]
+wire route_one_tdata : bits[64]
+wire route_one_tkeep : bits[8]
+wire route_one_tlast : bits[1]
+wire route_one_tuser : bits[8]
+wire route_one_tvalid : bits[1]
+wire route_one_tready : bits[1]
+reg queue_zero_count : bits[3] reset=0
+wire queue_zero_tdata : bits[64]
+wire queue_zero_tkeep : bits[8]
+wire queue_zero_tlast : bits[1]
+wire queue_zero_tuser : bits[8]
+wire queue_zero_tvalid : bits[1]
+wire queue_zero_tready : bits[1]
+reg queue_zero_slot0 : bits[81] reset=0
+reg queue_zero_slot1 : bits[81] reset=0
+reg queue_zero_slot2 : bits[81] reset=0
+reg queue_zero_slot3 : bits[81] reset=0
+reg queue_one_count : bits[3] reset=0
+wire queue_one_tdata : bits[64]
+wire queue_one_tkeep : bits[8]
+wire queue_one_tlast : bits[1]
+wire queue_one_tuser : bits[8]
+wire queue_one_tvalid : bits[1]
+wire queue_one_tready : bits[1]
+reg queue_one_slot0 : bits[81] reset=0
+reg queue_one_slot1 : bits[81] reset=0
+reg queue_one_slot2 : bits[81] reset=0
+reg queue_one_slot3 : bits[81] reset=0
+expressions:
+e0 : bits[12] slice (s_axis_tdata) offset=48
+e1 : bits[12] const 1
+e2 : bits[1] == (e0, e1)
+e3 : bits[1] mux (in_packet, packet_route, e2)
+e4 : bits[1] mux (e3, route_one_tready, route_zero_tready)
+e5 : bits[1] & (s_axis_tvalid, s_axis_tready)
+e6 : bits[1] ~ (s_axis_tlast)
+e7 : bits[1] mux (e5, e6, in_packet)
+e8 : bits[1] & (s_axis_tvalid, s_axis_tready)
+e9 : bits[1] ~ (in_packet)
+e10 : bits[1] & (e8, e9)
+e11 : bits[1] mux (e10, e2, packet_route)
+e12 : bits[1] ~ (e3)
+e13 : bits[1] & (s_axis_tvalid, e12)
+e14 : bits[3] const 4
+e15 : bits[1] < (queue_zero_count, e14)
+e16 : bits[3] const 0
+e17 : bits[1] == (queue_zero_count, e16)
+e18 : bits[1] ~ (e17)
+e19 : bits[1] & (e18, queue_zero_tready)
+e20 : bits[1] | (e15, e19)
+e21 : bits[1] & (s_axis_tvalid, e3)
+e22 : bits[3] const 4
+e23 : bits[1] < (queue_one_count, e22)
+e24 : bits[3] const 0
+e25 : bits[1] == (queue_one_count, e24)
+e26 : bits[1] ~ (e25)
+e27 : bits[1] & (e26, queue_one_tready)
+e28 : bits[1] | (e23, e27)
+e29 : bits[1] & (route_zero_tvalid, e20)
+e30 : bits[1] ^ (e29, e19)
+e31 : bits[3] const 1
+e32 : bits[3] + (queue_zero_count, e31)
+e33 : bits[3] const 1
+e34 : bits[3] - (queue_zero_count, e33)
+e35 : bits[3] mux (e29, e32, e34)
+e36 : bits[3] mux (e30, e35, queue_zero_count)
+e37 : bits[64] slice (queue_zero_slot0) offset=0
+e38 : bits[8] slice (queue_zero_slot0) offset=64
+e39 : bits[1] slice (queue_zero_slot0) offset=72
+e40 : bits[8] slice (queue_zero_slot0) offset=73
+e41 : bits[3] const 1
+e42 : bits[3] - (queue_zero_count, e41)
+e43 : bits[3] mux (e19, e42, queue_zero_count)
+e44 : bits[3] const 0
+e45 : bits[1] == (e43, e44)
+e46 : bits[1] & (e29, e45)
+e47 : bits[72] concat (route_zero_tkeep, route_zero_tdata)
+e48 : bits[73] concat (route_zero_tlast, e47)
+e49 : bits[81] concat (route_zero_tuser, e48)
+e50 : bits[81] mux (e19, queue_zero_slot1, queue_zero_slot0)
+e51 : bits[81] mux (e46, e49, e50)
+e52 : bits[3] const 1
+e53 : bits[1] == (e43, e52)
+e54 : bits[1] & (e29, e53)
+e55 : bits[81] mux (e19, queue_zero_slot2, queue_zero_slot1)
+e56 : bits[81] mux (e54, e49, e55)
+e57 : bits[3] const 2
+e58 : bits[1] == (e43, e57)
+e59 : bits[1] & (e29, e58)
+e60 : bits[81] mux (e19, queue_zero_slot3, queue_zero_slot2)
+e61 : bits[81] mux (e59, e49, e60)
+e62 : bits[3] const 3
+e63 : bits[1] == (e43, e62)
+e64 : bits[1] & (e29, e63)
+e65 : bits[81] const 0
+e66 : bits[81] mux (e19, e65, queue_zero_slot3)
+e67 : bits[81] mux (e64, e49, e66)
+e68 : bits[1] & (route_one_tvalid, e28)
+e69 : bits[1] ^ (e68, e27)
+e70 : bits[3] const 1
+e71 : bits[3] + (queue_one_count, e70)
+e72 : bits[3] const 1
+e73 : bits[3] - (queue_one_count, e72)
+e74 : bits[3] mux (e68, e71, e73)
+e75 : bits[3] mux (e69, e74, queue_one_count)
+e76 : bits[64] slice (queue_one_slot0) offset=0
+e77 : bits[8] slice (queue_one_slot0) offset=64
+e78 : bits[1] slice (queue_one_slot0) offset=72
+e79 : bits[8] slice (queue_one_slot0) offset=73
+e80 : bits[3] const 1
+e81 : bits[3] - (queue_one_count, e80)
+e82 : bits[3] mux (e27, e81, queue_one_count)
+e83 : bits[3] const 0
+e84 : bits[1] == (e82, e83)
+e85 : bits[1] & (e68, e84)
+e86 : bits[72] concat (route_one_tkeep, route_one_tdata)
+e87 : bits[73] concat (route_one_tlast, e86)
+e88 : bits[81] concat (route_one_tuser, e87)
+e89 : bits[81] mux (e27, queue_one_slot1, queue_one_slot0)
+e90 : bits[81] mux (e85, e88, e89)
+e91 : bits[3] const 1
+e92 : bits[1] == (e82, e91)
+e93 : bits[1] & (e68, e92)
+e94 : bits[81] mux (e27, queue_one_slot2, queue_one_slot1)
+e95 : bits[81] mux (e93, e88, e94)
+e96 : bits[3] const 2
+e97 : bits[1] == (e82, e96)
+e98 : bits[1] & (e68, e97)
+e99 : bits[81] mux (e27, queue_one_slot3, queue_one_slot2)
+e100 : bits[81] mux (e98, e88, e99)
+e101 : bits[3] const 3
+e102 : bits[1] == (e82, e101)
+e103 : bits[1] & (e68, e102)
+e104 : bits[81] const 0
+e105 : bits[81] mux (e27, e104, queue_one_slot3)
+e106 : bits[81] mux (e103, e88, e105)
+connections:
+s_axis_tready <- e4
+m_axis_zero_tdata <- queue_zero_tdata
+m_axis_zero_tkeep <- queue_zero_tkeep
+m_axis_zero_tlast <- queue_zero_tlast
+m_axis_zero_tuser <- queue_zero_tuser
+m_axis_zero_tvalid <- queue_zero_tvalid
+m_axis_one_tdata <- queue_one_tdata
+m_axis_one_tkeep <- queue_one_tkeep
+m_axis_one_tlast <- queue_one_tlast
+m_axis_one_tuser <- queue_one_tuser
+m_axis_one_tvalid <- queue_one_tvalid
+in_packet.next <- e7
+packet_route.next <- e11
+route_zero_tdata <- s_axis_tdata
+route_zero_tkeep <- s_axis_tkeep
+route_zero_tlast <- s_axis_tlast
+route_zero_tuser <- s_axis_tuser
+route_zero_tvalid <- e13
+route_zero_tready <- e20
+route_one_tdata <- s_axis_tdata
+route_one_tkeep <- s_axis_tkeep
+route_one_tlast <- s_axis_tlast
+route_one_tuser <- s_axis_tuser
+route_one_tvalid <- e21
+route_one_tready <- e28
+queue_zero_count.next <- e36
+queue_zero_tdata <- e37
+queue_zero_tkeep <- e38
+queue_zero_tlast <- e39
+queue_zero_tuser <- e40
+queue_zero_tvalid <- e18
+queue_zero_tready <- m_axis_zero_tready
+queue_zero_slot0.next <- e51
+queue_zero_slot1.next <- e56
+queue_zero_slot2.next <- e61
+queue_zero_slot3.next <- e67
+queue_one_count.next <- e75
+queue_one_tdata <- e76
+queue_one_tkeep <- e77
+queue_one_tlast <- e78
+queue_one_tuser <- e79
+queue_one_tvalid <- e26
+queue_one_tready <- m_axis_one_tready
+queue_one_slot0.next <- e90
+queue_one_slot1.next <- e95
+queue_one_slot2.next <- e100
+queue_one_slot3.next <- e106

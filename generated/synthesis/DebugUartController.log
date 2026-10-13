@@ -1,0 +1,213 @@
+
+-- Running command `read_verilog generated/DebugUartController.v; hierarchy -check -top h_DebugUartController; proc -norom; opt; check -assert; stat; write_verilog -noattr generated/synthesis/DebugUartController_rtl.v' --
+
+1. Executing Verilog-2005 frontend: generated/DebugUartController.v
+Parsing Verilog input from `generated/DebugUartController.v' to AST representation.
+Generating RTLIL representation for module `\h_DebugUartController'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \h_DebugUartController
+
+2.2. Analyzing design hierarchy..
+Top module:  \h_DebugUartController
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$generated/DebugUartController.v:145$53 in module h_DebugUartController.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 7 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+     1/7: $0\s_tag[7:0]
+     2/7: $0\s_index[1:0]
+     3/7: $0\s_length[2:0]
+     4/7: $0\s_reply[31:0]
+     5/7: $0\s_state[1:0]
+     6/7: $0\s_counter[31:0]
+     7/7: $0\s_control[7:0]
+
+3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.8. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\h_DebugUartController.\s_control' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$75' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_counter' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$76' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_state' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$77' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_reply' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$78' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_length' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$79' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_index' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$80' with positive edge clock.
+Creating register for signal `\h_DebugUartController.\s_tag' using process `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+  created $dff cell `$procdff$81' with positive edge clock.
+
+3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Removing empty process `h_DebugUartController.$proc$generated/DebugUartController.v:145$53'.
+Cleaned up 1 empty switch.
+
+3.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_DebugUartController.
+<suppressed ~8 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_DebugUartController.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_DebugUartController'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_DebugUartController..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~8 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_DebugUartController.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_DebugUartController'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$81 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:136$52_Y, Q = \s_tag, rval = 8'00000000).
+Adding EN signal on $auto$ff.cc:266:slice$82 ($sdff) from module h_DebugUartController (D = \s_rx_tuser, Q = \s_tag).
+Adding SRST signal on $procdff$80 ($dff) from module h_DebugUartController (D = \n_51, Q = \s_index, rval = 2'00).
+Adding SRST signal on $procdff$79 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:128$44_Y, Q = \s_length, rval = 3'001).
+Adding EN signal on $auto$ff.cc:266:slice$87 ($sdff) from module h_DebugUartController (D = \n_45, Q = \s_length).
+Adding SRST signal on $procdff$78 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:125$41_Y, Q = \s_reply, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$89 ($sdff) from module h_DebugUartController (D = \n_42, Q = \s_reply).
+Adding SRST signal on $procdff$77 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:113$31_Y, Q = \s_state, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$91 ($sdff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:113$31_Y, Q = \s_state).
+Adding SRST signal on $procdff$76 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:103$21_Y, Q = \s_counter, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$95 ($sdff) from module h_DebugUartController (D = \n_20, Q = \s_counter).
+Adding SRST signal on $procdff$75 ($dff) from module h_DebugUartController (D = $ternary$generated/DebugUartController.v:100$18_Y, Q = \s_control, rval = 8'00000001).
+Adding EN signal on $auto$ff.cc:266:slice$97 ($sdff) from module h_DebugUartController (D = \s_rx_tdata, Q = \s_control).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_DebugUartController..
+Removed 13 unused cells and 79 unused wires.
+<suppressed ~20 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_DebugUartController.
+<suppressed ~1 debug messages>
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_DebugUartController..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~5 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_DebugUartController.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_DebugUartController'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $auto$ff.cc:266:slice$84 ($sdff) from module h_DebugUartController (D = \n_50, Q = \s_index).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_DebugUartController..
+Removed 1 unused cells and 1 unused wires.
+<suppressed ~2 debug messages>
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_DebugUartController.
+
+4.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_DebugUartController..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+4.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_DebugUartController.
+Performed a total of 0 changes.
+
+4.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_DebugUartController'.
+Removed a total of 0 cells.
+
+4.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_DebugUartController..
+
+4.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_DebugUartController.
+
+4.23. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing CHECK pass (checking for obvious problems).
+Checking module h_DebugUartController...
+Found and reported 0 problems.
+
+6. Printing statistics.
+
+=== h_DebugUartController ===
+
+   Number of wires:                 73
+   Number of wire bits:            528
+   Number of public wires:          71
+   Number of public wire bits:     526
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 48
+     $add                            2
+     $and                            7
+     $eq                            10
+     $logic_not                      3
+     $mux                           14
+     $not                            2
+     $reduce_bool                    1
+     $reduce_or                      1
+     $sdffe                          7
+     $sub                            1
+
+7. Executing Verilog backend.
+
+7.1. Executing BMUXMAP pass.
+
+7.2. Executing DEMUXMAP pass.
+Dumping module `\h_DebugUartController'.

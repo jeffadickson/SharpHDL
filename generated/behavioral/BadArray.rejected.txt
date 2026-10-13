@@ -1,0 +1,1 @@
+Behavioral.CSharpFunctions.BadArray IL_0001: Unsupported operand/opcode newarr (InlineType).

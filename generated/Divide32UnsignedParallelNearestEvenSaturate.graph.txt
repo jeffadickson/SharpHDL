@@ -1,0 +1,545 @@
+module Divide32UnsignedParallelNearestEvenSaturate
+input input_tdata : bits[64]
+input input_tkeep : bits[8]
+input input_tlast : bits[1]
+input input_tuser : bits[4]
+input input_tvalid : bits[1]
+output input_tready : bits[1]
+output output_tdata : bits[72]
+output output_tkeep : bits[9]
+output output_tlast : bits[1]
+output output_tuser : bits[4]
+output output_tvalid : bits[1]
+input output_tready : bits[1]
+wire div_tdata : bits[72]
+wire div_tkeep : bits[9]
+wire div_tlast : bits[1]
+wire div_tuser : bits[4]
+wire div_tvalid : bits[1]
+wire div_tready : bits[1]
+reg div_valid : bits[1] reset=0
+reg div_data : bits[72] reset=0
+reg div_keep : bits[9] reset=0
+reg div_last : bits[1] reset=0
+reg div_user : bits[4] reset=0
+expressions:
+e0 : bits[1] ~ (div_valid)
+e1 : bits[1] | (e0, div_tready)
+e2 : bits[1] mux (e1, input_tvalid, div_valid)
+e3 : bits[1] & (e1, input_tvalid)
+e4 : bits[1] const 0
+e5 : bits[1] const 0
+e6 : bits[32] const 0
+e7 : bits[32] slice (input_tdata) offset=32
+e8 : bits[32] - (e6, e7)
+e9 : bits[32] mux (e5, e8, e7)
+e10 : bits[32] const 0
+e11 : bits[1] == (e9, e10)
+e12 : bits[32] slice (input_tdata) offset=0
+e13 : bits[33] resize (e12)
+e14 : bits[33] const 0
+e15 : bits[1] const 0
+e16 : bits[33] const 0
+e17 : bits[33] resize (e9)
+e18 : bits[33] const 0
+e19 : bits[33] << (e18) offset=1
+e20 : bits[32] const 0
+e21 : bits[32] - (e20, e12)
+e22 : bits[32] mux (e15, e21, e12)
+e23 : bits[1] slice (e22) offset=31
+e24 : bits[33] resize (e23)
+e25 : bits[33] | (e19, e24)
+e26 : bits[33] resize (e9)
+e27 : bits[1] < (e25, e26)
+e28 : bits[1] ~ (e27)
+e29 : bits[33] resize (e9)
+e30 : bits[33] - (e25, e29)
+e31 : bits[33] mux (e28, e30, e25)
+e32 : bits[33] << (e31) offset=1
+e33 : bits[32] << (e22) offset=1
+e34 : bits[1] slice (e33) offset=31
+e35 : bits[33] resize (e34)
+e36 : bits[33] | (e32, e35)
+e37 : bits[33] resize (e9)
+e38 : bits[1] < (e36, e37)
+e39 : bits[1] ~ (e38)
+e40 : bits[33] resize (e9)
+e41 : bits[33] - (e36, e40)
+e42 : bits[33] mux (e39, e41, e36)
+e43 : bits[33] << (e42) offset=1
+e44 : bits[32] << (e33) offset=1
+e45 : bits[1] slice (e44) offset=31
+e46 : bits[33] resize (e45)
+e47 : bits[33] | (e43, e46)
+e48 : bits[33] resize (e9)
+e49 : bits[1] < (e47, e48)
+e50 : bits[1] ~ (e49)
+e51 : bits[33] resize (e9)
+e52 : bits[33] - (e47, e51)
+e53 : bits[33] mux (e50, e52, e47)
+e54 : bits[33] << (e53) offset=1
+e55 : bits[32] << (e44) offset=1
+e56 : bits[1] slice (e55) offset=31
+e57 : bits[33] resize (e56)
+e58 : bits[33] | (e54, e57)
+e59 : bits[33] resize (e9)
+e60 : bits[1] < (e58, e59)
+e61 : bits[1] ~ (e60)
+e62 : bits[33] resize (e9)
+e63 : bits[33] - (e58, e62)
+e64 : bits[33] mux (e61, e63, e58)
+e65 : bits[33] << (e64) offset=1
+e66 : bits[32] << (e55) offset=1
+e67 : bits[1] slice (e66) offset=31
+e68 : bits[33] resize (e67)
+e69 : bits[33] | (e65, e68)
+e70 : bits[33] resize (e9)
+e71 : bits[1] < (e69, e70)
+e72 : bits[1] ~ (e71)
+e73 : bits[33] resize (e9)
+e74 : bits[33] - (e69, e73)
+e75 : bits[33] mux (e72, e74, e69)
+e76 : bits[33] << (e75) offset=1
+e77 : bits[32] << (e66) offset=1
+e78 : bits[1] slice (e77) offset=31
+e79 : bits[33] resize (e78)
+e80 : bits[33] | (e76, e79)
+e81 : bits[33] resize (e9)
+e82 : bits[1] < (e80, e81)
+e83 : bits[1] ~ (e82)
+e84 : bits[33] resize (e9)
+e85 : bits[33] - (e80, e84)
+e86 : bits[33] mux (e83, e85, e80)
+e87 : bits[33] << (e86) offset=1
+e88 : bits[32] << (e77) offset=1
+e89 : bits[1] slice (e88) offset=31
+e90 : bits[33] resize (e89)
+e91 : bits[33] | (e87, e90)
+e92 : bits[33] resize (e9)
+e93 : bits[1] < (e91, e92)
+e94 : bits[1] ~ (e93)
+e95 : bits[33] resize (e9)
+e96 : bits[33] - (e91, e95)
+e97 : bits[33] mux (e94, e96, e91)
+e98 : bits[33] << (e97) offset=1
+e99 : bits[32] << (e88) offset=1
+e100 : bits[1] slice (e99) offset=31
+e101 : bits[33] resize (e100)
+e102 : bits[33] | (e98, e101)
+e103 : bits[33] resize (e9)
+e104 : bits[1] < (e102, e103)
+e105 : bits[1] ~ (e104)
+e106 : bits[33] resize (e9)
+e107 : bits[33] - (e102, e106)
+e108 : bits[33] mux (e105, e107, e102)
+e109 : bits[33] << (e108) offset=1
+e110 : bits[32] << (e99) offset=1
+e111 : bits[1] slice (e110) offset=31
+e112 : bits[33] resize (e111)
+e113 : bits[33] | (e109, e112)
+e114 : bits[33] resize (e9)
+e115 : bits[1] < (e113, e114)
+e116 : bits[1] ~ (e115)
+e117 : bits[33] resize (e9)
+e118 : bits[33] - (e113, e117)
+e119 : bits[33] mux (e116, e118, e113)
+e120 : bits[33] << (e119) offset=1
+e121 : bits[32] << (e110) offset=1
+e122 : bits[1] slice (e121) offset=31
+e123 : bits[33] resize (e122)
+e124 : bits[33] | (e120, e123)
+e125 : bits[33] resize (e9)
+e126 : bits[1] < (e124, e125)
+e127 : bits[1] ~ (e126)
+e128 : bits[33] resize (e9)
+e129 : bits[33] - (e124, e128)
+e130 : bits[33] mux (e127, e129, e124)
+e131 : bits[33] << (e130) offset=1
+e132 : bits[32] << (e121) offset=1
+e133 : bits[1] slice (e132) offset=31
+e134 : bits[33] resize (e133)
+e135 : bits[33] | (e131, e134)
+e136 : bits[33] resize (e9)
+e137 : bits[1] < (e135, e136)
+e138 : bits[1] ~ (e137)
+e139 : bits[33] resize (e9)
+e140 : bits[33] - (e135, e139)
+e141 : bits[33] mux (e138, e140, e135)
+e142 : bits[33] << (e141) offset=1
+e143 : bits[32] << (e132) offset=1
+e144 : bits[1] slice (e143) offset=31
+e145 : bits[33] resize (e144)
+e146 : bits[33] | (e142, e145)
+e147 : bits[33] resize (e9)
+e148 : bits[1] < (e146, e147)
+e149 : bits[1] ~ (e148)
+e150 : bits[33] resize (e9)
+e151 : bits[33] - (e146, e150)
+e152 : bits[33] mux (e149, e151, e146)
+e153 : bits[33] << (e152) offset=1
+e154 : bits[32] << (e143) offset=1
+e155 : bits[1] slice (e154) offset=31
+e156 : bits[33] resize (e155)
+e157 : bits[33] | (e153, e156)
+e158 : bits[33] resize (e9)
+e159 : bits[1] < (e157, e158)
+e160 : bits[1] ~ (e159)
+e161 : bits[33] resize (e9)
+e162 : bits[33] - (e157, e161)
+e163 : bits[33] mux (e160, e162, e157)
+e164 : bits[33] << (e163) offset=1
+e165 : bits[32] << (e154) offset=1
+e166 : bits[1] slice (e165) offset=31
+e167 : bits[33] resize (e166)
+e168 : bits[33] | (e164, e167)
+e169 : bits[33] resize (e9)
+e170 : bits[1] < (e168, e169)
+e171 : bits[1] ~ (e170)
+e172 : bits[33] resize (e9)
+e173 : bits[33] - (e168, e172)
+e174 : bits[33] mux (e171, e173, e168)
+e175 : bits[33] << (e174) offset=1
+e176 : bits[32] << (e165) offset=1
+e177 : bits[1] slice (e176) offset=31
+e178 : bits[33] resize (e177)
+e179 : bits[33] | (e175, e178)
+e180 : bits[33] resize (e9)
+e181 : bits[1] < (e179, e180)
+e182 : bits[1] ~ (e181)
+e183 : bits[33] resize (e9)
+e184 : bits[33] - (e179, e183)
+e185 : bits[33] mux (e182, e184, e179)
+e186 : bits[33] << (e185) offset=1
+e187 : bits[32] << (e176) offset=1
+e188 : bits[1] slice (e187) offset=31
+e189 : bits[33] resize (e188)
+e190 : bits[33] | (e186, e189)
+e191 : bits[33] resize (e9)
+e192 : bits[1] < (e190, e191)
+e193 : bits[1] ~ (e192)
+e194 : bits[33] resize (e9)
+e195 : bits[33] - (e190, e194)
+e196 : bits[33] mux (e193, e195, e190)
+e197 : bits[33] << (e196) offset=1
+e198 : bits[32] << (e187) offset=1
+e199 : bits[1] slice (e198) offset=31
+e200 : bits[33] resize (e199)
+e201 : bits[33] | (e197, e200)
+e202 : bits[33] resize (e9)
+e203 : bits[1] < (e201, e202)
+e204 : bits[1] ~ (e203)
+e205 : bits[33] resize (e9)
+e206 : bits[33] - (e201, e205)
+e207 : bits[33] mux (e204, e206, e201)
+e208 : bits[33] << (e207) offset=1
+e209 : bits[32] << (e198) offset=1
+e210 : bits[1] slice (e209) offset=31
+e211 : bits[33] resize (e210)
+e212 : bits[33] | (e208, e211)
+e213 : bits[33] resize (e9)
+e214 : bits[1] < (e212, e213)
+e215 : bits[1] ~ (e214)
+e216 : bits[33] resize (e9)
+e217 : bits[33] - (e212, e216)
+e218 : bits[33] mux (e215, e217, e212)
+e219 : bits[33] << (e218) offset=1
+e220 : bits[32] << (e209) offset=1
+e221 : bits[1] slice (e220) offset=31
+e222 : bits[33] resize (e221)
+e223 : bits[33] | (e219, e222)
+e224 : bits[33] resize (e9)
+e225 : bits[1] < (e223, e224)
+e226 : bits[1] ~ (e225)
+e227 : bits[33] resize (e9)
+e228 : bits[33] - (e223, e227)
+e229 : bits[33] mux (e226, e228, e223)
+e230 : bits[33] << (e229) offset=1
+e231 : bits[32] << (e220) offset=1
+e232 : bits[1] slice (e231) offset=31
+e233 : bits[33] resize (e232)
+e234 : bits[33] | (e230, e233)
+e235 : bits[33] resize (e9)
+e236 : bits[1] < (e234, e235)
+e237 : bits[1] ~ (e236)
+e238 : bits[33] resize (e9)
+e239 : bits[33] - (e234, e238)
+e240 : bits[33] mux (e237, e239, e234)
+e241 : bits[33] << (e240) offset=1
+e242 : bits[32] << (e231) offset=1
+e243 : bits[1] slice (e242) offset=31
+e244 : bits[33] resize (e243)
+e245 : bits[33] | (e241, e244)
+e246 : bits[33] resize (e9)
+e247 : bits[1] < (e245, e246)
+e248 : bits[1] ~ (e247)
+e249 : bits[33] resize (e9)
+e250 : bits[33] - (e245, e249)
+e251 : bits[33] mux (e248, e250, e245)
+e252 : bits[33] << (e251) offset=1
+e253 : bits[32] << (e242) offset=1
+e254 : bits[1] slice (e253) offset=31
+e255 : bits[33] resize (e254)
+e256 : bits[33] | (e252, e255)
+e257 : bits[33] resize (e9)
+e258 : bits[1] < (e256, e257)
+e259 : bits[1] ~ (e258)
+e260 : bits[33] resize (e9)
+e261 : bits[33] - (e256, e260)
+e262 : bits[33] mux (e259, e261, e256)
+e263 : bits[33] << (e262) offset=1
+e264 : bits[32] << (e253) offset=1
+e265 : bits[1] slice (e264) offset=31
+e266 : bits[33] resize (e265)
+e267 : bits[33] | (e263, e266)
+e268 : bits[33] resize (e9)
+e269 : bits[1] < (e267, e268)
+e270 : bits[1] ~ (e269)
+e271 : bits[33] resize (e9)
+e272 : bits[33] - (e267, e271)
+e273 : bits[33] mux (e270, e272, e267)
+e274 : bits[33] << (e273) offset=1
+e275 : bits[32] << (e264) offset=1
+e276 : bits[1] slice (e275) offset=31
+e277 : bits[33] resize (e276)
+e278 : bits[33] | (e274, e277)
+e279 : bits[33] resize (e9)
+e280 : bits[1] < (e278, e279)
+e281 : bits[1] ~ (e280)
+e282 : bits[33] resize (e9)
+e283 : bits[33] - (e278, e282)
+e284 : bits[33] mux (e281, e283, e278)
+e285 : bits[33] << (e284) offset=1
+e286 : bits[32] << (e275) offset=1
+e287 : bits[1] slice (e286) offset=31
+e288 : bits[33] resize (e287)
+e289 : bits[33] | (e285, e288)
+e290 : bits[33] resize (e9)
+e291 : bits[1] < (e289, e290)
+e292 : bits[1] ~ (e291)
+e293 : bits[33] resize (e9)
+e294 : bits[33] - (e289, e293)
+e295 : bits[33] mux (e292, e294, e289)
+e296 : bits[33] << (e295) offset=1
+e297 : bits[32] << (e286) offset=1
+e298 : bits[1] slice (e297) offset=31
+e299 : bits[33] resize (e298)
+e300 : bits[33] | (e296, e299)
+e301 : bits[33] resize (e9)
+e302 : bits[1] < (e300, e301)
+e303 : bits[1] ~ (e302)
+e304 : bits[33] resize (e9)
+e305 : bits[33] - (e300, e304)
+e306 : bits[33] mux (e303, e305, e300)
+e307 : bits[33] << (e306) offset=1
+e308 : bits[32] << (e297) offset=1
+e309 : bits[1] slice (e308) offset=31
+e310 : bits[33] resize (e309)
+e311 : bits[33] | (e307, e310)
+e312 : bits[33] resize (e9)
+e313 : bits[1] < (e311, e312)
+e314 : bits[1] ~ (e313)
+e315 : bits[33] resize (e9)
+e316 : bits[33] - (e311, e315)
+e317 : bits[33] mux (e314, e316, e311)
+e318 : bits[33] << (e317) offset=1
+e319 : bits[32] << (e308) offset=1
+e320 : bits[1] slice (e319) offset=31
+e321 : bits[33] resize (e320)
+e322 : bits[33] | (e318, e321)
+e323 : bits[33] resize (e9)
+e324 : bits[1] < (e322, e323)
+e325 : bits[1] ~ (e324)
+e326 : bits[33] resize (e9)
+e327 : bits[33] - (e322, e326)
+e328 : bits[33] mux (e325, e327, e322)
+e329 : bits[33] << (e328) offset=1
+e330 : bits[32] << (e319) offset=1
+e331 : bits[1] slice (e330) offset=31
+e332 : bits[33] resize (e331)
+e333 : bits[33] | (e329, e332)
+e334 : bits[33] resize (e9)
+e335 : bits[1] < (e333, e334)
+e336 : bits[1] ~ (e335)
+e337 : bits[33] resize (e9)
+e338 : bits[33] - (e333, e337)
+e339 : bits[33] mux (e336, e338, e333)
+e340 : bits[33] << (e339) offset=1
+e341 : bits[32] << (e330) offset=1
+e342 : bits[1] slice (e341) offset=31
+e343 : bits[33] resize (e342)
+e344 : bits[33] | (e340, e343)
+e345 : bits[33] resize (e9)
+e346 : bits[1] < (e344, e345)
+e347 : bits[1] ~ (e346)
+e348 : bits[33] resize (e9)
+e349 : bits[33] - (e344, e348)
+e350 : bits[33] mux (e347, e349, e344)
+e351 : bits[33] << (e350) offset=1
+e352 : bits[32] << (e341) offset=1
+e353 : bits[1] slice (e352) offset=31
+e354 : bits[33] resize (e353)
+e355 : bits[33] | (e351, e354)
+e356 : bits[33] resize (e9)
+e357 : bits[1] < (e355, e356)
+e358 : bits[1] ~ (e357)
+e359 : bits[33] resize (e9)
+e360 : bits[33] - (e355, e359)
+e361 : bits[33] mux (e358, e360, e355)
+e362 : bits[33] << (e361) offset=1
+e363 : bits[32] << (e352) offset=1
+e364 : bits[1] slice (e363) offset=31
+e365 : bits[33] resize (e364)
+e366 : bits[33] | (e362, e365)
+e367 : bits[33] resize (e9)
+e368 : bits[1] < (e366, e367)
+e369 : bits[1] ~ (e368)
+e370 : bits[33] resize (e9)
+e371 : bits[33] - (e366, e370)
+e372 : bits[33] mux (e369, e371, e366)
+e373 : bits[33] << (e372) offset=1
+e374 : bits[1] < (e17, e373)
+e375 : bits[1] == (e17, e373)
+e376 : bits[32] const 0
+e377 : bits[32] << (e376) offset=1
+e378 : bits[32] resize (e28)
+e379 : bits[32] | (e377, e378)
+e380 : bits[32] << (e379) offset=1
+e381 : bits[32] resize (e39)
+e382 : bits[32] | (e380, e381)
+e383 : bits[32] << (e382) offset=1
+e384 : bits[32] resize (e50)
+e385 : bits[32] | (e383, e384)
+e386 : bits[32] << (e385) offset=1
+e387 : bits[32] resize (e61)
+e388 : bits[32] | (e386, e387)
+e389 : bits[32] << (e388) offset=1
+e390 : bits[32] resize (e72)
+e391 : bits[32] | (e389, e390)
+e392 : bits[32] << (e391) offset=1
+e393 : bits[32] resize (e83)
+e394 : bits[32] | (e392, e393)
+e395 : bits[32] << (e394) offset=1
+e396 : bits[32] resize (e94)
+e397 : bits[32] | (e395, e396)
+e398 : bits[32] << (e397) offset=1
+e399 : bits[32] resize (e105)
+e400 : bits[32] | (e398, e399)
+e401 : bits[32] << (e400) offset=1
+e402 : bits[32] resize (e116)
+e403 : bits[32] | (e401, e402)
+e404 : bits[32] << (e403) offset=1
+e405 : bits[32] resize (e127)
+e406 : bits[32] | (e404, e405)
+e407 : bits[32] << (e406) offset=1
+e408 : bits[32] resize (e138)
+e409 : bits[32] | (e407, e408)
+e410 : bits[32] << (e409) offset=1
+e411 : bits[32] resize (e149)
+e412 : bits[32] | (e410, e411)
+e413 : bits[32] << (e412) offset=1
+e414 : bits[32] resize (e160)
+e415 : bits[32] | (e413, e414)
+e416 : bits[32] << (e415) offset=1
+e417 : bits[32] resize (e171)
+e418 : bits[32] | (e416, e417)
+e419 : bits[32] << (e418) offset=1
+e420 : bits[32] resize (e182)
+e421 : bits[32] | (e419, e420)
+e422 : bits[32] << (e421) offset=1
+e423 : bits[32] resize (e193)
+e424 : bits[32] | (e422, e423)
+e425 : bits[32] << (e424) offset=1
+e426 : bits[32] resize (e204)
+e427 : bits[32] | (e425, e426)
+e428 : bits[32] << (e427) offset=1
+e429 : bits[32] resize (e215)
+e430 : bits[32] | (e428, e429)
+e431 : bits[32] << (e430) offset=1
+e432 : bits[32] resize (e226)
+e433 : bits[32] | (e431, e432)
+e434 : bits[32] << (e433) offset=1
+e435 : bits[32] resize (e237)
+e436 : bits[32] | (e434, e435)
+e437 : bits[32] << (e436) offset=1
+e438 : bits[32] resize (e248)
+e439 : bits[32] | (e437, e438)
+e440 : bits[32] << (e439) offset=1
+e441 : bits[32] resize (e259)
+e442 : bits[32] | (e440, e441)
+e443 : bits[32] << (e442) offset=1
+e444 : bits[32] resize (e270)
+e445 : bits[32] | (e443, e444)
+e446 : bits[32] << (e445) offset=1
+e447 : bits[32] resize (e281)
+e448 : bits[32] | (e446, e447)
+e449 : bits[32] << (e448) offset=1
+e450 : bits[32] resize (e292)
+e451 : bits[32] | (e449, e450)
+e452 : bits[32] << (e451) offset=1
+e453 : bits[32] resize (e303)
+e454 : bits[32] | (e452, e453)
+e455 : bits[32] << (e454) offset=1
+e456 : bits[32] resize (e314)
+e457 : bits[32] | (e455, e456)
+e458 : bits[32] << (e457) offset=1
+e459 : bits[32] resize (e325)
+e460 : bits[32] | (e458, e459)
+e461 : bits[32] << (e460) offset=1
+e462 : bits[32] resize (e336)
+e463 : bits[32] | (e461, e462)
+e464 : bits[32] << (e463) offset=1
+e465 : bits[32] resize (e347)
+e466 : bits[32] | (e464, e465)
+e467 : bits[32] << (e466) offset=1
+e468 : bits[32] resize (e358)
+e469 : bits[32] | (e467, e468)
+e470 : bits[32] << (e469) offset=1
+e471 : bits[32] resize (e369)
+e472 : bits[32] | (e470, e471)
+e473 : bits[1] slice (e472) offset=0
+e474 : bits[1] & (e375, e473)
+e475 : bits[1] | (e374, e474)
+e476 : bits[33] resize (e9)
+e477 : bits[33] - (e372, e476)
+e478 : bits[33] mux (e475, e477, e372)
+e479 : bits[33] - (e16, e478)
+e480 : bits[33] mux (e15, e479, e478)
+e481 : bits[33] mux (e4, e14, e480)
+e482 : bits[33] mux (e11, e13, e481)
+e483 : bits[32] const 0
+e484 : bits[1] ^ (e15, e5)
+e485 : bits[33] const 0
+e486 : bits[33] resize (e472)
+e487 : bits[33] resize (e475)
+e488 : bits[33] + (e486, e487)
+e489 : bits[33] - (e485, e488)
+e490 : bits[33] mux (e484, e489, e488)
+e491 : bits[32] resize (e490)
+e492 : bits[32] mux (e11, e483, e491)
+e493 : bits[65] concat (e482, e492)
+e494 : bits[66] concat (e11, e493)
+e495 : bits[67] concat (e4, e494)
+e496 : bits[72] resize (e495)
+e497 : bits[72] mux (e3, e496, div_data)
+e498 : bits[9] const 511
+e499 : bits[9] mux (e3, e498, div_keep)
+e500 : bits[1] mux (e3, input_tlast, div_last)
+e501 : bits[4] mux (e3, input_tuser, div_user)
+connections:
+input_tready <- e1
+output_tdata <- div_tdata
+output_tkeep <- div_tkeep
+output_tlast <- div_tlast
+output_tuser <- div_tuser
+output_tvalid <- div_tvalid
+div_tdata <- div_data
+div_tkeep <- div_keep
+div_tlast <- div_last
+div_tuser <- div_user
+div_tvalid <- div_valid
+div_tready <- output_tready
+div_valid.next <- e2
+div_data.next <- e497
+div_keep.next <- e499
+div_last.next <- e500
+div_user.next <- e501

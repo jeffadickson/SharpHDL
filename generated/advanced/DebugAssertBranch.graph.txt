@@ -1,0 +1,31 @@
+module DebugAssertBranch
+input arg0 : bits[32]
+input arg1 : bits[1]
+output result : bits[32]
+output fault : bits[1]
+output assertion_failed : bits[1]
+expressions:
+e0 : bits[32] resize (arg1)
+e1 : bits[32] const 0
+e2 : bits[1] == (e0, e1)
+e3 : bits[32] const 2
+e4 : bits[32] + (arg0, e3)
+e5 : bits[32] const 2
+e6 : bits[32] + (arg0, e5)
+e7 : bits[32] mux (e2, e4, e6)
+e8 : bits[1] const 0
+e9 : bits[32] const 0
+e10 : bits[1] slt (arg0, e9)
+e11 : bits[32] resize (e10)
+e12 : bits[32] const 0
+e13 : bits[1] == (e11, e12)
+e14 : bits[32] resize (e13)
+e15 : bits[32] const 0
+e16 : bits[1] == (e14, e15)
+e17 : bits[1] mux (e2, e8, e16)
+e18 : bits[1] const 0
+e19 : bits[1] mux (e2, e18, e16)
+connections:
+result <- e7
+fault <- e17
+assertion_failed <- e19

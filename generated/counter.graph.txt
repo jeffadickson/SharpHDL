@@ -1,0 +1,11 @@
+module Counter
+input enable : bits[1]
+reg count : bits[8] reset=0
+output value : bits[8]
+expressions:
+e0 : bits[8] const 1
+e1 : bits[8] + (count, e0)
+e2 : bits[8] mux (enable, e1, count)
+connections:
+count.next <- e2
+value <- count

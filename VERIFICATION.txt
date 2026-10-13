@@ -1,0 +1,286 @@
+SharpHDL 0.14 TinyRisc16 verification (13 October 2026)
+
+- 4,304 independent assertions across 257 retired instructions and 752 traced edges.
+- 11 generated RTL benches passed in Icarus.
+- Assembler: 3 independent golden encodings and 10 rejection cases passed.
+- Yosys hierarchy/proc/memory/check -assert completed; CountRun synthesized RTL
+  passed its original per-edge Icarus testbench. Generic cell totals are not FPGA
+  LUT counts; this flow lowers RAM to registers and is not a block-RAM fit claim.
+- No new changes to the SharpHDL core in this release. Existing v0.13 results below
+  are prior evidence, not represented as a rerun in this release.
+- No physical board, clock-frequency or placed/routed resource claim.
+- UART interface is byte-level ready/valid; serial-pin adapter not integrated.
+- CPU code: examples/TinyRisc; reproducible scripts: tests/run-tinyrisc.sh and
+  tests/synthesize-tinyrisc.sh. Specification and requirement IDs accompany it.
+
+SharpHDL 0.13 verification (13 October 2026)
+
+- Advanced optimized/debug CIL: 7,917 independent assertions; 36 Icarus RTL benches.
+  Native CLR oracle for typed wrapping, packet fields, runtime control flow,
+  bounds, checked arithmetic, divide faults and assertions. Per-edge graph/RTL
+  agreement, input capture, ignored busy-start, sticky done, reset and watchdog.
+  RAM tests include persisted writes after an assertion fault.
+- Existing behavioral regression: 70,360 assertions; 70 Icarus benches passed.
+- Offline browser graph engine: 11,139 reference comparisons under Node.
+- Three VeriSim links: exact base64url payload round trips and local Icarus tests.
+  Hosted browser UI not end-to-end verified. Offline lesson uses exported graphs;
+  external VeriSim runs the provided RTL/testbench and needs an initial network load.
+- Workbook: 24 rendered pages. Seven changed/new pages visually reviewed;
+  other 17 pages pixel-identical to the previously reviewed release.
+- No new physical FPGA measurements or general correctness/formal proof claim.
+
+Reproduce: tests/run-advanced.sh, tests/run-behavioral.sh;
+python3 tools/build_verisim.py; python3 tools/build_learning_html.py;
+node tests/check-learning-browser.js; python3 tests/check-verisim.py.
+Requirements: CONSTRUCTS_AND_REQUIREMENTS.md. Contracts: SEQUENTIAL_CIL.md.
+
+Earlier release evidence follows:
+
+SharpHDL 0.12 verification (13 October 2026)
+
+- Behavioral suite: 70,360 assertions and 70 Icarus RTL benches passed.
+  New optimized/debug loop cases: while, do/while, nesting, break/continue.
+- Fixed-point and FSM: 8,970 independent-reference assertions passed.
+  Two Icarus RTL benches passed: all eight-bit values at shifts 0..8 and
+  512 controller cycles plus an injected unused state encoding.
+- Browser graph engine: 11,139 reference comparisons passed under Node.
+  Complete HTML inline script syntax checked; no unresolved template tokens.
+- HTML uses exported graphs, not VeloSim/Icarus in-browser. Visual browser/UI
+  testing was unavailable: no browser executable, browser download failed.
+  Responsive CSS is supplied, but browser compatibility is not yet verified.
+- Workbook rendered/reviewed: 22 pages, with new illustrated clock-lab activity.
+- No new physical FPGA measurements or formal-equivalence claims.
+
+Reproduce: tests/run-behavioral.sh, tests/run-learning.sh.
+Requirements and gaps: CONSTRUCTS_AND_REQUIREMENTS.md.
+
+Earlier release evidence follows:
+
+SharpHDL 0.11 verification (13 October 2026)
+
+Behavioral frontend, loop/shift reductions, explicit RAM:
+- 62,024 native CLR versus circuit-simulator assertions.
+- 62 emitted Verilog benches passed in Icarus.
+- Ten structural checks: twelve additions/no loop register, shift-based multiply,
+  signed bias plus arithmetic shift, and unsigned logical right shift.
+- Six iCE40 mapped netlist benches passed: Minimum, CheckedAdd, Loop12, Half,
+  mixed-language stream/skid pipeline, and 256x16 RAM.
+- Yosys retained one memory before mapping and used one SB_RAM40_4K for RAM256.
+- Full existing C# simulation regression passed after backend memory integration;
+  original test output is generated/behavioral/core-regression.txt.
+- Workbook rendered and reviewed: 21 pages, retaining the original illustrations
+  and adding behavioral/loop/shift/RAM teacher extensions.
+
+Reproduce with tests/run-behavioral.sh and tests/synthesize-behavioral.sh.
+Logs, CIL disassembly, graph dumps, RTL and benches: generated/behavioral/.
+Toolchain: .NET SDK 8.0.425, runtime 8.0.31; Yosys 0.33; Icarus.
+These are differential tests, not formal proof, and not physical board tests.
+
+Earlier release verification follows (historical counts, not additive totals):
+
+SharpHDL v0.10 additions verified 2026-10-13
+- Compiled all C# core/example/test sources with retained Mono toolchain.
+- Divider subset: 388,851 assertions passed, including all four-bit pairs across
+  two architectures, signs, five rounding modes and two overflow policies.
+- Directed/random stream vectors at 8 and 32 bits; expression vectors at 1,3,65
+  bits; raw Expr and typed UInt/SInt divide/remainder overloads tested.
+- Independent BigInteger oracle and cycle model check numeric results, status,
+  padding, metadata, stalls, draining, reset in flight and reset of held results.
+- All 121 new emitted-Verilog benches passed with Icarus.
+- Six eight-bit variants synthesized to iCE40 primitives using Yosys 0.33;
+  check -assert and all six mapped-netlist simulation traces passed. Two
+  redirected logs were incomplete; those cases were rerun with Yosys -l to
+  retain complete logs, and their mapped-netlist simulations passed again.
+- Existing multiplier subset rerun: 56,479 assertions passed.
+- Other unchanged suites were not rerun; their historical results follow below.
+- No divider FPGA placement/routing, frequency measurement or physical-board test.
+- Workbook: 19 pages, 15 illustrations, 22 tables. Rendered and reviewed changed
+  pages 14,16,18,19; other pages byte-identical to previously reviewed render.
+- Added INTEGER_DIVISION.md, SYNTHESIS_BOUNDARIES.md, API inventory updates,
+  and workbook division/rounding and rationale/boundary pages.
+
+SharpHDL v0.9 additions verified 2026-10-13
+- All C# library/example/test sources compiled with the retained Mono toolchain.
+- New multiplier subset: 56,479 assertions passed across 16 combinations of
+  width (4,8,12,32), signedness, and Parallel/BitSerial architecture.
+- Exhaustive four-bit operand pairs; wider boundary/random values; independent
+  BigInteger result oracle and cycle model; stalls, sidebands, and reset recovery.
+- All 16 new emitted-Verilog benches passed with Icarus.
+- Four eight-bit variants mapped by Yosys 0.33 synth_ice40; check -assert passed;
+  all four mapped-netlist traces passed with Icarus and iCE40 simulation cells.
+- No multiplier placement/routing or physical FPGA test performed. Earlier
+  unchanged feature suites were not rerun; their recorded results follow below.
+- Classroom document: 17 pages, 15 illustrations, 19 tables. Rendered to PNG;
+  changed pages 14,16,17 visually reviewed; all other page PNGs byte-identical to
+  the previously reviewed 15-page version. No clipping, spill pages or blank pages.
+- Added OPERATORS_AND_MULTIPLIERS.md and workbook teacher reference.
+
+SharpHDL 0.8 illustrated-course update — 2026-10-13 UTC
+
+Documentation/artwork update only. The workbook was rendered and all pages
+visually reviewed; clipped labels and page overflows were corrected.
+Final DOCX: 15 pages, 15 illustrations, 16 tables, no blank pages.
+Added exact diagrams, printable number cards, prediction/observation tables,
+a hex/segment reference, a capstone plan, and teacher answers/progress table.
+Original SVG and PNG assets and builders are included. The cover uses built-in
+image generation; precise bit/logic diagrams are authored directly in code.
+Earlier hardware and implementation verification records retain their scope.
+
+SharpHDL 0.7 verification — 2026-10-13 UTC
+
+Actual .NET 8 C#, F# and Visual Basic compilers built separate assemblies.
+PASS: 3,002 new three-language, stream/pipeline and classroom assertions.
+C#/F#/VB graph dumps and generated Verilog strings match exactly for AddTwo.
+All 256 input values checked per language. Actual CIL was disassembled from
+compiled methods. VB host add.ovf and C# unchecked add behaviors were checked.
+
+Seven generated RTL benches passed Icarus. Mixed-language pipeline and one-
+and two-stage C# versions each checked 160 beats, metadata/order, stalls,
+full-rate intervals and minimum latencies 3/1/2 cycles respectively.
+The iCE40-mapped AddTwo netlist also passed all 256 input vectors:
+7 SB_LUT4, 5 SB_CARRY, no registers in this mapping.
+
+Go Board shell test passed startup, synchronizer/filter latency, rejected
+short button bounce, single increment on hold, clear, mode and display pins.
+Core counter semantics were checked against an independent software model.
+The lesson build passed with predicted addend 2 and deliberately rejected
+an incorrect predicted addend 3 for the unchanged source.
+
+Classroom starter completed Yosys 0.33 synth_ice40, nextpnr 0.6 placement and
+routing, and IceStorm bitstream packing. Target: HX1K VQ100, 25 MHz.
+Utilization: 230/1280 logic cells, 0/16 RAM, 23 I/O, 5 global buffers.
+Final internal clock estimate: 160.77 MHz; PASS at requested 25 MHz.
+Reports, image and source/hash manifest are included in generated/goboard.
+No physical board was connected/programmed; no measured maximum clock claim.
+
+No existing library behavior changed in 0.7. Earlier full-suite execution
+records below are retained with their original scope and counts.
+
+SharpHDL 0.6 verification — 2026-10-13 UTC
+
+C# (Mono compilation and execution):
+  15,212 base + 49,234 feature + 6,698 numeric = 71,144 assertions passed.
+F# (direct .NET 8 C#/F# compilers and execution):
+  8,597 assertions passed; eight F# designs generated and tested.
+
+New checks cover typed widening and fixed-point nearest-even saturation;
+independent exact-rational float add/subtract/multiply/divide references;
+float precision conversions; math accuracy using quantized-input double
+references; extreme exponent samples; NaR, canonical zero and domain rules;
+skid capacity/order/sidebands/reset/latency/throughput/ready independence;
+and C#/F# gain and complex-power pipelines with backpressure.
+
+Icarus Verilog differential tests:
+  67 C#-generated RTL benches passed.
+  Eight F#-generated RTL benches passed; AXI wrappers compiled.
+
+Yosys structural RTL synthesis and post-synthesis trace simulation passed for:
+  SkidBuffer16, QuantizedGain24, Float16_add, Float16_mul, Float16_div,
+  Float16_sqrt, Float16_log2, Float16_cos.
+  Used proc -norom to keep explicit coefficient case logic.
+
+Largest observed normalized error |actual-reference|/max(1,|reference|):
+  Tiny16 math: 0.00539015 (sampled power).
+  Compact24 math: 0.000063477 (sampled power).
+These are sampled maxima, not proven bounds or universal tolerances.
+See generated/numeric_accuracy.txt and individual test cases for ranges.
+
+Custom finite formats are not IEEE 754 or historical Level II binary compatible.
+No FPGA placement/routing, resource budget, clock rate or board validation.
+The new float functions are direct combinational networks; stream adapters
+add output storage but do not internally pipeline long arithmetic paths.
+MSBuild remains unavailable in this environment; the SDK compilers were
+invoked directly, as documented in examples/FSharp/build_direct.py.
+
+Prior release records follow (historical counts and scope):
+
+SharpHDL 0.5 verification — 2026-10-13 UTC
+
+Hand-written four-filter-bank RTL passed the existing FsFilterBank4 trace,
+including cycle-by-cycle payload/metadata/ready comparison, and passed Yosys
+checks and post-synthesis simulation against the same trace.
+
+C# debug UART byte-controller test added. Current C# suite:
+PASS: 42588 feature assertions + 15212 base assertions = 57800 assertions.
+Generated DebugUartController RTL passed its trace, Yosys structural RTL checks,
+and post-synthesis trace simulation.
+Serial RX/TX adapter + generated controller: independent pin-level test checked
+11 reply bytes (ping, echo, control writes/reads, stopped counter read, unknown
+command and resume). Combined RTL passed Yosys checks. No serial error fault
+injection or baud-drift sweep was run. No target FPGA board execution.
+
+The following prior-release evidence is retained for history:
+
+SharpHDL 0.4 verification — 2026-10-13 UTC
+
+New exactly-once Broadcast primitive and configurable F# filter-bank example.
+F# compiler/runtime route: same .NET 8 direct build used in v0.3.
+PASS: 7959 F# assertions across six generated designs.
+New bank configurations:
+2 channels: 96 inputs -> 192 results, 373 test cycles including stalls.
+3 channels: 96 inputs -> 288 results, 515 test cycles including stalls.
+4 channels: 96 inputs -> 384 results, 647 test cycles including stalls.
+All three passed direct Verilog simulation, Yosys RTL checks and post-synthesis
+simulation. Per-channel independent convolutions, sequence tags, drain and
+stalled-payload checks passed. These are sampled regressions, not formal proofs.
+
+Only the affected F# regression was rerun; prior C# release evidence follows.
+No target-device frequency, resource count or board test is claimed.
+
+SharpHDL 0.3 verification — 2026-10-13 UTC
+
+New example validation:
+F# 8.0 compiler (SDK 8.0.425), .NET runtime 8.0.31.
+Roslyn compiled the C# library; F# called it as a separate .NET assembly.
+The included build_direct.py compiler route was executed successfully.
+CLI/MSBuild startup cannot read process metadata in this container; full
+SDK-project/MSBuild execution is not claimed.
+
+PASS: 2307 F# assertions.
+PASS: 42226 C# feature assertions + 15212 C# base assertions.
+Total current language-level assertions: 59745.
+F# oscillator maximum observed error: 2.3320064e-6.
+
+PASS generated-Verilog simulation AND Yosys RTL synthesis/post-synthesis simulation:
+FsFir, FsOscillator, FsScramblerRoundTrip, PacketPeak.
+F# AXI4-Stream wrappers compiled. No FPGA timing/placement or board execution.
+
+The prior v0.2 release verification record follows for history:
+
+SharpHDL 0.2 verification — 2026-10-13 UTC
+
+Mono C# compiler/runtime 6.8.0.105; Icarus Verilog 12.0; Yosys 0.33.
+C# compilation succeeded; one intentional unused-variable rejection-test warning.
+PASS: 41640 feature assertions.
+PASS: 15212 base C# assertions.
+Total C# assertions: 56852.
+
+Exact generated-Verilog trace comparisons passed for:
+- baseline unsigned datapaths, widths 1, 3, 8, 17, 65
+- SignedLookup, HeaderRewrite
+- Fifo1, Fifo4 (including saturation, simultaneous push/pop and reset flushing)
+- PacketRouter, Arbiter, CrcPacket (including sparse Keep)
+- Cordic
+- RomExp2Fraction, RomLog2Mantissa, RomReciprocalMantissa, RomSqrtMantissa
+- PolynomialExp2Fraction, PolynomialLog2Mantissa,
+  PolynomialReciprocalMantissa, PolynomialSqrtMantissa
+- Latency0, Latency1, Latency2 (21/2/11-stage latency contracts)
+AXI wrappers compiled. Directed AXI reset/payload/stall adapter test passed.
+
+Measured maximum absolute numerical errors:
+CORDIC sin/cos: 2.4164981834440269e-6
+Combined normalized table/polynomial tests: 5.7220458984375e-6
+These are sampled results, not exhaustive bounds or formal proofs.
+
+Yosys RTL synthesis + check -assert + post-synthesis Icarus trace tests passed:
+PacketRouter, Cordic, RomReciprocalMantissa, PolynomialLog2Mantissa,
+CrcPacket, Arbiter. Logs and emitted RTL netlists are in generated/synthesis.
+
+The synthesis script uses proc -norom. Automatic proc_rom/memory mapping in
+this Yosys 0.33 build produced undriven outputs for the inferred table memories.
+The case-logic path passed synthesis checks AND simulation; no block-RAM
+mapping claim is made. Counts in logs are RTL cells, not physical FPGA LUTs.
+
+Not run: .NET SDK project build, target FPGA technology mapping/place-and-route,
+frequency analysis, board execution, exhaustive formal equivalence.
+The exact C# sources were compiled and executed with Mono.

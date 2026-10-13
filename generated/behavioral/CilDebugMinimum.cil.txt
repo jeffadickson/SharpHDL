@@ -1,0 +1,18 @@
+Behavioral.CSharpFunctions.Minimum
+IL_0000: nop 
+IL_0001: ldarg.0 
+IL_0002: ldarg.1 
+IL_0003: clt 
+IL_0005: stloc.0 
+IL_0006: ldloc.0 
+IL_0007: brfalse.s 13
+IL_0009: ldarg.0 
+IL_000a: stloc.1 
+IL_000b: br.s 17
+IL_000d: ldarg.1 
+IL_000e: stloc.1 
+IL_000f: br.s 17
+IL_0011: ldloc.1 
+IL_0012: ret 
+
+Instructions visited: 17; symbolic branches: 1; method bodies: 1

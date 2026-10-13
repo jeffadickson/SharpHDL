@@ -1,0 +1,3 @@
+Numeric assertions: 6698
+Max |actual-reference|/max(1,|reference|): 0.0053901451108594187
+Basic arithmetic uses independent exact rational oracle. Transcendentals use quantized-input double references. Finite samples, not error proofs.

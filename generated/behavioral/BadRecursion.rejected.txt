@@ -1,0 +1,1 @@
+Behavioral.CSharpFunctions.BadRecursion IL_0000: Recursive call or call depth limit.

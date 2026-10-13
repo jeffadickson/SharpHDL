@@ -1,0 +1,158 @@
+
+-- Running command `read_verilog generated/Float16_add.v; hierarchy -check -top h_Float16_add; proc -norom; opt; check -assert; stat; write_verilog -noattr generated/synthesis/Float16_add_rtl.v' --
+
+1. Executing Verilog-2005 frontend: generated/Float16_add.v
+Parsing Verilog input from `generated/Float16_add.v' to AST representation.
+Generating RTLIL representation for module `\h_Float16_add'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \h_Float16_add
+
+2.2. Analyzing design hierarchy..
+Top module:  \h_Float16_add
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+3.7. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.8. Executing PROC_DFF pass (convert process syncs to FFs).
+
+3.9. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.10. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Float16_add.
+<suppressed ~286 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Float16_add.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Float16_add'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Float16_add..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $ternary$generated/Float16_add.v:1440$111: \n_115 -> { 1'0 \n_115 [42:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_add.v:1923$517: \n_570 -> { 2'01 \n_570 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_add.v:1922$516: \n_572 -> { 2'01 \n_572 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_add.v:1921$515: \n_574 -> { 2'01 \n_574 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_add.v:1920$514: \n_576 -> { 2'01 \n_576 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_add.v:1919$513: \n_578 -> { 2'01 \n_578 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_add.v:1918$512: \n_580 -> { 2'01 \n_580 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_add.v:1917$511: \n_582 -> { 2'01 \n_582 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_add.v:1916$510: \n_584 -> { 2'01 \n_584 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_add.v:1915$509: \n_586 -> { 2'01 \n_586 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_add.v:1914$508: \n_588 -> { 2'01 \n_588 [9:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_add.v:1913$507: \n_590 -> { 2'01 \n_590 [9:0] }
+      Replacing known input bits on port A of cell $ternary$generated/Float16_add.v:1968$559: \n_634 -> { 1'0 \n_634 [10:0] }
+      Replacing known input bits on port B of cell $ternary$generated/Float16_add.v:1968$559: \n_645 -> { \n_645 [11] 1'1 \n_645 [9:0] }
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~8 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Float16_add.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Float16_add'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Float16_add..
+Removed 2 unused cells and 564 unused wires.
+<suppressed ~5 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Float16_add.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_Float16_add..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~8 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_Float16_add.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_Float16_add'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_Float16_add..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_Float16_add.
+
+4.16. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing CHECK pass (checking for obvious problems).
+Checking module h_Float16_add...
+Found and reported 0 problems.
+
+6. Printing statistics.
+
+=== h_Float16_add ===
+
+   Number of wires:                656
+   Number of wire bits:           7804
+   Number of public wires:         656
+   Number of public wire bits:    7804
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                310
+     $add                           37
+     $and                           35
+     $eq                             2
+     $logic_not                     34
+     $lt                             2
+     $mux                          128
+     $not                           33
+     $or                            34
+     $sub                            5
+
+7. Executing Verilog backend.
+
+7.1. Executing BMUXMAP pass.
+
+7.2. Executing DEMUXMAP pass.
+Dumping module `\h_Float16_add'.

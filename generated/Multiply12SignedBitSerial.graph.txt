@@ -1,0 +1,97 @@
+module Multiply12SignedBitSerial
+input input_tdata : bits[24]
+input input_tkeep : bits[3]
+input input_tlast : bits[1]
+input input_tuser : bits[4]
+input input_tvalid : bits[1]
+output input_tready : bits[1]
+output output_tdata : bits[24]
+output output_tkeep : bits[3]
+output output_tlast : bits[1]
+output output_tuser : bits[4]
+output output_tvalid : bits[1]
+input output_tready : bits[1]
+wire mul_tdata : bits[24]
+wire mul_tkeep : bits[3]
+wire mul_tlast : bits[1]
+wire mul_tuser : bits[4]
+wire mul_tvalid : bits[1]
+wire mul_tready : bits[1]
+reg mul_busy : bits[1] reset=0
+reg mul_valid : bits[1] reset=0
+reg mul_acc : bits[24] reset=0
+reg mul_shifted_a : bits[24] reset=0
+reg mul_remaining_b : bits[12] reset=0
+reg mul_bit_index : bits[4] reset=0
+reg mul_product : bits[24] reset=0
+reg mul_last : bits[1] reset=0
+reg mul_user : bits[4] reset=0
+expressions:
+e0 : bits[1] ~ (mul_busy)
+e1 : bits[1] ~ (mul_valid)
+e2 : bits[1] | (e1, mul_tready)
+e3 : bits[1] & (e0, e2)
+e4 : bits[3] const 7
+e5 : bits[1] & (input_tvalid, input_tready)
+e6 : bits[1] const 1
+e7 : bits[4] const 11
+e8 : bits[1] == (mul_bit_index, e7)
+e9 : bits[1] & (mul_busy, e8)
+e10 : bits[1] const 0
+e11 : bits[1] mux (e9, e10, mul_busy)
+e12 : bits[1] mux (e5, e6, e11)
+e13 : bits[1] const 1
+e14 : bits[1] & (mul_tvalid, mul_tready)
+e15 : bits[1] const 0
+e16 : bits[1] mux (e14, e15, mul_valid)
+e17 : bits[1] mux (e9, e13, e16)
+e18 : bits[24] const 0
+e19 : bits[1] slice (mul_remaining_b) offset=0
+e20 : bits[24] const 0
+e21 : bits[24] mux (e19, mul_shifted_a, e20)
+e22 : bits[24] ~ (e21)
+e23 : bits[24] mux (e8, e22, e21)
+e24 : bits[24] + (mul_acc, e23)
+e25 : bits[24] resize (e8)
+e26 : bits[24] + (e24, e25)
+e27 : bits[24] mux (mul_busy, e26, mul_acc)
+e28 : bits[24] mux (e5, e18, e27)
+e29 : bits[12] slice (input_tdata) offset=0
+e30 : bits[24] signextend (e29)
+e31 : bits[24] << (mul_shifted_a) offset=1
+e32 : bits[24] mux (mul_busy, e31, mul_shifted_a)
+e33 : bits[24] mux (e5, e30, e32)
+e34 : bits[12] slice (input_tdata) offset=12
+e35 : bits[12] >> (mul_remaining_b) offset=1
+e36 : bits[12] mux (mul_busy, e35, mul_remaining_b)
+e37 : bits[12] mux (e5, e34, e36)
+e38 : bits[4] const 0
+e39 : bits[4] const 1
+e40 : bits[4] + (mul_bit_index, e39)
+e41 : bits[4] mux (mul_busy, e40, mul_bit_index)
+e42 : bits[4] mux (e5, e38, e41)
+e43 : bits[24] mux (e9, e26, mul_product)
+e44 : bits[1] mux (e5, input_tlast, mul_last)
+e45 : bits[4] mux (e5, input_tuser, mul_user)
+connections:
+input_tready <- e3
+output_tdata <- mul_tdata
+output_tkeep <- mul_tkeep
+output_tlast <- mul_tlast
+output_tuser <- mul_tuser
+output_tvalid <- mul_tvalid
+mul_tdata <- mul_product
+mul_tkeep <- e4
+mul_tlast <- mul_last
+mul_tuser <- mul_user
+mul_tvalid <- mul_valid
+mul_tready <- output_tready
+mul_busy.next <- e12
+mul_valid.next <- e17
+mul_acc.next <- e28
+mul_shifted_a.next <- e33
+mul_remaining_b.next <- e37
+mul_bit_index.next <- e42
+mul_product.next <- e43
+mul_last.next <- e44
+mul_user.next <- e45

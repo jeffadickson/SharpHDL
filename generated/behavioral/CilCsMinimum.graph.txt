@@ -1,0 +1,13 @@
+module CilCsMinimum
+input a : bits[32]
+input b : bits[32]
+output y : bits[32]
+output fault : bits[1]
+expressions:
+e0 : bits[1] slt (a, b)
+e1 : bits[1] ~ (e0)
+e2 : bits[32] mux (e1, b, a)
+e3 : bits[1] const 0
+connections:
+y <- e2
+fault <- e3

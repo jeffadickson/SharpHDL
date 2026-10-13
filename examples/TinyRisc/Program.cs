@@ -1,0 +1,74 @@
+using System;using System.IO;using System.Linq;using System.Numerics;using System.Text;using SharpHDL;using Module=SharpHDL.Module;
+class Program
+{
+ static int checks,retirements,cycles;static void Check(bool ok,string msg){checks++;if(!ok)throw new Exception(msg);}
+ static ushort I(int op,int d=0,int a=0,int b=0){return (ushort)((op<<12)|(d<<9)|(a<<6)|b);}
+ // Independent architectural interpreter: host integer arithmetic, no Expr or hardware control equations.
+ class Model
+ {
+  public ushort[] R=new ushort[8],Mem=new ushort[256];public int Pc,Led;public bool Halt,Fault;public int Tx=-1,Rx;
+  public void Reset(){R=new ushort[8];Pc=Led=0;Halt=Fault=false;Tx=-1;Rx=0;}
+  public void Execute(ushort[] rom,int status)
+  {
+   Tx=-1;Rx=0;if(Pc>=rom.Length){Fault=Halt=true;return;}
+   int w=rom[Pc],op=w>>12,d=(w>>9)&7,a=(w>>6)&7,b=(w>>3)&7,im=w&63;if(im>=32)im-=64;
+   int n=(Pc+1)&65535,v=0;bool write=false;int address=(R[a]+im)&65535;
+   if(op<=6){if((w&7)!=0){Fault=Halt=true;return;}write=true;switch(op){case 0:v=R[a]+R[b];break;case 1:v=R[a]-R[b];break;case 2:v=R[a]&R[b];break;case 3:v=R[a]|R[b];break;case 4:v=R[a]^R[b];break;case 5:v=R[a]<<(R[b]&15);break;case 6:v=R[a]>>(R[b]&15);break;}}
+   else switch(op){case 7:v=R[a]+im;write=true;break;case 8:v=w&511;if(v>=256)v-=512;write=true;break;
+    case 9:write=true;if(address<256)v=Mem[address];else if(address==0xff00)v=Led;else if(address==0xff01)v=42;else if(address==0xff03){v=165;Rx=1;}else if(address==0xff04)v=status;else Fault=true;break;
+    case 10:if(address<256)Mem[address]=R[d];else if(address==0xff00)Led=R[d];else if(address==0xff02)Tx=R[d]&255;else Fault=true;break;
+    case 11:if(R[d]==R[a])n=(n+im)&65535;break;case 12:if(R[d]!=R[a])n=(n+im)&65535;break;
+    case 13:if((w&63)!=0)Fault=true;else{v=n;n=R[a];write=true;}break;
+    case 15:if(w==0xf000)Halt=true;else if(w!=0xf001)Fault=true;break;default:Fault=true;break;}
+   if(Fault){Halt=true;return;}if(write&&d!=0)R[d]=(ushort)v;Pc=n;
+  }
+ }
+ class Bench
+ {
+  public Module M;public Simulator S;public StringBuilder T=new StringBuilder();public Signal[] Ports;public int StepLevel;
+  public Bench(ushort[] rom,string name){M=TinyRisc.Build(rom,name);S=M.Simulate();Ports=M.Ports.ToArray();T.AppendLine("`timescale 1ns/1ps\nmodule tb;reg clk=0,rst=0;");foreach(var p in Ports)T.AppendLine((p.IsInput?"reg ":"wire ")+"["+(p.Width-1)+":0] s_"+p.Name+(p.IsInput?"=0":"")+";");T.Append("h_"+name+" dut(.clk(clk),.rst(rst)");foreach(var p in Ports)T.Append(",.s_"+p.Name+"(s_"+p.Name+")");T.AppendLine(");initial begin");}
+  public Signal P(string n){return Ports.Single(p=>p.Name==n);}public int Read(string n){return (int)S.Read(P(n));}
+  public void Set(string n,int v){S.Set(P(n),v);T.AppendLine("s_"+n+"="+v+";");}
+  public void Tick(bool reset=false){S.Tick(reset);T.AppendLine("rst="+(reset?1:0)+";#1;clk=1;#1;");foreach(var p in Ports.Where(p=>p.IsOutput))T.AppendLine("if(s_"+p.Name+"!=="+p.Width+"'d"+S.Read(p)+")$fatal(1,\""+M.Name+" "+p.Name+"\");");T.AppendLine("clk=0;rst=0;");cycles++;}
+  public void Save(){var path="generated/tinyrisc/"+M.Name;File.WriteAllText(path+".v",M.Verilog());File.WriteAllText(path+".graph.txt",M.DumpGraph());T.AppendLine("$display(\"PASS HDL "+M.Name+"\");$finish;end endmodule");File.WriteAllText(path+"_tb.v",T.ToString());}
+ }
+ static void Run(ushort[] rom,string name,bool stepping=false,bool twice=false)
+ {
+  var t=new Bench(rom,name);var model=new Model();int tx=0,rx=0;
+  for(int pass=0;pass<(twice?2:1);pass++)
+  {
+   t.Tick(true);model.Reset();t.Set("switches",42);t.Set("rx_data",165);t.Set("step",0);t.Set("run",stepping?0:1);
+   int count=0;bool outstanding=false;int pause=0;
+   while(!model.Halt&&count<4000)
+   {
+    int rvalid=count%5==0?1:0,ready=count%3==0?1:0;t.Set("rx_valid",rvalid);t.Set("tx_ready",ready);
+    if(stepping){if(!outstanding&&pause==0){t.Set("step",1);outstanding=true;}else if(pause==1)t.Set("step",0);}
+    int sent=t.Read("tx_valid")&ready,got=t.Read("rx_ready")&rvalid,data=t.Read("tx_data"),oldpc=model.Pc;
+    t.Tick();count++;
+    if(t.Read("retired")!=0||t.Read("fault")!=0)
+    {
+     model.Execute(rom,rvalid|(ready<<1));Check(t.Read("fault")== (model.Fault?1:0),name+" fault");
+     if(!model.Fault){Check(t.Read("retired")==1&&t.Read("last_pc")==oldpc,name+" retirement");retirements++;}
+     Check(t.Read("pc")==model.Pc,name+" PC");Check(t.Read("leds")==model.Led,name+" LEDs");Check(t.Read("halted")== (model.Halt?1:0),name+" halt");
+     for(int i=0;i<8;i++)Check(t.Read("r"+i)==model.R[i],name+" R"+i);
+     Check(sent==(model.Tx>=0?1:0)&&got==model.Rx,name+" peripheral transfer");if(sent!=0)Check(data==model.Tx,name+" tx byte");
+     tx+=sent;rx+=got;if(stepping){outstanding=false;pause=6;}
+    }
+    else {Check(sent==0&&got==0,name+" no extra peripheral effect");if(stepping&&!outstanding){Check(t.Read("pc")==model.Pc,name+" held step must not repeat");pause--;}}
+   }
+   Check(model.Halt,name+" progress limit");for(int j=0;j<4;j++){t.Tick();Check(t.Read("halted")==1&&t.Read("retired")==0,name+" halted hold");}
+  }
+  t.Save();
+ }
+ static void Main(string[] args)
+ {
+  Directory.CreateDirectory("generated/tinyrisc");var demo=File.ReadAllLines("generated/tinyrisc/count.hex").Select(x=>Convert.ToUInt16(x,16)).ToArray();Run(demo,"CountRun");Run(demo,"CountStep",true);
+  var random=new Random(93);var code=new System.Collections.Generic.List<ushort>();for(int i=1;i<8;i++)code.Add(I(8,i,0,random.Next(512)));for(int i=0;i<180;i++){int op=random.Next(9);code.Add(op<=6?I(op,random.Next(8),random.Next(8),random.Next(8)<<3):op==7?I(op,random.Next(8),random.Next(8),random.Next(64)):I(op,random.Next(8),0,random.Next(512)));}code.Add(0xf000);Run(code.ToArray(),"RandomAlu");
+  Run(new[]{I(8,1,0,256),I(9,2,1,1),I(10,2,1,2),I(9,3,1,3),I(9,4,1,4),I(10,3,1,0),(ushort)0xf000},"PeripheralStalls",true);
+  Run(new[]{I(8,1,0,3),I(13,1,1),I(8,2,0,99),I(0,3,1,0),(ushort)0xf000},"JumpAlias");
+  Run(new[]{I(9,1,0,0),I(7,1,1,1),I(10,1,0,0),(ushort)0xf000},"ResetRetainsRam",false,true);
+  Run(new ushort[]{0xe000},"IllegalOpcode");Run(new ushort[]{0x0001},"IllegalEncoding");Run(new[]{I(8,1,0,256),I(9,2,1,5)},"BadAddress");Run(new ushort[]{0xf001},"RomBounds");
+  Run(new[]{I(8,1,0,1),I(11,1,0,1),I(11,1,1,1),(ushort)0xe000,(ushort)0xf000},"Branches");
+  string report="PASS "+checks+" independent checks; "+retirements+" retired instructions; "+cycles+" traced edges; 11 RTL benches.\n";File.WriteAllText("generated/tinyrisc/verification.txt",report);Console.Write(report);
+ }
+}

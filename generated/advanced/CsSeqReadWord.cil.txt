@@ -1,0 +1,5 @@
+AdvancedFunctions.ReadWord
+IL_0000: ldarg.0 
+IL_0001: ldarg.1 
+IL_0002: ldelem.u4 
+IL_0003: ret 
