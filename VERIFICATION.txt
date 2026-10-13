@@ -1,3 +1,14 @@
+TinyRisc HTML extension verification (13 October 2026)
+
+- Actual generated RTL demo bench: PASS, RAM/load and LED sum15.
+- 83 HTML/VCD assertions, including 22 retired instruction addresses, running
+  sums5/9/12/14/15, final PC/registers, X/Z and exact VeriSim link payloads.
+- Chromium119 executed VeriSim Icarus WebAssembly and passed the same demo.
+  Verified downloaded engine files were locally routed because browser external
+  requests are blocked here; engine computation itself was real WebAssembly.
+- Clock/instruction stepping and waveform controls tested; desktop/mobile reviewed.
+- Source: docs/tinyrisc; tests/check-tinyrisc-demo.js and check-tinyrisc-browser.js.
+
 SharpHDL 0.14 TinyRisc16 verification (13 October 2026)
 
 - 4,304 independent assertions across 257 retired instructions and 752 traced edges.

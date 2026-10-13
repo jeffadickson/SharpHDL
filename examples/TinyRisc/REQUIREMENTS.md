@@ -21,3 +21,18 @@ Actual acceptance records are retained under generated/tinyrisc. Test counts do
 not imply exhaustive ISA or temporal verification. CPU07 uses a byte interface;
 physical UART integration is deferred. CPU08 has no debugger writes to registers
 or memory; reset is the way to resume after HALT/fault.
+
+## HTML simulation extension
+
+| ID | Requirement | Acceptance |
+|---|---|---|
+| CPUDEMO01 | Show PC, instruction, all registers and LEDs from actual RTL trace | VCD-driven panel; 83 trace/payload assertions; native expected program state |
+| CPUDEMO02 | Include waveform selection, cursor, zoom and clock/instruction replay | Chromium controls test and desktop/mobile review |
+| CPUDEMO03 | Run generated RTL with VeriSim WebAssembly | Isolated worker using upstream factories; browser PASS with verified downloaded assets locally routed |
+| CPUDEMO04 | Keep trace playback distinct from executing RTL | UI labels bundled trace, fresh simulation and imported trace; no JS CPU emulator |
+| CPUDEMO05 | Bound execution and display unknown values honestly | Stop control, worker termination at60seconds, 8MB VCD cap, X/Z remain unknown |
+| CPUDEMO06 | Support engine availability constraints | Offline trace; optional local engine via verified downloader; exact Open in VeriSim payload |
+
+Direct external-engine downloads were blocked in the test browser. Tests supplied
+the actual downloaded assets locally, executed WebAssembly, and checked the result.
+This does not establish that every browser/network permits hosted module imports.

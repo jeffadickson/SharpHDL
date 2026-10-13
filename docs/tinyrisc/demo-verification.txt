@@ -1,0 +1,3 @@
+VCD info: dumpfile dump.vcd opened for output.
+PASS TinyRisc demo: sum=15 RAM=15 LEDs=15
+SharpHDL/docs/tinyrisc/demo_tb.v:22: $finish called at 465000 (1ps)

@@ -5,3 +5,4 @@ __pycache__/
 *.pyc
 *.exe
 *.dll
+docs/tinyrisc/verisim/

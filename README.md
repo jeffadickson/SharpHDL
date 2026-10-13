@@ -11,7 +11,9 @@ Build a single-clock RTL design in C#, simulate it, and emit Verilog.
 
 Version 0.14 adds [TinyRisc16](examples/TinyRisc/ISA.md): a structural 16-bit
 processor, assembler, instruction stepping, scratch RAM, memory-mapped I/O and
-an independent architectural test model. [CPU requirements](examples/TinyRisc/REQUIREMENTS.md)
+an independent architectural test model. The [TinyRisc HTML explorer](docs/tinyrisc/TinyRisc_Demo.html)
+adds synchronized PC/register displays, waveforms and actual VeriSim WebAssembly
+simulation. See [demo instructions](docs/tinyrisc/README.md) for offline use. [CPU requirements](examples/TinyRisc/REQUIREMENTS.md)
 and a separate children's computer handoff are included. No board timing or ISA
 compatibility is claimed.
 
