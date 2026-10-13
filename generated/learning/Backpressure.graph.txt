@@ -1,0 +1,95 @@
+module Backpressure
+input direct_in_tdata : bits[8]
+input direct_in_tkeep : bits[1]
+input direct_in_tlast : bits[1]
+input direct_in_tuser : bits[2]
+input direct_in_tvalid : bits[1]
+output direct_in_tready : bits[1]
+output direct_out_tdata : bits[8]
+output direct_out_tkeep : bits[1]
+output direct_out_tlast : bits[1]
+output direct_out_tuser : bits[2]
+output direct_out_tvalid : bits[1]
+input direct_out_tready : bits[1]
+output direct_accepted : bits[1]
+output direct_delivered : bits[1]
+input buffered_in_tdata : bits[8]
+input buffered_in_tkeep : bits[1]
+input buffered_in_tlast : bits[1]
+input buffered_in_tuser : bits[2]
+input buffered_in_tvalid : bits[1]
+output buffered_in_tready : bits[1]
+output buffered_out_tdata : bits[8]
+output buffered_out_tkeep : bits[1]
+output buffered_out_tlast : bits[1]
+output buffered_out_tuser : bits[2]
+output buffered_out_tvalid : bits[1]
+input buffered_out_tready : bits[1]
+wire skid_tdata : bits[8]
+wire skid_tkeep : bits[1]
+wire skid_tlast : bits[1]
+wire skid_tuser : bits[2]
+wire skid_tvalid : bits[1]
+wire skid_tready : bits[1]
+reg skid_head : bits[12] reset=0
+reg skid_spill : bits[12] reset=0
+reg skid_valid : bits[1] reset=0
+reg skid_spill_valid : bits[1] reset=0
+output buffered_accepted : bits[1]
+output buffered_delivered : bits[1]
+expressions:
+e0 : bits[1] & (direct_in_tvalid, direct_in_tready)
+e1 : bits[1] & (direct_out_tvalid, direct_out_tready)
+e2 : bits[1] ~ (skid_spill_valid)
+e3 : bits[8] slice (skid_head) offset=0
+e4 : bits[1] slice (skid_head) offset=8
+e5 : bits[1] slice (skid_head) offset=9
+e6 : bits[2] slice (skid_head) offset=10
+e7 : bits[1] ~ (skid_valid)
+e8 : bits[1] | (e7, skid_tready)
+e9 : bits[1] | (skid_spill_valid, buffered_in_tvalid)
+e10 : bits[1] & (e8, e9)
+e11 : bits[9] concat (buffered_in_tkeep, buffered_in_tdata)
+e12 : bits[10] concat (buffered_in_tlast, e11)
+e13 : bits[12] concat (buffered_in_tuser, e12)
+e14 : bits[12] mux (skid_spill_valid, skid_spill, e13)
+e15 : bits[12] mux (e10, e14, skid_head)
+e16 : bits[1] ~ (e8)
+e17 : bits[1] & (buffered_in_tvalid, buffered_in_tready)
+e18 : bits[1] & (e16, e17)
+e19 : bits[12] mux (e18, e13, skid_spill)
+e20 : bits[1] | (skid_spill_valid, buffered_in_tvalid)
+e21 : bits[1] mux (e8, e20, skid_valid)
+e22 : bits[1] const 0
+e23 : bits[1] & (buffered_in_tvalid, buffered_in_tready)
+e24 : bits[1] | (skid_spill_valid, e23)
+e25 : bits[1] mux (e8, e22, e24)
+e26 : bits[1] & (buffered_in_tvalid, buffered_in_tready)
+e27 : bits[1] & (buffered_out_tvalid, buffered_out_tready)
+connections:
+direct_in_tready <- direct_out_tready
+direct_out_tdata <- direct_in_tdata
+direct_out_tkeep <- direct_in_tkeep
+direct_out_tlast <- direct_in_tlast
+direct_out_tuser <- direct_in_tuser
+direct_out_tvalid <- direct_in_tvalid
+direct_accepted <- e0
+direct_delivered <- e1
+buffered_in_tready <- e2
+buffered_out_tdata <- skid_tdata
+buffered_out_tkeep <- skid_tkeep
+buffered_out_tlast <- skid_tlast
+buffered_out_tuser <- skid_tuser
+buffered_out_tvalid <- skid_tvalid
+skid_tdata <- e3
+skid_tkeep <- e4
+skid_tlast <- e5
+skid_tuser <- e6
+skid_tvalid <- skid_valid
+skid_tready <- buffered_out_tready
+skid_head.next <- e15
+skid_spill.next <- e19
+skid_valid.next <- e21
+skid_spill_valid.next <- e25
+buffered_accepted <- e26
+buffered_delivered <- e27

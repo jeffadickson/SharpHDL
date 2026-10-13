@@ -61,5 +61,5 @@ class LearningTests
         Reject(()=>f.Build());Reject(()=>f.When("A",both,"C"));
         var bad=new StateMachine(new Module("BadNames"),"s","A","B");Reject(()=>bad.Is("unknown"));Reject(()=>bad.When("A",Expr.Const(2,0),"B"));
     }
-    static void Main(){Directory.CreateDirectory("generated/learning");Fixed();Fsm();File.WriteAllText("generated/learning/verification.txt","PASS "+checks+" assertions; fixed shifts and explicit FSM.\n");Console.WriteLine("PASS "+checks+" assertions");}
+    static void Main(){Directory.CreateDirectory("generated/learning");Fixed();Fsm();Save(Backpressure.Build());File.WriteAllText("generated/learning/verification.txt","PASS "+checks+" assertions; fixed shifts and explicit FSM.\n");Console.WriteLine("PASS "+checks+" assertions");}
 }

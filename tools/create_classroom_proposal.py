@@ -360,7 +360,7 @@ h('Important rules for the adult')
 p('The packet example reads a flat, explicitly laid-out header. The RAM example owns one uint[] memory with a fixed depth. General objects, nested packet records and arbitrary arrays remain outside this first subset.')
 p('Reset stops the robot and clears its control registers, but the memory drawers keep their contents. A fault does not undo earlier writes. Done is a held signal, not a one-clock flash. Read result only when Done is on and Fault is off.')
 h('Two complementary experiments')
-p('The offline Clock Lab evaluates exported circuit graphs. The separate workbook WASM lab runs actual generated Verilog and prepared testbenches on the page, using the VeriSim Icarus WebAssembly engine. Its five experiments have browser and native-trace agreement tests. Fresh runs need engine files; bundled recorded traces work offline.')
+p('The offline Clock Lab evaluates exported circuit graphs. The separate workbook WASM lab runs actual generated Verilog and prepared testbenches on the page, using the VeriSim Icarus WebAssembly engine. Its seven experiments have browser and native-trace agreement tests. Fresh runs need engine files; bundled recorded traces work offline.')
 note('Requirements and exact boundaries: CONSTRUCTS_AND_REQUIREMENTS.md and SEQUENTIAL_CIL.md. Reproducible native-code, graph and RTL checks: tests/run-advanced.sh. These tests establish the included cases; they are not a proof for every program.')
 
 # 25 Traceable generated hardware
@@ -408,6 +408,19 @@ lablink('sequential','A loop that takes clock ticks')
 h('What the buttons really do')
 p('Run RTL compiles and simulates the generated Verilog in WebAssembly, then replaces the waveform trace. The teacher’s testbench checks the answers. Restore recorded trace returns to the bundled native-Icarus result. Cancel stops a worker; a run also has a 60-second limit. The children can read waves without writing a testbench.')
 note('Extension answers: four enabled ticks; 38 without clock edges; 16 when Done is high and Fault and Timeout are low. Unknown X/Z is not zero. A CIL operation can take a clock; a whole loop iteration usually takes several. Full source, testbenches, requirements and engine attribution: WASM_WORKBOOK.md. TinyRisc_Demo.html is the next PC/register/LED exercise.')
+
+# 28 Backpressure experiment
+page('Browser lab  Passing cards without losing one')
+p('A sender has cards 10, 11 and 12. The receiver says Wait for three clock claps. Compare a direct connection with a skid buffer that has two waiting places. Both must deliver every card exactly once.')
+picture('skid','The head holds the next card to deliver. The spill saves one extra card. In this experiment A is 10 and B is 11.',width=4.8)
+h('Two signals make a promise')
+p('Valid means I am offering a card. Ready means I can take it. A card changes hands only on an upward clock edge when both are 1. When Valid is 1 and Ready is 0, keep the card and its labels still. That wait signal is called backpressure.')
+table([['After edge','Receiver Ready','Direct accepted','Skid accepted','Each receiver gets'],['1','0','0','1','Nothing'],['2','0','0','2','Nothing'],['3','0','0','2','Nothing'],['4','1','1','2','10'],['5','1','2','3','11'],['6','1','3','3','12'],['7','1','3','3','Nothing']],[1,1.3,1.4,1.4,1.9],10)
+p('Accepted counts are totals since reset. Predict where card 12 waits at edge 3. Why does the full skid buffer still refuse a new card at edge 4, even though the receiver takes card 10?')
+lablink('direct','Backpressure without a buffer')
+lablink('skid','Backpressure with a skid buffer')
+boldline('Waveform detective','Watch clk, sink_ready, input ready/data, output valid/data and the sent/received counters. LAST marks card 12. A high accepted or delivered wire counts only at a rising edge. Invalid data is not a card being offered.')
+note('At edge 3, the skid sender holds 12; the direct sender holds 10. Skid Ready comes from stored occupancy, so room becomes visible after edge 4. A buffer absorbs short waits; it cannot speed up the receiver. Counters belong to the teacher bench. Source and BP requirements: SKID_BUFFER_AND_VERILOG_COMMENTS.md.')
 
 # Remove inherited title rules and keep all headings black.
 for tree in (d.styles.element,d.element):

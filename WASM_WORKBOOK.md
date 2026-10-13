@@ -1,6 +1,6 @@
 # Run workbook circuits with WebAssembly
 
-The workbook companion `docs/interactive/SharpHDL_WASM_Lab.html` runs five
+The workbook companion `docs/interactive/SharpHDL_WASM_Lab.html` runs seven
 SharpHDL-generated designs using VeriSim's Icarus WebAssembly engine. Each
 experiment includes the original SharpHDL source file, emitted Verilog, a
 prepared self-checking testbench, a simulation log and a waveform viewer.
@@ -17,6 +17,8 @@ pause an executing simulator. No separate JavaScript model calculates results.
 | Lessons 5–6 | Count, pause, resume | 0, 1, 2, 3, 3, 3, 4 after successive rising edges | `clk`, `rst`, `s_enable`, `s_value` |
 | Clock lab | Coach the hockey drill | Start enters Running with zero ticks; four following enabled edges reach Done | `s_start`, `s_ticks`, `s_phase`, `s_done` |
 | Loop extension | Twelve additions, no clocks | 2 + 12 × 3 = 38 without clock edges | `s_a`, `s_b`, `s_y`, `s_fault` |
+| Stream bonus | Direct connection | Producer holds 10 while receiver pauses; then delivers 10, 11, 12 | input ready/data, accepted/delivered, sent/received |
+| Stream bonus | Skid buffer | Accept 10 and 11 into two slots; hold 12 until room returns | input ready, output valid/data/last, sent/received |
 | Clocked-loop extension | A loop that takes clock ticks | 10 + 3 + 2 + 1 = 16 when Done is high | `s_busy`, `s_done`, `s_result`, `s_fault`, `s_timeout` |
 
 Waveform bus labels and the value table use unsigned decimal and binary.
@@ -35,7 +37,7 @@ python3 -m http.server 8090 --directory docs
 
 Open [the workbook lab](http://localhost:8090/interactive/SharpHDL_WASM_Lab.html).
 The workbook's clickable experiment links use this address, with `#addtwo`,
-`#counter`, `#fsm`, `#forloop` or `#sequential` to select a lesson. Run the server
+`#counter`, `#fsm`, `#forloop` `#sequential`, `#direct` or `#skid` to select a lesson. Run the server
 on the computer opening those links. On a tablet accessing a teacher's server,
 replace localhost with the teacher computer's address.
 
@@ -78,7 +80,7 @@ python3 tests/check-verisim.py
 Native trace generation needs Icarus. Browser tests need Playwright/Chromium;
 `CHROME_BIN` selects an existing installation. Prepare the verified engine
 files above for offline browser testing, or set `VERISIM_ENGINE_DIR` to their
-location. Browser tests execute all five WASM experiments and compare each
+location. Browser tests execute all seven WASM experiments and compare each
 selected signal at the union of native/browser event times, not just final
 answers. They also test cursor controls, cancellation and mobile layout.
 The full `tests/run-all.sh` includes these checks. Workbook rebuilding remains
@@ -89,7 +91,7 @@ render and visually inspect changed pages before release.
 
 | ID | Requirement | Verification |
 |---|---|---|
-| WASM-01 | Use actual generated RTL with the VeriSim Icarus WASM engine. | Five real browser runs and native trace comparisons. |
+| WASM-01 | Use actual generated RTL with the VeriSim Icarus WASM engine. | Seven real browser runs and native trace comparisons. |
 | WASM-02 | Match exercises to workbook predictions and named signals. | Fixture assertions, initial/wrap cases, counter hold timing and workbook links. |
 | WASM-03 | Keep recorded replay distinct from fresh simulation and scheduling. | UI labels, workbook explanation and documentation. |
 | WASM-04 | Show bus values, clock/control waves and honest X/Z values. | VCD parser, waveform/value display and cursor checks. |
@@ -101,3 +103,6 @@ The lab reuses the existing worker and VCD parser; parser callers can now
 specify a required signal, with TinyRisc's original requirement still the default.
 Engine binaries are not redistributed in this repository. VeriSim and this
 integration are separate from the VeloSim project.
+
+For the seven-edge backpressure comparison, alternative elastic register, and
+BP-01 through BP-05 requirements, see [the stream guide](SKID_BUFFER_AND_VERILOG_COMMENTS.md#compare-buffering-and-backpressure-in-the-browser).

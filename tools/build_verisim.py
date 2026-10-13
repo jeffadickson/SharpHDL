@@ -34,6 +34,8 @@ initial begin rst=1;#2;clk=1;#2;clk=0;rst=0;s_start=1;
 repeat(250) begin #2;clk=1;#2;clk=0;end
 if(s_done!==1 || s_fault!==0 || s_result!==16)$fatal(1,"sequential");
 ''')]
+for key in ('direct','skid'):
+ fixtures.append((key,'generated/learning/Backpressure',(root/'examples/LearningLab/backpressure_bench_body.vh').read_text()))
 items={};out=root/'generated/learning/verisim';out.mkdir(exist_ok=True)
 for key,stem,body in fixtures:
  design=(root/(stem+'.v')).read_text()

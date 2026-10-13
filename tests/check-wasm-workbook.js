@@ -17,7 +17,15 @@ const a=Trace.parseVCD(bundle.lessons.addtwo.vcd,null);
 assert.equal(Trace.numberAt(a,'tb.s_a',0),2);assert.equal(Trace.numberAt(a,'tb.s_a',5000),9);assert.equal(Trace.numberAt(a,'tb.s_a',10000),0);
 const c=Trace.parseVCD(bundle.lessons.counter.vcd,null);
 for(const [time,value]of [[2000,0],[6000,1],[10000,2],[14000,3],[18000,3],[22000,3],[26000,4]])assert.equal(Trace.numberAt(c,'tb.s_value',time),value);
-console.log('PASS five workbook RTL fixtures, expected values, counter timing, inline JS and VeriSim payloads');
+const stream=Trace.parseVCD(bundle.lessons.skid.vcd,null);
+for(const [time,ds,bs,received]of [[8000,0,1,0],[12000,0,2,0],[16000,0,2,0],[21000,1,2,1],[25000,2,3,2],[29000,3,3,3],[33000,3,3,3]]){
+ assert.equal(Trace.numberAt(stream,'tb.direct_sent',time),ds);
+ assert.equal(Trace.numberAt(stream,'tb.buffered_sent',time),bs);
+ for(const lane of ['direct','buffered'])assert.equal(Trace.numberAt(stream,'tb.'+lane+'_received',time),received);
+}
+assert.equal(Trace.numberAt(stream,'tb.s_direct_in_tready',17000),1);
+assert.equal(Trace.numberAt(stream,'tb.s_buffered_in_tready',17000),0);
+console.log('PASS seven workbook RTL fixtures, expected values, counter timing, inline JS and VeriSim payloads');
 if(process.argv.includes('--browser'))(async()=>{
  const {chromium}=require('playwright'),http=require('http');
  const docs=path.join(root,'docs');const server=http.createServer((req,res)=>{
@@ -38,7 +46,7 @@ if(process.argv.includes('--browser'))(async()=>{
    const observed=await page.evaluate(()=>({signals:trace.signals,end:trace.end}));const reference=Trace.parseVCD(l.vcd,null);
    assert.equal(observed.end,reference.end);
    for(const n of l.signals){const name='tb.'+n,actual=observed.signals[name],expected=reference.signals[name];assert.equal(actual.width,expected.width);for(const t of new Set([...actual.events,...expected.events].map(e=>e[0])))assert.equal(Trace.numberAt(observed,name,t),Trace.numberAt(reference,name,t),key+' '+name+' at '+t);}
-   await page.click('#last');if(process.env.QA_DIR&&key==='counter'){await page.screenshot({path:path.join(process.env.QA_DIR,'wasm-desktop.png'),fullPage:true});await page.locator('#wave').screenshot({path:path.join(process.env.QA_DIR,'wasm-counter-wave.png')});}
+   await page.click('#last');if(process.env.QA_DIR&&(key==='counter'||key==='skid')){await page.screenshot({path:path.join(process.env.QA_DIR,'wasm-'+key+'-desktop.png'),fullPage:true});await page.locator('#wave').screenshot({path:path.join(process.env.QA_DIR,'wasm-'+key+'-wave.png')});}
    console.log('PASS actual workbook WASM and native trace agreement:',key);
   }
   await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));if(process.env.QA_DIR)await page.screenshot({path:path.join(process.env.QA_DIR,'wasm-mobile.png'),fullPage:true});

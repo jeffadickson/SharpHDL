@@ -278,5 +278,5 @@ For the complete rebuild/test order, updated workbook and archived board image,
 see [the regeneration audit](REGENERATION_AUDIT.md) and `tests/run-all.sh`.
 
 The [workbook WebAssembly lab](WASM_WORKBOOK.md) runs the generated adder,
-counter, state machine and loop examples with a waveform viewer and prepared
+counter, state machine, loop and direct-versus-skid backpressure examples with a waveform viewer and prepared
 student predictions. Fresh runs execute real Verilog in the browser.

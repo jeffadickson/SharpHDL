@@ -1,7 +1,150 @@
 {
- "addtwo":{"title":"Add two and wrap","lesson":"Lessons 3 and 4","predict":"What do 0 + 2, 7 + 2 and 254 + 2 become in an eight-bit box?","explain":"The answers are 2, 9 and 0. Eight bits hold 0 through 255, so 256 wraps to 0. The output changes with B while clk stays low: this adder needs no register.","signals":["clk","s_b","s_a"],"expected":{"s_b":254,"s_a":0},"source":"examples/ThreeLanguages/CSharpPiece.cs"},
- "counter":{"title":"Count, pause, resume","lesson":"Lessons 5 and 6","predict":"Count three clocks, pause for two clocks, then count once. Where should the number finish?","explain":"It finishes at 4. Watch value rise to 1, 2 and 3, hold at 3 for two rising clock edges while enable is low, then become 4. Reset changes the register on a rising edge too.","signals":["clk","rst","s_enable","s_value"],"expected":{"s_value":4},"source":"examples/Counter.cs"},
- "fsm":{"title":"Coach the hockey drill","lesson":"Clock lab","predict":"Does the Start edge count as the first practice tick? How many enabled ticks reach Done?","explain":"Start enters Running at count 0. Four following enabled rising edges produce count 4 and Done. Phase is 0 for Ready, 1 for Running and 2 for Done.","signals":["clk","rst","s_start","s_enable","s_ticks","s_phase","s_done"],"expected":{"s_ticks":4,"s_phase":2,"s_done":1},"source":"examples/LearningLab/DrillController.cs"},
- "forloop":{"title":"Twelve additions, no clocks","lesson":"Teacher extension on loops","predict":"Begin with A = 2. Add B = 3 twelve times. Does the unrolled loop need twelve clocks?","explain":"The answer is 38, with clk held at 0. This example is a combinational chain of twelve additions. Static unrolling creates hardware copies; it does not schedule clock cycles. Simulation settling time is not FPGA propagation delay.","signals":["clk","s_a","s_b","s_y","s_fault"],"expected":{"s_y":38,"s_fault":0},"source":"examples/Behavioral/Functions.cs"},
- "sequential":{"title":"A loop that takes clock ticks","lesson":"Teacher extension on clocked loops","predict":"Start with total 10 and n = 3. What result should be valid when Done turns on?","explain":"The result is 16: 10 + 3 + 2 + 1. Busy spans many edges because the scheduler executes CIL operations, not a whole loop iteration per clock. Read result only when done is 1 and fault and timeout are 0. Done stays high until reset or another accepted start.","signals":["clk","s_start","s_busy","s_done","s_result","s_fault","s_timeout"],"expected":{"s_result":16,"s_done":1,"s_busy":0,"s_fault":0,"s_timeout":0},"source":"examples/AdvancedBehavioral/Functions.cs"}
+  "addtwo": {
+    "title": "Add two and wrap",
+    "lesson": "Lessons 3 and 4",
+    "predict": "What do 0 + 2, 7 + 2 and 254 + 2 become in an eight-bit box?",
+    "explain": "The answers are 2, 9 and 0. Eight bits hold 0 through 255, so 256 wraps to 0. The output changes with B while clk stays low: this adder needs no register.",
+    "signals": [
+      "clk",
+      "s_b",
+      "s_a"
+    ],
+    "expected": {
+      "s_b": 254,
+      "s_a": 0
+    },
+    "source": "examples/ThreeLanguages/CSharpPiece.cs"
+  },
+  "counter": {
+    "title": "Count, pause, resume",
+    "lesson": "Lessons 5 and 6",
+    "predict": "Count three clocks, pause for two clocks, then count once. Where should the number finish?",
+    "explain": "It finishes at 4. Watch value rise to 1, 2 and 3, hold at 3 for two rising clock edges while enable is low, then become 4. Reset changes the register on a rising edge too.",
+    "signals": [
+      "clk",
+      "rst",
+      "s_enable",
+      "s_value"
+    ],
+    "expected": {
+      "s_value": 4
+    },
+    "source": "examples/Counter.cs"
+  },
+  "fsm": {
+    "title": "Coach the hockey drill",
+    "lesson": "Clock lab",
+    "predict": "Does the Start edge count as the first practice tick? How many enabled ticks reach Done?",
+    "explain": "Start enters Running at count 0. Four following enabled rising edges produce count 4 and Done. Phase is 0 for Ready, 1 for Running and 2 for Done.",
+    "signals": [
+      "clk",
+      "rst",
+      "s_start",
+      "s_enable",
+      "s_ticks",
+      "s_phase",
+      "s_done"
+    ],
+    "expected": {
+      "s_ticks": 4,
+      "s_phase": 2,
+      "s_done": 1
+    },
+    "source": "examples/LearningLab/DrillController.cs"
+  },
+  "forloop": {
+    "title": "Twelve additions, no clocks",
+    "lesson": "Teacher extension on loops",
+    "predict": "Begin with A = 2. Add B = 3 twelve times. Does the unrolled loop need twelve clocks?",
+    "explain": "The answer is 38, with clk held at 0. This example is a combinational chain of twelve additions. Static unrolling creates hardware copies; it does not schedule clock cycles. Simulation settling time is not FPGA propagation delay.",
+    "signals": [
+      "clk",
+      "s_a",
+      "s_b",
+      "s_y",
+      "s_fault"
+    ],
+    "expected": {
+      "s_y": 38,
+      "s_fault": 0
+    },
+    "source": "examples/Behavioral/Functions.cs"
+  },
+  "sequential": {
+    "title": "A loop that takes clock ticks",
+    "lesson": "Teacher extension on clocked loops",
+    "predict": "Start with total 10 and n = 3. What result should be valid when Done turns on?",
+    "explain": "The result is 16: 10 + 3 + 2 + 1. Busy spans many edges because the scheduler executes CIL operations, not a whole loop iteration per clock. Read result only when done is 1 and fault and timeout are 0. Done stays high until reset or another accepted start.",
+    "signals": [
+      "clk",
+      "s_start",
+      "s_busy",
+      "s_done",
+      "s_result",
+      "s_fault",
+      "s_timeout"
+    ],
+    "expected": {
+      "s_result": 16,
+      "s_done": 1,
+      "s_busy": 0,
+      "s_fault": 0,
+      "s_timeout": 0
+    },
+    "source": "examples/AdvancedBehavioral/Functions.cs"
+  },
+  "direct": {
+    "title": "Backpressure without a buffer",
+    "lesson": "Bonus lesson on streams and backpressure",
+    "predict": "The receiver pauses for three edges, then accepts. Where do tokens 10, 11 and 12 wait? Count transfers only at rising edges with both valid and ready high.",
+    "explain": "This direct connection stores nothing. When the receiver is not ready, input ready falls immediately and the producer holds token 10. On enabled rising edges both sides transfer together. The receiver gets 10, 11, 12, once each. A correct unbuffered connection does not drop data.",
+    "signals": [
+      "clk",
+      "rst",
+      "sink_ready",
+      "s_direct_in_tvalid",
+      "s_direct_in_tready",
+      "s_direct_in_tdata",
+      "s_direct_accepted",
+      "s_direct_out_tvalid",
+      "s_direct_out_tdata",
+      "s_direct_out_tlast",
+      "s_direct_delivered",
+      "direct_sent",
+      "direct_received"
+    ],
+    "expected": {
+      "direct_sent": 3,
+      "direct_received": 3,
+      "s_direct_out_tvalid": 0
+    },
+    "source": "examples/LearningLab/Backpressure.cs"
+  },
+  "skid": {
+    "title": "Backpressure with a skid buffer",
+    "lesson": "Bonus lesson on streams and backpressure",
+    "predict": "The receiver pauses for three edges, then accepts. Where do tokens 10, 11 and 12 wait? Count transfers only at rising edges with both valid and ready high.",
+    "explain": "With the receiver paused, the head accepts 10 and the spill accepts 11. Then input ready falls and the producer holds 12. When ready returns, 10 leaves but input stays blocked for that edge. The next edges deliver 11 and 12 without an output gap. Two slots absorb a short stall; they cannot absorb an unlimited stall.",
+    "signals": [
+      "clk",
+      "rst",
+      "sink_ready",
+      "s_buffered_in_tvalid",
+      "s_buffered_in_tready",
+      "s_buffered_in_tdata",
+      "s_buffered_accepted",
+      "s_buffered_out_tvalid",
+      "s_buffered_out_tdata",
+      "s_buffered_out_tlast",
+      "s_buffered_delivered",
+      "buffered_sent",
+      "buffered_received"
+    ],
+    "expected": {
+      "buffered_sent": 3,
+      "buffered_received": 3,
+      "s_buffered_out_tvalid": 0
+    },
+    "source": "examples/LearningLab/Backpressure.cs"
+  }
 }

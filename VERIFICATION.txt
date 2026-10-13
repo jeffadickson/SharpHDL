@@ -353,3 +353,14 @@ Workbook WebAssembly integration (2026-10-13):
 - Existing offline learning graph engine: 11139 comparisons PASS.
 - Generated-document checks PASS; workbook rebuilt and rendered for layout review.
 - This change does not modify compiler lowering or claim new FPGA board testing.
+
+Backpressure workbook examples (2026-10-13):
+- Learning C# build and 8970 existing assertions PASS; emitted Backpressure RTL.
+- Seven VeriSim payload/native RTL checks PASS, including direct and skid lanes.
+- All seven actual Chromium/WASM experiments agree with native selected-signal
+  traces at every event timestamp; mobile layout and cancellation PASS.
+- Directed stream scoreboard checks 10/11/12 ordering, exact counts, KEEP/LAST/
+  USER, stalled-output stability, two-slot capacity and full-buffer recovery.
+- Seven-edge reference counts and combinational-ready isolation checks PASS.
+- Offline graph regression: 11139 comparisons PASS; generated-doc checks PASS.
+- Workbook rebuilt and rendered; unchanged pages compared with prior reviewed copy.
