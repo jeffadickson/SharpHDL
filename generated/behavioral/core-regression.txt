@@ -1,3 +1,4 @@
+PASS AXI reserved-name rejection and emitted regression fixture
 PASS: 49234 feature assertions; max CORDIC error 2.4165E-06; max ROM error 5.72205E-06
   sqrt16 max normalized error 0.00039714
   reciprocal16 max normalized error 0.00024081
@@ -437,3 +438,5 @@ PASS HDL width 65
 generated/probe65_tb.v:3386: $finish called at 322 (1s)
 PASS HDL width 8
 generated/probe8_tb.v:3386: $finish called at 322 (1s)
+PASS AXI identifiers and reset masking
+build/axi-names/tb.v:6: $finish called at 3 (1s)

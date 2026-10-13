@@ -280,3 +280,8 @@ see [the regeneration audit](REGENERATION_AUDIT.md) and `tests/run-all.sh`.
 The [workbook WebAssembly lab](WASM_WORKBOOK.md) runs the generated adder,
 counter, state machine, loop and direct-versus-skid backpressure examples with a waveform viewer and prepared
 student predictions. Fresh runs execute real Verilog in the browser.
+
+Five further FPGA-design/instruction review rounds improved identifier handling,
+rising-edge waveform controls and the guided shot-counter lesson. See
+[the review record](REVIEW_ITERATIONS.md) for findings, validation and the physical
+classroom checks still required.

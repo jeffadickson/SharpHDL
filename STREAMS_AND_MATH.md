@@ -219,3 +219,18 @@ The normalized fixed-point APIs above retain their domains and behavior.
 custom finite floating-point layer, arithmetic, range reduction, conversions
 and stream adapters. [Skid buffering and annotated Verilog](SKID_BUFFER_AND_VERILOG_COMMENTS.md)
 adds a two-entry timing cut and explicit packed-bus comments.
+
+## Identifier contract for AXI wrappers
+
+The core emitter prefixes signals with `s_` and escapes the few resulting
+SystemVerilog keywords (for example, user `always` becomes escaped `s_always`).
+AXI wrappers retain public port names using Verilog escaped identifiers. Wrapper
+ports named `aclk` or `aresetn` are rejected because those names belong to the
+wrapper clock/reset. Generated internal nets and the core instance receive unique
+names if a user port collides. `tests/AxiNameTests.cs` covers keyword names,
+clock/reset rejection, internal collisions and reset masking in emitted Icarus RTL.
+
+| Requirement | Contract | Verification |
+|---|---|---|
+| AXI-NAME-01 | Accept valid graph identifiers without emitting HDL keywords as plain identifiers. | Core and wrapper keyword compilation tests. |
+| AXI-NAME-02 | Reject reserved wrapper clock/reset ports clearly; avoid generated internal collisions. | Reserved-name checks and colliding-port RTL simulation. |

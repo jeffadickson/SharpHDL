@@ -97,3 +97,7 @@ The built image and reports are in `generated/goboard`, including a source/image
 manifest. Only the classroom starter was placed and routed for this small FPGA.
 The much larger floating-point and packet examples are not implied to fit it.
 Do not begin a children's class with those advanced numerical blocks.
+
+Before a board class, complete [the teacher station acceptance checklist](CLASSROOM_PILOT.md).
+It separates tested software from the physical programming and classroom pilot
+still required. It includes restoring the add-two image between Lessons 3 and 4.

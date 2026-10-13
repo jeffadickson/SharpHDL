@@ -1,1 +1,1 @@
-PASS 8970 assertions; fixed shifts and explicit FSM.
+PASS 9030 assertions; fixed shifts, explicit FSM and guided shot counter.

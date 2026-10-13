@@ -364,3 +364,16 @@ Backpressure workbook examples (2026-10-13):
 - Seven-edge reference counts and combinational-ready isolation checks PASS.
 - Offline graph regression: 11139 comparisons PASS; generated-doc checks PASS.
 - Workbook rebuilt and rendered; unchanged pages compared with prior reviewed copy.
+
+Five review iterations (2026-10-13):
+- Completed five additional FPGA-design and instructor AI review/revision rounds.
+- Full tests/run-all.sh completed: all compiler/language, RTL, actual WASM,
+  synthesis/mapped, comparison, board implementation and documentation stages PASS.
+- AXI keyword/reserved-name/internal-collision regression PASS. Core handles
+  all five s_-prefixed strong-property keywords; wrappers preserve public names.
+- Learning suite: 9030 assertions plus fixed/FSM/one-point/two-point RTL benches.
+  Shot tests include clear priority, wrap, hold and held-shot reset release.
+- Browser checks validate every direct/skid rising-edge transfer summary and count.
+- Final workbook: 30 rendered pages; changed pages visually inspected and unchanged
+  pages compared against the prior reviewed render. No physical classroom/board trial.
+- Final review dispositions and remaining limits: REVIEW_ITERATIONS.md.

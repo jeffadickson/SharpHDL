@@ -100,13 +100,18 @@ a.text(500,42,'Two stages can work on different cards at the same time',27,weigh
 a.text(500,316,'A: 3 -> 5 -> 15          B: 4 -> 6 -> 18',29);a.save()
 
 # Analogy for two-entry buffer, with clear indication output waiting is not dropped.
-a=Art('skid',370);a.text(500,45,'A waiting tray saves the extra card when the receiver stops',27,weight='bold')
-a.rect(45,125,180,150,CREAM);a.text(135,169,'Sender',29);a.text(135,218,'next card',24)
-a.arrow(230,210,323)
-a.rect(332,88,410,200,BLUE);a.rect(355,128,155,110,'white');a.rect(557,128,155,110,'white');a.text(432,175,'HEAD',25,weight='bold');a.text(432,216,'Card A',26);a.text(634,175,'SPILL',25,weight='bold');a.text(634,216,'Card B',26)
-a.arrow(750,210,797);a.rect(805,115,160,163,CREAM);a.text(885,164,'Receiver',26);a.text(885,220,'WAIT',31,weight='bold');a.text(500,343,'Both slots full? Tell the sender to wait too. Never lose a card.',25);a.save()
+a=Art('skid',370);a.text(500,35,'Cards travel forward. Ready tells the sender when to wait.',25,weight='bold')
+a.rect(25,110,175,145,CREAM);a.text(112,155,'Sender',28);a.text(112,202,'next card',23)
+a.rect(300,75,400,215,BLUE)
+for x,label,card in [(320,'SPILL','Card B'),(515,'HEAD','Card A')]:
+ a.rect(x,115,165,115,'white');a.text(x+82,157,label,26,weight='bold');a.text(x+82,204,card,25)
+a.rect(800,110,175,145,CREAM);a.text(887,155,'Receiver',26);a.text(887,204,'WAIT',28,weight='bold')
+for left,right in [(210,290),(710,790)]:
+ a.arrow(left,175,right);a.text((left+right)/2,131,'Data',18);a.text((left+right)/2,151,'Valid',18)
+ a.line(left+14,267,right,267,ORANGE,5);a.parts.append(f'<path d="M {left+16} 258 L {left} 267 L {left+16} 276 Z" fill="{ORANGE}"/>');a.text((left+right)/2,310,'Ready',19)
+a.text(500,355,'A card transfers only when Valid AND Ready are 1 at the clock edge.',23);a.save()
 
-# Cross-language blocks, language labels reflect source of actual implementation.
+# Three languages share the same hardware construction API.
 a=Art('languages',310)
 for x,title,subtitle in [(55,'F#','Add two'),(365,'C#','Skid buffer'),(675,'Visual Basic','Multiply by three')]:
  a.rect(x,62,260,170,BLUE);a.text(x+130,116,title,31,weight='bold');a.text(x+130,178,subtitle,23)

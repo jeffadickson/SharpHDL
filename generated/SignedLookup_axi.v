@@ -5,26 +5,26 @@ module h_SignedLookup_axi(
   input wire aclk,
   input wire aresetn
   // 8-bit port, bit 0 least significant.
-  ,input wire [7:0] a
+  ,input wire [7:0] \a
   // 8-bit port, bit 0 least significant.
-  ,input wire [7:0] b
+  ,input wire [7:0] \b
   // 3-bit port, bit 0 least significant.
-  ,input wire [2:0] address
+  ,input wire [2:0] \address
   // 8-bit port, bit 0 least significant.
-  ,output wire [7:0] asr
+  ,output wire [7:0] \asr
   // 16-bit port, bit 0 least significant.
-  ,output wire [15:0] sext
+  ,output wire [15:0] \sext
   // 1-bit port, bit 0 least significant.
-  ,output wire [0:0] less
+  ,output wire [0:0] \less
   // 8-bit port, bit 0 least significant.
-  ,output wire [7:0] lut
+  ,output wire [7:0] \lut
 );
 h_SignedLookup core(.clk(aclk), .rst(~aresetn),
-  .s_a(a),
-  .s_b(b),
-  .s_address(address),
-  .s_asr(asr),
-  .s_sext(sext),
-  .s_less(less),
-  .s_lut(lut));
+  .s_a(\a ),
+  .s_b(\b ),
+  .s_address(\address ),
+  .s_asr(\asr ),
+  .s_sext(\sext ),
+  .s_less(\less ),
+  .s_lut(\lut ));
 endmodule

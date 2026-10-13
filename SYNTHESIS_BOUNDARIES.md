@@ -95,7 +95,7 @@ ready/valid, rather than making an ordinary software call take FPGA clock cycles
 
 See CONSTRUCTS_AND_REQUIREMENTS.md for the audited gap matrix and acceptance
 requirements. Constant SFixed shifts and a named explicit StateMachine helper
-are now implemented. Automatic sequential CIL loop extraction remains planned.
+are now implemented. Explicit BuildSequential mode was added in version 0.13; see the contract below.
 
 ## Version 0.13 boundaries
 

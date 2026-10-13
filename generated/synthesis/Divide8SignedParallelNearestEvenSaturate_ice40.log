@@ -1111,7 +1111,7 @@ ABC: Participating nodes from the first network   =     256. (  81.53 % of nodes
 ABC: Participating nodes from the second network  =     274. (  87.26 % of nodes)
 ABC: Node pairs (any polarity)                    =     256. (  81.53 % of names can be moved)
 ABC: Node pairs (same polarity)                   =     237. (  75.48 % of names can be moved)
-ABC: Total runtime =     0.16 sec
+ABC: Total runtime =     0.17 sec
 ABC: + write_blif <abc-temp-dir>/output.blif 
 
 3.40.1.2. Re-integrating ABC results.

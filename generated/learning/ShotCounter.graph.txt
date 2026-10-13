@@ -1,0 +1,18 @@
+module ShotCounter
+input shot : bits[1]
+input clear : bits[1]
+reg previous_shot : bits[1] reset=0
+reg count : bits[4] reset=0
+output score : bits[4]
+expressions:
+e0 : bits[4] const 0
+e1 : bits[1] ~ (previous_shot)
+e2 : bits[1] & (shot, e1)
+e3 : bits[4] const 1
+e4 : bits[4] + (count, e3)
+e5 : bits[4] mux (e2, e4, count)
+e6 : bits[4] mux (clear, e0, e5)
+connections:
+previous_shot.next <- shot
+count.next <- e6
+score <- count

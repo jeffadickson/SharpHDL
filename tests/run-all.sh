@@ -48,7 +48,7 @@ python3 tools/build_tinyrisc_demo.py
 run tinyrisc-demo node tests/check-tinyrisc-demo.js
 # CHROME_BIN and optional VERISIM_ENGINE_DIR configure real browser/WASM testing.
 run tinyrisc-browser node tests/check-tinyrisc-browser.js
-python3 tools/create_classroom_proposal.py docs/SharpHDL_Classroom_Proposal.docx
+"${CODEX_PRIMARY_RUNTIME_PYTHON:-python3}" tools/create_classroom_proposal.py docs/SharpHDL_Classroom_Proposal.docx
 run generated-docs python3 tests/check-generated-docs.py
 cp generated/behavioral/Ram256-synthesis.log generated/behavioral/ram-synthesis.log
 cp build/audit/core.log generated/behavioral/core-regression.txt

@@ -87,8 +87,8 @@ promise of current synthesis support. IDs supplement BEHAVIORAL_REQUIREMENTS.md.
 | SYS01 | Require explicit domain/CDC/reset contracts before multi-clock support | Planned; asynchronous-clock tests and target constraints required |
 | EDU01 | Deliver an offline HTML clock/bit/loop companion with source and emitted RTL views | Implemented; responsive layout, native keyboard controls and manual clock stepping |
 | SIM01 | Drive HTML behavior from actual exported graphs; use exact-width arithmetic and simultaneous register updates | Implemented; browser-engine/reference trace tests; reject unsupported graph nodes |
-| SIM02 | Launch actual generated RTL plus a teacher bench in VeriSim using its documented fragment format | Implemented launch links; payload decoding and native Icarus smoke tests. Hosted browser UI execution is not verified here. No engine bundled in the offline graph lesson |
-| SIM03 | Bound browser execution, allow stop/reset, and keep files/code local by default | Implemented fixed graphs and bounded rendering/history; arbitrary HDL requires worker isolation and timeout tests under SIM02 |
+| SIM02 | Launch actual generated RTL plus a teacher bench in VeriSim using its documented fragment format | Implemented launch links and separate on-page WASM lab; see WASM_WORKBOOK.md for seven browser runs and native trace comparisons. Upstream hosted UI is separate. No engine bundled in the offline graph lesson |
+| SIM03 | Bound browser execution, allow stop/reset, and keep files/code local by default | Implemented fixed graphs and bounded rendering/history; the separate WASM lab uses a worker, cancellation and a 60-second deadline; see WASM_WORKBOOK.md |
 | VERIFY01 | Compare new math/control behavior to independent expected values and generated RTL; retain reproducible artifacts | Implemented for this release; see generated/learning and generated/behavioral |
 | VERIFY02 | Expand equivalence testing and formal proof before claiming general compiler correctness | Planned; present counts are evidence for tested cases, not proof |
 

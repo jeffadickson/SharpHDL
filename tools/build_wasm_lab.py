@@ -15,6 +15,6 @@ for key,lesson in lessons.items():
   lesson['vcd']=(p/'dump.vcd').read_text();lesson['log']=sim.stdout
 bundle={'lessons':lessons,'worker':(r/'docs/tinyrisc/engine-worker.js').read_text()}
 (r/'generated/learning/wasm-lessons.json').write_text(json.dumps(bundle))
-html=(d/'wasm-template.html').read_text().replace('__DATA__',json.dumps(bundle).replace('<','\\u003c')).replace('__TRACE__',(r/'docs/tinyrisc/trace.js').read_text()).replace('__UI__',(d/'wasm-ui.js').read_text())
+html=(d/'wasm-template.html').read_text().replace('__DATA__',json.dumps(bundle).replace('<','\\u003c')).replace('__TRACE__',(r/'docs/tinyrisc/trace.js').read_text()).replace('__WAVE__',(d/'waveform.js').read_text()).replace('__UI__',(d/'wasm-ui.js').read_text())
 (d/'SharpHDL_WASM_Lab.html').write_text(html)
 print('Built workbook WASM lab:',len(lessons),'self-checking RTL examples')

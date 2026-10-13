@@ -122,7 +122,9 @@ namespace SharpHDL
         internal bool Frozen;
         public IEnumerable<Signal> Ports { get { return Signals.Where(s=>s.IsInput||s.IsOutput); } }
         // Prefix avoids HDL keywords while preserving readable generated names.
-        internal static string H(Signal s) { return "s_" + s.Name; }
+        internal static string H(Signal s) { var name="s_"+s.Name;
+            // SystemVerilog strong-property keywords already begin with s_.
+            return name=="s_always" || name=="s_eventually" || name=="s_nexttime" || name=="s_until" || name=="s_until_with" ? "\\"+name+" " : name; }
         static void CheckName(string n)
         {
             if (n == null || !Regex.IsMatch(n, @"\A[A-Za-z][A-Za-z0-9_]*\z"))

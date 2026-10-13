@@ -8,18 +8,23 @@ function value(name,t){return TinyTrace.numberAt(trace,'tb.'+name,t);}
 function load(vcd){const candidate=TinyTrace.parseVCD(vcd,null);for(const n of lessons[key].signals)if(!candidate.signals['tb.'+n])throw Error('Missing signal '+n);trace=candidate;trace.vcd=vcd;$('cursor').max=trace.end;$('cursor').value=0;draw();}
 function draw(){
  const time=Number($('cursor').value),names=lessons[key].signals,end=Math.max(1,trace.end),x=t=>225+770*t/end;
- $('time').textContent=`Time ${time} × ${trace.unit}`;
+ $('time').textContent=WorkbookWave.timeLabel(trace,time);
+ const edges=WorkbookWave.rising(trace),past=edges.filter(t=>t<=time),work=past.filter(t=>TinyTrace.numberAt(trace,'tb.rst',Math.max(0,t-1))===0);
+ $('edge').disabled=!edges.some(t=>t>time);$('edgeNumber').textContent=edges.length?`Rising edges so far ${past.length}; after-reset edge ${work.length}`:'No clock edges — combinational experiment';
+ const edge=past[past.length-1],lane=key==='direct'?'direct':key==='skid'?'buffered':null;
+ $('transfer').textContent=lane&&edge!==undefined&&TinyTrace.numberAt(trace,'tb.rst',Math.max(0,edge-1))===0?`At ${WorkbookWave.timeLabel(trace,edge)}, sampled before the edge: input ${value('s_'+lane+'_accepted',edge-1)===1?'accepted '+value('s_'+lane+'_in_tdata',edge-1):'no transfer'}; output ${value('s_'+lane+'_delivered',edge-1)===1?'delivered '+value('s_'+lane+'_out_tdata',edge-1):'no transfer'}. Values below show the cursor time after settling.`:'';
  $('values').innerHTML=names.map(n=>{const s=trace.signals['tb.'+n],b=TinyTrace.bitsAt(s,time);return `<tr><td>${esc(n)}</td><td>${value(n,time)??'unknown'}</td><td><code>${esc(b.padStart(s.width,/^[01]+$/.test(b)?'0':b[0]))}</code></td></tr>`;}).join('');
  let svg=`<svg role="img" aria-label="Waveforms; time cursor at ${time}" viewBox="0 0 1020 ${names.length*48+35}">`;
  names.forEach((n,i)=>{const s=trace.signals['tb.'+n],y=25+i*48;svg+=`<text x="8" y="${y+4}" font-size="13">${esc(n)}</text>`;
  s.events.forEach(([t,b],j)=>{const next=s.events[j+1]?.[0]??end,a=x(t),z=x(next),known=/^[01]+$/.test(b),color=known?'#08727c':'#aa523b';if(s.width===1){const level=known?(b==='1'?y-11:y+11):y;svg+=`<path d="M${a},${y-11}V${y+11}M${a},${level}H${z}" stroke="${color}" stroke-dasharray="${known?'none':'4 3'}" fill="none"/>`;if(!known&&z-a>16)svg+=`<text x="${a+3}" y="${y-4}" font-size="11">${esc(b)}</text>`;}else{svg+=`<rect x="${a}" y="${y-13}" width="${Math.max(0,z-a)}" height="26" fill="#e3f0f1" stroke="${color}"/>`;if(z-a>24)svg+=`<text x="${a+4}" y="${y+4}" font-size="12">${esc(known?parseInt(b,2):b)}</text>`;}});
- });svg+=`<path d="M${x(time)},4V${names.length*48+12}" stroke="#c05716" stroke-width="2"/><text x="225" y="${names.length*48+28}" font-size="12">0</text><text x="890" y="${names.length*48+28}" font-size="12">${trace.end} × ${esc(trace.unit)}</text></svg>`;
+ });svg+=`<path d="M${x(time)},4V${names.length*48+12}" stroke="#c05716" stroke-width="2"/><text x="225" y="${names.length*48+28}" font-size="12">0</text><text x="890" y="${names.length*48+28}" font-size="12">${esc(WorkbookWave.timeLabel(trace,trace.end))}</text></svg>`;
  $('wave').innerHTML=svg;$('wave').querySelector('svg').onclick=e=>{const rect=e.currentTarget.getBoundingClientRect();$('cursor').value=Math.round(Math.max(0,Math.min(end,((e.clientX-rect.left)/rect.width*1020-225)/770*end)));draw();};
 }
 function choose(){stop();key=$('lesson').value;const l=lessons[key];location.hash=key;$('title').textContent=l.title;$('where').textContent=l.lesson;$('predict').textContent=l.predict;$('explain').textContent=l.explain;$('sourcePath').textContent=l.source;$('source').textContent=l.sourceText;$('rtl').textContent=l.design;$('bench').textContent=l.testbench;$('external').href=l.url;$('log').textContent=l.log;load(l.vcd);status('Recorded native-Icarus trace — press Run RTL for a fresh WebAssembly simulation.');}
 for(const [k,l] of Object.entries(lessons))$('lesson').add(new Option(l.title,k));
 $('lesson').value=lessons[location.hash.slice(1)]?location.hash.slice(1):'addtwo';$('lesson').onchange=choose;
 $('cursor').oninput=draw;$('first').onclick=()=>{$('cursor').value=0;draw();};$('last').onclick=()=>{$('cursor').value=trace.end;draw();};
+$('edge').onclick=()=>{const next=WorkbookWave.rising(trace).find(t=>t>Number($('cursor').value));if(next!==undefined){$('cursor').value=next;draw();}};
 $('next').onclick=()=>{const times=lessons[key].signals.flatMap(n=>trace.signals['tb.'+n].events.map(e=>e[0])).filter(t=>t>Number($('cursor').value));$('cursor').value=times.length?Math.min(...times):trace.end;draw();};
 $('recorded').onclick=choose;$('cancel').onclick=()=>{stop();status('Simulation cancelled. The displayed trace is unchanged.');};
 $('download').onclick=()=>{const a=document.createElement('a'),url=URL.createObjectURL(new Blob([trace.vcd],{type:'text/plain'}));a.href=url;a.download=key+'.vcd';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};

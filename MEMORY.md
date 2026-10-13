@@ -1,8 +1,9 @@
 # Memory model
 
 SharpHDL 0.11 adds explicit synchronous single-port RAM. It participates in the
-same simulator and Verilog backend as registers and expressions. Ordinary arrays
-inside CIL methods are still rejected; no automatic array-to-RAM inference exists.
+same simulator and Verilog backend as registers and expressions. General arrays remain unsupported. Explicit `BuildSequential` additionally lowers
+one owned `uint[]` parameter to a 32-bit synchronous RAM, with bounds faults and
+a read wait state. See [the sequential contract](SEQUENTIAL_CIL.md).
 
 ```csharp
 var address = m.Input("address", 8);
@@ -57,5 +58,5 @@ the mapped primitive simulation also passes the same trace. Different shapes and
 targets may map to several blocks or to logic. No timing or board claim is made.
 
 Dual-port RAM, byte enables, asynchronous reads, configurable collision modes,
-external DDR, automatic port arbitration and CIL array access are future work.
+external DDR, automatic port arbitration and general CIL arrays are future work.
 Existing Lookup remains a constant ROM and the existing FIFO remains register-based.

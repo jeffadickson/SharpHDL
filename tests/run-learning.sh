@@ -9,7 +9,7 @@ else
   mcs -r:System.Numerics -out:build/learning.exe src/SharpHDL/*.cs examples/LearningLab/*.cs
   mono build/learning.exe
 fi
-for name in FixedShifts DrillController; do
+for name in FixedShifts DrillController ShotCounter ShotCounterDouble; do
   iverilog -g2012 -s tb -o build/learning-rtl "generated/learning/$name.v" "generated/learning/${name}_tb.v"
   vvp build/learning-rtl
 done

@@ -67,14 +67,14 @@ Info:     at initial placer iter 3, wirelen = 291
 Info: Running main analytical placer, max placement attempts per cell = 10000.
 Info:     at iteration #1, type ICESTORM_LC: wirelen solved = 291, spread = 839, legal = 884; time = 0.00s
 Info:     at iteration #1, type SB_GB: wirelen solved = 863, spread = 867, legal = 893; time = 0.00s
-Info:     at iteration #1, type ALL: wirelen solved = 295, spread = 764, legal = 834; time = 0.01s
+Info:     at iteration #1, type ALL: wirelen solved = 295, spread = 764, legal = 834; time = 0.00s
 Info:     at iteration #2, type ICESTORM_LC: wirelen solved = 356, spread = 674, legal = 735; time = 0.00s
 Info:     at iteration #2, type SB_GB: wirelen solved = 719, spread = 742, legal = 741; time = 0.00s
 Info:     at iteration #2, type ALL: wirelen solved = 300, spread = 673, legal = 757; time = 0.01s
-Info:     at iteration #3, type ICESTORM_LC: wirelen solved = 330, spread = 703, legal = 734; time = 0.01s
+Info:     at iteration #3, type ICESTORM_LC: wirelen solved = 330, spread = 703, legal = 734; time = 0.00s
 Info:     at iteration #3, type SB_GB: wirelen solved = 715, spread = 745, legal = 734; time = 0.00s
 Info:     at iteration #3, type ALL: wirelen solved = 309, spread = 659, legal = 771; time = 0.00s
-Info:     at iteration #4, type ICESTORM_LC: wirelen solved = 332, spread = 523, legal = 609; time = 0.01s
+Info:     at iteration #4, type ICESTORM_LC: wirelen solved = 332, spread = 523, legal = 609; time = 0.00s
 Info:     at iteration #4, type SB_GB: wirelen solved = 592, spread = 620, legal = 627; time = 0.00s
 Info:     at iteration #4, type ALL: wirelen solved = 308, spread = 599, legal = 677; time = 0.00s
 Info:     at iteration #5, type ICESTORM_LC: wirelen solved = 335, spread = 596, legal = 625; time = 0.00s
@@ -92,16 +92,16 @@ Info:     at iteration #8, type ALL: wirelen solved = 342, spread = 496, legal =
 Info:     at iteration #9, type ICESTORM_LC: wirelen solved = 372, spread = 721, legal = 763; time = 0.00s
 Info:     at iteration #9, type SB_GB: wirelen solved = 742, spread = 768, legal = 773; time = 0.00s
 Info:     at iteration #9, type ALL: wirelen solved = 337, spread = 504, legal = 620; time = 0.00s
-Info:     at iteration #10, type ICESTORM_LC: wirelen solved = 369, spread = 524, legal = 651; time = 0.01s
+Info:     at iteration #10, type ICESTORM_LC: wirelen solved = 369, spread = 524, legal = 651; time = 0.00s
 Info:     at iteration #10, type SB_GB: wirelen solved = 621, spread = 645, legal = 653; time = 0.00s
-Info:     at iteration #10, type ALL: wirelen solved = 323, spread = 516, legal = 591; time = 0.01s
+Info:     at iteration #10, type ALL: wirelen solved = 323, spread = 516, legal = 591; time = 0.00s
 Info:     at iteration #11, type ICESTORM_LC: wirelen solved = 358, spread = 552, legal = 636; time = 0.00s
 Info:     at iteration #11, type SB_GB: wirelen solved = 613, spread = 636, legal = 654; time = 0.00s
 Info:     at iteration #11, type ALL: wirelen solved = 321, spread = 517, legal = 641; time = 0.00s
 Info:     at iteration #12, type ICESTORM_LC: wirelen solved = 369, spread = 525, legal = 673; time = 0.00s
 Info:     at iteration #12, type SB_GB: wirelen solved = 643, spread = 668, legal = 677; time = 0.00s
 Info:     at iteration #12, type ALL: wirelen solved = 336, spread = 649, legal = 715; time = 0.00s
-Info:     at iteration #13, type ICESTORM_LC: wirelen solved = 367, spread = 662, legal = 727; time = 0.00s
+Info:     at iteration #13, type ICESTORM_LC: wirelen solved = 367, spread = 662, legal = 727; time = 0.01s
 Info:     at iteration #13, type SB_GB: wirelen solved = 704, spread = 727, legal = 745; time = 0.00s
 Info:     at iteration #13, type ALL: wirelen solved = 330, spread = 533, legal = 601; time = 0.00s
 Info:     at iteration #14, type ICESTORM_LC: wirelen solved = 355, spread = 611, legal = 694; time = 0.00s
@@ -110,8 +110,8 @@ Info:     at iteration #14, type ALL: wirelen solved = 339, spread = 551, legal 
 Info:     at iteration #15, type ICESTORM_LC: wirelen solved = 362, spread = 583, legal = 661; time = 0.00s
 Info:     at iteration #15, type SB_GB: wirelen solved = 633, spread = 652, legal = 667; time = 0.00s
 Info:     at iteration #15, type ALL: wirelen solved = 323, spread = 520, legal = 646; time = 0.00s
-Info: HeAP Placer Time: 0.16s
-Info:   of which solving equations: 0.12s
+Info: HeAP Placer Time: 0.15s
+Info:   of which solving equations: 0.11s
 Info:   of which spreading cells: 0.01s
 Info:   of which strict legalisation: 0.01s
 
@@ -158,9 +158,9 @@ Info: Setting up routing queue.
 Info: Routing 747 arcs.
 Info:            |   (re-)routed arcs  |   delta    | remaining|       time spent     |
 Info:    IterCnt |  w/ripup   wo/ripup |  w/r  wo/r |      arcs| batch(sec) total(sec)|
-Info:        898 |      144        662 |  144   662 |         0|       0.06       0.06|
+Info:        898 |      144        662 |  144   662 |         0|       0.07       0.07|
 Info: Routing complete.
-Info: Router1 time 0.06s
+Info: Router1 time 0.07s
 Info: Checksum: 0x318d3985
 
 Info: Critical path report for clock 'i_Clk$SB_IO_IN_$glb_clk' (posedge -> posedge):

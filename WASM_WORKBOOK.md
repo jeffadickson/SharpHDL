@@ -1,6 +1,6 @@
 # Run workbook circuits with WebAssembly
 
-The workbook companion `docs/interactive/SharpHDL_WASM_Lab.html` runs seven
+The workbook companion `docs/interactive/SharpHDL_WASM_Lab.html` offers seven experiments using
 SharpHDL-generated designs using VeriSim's Icarus WebAssembly engine. Each
 experiment includes the original SharpHDL source file, emitted Verilog, a
 prepared self-checking testbench, a simulation log and a waveform viewer.
@@ -22,10 +22,14 @@ pause an executing simulator. No separate JavaScript model calculates results.
 | Clocked-loop extension | A loop that takes clock ticks | 10 + 3 + 2 + 1 = 16 when Done is high | `s_busy`, `s_done`, `s_result`, `s_fault`, `s_timeout` |
 
 Waveform bus labels and the value table use unsigned decimal and binary.
-Unknown/undriven X/Z values remain unknown. Time is shown in VCD units; the
+Unknown/undriven X/Z values remain unknown. Time is displayed in nanoseconds when the VCD timescale is recognized; the
 prepared delays separate stimuli, not predict FPGA propagation delay. For the
 counter, inspect rising edges at 2, 6, 10, 14, 18, 22 and 26 ns. The trace also
-contains falling edges: **Next event** is not the same as **Next clock**.
+contains falling edges: use **Next rising edge** for clocked lessons. **Next event**
+remains available for individual signal changes. Edge counts distinguish all clock
+edges from those outside reset. Stream lessons show the input/output transfers
+sampled immediately before the last edge; the value table shows settled values
+at the cursor. The combinational lessons have no rising edges.
 
 ## Teacher setup
 
@@ -37,7 +41,7 @@ python3 -m http.server 8090 --directory docs
 
 Open [the workbook lab](http://localhost:8090/interactive/SharpHDL_WASM_Lab.html).
 The workbook's clickable experiment links use this address, with `#addtwo`,
-`#counter`, `#fsm`, `#forloop` `#sequential`, `#direct` or `#skid` to select a lesson. Run the server
+`#counter`, `#fsm`, `#forloop`, `#sequential`, `#direct` or `#skid` to select a lesson. Run the server
 on the computer opening those links. On a tablet accessing a teacher's server,
 replace localhost with the teacher computer's address.
 
@@ -106,3 +110,16 @@ integration are separate from the VeloSim project.
 
 For the seven-edge backpressure comparison, alternative elastic register, and
 BP-01 through BP-05 requirements, see [the stream guide](SKID_BUFFER_AND_VERILOG_COMMENTS.md#compare-buffering-and-backpressure-in-the-browser).
+
+Native and WASM runs share Icarus ancestry and the same RTL/bench. Their agreement
+checks integration and trace handling, not independent proof of hardware correctness.
+Independent expected-value and stream-queue scoreboards provide functional checks.
+
+| Additional teaching requirement | Verification |
+|---|---|
+| EDU-WAVE-01: Offer rising-edge navigation, ns labels and reset-aware counts. | Timescale helper tests, combinational disabled state and every backpressure edge. |
+| EDU-WAVE-02: Separate sampled transfers from settled values. | Seven direct/skid transfer summaries checked against independent token expectations. |
+
+Pre-edge summaries apply to these prepared benches, whose inputs settle before
+the edge. They use the value at the preceding VCD time tick; this is not a general
+Verilog event-region debugger or an arbitrary trace-upload facility.

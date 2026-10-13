@@ -3,7 +3,7 @@ const root=path.resolve(__dirname,'..'),Trace=require('../docs/tinyrisc/trace.js
 const bundle=JSON.parse(fs.readFileSync(path.join(root,'generated/learning/wasm-lessons.json')));
 const html=fs.readFileSync(path.join(root,'docs/interactive/SharpHDL_WASM_Lab.html'),'utf8');
 for(const s of html.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(s[1]);
-assert(!/__DATA__|__TRACE__|__UI__/.test(html));
+assert(!/__DATA__|__TRACE__|__UI__|__WAVE__/.test(html));
 for(const [key,l]of Object.entries(bundle.lessons)){
  const t=Trace.parseVCD(l.vcd,null);
  for(const n of l.signals)assert(t.signals['tb.'+n],key+' missing '+n);
@@ -13,6 +13,10 @@ for(const [key,l]of Object.entries(bundle.lessons)){
  assert.equal(Buffer.from(params.get('d'),'base64url').toString(),l.design);
  assert.equal(Buffer.from(params.get('t'),'base64url').toString(),l.testbench);
 }
+const Wave=require('../docs/interactive/waveform.js');
+assert.equal(Wave.timeLabel({unit:'1ps'},28000),'28 ns');
+assert.equal(Wave.timeLabel({unit:'10ps'},200),'2 ns');
+assert.deepEqual(Wave.rising({signals:{'tb.clk':{events:[[0,'x'],[1,'1'],[2,'0'],[3,'1']]}}}),[3]);
 const a=Trace.parseVCD(bundle.lessons.addtwo.vcd,null);
 assert.equal(Trace.numberAt(a,'tb.s_a',0),2);assert.equal(Trace.numberAt(a,'tb.s_a',5000),9);assert.equal(Trace.numberAt(a,'tb.s_a',10000),0);
 const c=Trace.parseVCD(bundle.lessons.counter.vcd,null);
@@ -40,12 +44,27 @@ if(process.argv.includes('--browser'))(async()=>{
   await page.goto('http://127.0.0.1:'+server.address().port+'/interactive/SharpHDL_WASM_Lab.html');if(fs.existsSync(path.join(docs,'tinyrisc/verisim/ivl.wasm')))await page.check('#local');
   for(const [key,l]of Object.entries(bundle.lessons)){
    await page.selectOption('#lesson',key);assert.equal(await page.locator('#title').innerText(),l.title);
+   const edges=Wave.rising(Trace.parseVCD(l.vcd,null));
+   if(edges.length){await page.click('#edge');assert.equal(Number(await page.locator('#cursor').inputValue()),edges[0]);await page.click('#first');}else assert(await page.locator('#edge').isDisabled());
    await page.click('#next');assert(Number(await page.locator('#cursor').inputValue())>0);
    await page.click('#run');await page.waitForFunction(()=>!document.getElementById('run').disabled,null,{timeout:75000});
    assert((await page.locator('#status').innerText()).includes('Fresh WebAssembly simulation passed'),await page.locator('#status').innerText());
    const observed=await page.evaluate(()=>({signals:trace.signals,end:trace.end}));const reference=Trace.parseVCD(l.vcd,null);
    assert.equal(observed.end,reference.end);
    for(const n of l.signals){const name='tb.'+n,actual=observed.signals[name],expected=reference.signals[name];assert.equal(actual.width,expected.width);for(const t of new Set([...actual.events,...expected.events].map(e=>e[0])))assert.equal(Trace.numberAt(observed,name,t),Trace.numberAt(reference,name,t),key+' '+name+' at '+t);}
+   if(key==='direct'||key==='skid'){
+    await page.click('#first');
+    const accepted=key==='direct'?[null,null,null,10,11,12,null]:[10,11,null,null,12,null,null];
+    const delivered=[null,null,null,10,11,12,null];
+    await page.click('#edge');assert((await page.locator('#edgeNumber').innerText()).endsWith('after-reset edge 0'));
+    for(let i=0;i<7;i++){
+     await page.click('#edge');assert((await page.locator('#edgeNumber').innerText()).endsWith('after-reset edge '+(i+1)));
+     const summary=await page.locator('#transfer').innerText();
+     assert(summary.includes(accepted[i]===null?'input no transfer':'input accepted '+accepted[i]),summary);
+     assert(summary.includes(delivered[i]===null?'output no transfer':'output delivered '+delivered[i]),summary);
+    }
+    assert(await page.locator('#edge').isDisabled());
+   }
    await page.click('#last');if(process.env.QA_DIR&&(key==='counter'||key==='skid')){await page.screenshot({path:path.join(process.env.QA_DIR,'wasm-'+key+'-desktop.png'),fullPage:true});await page.locator('#wave').screenshot({path:path.join(process.env.QA_DIR,'wasm-'+key+'-wave.png')});}
    console.log('PASS actual workbook WASM and native trace agreement:',key);
   }

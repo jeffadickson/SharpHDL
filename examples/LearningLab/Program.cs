@@ -61,5 +61,29 @@ class LearningTests
         Reject(()=>f.Build());Reject(()=>f.When("A",both,"C"));
         var bad=new StateMachine(new Module("BadNames"),"s","A","B");Reject(()=>bad.Is("unknown"));Reject(()=>bad.When("A",Expr.Const(2,0),"B"));
     }
-    static void Main(){Directory.CreateDirectory("generated/learning");Fixed();Fsm();Save(Backpressure.Build());File.WriteAllText("generated/learning/verification.txt","PASS "+checks+" assertions; fixed shifts and explicit FSM.\n");Console.WriteLine("PASS "+checks+" assertions");}
+    static void Shots()
+    {
+        foreach(int points in new[]{1,2}) {
+            var m=ShotCounter.Build(points);Save(m);var sim=m.Simulate();sim.Tick(true);
+            Func<string,Signal> s=name=>m.Signals.Single(x=>x.Name==name);
+            // Directed oracle: press/hold/release/press, clear+press, then wrap.
+            int[] shots={0,1,1,0,1,0,1,1,0,1};
+            int[] clears={0,0,0,0,0,0,1,0,0,0};
+            int[] units={0,1,1,1,2,2,0,0,0,1};
+            var tb=new StringBuilder("module tb;reg clk=0,rst=1,s_shot=0,s_clear=0;wire[3:0] s_score;h_"+m.Name+" dut(.*);task tick;begin #1;clk=1;#1;clk=0;end endtask initial begin tick;rst=0;\n");
+            for(int i=0;i<shots.Length;i++) {
+                sim.Set(s("shot"),shots[i]);sim.Set(s("clear"),clears[i]);sim.Tick();Check(sim.Read(s("score"))==units[i]*points);
+                tb.AppendLine("s_shot="+shots[i]+";s_clear="+clears[i]+";tick;if(s_score!==4'd"+(units[i]*points)+")$fatal(1,\"shot sequence\");");
+            }
+            for(int n=2;n<=18;n++) {
+                sim.Set(s("clear"),0);sim.Set(s("shot"),0);sim.Tick();sim.Set(s("shot"),1);sim.Tick();int expected=n*points%16;Check(sim.Read(s("score"))==expected);
+                tb.AppendLine("s_clear=0;s_shot=0;tick;s_shot=1;tick;if(s_score!==4'd"+expected+")$fatal(1,\"shot wrap\");");
+            }
+            sim.Tick(true);Check(sim.Read(s("score"))==0);
+            sim.Tick();Check(sim.Read(s("score"))==points);sim.Tick();Check(sim.Read(s("score"))==points);
+            tb.AppendLine("rst=1;tick;if(s_score!==0)$fatal(1,\"reset\");rst=0;tick;if(s_score!==4'd"+points+")$fatal(1,\"held at reset release\");tick;if(s_score!==4'd"+points+")$fatal(1,\"held after reset\");$display(\"PASS "+m.Name+" press hold clear wrap reset\");$finish;end endmodule");
+            File.WriteAllText("generated/learning/"+m.Name+"_tb.v",tb.ToString());
+        }
+    }
+    static void Main(){Directory.CreateDirectory("generated/learning");Fixed();Fsm();Shots();Save(Backpressure.Build());File.WriteAllText("generated/learning/verification.txt","PASS "+checks+" assertions; fixed shifts, explicit FSM and guided shot counter.\n");Console.WriteLine("PASS "+checks+" assertions");}
 }

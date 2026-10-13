@@ -28,7 +28,7 @@ wire s_buffered_accepted,s_buffered_delivered;
 reg buffered_held=0;reg [11:0] buffered_previous;
 reg buffered_push,buffered_pop;
 h_Backpressure dut(.*);
-// Inspect pre-edge handshake values. Counters update after the edge, like
+// Inspect pre-edge handshake values. Counters use nonblocking updates at the edge, like
 // separate clocked producers and receivers, never in a race with the DUT.
 task tick;begin
 #2;
@@ -50,10 +50,10 @@ if(!rst) begin
  end
 end
 buffered_push=!rst && s_buffered_accepted;buffered_pop=!rst && s_buffered_delivered;
-clk=1;#1;
-direct_sent=direct_sent+direct_push;direct_received=direct_received+direct_pop;
-buffered_sent=buffered_sent+buffered_push;buffered_received=buffered_received+buffered_pop;
-#1;clk=0;end endtask
+clk=1;
+direct_sent<=direct_sent+direct_push;direct_received<=direct_received+direct_pop;
+buffered_sent<=buffered_sent+buffered_push;buffered_received<=buffered_received+buffered_pop;
+#2;clk=0;end endtask
 initial begin
 rst=1;tick;rst=0;
 tick; // Cycle 1: buffered head captures 10; direct source holds 10.

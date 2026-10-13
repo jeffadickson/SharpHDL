@@ -8,6 +8,7 @@ PASS tinyrisc
 PASS naming
 PASS browser-graph
 PASS verisim
+PASS wasm-workbook
 PASS synthesize
 PASS synthesize-numeric
 PASS synthesize-multiply

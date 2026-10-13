@@ -139,7 +139,7 @@ lablink('addtwo','Add two and wrap — eight-bit version')
 # 6 Lesson 4
 page('Lesson four  What happens when bits run out')
 mission('Discover overflow and learn why a fifth bit can matter.')
-p('Four bits can represent 0 through 15. The number 16 needs five bits: 10000. Our four-bit answer keeps only the four places on the right.')
+p('Before this lesson, restore the constant to 2. Your guide rebuilds with boards/GoBoard/lesson.sh 2 and programs that image. Check B = 3 gives A = 5. Four bits can represent 0 through 15. The number 16 needs five bits: 10000. Our four-bit answer keeps only the four places on the right.')
 picture('overflow','14 + 2 needs five bits. Keeping only the low four bits gives 0000, or zero.')
 table([['B','B + 2 in ordinary maths','Four-bit answer A'],[12,14,14],[13,15,15],[14,16,0],[15,17,'____']],[1.0,3.0,3.0])
 tryit('Use button 2 to reach B = 14. Predict the right-hand digit. Then reach 15 and press again: the input itself wraps to zero. Use the 8, 4, 2, 1 cards to explain why.')
@@ -189,7 +189,7 @@ tryit('Choose a shot counter, score tally or pattern game. Draw inputs, stored v
 ask('Which test could reveal an error even when the board appears to be working? What should happen when your number runs out of bits?')
 boldline('My project','_____________________________________________________________')
 boldline('My circuit remembers','____________________________________________________')
-note('The existing starter provides an adder and run/pause counter. A capstone needs edits or a teacher-provided template. Decimal scores, a pattern game and a precision reaction timer are extensions, not features already implemented in the supplied starter.')
+note('The existing starter provides an adder and run/pause counter. Use the tested ShotCounter.cs template and Guided capstone page near the end. It runs in simulation; board-shell integration is a separate teacher task. Decimal scores, a pattern game and a precision reaction timer are extensions, not features already implemented in the supplied starter.')
 
 # 11 Extra buffer and languages
 page('Bonus  When the receiver needs a rest')
@@ -226,7 +226,7 @@ p('The teacher-owned board shell handles startup reset, two-register input synch
 h('What was actually checked')
 p('The existing examples passed 3,002 .NET assertions, seven generated-Verilog benches and a board-shell simulation. The classroom target completed placement/routing at 25 MHz and bitstream packing: 230 of 1,280 logic cells, no block RAM. No physical board has been connected or tested. The larger floating-point library is outside this small-board course.')
 h('Before equipping the group')
-p('Validate startup, button polarity, single increments on holds, both displays, Run/Pause and a changed-constant rebuild on one real board. Confirm its USB programming interface and revision. For twelve children, six stations budget about $540 before tax/shipping: six $70 boards plus estimated $20 accessories per station. Computers are excluded.')
+p('Complete boards/GoBoard/CLASSROOM_PILOT.md on one real station, then a second. Validate startup, buttons, displays, programming and recovery. Confirm its USB programming interface and revision. For twelve children, six stations budget about $540 before tax/shipping: six $70 boards plus estimated $20 accessories per station. Computers are excluded.')
 h('Sources and companion files')
 for text in [
  'Board price/features checked 13 October 2026: nandland.com/product/the-go-board/ and nandland.com/the-go-board/',
@@ -391,7 +391,7 @@ picture('wasm_counter_wave','Actual browser simulation: reset to zero, count thr
 table([['Rising edge time','What happens','Predict the count'],['2 ns','Reset','0'],['6, 10 and 14 ns','Enable is on','1, 2, 3'],['18 and 22 ns','Enable is off','____, ____'],['26 ns','Enable is on again','____']],[1.7,2.9,2.4],10.5)
 lablink('counter','Count, pause, resume')
 ask('Why does the adder change while clk stays low, but the counter wait for an upward edge?')
-note('Counter answers: 3, 3, 4. Next event may visit a falling edge or an input change; it is not Next clock. First/Next/Last event replay a completed trace. The time labels arrange the test; they are not measurements of FPGA speed.')
+note('Counter answers: 3, 3, 4. Use Next rising edge to visit clock edges; the first is reset. Time is displayed in ns. Next event also visits falling edges and input changes. All cursor controls replay a completed trace. The time labels arrange the test; they are not measurements of FPGA speed.')
 
 # 27 Teacher setup and extensions
 page('Browser lab  Guide and extension cards')
@@ -421,6 +421,30 @@ lablink('direct','Backpressure without a buffer')
 lablink('skid','Backpressure with a skid buffer')
 boldline('Waveform detective','Watch clk, sink_ready, input ready/data, output valid/data and the sent/received counters. LAST marks card 12. A high accepted or delivered wire counts only at a rising edge. Invalid data is not a card being offered.')
 note('At edge 3, the skid sender holds 12; the direct sender holds 10. Skid Ready comes from stored occupancy, so room becomes visible after edge 4. A buffer absorbs short waits; it cannot speed up the receiver. Counters belong to the teacher bench. Source and BP requirements: SKID_BUFFER_AND_VERILOG_COMMENTS.md.')
+
+page('Practice  Offer a card and give permission')
+p('Choose a sender, a receiver and a clock caller. The sender holds a number card and a Valid card. The receiver holds a Ready card facing backward toward the sender. The caller claps for a rising clock edge.')
+picture('skid','Data and Valid move forward; Ready moves backward. Empty means no valid card, even if old data bits remain.',width=4.2)
+table([['Valid','Ready','At the clap'],['0','0','No transfer'],['0','1','No transfer: nothing offered'],['1','0','No transfer: keep card and labels still'],['1','1','One transfer']],[1,1,5],11)
+h('Now try a different pause')
+p('Start with both skid slots empty. Offer cards 10, 11 and 12. The receiver waits for FOUR edges, then stays ready. Do not reset between these seven numbered edges. Use the earlier worked example to fill the blanks before opening a trace.')
+table([['After edge','Total skid accepted','Total delivered'],['1','1','0'],['2','____','____'],['3','____','____'],['4','____','____'],['5','____','____'],['6','____','____'],['7','____','____']],[1.5,2.75,2.75],10)
+p('The bundled browser bench uses a three-edge pause. This four-edge variation is a card exercise; a guide can change the bench to simulate it. Say which values must stay still during each wait.')
+note('Answers for edges 2 through 7: accepted 2, 2, 2, 2, 3, 3; delivered 0, 0, 0, 1, 2, 3. For independent practice, cover this note. Data is meaningful only while Valid is on. Ready may be on while Valid is off.')
+
+# A heading-level page break avoids an empty break paragraph after the full worksheet.
+d.add_heading('Guided capstone  Count one shot per press',1).paragraph_format.page_break_before=True
+p('Begin with the working examples/LearningLab/ShotCounter.cs template. Its simulated button input has already been cleaned up by the teacher. Holding the button counts once. Clear wins when Clear and a new press arrive together.')
+code('var previous = m.Register("previous_shot", 1, 0);\nm.Next(previous, shot);\nvar newPress = shot & ~previous;\nvar count = m.Register("count", 4, 0);')
+p('previous remembers whether the button was down at the last edge. newPress is 1 only when the button is down now and was up before. The complete file includes the next-count selection, clear and output wiring.')
+h('One guided change')
+p('First predict the score for pointsPerShot = 1. Then read the second configuration, pointsPerShot = 2. Change the argument in your own copy of the Build call from 1 to 2, and predict before running. Both configurations are included in the teacher tests.')
+table([['Action at an edge','One point per press','Two points per press'],['Reset','0','0'],['New press','1','____'],['Keep holding','1','____'],['Release','1','____'],['New press','2','____'],['Release','2','____'],['Clear and new press','0','____']],[3,2,2],10.5)
+h('Teacher run and checks')
+code('bash tests/run-learning.sh')
+p('Use the documented .NET or Mono setup plus Python 3, Node.js and Icarus. The command emits both ShotCounter variants and runs their native Verilog benches. The expected sequences check hold, release, clear priority, four-bit wrap and reset. The WASM lab remains a separate set of prepared examples.')
+p('For the learner, begin with just shot, clear and score. Identify what is stored, complete the prediction table, and explain why a held button does not create more shots. Patterns and decimal scoreboards are later extensions.')
+note('Answers in the two-point column: 2, 2, 2, 4, 4, 0. Four bits wrap modulo 16; eight two-point presses reach 0. This template is not wired to the Go Board image. Physical switches need synchronization and debouncing, and a teacher must connect the module to the board shell before hardware use. Further steps: examples/LearningLab/SHOT_COUNTER.md.')
 
 # Remove inherited title rules and keep all headings black.
 for tree in (d.styles.element,d.element):

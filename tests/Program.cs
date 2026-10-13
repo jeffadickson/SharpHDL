@@ -14,6 +14,8 @@ class Program
     static void Main(string[] args)
     {
         Directory.CreateDirectory("generated");
+        if(args.Length==1 && args[0]=="--axi-names") { AxiNameTests.Run();return; }
+        AxiNameTests.Run();
         if(args.Length==1 && args[0]=="--multiply") { MultiplierTests.Run();return; }
         if(args.Length==1 && args[0]=="--divide") { DividerTests.Run();return; }
         File.WriteAllText("generated/counter.v",CounterExample.Build().Verilog());

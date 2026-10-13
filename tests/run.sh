@@ -25,3 +25,6 @@ for wrapper in generated/*_axi.v; do
   iverilog -g2012 -s "h_${name}_axi" -o "build/${name}_axi" "$stem.v" "$wrapper"
 done
 iverilog -g2012 -s h_Counter -o build/counter generated/counter.v
+
+iverilog -g2012 -s tb -o build/axi-names/sim build/axi-names/design.v build/axi-names/tb.v
+vvp build/axi-names/sim
