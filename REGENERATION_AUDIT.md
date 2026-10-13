@@ -38,15 +38,23 @@ nextpnr-ice40 and icepack on PATH. Python needs python-docx for the workbook;
 Node needs Playwright for browser checks.
 
 Run `bash tests/run-all.sh`. It rebuilds in dependency order and captures logs
-under `build/audit`. Its constituent commands were executed during this audit;
-the wrapper itself was syntax checked. Render the rebuilt DOCX and inspect it
-before release; document rendering is separate from software tests.
+under `build/audit`. The complete wrapper passed in one invocation, including
+the actual browser/WASM stage and classroom place/route. Its successful stage
+journal is `generated/audit/run-all.txt`. The rebuilt workbook package contents
+match the visually reviewed version exactly. Render and inspect any future
+changed DOCX before release; document rendering is separate from software tests.
 
 The core and learning runners accept `DOTNET_ROOT` for direct SDK compilation,
 without MSBuild or Mono. The standalone naming test lives under `tests/naming`
 and is excluded from the main SDK project to avoid duplicate entry points.
 `tests/synthesize-examples.sh` now reproduces previously manual F# and AddTwo
 synthesis outputs. Go Board builds refresh their archived reports and hashes.
+
+The runner checks command availability, the SDK executable, Yosys simulation
+cells, nextpnr HX1K support, python-docx, Playwright and the browser path
+before rebuilding. Missing browser and missing HX1K support were separately
+checked to fail before suite execution. `build/audit/stages.log` records
+individual outcomes; a successful full run publishes `generated/audit/run-all.txt`.
 
 ## Requirements
 
@@ -57,6 +65,7 @@ synthesis outputs. Go Board builds refresh their archived reports and hashes.
 | REGEN-03 | Keep classroom image and source hashes synchronized. | Build archives its outputs; audit verifies every manifest hash. |
 | REGEN-04 | Rebuild embedded HTML output and workbook content. | HTML payload/reference/browser checks; DOCX content assertion and visual review. |
 | REGEN-05 | Keep each test entry point independently buildable. | Core suite, standalone naming test, SDK project exclusion. |
+| REGEN-06 | Reject missing tool dependencies before rebuilding and record full-run completion only after all stages pass. | Startup checks, negative dependency checks and stage journal. |
 
 Core counts above sum base, feature, numeric, multiply and divide assertions.
 Repeated post-synthesis runs are not additional independent architectural tests.

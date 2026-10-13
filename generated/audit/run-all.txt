@@ -1,0 +1,25 @@
+PASS core
+PASS behavioral
+PASS advanced
+PASS fsharp
+PASS three-languages
+PASS learning
+PASS tinyrisc
+PASS naming
+PASS browser-graph
+PASS verisim
+PASS synthesize
+PASS synthesize-numeric
+PASS synthesize-multiply
+PASS synthesize-divide
+PASS synthesize-behavioral
+PASS synthesize-examples
+PASS synthesize-tinyrisc
+PASS comparison
+PASS board
+PASS board-shell
+PASS tinyrisc-demo
+PASS tinyrisc-browser
+PASS generated-docs
+PASS expected classroom prediction rejection
+PASS complete automated run

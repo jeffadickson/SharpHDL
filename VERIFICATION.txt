@@ -1,3 +1,14 @@
+Complete-run follow-up (13 October 2026)
+
+- tests/run-all.sh executed end to end with exit status 0.
+- Fresh stage journal: generated/audit/run-all.txt. Includes real Chromium/
+  VeriSim WASM, classroom placement/routing and generated-document checks.
+- Added dependency checks before regeneration, including nextpnr HX1K database
+  support. Missing browser and missing HX1K support fail early as expected.
+- Rebuilt workbook package contents exactly match the reviewed 25-page edition.
+- Emitted RTL and board image unchanged. Existing detailed archived reports
+  retained; raw rerun logs are under build/audit. No physical board test.
+
 Full regeneration audit after semantic net naming (13 October 2026)
 
 - Core suite: 516,474 assertions; 204 generated RTL benches passed.

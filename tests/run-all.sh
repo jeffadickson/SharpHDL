@@ -6,8 +6,19 @@ cd "$(dirname "$0")/.."
 : "${DOTNET_ROOT:?Set DOTNET_ROOT to the .NET 8 SDK directory}"
 : "${YOSYS_DATDIR:?Set YOSYS_DATDIR to the Yosys share directory}"
 export SDK_ROOT="$DOTNET_ROOT"
+# Fail before regenerating anything if required tools are missing.
+for tool in python3 node iverilog vvp yosys nextpnr-ice40 icepack; do
+  command -v "$tool" >/dev/null || { echo "Missing required tool: $tool" >&2; exit 1; }
+done
+[[ -x "$DOTNET_ROOT/dotnet" ]] || { echo 'DOTNET_ROOT does not contain an executable dotnet' >&2; exit 1; }
+[[ -f "$YOSYS_DATDIR/ice40/cells_sim.v" ]] || { echo 'YOSYS_DATDIR lacks ice40/cells_sim.v' >&2; exit 1; }
+nextpnr_help=$(nextpnr-ice40 --help 2>&1)
+[[ "$nextpnr_help" == *--hx1k* ]] || { echo 'nextpnr-ice40 lacks HX1K device support; check its chip database installation' >&2; exit 1; }
+python3 -c 'import docx'
+node -e 'const fs=require("fs"),{chromium}=require("playwright"); const p=process.env.CHROME_BIN||chromium.executablePath(); if(!fs.existsSync(p))throw Error("Chromium missing: set CHROME_BIN or install Playwright chromium");'
 mkdir -p build/audit
-run() { echo "Running $1"; local name="$1"; shift; "$@" > "build/audit/$name.log" 2>&1 || { tail -40 "build/audit/$name.log"; return 1; }; }
+: > build/audit/stages.log
+run() { echo "Running $1"; local name="$1"; shift; "$@" > "build/audit/$name.log" 2>&1 || { tail -40 "build/audit/$name.log"; echo "FAIL $name" >> build/audit/stages.log; return 1; }; echo "PASS $name" >> build/audit/stages.log; }
 run core bash tests/run.sh
 for suite in behavioral advanced fsharp three-languages learning tinyrisc; do
   run "$suite" bash "tests/run-$suite.sh"
@@ -44,4 +55,7 @@ cp build/audit/synthesize-behavioral.log generated/behavioral/mapped-verificatio
 cp build/audit/behavioral.log generated/behavioral/rtl-verification.txt
 cp build/audit/three-languages.log generated/three-languages/rtl-verification.log
 cp build/audit/tinyrisc.log generated/tinyrisc/test.log
+mkdir -p generated/audit
+printf 'PASS expected classroom prediction rejection\nPASS complete automated run\n' >> build/audit/stages.log
+cp build/audit/stages.log generated/audit/run-all.txt
 echo 'PASS all automated suites. Render and visually review the rebuilt workbook before release.'
