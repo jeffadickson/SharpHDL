@@ -18,63 +18,63 @@ module h_CsPacket(
   output wire [0:0] s_assertion_failed
 );
 // Extract source bits [20:20], rebase to bit 0.
-wire [0:0] n_0;
+wire [0:0] n_bits_20_20_0;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_1;
+wire [31:0] n_resize_1;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_eq_2;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_3;
+wire [0:0] n_not_3;
 // Extract source bits [11:0], rebase to bit 0.
-wire [11:0] n_4;
+wire [11:0] n_bits_11_0_4;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_5;
+wire [31:0] n_resize_5;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_6;
+wire [11:0] n_resize_6;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_7;
+wire [31:0] n_resize_7;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_8;
+wire [11:0] n_resize_8;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_9;
+wire [31:0] n_resize_9;
 // Extract source bits [19:12], rebase to bit 0.
-wire [7:0] n_10;
+wire [7:0] n_bits_19_12_10;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_11;
+wire [31:0] n_resize_11;
 // Packet IL_0029 add; native 32-bit arithmetic.
-wire [31:0] n_12;
+wire [31:0] n_Packet_IL_0029_add;
 // Behavioral CIL result from AdvancedFunctions.Packet; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_13;
+wire [31:0] n_mux_12;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_14;
+wire [0:0] n_lt_13;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_15;
+wire [31:0] n_resize_14;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_16;
+wire [0:0] n_eq_15;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_17;
+wire [31:0] n_resize_16;
 // CIL arithmetic fault: checked overflow, divide exception, or assertion failure on the selected execution path. Reset/exception handlers are not synthesized.
-wire [0:0] n_18;
-assign n_0 = s_arg0 >> 20;
-assign n_1 = n_0;
-assign n_2 = n_1 == 32'd0;
-assign n_3 = ~n_2;
-assign n_4 = s_arg0 >> 0;
-assign n_5 = n_4;
-assign n_6 = n_5;
-assign n_7 = n_6;
-assign n_8 = n_7;
-assign n_9 = n_8;
-assign n_10 = s_arg0 >> 12;
-assign n_11 = n_10;
-assign n_12 = n_9 + n_11;
-assign n_13 = n_3 ? n_12 : n_9;
-assign n_14 = s_arg1 < n_9;
-assign n_15 = n_14;
-assign n_16 = n_15 == 32'd0;
-assign n_17 = n_16;
-assign n_18 = n_17 == 32'd0;
-assign s_result = n_13;
-assign s_fault = n_18;
-assign s_assertion_failed = n_18;
+wire [0:0] n_eq_17;
+assign n_bits_20_20_0 = s_arg0 >> 20;
+assign n_resize_1 = n_bits_20_20_0;
+assign n_eq_2 = n_resize_1 == 32'd0;
+assign n_not_3 = ~n_eq_2;
+assign n_bits_11_0_4 = s_arg0 >> 0;
+assign n_resize_5 = n_bits_11_0_4;
+assign n_resize_6 = n_resize_5;
+assign n_resize_7 = n_resize_6;
+assign n_resize_8 = n_resize_7;
+assign n_resize_9 = n_resize_8;
+assign n_bits_19_12_10 = s_arg0 >> 12;
+assign n_resize_11 = n_bits_19_12_10;
+assign n_Packet_IL_0029_add = n_resize_9 + n_resize_11;
+assign n_mux_12 = n_not_3 ? n_Packet_IL_0029_add : n_resize_9;
+assign n_lt_13 = s_arg1 < n_resize_9;
+assign n_resize_14 = n_lt_13;
+assign n_eq_15 = n_resize_14 == 32'd0;
+assign n_resize_16 = n_eq_15;
+assign n_eq_17 = n_resize_16 == 32'd0;
+assign s_result = n_mux_12;
+assign s_fault = n_eq_17;
+assign s_assertion_failed = n_eq_17;
 endmodule

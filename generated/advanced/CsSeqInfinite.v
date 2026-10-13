@@ -52,159 +52,159 @@ reg [31:0] s_stack0;
 // State register; synchronous active-high reset value 0; updates at rising clk.
 reg [31:0] s_stack1;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_0;
+wire [0:0] n_not_0;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_and_1;
 // Operation '<'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_2;
+wire [0:0] n_lt_2;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_3;
+wire [0:0] n_not_3;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_4;
+wire [0:0] n_and_4;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_5;
+wire [0:0] n_mux_5;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_6;
+wire [0:0] n_mux_6;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_7;
+wire [0:0] n_mux_7;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_8;
+wire [0:0] n_mux_8;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_9;
+wire [0:0] n_mux_9;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_10;
+wire [0:0] n_mux_10;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_11;
+wire [0:0] n_mux_11;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_12;
+wire [0:0] n_mux_12;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_13;
+wire [0:0] n_and_13;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_14;
+wire [0:0] n_mux_14;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_15;
+wire [0:0] n_mux_15;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_16;
+wire [0:0] n_not_16;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_17;
+wire [0:0] n_and_17;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_18;
+wire [0:0] n_eq_18;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_19;
+wire [0:0] n_and_19;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_20;
+wire [0:0] n_eq_20;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_21;
+wire [0:0] n_and_21;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_22;
+wire [0:0] n_eq_22;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_23;
+wire [0:0] n_and_23;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_24;
+wire [0:0] n_eq_24;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_25;
+wire [0:0] n_and_25;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_26;
+wire [0:0] n_eq_26;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_27;
+wire [0:0] n_and_27;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_28;
+wire [2:0] n_mux_28;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_29;
+wire [2:0] n_mux_29;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_30;
+wire [2:0] n_mux_30;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_31;
+wire [2:0] n_mux_31;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_32;
+wire [2:0] n_mux_32;
 // Select true operand when condition is 1; false operand otherwise.
-wire [2:0] n_33;
+wire [2:0] n_mux_33;
 // Operation '+'; result limited to 6 bits. Signed interpretation only for slt/asr/signextend.
-wire [5:0] n_34;
+wire [5:0] n_add_34;
 // Select true operand when condition is 1; false operand otherwise.
-wire [5:0] n_35;
+wire [5:0] n_mux_35;
 // Select true operand when condition is 1; false operand otherwise.
-wire [5:0] n_36;
+wire [5:0] n_mux_36;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_37;
+wire [31:0] n_mux_37;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_38;
+wire [31:0] n_mux_38;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_39;
+wire [31:0] n_mux_39;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_40;
+wire [31:0] n_mux_40;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_41;
+wire [31:0] n_mux_41;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_42;
+wire [31:0] n_mux_42;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_43;
+wire [31:0] n_add_43;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_44;
+wire [31:0] n_mux_44;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_45;
+wire [31:0] n_mux_45;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_46;
+wire [31:0] n_mux_46;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_47;
+wire [31:0] n_mux_47;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_48;
-assign n_0 = ~s_busy_state;
-assign n_1 = s_start & n_0;
-assign n_2 = s_cycles < 6'd60;
-assign n_3 = ~n_2;
-assign n_4 = s_busy_state & n_3;
-assign n_5 = n_4 ? 1'd0 : s_busy_state;
-assign n_6 = n_1 ? 1'd0 : n_5;
-assign n_7 = n_1 ? 1'd1 : n_6;
-assign n_8 = n_4 ? 1'd1 : s_done_state;
-assign n_9 = n_1 ? 1'd0 : n_8;
-assign n_10 = n_4 ? 1'd1 : s_fault_state;
-assign n_11 = n_1 ? 1'd0 : n_10;
-assign n_12 = n_1 ? 1'd0 : s_assertion_state;
-assign n_13 = s_busy_state & n_3;
-assign n_14 = n_13 ? 1'd1 : s_timeout_state;
-assign n_15 = n_1 ? 1'd0 : n_14;
-assign n_16 = ~n_3;
-assign n_17 = s_busy_state & n_16;
-assign n_18 = s_pc == 3'd4;
-assign n_19 = n_17 & n_18;
-assign n_20 = s_pc == 3'd3;
-assign n_21 = n_17 & n_20;
-assign n_22 = s_pc == 3'd2;
-assign n_23 = n_17 & n_22;
-assign n_24 = s_pc == 3'd1;
-assign n_25 = n_17 & n_24;
-assign n_26 = s_pc == 3'd0;
-assign n_27 = n_17 & n_26;
-assign n_28 = n_27 ? 3'd1 : s_pc;
-assign n_29 = n_25 ? 3'd2 : n_28;
-assign n_30 = n_23 ? 3'd3 : n_29;
-assign n_31 = n_21 ? 3'd4 : n_30;
-assign n_32 = n_19 ? 3'd0 : n_31;
-assign n_33 = n_1 ? 3'd0 : n_32;
-assign n_34 = s_cycles + 6'd1;
-assign n_35 = n_17 ? n_34 : s_cycles;
-assign n_36 = n_1 ? 6'd0 : n_35;
-assign n_37 = n_1 ? 32'd0 : s_result_state;
-assign n_38 = n_1 ? 32'd0 : s_saved_arg0;
-assign n_39 = n_1 ? s_arg0 : n_38;
-assign n_40 = n_21 ? s_stack0 : s_saved_arg1;
-assign n_41 = n_1 ? 32'd0 : n_40;
-assign n_42 = n_1 ? s_arg1 : n_41;
-assign n_43 = s_stack0 + s_stack1;
-assign n_44 = n_27 ? s_saved_arg1 : s_stack0;
-assign n_45 = n_23 ? n_43 : n_44;
-assign n_46 = n_1 ? 32'd0 : n_45;
-assign n_47 = n_25 ? s_saved_arg0 : s_stack1;
-assign n_48 = n_1 ? 32'd0 : n_47;
+wire [31:0] n_mux_48;
+assign n_not_0 = ~s_busy_state;
+assign n_and_1 = s_start & n_not_0;
+assign n_lt_2 = s_cycles < 6'd60;
+assign n_not_3 = ~n_lt_2;
+assign n_and_4 = s_busy_state & n_not_3;
+assign n_mux_5 = n_and_4 ? 1'd0 : s_busy_state;
+assign n_mux_6 = n_and_1 ? 1'd0 : n_mux_5;
+assign n_mux_7 = n_and_1 ? 1'd1 : n_mux_6;
+assign n_mux_8 = n_and_4 ? 1'd1 : s_done_state;
+assign n_mux_9 = n_and_1 ? 1'd0 : n_mux_8;
+assign n_mux_10 = n_and_4 ? 1'd1 : s_fault_state;
+assign n_mux_11 = n_and_1 ? 1'd0 : n_mux_10;
+assign n_mux_12 = n_and_1 ? 1'd0 : s_assertion_state;
+assign n_and_13 = s_busy_state & n_not_3;
+assign n_mux_14 = n_and_13 ? 1'd1 : s_timeout_state;
+assign n_mux_15 = n_and_1 ? 1'd0 : n_mux_14;
+assign n_not_16 = ~n_not_3;
+assign n_and_17 = s_busy_state & n_not_16;
+assign n_eq_18 = s_pc == 3'd4;
+assign n_and_19 = n_and_17 & n_eq_18;
+assign n_eq_20 = s_pc == 3'd3;
+assign n_and_21 = n_and_17 & n_eq_20;
+assign n_eq_22 = s_pc == 3'd2;
+assign n_and_23 = n_and_17 & n_eq_22;
+assign n_eq_24 = s_pc == 3'd1;
+assign n_and_25 = n_and_17 & n_eq_24;
+assign n_eq_26 = s_pc == 3'd0;
+assign n_and_27 = n_and_17 & n_eq_26;
+assign n_mux_28 = n_and_27 ? 3'd1 : s_pc;
+assign n_mux_29 = n_and_25 ? 3'd2 : n_mux_28;
+assign n_mux_30 = n_and_23 ? 3'd3 : n_mux_29;
+assign n_mux_31 = n_and_21 ? 3'd4 : n_mux_30;
+assign n_mux_32 = n_and_19 ? 3'd0 : n_mux_31;
+assign n_mux_33 = n_and_1 ? 3'd0 : n_mux_32;
+assign n_add_34 = s_cycles + 6'd1;
+assign n_mux_35 = n_and_17 ? n_add_34 : s_cycles;
+assign n_mux_36 = n_and_1 ? 6'd0 : n_mux_35;
+assign n_mux_37 = n_and_1 ? 32'd0 : s_result_state;
+assign n_mux_38 = n_and_1 ? 32'd0 : s_saved_arg0;
+assign n_mux_39 = n_and_1 ? s_arg0 : n_mux_38;
+assign n_mux_40 = n_and_21 ? s_stack0 : s_saved_arg1;
+assign n_mux_41 = n_and_1 ? 32'd0 : n_mux_40;
+assign n_mux_42 = n_and_1 ? s_arg1 : n_mux_41;
+assign n_add_43 = s_stack0 + s_stack1;
+assign n_mux_44 = n_and_27 ? s_saved_arg1 : s_stack0;
+assign n_mux_45 = n_and_23 ? n_add_43 : n_mux_44;
+assign n_mux_46 = n_and_1 ? 32'd0 : n_mux_45;
+assign n_mux_47 = n_and_25 ? s_saved_arg0 : s_stack1;
+assign n_mux_48 = n_and_1 ? 32'd0 : n_mux_47;
 assign s_busy = s_busy_state;
 assign s_done = s_done_state;
 assign s_fault = s_fault_state;
 assign s_assertion_failed = s_assertion_state;
 assign s_timeout = s_timeout_state;
 assign s_result = s_result_state;
-assign s_accept = n_1;
+assign s_accept = n_and_1;
 always @(posedge clk) begin
   if (rst) begin
     s_busy_state <= 1'd0;
@@ -220,18 +220,18 @@ always @(posedge clk) begin
     s_stack0 <= 32'd0;
     s_stack1 <= 32'd0;
   end else begin
-    s_busy_state <= n_7;
-    s_done_state <= n_9;
-    s_fault_state <= n_11;
-    s_assertion_state <= n_12;
-    s_timeout_state <= n_15;
-    s_pc <= n_33;
-    s_cycles <= n_36;
-    s_result_state <= n_37;
-    s_saved_arg0 <= n_39;
-    s_saved_arg1 <= n_42;
-    s_stack0 <= n_46;
-    s_stack1 <= n_48;
+    s_busy_state <= n_mux_7;
+    s_done_state <= n_mux_9;
+    s_fault_state <= n_mux_11;
+    s_assertion_state <= n_mux_12;
+    s_timeout_state <= n_mux_15;
+    s_pc <= n_mux_33;
+    s_cycles <= n_mux_36;
+    s_result_state <= n_mux_37;
+    s_saved_arg0 <= n_mux_39;
+    s_saved_arg1 <= n_mux_42;
+    s_stack0 <= n_mux_46;
+    s_stack1 <= n_mux_48;
   end
 end
 endmodule

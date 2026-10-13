@@ -268,3 +268,8 @@ automatically schedule pipelines, infer arbitrary memories from arrays, add CDC 
 provide full IEEE floating point. Host code can use these language facilities to
 construct a finite supported graph, but they do not become FPGA runtime services.
 See [the detailed support boundary](SYNTHESIS_BOUNDARIES.md).
+
+Generated RTL supports [meaningful intermediate net names](NET_NAMING.md):
+use `.Named("effective_address")` for design intent; unnamed expressions get
+operation names, and behavioral arithmetic retains method/IL provenance.
+The TinyRisc example and its browser demo include these names.

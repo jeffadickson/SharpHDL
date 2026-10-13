@@ -105,3 +105,6 @@ Verilog trace. `tests/synthesize-numeric.sh` additionally synthesizes this
 buffer and reruns that trace on the resulting RTL. The C#/F# numeric pipelines
 exercise the same buffer at 24-bit payload width. No physical timing target
 or CDC claim is made.
+
+Intermediate nets also support explicit `Expr.Named("meaning")` hints and
+operation-based fallbacks. See [net naming requirements and examples](NET_NAMING.md).

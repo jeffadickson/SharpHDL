@@ -36,3 +36,9 @@ or memory; reset is the way to resume after HALT/fault.
 Direct external-engine downloads were blocked in the test browser. Tests supplied
 the actual downloaded assets locally, executed WebAssembly, and checked the result.
 This does not establish that every browser/network permits hosted module imports.
+
+## Readable RTL
+
+NAME-01 through NAME-06 in [NET_NAMING.md](../../NET_NAMING.md) apply to
+TinyRisc. Decode, address, operand, writeback, PC control and peripheral-select
+nets must have explicit semantic names; the browser demo must embed that RTL.

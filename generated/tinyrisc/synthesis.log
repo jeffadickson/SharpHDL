@@ -37,7 +37,7 @@ Promoted 262 assignments to connections.
 3.6. Executing PROC_MUX pass (convert decision trees to multiplexers).
 Creating decoders for process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
 Creating decoders for process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
-     1/1: $1\rom_n_146$func$generated/tinyrisc/CountRun.v:1147$2.$result[15:0]$583
+     1/1: $1\rom_n_lookup_98$func$generated/tinyrisc/CountRun.v:1147$2.$result[15:0]$583
 Creating decoders for process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
      1/17: $0\s_scratch_read_data[15:0]
      2/17: $0\s_r7_state[15:0]
@@ -318,9 +318,9 @@ No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc
 No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:351$256_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
 No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:352$257_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
 No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:353$258_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
-No latch inferred for signal `\h_CountRun.\rom_n_146$func$generated/tinyrisc/CountRun.v:1147$1.$result' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
-No latch inferred for signal `\h_CountRun.\rom_n_146$func$generated/tinyrisc/CountRun.v:1147$2.$result' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
-No latch inferred for signal `\h_CountRun.\rom_n_146$func$generated/tinyrisc/CountRun.v:1147$2.address' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+No latch inferred for signal `\h_CountRun.\rom_n_lookup_98$func$generated/tinyrisc/CountRun.v:1147$1.$result' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+No latch inferred for signal `\h_CountRun.\rom_n_lookup_98$func$generated/tinyrisc/CountRun.v:1147$2.$result' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+No latch inferred for signal `\h_CountRun.\rom_n_lookup_98$func$generated/tinyrisc/CountRun.v:1147$2.address' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
 
 3.8. Executing PROC_DFF pass (convert process syncs to FFs).
 Creating register for signal `\h_CountRun.\s_pc_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
@@ -414,36 +414,36 @@ Removed a total of 6 cells.
 
 4.6. Executing OPT_DFF pass (perform DFF optimizations).
 Adding SRST signal on $procdff$1185 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1305$557_Y, Q = \s_scratch_read_data, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$1190 ($sdff) from module h_CountRun (D = \n_303, Q = \s_scratch_read_data).
+Adding EN signal on $auto$ff.cc:266:slice$1190 ($sdff) from module h_CountRun (D = \n_mux_239, Q = \s_scratch_read_data).
 Adding SRST signal on $procdff$1184 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1298$551_Y, Q = \s_r7_state, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$1192 ($sdff) from module h_CountRun (D = \n_296, Q = \s_r7_state).
+Adding EN signal on $auto$ff.cc:266:slice$1192 ($sdff) from module h_CountRun (D = \n_mux_232, Q = \s_r7_state).
 Adding SRST signal on $procdff$1183 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1292$545_Y, Q = \s_r6_state, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$1194 ($sdff) from module h_CountRun (D = \n_290, Q = \s_r6_state).
+Adding EN signal on $auto$ff.cc:266:slice$1194 ($sdff) from module h_CountRun (D = \n_mux_226, Q = \s_r6_state).
 Adding SRST signal on $procdff$1182 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1286$539_Y, Q = \s_r5_state, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$1196 ($sdff) from module h_CountRun (D = \n_284, Q = \s_r5_state).
+Adding EN signal on $auto$ff.cc:266:slice$1196 ($sdff) from module h_CountRun (D = \n_mux_220, Q = \s_r5_state).
 Adding SRST signal on $procdff$1181 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1280$533_Y, Q = \s_r4_state, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$1198 ($sdff) from module h_CountRun (D = \n_278, Q = \s_r4_state).
+Adding EN signal on $auto$ff.cc:266:slice$1198 ($sdff) from module h_CountRun (D = \n_mux_214, Q = \s_r4_state).
 Adding SRST signal on $procdff$1180 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1274$527_Y, Q = \s_r3_state, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$1200 ($sdff) from module h_CountRun (D = \n_272, Q = \s_r3_state).
+Adding EN signal on $auto$ff.cc:266:slice$1200 ($sdff) from module h_CountRun (D = \n_mux_208, Q = \s_r3_state).
 Adding SRST signal on $procdff$1179 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1268$521_Y, Q = \s_r2_state, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$1202 ($sdff) from module h_CountRun (D = \n_266, Q = \s_r2_state).
+Adding EN signal on $auto$ff.cc:266:slice$1202 ($sdff) from module h_CountRun (D = \n_mux_202, Q = \s_r2_state).
 Adding SRST signal on $procdff$1178 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1262$515_Y, Q = \s_r1_state, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$1204 ($sdff) from module h_CountRun (D = \n_260, Q = \s_r1_state).
+Adding EN signal on $auto$ff.cc:266:slice$1204 ($sdff) from module h_CountRun (D = \n_mux_196, Q = \s_r1_state).
 Adding SRST signal on $procdff$1177 ($dff) from module h_CountRun (D = \s_step, Q = \s_previous_step, rval = 1'0).
 Adding SRST signal on $procdff$1176 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1171$428_Y, Q = \s_last_pc_state, rval = 16'0000000000000000).
 Adding EN signal on $auto$ff.cc:266:slice$1207 ($sdff) from module h_CountRun (D = \s_pc_state, Q = \s_last_pc_state).
 Adding SRST signal on $procdff$1175 ($dff) from module h_CountRun (D = $or$generated/tinyrisc/CountRun.v:1111$369_Y, Q = \s_retired_state, rval = 1'0).
 Adding SRST signal on $procdff$1174 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1170$427_Y, Q = \s_led_state, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$1210 ($sdff) from module h_CountRun (D = \n_127, Q = \s_led_state).
+Adding EN signal on $auto$ff.cc:266:slice$1210 ($sdff) from module h_CountRun (D = \n_destination_value, Q = \s_led_state).
 Adding SRST signal on $procdff$1173 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1166$423_Y, Q = \s_fault_state, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$1212 ($sdff) from module h_CountRun (D = 1'1, Q = \s_fault_state).
 Adding SRST signal on $procdff$1172 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1164$421_Y, Q = \s_halted_state, rval = 1'0).
 Adding EN signal on $auto$ff.cc:266:slice$1214 ($sdff) from module h_CountRun (D = 1'1, Q = \s_halted_state).
-Adding SRST signal on $procdff$1171 ($dff) from module h_CountRun (D = \n_158, Q = \s_phase_state, rval = 2'00).
+Adding SRST signal on $procdff$1171 ($dff) from module h_CountRun (D = \n_mux_108, Q = \s_phase_state, rval = 2'00).
 Adding SRST signal on $procdff$1170 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1148$405_Y, Q = \s_instruction, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$1219 ($sdff) from module h_CountRun (D = \n_146, Q = \s_instruction).
+Adding EN signal on $auto$ff.cc:266:slice$1219 ($sdff) from module h_CountRun (D = \n_lookup_98, Q = \s_instruction).
 Adding SRST signal on $procdff$1169 ($dff) from module h_CountRun (D = $ternary$generated/tinyrisc/CountRun.v:1138$396_Y, Q = \s_pc_state, rval = 16'0000000000000000).
-Adding EN signal on $auto$ff.cc:266:slice$1221 ($sdff) from module h_CountRun (D = \n_136, Q = \s_pc_state).
+Adding EN signal on $auto$ff.cc:266:slice$1221 ($sdff) from module h_CountRun (D = \n_mux_90, Q = \s_pc_state).
 
 4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \h_CountRun..
@@ -472,8 +472,8 @@ Finding identical cells in module `\h_CountRun'.
 Removed a total of 0 cells.
 
 4.13. Executing OPT_DFF pass (perform DFF optimizations).
-Adding SRST signal on $auto$ff.cc:266:slice$1216 ($sdff) from module h_CountRun (D = \n_157 [0], Q = \s_phase_state [0], rval = 1'0).
-Adding EN signal on $auto$ff.cc:266:slice$1216 ($sdff) from module h_CountRun (D = \n_158 [1], Q = \s_phase_state [1]).
+Adding SRST signal on $auto$ff.cc:266:slice$1216 ($sdff) from module h_CountRun (D = \n_mux_107 [0], Q = \s_phase_state [0], rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1216 ($sdff) from module h_CountRun (D = \n_mux_108 [1], Q = \s_phase_state [1]).
 Adding EN signal on $auto$ff.cc:266:slice$1223 ($sdff) from module h_CountRun (D = 1'1, Q = \s_phase_state [0]).
 
 4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
@@ -495,7 +495,7 @@ Removed 0 multiplexer ports.
 
 4.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \h_CountRun.
-    New input vector for $reduce_or cell $auto$opt_dff.cc:254:combine_resets$1225: { \n_155 \n_153 \rst }
+    New input vector for $reduce_or cell $auto$opt_dff.cc:254:combine_resets$1225: { \n_and_105 \n_or_103 \rst }
   Optimizing cells in module \h_CountRun.
 Performed a total of 1 changes.
 

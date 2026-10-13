@@ -17,6 +17,13 @@ namespace SharpHDL
         internal int Offset;
         internal BigInteger[] Table;
         internal string Annotation;
+        public string NameHint { get; private set; }
+        // Metadata only; shared expressions share the hint. Last call wins.
+        public Expr Named(string name)
+        {
+            if(string.IsNullOrWhiteSpace(name)) throw new ArgumentException("A net name hint must not be empty.", "name");
+            NameHint=name; return this;
+        }
         internal SynchronousRam Memory;
         public string Description { get { return Annotation; } }
         public Expr Describe(string text) { Annotation=text; return this; }
@@ -277,6 +284,30 @@ namespace SharpHDL
         readonly StringBuilder declarations=new StringBuilder();
         readonly StringBuilder assignments=new StringBuilder();
         int serial;
+        readonly HashSet<string> usedNames=new HashSet<string>(StringComparer.Ordinal);
+        static string Identifier(string hint)
+        {
+            string safe=Regex.Replace(hint, "[^A-Za-z0-9_]", "_");
+            return safe.Substring(0,Math.Min(64,safe.Length));
+        }
+        static string Operation(Expr e)
+        {
+            switch(e.Op) {
+                case "+": return "add"; case "-": return "sub"; case "*": return "mul";
+                case "&": return "and"; case "|": return "or"; case "^": return "xor";
+                case "~": return "not"; case "==": return "eq"; case "<": return "lt";
+                case "<<": return "shl"; case ">>": return "shr";
+                case "slice": return "bits_"+(e.Offset+e.Width-1)+"_"+e.Offset;
+                default: return Identifier(e.Op);
+            }
+        }
+        string NetName(Expr e)
+        {
+            string stem="n_"+(e.NameHint==null ? Operation(e)+"_"+(serial++) : Identifier(e.NameHint));
+            string name=stem; int suffix=2;
+            while(!usedNames.Add(name)) name=stem+"_"+(suffix++);
+            return name;
+        }
         internal VerilogWriter(Module m) { module=m; }
         static string Comment(string text) { return (text ?? "").Replace("\r", " ").Replace("\n", " ").Replace("\u2028", " ").Replace("\u2029", " "); }
         static string Meaning(Expr e)
@@ -303,7 +334,7 @@ namespace SharpHDL
             string name;
             if(names.TryGetValue(e,out name)) return name;
             var args=e.Args.Select(Emit).ToArray();
-            name="n_"+(serial++); names[e]=name;
+            name=NetName(e); names[e]=name;
             string rhs;
             switch(e.Op)
             {

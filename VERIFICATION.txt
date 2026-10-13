@@ -295,3 +295,13 @@ mapping claim is made. Counts in logs are RTL cells, not physical FPGA LUTs.
 Not run: .NET SDK project build, target FPGA technology mapping/place-and-route,
 frequency analysis, board execution, exhaustive formal equivalence.
 The exact C# sources were compiled and executed with Mono.
+
+Semantic net naming (2026-10-13):
+- Explicit Expr.Named metadata, identifier sanitization, deterministic emission,
+  collisions, keyword/digit hints and bounded lengths: PASS.
+- Naming RTL: all 256 inputs, eight-bit wrap and four-bit slice: PASS.
+- TinyRisc: 4304 independent checks, 257 retirements, 752 edges; 11 RTL benches PASS.
+- Advanced behavioral: 7917 assertions, 36 RTL benches PASS.
+- TinyRisc Yosys check and post-synthesis Icarus trace: PASS.
+- Updated HTML: 83 VCD/payload assertions; Chromium controls and actual VeriSim
+  WASM simulation PASS (verified engine downloads routed locally).

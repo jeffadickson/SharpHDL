@@ -18,42 +18,42 @@ module h_DebugAssertBranch(
   output wire [0:0] s_assertion_failed
 );
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_0;
+wire [31:0] n_resize_0;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_1;
+wire [0:0] n_eq_1;
 // AssertBranch IL_0015 add; native 32-bit arithmetic.
-wire [31:0] n_2;
+wire [31:0] n_AssertBranch_IL_0015_add;
 // AssertBranch IL_0015 add; native 32-bit arithmetic.
-wire [31:0] n_3;
+wire [31:0] n_AssertBranch_IL_0015_add_2;
 // Behavioral CIL result from AdvancedFunctions.AssertBranch; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 32 bits. Undefined when fault=1.
-wire [31:0] n_4;
+wire [31:0] n_mux_2;
 // Operation 'slt'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_5;
+wire [0:0] n_slt_3;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_6;
+wire [31:0] n_resize_4;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_7;
+wire [0:0] n_eq_5;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_8;
+wire [31:0] n_resize_6;
 // Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_9;
+wire [0:0] n_eq_7;
 // CIL arithmetic fault: checked overflow, divide exception, or assertion failure on the selected execution path. Reset/exception handlers are not synthesized.
-wire [0:0] n_10;
+wire [0:0] n_mux_8;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_11;
-assign n_0 = s_arg1;
-assign n_1 = n_0 == 32'd0;
-assign n_2 = s_arg0 + 32'd2;
-assign n_3 = s_arg0 + 32'd2;
-assign n_4 = n_1 ? n_2 : n_3;
-assign n_5 = $signed(s_arg0) < $signed(32'd0);
-assign n_6 = n_5;
-assign n_7 = n_6 == 32'd0;
-assign n_8 = n_7;
-assign n_9 = n_8 == 32'd0;
-assign n_10 = n_1 ? 1'd0 : n_9;
-assign n_11 = n_1 ? 1'd0 : n_9;
-assign s_result = n_4;
-assign s_fault = n_10;
-assign s_assertion_failed = n_11;
+wire [0:0] n_mux_9;
+assign n_resize_0 = s_arg1;
+assign n_eq_1 = n_resize_0 == 32'd0;
+assign n_AssertBranch_IL_0015_add = s_arg0 + 32'd2;
+assign n_AssertBranch_IL_0015_add_2 = s_arg0 + 32'd2;
+assign n_mux_2 = n_eq_1 ? n_AssertBranch_IL_0015_add : n_AssertBranch_IL_0015_add_2;
+assign n_slt_3 = $signed(s_arg0) < $signed(32'd0);
+assign n_resize_4 = n_slt_3;
+assign n_eq_5 = n_resize_4 == 32'd0;
+assign n_resize_6 = n_eq_5;
+assign n_eq_7 = n_resize_6 == 32'd0;
+assign n_mux_8 = n_eq_1 ? 1'd0 : n_eq_7;
+assign n_mux_9 = n_eq_1 ? 1'd0 : n_eq_7;
+assign s_result = n_mux_2;
+assign s_fault = n_mux_8;
+assign s_assertion_failed = n_mux_9;
 endmodule

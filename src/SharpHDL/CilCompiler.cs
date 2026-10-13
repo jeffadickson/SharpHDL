@@ -226,7 +226,7 @@ namespace SharpHDL
                     string basic=op.Split('.')[0];var b=state.Pop();var a=state.Pop();var value=Bin(basic,a,b);
                     if(op.Contains("ovf"))
                     {bool signed=!op.EndsWith(".un");var wide=Bin(basic,Resize(a,64,signed),Resize(b,64,signed));var fits=Test("eq",wide,Resize(value,64,signed));state.Fault=Or(state.Fault,Not(fits));}
-                    state.Push(value.Describe(method.Name+" IL_"+at.ToString("x4")+" "+op+"; native 32-bit arithmetic."));continue;
+                    state.Push(value.Named(method.Name+"_IL_"+at.ToString("x4")+"_"+op).Describe(method.Name+" IL_"+at.ToString("x4")+" "+op+"; native 32-bit arithmetic."));continue;
                 }
                 if(op=="div"||op=="div.un"||op=="rem"||op=="rem.un")
                 {

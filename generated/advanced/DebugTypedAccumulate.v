@@ -18,102 +18,102 @@ module h_DebugTypedAccumulate(
   output wire [0:0] s_assertion_failed
 );
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_0;
+wire [31:0] n_resize_0;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_1;
+wire [11:0] n_resize_1;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_2;
+wire [31:0] n_resize_2;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_3;
+wire [31:0] n_resize_3;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_4;
+wire [11:0] n_resize_4;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_5;
+wire [31:0] n_resize_5;
 // Operation '+'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_6;
+wire [31:0] n_add_6;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_7;
+wire [11:0] n_resize_7;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_8;
+wire [31:0] n_resize_8;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_9;
+wire [11:0] n_resize_9;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_10;
+wire [31:0] n_resize_10;
 // Operation '*'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_11;
+wire [31:0] n_mul_11;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_12;
+wire [11:0] n_resize_12;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_13;
+wire [31:0] n_resize_13;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_14;
+wire [11:0] n_resize_14;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_15;
+wire [31:0] n_resize_15;
 // Operation '>>'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_16;
+wire [31:0] n_shr_16;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_17;
+wire [11:0] n_resize_17;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_18;
+wire [31:0] n_resize_18;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_19;
+wire [11:0] n_resize_19;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_20;
+wire [31:0] n_resize_20;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_21;
+wire [11:0] n_resize_21;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_22;
+wire [31:0] n_resize_22;
 // Operation '<<'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_23;
+wire [31:0] n_shl_23;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_24;
+wire [11:0] n_resize_24;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_25;
+wire [31:0] n_resize_25;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_26;
+wire [11:0] n_resize_26;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_27;
+wire [31:0] n_resize_27;
 // Operation '^'; result limited to 32 bits. Signed interpretation only for slt/asr/signextend.
-wire [31:0] n_28;
+wire [31:0] n_xor_28;
 // Narrow: retain low bits; upper bits discarded.
-wire [11:0] n_29;
+wire [11:0] n_resize_29;
 // Unsigned resize: zero extend (or preserve width).
-wire [31:0] n_30;
+wire [31:0] n_resize_30;
 // Behavioral CIL result from AdvancedFunctions.TypedAccumulate; native 32-bit scalars, explicit UBits operations wrap to their declared width; output explicitly narrowed to 12 bits. Undefined when fault=1.
-wire [11:0] n_31;
-assign n_0 = s_arg0;
-assign n_1 = n_0;
-assign n_2 = n_1;
-assign n_3 = s_arg1;
-assign n_4 = n_3;
-assign n_5 = n_4;
-assign n_6 = n_2 + n_5;
-assign n_7 = n_6;
-assign n_8 = n_7;
-assign n_9 = n_8;
-assign n_10 = n_9;
-assign n_11 = n_10 * 32'd3;
-assign n_12 = n_11;
-assign n_13 = n_12;
-assign n_14 = n_13;
-assign n_15 = n_14;
-assign n_16 = n_15 >> 2;
-assign n_17 = n_16;
-assign n_18 = n_17;
-assign n_19 = n_18;
-assign n_20 = n_19;
-assign n_21 = n_0;
-assign n_22 = n_21;
-assign n_23 = n_22 << 1;
-assign n_24 = n_23;
-assign n_25 = n_24;
-assign n_26 = n_25;
-assign n_27 = n_26;
-assign n_28 = n_20 ^ n_27;
-assign n_29 = n_28;
-assign n_30 = n_29;
-assign n_31 = n_30;
-assign s_result = n_31;
+wire [11:0] n_resize_31;
+assign n_resize_0 = s_arg0;
+assign n_resize_1 = n_resize_0;
+assign n_resize_2 = n_resize_1;
+assign n_resize_3 = s_arg1;
+assign n_resize_4 = n_resize_3;
+assign n_resize_5 = n_resize_4;
+assign n_add_6 = n_resize_2 + n_resize_5;
+assign n_resize_7 = n_add_6;
+assign n_resize_8 = n_resize_7;
+assign n_resize_9 = n_resize_8;
+assign n_resize_10 = n_resize_9;
+assign n_mul_11 = n_resize_10 * 32'd3;
+assign n_resize_12 = n_mul_11;
+assign n_resize_13 = n_resize_12;
+assign n_resize_14 = n_resize_13;
+assign n_resize_15 = n_resize_14;
+assign n_shr_16 = n_resize_15 >> 2;
+assign n_resize_17 = n_shr_16;
+assign n_resize_18 = n_resize_17;
+assign n_resize_19 = n_resize_18;
+assign n_resize_20 = n_resize_19;
+assign n_resize_21 = n_resize_0;
+assign n_resize_22 = n_resize_21;
+assign n_shl_23 = n_resize_22 << 1;
+assign n_resize_24 = n_shl_23;
+assign n_resize_25 = n_resize_24;
+assign n_resize_26 = n_resize_25;
+assign n_resize_27 = n_resize_26;
+assign n_xor_28 = n_resize_20 ^ n_resize_27;
+assign n_resize_29 = n_xor_28;
+assign n_resize_30 = n_resize_29;
+assign n_resize_31 = n_resize_30;
+assign s_result = n_resize_31;
 assign s_fault = 1'd0;
 assign s_assertion_failed = 1'd0;
 endmodule
