@@ -123,3 +123,7 @@ Independent expected-value and stream-queue scoreboards provide functional check
 Pre-edge summaries apply to these prepared benches, whose inputs settle before
 the edge. They use the value at the preceding VCD time tick; this is not a general
 Verilog event-region debugger or an arbitrary trace-upload facility.
+
+For a child-directed first session, use the [learner-led pilot guide](docs/LEARNER_LED_PILOT.md).
+It includes an explicitly simulated focus-group critique, feasible learner choices,
+and an observation sheet for an actual nine-year-old pilot. No child trial is claimed.

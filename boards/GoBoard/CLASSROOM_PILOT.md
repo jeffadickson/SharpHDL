@@ -49,3 +49,7 @@ Record actual setup time, activity time, prompts needed and misconceptions.
 Have the learner explain why a held card is not transferred twice and why changing
 an input does not require rebuilding. Use this evidence to set session lengths.
 Do not treat suggested lesson durations as measured classroom results.
+
+For a child-directed first session, use the [learner-led pilot guide](../../docs/LEARNER_LED_PILOT.md).
+It includes an explicitly simulated focus-group critique, feasible learner choices,
+and an observation sheet for an actual nine-year-old pilot. No child trial is claimed.
