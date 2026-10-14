@@ -12,6 +12,17 @@ namespace SharpHDL
         public int MaxStages = 64;
         public int InitiationInterval = 1;
     }
+    /// <summary>Operation-level abstract schedule metadata, not placed-and-routed timing.</summary>
+    public sealed class PipelineOperation
+    {
+        public int Stage { get; }
+        public int LogicLevel { get; }
+        public int Width { get; }
+        public string Operation { get; }
+        public string Name { get; }
+        public PipelineOperation(int stage, int logicLevel, int width, string operation, string name)
+        { Stage=stage; LogicLevel=logicLevel; Width=width; Operation=operation; Name=name; }
+    }
     public sealed class PipelineHandle
     {
         /// <summary>Register boundaries, including the edge accepting an input. Stalls extend latency.</summary>
@@ -20,6 +31,7 @@ namespace SharpHDL
         public int PayloadRegisterBits { get; internal set; }
         public IReadOnlyList<Signal> StageValid { get; internal set; }
         public string Report { get; internal set; }
+        public IReadOnlyList<PipelineOperation> Operations { get; internal set; }
     }
     internal static class PipelineScheduler
     {
@@ -108,7 +120,8 @@ namespace SharpHDL
             report.AppendLine("No resource sharing; multiply is a whole combinational operator in one logic level.");
             report.AppendLine("Ready propagates combinationally backward; no automatic skid-buffer insertion.");
             foreach(var e in nodes.Where(e=>costs[e]>0))report.AppendLine("stage "+stage(e)+" | level "+levels[e]+" | "+e.Width+" bits | "+e.Op+" | "+(e.NameHint??"expression"));
-            return new PipelineHandle{Latency=depth,InitiationInterval=1,PayloadRegisterBits=bits,StageValid=Array.AsReadOnly(valid),Report=report.ToString()};
+            var operations=nodes.Where(e=>costs[e]>0).Select(e=>new PipelineOperation(stage(e), levels[e], e.Width, e.Op, e.NameHint??"expression")).ToArray();
+            return new PipelineHandle{Latency=depth,InitiationInterval=1,PayloadRegisterBits=bits,StageValid=Array.AsReadOnly(valid),Operations=Array.AsReadOnly(operations),Report=report.ToString()};
         }
     }
 }
