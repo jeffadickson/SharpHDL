@@ -31,7 +31,7 @@ namespace SharpHDL
     }
 
     /// <summary>Hardware clock-debugging facade. Reads and triggers are post-edge.</summary>
-    public sealed class HardwareDebugSession
+    public sealed partial class HardwareDebugSession
     {
         readonly Simulator simulator;
         readonly IHardwareDebugObserver observer;
