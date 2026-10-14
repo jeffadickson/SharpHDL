@@ -59,10 +59,12 @@ def setup():
         print("Docker daemon is unavailable; start Docker and run setup again.", file=sys.stderr)
         return 1
     run([docker, "build", "-f", "tools/Dockerfile.dev", "-t", "sharphdl-dev:local", "."])
+    for project in PROJECTS:
+        run([docker, "run", "--rm", "-v", str(ROOT) + ":/workspace", "-w", "/workspace",
+             "sharphdl-dev:local", "dotnet", "restore", project])
     run([docker, "run", "--rm", "-v", str(ROOT) + ":/workspace", "-w", "/workspace",
-         "sharphdl-dev:local", "dotnet", "restore", "tests/Tests.csproj"])
-    run([docker, "run", "--rm", "-v", str(ROOT) + ":/workspace", "-w", "/workspace",
-         "sharphdl-dev:local", "dotnet", "restore", "tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj"])
+         "sharphdl-dev:local", "bash", "-lc",
+         "for t in dotnet iverilog vvp verilator yosys nextpnr-ice40 icepack; do command -v \"$t\" >/dev/null || exit 1; done"])
     print("Automatic container provisioning complete (HDL tools, .NET SDK, Python, Node).")
     print("Use 'just container-build' or 'just container-test' without local .NET installs.")
     return 0
