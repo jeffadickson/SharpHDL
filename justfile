@@ -11,6 +11,9 @@ setup:
     python3 tools/dev.py setup
 
 build:
+    dotnet build src/SharpHDL.Core/SharpHDL.Core.csproj -c Release
+    dotnet build src/SharpHDL.HLS/SharpHDL.HLS.csproj -c Release
+    dotnet build src/SharpHDL.Simulation/SharpHDL.Simulation.csproj -c Release
     dotnet build src/SharpHDL/SharpHDL.csproj -c Release
     dotnet build tests/Tests.csproj -c Release
     dotnet build tools/SharpHDL.Live/SharpHDL.Live.csproj -c Release
