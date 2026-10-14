@@ -1,0 +1,38 @@
+{
+   "creator": "Yosys 0.33 (git sha1 2584903a060)",
+   "invocation": "stat -json ",
+   "modules": {
+      "\\h_PacketChecksum": {
+         "num_wires":         42,
+         "num_wire_bits":     803,
+         "num_pub_wires":     42,
+         "num_pub_wire_bits": 803,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         120,
+         "num_cells_by_type": {
+            "SB_CARRY": 15,
+            "SB_DFFESR": 35,
+            "SB_DFFSR": 16,
+            "SB_LUT4": 54
+         }
+      }
+   },
+      "design": {
+         "num_wires":         42,
+         "num_wire_bits":     803,
+         "num_pub_wires":     42,
+         "num_pub_wire_bits": 803,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         120,
+         "num_cells_by_type": {
+            "SB_CARRY": 15,
+            "SB_DFFESR": 35,
+            "SB_DFFSR": 16,
+            "SB_LUT4": 54
+         }
+      }
+}

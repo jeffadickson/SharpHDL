@@ -73,3 +73,11 @@ See FSharp/DATAFLOW_AND_USEFULNESS.md for a practical assessment and worked stre
 and saturation, with input/output skid buffers; and Compact24 complex power
 from a packed real/imaginary input. `FSharp/NumericDesigns.fs` implements the
 same two circuits using F# composition. See the root numeric and skid guides.
+
+## Packet processing with measured hardware costs
+
+[Packet checksum benchmark](PacketBenchmark/README.md): the same 16-bit packet
+checksum in C# and handwritten Verilog, compared with an independent traffic
+oracle, mapped iCE40 simulation, and three place-and-route seeds. Includes
+readable bus layouts, latency/throughput checks, measured resource reports,
+and explicit limits on interpreting core timing as board performance.

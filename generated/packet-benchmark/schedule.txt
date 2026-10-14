@@ -1,0 +1,24 @@
+Feedback pipeline checksum
+External latency: 1 clocks to earliest output transfer; stalls extend latency.
+External initiation interval: 1 clocks with continuously valid input and ready output; capacity: 1 iteration.
+State commits on output acceptance; a simultaneous input snapshots completed next state. Same-edge forwarding enabled.
+State registers: 1 x 32 bits; busy: 1 bit. Reset restores declared initial constants and flushes in-flight output.
+This is single-iteration recurrence scheduling, not modulo scheduling or resource sharing.
+Predicated control: 1 path-expanded branches, 2 terminal paths, 29 visited instructions.
+Internal datapath schedule (its II=1 is gated by the external recurrence controller):
+Elastic pipeline checksum_datapath
+Latency: 1 register boundaries (acceptance edge counts as boundary 1); stalls extend latency.
+Initiation interval: 1 with a continuously ready sink; capacity: 1 tokens.
+Logic levels per stage: 32; abstract operation count, not device timing.
+Payload register bits: 64; valid register bits: 1.
+No resource sharing; multiply is a whole combinational operator in one logic level.
+Ready propagates combinationally backward; no automatic skid-buffer insertion.
+stage 1 | level 1 | 32 bits | & | Checksum_IL_002e_and
+stage 1 | level 2 | 1 bits | == | expression
+stage 1 | level 3 | 1 bits | ~ | expression
+stage 1 | level 1 | 32 bits | & | Checksum_IL_0010_and
+stage 1 | level 2 | 32 bits | + | Checksum_IL_0011_add
+stage 1 | level 3 | 32 bits | & | Checksum_IL_0017_and
+stage 1 | level 4 | 32 bits | mux | expression
+stage 1 | level 1 | 32 bits | & | Checksum_IL_0021_and
+stage 1 | level 4 | 32 bits | | | Checksum_IL_002f_select

@@ -1,0 +1,363 @@
+Warning: No PCF file specified; IO pins will be placed automatically
+
+Info: Packing constants..
+Info: Packing IOs..
+Info: Packing LUT-FFs..
+Info:       19 LCs used as LUT4 only
+Info:       16 LCs used as LUT4 and DFF
+Info: Packing non-LUT FFs..
+Info:       18 LCs used as DFF only
+Info: Packing carries..
+Info:        0 LCs used as CARRY only
+Info: Packing indirect carry+LUT pairs...
+Info:        0 LUTs merged into carry LCs
+Info: Packing RAMs..
+Info: Placing PLLs..
+Info: Packing special functions..
+Info: Packing PLLs..
+Info: Promoting globals..
+Info: promoting clk$SB_IO_IN (fanout 34)
+Info: promoting rst$SB_IO_IN [reset] (fanout 34)
+Info: promoting s_in_valid_SB_LUT4_I2_O [cen] (fanout 33)
+Info: Constraining chains...
+Info:        0 LCs used to legalise carry chains.
+Info: Checksum: 0x1d525b85
+
+Info: Annotating ports with timing budgets for target frequency 25.00 MHz
+Info: Checksum: 0xd7a52edb
+
+Info: Device utilisation:
+Info: 	         ICESTORM_LC:    55/ 1280     4%
+Info: 	        ICESTORM_RAM:     0/   16     0%
+Info: 	               SB_IO:    70/  112    62%
+Info: 	               SB_GB:     3/    8    37%
+Info: 	        ICESTORM_PLL:     0/    1     0%
+Info: 	         SB_WARMBOOT:     0/    1     0%
+
+Info: Placed 0 cells based on constraints.
+Info: Creating initial analytic placement for 42 cells, random placement wirelen = 931.
+Info:     at initial placer iter 0, wirelen = 450
+Info:     at initial placer iter 1, wirelen = 447
+Info:     at initial placer iter 2, wirelen = 436
+Info:     at initial placer iter 3, wirelen = 437
+Info: Running main analytical placer, max placement attempts per cell = 10000.
+Info:     at iteration #1, type SB_GB: wirelen solved = 437, spread = 444, legal = 457; time = 0.00s
+Info:     at iteration #1, type ICESTORM_LC: wirelen solved = 461, spread = 493, legal = 505; time = 0.00s
+Info:     at iteration #1, type ALL: wirelen solved = 446, spread = 489, legal = 517; time = 0.00s
+Info: HeAP Placer Time: 0.00s
+Info:   of which solving equations: 0.00s
+Info:   of which spreading cells: 0.00s
+Info:   of which strict legalisation: 0.00s
+
+Info: Running simulated annealing placer for refinement.
+Info:   at iteration #1: temp = 0.000000, timing cost = 13, wirelen = 517
+Info:   at iteration #5: temp = 0.000000, timing cost = 4, wirelen = 358
+Info:   at iteration #10: temp = 0.000000, timing cost = 6, wirelen = 350
+Info:   at iteration #14: temp = 0.000000, timing cost = 6, wirelen = 342
+Info: SA placement time 0.03s
+
+Info: Max frequency for clock 'clk$SB_IO_IN_$glb_clk': 197.67 MHz (PASS at 25.00 MHz)
+
+Info: Max delay <async>                       -> <async>                      : 3.61 ns
+Info: Max delay <async>                       -> posedge clk$SB_IO_IN_$glb_clk: 5.94 ns
+Info: Max delay posedge clk$SB_IO_IN_$glb_clk -> <async>                      : 3.47 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 1 endpoint(s)
+Info:          + represents [1,1) endpoint(s)
+Info: [ 34061,  34306) |***********************
+Info: [ 34306,  34551) |**********
+Info: [ 34551,  34796) |
+Info: [ 34796,  35041) |*************
+Info: [ 35041,  35286) |**************************
+Info: [ 35286,  35531) |********
+Info: [ 35531,  35776) |*********
+Info: [ 35776,  36021) |********
+Info: [ 36021,  36266) |**
+Info: [ 36266,  36511) |*******
+Info: [ 36511,  36756) |***************
+Info: [ 36756,  37001) |******************************
+Info: [ 37001,  37246) |************
+Info: [ 37246,  37491) |***
+Info: [ 37491,  37736) |*****
+Info: [ 37736,  37981) |******
+Info: [ 37981,  38226) |********
+Info: [ 38226,  38471) |****************
+Info: [ 38471,  38716) |
+Info: [ 38716,  38961) |***
+Info: Checksum: 0x4316bcb8
+
+Info: Routing..
+Info: Setting up routing queue.
+Info: Routing 184 arcs.
+Info:            |   (re-)routed arcs  |   delta    | remaining|       time spent     |
+Info:    IterCnt |  w/ripup   wo/ripup |  w/r  wo/r |      arcs| batch(sec) total(sec)|
+Info:        188 |        4        171 |    4   171 |         0|       0.02       0.02|
+Info: Routing complete.
+Info: Router1 time 0.02s
+Info: Checksum: 0xa4b19efe
+
+Info: Critical path report for clock 'clk$SB_IO_IN_$glb_clk' (posedge -> posedge):
+Info: curr total
+Info:  0.5  0.5  Source running_sum_SB_DFFESR_Q_15_D_SB_LUT4_O_LC.O
+Info:  0.6  1.1    Net running_sum[0] budget 18.341000 ns (2,5) -> (2,6)
+Info:                Sink total_SB_LUT4_O_15_LC.I2
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:10.13-10.24
+Info:  0.2  1.4  Source total_SB_LUT4_O_15_LC.COUT
+Info:  0.0  1.4    Net total_SB_LUT4_O_I3[1] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_8_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  1.5  Source total_SB_LUT4_O_8_LC.COUT
+Info:  0.0  1.5    Net total_SB_LUT4_O_I3[2] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_7_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  1.6  Source total_SB_LUT4_O_7_LC.COUT
+Info:  0.0  1.6    Net total_SB_LUT4_O_I3[3] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_6_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  1.7  Source total_SB_LUT4_O_6_LC.COUT
+Info:  0.0  1.7    Net total_SB_LUT4_O_I3[4] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_5_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  1.9  Source total_SB_LUT4_O_5_LC.COUT
+Info:  0.0  1.9    Net total_SB_LUT4_O_I3[5] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_4_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.0  Source total_SB_LUT4_O_4_LC.COUT
+Info:  0.0  2.0    Net total_SB_LUT4_O_I3[6] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_3_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.1  Source total_SB_LUT4_O_3_LC.COUT
+Info:  0.0  2.1    Net total_SB_LUT4_O_I3[7] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_2_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.2  Source total_SB_LUT4_O_2_LC.COUT
+Info:  0.2  2.4    Net total_SB_LUT4_O_I3[8] budget 0.190000 ns (2,6) -> (2,7)
+Info:                Sink total_SB_LUT4_O_1_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.6  Source total_SB_LUT4_O_1_LC.COUT
+Info:  0.0  2.6    Net total_SB_LUT4_O_I3[9] budget 0.000000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.7  Source total_SB_LUT4_O_LC.COUT
+Info:  0.0  2.7    Net total_SB_LUT4_O_I3[10] budget 0.000000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_14_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.8  Source total_SB_LUT4_O_14_LC.COUT
+Info:  0.0  2.8    Net total_SB_LUT4_O_I3[11] budget 0.000000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_13_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.9  Source total_SB_LUT4_O_13_LC.COUT
+Info:  0.0  2.9    Net total_SB_LUT4_O_I3[12] budget 0.000000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_12_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.1  Source total_SB_LUT4_O_12_LC.COUT
+Info:  0.0  3.1    Net total_SB_LUT4_O_I3[13] budget 0.000000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_11_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.2  Source total_SB_LUT4_O_11_LC.COUT
+Info:  0.0  3.2    Net total_SB_LUT4_O_I3[14] budget 0.000000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_10_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.3  Source total_SB_LUT4_O_10_LC.COUT
+Info:  0.3  3.6    Net total_SB_LUT4_O_I3[15] budget 0.260000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_9_LC.I3
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.3  3.9  Source total_SB_LUT4_O_9_LC.O
+Info:  0.6  4.5    Net total[15] budget 18.341000 ns (2,7) -> (2,8)
+Info:                Sink result_sum_SB_DFFESR_Q_DFFLC.I0
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.14-16.19
+Info:  0.5  4.9  Setup result_sum_SB_DFFESR_Q_DFFLC.I0
+Info: 3.3 ns logic, 1.6 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> '<async>':
+Info: curr total
+Info:  0.0  0.0  Source s_out_ready$sb_io.D_IN_0
+Info:  1.0  1.0    Net s_out_ready$SB_IO_IN budget 19.811001 ns (8,17) -> (7,15)
+Info:                Sink s_in_ready_SB_LUT4_O_LC.I2
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:6.8-6.19
+Info:  0.4  1.3  Source s_in_ready_SB_LUT4_O_LC.O
+Info:  1.7  3.0    Net s_in_ready$SB_IO_OUT budget 19.572001 ns (7,15) -> (7,0)
+Info:                Sink s_in_ready$sb_io.D_OUT_0
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:4.51-4.61
+Info: 0.4 ns logic, 2.6 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> 'posedge clk$SB_IO_IN_$glb_clk':
+Info: curr total
+Info:  0.0  0.0  Source s_in_data[1]$sb_io.D_IN_0
+Info:  1.7  1.7    Net s_in_data[1]$SB_IO_IN budget 18.597000 ns (4,0) -> (2,6)
+Info:                Sink total_SB_LUT4_O_8_LC.I1
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:4.15-4.24
+Info:  0.3  1.9  Source total_SB_LUT4_O_8_LC.COUT
+Info:  0.0  1.9    Net total_SB_LUT4_O_I3[2] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_7_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.0  Source total_SB_LUT4_O_7_LC.COUT
+Info:  0.0  2.0    Net total_SB_LUT4_O_I3[3] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_6_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.2  Source total_SB_LUT4_O_6_LC.COUT
+Info:  0.0  2.2    Net total_SB_LUT4_O_I3[4] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_5_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.3  Source total_SB_LUT4_O_5_LC.COUT
+Info:  0.0  2.3    Net total_SB_LUT4_O_I3[5] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_4_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.4  Source total_SB_LUT4_O_4_LC.COUT
+Info:  0.0  2.4    Net total_SB_LUT4_O_I3[6] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_3_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.5  Source total_SB_LUT4_O_3_LC.COUT
+Info:  0.0  2.5    Net total_SB_LUT4_O_I3[7] budget 0.000000 ns (2,6) -> (2,6)
+Info:                Sink total_SB_LUT4_O_2_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  2.7  Source total_SB_LUT4_O_2_LC.COUT
+Info:  0.2  2.9    Net total_SB_LUT4_O_I3[8] budget 0.190000 ns (2,6) -> (2,7)
+Info:                Sink total_SB_LUT4_O_1_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.0  Source total_SB_LUT4_O_1_LC.COUT
+Info:  0.0  3.0    Net total_SB_LUT4_O_I3[9] budget 0.000000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.1  Source total_SB_LUT4_O_LC.COUT
+Info:  0.0  3.1    Net total_SB_LUT4_O_I3[10] budget 0.000000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_14_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.2  Source total_SB_LUT4_O_14_LC.COUT
+Info:  0.0  3.2    Net total_SB_LUT4_O_I3[11] budget 0.000000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_13_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.4  Source total_SB_LUT4_O_13_LC.COUT
+Info:  0.0  3.4    Net total_SB_LUT4_O_I3[12] budget 0.000000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_12_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.5  Source total_SB_LUT4_O_12_LC.COUT
+Info:  0.0  3.5    Net total_SB_LUT4_O_I3[13] budget 0.000000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_11_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.6  Source total_SB_LUT4_O_11_LC.COUT
+Info:  0.0  3.6    Net total_SB_LUT4_O_I3[14] budget 0.000000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_10_LC.CIN
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.7  Source total_SB_LUT4_O_10_LC.COUT
+Info:  0.3  4.0    Net total_SB_LUT4_O_I3[15] budget 0.260000 ns (2,7) -> (2,7)
+Info:                Sink total_SB_LUT4_O_9_LC.I3
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.20-16.47
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.3  4.3  Source total_SB_LUT4_O_9_LC.O
+Info:  0.6  4.9    Net total[15] budget 18.341000 ns (2,7) -> (2,8)
+Info:                Sink result_sum_SB_DFFESR_Q_DFFLC.I0
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:16.14-16.19
+Info:  0.5  5.4  Setup result_sum_SB_DFFESR_Q_DFFLC.I0
+Info: 2.7 ns logic, 2.7 ns routing
+
+Info: Critical path report for cross-domain path 'posedge clk$SB_IO_IN_$glb_clk' -> '<async>':
+Info: curr total
+Info:  0.5  0.5  Source s_out_valid_SB_DFFESR_Q_DFFLC.O
+Info:  0.6  1.1    Net s_out_valid$SB_IO_OUT budget 19.573000 ns (7,16) -> (7,15)
+Info:                Sink s_in_ready_SB_LUT4_O_LC.I3
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:5.39-5.50
+Info:  0.3  1.4  Source s_in_ready_SB_LUT4_O_LC.O
+Info:  1.7  3.1    Net s_in_ready$SB_IO_OUT budget 19.572001 ns (7,15) -> (7,0)
+Info:                Sink s_in_ready$sb_io.D_OUT_0
+Info:                Defined in:
+Info:                  examples/PacketBenchmark/handwritten.v:4.51-4.61
+Info: 0.9 ns logic, 2.3 ns routing
+
+Info: Max frequency for clock 'clk$SB_IO_IN_$glb_clk': 202.06 MHz (PASS at 25.00 MHz)
+
+Info: Max delay <async>                       -> <async>                      : 3.01 ns
+Info: Max delay <async>                       -> posedge clk$SB_IO_IN_$glb_clk: 5.38 ns
+Info: Max delay posedge clk$SB_IO_IN_$glb_clk -> <async>                      : 3.11 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 1 endpoint(s)
+Info:          + represents [1,1) endpoint(s)
+Info: [ 34625,  34841) |***
+Info: [ 34841,  35057) |*****
+Info: [ 35057,  35273) |******
+Info: [ 35273,  35489) |*******
+Info: [ 35489,  35705) |*******
+Info: [ 35705,  35921) |***
+Info: [ 35921,  36137) |*******
+Info: [ 36137,  36353) |****
+Info: [ 36353,  36569) |***************************************
+Info: [ 36569,  36785) |*******
+Info: [ 36785,  37001) |**************************************
+Info: [ 37001,  37217) |*****
+Info: [ 37217,  37433) |
+Info: [ 37433,  37649) |******
+Info: [ 37649,  37865) |****
+Info: [ 37865,  38081) |*****
+Info: [ 38081,  38297) |***************************************
+Info: [ 38297,  38513) |****************
+Info: [ 38513,  38729) |
+Info: [ 38729,  38945) |***
+1 warning, 0 errors
+
+Info: Program finished normally.

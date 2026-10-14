@@ -161,3 +161,10 @@ Run tests/run-advanced.sh with DOTNET_ROOT and Icarus on PATH. Tests retain CIL,
 annotated RTL and per-edge HDL checks in generated/advanced. General CIL correctness,
 new language-specific aggregate forms, physical FPGA timing and browser UI validation
 are not inferred from these tests.
+
+## Measured hardware baseline
+
+[Packet benchmark requirements BENCH01–BENCH08](examples/PacketBenchmark/README.md#requirements)
+cover equal-contract handwritten comparison, independent traffic tests, technology
+mapping and routed timing. Physical FPGA measurements and eligible recurrence-state
+optimization remain explicit open requirements.

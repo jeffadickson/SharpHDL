@@ -1,0 +1,399 @@
+Warning: No PCF file specified; IO pins will be placed automatically
+
+Info: Packing constants..
+Info: Packing IOs..
+Info: Packing LUT-FFs..
+Info:       37 LCs used as LUT4 only
+Info:       17 LCs used as LUT4 and DFF
+Info: Packing non-LUT FFs..
+Info:       34 LCs used as DFF only
+Info: Packing carries..
+Info:        0 LCs used as CARRY only
+Info: Packing indirect carry+LUT pairs...
+Info:        0 LUTs merged into carry LCs
+Info: Packing RAMs..
+Info: Placing PLLs..
+Info: Packing special functions..
+Info: Packing PLLs..
+Info: Promoting globals..
+Info: promoting clk$SB_IO_IN (fanout 51)
+Info: promoting rst$SB_IO_IN [reset] (fanout 51)
+Info: promoting n_and_13_SB_LUT4_I2_O [cen] (fanout 33)
+Info: Constraining chains...
+Info:        0 LCs used to legalise carry chains.
+Info: Checksum: 0xaecba30c
+
+Info: Annotating ports with timing budgets for target frequency 25.00 MHz
+Info: Checksum: 0x10d68a9b
+
+Info: Device utilisation:
+Info: 	         ICESTORM_LC:    90/ 1280     7%
+Info: 	        ICESTORM_RAM:     0/   16     0%
+Info: 	               SB_IO:    70/  112    62%
+Info: 	               SB_GB:     3/    8    37%
+Info: 	        ICESTORM_PLL:     0/    1     0%
+Info: 	         SB_WARMBOOT:     0/    1     0%
+
+Info: Placed 0 cells based on constraints.
+Info: Creating initial analytic placement for 77 cells, random placement wirelen = 1299.
+Info:     at initial placer iter 0, wirelen = 454
+Info:     at initial placer iter 1, wirelen = 424
+Info:     at initial placer iter 2, wirelen = 423
+Info:     at initial placer iter 3, wirelen = 424
+Info: Running main analytical placer, max placement attempts per cell = 10000.
+Info:     at iteration #1, type SB_GB: wirelen solved = 424, spread = 425, legal = 429; time = 0.00s
+Info:     at iteration #1, type ICESTORM_LC: wirelen solved = 426, spread = 485, legal = 526; time = 0.00s
+Info:     at iteration #1, type ALL: wirelen solved = 426, spread = 523, legal = 555; time = 0.00s
+Info:     at iteration #2, type SB_GB: wirelen solved = 552, spread = 553, legal = 555; time = 0.00s
+Info:     at iteration #2, type ICESTORM_LC: wirelen solved = 427, spread = 497, legal = 532; time = 0.00s
+Info:     at iteration #2, type ALL: wirelen solved = 426, spread = 516, legal = 551; time = 0.00s
+Info:     at iteration #3, type SB_GB: wirelen solved = 548, spread = 549, legal = 551; time = 0.00s
+Info:     at iteration #3, type ICESTORM_LC: wirelen solved = 430, spread = 490, legal = 533; time = 0.00s
+Info:     at iteration #3, type ALL: wirelen solved = 428, spread = 496, legal = 548; time = 0.00s
+Info:     at iteration #4, type SB_GB: wirelen solved = 545, spread = 546, legal = 548; time = 0.00s
+Info:     at iteration #4, type ICESTORM_LC: wirelen solved = 446, spread = 506, legal = 560; time = 0.00s
+Info:     at iteration #4, type ALL: wirelen solved = 442, spread = 505, legal = 559; time = 0.00s
+Info:     at iteration #5, type SB_GB: wirelen solved = 556, spread = 557, legal = 559; time = 0.00s
+Info:     at iteration #5, type ICESTORM_LC: wirelen solved = 446, spread = 492, legal = 530; time = 0.00s
+Info:     at iteration #5, type ALL: wirelen solved = 441, spread = 501, legal = 552; time = 0.00s
+Info:     at iteration #6, type SB_GB: wirelen solved = 547, spread = 550, legal = 552; time = 0.00s
+Info:     at iteration #6, type ICESTORM_LC: wirelen solved = 446, spread = 500, legal = 543; time = 0.00s
+Info:     at iteration #6, type ALL: wirelen solved = 442, spread = 498, legal = 563; time = 0.00s
+Info:     at iteration #7, type SB_GB: wirelen solved = 558, spread = 561, legal = 563; time = 0.00s
+Info:     at iteration #7, type ICESTORM_LC: wirelen solved = 447, spread = 500, legal = 558; time = 0.00s
+Info:     at iteration #7, type ALL: wirelen solved = 449, spread = 499, legal = 575; time = 0.00s
+Info:     at iteration #8, type SB_GB: wirelen solved = 570, spread = 573, legal = 575; time = 0.00s
+Info:     at iteration #8, type ICESTORM_LC: wirelen solved = 446, spread = 502, legal = 552; time = 0.00s
+Info:     at iteration #8, type ALL: wirelen solved = 445, spread = 494, legal = 536; time = 0.00s
+Info: HeAP Placer Time: 0.02s
+Info:   of which solving equations: 0.02s
+Info:   of which spreading cells: 0.00s
+Info:   of which strict legalisation: 0.00s
+
+Info: Running simulated annealing placer for refinement.
+Info:   at iteration #1: temp = 0.000000, timing cost = 23, wirelen = 536
+Info:   at iteration #5: temp = 0.000000, timing cost = 22, wirelen = 468
+Info:   at iteration #9: temp = 0.000000, timing cost = 19, wirelen = 461
+Info: SA placement time 0.02s
+
+Info: Max frequency for clock 'clk$SB_IO_IN_$glb_clk': 154.04 MHz (PASS at 25.00 MHz)
+
+Info: Max delay <async>                       -> <async>                      : 3.09 ns
+Info: Max delay <async>                       -> posedge clk$SB_IO_IN_$glb_clk: 6.57 ns
+Info: Max delay posedge clk$SB_IO_IN_$glb_clk -> <async>                      : 3.62 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 1 endpoint(s)
+Info:          + represents [1,1) endpoint(s)
+Info: [ 33429,  33705) |********************
+Info: [ 33705,  33981) |************************************
+Info: [ 33981,  34257) |**********************************
+Info: [ 34257,  34533) |*******
+Info: [ 34533,  34809) |****
+Info: [ 34809,  35085) |************
+Info: [ 35085,  35361) |*******
+Info: [ 35361,  35637) |******
+Info: [ 35637,  35913) |****
+Info: [ 35913,  36189) |*
+Info: [ 36189,  36465) |*
+Info: [ 36465,  36741) |****************
+Info: [ 36741,  37017) |***********************************************
+Info: [ 37017,  37293) |********************
+Info: [ 37293,  37569) |****
+Info: [ 37569,  37845) |************
+Info: [ 37845,  38121) |*************************
+Info: [ 38121,  38397) |*
+Info: [ 38397,  38673) |*
+Info: [ 38673,  38949) |**
+Info: Checksum: 0x0069b5c6
+
+Info: Routing..
+Info: Setting up routing queue.
+Info: Routing 292 arcs.
+Info:            |   (re-)routed arcs  |   delta    | remaining|       time spent     |
+Info:    IterCnt |  w/ripup   wo/ripup |  w/r  wo/r |      arcs| batch(sec) total(sec)|
+Info:        296 |        3        280 |    3   280 |         0|       0.04       0.04|
+Info: Routing complete.
+Info: Router1 time 0.04s
+Info: Checksum: 0x0c24ecc2
+
+Info: Critical path report for clock 'clk$SB_IO_IN_$glb_clk' (posedge -> posedge):
+Info: curr total
+Info:  0.5  0.5  Source s_checksum_iteration_input_valid_SB_LUT4_O_LC.O
+Info:  1.3  1.8    Net s_out_valid$SB_IO_OUT budget 12.069000 ns (5,10) -> (5,6)
+Info:                Sink n_bits_63_32_21_SB_LUT4_O_15_LC.I2
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:18.21-18.32
+Info:  0.4  2.2  Source n_bits_63_32_21_SB_LUT4_O_15_LC.O
+Info:  0.6  2.8    Net n_bits_63_32_21[0] budget 12.069000 ns (5,6) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_15_LC.I1
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:25.13-25.44
+Info:  0.3  3.0  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_15_LC.COUT
+Info:  0.0  3.0    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[1] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_8_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.2  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_8_LC.COUT
+Info:  0.0  3.2    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[2] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_7_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.3  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_7_LC.COUT
+Info:  0.0  3.3    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[3] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_6_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.4  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_6_LC.COUT
+Info:  0.0  3.4    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[4] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_5_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.5  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_5_LC.COUT
+Info:  0.0  3.5    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[5] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_4_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.7  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_4_LC.COUT
+Info:  0.0  3.7    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[6] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_3_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.8  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_3_LC.COUT
+Info:  0.0  3.8    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[7] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_2_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.9  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_2_LC.COUT
+Info:  0.2  4.1    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[8] budget 0.190000 ns (5,7) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_1_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  4.2  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_1_LC.COUT
+Info:  0.0  4.2    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[9] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  4.4  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_LC.COUT
+Info:  0.0  4.4    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[10] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_14_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  4.5  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_14_LC.COUT
+Info:  0.0  4.5    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[11] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_13_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  4.6  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_13_LC.COUT
+Info:  0.0  4.6    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[12] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_12_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  4.7  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_12_LC.COUT
+Info:  0.0  4.7    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[13] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_11_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  4.9  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_11_LC.COUT
+Info:  0.0  4.9    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[14] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_10_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  5.0  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_10_LC.COUT
+Info:  0.3  5.3    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[15] budget 0.260000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_9_LC.I3
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.3  5.6  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_9_LC.O
+Info:  0.6  6.2    Net n_checksum_datapath_stage1_Checksum_IL_0011_add[15] budget 12.068000 ns (5,8) -> (6,8)
+Info:                Sink s_checksum_datapath_stage1_value0_SB_DFFESR_Q_17_DFFLC.I0
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:101.13-101.24
+Info:  0.5  6.6  Setup s_checksum_datapath_stage1_value0_SB_DFFESR_Q_17_DFFLC.I0
+Info: 3.7 ns logic, 2.9 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> '<async>':
+Info: curr total
+Info:  0.0  0.0  Source s_out_ready$sb_io.D_IN_0
+Info:  1.3  1.3    Net s_out_ready$SB_IO_IN budget 19.801001 ns (9,17) -> (5,16)
+Info:                Sink s_in_ready_SB_LUT4_O_LC.I1
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:20.20-20.31
+Info:  0.4  1.7  Source s_in_ready_SB_LUT4_O_LC.O
+Info:  1.3  3.0    Net s_in_ready$SB_IO_OUT budget 19.541000 ns (5,16) -> (9,17)
+Info:                Sink s_in_ready$sb_io.D_OUT_0
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:14.21-14.31
+Info: 0.4 ns logic, 2.6 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> 'posedge clk$SB_IO_IN_$glb_clk':
+Info: curr total
+Info:  0.0  0.0  Source s_out_ready$sb_io.D_IN_0
+Info:  2.0  2.0    Net s_out_ready$SB_IO_IN budget 12.293000 ns (9,17) -> (5,6)
+Info:                Sink n_bits_63_32_21_SB_LUT4_O_15_LC.I3
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:20.20-20.31
+Info:  0.3  2.3  Source n_bits_63_32_21_SB_LUT4_O_15_LC.O
+Info:  0.6  2.9    Net n_bits_63_32_21[0] budget 12.069000 ns (5,6) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_15_LC.I1
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:25.13-25.44
+Info:  0.3  3.1  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_15_LC.COUT
+Info:  0.0  3.1    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[1] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_8_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.3  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_8_LC.COUT
+Info:  0.0  3.3    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[2] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_7_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.4  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_7_LC.COUT
+Info:  0.0  3.4    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[3] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_6_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.5  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_6_LC.COUT
+Info:  0.0  3.5    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[4] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_5_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.6  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_5_LC.COUT
+Info:  0.0  3.6    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[5] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_4_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.8  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_4_LC.COUT
+Info:  0.0  3.8    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[6] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_3_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  3.9  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_3_LC.COUT
+Info:  0.0  3.9    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[7] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_2_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  4.0  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_2_LC.COUT
+Info:  0.2  4.2    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[8] budget 0.190000 ns (5,7) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_1_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  4.3  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_1_LC.COUT
+Info:  0.0  4.3    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[9] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  4.5  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_LC.COUT
+Info:  0.0  4.5    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[10] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_14_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  4.6  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_14_LC.COUT
+Info:  0.0  4.6    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[11] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_13_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  4.7  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_13_LC.COUT
+Info:  0.0  4.7    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[12] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_12_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  4.8  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_12_LC.COUT
+Info:  0.0  4.8    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[13] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_11_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  5.0  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_11_LC.COUT
+Info:  0.0  5.0    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[14] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_10_LC.CIN
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  5.1  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_10_LC.COUT
+Info:  0.3  5.3    Net n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_I3[15] budget 0.260000 ns (5,8) -> (5,8)
+Info:                Sink n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_9_LC.I3
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:128.58-128.123
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.3  5.7  Source n_checksum_datapath_stage1_Checksum_IL_0011_add_SB_LUT4_O_9_LC.O
+Info:  0.6  6.3    Net n_checksum_datapath_stage1_Checksum_IL_0011_add[15] budget 12.068000 ns (5,8) -> (6,8)
+Info:                Sink s_checksum_datapath_stage1_value0_SB_DFFESR_Q_17_DFFLC.I0
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:101.13-101.24
+Info:  0.5  6.7  Setup s_checksum_datapath_stage1_value0_SB_DFFESR_Q_17_DFFLC.I0
+Info: 3.1 ns logic, 3.6 ns routing
+
+Info: Critical path report for cross-domain path 'posedge clk$SB_IO_IN_$glb_clk' -> '<async>':
+Info: curr total
+Info:  0.5  0.5  Source s_checksum_iteration_input_valid_SB_LUT4_O_LC.O
+Info:  1.1  1.7    Net s_out_valid$SB_IO_OUT budget 19.541000 ns (5,10) -> (5,16)
+Info:                Sink s_in_ready_SB_LUT4_O_LC.I3
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:18.21-18.32
+Info:  0.3  2.0  Source s_in_ready_SB_LUT4_O_LC.O
+Info:  1.3  3.3    Net s_in_ready$SB_IO_OUT budget 19.541000 ns (5,16) -> (9,17)
+Info:                Sink s_in_ready$sb_io.D_OUT_0
+Info:                Defined in:
+Info:                  generated/packet-benchmark/sharp.v:14.21-14.31
+Info: 0.9 ns logic, 2.4 ns routing
+
+Info: Max frequency for clock 'clk$SB_IO_IN_$glb_clk': 150.85 MHz (PASS at 25.00 MHz)
+
+Info: Max delay <async>                       -> <async>                      : 2.95 ns
+Info: Max delay <async>                       -> posedge clk$SB_IO_IN_$glb_clk: 6.72 ns
+Info: Max delay posedge clk$SB_IO_IN_$glb_clk -> <async>                      : 3.26 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 1 endpoint(s)
+Info:          + represents [1,1) endpoint(s)
+Info: [ 33281,  33565) |********
+Info: [ 33565,  33849) |********
+Info: [ 33849,  34133) |*********
+Info: [ 34133,  34417) |*********
+Info: [ 34417,  34701) |****
+Info: [ 34701,  34985) |************
+Info: [ 34985,  35269) |*******
+Info: [ 35269,  35553) |************************************
+Info: [ 35553,  35837) |*************************************
+Info: [ 35837,  36121) |**
+Info: [ 36121,  36405) |**
+Info: [ 36405,  36689) |**********
+Info: [ 36689,  36973) |*********
+Info: [ 36973,  37257) |*************
+Info: [ 37257,  37541) |*******
+Info: [ 37541,  37825) |**********
+Info: [ 37825,  38109) |****************
+Info: [ 38109,  38393) |*********************************************************
+Info: [ 38393,  38677) |**
+Info: [ 38677,  38961) |**
+1 warning, 0 errors
+
+Info: Program finished normally.

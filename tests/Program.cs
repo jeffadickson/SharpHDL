@@ -18,6 +18,7 @@ class Program
         if(args.Length==1 && args[0]=="--stream-processes") { StreamingProcessTests.Run();return; }
         if(args.Length==1 && args[0]=="--pipelines") { PipelineTests.Run();return; }
         if(args.Length==1 && args[0]=="--feedback") { FeedbackPipelineTests.Run();return; }
+        if(args.Length==1 && args[0]=="--packet-benchmark") { PacketBenchmarkTests.Run();return; }
         FeedbackPipelineTests.Run();
         PipelineTests.Run();
         StreamingProcessTests.Run();

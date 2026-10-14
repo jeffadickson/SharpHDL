@@ -1,0 +1,2 @@
+PASS packet traffic: cycles=12000 accepted=4051 received=4049 reset_discarded=2 packet_ends=305 stalled_cycles=6554 replacements=3655; saturated II=1 latency=1
+examples/PacketBenchmark/traffic_tb.v:79: $finish called at 120010 (1ps)

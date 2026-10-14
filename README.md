@@ -27,6 +27,10 @@ path consumes and produces exactly one token; gain-and-clipping is a worked exam
 state with one iteration in flight. External II is latency + 1 by default; optional
 `ForwardOnCommit` reduces it to latency (II=1 for a one-stage running sum).
 
+A [packet checksum benchmark](examples/PacketBenchmark/README.md) now compares CIL-generated
+and handwritten RTL with shared traffic tests, mapped-cell simulation, and three
+iCE40 place-and-route seeds. See the [measured core results](generated/packet-benchmark/RESULTS.md).
+
 Version 0.14 adds [TinyRisc16](examples/TinyRisc/ISA.md): a structural 16-bit
 processor, assembler, instruction stepping, scratch RAM, memory-mapped I/O and
 an independent architectural test model. The [TinyRisc HTML explorer](docs/tinyrisc/TinyRisc_Demo.html)

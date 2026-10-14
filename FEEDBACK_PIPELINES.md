@@ -202,3 +202,11 @@ The core suite also runs these tests. Generated examples:
 [running sum](generated/feedback_runningsum.v),
 [conditional checksum](generated/feedback_conditionalchecksum.v), and
 [previous value](generated/feedback_previousvalue.v).
+
+## Technology-mapped comparison
+
+The [packet checksum benchmark](examples/PacketBenchmark/README.md) uses
+`ForwardOnCommit` for a one-word-per-clock packet accumulator and compares it
+with independently written RTL. It measures the extra storage/control cost of
+this general commit model and records iCE40 routing estimates. These results
+do not imply parity with handwritten RTL or physical-board validation.
