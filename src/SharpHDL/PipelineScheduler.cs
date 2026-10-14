@@ -23,6 +23,36 @@ namespace SharpHDL
         public PipelineOperation(int stage, int logicLevel, int width, string operation, string name)
         { Stage=stage; LogicLevel=logicLevel; Width=width; Operation=operation; Name=name; }
     }
+    public sealed class PipelineGraphNode
+    {
+        public int Id { get; }
+        public int Stage { get; }
+        public int LogicLevel { get; }
+        public int Width { get; }
+        public string Operation { get; }
+        public string Name { get; }
+        public PipelineGraphNode(int id,int stage,int level,int width,string operation,string name)
+        { Id=id; Stage=stage; LogicLevel=level; Width=width; Operation=operation; Name=name; }
+    }
+    public sealed class PipelineGraphEdge
+    {
+        public int SourceId { get; }
+        public int TargetId { get; }
+        public int OperandIndex { get; }
+        public PipelineGraphEdge(int sourceId,int targetId,int operandIndex)
+        { SourceId=sourceId; TargetId=targetId; OperandIndex=operandIndex; }
+    }
+    public sealed class PipelineDataflowGraph
+    {
+        public IReadOnlyList<PipelineGraphNode> Nodes { get; }
+        public IReadOnlyList<PipelineGraphEdge> Edges { get; }
+        public int Latency { get; }
+        public int InitiationInterval { get; }
+        public int PayloadRegisterBits { get; }
+        public PipelineDataflowGraph(PipelineGraphNode[] nodes,PipelineGraphEdge[] edges,int latency,int ii,int bits)
+        { Nodes=Array.AsReadOnly(nodes); Edges=Array.AsReadOnly(edges); Latency=latency; InitiationInterval=ii; PayloadRegisterBits=bits; }
+        public string ToJson() => System.Text.Json.JsonSerializer.Serialize(this,new System.Text.Json.JsonSerializerOptions { WriteIndented=true });
+    }
     public sealed class PipelineHandle
     {
         /// <summary>Register boundaries, including the edge accepting an input. Stalls extend latency.</summary>
@@ -32,6 +62,7 @@ namespace SharpHDL
         public IReadOnlyList<Signal> StageValid { get; internal set; }
         public string Report { get; internal set; }
         public IReadOnlyList<PipelineOperation> Operations { get; internal set; }
+        public PipelineDataflowGraph DataflowGraph { get; internal set; }
     }
     internal static class PipelineScheduler
     {
@@ -121,7 +152,16 @@ namespace SharpHDL
             report.AppendLine("Ready propagates combinationally backward; no automatic skid-buffer insertion.");
             foreach(var e in nodes.Where(e=>costs[e]>0))report.AppendLine("stage "+stage(e)+" | level "+levels[e]+" | "+e.Width+" bits | "+e.Op+" | "+(e.NameHint??"expression"));
             var operations=nodes.Where(e=>costs[e]>0).Select(e=>new PipelineOperation(stage(e), levels[e], e.Width, e.Op, e.NameHint??"expression")).ToArray();
-            return new PipelineHandle{Latency=depth,InitiationInterval=1,PayloadRegisterBits=bits,StageValid=Array.AsReadOnly(valid),Operations=Array.AsReadOnly(operations),Report=report.ToString()};
+            // IDs follow deterministic postorder traversal of the elaborated expression DAG.
+            var ids=new Dictionary<Expr,int>();
+            for(int i=0;i<nodes.Count;i++)ids[nodes[i]]=i;
+            var graphNodes=nodes.Select(e=>new PipelineGraphNode(ids[e],stage(e),levels[e],e.Width,e.Op,e.NameHint??(e==input.Data?"input":e.Op))).ToArray();
+            var graphEdges=new List<PipelineGraphEdge>();
+            foreach(var e in nodes)
+                for(int operand=0;operand<e.Args.Length;operand++)
+                    graphEdges.Add(new PipelineGraphEdge(ids[e.Args[operand]],ids[e],operand));
+            var graph=new PipelineDataflowGraph(graphNodes,graphEdges.ToArray(),depth,1,bits);
+            return new PipelineHandle{Latency=depth,InitiationInterval=1,PayloadRegisterBits=bits,StageValid=Array.AsReadOnly(valid),Operations=Array.AsReadOnly(operations),DataflowGraph=graph,Report=report.ToString()};
         }
     }
 }
