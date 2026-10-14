@@ -1,5 +1,7 @@
 # SharpHDL 0.14
 
+**Developer setup:** [Build and toolchain guide](docs/BUILD_AND_SETUP.md). Run `just doctor`, `just setup`, `just build`, and `just test` with .NET 8 and Python installed. 
+
 > **Development design:** [Feature parity and competitive coverage](docs/FEATURE_PARITY.md) · [Architecture and implementation record](docs/DESIGN.md) · [Product requirements](docs/PRODUCT_REQUIREMENTS.md) · [Testing strategy](docs/TEST_STRATEGY.md). The new debugger, compiled combinational backend, xUnit and container integration fixtures are under development; passing builds and throughput results must be confirmed by CI.
 
 A small, executable C# hardware-description library inspired by MyHDL.
