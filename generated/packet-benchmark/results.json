@@ -17,7 +17,7 @@
   },
   "testbench_sha256": "8582c9a27a24e1ac36916f7e006f6e6cbb8fa88eb6b0b2e709ff31474da0c625",
   "results": {
-    "sharp": {
+    "baseline": {
       "source_sha256": "b7f9faaaba616e489a4e08209f6f792ec93a2621b75dac6d85d0de15636aeb19",
       "cells": {
         "SB_CARRY": 15,
@@ -93,6 +93,107 @@
             "ICESTORM_LC": {
               "available": 1280,
               "used": 90
+            },
+            "ICESTORM_PLL": {
+              "available": 1,
+              "used": 0
+            },
+            "ICESTORM_RAM": {
+              "available": 16,
+              "used": 0
+            },
+            "SB_GB": {
+              "available": 8,
+              "used": 3
+            },
+            "SB_IO": {
+              "available": 112,
+              "used": 70
+            },
+            "SB_WARMBOOT": {
+              "available": 1,
+              "used": 0
+            }
+          }
+        }
+      ],
+      "traffic": "PASS packet traffic: cycles=12000 accepted=4051 received=4049 reset_discarded=2 packet_ends=305 stalled_cycles=6554 replacements=3655; saturated II=1 latency=1"
+    },
+    "sharp": {
+      "source_sha256": "d3ad22dd602d3cb909c6a189bd9e9fdf32e0d6613eae03d8c35e92428b649888",
+      "cells": {
+        "SB_CARRY": 15,
+        "SB_DFFESR": 34,
+        "SB_LUT4": 35
+      },
+      "routes": [
+        {
+          "seed": 1,
+          "fmax_mhz": 202.06101989746094,
+          "utilization": {
+            "ICESTORM_LC": {
+              "available": 1280,
+              "used": 55
+            },
+            "ICESTORM_PLL": {
+              "available": 1,
+              "used": 0
+            },
+            "ICESTORM_RAM": {
+              "available": 16,
+              "used": 0
+            },
+            "SB_GB": {
+              "available": 8,
+              "used": 3
+            },
+            "SB_IO": {
+              "available": 112,
+              "used": 70
+            },
+            "SB_WARMBOOT": {
+              "available": 1,
+              "used": 0
+            }
+          }
+        },
+        {
+          "seed": 2,
+          "fmax_mhz": 202.06101989746094,
+          "utilization": {
+            "ICESTORM_LC": {
+              "available": 1280,
+              "used": 55
+            },
+            "ICESTORM_PLL": {
+              "available": 1,
+              "used": 0
+            },
+            "ICESTORM_RAM": {
+              "available": 16,
+              "used": 0
+            },
+            "SB_GB": {
+              "available": 8,
+              "used": 3
+            },
+            "SB_IO": {
+              "available": 112,
+              "used": 70
+            },
+            "SB_WARMBOOT": {
+              "available": 1,
+              "used": 0
+            }
+          }
+        },
+        {
+          "seed": 3,
+          "fmax_mhz": 202.06101989746094,
+          "utilization": {
+            "ICESTORM_LC": {
+              "available": 1280,
+              "used": 55
             },
             "ICESTORM_PLL": {
               "available": 1,

@@ -1,0 +1,111 @@
+{
+  "device": "iCE40 HX8K CT256",
+  "target_mhz": 25,
+  "program": "CountRun/count.asm",
+  "tools": {
+    "yosys": "Yosys 0.33 (git sha1 2584903a060)",
+    "nextpnr-ice40": "\"nextpnr-ice40\" -- Next Generation Place and Route (Version 0.6-3build5)"
+  },
+  "source_sha256": "ab3aba2fddd1f58b949f3a9b38eae1db38484f4661c4bfd86c4f81a5c7493f3a",
+  "wrapper_sha256": "63656a0abf444225a3ebf3d28a53c808bf6364ea8b7064f098b30179b01e4c40",
+  "cells": {
+    "SB_CARRY": 104,
+    "SB_DFFESR": 179,
+    "SB_DFFSR": 2,
+    "SB_LUT4": 916,
+    "SB_RAM40_4K": 1
+  },
+  "routes": [
+    {
+      "seed": 1,
+      "fmax_mhz": 45.45041275024414,
+      "utilization": {
+        "ICESTORM_LC": {
+          "available": 7680,
+          "used": 1074
+        },
+        "ICESTORM_PLL": {
+          "available": 2,
+          "used": 0
+        },
+        "ICESTORM_RAM": {
+          "available": 32,
+          "used": 1
+        },
+        "SB_GB": {
+          "available": 8,
+          "used": 6
+        },
+        "SB_IO": {
+          "available": 256,
+          "used": 76
+        },
+        "SB_WARMBOOT": {
+          "available": 1,
+          "used": 0
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "fmax_mhz": 47.12979507446289,
+      "utilization": {
+        "ICESTORM_LC": {
+          "available": 7680,
+          "used": 1074
+        },
+        "ICESTORM_PLL": {
+          "available": 2,
+          "used": 0
+        },
+        "ICESTORM_RAM": {
+          "available": 32,
+          "used": 1
+        },
+        "SB_GB": {
+          "available": 8,
+          "used": 6
+        },
+        "SB_IO": {
+          "available": 256,
+          "used": 76
+        },
+        "SB_WARMBOOT": {
+          "available": 1,
+          "used": 0
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "fmax_mhz": 45.616275787353516,
+      "utilization": {
+        "ICESTORM_LC": {
+          "available": 7680,
+          "used": 1074
+        },
+        "ICESTORM_PLL": {
+          "available": 2,
+          "used": 0
+        },
+        "ICESTORM_RAM": {
+          "available": 32,
+          "used": 1
+        },
+        "SB_GB": {
+          "available": 8,
+          "used": 6
+        },
+        "SB_IO": {
+          "available": 256,
+          "used": 76
+        },
+        "SB_WARMBOOT": {
+          "available": 1,
+          "used": 0
+        }
+      }
+    }
+  ],
+  "scope": "Structural TinyRisc16 plus debug mux. No feedback-pipeline optimization applies. Automatically assigned pins; no board IO timing budgets or hardware measurements."
+}

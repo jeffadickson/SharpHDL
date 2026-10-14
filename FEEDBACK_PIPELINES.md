@@ -3,8 +3,9 @@
 `CilCompiler.AttachFeedbackPipeline` supports constant-initialized scalar locals
 that survive between stream iterations. It reuses the arithmetic and predication
 scheduler, with a **single-iteration feedback controller**. State is captured with
-the input, computed alongside the output, and committed when the output transfers.
-No later input is accepted before that commit.
+the input, computed alongside the output, and, by default, committed when the output transfers.
+No later input is accepted before that commit. An explicit single-stage
+optimization can instead advance state on input acceptance, as described below.
 
 This is conservative recurrence scheduling. It does not overlap dependent
 iterations, perform modulo scheduling, or share arithmetic resources. For a
@@ -107,6 +108,49 @@ dependent recurrence accept every clock when D is greater than one.
 See the [forwarded sum RTL](generated/feedback_runningsumforwarded.v) and
 [its schedule](generated/feedback_runningsumforwarded.schedule.txt).
 
+## Eliminating duplicate state for one-stage recurrences
+
+Set `AdvanceStateOnAccept = true` together with `ForwardOnCommit = true` to
+select the smaller implementation. It is **opt-in** because `StateRegisters`
+then expose state after accepted inputs, which may lead retired outputs by one
+word. `StateAdvancesOnInput` reports that distinction. The default state contract
+and both existing scheduling modes remain unchanged.
+
+```csharp
+new FeedbackPipelineOptions {
+    LogicLevelsPerStage = 32,
+    ForwardOnCommit = true,
+    AdvanceStateOnAccept = true
+}
+```
+
+The compiler first validates the existing pure scalar CIL restrictions (one read
+and write on every path), then checks that **all output and next-state expressions**
+fit one stage under the same operation-cost model used by the normal scheduler.
+If they do not, it rejects the request before adding signals. It does not silently
+collapse a requested multistage schedule. Increasing the logic grouping changes
+combinational depth; use synthesis and routing to check actual timing.
+
+Eligible hardware has one output slot and one copy of each state variable. On
+input acceptance it captures the output and updates every state register together.
+A full, stalled output prevents another input; a consumed output can be replaced
+on the same edge. No separate busy register or commit-forwarding mux is needed.
+Source ordering still applies: writing the previous value before assigning new
+state emits the previous value. Reset restores initial seeds and discards pending
+output and the corresponding advanced state together.
+
+Why the external stream behavior is preserved: accepted inputs remain ordered;
+only one unretired result exists; no state-dependent successor starts until that
+slot can accept a replacement; and scalar state has no external side effects.
+Consumers observing **internal state** must explicitly accept the different state
+timing. This is a bounded eligibility argument backed by tests, not a general
+formal equivalence proof or a multistage speculation mechanism.
+
+The [packet benchmark](examples/PacketBenchmark/README.md) compares this mode with
+the retained committed-state baseline and handwritten RTL. On its HX1K mapping,
+LUTs decrease from 54 to 35 and flip-flops from 51 to 34, matching the handwritten
+reference for this example. This is not a promise of identical costs for other code.
+
 ## Multiple states and conditional updates
 
 `ConditionalChecksum` maintains both a rolling checksum and a word count. An
@@ -146,10 +190,12 @@ expression captured at the source `Write` call distinct from the final local val
 | `FeedbackPipelineOptions.LogicLevelsPerStage` | Abstract logic grouping, 1..32; default 1 |
 | `FeedbackPipelineOptions.MaxStages` | Limit 1..256; default 64 |
 | `FeedbackPipelineOptions.ForwardOnCommit` | Default false; enable atomic same-edge next-state forwarding |
+| `FeedbackPipelineOptions.AdvanceStateOnAccept` | Default false; explicit one-stage accepted-input state optimization; requires forwarding |
+| `StateAdvancesOnInput` | True only when StateRegisters advance on input acceptance |
 | `Latency` | Datapath depth; earliest output acceptance is D clocks after input acceptance |
 | `InitiationInterval` | External II = D + 1 by default, D with forwarding, with no stalls |
 | `Busy` | Exactly one iteration has been accepted and not yet committed |
-| `StateRegisters` | Committed state, ordered by CIL local index; names contain that index |
+| `StateRegisters` | State ordered by CIL local index; committed by default, accepted-input state in optimized mode |
 | `StageValid` | Datapath occupancy; at most one stage is occupied |
 | `Report` | External latency/II and commit policy, followed by the internal arithmetic schedule |
 
@@ -186,7 +232,7 @@ by abstract logic depth; no FPGA clock rate or post-synthesis area is claimed.
 |---|---|---|
 | FEED01 | Recognize initialized loop-carried scalar locals from CIL | Implemented; nonzero running-sum seed and two-state checksum; debug-only locals excluded |
 | FEED02 | Preserve source ordering of output and state assignments | Implemented; sum emits new state, PreviousValue emits old state |
-| FEED03 | Capture state with input and commit all state with accepted output | Implemented; independent recurrence oracle checks every commit edge and blocked cycle |
+| FEED03 | In default modes, capture state with input and commit all state with accepted output | Implemented; independent recurrence oracle checks every commit edge and blocked cycle |
 | FEED04 | Prevent a dependent input from using stale state | Implemented; ready is low while busy unless forwarding and commit coincide; occupancy and one-in-flight checks |
 | FEED05 | Report actual external latency and initiation interval | Implemented; exact-cycle continuous-traffic tests, external II=D+1 or D with forwarding |
 | FEED06 | Preserve conditional state updates and integer wrapping | Implemented; conditional checksum, zero-word clear, uint overflow and random data |
@@ -194,10 +240,11 @@ by abstract logic depth; no FPGA clock rate or post-synthesis area is claimed.
 | FEED08 | Emit readable bundle layouts, state comments and schedules | Implemented; named state locals and bit ranges in generated Verilog |
 | FEED09 | Keep the stateless scheduler behavior and reject unsupported feedback | Implemented; existing pipeline suite plus invalid body/no-state rejection tests |
 | FEED10 | Improve recurrence II using dependence analysis and safe bypass | Partial; optional same-edge bypass implemented; general dependence analysis remains future |
-| FEED11 | Forward every completed state field atomically on simultaneous commit/input acceptance; retain busy for replacement | Implemented; both modes tested for all three examples, exact II, stalls, old/new output ordering, multi-state updates and reset priority |
+| FEED11 | Forward every completed state field atomically on simultaneous commit/input acceptance; retain busy for replacement | Implemented; both committed-state modes tested for all three examples, exact II, stalls, old/new output ordering, multi-state updates and reset priority |
+| FEED12 | Remove duplicate state only for explicitly selected, eligible one-stage recurrences | Implemented; shared depth model, rejection before allocation, old/new output ordering, atomic multi-state updates, stalls and reset; StateAdvancesOnInput identifies changed internal contract |
 
 Run `bash tests/run-pipelines.sh` with `DOTNET_ROOT` and Icarus on PATH. It checks
-both debug and optimized CIL, including six feedback RTL trace benches (three examples in each mode).
+both debug and optimized CIL, including nine feedback RTL trace benches (three examples in each of three modes).
 The core suite also runs these tests. Generated examples:
 [running sum](generated/feedback_runningsum.v),
 [conditional checksum](generated/feedback_conditionalchecksum.v), and

@@ -1,0 +1,1972 @@
+
+-- Running command `read_verilog generated/tinyrisc/CountRun.v; synth_ice40 -top h_CountRun; check -assert; write_verilog -noattr -noexpr build/tinyrisc-benchmark/core.v' --
+
+1. Executing Verilog-2005 frontend: generated/tinyrisc/CountRun.v
+Parsing Verilog input from `generated/tinyrisc/CountRun.v' to AST representation.
+Generating RTLIL representation for module `\h_CountRun'.
+Successfully finished Verilog frontend.
+
+2. Executing SYNTH_ICE40 pass.
+
+2.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v' to AST representation.
+Generating RTLIL representation for module `\SB_IO'.
+Generating RTLIL representation for module `\SB_GB_IO'.
+Generating RTLIL representation for module `\SB_GB'.
+Generating RTLIL representation for module `\SB_LUT4'.
+Generating RTLIL representation for module `\SB_CARRY'.
+Generating RTLIL representation for module `\SB_DFF'.
+Generating RTLIL representation for module `\SB_DFFE'.
+Generating RTLIL representation for module `\SB_DFFSR'.
+Generating RTLIL representation for module `\SB_DFFR'.
+Generating RTLIL representation for module `\SB_DFFSS'.
+Generating RTLIL representation for module `\SB_DFFS'.
+Generating RTLIL representation for module `\SB_DFFESR'.
+Generating RTLIL representation for module `\SB_DFFER'.
+Generating RTLIL representation for module `\SB_DFFESS'.
+Generating RTLIL representation for module `\SB_DFFES'.
+Generating RTLIL representation for module `\SB_DFFN'.
+Generating RTLIL representation for module `\SB_DFFNE'.
+Generating RTLIL representation for module `\SB_DFFNSR'.
+Generating RTLIL representation for module `\SB_DFFNR'.
+Generating RTLIL representation for module `\SB_DFFNSS'.
+Generating RTLIL representation for module `\SB_DFFNS'.
+Generating RTLIL representation for module `\SB_DFFNESR'.
+Generating RTLIL representation for module `\SB_DFFNER'.
+Generating RTLIL representation for module `\SB_DFFNESS'.
+Generating RTLIL representation for module `\SB_DFFNES'.
+Generating RTLIL representation for module `\SB_RAM40_4K'.
+Generating RTLIL representation for module `\SB_RAM40_4KNR'.
+Generating RTLIL representation for module `\SB_RAM40_4KNW'.
+Generating RTLIL representation for module `\SB_RAM40_4KNRNW'.
+Generating RTLIL representation for module `\ICESTORM_LC'.
+Generating RTLIL representation for module `\SB_PLL40_CORE'.
+Generating RTLIL representation for module `\SB_PLL40_PAD'.
+Generating RTLIL representation for module `\SB_PLL40_2_PAD'.
+Generating RTLIL representation for module `\SB_PLL40_2F_CORE'.
+Generating RTLIL representation for module `\SB_PLL40_2F_PAD'.
+Generating RTLIL representation for module `\SB_WARMBOOT'.
+Generating RTLIL representation for module `\SB_SPRAM256KA'.
+Generating RTLIL representation for module `\SB_HFOSC'.
+Generating RTLIL representation for module `\SB_LFOSC'.
+Generating RTLIL representation for module `\SB_RGBA_DRV'.
+Generating RTLIL representation for module `\SB_LED_DRV_CUR'.
+Generating RTLIL representation for module `\SB_RGB_DRV'.
+Generating RTLIL representation for module `\SB_I2C'.
+Generating RTLIL representation for module `\SB_SPI'.
+Generating RTLIL representation for module `\SB_LEDDA_IP'.
+Generating RTLIL representation for module `\SB_FILTER_50NS'.
+Generating RTLIL representation for module `\SB_IO_I3C'.
+Generating RTLIL representation for module `\SB_IO_OD'.
+Generating RTLIL representation for module `\SB_MAC16'.
+Generating RTLIL representation for module `\ICESTORM_RAM'.
+Successfully finished Verilog frontend.
+
+2.2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.2.1. Analyzing design hierarchy..
+Top module:  \h_CountRun
+
+2.2.2. Analyzing design hierarchy..
+Top module:  \h_CountRun
+Removed 0 unused modules.
+
+2.3. Executing PROC pass (convert processes to netlists).
+
+2.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+2.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$1337 in module SB_DFFNES.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$1330 in module SB_DFFNESS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$1326 in module SB_DFFNER.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$1319 in module SB_DFFNESR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$1316 in module SB_DFFNS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$1313 in module SB_DFFNSS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$1310 in module SB_DFFNR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$1307 in module SB_DFFNSR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$1299 in module SB_DFFES.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$1292 in module SB_DFFESS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$1288 in module SB_DFFER.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$1281 in module SB_DFFESR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$1278 in module SB_DFFS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$1275 in module SB_DFFSS.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$1272 in module SB_DFFR.
+Marked 1 switch rules as full_case in process $proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$1269 in module SB_DFFSR.
+Marked 1 switch rules as full_case in process $proc$generated/tinyrisc/CountRun.v:0$579 in module h_CountRun.
+Marked 1 switch rules as full_case in process $proc$generated/tinyrisc/CountRun.v:1338$578 in module h_CountRun.
+Marked 1 switch rules as full_case in process $proc$generated/tinyrisc/CountRun.v:1315$567 in module h_CountRun.
+Removed a total of 0 dead cases.
+
+2.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 25 redundant assignments.
+Promoted 284 assignments to connections.
+
+2.3.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1340'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1336'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1329'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1325'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1318'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1315'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1312'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1309'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1306'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1304'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1302'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1298'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1291'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1287'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1280'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1277'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1274'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1271'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1268'.
+  Set init value: \Q = 1'0
+Found init rule in `\SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1266'.
+  Set init value: \Q = 1'0
+
+2.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \S in `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$1337'.
+Found async reset \R in `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$1326'.
+Found async reset \S in `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$1316'.
+Found async reset \R in `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$1310'.
+Found async reset \S in `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$1299'.
+Found async reset \R in `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$1288'.
+Found async reset \S in `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$1278'.
+Found async reset \R in `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$1272'.
+
+2.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 1 switch.
+<suppressed ~20 debug messages>
+
+2.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1340'.
+Creating decoders for process `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$1337'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1336'.
+Creating decoders for process `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$1330'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1329'.
+Creating decoders for process `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$1326'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1325'.
+Creating decoders for process `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$1319'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1318'.
+Creating decoders for process `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$1316'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1315'.
+Creating decoders for process `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$1313'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1312'.
+Creating decoders for process `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$1310'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1309'.
+Creating decoders for process `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$1307'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1306'.
+Creating decoders for process `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:922$1305'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1304'.
+Creating decoders for process `\SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:882$1303'.
+Creating decoders for process `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1302'.
+Creating decoders for process `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$1299'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1298'.
+Creating decoders for process `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$1292'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1291'.
+Creating decoders for process `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$1288'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1287'.
+Creating decoders for process `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$1281'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1280'.
+Creating decoders for process `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$1278'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1277'.
+Creating decoders for process `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$1275'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1274'.
+Creating decoders for process `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$1272'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1271'.
+Creating decoders for process `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$1269'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1268'.
+Creating decoders for process `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:311$1267'.
+     1/1: $0\Q[0:0]
+Creating decoders for process `\SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1266'.
+Creating decoders for process `\SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:271$1265'.
+Creating decoders for process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+Creating decoders for process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+     1/1: $1\rom_n_lookup_98$func$generated/tinyrisc/CountRun.v:1147$2.$result[15:0]$583
+Creating decoders for process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+     1/17: $0\s_scratch_read_data[15:0]
+     2/17: $0\s_r7_state[15:0]
+     3/17: $0\s_r6_state[15:0]
+     4/17: $0\s_r5_state[15:0]
+     5/17: $0\s_r4_state[15:0]
+     6/17: $0\s_r3_state[15:0]
+     7/17: $0\s_r2_state[15:0]
+     8/17: $0\s_r1_state[15:0]
+     9/17: $0\s_previous_step[0:0]
+    10/17: $0\s_last_pc_state[15:0]
+    11/17: $0\s_retired_state[0:0]
+    12/17: $0\s_led_state[15:0]
+    13/17: $0\s_fault_state[0:0]
+    14/17: $0\s_halted_state[0:0]
+    15/17: $0\s_phase_state[1:0]
+    16/17: $0\s_instruction[15:0]
+    17/17: $0\s_pc_state[15:0]
+Creating decoders for process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1315$567'.
+     1/3: $1$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$577
+     2/3: $1$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA[15:0]$576
+     3/3: $1$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_ADDR[15:0]$575
+
+2.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:98$3_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:99$4_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:100$5_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:101$6_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:102$7_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:103$8_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:104$9_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:105$10_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:106$11_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:107$12_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:108$13_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:109$14_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:110$15_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:111$16_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:112$17_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:113$18_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:114$19_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:115$20_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:116$21_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:117$22_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:118$23_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:119$24_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:120$25_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:121$26_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:122$27_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:123$28_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:124$29_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:125$30_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:126$31_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:127$32_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:128$33_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:129$34_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:130$35_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:131$36_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:132$37_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:133$38_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:134$39_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:135$40_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:136$41_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:137$42_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:138$43_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:139$44_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:140$45_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:141$46_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:142$47_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:143$48_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:144$49_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:145$50_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:146$51_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:147$52_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:148$53_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:149$54_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:150$55_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:151$56_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:152$57_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:153$58_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:154$59_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:155$60_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:156$61_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:157$62_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:158$63_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:159$64_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:160$65_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:161$66_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:162$67_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:163$68_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:164$69_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:165$70_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:166$71_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:167$72_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:168$73_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:169$74_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:170$75_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:171$76_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:172$77_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:173$78_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:174$79_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:175$80_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:176$81_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:177$82_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:178$83_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:179$84_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:180$85_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:181$86_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:182$87_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:183$88_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:184$89_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:185$90_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:186$91_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:187$92_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:188$93_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:189$94_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:190$95_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:191$96_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:192$97_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:193$98_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:194$99_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:195$100_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:196$101_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:197$102_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:198$103_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:199$104_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:200$105_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:201$106_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:202$107_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:203$108_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:204$109_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:205$110_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:206$111_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:207$112_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:208$113_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:209$114_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:210$115_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:211$116_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:212$117_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:213$118_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:214$119_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:215$120_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:216$121_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:217$122_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:218$123_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:219$124_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:220$125_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:221$126_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:222$127_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:223$128_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:224$129_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:225$130_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:226$131_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:227$132_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:228$133_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:229$134_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:230$135_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:231$136_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:232$137_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:233$138_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:234$139_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:235$140_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:236$141_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:237$142_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:238$143_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:239$144_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:240$145_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:241$146_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:242$147_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:243$148_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:244$149_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:245$150_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:246$151_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:247$152_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:248$153_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:249$154_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:250$155_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:251$156_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:252$157_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:253$158_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:254$159_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:255$160_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:256$161_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:257$162_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:258$163_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:259$164_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:260$165_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:261$166_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:262$167_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:263$168_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:264$169_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:265$170_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:266$171_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:267$172_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:268$173_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:269$174_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:270$175_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:271$176_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:272$177_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:273$178_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:274$179_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:275$180_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:276$181_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:277$182_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:278$183_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:279$184_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:280$185_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:281$186_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:282$187_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:283$188_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:284$189_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:285$190_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:286$191_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:287$192_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:288$193_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:289$194_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:290$195_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:291$196_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:292$197_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:293$198_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:294$199_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:295$200_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:296$201_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:297$202_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:298$203_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:299$204_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:300$205_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:301$206_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:302$207_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:303$208_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:304$209_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:305$210_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:306$211_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:307$212_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:308$213_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:309$214_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:310$215_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:311$216_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:312$217_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:313$218_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:314$219_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:315$220_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:316$221_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:317$222_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:318$223_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:319$224_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:320$225_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:321$226_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:322$227_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:323$228_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:324$229_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:325$230_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:326$231_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:327$232_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:328$233_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:329$234_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:330$235_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:331$236_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:332$237_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:333$238_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:334$239_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:335$240_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:336$241_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:337$242_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:338$243_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:339$244_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:340$245_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:341$246_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:342$247_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:343$248_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:344$249_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:345$250_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:346$251_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:347$252_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:348$253_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:349$254_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:350$255_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:351$256_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:352$257_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:353$258_EN' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+No latch inferred for signal `\h_CountRun.\rom_n_lookup_98$func$generated/tinyrisc/CountRun.v:1147$1.$result' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+No latch inferred for signal `\h_CountRun.\rom_n_lookup_98$func$generated/tinyrisc/CountRun.v:1147$2.$result' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+No latch inferred for signal `\h_CountRun.\rom_n_lookup_98$func$generated/tinyrisc/CountRun.v:1147$2.address' from process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+
+2.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\SB_DFFNES.\Q' using process `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$1337'.
+  created $adff cell `$procdff$1588' with negative edge clock and positive level reset.
+Creating register for signal `\SB_DFFNESS.\Q' using process `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$1330'.
+  created $dff cell `$procdff$1589' with negative edge clock.
+Creating register for signal `\SB_DFFNER.\Q' using process `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$1326'.
+  created $adff cell `$procdff$1590' with negative edge clock and positive level reset.
+Creating register for signal `\SB_DFFNESR.\Q' using process `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$1319'.
+  created $dff cell `$procdff$1591' with negative edge clock.
+Creating register for signal `\SB_DFFNS.\Q' using process `\SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$1316'.
+  created $adff cell `$procdff$1592' with negative edge clock and positive level reset.
+Creating register for signal `\SB_DFFNSS.\Q' using process `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$1313'.
+  created $dff cell `$procdff$1593' with negative edge clock.
+Creating register for signal `\SB_DFFNR.\Q' using process `\SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$1310'.
+  created $adff cell `$procdff$1594' with negative edge clock and positive level reset.
+Creating register for signal `\SB_DFFNSR.\Q' using process `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$1307'.
+  created $dff cell `$procdff$1595' with negative edge clock.
+Creating register for signal `\SB_DFFNE.\Q' using process `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:922$1305'.
+  created $dff cell `$procdff$1596' with negative edge clock.
+Creating register for signal `\SB_DFFN.\Q' using process `\SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:882$1303'.
+  created $dff cell `$procdff$1597' with negative edge clock.
+Creating register for signal `\SB_DFFES.\Q' using process `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$1299'.
+  created $adff cell `$procdff$1598' with positive edge clock and positive level reset.
+Creating register for signal `\SB_DFFESS.\Q' using process `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$1292'.
+  created $dff cell `$procdff$1599' with positive edge clock.
+Creating register for signal `\SB_DFFER.\Q' using process `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$1288'.
+  created $adff cell `$procdff$1600' with positive edge clock and positive level reset.
+Creating register for signal `\SB_DFFESR.\Q' using process `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$1281'.
+  created $dff cell `$procdff$1601' with positive edge clock.
+Creating register for signal `\SB_DFFS.\Q' using process `\SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$1278'.
+  created $adff cell `$procdff$1602' with positive edge clock and positive level reset.
+Creating register for signal `\SB_DFFSS.\Q' using process `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$1275'.
+  created $dff cell `$procdff$1603' with positive edge clock.
+Creating register for signal `\SB_DFFR.\Q' using process `\SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$1272'.
+  created $adff cell `$procdff$1604' with positive edge clock and positive level reset.
+Creating register for signal `\SB_DFFSR.\Q' using process `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$1269'.
+  created $dff cell `$procdff$1605' with positive edge clock.
+Creating register for signal `\SB_DFFE.\Q' using process `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:311$1267'.
+  created $dff cell `$procdff$1606' with positive edge clock.
+Creating register for signal `\SB_DFF.\Q' using process `\SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:271$1265'.
+  created $dff cell `$procdff$1607' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_pc_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1608' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_instruction' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1609' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_phase_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1610' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_halted_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1611' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_fault_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1612' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_led_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1613' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_retired_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1614' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_last_pc_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1615' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_previous_step' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1616' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r1_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1617' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r2_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1618' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r3_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1619' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r4_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1620' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r5_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1621' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r6_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1622' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_r7_state' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1623' with positive edge clock.
+Creating register for signal `\h_CountRun.\s_scratch_read_data' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+  created $dff cell `$procdff$1624' with positive edge clock.
+Creating register for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_ADDR' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1315$567'.
+  created $dff cell `$procdff$1625' with positive edge clock.
+Creating register for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_DATA' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1315$567'.
+  created $dff cell `$procdff$1626' with positive edge clock.
+Creating register for signal `\h_CountRun.$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN' using process `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1315$567'.
+  created $dff cell `$procdff$1627' with positive edge clock.
+
+2.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+2.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1340'.
+Found and cleaned up 1 empty switch in `\SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$1337'.
+Removing empty process `SB_DFFNES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1414$1337'.
+Removing empty process `SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1336'.
+Found and cleaned up 2 empty switches in `\SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$1330'.
+Removing empty process `SB_DFFNESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1353$1330'.
+Removing empty process `SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1329'.
+Found and cleaned up 1 empty switch in `\SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$1326'.
+Removing empty process `SB_DFFNER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1273$1326'.
+Removing empty process `SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1325'.
+Found and cleaned up 2 empty switches in `\SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$1319'.
+Removing empty process `SB_DFFNESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1212$1319'.
+Removing empty process `SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1318'.
+Removing empty process `SB_DFFNS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1138$1316'.
+Removing empty process `SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1315'.
+Found and cleaned up 1 empty switch in `\SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$1313'.
+Removing empty process `SB_DFFNSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1088$1313'.
+Removing empty process `SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1312'.
+Removing empty process `SB_DFFNR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:1017$1310'.
+Removing empty process `SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1309'.
+Found and cleaned up 1 empty switch in `\SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$1307'.
+Removing empty process `SB_DFFNSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:967$1307'.
+Removing empty process `SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1306'.
+Found and cleaned up 1 empty switch in `\SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:922$1305'.
+Removing empty process `SB_DFFNE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:922$1305'.
+Removing empty process `SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1304'.
+Removing empty process `SB_DFFN.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:882$1303'.
+Removing empty process `SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1302'.
+Found and cleaned up 1 empty switch in `\SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$1299'.
+Removing empty process `SB_DFFES.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:803$1299'.
+Removing empty process `SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1298'.
+Found and cleaned up 2 empty switches in `\SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$1292'.
+Removing empty process `SB_DFFESS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:742$1292'.
+Removing empty process `SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1291'.
+Found and cleaned up 1 empty switch in `\SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$1288'.
+Removing empty process `SB_DFFER.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:662$1288'.
+Removing empty process `SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1287'.
+Found and cleaned up 2 empty switches in `\SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$1281'.
+Removing empty process `SB_DFFESR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:601$1281'.
+Removing empty process `SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1280'.
+Removing empty process `SB_DFFS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:527$1278'.
+Removing empty process `SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1277'.
+Found and cleaned up 1 empty switch in `\SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$1275'.
+Removing empty process `SB_DFFSS.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:477$1275'.
+Removing empty process `SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1274'.
+Removing empty process `SB_DFFR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:406$1272'.
+Removing empty process `SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1271'.
+Found and cleaned up 1 empty switch in `\SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$1269'.
+Removing empty process `SB_DFFSR.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:356$1269'.
+Removing empty process `SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1268'.
+Found and cleaned up 1 empty switch in `\SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:311$1267'.
+Removing empty process `SB_DFFE.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:311$1267'.
+Removing empty process `SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:0$1266'.
+Removing empty process `SB_DFF.$proc$/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_sim.v:271$1265'.
+Removing empty process `h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$840'.
+Found and cleaned up 1 empty switch in `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+Removing empty process `h_CountRun.$proc$generated/tinyrisc/CountRun.v:0$579'.
+Found and cleaned up 1 empty switch in `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+Removing empty process `h_CountRun.$proc$generated/tinyrisc/CountRun.v:1338$578'.
+Found and cleaned up 1 empty switch in `\h_CountRun.$proc$generated/tinyrisc/CountRun.v:1315$567'.
+Removing empty process `h_CountRun.$proc$generated/tinyrisc/CountRun.v:1315$567'.
+Cleaned up 21 empty switches.
+
+2.3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+<suppressed ~44 debug messages>
+
+2.4. Executing FLATTEN pass (flatten design).
+
+2.5. Executing TRIBUF pass.
+
+2.6. Executing DEMINOUT pass (demote inout ports to input or output).
+
+2.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 3 unused cells and 872 unused wires.
+<suppressed ~4 debug messages>
+
+2.9. Executing CHECK pass (checking for obvious problems).
+Checking module h_CountRun...
+Found and reported 0 problems.
+
+2.10. Executing OPT pass (performing simple optimizations).
+
+2.10.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.10.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+<suppressed ~174 debug messages>
+Removed a total of 58 cells.
+
+2.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~25 debug messages>
+
+2.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+    Consolidated identical input bits for $mux cell $procmux$1580:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570
+      New ports: A=1'0, B=1'1, Y=$0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0]
+      New connections: $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [15:1] = { $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] $0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_EN[15:0]$570 [0] }
+  Optimizing cells in module \h_CountRun.
+Performed a total of 1 changes.
+
+2.10.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+<suppressed ~18 debug messages>
+Removed a total of 6 cells.
+
+2.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+2.10.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.10.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.10.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~25 debug messages>
+
+2.10.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+Performed a total of 0 changes.
+
+2.10.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.10.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.10.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+2.10.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.10.16. Finished OPT passes. (There is nothing left to do.)
+
+2.11. Executing FSM pass (extract and optimize FSM).
+
+2.11.1. Executing FSM_DETECT pass (finding FSMs in design).
+Not marking h_CountRun.s_phase_state as FSM state register:
+    Register is connected to module port.
+    Users of register don't seem to benefit from recoding.
+
+2.11.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+2.11.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+2.11.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+2.11.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+2.11.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+2.11.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+2.11.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+2.12. Executing OPT pass (performing simple optimizations).
+
+2.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.12.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~25 debug messages>
+
+2.12.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+Performed a total of 0 changes.
+
+2.12.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.12.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$1624 ($dff) from module h_CountRun (D = \n_mux_240, Q = \s_scratch_read_data, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1629 ($sdff) from module h_CountRun (D = \n_mux_239, Q = \s_scratch_read_data).
+Adding SRST signal on $procdff$1623 ($dff) from module h_CountRun (D = \n_mux_233, Q = \s_r7_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1631 ($sdff) from module h_CountRun (D = \n_mux_196, Q = \s_r7_state).
+Adding SRST signal on $procdff$1622 ($dff) from module h_CountRun (D = \n_mux_227, Q = \s_r6_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1633 ($sdff) from module h_CountRun (D = \n_mux_196, Q = \s_r6_state).
+Adding SRST signal on $procdff$1621 ($dff) from module h_CountRun (D = \n_mux_221, Q = \s_r5_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1635 ($sdff) from module h_CountRun (D = \n_mux_196, Q = \s_r5_state).
+Adding SRST signal on $procdff$1620 ($dff) from module h_CountRun (D = \n_mux_215, Q = \s_r4_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1637 ($sdff) from module h_CountRun (D = \n_mux_196, Q = \s_r4_state).
+Adding SRST signal on $procdff$1619 ($dff) from module h_CountRun (D = \n_mux_209, Q = \s_r3_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1639 ($sdff) from module h_CountRun (D = \n_mux_196, Q = \s_r3_state).
+Adding SRST signal on $procdff$1618 ($dff) from module h_CountRun (D = \n_mux_203, Q = \s_r2_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1641 ($sdff) from module h_CountRun (D = \n_mux_196, Q = \s_r2_state).
+Adding SRST signal on $procdff$1617 ($dff) from module h_CountRun (D = \n_mux_197, Q = \s_r1_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1643 ($sdff) from module h_CountRun (D = \n_mux_196, Q = \s_r1_state).
+Adding SRST signal on $procdff$1616 ($dff) from module h_CountRun (D = \s_step, Q = \s_previous_step, rval = 1'0).
+Adding SRST signal on $procdff$1615 ($dff) from module h_CountRun (D = \n_mux_118, Q = \s_last_pc_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1646 ($sdff) from module h_CountRun (D = \s_pc_state, Q = \s_last_pc_state).
+Adding SRST signal on $procdff$1614 ($dff) from module h_CountRun (D = \n_instruction_complete, Q = \s_retired_state, rval = 1'0).
+Adding SRST signal on $procdff$1613 ($dff) from module h_CountRun (D = \n_mux_117, Q = \s_led_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1649 ($sdff) from module h_CountRun (D = \n_destination_value, Q = \s_led_state).
+Adding SRST signal on $procdff$1612 ($dff) from module h_CountRun (D = \n_mux_114, Q = \s_fault_state, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1651 ($sdff) from module h_CountRun (D = 1'1, Q = \s_fault_state).
+Adding SRST signal on $procdff$1611 ($dff) from module h_CountRun (D = \n_mux_112, Q = \s_halted_state, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1653 ($sdff) from module h_CountRun (D = 1'1, Q = \s_halted_state).
+Adding SRST signal on $procdff$1610 ($dff) from module h_CountRun (D = \n_mux_108 [1], Q = \s_phase_state [1], rval = 1'0).
+Adding SRST signal on $procdff$1610 ($dff) from module h_CountRun (D = \n_mux_107 [0], Q = \s_phase_state [0], rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$1658 ($sdff) from module h_CountRun (D = 1'1, Q = \s_phase_state [0]).
+Adding EN signal on $auto$ff.cc:266:slice$1655 ($sdff) from module h_CountRun (D = \n_mux_108 [1], Q = \s_phase_state [1]).
+Adding SRST signal on $procdff$1609 ($dff) from module h_CountRun (D = \n_mux_99, Q = \s_instruction, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1665 ($sdff) from module h_CountRun (D = \n_lookup_98, Q = \s_instruction).
+Adding SRST signal on $procdff$1608 ($dff) from module h_CountRun (D = \n_mux_91, Q = \s_pc_state, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$1667 ($sdff) from module h_CountRun (D = \n_mux_90, Q = \s_pc_state).
+
+2.12.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 32 unused cells and 32 unused wires.
+<suppressed ~48 debug messages>
+
+2.12.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+<suppressed ~1 debug messages>
+
+2.12.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.12.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+2.12.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+Performed a total of 0 changes.
+
+2.12.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.12.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.12.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+2.12.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.12.16. Finished OPT passes. (There is nothing left to do.)
+
+2.13. Executing WREDUCE pass (reducing word size of cells).
+Removed top 28 address bits (of 32) from memory init port h_CountRun.$auto$mem.cc:319:emit$1480 ($auto$proc_rom.cc:150:do_switch$1478).
+Removed top 8 address bits (of 16) from memory init port h_CountRun.$auto$proc_memwr.cc:45:proc_memwr$1628 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:100$586 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:101$587 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:102$588 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:103$589 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:104$590 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:105$591 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:106$592 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:107$593 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:108$594 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:109$595 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:110$596 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:111$597 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:112$598 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:113$599 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:114$600 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:115$601 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:116$602 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:117$603 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:118$604 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:119$605 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:120$606 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:121$607 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:122$608 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:123$609 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:124$610 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:125$611 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:126$612 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:127$613 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:128$614 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:129$615 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:130$616 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:131$617 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:132$618 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:133$619 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:134$620 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:135$621 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:136$622 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:137$623 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:138$624 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:139$625 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:140$626 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:141$627 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:142$628 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:143$629 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:144$630 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:145$631 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:146$632 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:147$633 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:148$634 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:149$635 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:150$636 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:151$637 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:152$638 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:153$639 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:154$640 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:155$641 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:156$642 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:157$643 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:158$644 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:159$645 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:160$646 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:161$647 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:162$648 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:163$649 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:164$650 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:165$651 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:166$652 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:167$653 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:168$654 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:169$655 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:170$656 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:171$657 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:172$658 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:173$659 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:174$660 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:175$661 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:176$662 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:177$663 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:178$664 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:179$665 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:180$666 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:181$667 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:182$668 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:183$669 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:184$670 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:185$671 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:186$672 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:187$673 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:188$674 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:189$675 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:190$676 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:191$677 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:192$678 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:193$679 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:194$680 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:195$681 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:196$682 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:197$683 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:198$684 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:199$685 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:200$686 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:201$687 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:202$688 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:203$689 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:204$690 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:205$691 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:206$692 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:207$693 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:208$694 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:209$695 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:210$696 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:211$697 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:212$698 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:213$699 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:214$700 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:215$701 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:216$702 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:217$703 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:218$704 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:219$705 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:220$706 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:221$707 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:222$708 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:223$709 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:224$710 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:225$711 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:226$712 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:227$713 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:228$714 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:229$715 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:230$716 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:231$717 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:232$718 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:233$719 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:234$720 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:235$721 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:236$722 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:237$723 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:238$724 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:239$725 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:240$726 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:241$727 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:242$728 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:243$729 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:244$730 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:245$731 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:246$732 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:247$733 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:248$734 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:249$735 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:250$736 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:251$737 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:252$738 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:253$739 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:254$740 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:255$741 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:256$742 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:257$743 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:258$744 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:259$745 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:260$746 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:261$747 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:262$748 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:263$749 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:264$750 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:265$751 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:266$752 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:267$753 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:268$754 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:269$755 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:270$756 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:271$757 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:272$758 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:273$759 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:274$760 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:275$761 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:276$762 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:277$763 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:278$764 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:279$765 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:280$766 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:281$767 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:282$768 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:283$769 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:284$770 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:285$771 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:286$772 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:287$773 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:288$774 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:289$775 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:290$776 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:291$777 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:292$778 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:293$779 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:294$780 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:295$781 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:296$782 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:297$783 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:298$784 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:299$785 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:300$786 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:301$787 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:302$788 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:303$789 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:304$790 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:305$791 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:306$792 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:307$793 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:308$794 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:309$795 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:310$796 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:311$797 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:312$798 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:313$799 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:314$800 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:315$801 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:316$802 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:317$803 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:318$804 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:319$805 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:320$806 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:321$807 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:322$808 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:323$809 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:324$810 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:325$811 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:326$812 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:327$813 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:328$814 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:329$815 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:330$816 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:331$817 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:332$818 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:333$819 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:334$820 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:335$821 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:336$822 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:337$823 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:338$824 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:339$825 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:340$826 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:341$827 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:342$828 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:343$829 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:344$830 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:345$831 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:346$832 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:347$833 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:348$834 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:349$835 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:350$836 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:351$837 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:352$838 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:353$839 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:98$584 (mem_scratch).
+Removed top 24 address bits (of 32) from memory init port h_CountRun.$meminit$\mem_scratch$generated/tinyrisc/CountRun.v:99$585 (mem_scratch).
+Removed top 8 address bits (of 16) from memory read port h_CountRun.$memrd$\mem_scratch$generated/tinyrisc/CountRun.v:1303$555 (mem_scratch).
+Removed top 1 bits (of 2) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1001$260 ($eq).
+Removed top 3 bits (of 4) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1010$269 ($eq).
+Removed top 2 bits (of 4) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1015$274 ($eq).
+Removed top 2 bits (of 4) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1020$279 ($eq).
+Removed top 1 bits (of 4) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1025$284 ($eq).
+Removed top 1 bits (of 4) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1030$289 ($eq).
+Removed top 1 bits (of 4) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1035$294 ($eq).
+Removed top 1 bits (of 4) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1040$299 ($eq).
+Removed top 1 bits (of 3) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1050$309 ($eq).
+Removed top 1 bits (of 3) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1051$310 ($eq).
+Removed top 2 bits (of 3) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1052$311 ($eq).
+Removed top 7 bits (of 16) from port B of cell h_CountRun.$lt$generated/tinyrisc/CountRun.v:1063$321 ($lt).
+Removed top 15 bits (of 16) from port B of cell h_CountRun.$add$generated/tinyrisc/CountRun.v:1112$370 ($add).
+Removed top 1 bits (of 3) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1119$377 ($eq).
+Removed top 1 bits (of 3) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1120$378 ($eq).
+Removed top 2 bits (of 3) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1121$379 ($eq).
+Removed top 12 bits (of 16) from port B of cell h_CountRun.$lt$generated/tinyrisc/CountRun.v:1145$403 ($lt).
+Removed top 8 bits (of 16) from mux cell h_CountRun.$ternary$generated/tinyrisc/CountRun.v:1198$452 ($mux).
+Removed top 1 bits (of 3) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1211$464 ($eq).
+Removed top 1 bits (of 3) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1212$465 ($eq).
+Removed top 2 bits (of 3) from port B of cell h_CountRun.$eq$generated/tinyrisc/CountRun.v:1213$466 ($eq).
+Removed top 1 bits (of 17) from port A of cell h_CountRun.$lt$generated/tinyrisc/CountRun.v:1302$554 ($lt).
+Removed top 8 bits (of 17) from port B of cell h_CountRun.$lt$generated/tinyrisc/CountRun.v:1302$554 ($lt).
+Removed top 8 bits (of 16) from mux cell h_CountRun.$procmux$1586 ($mux).
+Removed top 8 bits (of 16) from wire h_CountRun.$0$memwr$\mem_scratch$generated/tinyrisc/CountRun.v:1317$259_ADDR[15:0]$568.
+Removed top 8 bits (of 16) from wire h_CountRun.n_mux_138.
+Removed top 1 bits (of 16) from wire h_CountRun.n_shr_161.
+Removed top 2 bits (of 16) from wire h_CountRun.n_shr_163.
+Removed top 4 bits (of 16) from wire h_CountRun.n_shr_165.
+Removed top 8 bits (of 16) from wire h_CountRun.n_shr_167.
+
+2.14. Executing PEEPOPT pass (run peephole optimizers).
+
+2.15. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 0 unused cells and 6 unused wires.
+<suppressed ~1 debug messages>
+
+2.16. Executing SHARE pass (SAT-based resource sharing).
+Found 2 cells in module h_CountRun that may be considered for resource sharing.
+  Analyzing resource sharing options for $memrd$\mem_scratch$generated/tinyrisc/CountRun.v:1303$555 ($memrd):
+    Found 1 activation_patterns using ctrl signal \n_lt_237.
+    No candidates found.
+  Analyzing resource sharing options for $auto$mem.cc:273:emit$1479 ($memrd_v2):
+    Found 1 activation_patterns using ctrl signal $procmux$1527_CMP.
+    No candidates found.
+
+2.17. Executing TECHMAP pass (map to technology primitives).
+
+2.17.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/cmp2lut.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/cmp2lut.v' to AST representation.
+Generating RTLIL representation for module `\_90_lut_cmp_'.
+Successfully finished Verilog frontend.
+
+2.17.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~62 debug messages>
+
+2.18. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.19. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+2.20. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module h_CountRun:
+  creating $macc model for $add$generated/tinyrisc/CountRun.v:1062$320 ($add).
+  creating $macc model for $add$generated/tinyrisc/CountRun.v:1112$370 ($add).
+  creating $macc model for $add$generated/tinyrisc/CountRun.v:1134$392 ($add).
+  creating $macc model for $add$generated/tinyrisc/CountRun.v:1249$502 ($add).
+  creating $macc model for $sub$generated/tinyrisc/CountRun.v:1248$501 ($sub).
+  creating $alu model for $macc $sub$generated/tinyrisc/CountRun.v:1248$501.
+  creating $alu model for $macc $add$generated/tinyrisc/CountRun.v:1249$502.
+  creating $alu model for $macc $add$generated/tinyrisc/CountRun.v:1134$392.
+  creating $alu model for $macc $add$generated/tinyrisc/CountRun.v:1112$370.
+  creating $alu model for $macc $add$generated/tinyrisc/CountRun.v:1062$320.
+  creating $alu model for $lt$generated/tinyrisc/CountRun.v:1063$321 ($lt): new $alu
+  creating $alu model for $lt$generated/tinyrisc/CountRun.v:1145$403 ($lt): new $alu
+  creating $alu model for $lt$generated/tinyrisc/CountRun.v:1302$554 ($lt): merged with $lt$generated/tinyrisc/CountRun.v:1063$321.
+  creating $alu cell for $lt$generated/tinyrisc/CountRun.v:1145$403: $auto$alumacc.cc:485:replace_alu$1678
+  creating $alu cell for $lt$generated/tinyrisc/CountRun.v:1063$321, $lt$generated/tinyrisc/CountRun.v:1302$554: $auto$alumacc.cc:485:replace_alu$1689
+  creating $alu cell for $add$generated/tinyrisc/CountRun.v:1062$320: $auto$alumacc.cc:485:replace_alu$1700
+  creating $alu cell for $add$generated/tinyrisc/CountRun.v:1112$370: $auto$alumacc.cc:485:replace_alu$1703
+  creating $alu cell for $add$generated/tinyrisc/CountRun.v:1134$392: $auto$alumacc.cc:485:replace_alu$1706
+  creating $alu cell for $add$generated/tinyrisc/CountRun.v:1249$502: $auto$alumacc.cc:485:replace_alu$1709
+  creating $alu cell for $sub$generated/tinyrisc/CountRun.v:1248$501: $auto$alumacc.cc:485:replace_alu$1712
+  created 7 $alu and 0 $macc cells.
+
+2.21. Executing OPT pass (performing simple optimizations).
+
+2.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+<suppressed ~3 debug messages>
+
+2.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.21.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+2.21.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+Performed a total of 0 changes.
+
+2.21.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.21.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.21.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~1 debug messages>
+
+2.21.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.21.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.21.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~12 debug messages>
+
+2.21.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+Performed a total of 0 changes.
+
+2.21.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.21.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.21.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+2.21.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.21.16. Finished OPT passes. (There is nothing left to do.)
+
+2.22. Executing MEMORY pass.
+
+2.22.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+2.22.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+2.22.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+  Analyzing h_CountRun.mem_scratch write port 0.
+
+2.22.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+2.22.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+Checking read port `$auto$proc_rom.cc:150:do_switch$1478'[0] in module `\h_CountRun': merging output FF to cell.
+Checking read port `\mem_scratch'[0] in module `\h_CountRun': merging output FF to cell.
+    Write port 0: don't care on collision.
+
+2.22.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 5 unused cells and 37 unused wires.
+<suppressed ~9 debug messages>
+
+2.22.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+2.22.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+2.22.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+2.22.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+2.23. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+2.24. Executing MEMORY_LIBMAP pass (mapping memories to cells).
+using FF mapping for memory h_CountRun.$auto$proc_rom.cc:150:do_switch$1478
+mapping memory h_CountRun.mem_scratch via $__ICE40_RAM4K_
+<suppressed ~121 debug messages>
+
+2.25. Executing TECHMAP pass (map to technology primitives).
+
+2.25.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/brams_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/brams_map.v' to AST representation.
+Generating RTLIL representation for module `\$__ICE40_RAM4K_'.
+Successfully finished Verilog frontend.
+
+2.25.2. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/spram_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/spram_map.v' to AST representation.
+Generating RTLIL representation for module `\$__ICE40_SPRAM_'.
+Successfully finished Verilog frontend.
+
+2.25.3. Continuing TECHMAP pass.
+Using template $paramod$64b287bf341a4b95b999ae4f679280786509630f\$__ICE40_RAM4K_ for cells of type $__ICE40_RAM4K_.
+No more expansions possible.
+<suppressed ~28 debug messages>
+
+2.26. Executing ICE40_BRAMINIT pass.
+
+2.27. Executing OPT pass (performing simple optimizations).
+
+2.27.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+<suppressed ~7 debug messages>
+
+2.27.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.27.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.27.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 0 unused cells and 20 unused wires.
+<suppressed ~1 debug messages>
+
+2.27.5. Finished fast OPT passes.
+
+2.28. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+Mapping memory $auto$proc_rom.cc:150:do_switch$1478 in module \h_CountRun:
+  created 16 $dff cells and 0 static cells of width 16.
+Extracted data FF from read port 0 of h_CountRun.$auto$proc_rom.cc:150:do_switch$1478: $$auto$proc_rom.cc:150:do_switch$1478$rdreg[0]
+  read interface: 1 $dff and 15 $mux cells.
+  write interface: 0 write mux blocks.
+
+2.29. Executing OPT pass (performing simple optimizations).
+
+2.29.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+<suppressed ~4 debug messages>
+
+2.29.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.29.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~8 debug messages>
+
+2.29.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+    Consolidated identical input bits for $mux cell $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][3][2]$1825:
+      Old ports: A=16'1100001000111101, B=16'1010010000001010, Y=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811
+      New ports: A=2'01, B=2'10, Y=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811 [1:0]
+      New connections: $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811 [15:2] = { 1'1 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811 [0] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811 [1] 2'00 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811 [1:0] 3'000 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811 [0] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811 [0] 1'1 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811 [0] }
+    Consolidated identical input bits for $mux cell $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][3][1]$1822:
+      Old ports: A=16'0000010010001000, B=16'0111001001111111, Y=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809
+      New ports: A=2'10, B=2'01, Y={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [7] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [0] }
+      New connections: { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [15:8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [6:1] } = { 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [0] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [0] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [0] 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [7] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [0] 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [0] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [0] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [0] 1'1 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [0] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [0] }
+    Consolidated identical input bits for $mux cell $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][3][0]$1819:
+      Old ports: A=16'1000001000000101, B=16'1000010000000000, Y=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808
+      New ports: A=2'01, B=2'10, Y={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [10] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [0] }
+      New connections: { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [15:11] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [9:1] } = { 5'10000 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [0] 6'000000 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [0] 1'0 }
+    Consolidated identical input bits for $mux cell $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][3][3]$1828:
+      Old ports: A=16'1001011000001010, B=16'1000100100000000, Y=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812
+      New ports: A=2'01, B=2'10, Y={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [1] }
+      New connections: { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [15:9] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [7:2] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [0] } = { 3'100 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [1] 4'0000 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [1] 2'00 }
+    Consolidated identical input bits for $mux cell $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][3][4]$1831:
+      Old ports: A=16'1010011100000000, B=16'1111000000000000, Y=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$a$1814
+      New ports: A=2'01, B=2'10, Y={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$a$1814 [12] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$a$1814 [8] }
+      New connections: { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$a$1814 [15:13] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$a$1814 [11:9] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$a$1814 [7:0] } = { 1'1 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$a$1814 [12] 2'10 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$a$1814 [8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$a$1814 [8] 8'00000000 }
+  Optimizing cells in module \h_CountRun.
+    Consolidated identical input bits for $mux cell $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$1813:
+      Old ports: A=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$a$1814, B=16'0000000000000000, Y=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$a$1805
+      New ports: A={ 1'1 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$a$1814 [12] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][2]$a$1814 [8] }, B=3'000, Y={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$a$1805 [13:12] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$a$1805 [8] }
+      New connections: { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$a$1805 [15:14] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$a$1805 [11:9] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$a$1805 [7:0] } = { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$a$1805 [13:12] 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$a$1805 [8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$a$1805 [8] 8'00000000 }
+    Consolidated identical input bits for $mux cell $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$1810:
+      Old ports: A=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811, B=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812, Y=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803
+      New ports: A={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811 [1] 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811 [0] 2'01 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$a$1811 [1:0] }, B={ 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$b$1812 [1] 1'0 }, Y={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [13:12] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [9:8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [3] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [1:0] }
+      New connections: { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [15:14] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [11:10] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [7:4] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [2] } = { 1'1 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [0] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [1] 2'00 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [0] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [0] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [0] }
+    Consolidated identical input bits for $mux cell $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$1807:
+      Old ports: A=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808, B=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809, Y=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802
+      New ports: A={ 1'1 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [10] 3'000 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [0] }, B={ 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [7] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [7] 1'1 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [0] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$b$1809 [0] }, Y={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [15] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [10] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [7] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [3] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [1:0] }
+      New connections: { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [14:11] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [9:8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [6:4] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [2] } = { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [1] 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [0] 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [1:0] }
+  Optimizing cells in module \h_CountRun.
+    Consolidated identical input bits for $mux cell $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$1804:
+      Old ports: A=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$a$1805, B=16'0000000000000000, Y=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800
+      New ports: A={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$a$1805 [13:12] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][1]$a$1805 [8] }, B=3'000, Y={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [13:12] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [8] }
+      New connections: { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [15:14] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [11:9] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [7:0] } = { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [13:12] 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [8] 8'00000000 }
+    Consolidated identical input bits for $mux cell $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$1801:
+      Old ports: A=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802, B=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803, Y=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799
+      New ports: A={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [15] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [10] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [0] 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [7] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [3] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$a$1802 [1:0] }, B={ 1'1 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [13:12] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [1] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [9:8] 2'00 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [0] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [3] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [1:0] }, Y={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [15] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [13:12] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [10:6] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [4:3] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [1:0] }
+      New connections: { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [14] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [11] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [5] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [2] } = { $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [4] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [4] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [0] }
+  Optimizing cells in module \h_CountRun.
+    Consolidated identical input bits for $mux cell $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$1798:
+      Old ports: A=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799, B=$memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800, Y=$$auto$proc_rom.cc:150:do_switch$1478$rdreg[0]$d
+      New ports: A={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [15] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [4] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [13:12] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [10:6] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [4:3] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$a$1799 [1:0] }, B={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [13:12] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [13:12] 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [8] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][0][0]$b$1800 [8] 6'000000 }, Y={ $$auto$proc_rom.cc:150:do_switch$1478$rdreg[0]$d [15:6] $$auto$proc_rom.cc:150:do_switch$1478$rdreg[0]$d [4:3] $$auto$proc_rom.cc:150:do_switch$1478$rdreg[0]$d [1:0] }
+      New connections: { $$auto$proc_rom.cc:150:do_switch$1478$rdreg[0]$d [5] $$auto$proc_rom.cc:150:do_switch$1478$rdreg[0]$d [2] } = { $$auto$proc_rom.cc:150:do_switch$1478$rdreg[0]$d [4] $$auto$proc_rom.cc:150:do_switch$1478$rdreg[0]$d [0] }
+  Optimizing cells in module \h_CountRun.
+Performed a total of 11 changes.
+
+2.29.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+2.29.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.29.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 0 unused cells and 23 unused wires.
+<suppressed ~1 debug messages>
+
+2.29.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.29.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.29.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~9 debug messages>
+
+2.29.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+    Consolidated identical input bits for $mux cell $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][1]$1810:
+      Old ports: A={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [10] 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [9] 2'01 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [10:9] }, B={ 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [9] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [9] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [10:9] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [9] 1'0 }, Y={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [13:12] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [9] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [11] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [3] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [10] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [14] }
+      New ports: A={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [10] 3'001 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [10:9] }, B={ 1'0 $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [9] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [10:9] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [9] 1'0 }, Y={ $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [13:11] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [3] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [10] $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [14] }
+      New connections: $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][1][0]$b$1803 [9] = $memory$auto$proc_rom.cc:150:do_switch$1478$rdmux[0][2][0]$a$1808 [9]
+  Optimizing cells in module \h_CountRun.
+Performed a total of 1 changes.
+
+2.29.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.29.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.29.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+2.29.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.29.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+2.29.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \h_CountRun..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~9 debug messages>
+
+2.29.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \h_CountRun.
+Performed a total of 0 changes.
+
+2.29.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.29.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.29.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+2.29.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.29.23. Finished OPT passes. (There is nothing left to do.)
+
+2.30. Executing ICE40_WRAPCARRY pass (wrap carries).
+
+2.31. Executing TECHMAP pass (map to technology primitives).
+
+2.31.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+2.31.2. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v' to AST representation.
+Generating RTLIL representation for module `\_80_ice40_alu'.
+Successfully finished Verilog frontend.
+
+2.31.3. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $mux.
+Using template $paramod$2af30114e9bd4ccb04dad757b3f0a8f6bf0615b0\_80_ice40_alu for cells of type $alu.
+Using template $paramod$6df0329addda9228fcc2546de2aaf14ad26c98e1\_80_ice40_alu for cells of type $alu.
+Using template $paramod$9dd2c168c92ea5e7211728a4dd85e9d07319b5c9\_80_ice40_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $sdffe.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $sdff.
+Using template $paramod$9a7f8f842c7d15a8f6b6820db3daba71c00239a1\_80_ice40_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $pos.
+No more expansions possible.
+<suppressed ~417 debug messages>
+
+2.32. Executing OPT pass (performing simple optimizations).
+
+2.32.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+<suppressed ~823 debug messages>
+
+2.32.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+<suppressed ~810 debug messages>
+Removed a total of 270 cells.
+
+2.32.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.32.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 81 unused cells and 346 unused wires.
+<suppressed ~96 debug messages>
+
+2.32.5. Finished fast OPT passes.
+
+2.33. Executing ICE40_OPT pass (performing simple optimizations).
+
+2.33.1. Running ICE40 specific optimizations.
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_CountRun.$auto$alumacc.cc:485:replace_alu$1678.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$1678.BB [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_CountRun.$auto$alumacc.cc:485:replace_alu$1689.slice[0].carry: CO=$auto$alumacc.cc:485:replace_alu$1689.BB [0]
+Optimized $__ICE40_CARRY_WRAPPER cell back to logic (without SB_CARRY) h_CountRun.$auto$alumacc.cc:485:replace_alu$1703.slice[0].carry: CO=\s_pc_state [0]
+
+2.33.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+<suppressed ~6 debug messages>
+
+2.33.3. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.33.4. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.33.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 2 unused cells and 0 unused wires.
+<suppressed ~2 debug messages>
+
+2.33.6. Rerunning OPT passes. (Removed registers in this run.)
+
+2.33.7. Running ICE40 specific optimizations.
+
+2.33.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.33.9. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.33.10. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.33.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+2.33.12. Finished OPT passes. (There is nothing left to do.)
+
+2.34. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+
+2.35. Executing TECHMAP pass (map to technology primitives).
+
+2.35.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/ff_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/ff_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DFF_N_'.
+Generating RTLIL representation for module `\$_DFF_P_'.
+Generating RTLIL representation for module `\$_DFFE_NP_'.
+Generating RTLIL representation for module `\$_DFFE_PP_'.
+Generating RTLIL representation for module `\$_DFF_NP0_'.
+Generating RTLIL representation for module `\$_DFF_NP1_'.
+Generating RTLIL representation for module `\$_DFF_PP0_'.
+Generating RTLIL representation for module `\$_DFF_PP1_'.
+Generating RTLIL representation for module `\$_DFFE_NP0P_'.
+Generating RTLIL representation for module `\$_DFFE_NP1P_'.
+Generating RTLIL representation for module `\$_DFFE_PP0P_'.
+Generating RTLIL representation for module `\$_DFFE_PP1P_'.
+Generating RTLIL representation for module `\$_SDFF_NP0_'.
+Generating RTLIL representation for module `\$_SDFF_NP1_'.
+Generating RTLIL representation for module `\$_SDFF_PP0_'.
+Generating RTLIL representation for module `\$_SDFF_PP1_'.
+Generating RTLIL representation for module `\$_SDFFCE_NP0P_'.
+Generating RTLIL representation for module `\$_SDFFCE_NP1P_'.
+Generating RTLIL representation for module `\$_SDFFCE_PP0P_'.
+Generating RTLIL representation for module `\$_SDFFCE_PP1P_'.
+Successfully finished Verilog frontend.
+
+2.35.2. Continuing TECHMAP pass.
+Using template \$_SDFFCE_PP0P_ for cells of type $_SDFFCE_PP0P_.
+Using template \$_SDFF_PP0_ for cells of type $_SDFF_PP0_.
+No more expansions possible.
+<suppressed ~203 debug messages>
+
+2.36. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.37. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+Mapping h_CountRun.$auto$alumacc.cc:485:replace_alu$1703.slice[0].carry ($lut).
+
+2.38. Executing ICE40_OPT pass (performing simple optimizations).
+
+2.38.1. Running ICE40 specific optimizations.
+
+2.38.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+<suppressed ~50 debug messages>
+
+2.38.3. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+<suppressed ~498 debug messages>
+Removed a total of 166 cells.
+
+2.38.4. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.38.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+Removed 0 unused cells and 1252 unused wires.
+<suppressed ~1 debug messages>
+
+2.38.6. Rerunning OPT passes. (Removed registers in this run.)
+
+2.38.7. Running ICE40 specific optimizations.
+
+2.38.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module h_CountRun.
+
+2.38.9. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\h_CountRun'.
+Removed a total of 0 cells.
+
+2.38.10. Executing OPT_DFF pass (perform DFF optimizations).
+
+2.38.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \h_CountRun..
+
+2.38.12. Finished OPT passes. (There is nothing left to do.)
+
+2.39. Executing TECHMAP pass (map to technology primitives).
+
+2.39.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/latches_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/latches_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DLATCH_N_'.
+Generating RTLIL representation for module `\$_DLATCH_P_'.
+Successfully finished Verilog frontend.
+
+2.39.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+2.40. Executing ABC pass (technology mapping using ABC).
+
+2.40.1. Extracting gate netlist of module `\h_CountRun' to `<abc-temp-dir>/input.blif'..
+Extracted 1217 gates and 1508 wires to a netlist network with 289 inputs and 165 outputs.
+
+2.40.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC:
+ABC: + read_blif <abc-temp-dir>/input.blif
+ABC: + read_lut <abc-temp-dir>/lutdefs.txt
+ABC: + strash
+ABC: + &get -n
+ABC: + &fraig -x
+ABC: + &put
+ABC: + scorr
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2
+ABC: + dretime
+ABC: + strash
+ABC: + dch -f
+ABC: + if
+ABC: + mfs2
+ABC: + lutpack -S 1
+ABC: + dress <abc-temp-dir>/input.blif
+ABC: Total number of equiv classes                =     331.
+ABC: Participating nodes from both networks       =     726.
+ABC: Participating nodes from the first network   =     348. (  48.81 % of nodes)
+ABC: Participating nodes from the second network  =     378. (  53.02 % of nodes)
+ABC: Node pairs (any polarity)                    =     348. (  48.81 % of names can be moved)
+ABC: Node pairs (same polarity)                   =     226. (  31.70 % of names can be moved)
+ABC: Total runtime =     0.07 sec
+ABC: + write_blif <abc-temp-dir>/output.blif
+
+2.40.1.2. Re-integrating ABC results.
+ABC RESULTS:              $lut cells:      712
+ABC RESULTS:        internal signals:     1054
+ABC RESULTS:           input signals:      289
+ABC RESULTS:          output signals:      165
+Removing temp directory.
+
+2.41. Executing ICE40_WRAPCARRY pass (wrap carries).
+
+2.42. Executing TECHMAP pass (map to technology primitives).
+
+2.42.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/ff_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/ff_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DFF_N_'.
+Generating RTLIL representation for module `\$_DFF_P_'.
+Generating RTLIL representation for module `\$_DFFE_NP_'.
+Generating RTLIL representation for module `\$_DFFE_PP_'.
+Generating RTLIL representation for module `\$_DFF_NP0_'.
+Generating RTLIL representation for module `\$_DFF_NP1_'.
+Generating RTLIL representation for module `\$_DFF_PP0_'.
+Generating RTLIL representation for module `\$_DFF_PP1_'.
+Generating RTLIL representation for module `\$_DFFE_NP0P_'.
+Generating RTLIL representation for module `\$_DFFE_NP1P_'.
+Generating RTLIL representation for module `\$_DFFE_PP0P_'.
+Generating RTLIL representation for module `\$_DFFE_PP1P_'.
+Generating RTLIL representation for module `\$_SDFF_NP0_'.
+Generating RTLIL representation for module `\$_SDFF_NP1_'.
+Generating RTLIL representation for module `\$_SDFF_PP0_'.
+Generating RTLIL representation for module `\$_SDFF_PP1_'.
+Generating RTLIL representation for module `\$_SDFFCE_NP0P_'.
+Generating RTLIL representation for module `\$_SDFFCE_NP1P_'.
+Generating RTLIL representation for module `\$_SDFFCE_PP0P_'.
+Generating RTLIL representation for module `\$_SDFFCE_PP1P_'.
+Successfully finished Verilog frontend.
+
+2.42.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~22 debug messages>
+Removed 35 unused cells and 793 unused wires.
+
+2.43. Executing OPT_LUT pass (optimize LUTs).
+Discovering LUTs.
+Number of LUTs:      791
+  1-LUT               49
+  2-LUT               58
+  3-LUT              250
+  4-LUT              434
+  with \SB_CARRY    (#0)   74
+  with \SB_CARRY    (#1)   75
+
+Eliminating LUTs.
+Number of LUTs:      791
+  1-LUT               49
+  2-LUT               58
+  3-LUT              250
+  4-LUT              434
+  with \SB_CARRY    (#0)   74
+  with \SB_CARRY    (#1)   75
+
+Combining LUTs.
+Number of LUTs:      790
+  1-LUT               48
+  2-LUT               58
+  3-LUT              250
+  4-LUT              434
+  with \SB_CARRY    (#0)   74
+  with \SB_CARRY    (#1)   75
+
+Eliminated 0 LUTs.
+Combined 1 LUTs.
+<suppressed ~7181 debug messages>
+
+2.44. Executing TECHMAP pass (map to technology primitives).
+
+2.44.1. Executing Verilog-2005 frontend: /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v
+Parsing Verilog input from `/workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v' to AST representation.
+Generating RTLIL representation for module `\$lut'.
+Successfully finished Verilog frontend.
+
+2.44.2. Continuing TECHMAP pass.
+Using template $paramod$bdb7f9ed72fd4f5c7ad81c376f2d8a5c72a0098d\$lut for cells of type $lut.
+Using template $paramod$de3d8c0ac9a85f776878d56395b6e0bf04ae72e7\$lut for cells of type $lut.
+Using template $paramod$6d6beead1425af15cf78b27fd9b11b41b5d4bce8\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00010000 for cells of type $lut.
+Using template $paramod$608f40069c27841a5b3bdf03643a34bdc8974072\$lut for cells of type $lut.
+Using template $paramod$53ce561f80f32d4298a3beadc88b6c5c78293221\$lut for cells of type $lut.
+Using template $paramod$9e45b1a8f5d89c07bcbb75a2bb1c598231b04feb\$lut for cells of type $lut.
+Using template $paramod$6b0849254d6c87461fb93e37cc18f089f61eb912\$lut for cells of type $lut.
+Using template $paramod$fd904e9e35cfd343a9df248824bd3f1408724879\$lut for cells of type $lut.
+Using template $paramod$b22e1de0c50840dcbbf24001663ffaaba9d5d7b8\$lut for cells of type $lut.
+Using template $paramod$05f19d9c2311a3d1ab38ece311a1bb9f96c62043\$lut for cells of type $lut.
+Using template $paramod$571404c0889eaf57f492cb5e37f8acb5df5852f9\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01000000 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00000111 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01111111 for cells of type $lut.
+Using template $paramod$a54d8b8d2c90a828ee71c2d82e7e1612992a7ab8\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1000 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000001\LUT=2'01 for cells of type $lut.
+Using template $paramod$4282def8dbd6df3d1248ad282c629bee684502c2\$lut for cells of type $lut.
+Using template $paramod$658b9ed803f0d3d335616d3858b53e0a2522f1e8\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0001 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10000000 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'0100 for cells of type $lut.
+Using template $paramod$38f9bf4dd2329347b8471f0a98443dd323386889\$lut for cells of type $lut.
+Using template $paramod$272652f6c6fbe9a75eff76e45cc7e2788835518b\$lut for cells of type $lut.
+Using template $paramod$45d617c2ce0041e27b541f62b0fc3c3ce441a616\$lut for cells of type $lut.
+Using template $paramod$c1a19a87ccbbb03d43a72335db63f692ddf82cc1\$lut for cells of type $lut.
+Using template $paramod$6e238df02989b317f10820a22773676e71120644\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01110000 for cells of type $lut.
+Using template $paramod$35d201d5d13b0689930fb454a340191997b0e867\$lut for cells of type $lut.
+Using template $paramod$82b4a585d1edcb5c6e755dc9bd3392228a1c1304\$lut for cells of type $lut.
+Using template $paramod$ad3a97108c9f4d10f8acfa309b668b9455d3d733\$lut for cells of type $lut.
+Using template $paramod$973818279bc95792902f3c09371fd2407d04a2a5\$lut for cells of type $lut.
+Using template $paramod$e49f6e3576ef1a6d2f58c54414dbb786af8cc869\$lut for cells of type $lut.
+Using template $paramod$19ec49f31a8d230a567aa44ce3ea81a03c101e2b\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00110101 for cells of type $lut.
+Using template $paramod$8b24407096beec47292ddeb1567a058197a320b9\$lut for cells of type $lut.
+Using template $paramod$b4410865e8124402796f9dfbf73ef8d279fdbd08\$lut for cells of type $lut.
+Using template $paramod$d0bf26260eea0e8530fb2e72eb38c60e28a47da8\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11001010 for cells of type $lut.
+Using template $paramod$50cdfa6e310eccfe24e3c2f727089593f0132d61\$lut for cells of type $lut.
+Using template $paramod$164bdefb5d1c06a6528ecdb35b429071950e50d7\$lut for cells of type $lut.
+Using template $paramod$97e449d15b607612c49291044eca4e2c8b59088e\$lut for cells of type $lut.
+Using template $paramod$e9c77024ca501b890c641f9c0b10e27242db8730\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00001101 for cells of type $lut.
+Using template $paramod$ab8bb87959c5d7cfa27886cee1355b38e054a61a\$lut for cells of type $lut.
+Using template $paramod$62982cca7069de3707116b74c6df774a649aefd3\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00000001 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10001111 for cells of type $lut.
+Using template $paramod$332a399730bfc61adea04021a76b1c4e4030f37d\$lut for cells of type $lut.
+Using template $paramod$b4d0f4738a5ce50c7f36c2aa2ecc09cfb874f2b6\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000010\LUT=4'1110 for cells of type $lut.
+Using template $paramod$359fe4e746656bf9c72aecaff84fc7bdea9f55a5\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'01010011 for cells of type $lut.
+Using template $paramod$4a8739123d48424666d29a12eabcd109490f649a\$lut for cells of type $lut.
+Using template $paramod$a866d8a9bbafcc222a175de3340413d1d4440387\$lut for cells of type $lut.
+Using template $paramod$ed0943ee3c927d3ede35577c671eb805d6517c89\$lut for cells of type $lut.
+Using template $paramod$8461cf8f35b1a92a9818e6c8caba55bd0f031348\$lut for cells of type $lut.
+Using template $paramod$d9df5a72bb7f41f6aa21e3d2b158aee882c25168\$lut for cells of type $lut.
+Using template $paramod$7d45bd12c01d1778446c9474bd2c34ae7ad041ca\$lut for cells of type $lut.
+Using template $paramod$017d8c8b5f8f0bd543e7b1e7d026dcb67424a519\$lut for cells of type $lut.
+Using template $paramod$96288e699aa5aef3f78113f3d61a81ccebbd5b8c\$lut for cells of type $lut.
+Using template $paramod$781a9aec0d3f5e2e8f1ac0da04bc801330b7d232\$lut for cells of type $lut.
+Using template $paramod$f740ebdda65cd0b8323d705f16d6dbb0d2771805\$lut for cells of type $lut.
+Using template $paramod$bba54c1ef87367812b4c15f4aed5ac70773df775\$lut for cells of type $lut.
+Using template $paramod$b93d1ea7a612a32c185108f67a153d44ffb9aac2\$lut for cells of type $lut.
+Using template $paramod$179512a187da069f3b79ef6612a41e494e7d54b6\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10101100 for cells of type $lut.
+Using template $paramod$2ea69c779d6c1b79ac5a87b0d1523c67d5628dba\$lut for cells of type $lut.
+Using template $paramod$12879138d1e376f344e47ea40be66b776233be75\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'10110000 for cells of type $lut.
+Using template $paramod$e5e9da8fed769f971686eed8c5eea50e61f73aaa\$lut for cells of type $lut.
+Using template $paramod$c5b694ec89d7629b942ccf6a9be1d39e24f8edec\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11010000 for cells of type $lut.
+Using template $paramod$99a2a175d178a040bb1ffceb53184fb0f59423c6\$lut for cells of type $lut.
+Using template $paramod$04b674496422df8889c01c3744b94097628ccfbc\$lut for cells of type $lut.
+Using template $paramod$a670b08a47dd8a34f954c50cd06e9996d77e8467\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11100000 for cells of type $lut.
+Using template $paramod$3204210736873ef5d53b95f3dbe4714b354f9351\$lut for cells of type $lut.
+Using template $paramod$a2d691ba21e093558f2a36669ee489fbccffbcd3\$lut for cells of type $lut.
+Using template $paramod$4da6fe9957da309dc16b8f31a6b80b19c05c808d\$lut for cells of type $lut.
+Using template $paramod$fccccf8bb2add7667329c686feec7546eb9a3ae3\$lut for cells of type $lut.
+Using template $paramod$2d73cf21e7a3b53006ebbae47ecc48e73975ec46\$lut for cells of type $lut.
+Using template $paramod$4b2297966ddb718657b80566604f97685ffc0120\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00001110 for cells of type $lut.
+Using template $paramod$f3e1547c4b47e64c590e75cf09078b2507c8cc75\$lut for cells of type $lut.
+Using template $paramod$99a6e144b9068e0302a24433df34172042239dd2\$lut for cells of type $lut.
+Using template $paramod$2d07c1a6c53c7b878509360922c4fa5ebedc3011\$lut for cells of type $lut.
+Using template $paramod$10cbe2c80384dc691259558410c90387381d311f\$lut for cells of type $lut.
+Using template $paramod$933f4f3e373a784da64d137def3625bdd36d1695\$lut for cells of type $lut.
+Using template $paramod$64669a7e87c28e39425dffff48145545533b4971\$lut for cells of type $lut.
+Using template $paramod$441de597d9318495d3225f370c9f7379b3b0fd0d\$lut for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'00001011 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11110100 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11111000 for cells of type $lut.
+Using template $paramod\$lut\WIDTH=32'00000000000000000000000000000011\LUT=8'11111110 for cells of type $lut.
+No more expansions possible.
+<suppressed ~2041 debug messages>
+Removed 0 unused cells and 1848 unused wires.
+
+2.45. Executing AUTONAME pass.
+Renamed 21352 objects in module h_CountRun (62 iterations).
+<suppressed ~1403 debug messages>
+
+2.46. Executing HIERARCHY pass (managing design hierarchy).
+
+2.46.1. Analyzing design hierarchy..
+Top module:  \h_CountRun
+
+2.46.2. Analyzing design hierarchy..
+Top module:  \h_CountRun
+Removed 0 unused modules.
+
+2.47. Printing statistics.
+
+=== h_CountRun ===
+
+   Number of wires:                430
+   Number of wire bits:           2256
+   Number of public wires:         430
+   Number of public wire bits:    2256
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               1076
+     SB_CARRY                      104
+     SB_DFFESR                     179
+     SB_DFFSR                        2
+     SB_LUT4                       790
+     SB_RAM40_4K                     1
+
+2.48. Executing CHECK pass (checking for obvious problems).
+Checking module h_CountRun...
+Found and reported 0 problems.
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module h_CountRun...
+Found and reported 0 problems.
+
+4. Executing Verilog backend.
+Dumping module `\h_CountRun'.

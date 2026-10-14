@@ -3,12 +3,12 @@ Toolchain: .NET SDK 8.0.100 / Roslyn; Icarus Verilog 12.0
 
 PASS tests/run-pipelines.sh, debug and optimized builds:
   17730 existing automatic pipeline assertions per build.
-  50912 feedback pipeline assertions per build.
-  Six stateless and six feedback RTL trace benches per build.
+  76868 feedback pipeline assertions per build.
+  Six stateless and nine feedback RTL trace benches per build.
   Three feedback examples are checked with default conservative admission and
-  optional ForwardOnCommit enabled.
-  Final feedback replay probes every external output, busy and all committed
-  state registers for 2200 cycles per design.
+  optional ForwardOnCommit enabled, and single-stage AdvanceStateOnAccept.
+  Final feedback replay probes every external output, busy and all exposed
+  state registers (committed or accepted-input according to mode) for 2200 cycles per design.
 
 PASS tests/run.sh
 PASS tests/run-behavioral.sh
@@ -25,12 +25,18 @@ Independent recurrence models cover:
 - Previous-value output captured before the new state assignment.
 - Exact continuously-ready external latency and II = latency + 1 by default, or latency with forwarding.
 - Randomized input/output stalls; no stale-state admission.
-- State frozen until output acceptance; one in-flight iteration matches occupancy.
+- Default state frozen until output acceptance; optimized state advances on input
+  acceptance, tested independently against the expected next-state oracle.
+- One in-flight iteration matches occupancy in every mode.
 - Reset during blocked output, computation, and commit/replacement; seed
   restoration and discard accounting.
 - Simultaneous commit/accept forwards all next state and keeps busy set.
 - Explicit rejection of stateless bodies, checked operations and nested cycles
   through the feedback API before creating state registers.
+- Reject optimized mode without forwarding or with multistage state/output logic
+  before allocating signals.
+- All three optimized examples preserve old/new output ordering, nonzero reset
+  seeds, atomic state updates and simultaneous replacement behavior.
 
 Generated schedules report external recurrence behavior separately from the
 internal elastic datapath. These tests do not establish target-device timing,

@@ -1,0 +1,2 @@
+PASS TinyRisc mapped wrapper: 1000 cycles, 16 debug selectors per cycle, reset/run/step/peripheral controls
+examples/TinyRisc/benchmark/tb.v:40: $finish called at 26000000 (1ps)

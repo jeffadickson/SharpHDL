@@ -1,0 +1,40 @@
+{
+   "creator": "Yosys 0.33 (git sha1 2584903a060)",
+   "invocation": "stat -json ",
+   "modules": {
+      "\\TinyRiscBench": {
+         "num_wires":         531,
+         "num_wire_bits":     2808,
+         "num_pub_wires":     531,
+         "num_pub_wire_bits": 2808,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         1202,
+         "num_cells_by_type": {
+            "SB_CARRY": 104,
+            "SB_DFFESR": 179,
+            "SB_DFFSR": 2,
+            "SB_LUT4": 916,
+            "SB_RAM40_4K": 1
+         }
+      }
+   },
+      "design": {
+         "num_wires":         531,
+         "num_wire_bits":     2808,
+         "num_pub_wires":     531,
+         "num_pub_wire_bits": 2808,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         1202,
+         "num_cells_by_type": {
+            "SB_CARRY": 104,
+            "SB_DFFESR": 179,
+            "SB_DFFSR": 2,
+            "SB_LUT4": 916,
+            "SB_RAM40_4K": 1
+         }
+      }
+}

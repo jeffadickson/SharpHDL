@@ -23,6 +23,29 @@ namespace SharpHDL
     }
     internal static class PipelineScheduler
     {
+        internal static int OperationCost(Expr e)
+        {
+            switch(e.Op)
+            {
+                case "const":case "signal":case "resize":case "signextend":case "slice":case "concat":case "<<":case ">>":case "asr":return 0;
+                case "+":case "-":case "*":case "&":case "|":case "^":case "~":case "==":case "<":case "slt":case "mux":return 1;
+                default:throw new NotSupportedException("Unsupported scheduled expression: "+e.Op);
+            }
+        }
+        // Dry-run eligibility check, before allocating any signals.
+        internal static int RequiredStages(Expr value,int levelsPerStage)
+        {
+            var levels=new Dictionary<Expr,int>();
+            Func<Expr,int> visit=null;
+            visit=e=>
+            {
+                int level;if(levels.TryGetValue(e,out level))return level;
+                if(levels.Count>=4096)throw new NotSupportedException("Pipeline exceeds 4096 expression nodes.");
+                level=(e.Args.Length==0?0:e.Args.Max(visit))+OperationCost(e);
+                levels[e]=level;return level;
+            };
+            return Math.Max(1,(visit(value)+levelsPerStage-1)/levelsPerStage);
+        }
         internal static PipelineHandle Attach(Module m,string name,HwChannel input,HwChannel output,Expr value,PipelineOptions options)
         {
             var o=options??new PipelineOptions();
@@ -35,13 +58,7 @@ namespace SharpHDL
                 int prior;if(levels.TryGetValue(e,out prior))return prior;
                 if(nodes.Count>=4096)throw new NotSupportedException("Pipeline exceeds 4096 expression nodes.");
                 if(e is Signal && e!=input.Data)throw new NotSupportedException("Pipeline expressions may only depend on the current input token.");
-                int cost;
-                switch(e.Op)
-                {
-                    case "const":case "signal":case "resize":case "signextend":case "slice":case "concat":case "<<":case ">>":case "asr":cost=0;break;
-                    case "+":case "-":case "*":case "&":case "|":case "^":case "~":case "==":case "<":case "slt":case "mux":cost=1;break;
-                    default:throw new NotSupportedException("Unsupported scheduled expression: "+e.Op);
-                }
+                int cost=OperationCost(e);
                 int level=e.Args.Length==0?0:e.Args.Max(a=>visit(a));level+=cost;
                 levels[e]=level;costs[e]=cost;nodes.Add(e);return level;
             };

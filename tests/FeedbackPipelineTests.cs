@@ -14,13 +14,22 @@ static class FeedbackPipelineTests
     {uint x=0;while(true){uint word=input.Read();while(word>0){x++;word--;}output.Write(x);}}
     public static void Run()
     {
-        foreach(bool forwarding in new[]{false,true})
+        foreach(int mode in new[]{0,1,2})
         {
-            Test("RunningSum",new uint[]{7},(state,x)=>new uint[]{unchecked(state[0]+x)},state=>state[0],forwarding:forwarding);
-            Test("ConditionalChecksum",new uint[]{0x1234,0},(state,x)=>x==0?new uint[]{0,0}:new uint[]{unchecked(state[0]*3)^x,unchecked(state[1]+1)},state=>unchecked(state[0]+state[1]),forwarding:forwarding);
-            Test("PreviousValue",new uint[]{42},(state,x)=>new uint[]{x},state=>state[0],true,forwarding);
+            bool forwarding=mode!=0,early=mode==2;
+            Test("RunningSum",new uint[]{7},(state,x)=>new uint[]{unchecked(state[0]+x)},state=>state[0],forwarding:forwarding,early:early);
+            Test("ConditionalChecksum",new uint[]{0x1234,0},(state,x)=>x==0?new uint[]{0,0}:new uint[]{unchecked(state[0]*3)^x,unchecked(state[1]+1)},state=>unchecked(state[0]+state[1]),forwarding:forwarding,early:early);
+            Test("PreviousValue",new uint[]{42},(state,x)=>new uint[]{x},state=>state[0],true,forwarding,early);
         }
         Reject("Identity",typeof(PipelineTests));Reject("Checked",typeof(PipelineTests));Reject("UninitializedCarry",typeof(FeedbackPipelineTests));
+        foreach(bool forward in new[]{false,true})
+        {
+            var m=new Module("IneligibleAcceptedState");var input=HwStream<uint>.Input(m,"in");var output=HwStream<uint>.Output(m,"out");bool rejected=false;
+            try{CilCompiler.AttachFeedbackPipeline(m,"bad",typeof(FeedbackExamples).GetMethod("ConditionalChecksum"),input,output,
+                new FeedbackPipelineOptions{ForwardOnCommit=forward,AdvanceStateOnAccept=true});}
+            catch(ArgumentException){rejected=true;}catch(NotSupportedException){rejected=true;}
+            Check(rejected&&!m.Signals.Any(s=>s.Name.StartsWith("bad_")),"reject incompatible mode or multistage graph before mutation");
+        }
         Console.WriteLine("PASS: "+checks+" feedback pipeline assertions and generated RTL benches.");
     }
     static void Reject(string method,Type owner)
@@ -29,11 +38,12 @@ static class FeedbackPipelineTests
         try{CilCompiler.AttachFeedbackPipeline(m,"bad",owner.GetMethod(method),input,output);}catch(NotSupportedException){rejected=true;}
         Check(rejected&&!m.Signals.Any(s=>s.Name.StartsWith("bad_")),"reject unsupported feedback before emitting registers");
     }
-    static void Test(string method,uint[] initial,Func<uint[],uint,uint[]> update,Func<uint[],uint> result,bool previous=false,bool forwarding=false)
+    static void Test(string method,uint[] initial,Func<uint[],uint,uint[]> update,Func<uint[],uint> result,bool previous=false,bool forwarding=false,bool early=false)
     {
-        string design=method+(forwarding?"Forwarded":"");
+        string design=method+(early?"Accepted":forwarding?"Forwarded":"");
         var m=new Module("Feedback"+design);var input=HwStream<uint>.Input(m,"in");var output=HwStream<uint>.Output(m,"out");
-        var handle=CilCompiler.AttachFeedbackPipeline(m,"feedback",typeof(FeedbackExamples).GetMethod(method),input,output,forwarding?new FeedbackPipelineOptions{ForwardOnCommit=true}:null);
+        var handle=CilCompiler.AttachFeedbackPipeline(m,"feedback",typeof(FeedbackExamples).GetMethod(method),input,output,forwarding?new FeedbackPipelineOptions{ForwardOnCommit=true,AdvanceStateOnAccept=early,LogicLevelsPerStage=early?32:1}:null);
+        Check(handle.StateAdvancesOnInput==early,"reported state contract");
         Check(handle.StateRegisters.Count==initial.Length,"compiler-only locals became state");
         Check(handle.InitiationInterval==handle.Latency+(forwarding?0:1),"reported external II");
         var sim=m.Simulate();sim.Set(input.Valid,0);sim.Set(input.Data,0);sim.Set(output.Ready,1);sim.Tick(true);
@@ -51,7 +61,7 @@ static class FeedbackPipelineTests
                 Check(next==null,"overlapping dependent iteration");Check(cycle-lastAccept==handle.InitiationInterval,"continuous II");lastAccept=cycle;
                 next=update(committed,(uint)(accepted+1));expected=result(previous?committed:next);accepted++;
             }
-            sim.Tick();for(int i=0;i<initial.Length;i++)Check(sim.Read(handle.StateRegisters[i])==committed[i],"state commit edge");
+            sim.Tick();for(int i=0;i<initial.Length;i++)Check(sim.Read(handle.StateRegisters[i])==(early&&next!=null?next:committed)[i],"state commit edge");
         }
         Check(accepted==32&&received==32,"continuous drain");
         sim.Set(input.Valid,0);sim.Set(input.Data,0);sim.Set(output.Ready,0);sim.Tick(true);committed=(uint[])initial.Clone();next=null;
@@ -87,7 +97,7 @@ static class FeedbackPipelineTests
                 if(sim.Read(input.Fire)==1){Check(next==null,"more than one dependent input");next=update(committed,word);expected=result(previous?committed:next);pending=false;accepted++;}
                 held=sim.Read(output.Valid)==1&&!ready;old=(uint)sim.Read(output.Data);sim.Tick();
             }
-            for(int i=0;i<initial.Length;i++)Check(sim.Read(handle.StateRegisters[i])==committed[i],"state changed before output acceptance or reset failed");
+            for(int i=0;i<initial.Length;i++)Check(sim.Read(handle.StateRegisters[i])==(early&&next!=null?next:committed)[i],"state changed before output acceptance or reset failed");
             Check(handle.StageValid.Sum(s=>(int)sim.Read(s))==(int)sim.Read(handle.Busy),"one in-flight iteration must match occupancy");
         }
         Check((forwarding?replacements>0:replacements==0),"simultaneous replacement coverage");

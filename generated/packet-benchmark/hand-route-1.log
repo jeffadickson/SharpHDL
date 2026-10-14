@@ -54,7 +54,7 @@ Info:   at iteration #1: temp = 0.000000, timing cost = 13, wirelen = 517
 Info:   at iteration #5: temp = 0.000000, timing cost = 4, wirelen = 358
 Info:   at iteration #10: temp = 0.000000, timing cost = 6, wirelen = 350
 Info:   at iteration #14: temp = 0.000000, timing cost = 6, wirelen = 342
-Info: SA placement time 0.03s
+Info: SA placement time 0.02s
 
 Info: Max frequency for clock 'clk$SB_IO_IN_$glb_clk': 197.67 MHz (PASS at 25.00 MHz)
 

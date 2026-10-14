@@ -1,0 +1,545 @@
+Warning: No PCF file specified; IO pins will be placed automatically
+
+Info: Packing constants..
+Info: Packing IOs..
+Info: Packing LUT-FFs..
+Info:      886 LCs used as LUT4 only
+Info:       30 LCs used as LUT4 and DFF
+Info: Packing non-LUT FFs..
+Info:      151 LCs used as DFF only
+Info: Packing carries..
+Info:       32 LCs used as CARRY only
+Info: Packing indirect carry+LUT pairs...
+Info:       30 LUTs merged into carry LCs
+Info: Packing RAMs..
+Info: Placing PLLs..
+Info: Packing special functions..
+Info: Packing PLLs..
+Info: Promoting globals..
+Info: promoting clk$SB_IO_IN (fanout 183)
+Info: promoting rst$SB_IO_IN [reset] (fanout 179)
+Info: promoting cpu.n_instruction_complete_SB_LUT4_I2_O [cen] (fanout 32)
+Info: promoting cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_O [cen] (fanout 16)
+Info: promoting cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_O [cen] (fanout 16)
+Info: promoting cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_2_O [cen] (fanout 16)
+Info: Constraining chains...
+Info:        3 LCs used to legalise carry chains.
+Info: Checksum: 0x7652ca4d
+
+Info: Annotating ports with timing budgets for target frequency 25.00 MHz
+Info: Checksum: 0x1d2a0c14
+
+Info: Device utilisation:
+Info: 	         ICESTORM_LC:  1074/ 7680    13%
+Info: 	        ICESTORM_RAM:     1/   32     3%
+Info: 	               SB_IO:    76/  256    29%
+Info: 	               SB_GB:     6/    8    75%
+Info: 	        ICESTORM_PLL:     0/    2     0%
+Info: 	         SB_WARMBOOT:     0/    1     0%
+
+Info: Placed 0 cells based on constraints.
+Info: Creating initial analytic placement for 973 cells, random placement wirelen = 32339.
+Info:     at initial placer iter 0, wirelen = 2071
+Info:     at initial placer iter 1, wirelen = 2149
+Info:     at initial placer iter 2, wirelen = 2111
+Info:     at initial placer iter 3, wirelen = 2236
+Info: Running main analytical placer, max placement attempts per cell = 167331.
+Info:     at iteration #1, type ALL: wirelen solved = 2131, spread = 6910, legal = 7362; time = 0.02s
+Info:     at iteration #2, type ALL: wirelen solved = 2238, spread = 6845, legal = 7202; time = 0.02s
+Info:     at iteration #3, type ALL: wirelen solved = 2303, spread = 6736, legal = 7072; time = 0.02s
+Info:     at iteration #4, type ALL: wirelen solved = 2434, spread = 6534, legal = 6829; time = 0.02s
+Info:     at iteration #5, type ALL: wirelen solved = 2521, spread = 6586, legal = 6847; time = 0.02s
+Info:     at iteration #6, type ALL: wirelen solved = 2740, spread = 6558, legal = 6866; time = 0.02s
+Info:     at iteration #7, type ALL: wirelen solved = 3076, spread = 6400, legal = 6626; time = 0.02s
+Info:     at iteration #8, type ALL: wirelen solved = 3210, spread = 6101, legal = 6488; time = 0.02s
+Info:     at iteration #9, type ALL: wirelen solved = 3411, spread = 6074, legal = 6486; time = 0.02s
+Info:     at iteration #10, type ALL: wirelen solved = 3639, spread = 6040, legal = 6339; time = 0.02s
+Info:     at iteration #11, type ALL: wirelen solved = 3783, spread = 5905, legal = 6228; time = 0.02s
+Info:     at iteration #12, type ALL: wirelen solved = 3867, spread = 6010, legal = 6345; time = 0.02s
+Info:     at iteration #13, type ALL: wirelen solved = 3992, spread = 5754, legal = 6250; time = 0.02s
+Info:     at iteration #14, type ALL: wirelen solved = 4015, spread = 5831, legal = 6324; time = 0.02s
+Info:     at iteration #15, type ALL: wirelen solved = 4082, spread = 5859, legal = 6297; time = 0.02s
+Info:     at iteration #16, type ALL: wirelen solved = 4192, spread = 5794, legal = 6164; time = 0.02s
+Info:     at iteration #17, type ALL: wirelen solved = 4185, spread = 5761, legal = 6256; time = 0.02s
+Info:     at iteration #18, type ALL: wirelen solved = 4280, spread = 5805, legal = 6129; time = 0.02s
+Info:     at iteration #19, type ALL: wirelen solved = 4489, spread = 5845, legal = 6133; time = 0.02s
+Info:     at iteration #20, type ALL: wirelen solved = 4479, spread = 5644, legal = 6015; time = 0.75s
+Info:     at iteration #21, type ALL: wirelen solved = 4435, spread = 5779, legal = 6044; time = 0.02s
+Info:     at iteration #22, type ALL: wirelen solved = 4557, spread = 5644, legal = 6000; time = 0.02s
+Info:     at iteration #23, type ALL: wirelen solved = 4531, spread = 5668, legal = 6153; time = 0.04s
+Info:     at iteration #24, type ALL: wirelen solved = 4528, spread = 5642, legal = 6187; time = 0.02s
+Info:     at iteration #25, type ALL: wirelen solved = 4571, spread = 5758, legal = 6068; time = 0.02s
+Info:     at iteration #26, type ALL: wirelen solved = 4674, spread = 5630, legal = 5997; time = 0.02s
+Info:     at iteration #27, type ALL: wirelen solved = 4646, spread = 5747, legal = 6038; time = 0.02s
+Info:     at iteration #28, type ALL: wirelen solved = 4748, spread = 5580, legal = 6082; time = 0.02s
+Info:     at iteration #29, type ALL: wirelen solved = 4718, spread = 5796, legal = 6074; time = 0.01s
+Info:     at iteration #30, type ALL: wirelen solved = 4844, spread = 5750, legal = 6014; time = 0.01s
+Info: HeAP Placer Time: 1.51s
+Info:   of which solving equations: 0.46s
+Info:   of which spreading cells: 0.07s
+Info:   of which strict legalisation: 0.83s
+
+Info: Running simulated annealing placer for refinement.
+Info:   at iteration #1: temp = 0.000000, timing cost = 316, wirelen = 5997
+Info:   at iteration #5: temp = 0.000000, timing cost = 325, wirelen = 4938
+Info:   at iteration #10: temp = 0.000000, timing cost = 318, wirelen = 4733
+Info:   at iteration #15: temp = 0.000000, timing cost = 311, wirelen = 4625
+Info:   at iteration #20: temp = 0.000000, timing cost = 308, wirelen = 4548
+Info:   at iteration #21: temp = 0.000000, timing cost = 309, wirelen = 4549
+Info: SA placement time 0.72s
+
+Info: Max frequency for clock 'clk$SB_IO_IN_$glb_clk': 39.93 MHz (PASS at 25.00 MHz)
+
+Info: Max delay <async>                       -> <async>                      : 9.54 ns
+Info: Max delay <async>                       -> posedge clk$SB_IO_IN_$glb_clk: 15.67 ns
+Info: Max delay posedge clk$SB_IO_IN_$glb_clk -> <async>                      : 16.09 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 2 endpoint(s)
+Info:          + represents [1,2) endpoint(s)
+Info: [ 14954,  16131) |**************+
+Info: [ 16131,  17308) |**+
+Info: [ 17308,  18485) |********+
+Info: [ 18485,  19662) |**+
+Info: [ 19662,  20839) |**********+
+Info: [ 20839,  22016) |*************************************+
+Info: [ 22016,  23193) |************+
+Info: [ 23193,  24370) |***+
+Info: [ 24370,  25547) |***********************+
+Info: [ 25547,  26724) |*********+
+Info: [ 26724,  27901) |********+
+Info: [ 27901,  29078) |**+
+Info: [ 29078,  30255) |*****+
+Info: [ 30255,  31432) |**********************************+
+Info: [ 31432,  32609) |***********************************+
+Info: [ 32609,  33786) |****************************+
+Info: [ 33786,  34963) |*********************+
+Info: [ 34963,  36140) |************************************************************
+Info: [ 36140,  37317) |**********************+
+Info: [ 37317,  38494) |*************+
+Info: Checksum: 0xbe0934b3
+
+Info: Routing..
+Info: Setting up routing queue.
+Info: Routing 3889 arcs.
+Info:            |   (re-)routed arcs  |   delta    | remaining|       time spent     |
+Info:    IterCnt |  w/ripup   wo/ripup |  w/r  wo/r |      arcs| batch(sec) total(sec)|
+Info:       1000 |       71        928 |   71   928 |      2987|       0.35       0.35|
+Info:       2000 |      312       1660 |  241   732 |      2361|       0.23       0.58|
+Info:       3000 |      619       2327 |  307   667 |      1786|       0.21       0.79|
+Info:       4000 |     1031       2902 |  412   575 |      1305|       0.19       0.98|
+Info:       5000 |     1491       3416 |  460   514 |       984|       0.23       1.21|
+Info:       6000 |     1821       4085 |  330   669 |       483|       0.32       1.54|
+Info:       7000 |     2199       4707 |  378   622 |        18|       0.35       1.89|
+Info:       7045 |     2226       4726 |   27    19 |         0|       0.03       1.92|
+Info: Routing complete.
+Info: Router1 time 1.92s
+Info: Checksum: 0x78573a59
+
+Info: Critical path report for clock 'clk$SB_IO_IN_$glb_clk' (posedge -> posedge):
+Info: curr total
+Info:  0.5  0.5  Source cpu.s_instruction_SB_DFFESR_Q_D_SB_LUT4_O_9_LC.O
+Info:  0.6  1.1    Net s_ir[6] budget 2.295000 ns (10,8) -> (10,9)
+Info:                Sink cpu.n_source_a_value_SB_LUT4_O_9_I1_SB_LUT4_O_1_I0_SB_LUT4_O_LC.I1
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:13.19-13.23
+Info:  0.4  1.5  Source cpu.n_source_a_value_SB_LUT4_O_9_I1_SB_LUT4_O_1_I0_SB_LUT4_O_LC.O
+Info:  2.0  3.5    Net cpu.n_source_a_value_SB_LUT4_O_9_I1_SB_LUT4_O_1_I0[0] budget 2.295000 ns (10,9) -> (3,3)
+Info:                Sink cpu.n_source_a_value_SB_LUT4_O_12_I1_SB_LUT4_O_1_LC.I0
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4  3.9  Source cpu.n_source_a_value_SB_LUT4_O_12_I1_SB_LUT4_O_1_LC.O
+Info:  0.6  4.5    Net cpu.n_source_a_value_SB_LUT4_O_12_I1[1] budget 2.295000 ns (3,3) -> (3,3)
+Info:                Sink cpu.n_source_a_value_SB_LUT4_O_12_LC.I2
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4  4.9  Source cpu.n_source_a_value_SB_LUT4_O_12_LC.O
+Info:  1.3  6.2    Net cpu.n_shl_173[3] budget 2.295000 ns (3,3) -> (5,7)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_7_LC.I1
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:472.13-472.29
+Info:  0.3  6.4  Source cpu.n_add_143_SB_LUT4_O_7_LC.COUT
+Info:  0.3  6.7    Net cpu.n_add_143_SB_LUT4_O_I3[3] budget 0.260000 ns (5,7) -> (5,7)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_6_LC.I3
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.3  7.0  Source cpu.n_add_143_SB_LUT4_O_6_LC.O
+Info:  0.6  7.6    Net cpu.n_add_143[3] budget 2.677000 ns (5,7) -> (4,7)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_6$CARRY.I3
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:974.13-974.25
+Info:  0.3  7.9  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_6$CARRY.O
+Info:  0.6  8.5    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_I1[3] budget 2.677000 ns (4,7) -> (4,7)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_6$CARRY.I2
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:49.21-49.23
+Info:  0.2  8.7  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_6$CARRY.COUT
+Info:  0.0  8.7    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3[3] budget 0.000000 ns (4,7) -> (4,7)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_5$CARRY.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  8.9  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_5$CARRY.COUT
+Info:  0.0  8.9    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3[4] budget 0.000000 ns (4,7) -> (4,7)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_4$CARRY.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  9.0  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_4$CARRY.COUT
+Info:  0.0  9.0    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3[5] budget 0.000000 ns (4,7) -> (4,7)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_3$CARRY.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  9.1  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_3$CARRY.COUT
+Info:  0.0  9.1    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3[6] budget 0.000000 ns (4,7) -> (4,7)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_2$CARRY.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  9.2  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_2$CARRY.COUT
+Info:  0.2  9.4    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3[7] budget 0.190000 ns (4,7) -> (4,8)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_1$CARRY.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  9.6  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_1$CARRY.COUT
+Info:  0.0  9.6    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3[8] budget 0.000000 ns (4,8) -> (4,8)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO$CARRY.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  9.7  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO$CARRY.COUT
+Info:  0.0  9.7    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3[9] budget 0.000000 ns (4,8) -> (4,8)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_13$CARRY.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  9.8  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_13$CARRY.COUT
+Info:  0.0  9.8    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3[10] budget 0.000000 ns (4,8) -> (4,8)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_12$CARRY.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  9.9  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_12$CARRY.COUT
+Info:  0.0  9.9    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3[11] budget 0.000000 ns (4,8) -> (4,8)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_11$CARRY.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1 10.1  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_11$CARRY.COUT
+Info:  0.0 10.1    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3[12] budget 0.000000 ns (4,8) -> (4,8)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_10$CARRY.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1 10.2  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_10$CARRY.COUT
+Info:  0.0 10.2    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3[13] budget 0.000000 ns (4,8) -> (4,8)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_9$CARRY.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1 10.3  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO_CI_SB_CARRY_CO_9$CARRY.COUT
+Info:  0.0 10.3    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3[14] budget 0.000000 ns (4,8) -> (4,8)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO$CARRY.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1 10.4  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I3_SB_CARRY_CO$CARRY.COUT
+Info:  0.5 10.9    Net s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_I1[3] budget 0.560000 ns (4,8) -> (4,9)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_LC.I3
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1063.27-1063.56
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:37.23-37.25
+Info:  0.3 11.2  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_O_LC.O
+Info:  1.6 12.8    Net s_rx_valid_SB_LUT4_I0_I2[0] budget 2.295000 ns (4,9) -> (9,10)
+Info:                Sink s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_I2_LC.I2
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4 13.2  Source s_rx_valid_SB_LUT4_I0_I2_SB_LUT4_I2_LC.O
+Info:  0.6 13.8    Net cpu.mem_scratch.0.0_RDATA_1_SB_LUT4_O_1_I1_SB_LUT4_I2_1_O[1] budget 2.295000 ns (9,10) -> (9,10)
+Info:                Sink cpu.mem_scratch.0.0_RDATA_1_SB_LUT4_O_1_I1_SB_LUT4_I2_1_O_SB_LUT4_I1_O_SB_LUT4_O_1_LC.I2
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4 14.1  Source cpu.mem_scratch.0.0_RDATA_1_SB_LUT4_O_1_I1_SB_LUT4_I2_1_O_SB_LUT4_I1_O_SB_LUT4_O_1_LC.O
+Info:  0.6 14.7    Net s_rx_valid_SB_LUT4_I0_O_SB_LUT4_I0_O[0] budget 2.295000 ns (9,10) -> (9,11)
+Info:                Sink cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_O_LC.I0
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4 15.2  Source cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_O_LC.O
+Info:  0.6 15.8    Net cpu.n_instruction_complete_SB_LUT4_O_I2[0] budget 2.295000 ns (9,11) -> (10,10)
+Info:                Sink cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_LC.I2
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4 16.1  Source cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_LC.O
+Info:  0.6 16.7    Net cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O[0] budget 2.295000 ns (10,10) -> (11,9)
+Info:                Sink cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_LC.I1
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4 17.1  Source cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_LC.O
+Info:  2.8 19.9    Net cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_O budget 2.294000 ns (11,9) -> (17,33)
+Info:                Sink $gbuf_cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_O_$glb_ce.USER_SIGNAL_TO_GLOBAL_BUFFER
+Info:  0.6 20.5  Source $gbuf_cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_O_$glb_ce.GLOBAL_BUFFER_OUTPUT
+Info:  0.6 21.1    Net cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_O_$glb_ce budget 2.294000 ns (17,33) -> (4,10)
+Info:                Sink cpu.s_r6_state_SB_DFFESR_Q_DFFLC.CEN
+Info:  0.1 21.2  Setup cpu.s_r6_state_SB_DFFESR_Q_DFFLC.CEN
+Info: 7.4 ns logic, 13.8 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> '<async>':
+Info: curr total
+Info:  0.0  0.0  Source inspect[1]$sb_io.D_IN_0
+Info:  1.5  1.5    Net inspect[1]$SB_IO_IN budget 7.656000 ns (15,0) -> (13,1)
+Info:                Sink inspect_SB_LUT4_I0_1_LC.I1
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:9.14-9.21
+Info:  0.4  1.9  Source inspect_SB_LUT4_I0_1_LC.O
+Info:  1.6  3.5    Net debug_SB_LUT4_O_10_I1_SB_LUT4_O_1_I2[1] budget 7.670000 ns (13,1) -> (12,10)
+Info:                Sink debug_SB_LUT4_O_9_I2_SB_LUT4_O_I2_SB_LUT4_O_1_LC.I0
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4  3.9  Source debug_SB_LUT4_O_9_I2_SB_LUT4_O_I2_SB_LUT4_O_1_LC.O
+Info:  1.3  5.2    Net debug_SB_LUT4_O_9_I2_SB_LUT4_O_I2[2] budget 7.670000 ns (12,10) -> (12,13)
+Info:                Sink debug_SB_LUT4_O_9_I2_SB_LUT4_O_LC.I2
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4  5.6  Source debug_SB_LUT4_O_9_I2_SB_LUT4_O_LC.O
+Info:  0.6  6.2    Net debug_SB_LUT4_O_9_I2[1] budget 7.669000 ns (12,13) -> (12,13)
+Info:                Sink debug_SB_LUT4_O_9_LC.I3
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.3  6.5  Source debug_SB_LUT4_O_9_LC.O
+Info:  3.0  9.4    Net debug[6]$SB_IO_OUT budget 7.669000 ns (12,13) -> (17,33)
+Info:                Sink debug[6]$sb_io.D_OUT_0
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:11.41-11.46
+Info: 1.5 ns logic, 7.9 ns routing
+
+Info: Critical path report for cross-domain path '<async>' -> 'posedge clk$SB_IO_IN_$glb_clk':
+Info: curr total
+Info:  0.0  0.0  Source s_rx_valid$sb_io.D_IN_0
+Info:  2.4  2.4    Net s_rx_valid$SB_IO_IN budget 5.338000 ns (9,33) -> (6,11)
+Info:                Sink s_rx_valid_SB_LUT4_I0_LC.I0
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:8.8-8.18
+Info:  0.4  2.9  Source s_rx_valid_SB_LUT4_I0_LC.O
+Info:  0.6  3.5    Net s_rx_valid_SB_LUT4_I0_O[2] budget 2.295000 ns (6,11) -> (7,11)
+Info:                Sink s_rx_valid_SB_LUT4_I0_O_SB_LUT4_I0_LC.I2
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4  3.8  Source s_rx_valid_SB_LUT4_I0_O_SB_LUT4_I0_LC.O
+Info:  0.9  4.7    Net s_rx_valid_SB_LUT4_I0_O_SB_LUT4_I0_O[3] budget 2.295000 ns (7,11) -> (9,11)
+Info:                Sink cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_O_LC.I3
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.3  5.1  Source cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_O_LC.O
+Info:  0.6  5.7    Net cpu.n_instruction_complete_SB_LUT4_O_I2[0] budget 2.295000 ns (9,11) -> (10,10)
+Info:                Sink cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_LC.I2
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4  6.0  Source cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_LC.O
+Info:  0.6  6.6    Net cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O[0] budget 2.295000 ns (10,10) -> (11,9)
+Info:                Sink cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_LC.I1
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4  7.0  Source cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_LC.O
+Info:  2.8  9.8    Net cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_O budget 2.294000 ns (11,9) -> (17,33)
+Info:                Sink $gbuf_cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_O_$glb_ce.USER_SIGNAL_TO_GLOBAL_BUFFER
+Info:  0.6 10.4  Source $gbuf_cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_O_$glb_ce.GLOBAL_BUFFER_OUTPUT
+Info:  0.6 11.0    Net cpu.n_instruction_complete_SB_LUT4_O_I2_SB_LUT4_I2_O_SB_LUT4_I1_1_O_$glb_ce budget 2.294000 ns (17,33) -> (4,10)
+Info:                Sink cpu.s_r6_state_SB_DFFESR_Q_DFFLC.CEN
+Info:  0.1 11.1  Setup cpu.s_r6_state_SB_DFFESR_Q_DFFLC.CEN
+Info: 2.6 ns logic, 8.5 ns routing
+
+Info: Critical path report for cross-domain path 'posedge clk$SB_IO_IN_$glb_clk' -> '<async>':
+Info: curr total
+Info:  0.5  0.5  Source cpu.s_instruction_SB_DFFESR_Q_D_SB_LUT4_O_9_LC.O
+Info:  0.6  1.1    Net s_ir[6] budget 2.295000 ns (10,8) -> (10,9)
+Info:                Sink cpu.n_source_a_value_SB_LUT4_O_9_I1_SB_LUT4_O_1_I0_SB_LUT4_O_LC.I1
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:13.19-13.23
+Info:  0.4  1.5  Source cpu.n_source_a_value_SB_LUT4_O_9_I1_SB_LUT4_O_1_I0_SB_LUT4_O_LC.O
+Info:  2.0  3.5    Net cpu.n_source_a_value_SB_LUT4_O_9_I1_SB_LUT4_O_1_I0[0] budget 2.295000 ns (10,9) -> (3,3)
+Info:                Sink cpu.n_source_a_value_SB_LUT4_O_12_I1_SB_LUT4_O_1_LC.I0
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4  3.9  Source cpu.n_source_a_value_SB_LUT4_O_12_I1_SB_LUT4_O_1_LC.O
+Info:  0.6  4.5    Net cpu.n_source_a_value_SB_LUT4_O_12_I1[1] budget 2.295000 ns (3,3) -> (3,3)
+Info:                Sink cpu.n_source_a_value_SB_LUT4_O_12_LC.I2
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4  4.9  Source cpu.n_source_a_value_SB_LUT4_O_12_LC.O
+Info:  1.3  6.2    Net cpu.n_shl_173[3] budget 2.295000 ns (3,3) -> (5,7)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_7_LC.I1
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:472.13-472.29
+Info:  0.3  6.4  Source cpu.n_add_143_SB_LUT4_O_7_LC.COUT
+Info:  0.0  6.4    Net cpu.n_add_143_SB_LUT4_O_I3[3] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_6_LC.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  6.6  Source cpu.n_add_143_SB_LUT4_O_6_LC.COUT
+Info:  0.0  6.6    Net cpu.n_add_143_SB_LUT4_O_I3[4] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_5_LC.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  6.7  Source cpu.n_add_143_SB_LUT4_O_5_LC.COUT
+Info:  0.0  6.7    Net cpu.n_add_143_SB_LUT4_O_I3[5] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_4_LC.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  6.8  Source cpu.n_add_143_SB_LUT4_O_4_LC.COUT
+Info:  0.0  6.8    Net cpu.n_add_143_SB_LUT4_O_I3[6] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_3_LC.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  6.9  Source cpu.n_add_143_SB_LUT4_O_3_LC.COUT
+Info:  0.0  6.9    Net cpu.n_add_143_SB_LUT4_O_I3[7] budget 0.000000 ns (5,7) -> (5,7)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_2_LC.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  7.1  Source cpu.n_add_143_SB_LUT4_O_2_LC.COUT
+Info:  0.2  7.3    Net cpu.n_add_143_SB_LUT4_O_I3[8] budget 0.190000 ns (5,7) -> (5,8)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_1_LC.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  7.4  Source cpu.n_add_143_SB_LUT4_O_1_LC.COUT
+Info:  0.0  7.4    Net cpu.n_add_143_SB_LUT4_O_I3[9] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_LC.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  7.5  Source cpu.n_add_143_SB_LUT4_O_LC.COUT
+Info:  0.0  7.5    Net cpu.n_add_143_SB_LUT4_O_I3[10] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_14_LC.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  7.6  Source cpu.n_add_143_SB_LUT4_O_14_LC.COUT
+Info:  0.0  7.6    Net cpu.n_add_143_SB_LUT4_O_I3[11] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_13_LC.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  7.8  Source cpu.n_add_143_SB_LUT4_O_13_LC.COUT
+Info:  0.0  7.8    Net cpu.n_add_143_SB_LUT4_O_I3[12] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_12_LC.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  7.9  Source cpu.n_add_143_SB_LUT4_O_12_LC.COUT
+Info:  0.0  7.9    Net cpu.n_add_143_SB_LUT4_O_I3[13] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_11_LC.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  8.0  Source cpu.n_add_143_SB_LUT4_O_11_LC.COUT
+Info:  0.0  8.0    Net cpu.n_add_143_SB_LUT4_O_I3[14] budget 0.000000 ns (5,8) -> (5,8)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_10_LC.CIN
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.1  8.1  Source cpu.n_add_143_SB_LUT4_O_10_LC.COUT
+Info:  0.3  8.4    Net cpu.n_add_143_SB_LUT4_O_I3[15] budget 0.260000 ns (5,8) -> (5,8)
+Info:                Sink cpu.n_add_143_SB_LUT4_O_9_LC.I3
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:1062.30-1062.67
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/arith_map.v:51.21-51.22
+Info:  0.3  8.7  Source cpu.n_add_143_SB_LUT4_O_9_LC.O
+Info:  0.6  9.3    Net cpu.n_add_143[15] budget 2.295000 ns (5,8) -> (5,9)
+Info:                Sink s_tx_ready_SB_LUT4_I1_O_SB_LUT4_O_I1_SB_LUT4_I3_O_SB_LUT4_O_I2_SB_LUT4_O_LC.I0
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:16.13-16.20
+Info:                  generated/tinyrisc/CountRun.v:974.13-974.25
+Info:  0.4  9.8  Source s_tx_ready_SB_LUT4_I1_O_SB_LUT4_O_I1_SB_LUT4_I3_O_SB_LUT4_O_I2_SB_LUT4_O_LC.O
+Info:  0.6 10.3    Net s_tx_ready_SB_LUT4_I1_O_SB_LUT4_O_I1_SB_LUT4_I3_O_SB_LUT4_O_I2[1] budget 2.295000 ns (5,9) -> (5,10)
+Info:                Sink s_tx_ready_SB_LUT4_I1_O_SB_LUT4_O_I1_SB_LUT4_I3_O_SB_LUT4_O_LC.I3
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.3 10.7  Source s_tx_ready_SB_LUT4_I1_O_SB_LUT4_O_I1_SB_LUT4_I3_O_SB_LUT4_O_LC.O
+Info:  0.6 11.2    Net s_tx_ready_SB_LUT4_I1_O_SB_LUT4_O_I1_SB_LUT4_I3_1_I0[0] budget 2.295000 ns (5,10) -> (6,10)
+Info:                Sink s_tx_ready_SB_LUT4_I1_O_SB_LUT4_O_I1_SB_LUT4_I3_1_I0_SB_LUT4_I2_LC.I1
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4 11.6  Source s_tx_ready_SB_LUT4_I1_O_SB_LUT4_O_I1_SB_LUT4_I3_1_I0_SB_LUT4_I2_LC.O
+Info:  1.6 13.3    Net s_tx_ready_SB_LUT4_I1_O_SB_LUT4_O_I1_SB_LUT4_I3_1_I0_SB_LUT4_I2_O[1] budget 3.812000 ns (6,10) -> (10,12)
+Info:                Sink s_rx_ready_SB_LUT4_O_LC.I1
+Info:                Defined in:
+Info:                  /workspace/scratch/595e67e9fe87/toolchain/usr/bin/../share/yosys/ice40/cells_map.v:6.21-6.22
+Info:  0.4 13.7  Source s_rx_ready_SB_LUT4_O_LC.O
+Info:  2.8 16.5    Net s_rx_ready$SB_IO_OUT budget 3.812000 ns (10,12) -> (33,15)
+Info:                Sink s_rx_ready$sb_io.D_OUT_0
+Info:                Defined in:
+Info:                  examples/TinyRisc/benchmark/top.v:10.50-10.60
+Info: 5.4 ns logic, 11.1 ns routing
+
+Info: Max frequency for clock 'clk$SB_IO_IN_$glb_clk': 47.13 MHz (PASS at 25.00 MHz)
+
+Info: Max delay <async>                       -> <async>                      : 9.42 ns
+Info: Max delay <async>                       -> posedge clk$SB_IO_IN_$glb_clk: 11.10 ns
+Info: Max delay posedge clk$SB_IO_IN_$glb_clk -> <async>                      : 16.49 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 3 endpoint(s)
+Info:          + represents [1,3) endpoint(s)
+Info: [ 18782,  19767) |*******************+
+Info: [ 19767,  20752) |****************+
+Info: [ 20752,  21737) |**************************+
+Info: [ 21737,  22722) |***********+
+Info: [ 22722,  23707) |**+
+Info: [ 23707,  24692) |+
+Info: [ 24692,  25677) |**********+
+Info: [ 25677,  26662) |****+
+Info: [ 26662,  27647) |
+Info: [ 27647,  28632) |
+Info: [ 28632,  29617) |******************+
+Info: [ 29617,  30602) |*******************+
+Info: [ 30602,  31587) |***********************+
+Info: [ 31587,  32572) |********************************+
+Info: [ 32572,  33557) |**************+
+Info: [ 33557,  34542) |**********+
+Info: [ 34542,  35527) |**********+
+Info: [ 35527,  36512) |*****+
+Info: [ 36512,  37497) |******************+
+Info: [ 37497,  38482) |************************************************************
+1 warning, 0 errors
+
+Info: Program finished normally.

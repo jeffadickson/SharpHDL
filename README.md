@@ -26,10 +26,15 @@ path consumes and produces exactly one token; gain-and-clipping is a worked exam
 [Feedback pipelines](FEEDBACK_PIPELINES.md) add constant-initialized loop-carried
 state with one iteration in flight. External II is latency + 1 by default; optional
 `ForwardOnCommit` reduces it to latency (II=1 for a one-stage running sum).
+Opt-in `AdvanceStateOnAccept` removes duplicate state and forwarding muxes for
+eligible single-stage processes; exposed state then advances on accepted input.
 
 A [packet checksum benchmark](examples/PacketBenchmark/README.md) now compares CIL-generated
 and handwritten RTL with shared traffic tests, mapped-cell simulation, and three
-iCE40 place-and-route seeds. See the [measured core results](generated/packet-benchmark/RESULTS.md).
+iCE40 place-and-route seeds. See the [measured core results](generated/packet-benchmark/RESULTS.md): the optimized
+checksum matches the handwritten reference at 35 LUTs and 34 flip-flops.
+The [TinyRisc routed baseline](generated/tinyrisc-benchmark/RESULTS.md) exercises
+the larger structural CPU on HX8K; it does not use this feedback optimization.
 
 Version 0.14 adds [TinyRisc16](examples/TinyRisc/ISA.md): a structural 16-bit
 processor, assembler, instruction stepping, scratch RAM, memory-mapped I/O and

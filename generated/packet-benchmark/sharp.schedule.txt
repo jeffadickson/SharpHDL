@@ -1,0 +1,7 @@
+Feedback pipeline checksum
+External latency: 1 clock; initiation interval: 1 with continuously ready sink; capacity: 1 iteration.
+Optimization: single-stage state advances on INPUT acceptance. No duplicate committed state, next-state bundle registers, busy register, or commit-forwarding muxes.
+Eligibility: scalar pure CIL transitions; exactly one input/output per path; all output and next-state logic fits one stage.
+StateRegisters expose accepted-input state, not output-committed state. Reset flushes output and restores every initial constant.
+State bits before synthesis: 32; output bits: 32; valid bits: 1. Ready propagates combinationally.
+Predicated control: 1 path-expanded branches, 2 terminal paths, 29 visited instructions.

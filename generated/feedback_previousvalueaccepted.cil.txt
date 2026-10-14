@@ -1,0 +1,10 @@
+FeedbackExamples.PreviousValue
+IL_0000: ldc.i4.s 42
+IL_0002: stloc.0
+IL_0003: ldarg.0
+IL_0004: callvirt UInt32 Read()
+IL_0009: ldarg.1
+IL_000a: ldloc.0
+IL_000b: callvirt Void Write(UInt32)
+IL_0010: stloc.0
+IL_0011: br.s 3

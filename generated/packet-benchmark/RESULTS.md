@@ -5,14 +5,15 @@ Automatically assigned pins: routed core estimates, not board measurements.
 
 | Implementation | LUT4 | Flip-flops | Packed logic cells | Carry cells | RAM | DSP | Routed Fmax range (MHz) |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| SharpHDL CIL | 54 | 51 | 90 | 15 | 0 | 0 | 142.86–156.81 |
+| SharpHDL committed-state baseline | 54 | 51 | 90 | 15 | 0 | 0 | 142.86–156.81 |
+| SharpHDL accepted-state optimized | 35 | 34 | 55 | 15 | 0 | 0 | 202.06–202.06 |
 | Handwritten RTL | 35 | 34 | 55 | 15 | 0 | 0 | 202.06–202.06 |
 
-Both versions: latency **1 clock**, sustained **1 word/clock**. At the tested
+All three versions: latency **1 clock**, sustained **1 word/clock**. At the tested
 25 MHz constraint this is **25 million 16-bit payload words/s = 400 Mbit/s**,
 before transport overhead; it is calculated throughput, not a measured link rate.
 
-The independent traffic oracle passes for both RTL versions and both mapped
+The independent traffic oracle passes for all three RTL versions and all three mapped
 iCE40 cell netlists:
 
 ```text

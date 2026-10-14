@@ -13,7 +13,7 @@ Their support subset and timing differ from the combinational and start/done bac
 single-read/single-write arithmetic loops with elastic stages at II=1, including
 predicated scalar if/else and switch; see PIPE01–PIPE14.
 [Feedback pipelines](FEEDBACK_PIPELINES.md) additionally support constant-initialized
-scalar recurrence state with one iteration in flight; optional same-edge commit forwarding removes the extra admission clock; see FEED01–FEED11.
+scalar recurrence state with one iteration in flight; optional same-edge commit forwarding removes the extra admission clock; see FEED01–FEED12.
 
 ## Supported constructs
 
@@ -166,5 +166,7 @@ are not inferred from these tests.
 
 [Packet benchmark requirements BENCH01–BENCH08](examples/PacketBenchmark/README.md#requirements)
 cover equal-contract handwritten comparison, independent traffic tests, technology
-mapping and routed timing. Physical FPGA measurements and eligible recurrence-state
-optimization remain explicit open requirements.
+mapping and routed timing. Single-stage accepted-input state optimization is implemented with explicit opt-in.
+Physical FPGA measurements and generalized multistage optimization remain open.
+[TinyRisc baseline](generated/tinyrisc-benchmark/RESULTS.md) adds a larger structural
+CPU mapping/routing and mapped-state regression (RISC-BENCH01–03).

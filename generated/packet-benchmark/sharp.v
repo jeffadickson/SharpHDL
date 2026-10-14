@@ -19,139 +19,81 @@ module h_PacketChecksum(
   // out: consumer acceptance; flows opposite data. Synchronous reset discards buffered tokens.
   input wire [0:0] s_out_ready
 );
-// checksum: persistent CIL local 0; 32-bit evaluation representation; reset=0; commits on accepted output only.
+// checksum: CIL local 0 advances on INPUT acceptance; may lead output retirement by one token. Reset restores declared seed. Not committed-output state.
 reg [31:0] s_checksum_state_local0;
-// Iteration bundle: low 32 bits are input data. [63:32] local 0 snapshot/constant. State snapshots select completed next-state fields on output acceptance; otherwise committed registers.
-wire [63:0] s_checksum_iteration_input_data;
-// Unsigned 1-bit wire; bit 0 is least significant.
-wire [0:0] s_checksum_iteration_input_valid;
-// Unsigned 1-bit wire; bit 0 is least significant.
-wire [0:0] s_checksum_iteration_input_ready;
-// Completed iteration: low 32 bits are output; upper fields commit together only on output valid AND ready. [63:32] next local 0.
-wire [63:0] s_checksum_iteration_result_data;
-// Unsigned 1-bit wire; bit 0 is least significant.
-wire [0:0] s_checksum_iteration_result_valid;
-// Unsigned 1-bit wire; bit 0 is least significant.
-wire [0:0] s_checksum_iteration_result_ready;
-// checksum: one dependent iteration in flight; allows replacement on the commit edge using forwarded next state. Reset discards the iteration.
-reg [0:0] s_checksum_busy;
-// checksum_datapath: stage 1 holds one token; synchronous reset empties every stage.
-reg [0:0] s_checksum_datapath_stage1_valid;
-// checksum_datapath: 64-bit value after stage 1; concat; aligned with this stage's token and held during stalls.
-reg [63:0] s_checksum_datapath_stage1_value0;
+// checksum: one output slot; also busy. Replacement allowed only when empty or output transfers. Reset flushes slot.
+reg [0:0] s_checksum_output_valid;
+// checksum: captured output value, held during backpressure; source Write ordering preserved. Reset clears data.
+reg [31:0] s_checksum_output_data;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
 wire [0:0] n_not_0;
-// Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_1;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_or_2;
+wire [0:0] n_or_1;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_3;
+wire [0:0] n_and_2;
+// Packed bus: [63:32] = high operand; [31:0] = low operand.
+wire [63:0] n_concat_3;
 // Extract source bits [31:0], rebase to bit 0.
 wire [31:0] n_bits_31_0_4;
-// Extract source bits [63:32], rebase to bit 0.
-wire [31:0] n_bits_63_32_5;
-// Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_mux_6;
+// Checksum IL_002e and; explicit CIL width/sign semantics.
+wire [31:0] n_Checksum_IL_002e_and;
+// Operation '=='; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
+wire [0:0] n_eq_5;
+// Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
+wire [0:0] n_not_6;
 // Extract source bits [63:32], rebase to bit 0.
 wire [31:0] n_bits_63_32_7;
+// Checksum IL_0010 and; explicit CIL width/sign semantics.
+wire [31:0] n_Checksum_IL_0010_and;
+// Checksum IL_0011 add; explicit CIL width/sign semantics.
+wire [31:0] n_Checksum_IL_0011_add;
+// Checksum IL_0017 and; explicit CIL width/sign semantics.
+wire [31:0] n_Checksum_IL_0017_and;
 // Select true operand when condition is 1; false operand otherwise.
 wire [31:0] n_mux_8;
-// Packed bus: [63:32] = high operand; [31:0] = low operand.
-wire [63:0] n_concat_9;
+// Select true operand when condition is 1; false operand otherwise.
+wire [31:0] n_mux_9;
+// Select true operand when condition is 1; false operand otherwise.
+wire [0:0] n_mux_10;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_10;
-// Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_not_11;
-// Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_or_12;
-// Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_13;
+wire [0:0] n_and_11;
+// Checksum IL_0021 and; explicit CIL width/sign semantics.
+wire [31:0] n_Checksum_IL_0021_and;
+// Checksum IL_002f: predicated branch; condition and data aligned by scheduler.
+wire [31:0] n_Checksum_IL_002f_select;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_mux_14;
-// Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_mux_15;
-// Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_mux_16;
-// Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_17;
-// Operation slice Scheduled in checksum_datapath stage 0.
-wire [31:0] n_bits_31_0_18;
-// Checksum IL_002e and; explicit CIL width/sign semantics. Scheduled in checksum_datapath stage 1.
-wire [31:0] n_checksum_datapath_stage1_Checksum_IL_002e_and;
-// Operation == Scheduled in checksum_datapath stage 1.
-wire [0:0] n_eq_19;
-// Operation ~ Scheduled in checksum_datapath stage 1.
-wire [0:0] n_not_20;
-// Operation slice Scheduled in checksum_datapath stage 0.
-wire [31:0] n_bits_63_32_21;
-// Checksum IL_0010 and; explicit CIL width/sign semantics. Scheduled in checksum_datapath stage 1.
-wire [31:0] n_checksum_datapath_stage1_Checksum_IL_0010_and;
-// Checksum IL_0011 add; explicit CIL width/sign semantics. Scheduled in checksum_datapath stage 1.
-wire [31:0] n_checksum_datapath_stage1_Checksum_IL_0011_add;
-// Checksum IL_0017 and; explicit CIL width/sign semantics. Scheduled in checksum_datapath stage 1.
-wire [31:0] n_checksum_datapath_stage1_Checksum_IL_0017_and;
-// Operation mux Scheduled in checksum_datapath stage 1.
-wire [31:0] n_mux_22;
-// Checksum IL_0021 and; explicit CIL width/sign semantics. Scheduled in checksum_datapath stage 1.
-wire [31:0] n_checksum_datapath_stage1_Checksum_IL_0021_and;
-// Checksum IL_002f: predicated branch; condition and data aligned by scheduler. Scheduled in checksum_datapath stage 1.
-wire [31:0] n_checksum_datapath_stage1_Checksum_IL_002f_select;
-// Operation concat Scheduled in checksum_datapath stage 1.
-wire [63:0] n_concat_23;
-// Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_mux_24;
-assign n_not_0 = ~s_checksum_busy;
-assign n_and_1 = s_out_valid & s_out_ready;
-assign n_or_2 = n_not_0 | n_and_1;
-assign n_and_3 = s_checksum_iteration_input_ready & n_or_2;
-assign n_bits_31_0_4 = s_checksum_iteration_result_data >> 0;
-assign n_bits_63_32_5 = s_checksum_iteration_result_data >> 32;
-assign n_mux_6 = n_and_1 ? n_bits_63_32_5 : s_checksum_state_local0;
-assign n_bits_63_32_7 = s_checksum_iteration_result_data >> 32;
-assign n_mux_8 = n_and_1 ? n_bits_63_32_7 : s_checksum_state_local0;
-assign n_concat_9 = {n_mux_8, s_in_data};
-assign n_and_10 = s_in_valid & n_or_2;
-assign n_not_11 = ~s_checksum_datapath_stage1_valid;
-assign n_or_12 = n_not_11 | s_checksum_iteration_result_ready;
-assign n_and_13 = s_in_valid & s_in_ready;
-assign n_mux_14 = n_and_1 ? 1'd0 : s_checksum_busy;
-assign n_mux_15 = n_and_13 ? 1'd1 : n_mux_14;
-assign n_mux_16 = n_or_12 ? s_checksum_iteration_input_valid : s_checksum_datapath_stage1_valid;
-assign n_and_17 = n_or_12 & s_checksum_iteration_input_valid;
-assign n_bits_31_0_18 = s_checksum_iteration_input_data >> 0;
-assign n_checksum_datapath_stage1_Checksum_IL_002e_and = n_bits_31_0_18 & 32'd2147483648;
-assign n_eq_19 = n_checksum_datapath_stage1_Checksum_IL_002e_and == 32'd0;
-assign n_not_20 = ~n_eq_19;
-assign n_bits_63_32_21 = s_checksum_iteration_input_data >> 32;
-assign n_checksum_datapath_stage1_Checksum_IL_0010_and = n_bits_31_0_18 & 32'd65535;
-assign n_checksum_datapath_stage1_Checksum_IL_0011_add = n_bits_63_32_21 + n_checksum_datapath_stage1_Checksum_IL_0010_and;
-assign n_checksum_datapath_stage1_Checksum_IL_0017_and = n_checksum_datapath_stage1_Checksum_IL_0011_add & 32'd65535;
-assign n_mux_22 = n_not_20 ? 32'd0 : n_checksum_datapath_stage1_Checksum_IL_0017_and;
-assign n_checksum_datapath_stage1_Checksum_IL_0021_and = n_bits_31_0_18 & 32'd2147483648;
-assign n_checksum_datapath_stage1_Checksum_IL_002f_select = n_checksum_datapath_stage1_Checksum_IL_0017_and | n_checksum_datapath_stage1_Checksum_IL_0021_and;
-assign n_concat_23 = {n_mux_22, n_checksum_datapath_stage1_Checksum_IL_002f_select};
-assign n_mux_24 = n_and_17 ? n_concat_23 : s_checksum_datapath_stage1_value0;
-assign s_in_ready = n_and_3;
-assign s_out_data = n_bits_31_0_4;
-assign s_out_valid = s_checksum_iteration_result_valid;
-assign s_checksum_iteration_input_data = n_concat_9;
-assign s_checksum_iteration_input_valid = n_and_10;
-assign s_checksum_iteration_input_ready = n_or_12;
-assign s_checksum_iteration_result_data = s_checksum_datapath_stage1_value0;
-assign s_checksum_iteration_result_valid = s_checksum_datapath_stage1_valid;
-assign s_checksum_iteration_result_ready = s_out_ready;
+wire [31:0] n_mux_12;
+assign n_not_0 = ~s_checksum_output_valid;
+assign n_or_1 = n_not_0 | s_out_ready;
+assign n_and_2 = s_in_valid & s_in_ready;
+assign n_concat_3 = {s_checksum_state_local0, s_in_data};
+assign n_bits_31_0_4 = n_concat_3 >> 0;
+assign n_Checksum_IL_002e_and = n_bits_31_0_4 & 32'd2147483648;
+assign n_eq_5 = n_Checksum_IL_002e_and == 32'd0;
+assign n_not_6 = ~n_eq_5;
+assign n_bits_63_32_7 = n_concat_3 >> 32;
+assign n_Checksum_IL_0010_and = n_bits_31_0_4 & 32'd65535;
+assign n_Checksum_IL_0011_add = n_bits_63_32_7 + n_Checksum_IL_0010_and;
+assign n_Checksum_IL_0017_and = n_Checksum_IL_0011_add & 32'd65535;
+assign n_mux_8 = n_not_6 ? 32'd0 : n_Checksum_IL_0017_and;
+assign n_mux_9 = n_and_2 ? n_mux_8 : s_checksum_state_local0;
+assign n_mux_10 = n_or_1 ? s_in_valid : s_checksum_output_valid;
+assign n_and_11 = s_in_valid & s_in_ready;
+assign n_Checksum_IL_0021_and = n_bits_31_0_4 & 32'd2147483648;
+assign n_Checksum_IL_002f_select = n_Checksum_IL_0017_and | n_Checksum_IL_0021_and;
+assign n_mux_12 = n_and_11 ? n_Checksum_IL_002f_select : s_checksum_output_data;
+assign s_in_ready = n_or_1;
+assign s_out_data = s_checksum_output_data;
+assign s_out_valid = s_checksum_output_valid;
 always @(posedge clk) begin
   if (rst) begin
     s_checksum_state_local0 <= 32'd0;
-    s_checksum_busy <= 1'd0;
-    s_checksum_datapath_stage1_valid <= 1'd0;
-    s_checksum_datapath_stage1_value0 <= 64'd0;
+    s_checksum_output_valid <= 1'd0;
+    s_checksum_output_data <= 32'd0;
   end else begin
-    s_checksum_state_local0 <= n_mux_6;
-    s_checksum_busy <= n_mux_15;
-    s_checksum_datapath_stage1_valid <= n_mux_16;
-    s_checksum_datapath_stage1_value0 <= n_mux_24;
+    s_checksum_state_local0 <= n_mux_9;
+    s_checksum_output_valid <= n_mux_10;
+    s_checksum_output_data <= n_mux_12;
   end
 end
 endmodule
