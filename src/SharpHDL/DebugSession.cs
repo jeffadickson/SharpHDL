@@ -42,6 +42,8 @@ namespace SharpHDL
         public long Cycle { get; private set; }
         public int? LastBreakpointId { get; private set; }
         public IReadOnlyList<HardwareTraceSample> Trace => trace.AsReadOnly();
+        // Zero disables sample retention while leaving breakpoint evaluation active.
+        public int MaxTraceSamples { get; set; } = 100000;
         public HardwareDebugSession(Module module, IHardwareDebugObserver observer)
         {
             if (module == null) throw new ArgumentNullException(nameof(module));
@@ -74,17 +76,27 @@ namespace SharpHDL
         public void ClearTrace() { trace.Clear(); }
         public void Step(bool reset = false)
         {
+            if (MaxTraceSamples < 0) throw new ArgumentOutOfRangeException(nameof(MaxTraceSamples));
             simulator.Tick(reset);
             checked { Cycle++; }
             LastBreakpointId = null;
             foreach (var watch in watches)
-                trace.Add(new HardwareTraceSample(Cycle, watch.Key, simulator.Read(watch.Value)));
+                {
+                    var value = simulator.Read(watch.Value);
+                    if (MaxTraceSamples > 0)
+                    {
+                        trace.Add(new HardwareTraceSample(Cycle, watch.Key, value));
+                        if (trace.Count > MaxTraceSamples) trace.RemoveRange(0, trace.Count - MaxTraceSamples);
+                    }
+                }
             foreach (var bp in breakpoints)
             {
                 var value = simulator.Read(bp.Expression);
                 // Change detection is armed by the first observed sample.
                 bool hit = bp.OnChange ? bp.LastValue.HasValue && bp.LastValue.Value != value : value == bp.Value;
                 bp.LastValue = value;
+                // Reset establishes a new breakpoint baseline, rather than triggering stops.
+                if (reset) hit = false;
                 if (hit && !LastBreakpointId.HasValue) LastBreakpointId = bp.Id;
             }
             observer.AfterEdge(Cycle, reset);
