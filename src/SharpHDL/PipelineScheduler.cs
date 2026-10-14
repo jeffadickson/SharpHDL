@@ -31,6 +31,10 @@ namespace SharpHDL
         public int Width { get; }
         public string Operation { get; }
         public string Name { get; }
+        public string SourceFile { get; internal set; }
+        public int? SourceLine { get; internal set; }
+        public int? SourceColumn { get; internal set; }
+        public int? IlOffset { get; internal set; }
         public PipelineGraphNode(int id,int stage,int level,int width,string operation,string name)
         { Id=id; Stage=stage; LogicLevel=level; Width=width; Operation=operation; Name=name; }
     }
