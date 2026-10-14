@@ -130,7 +130,9 @@ namespace SharpHDL
             if (n == null || !Regex.IsMatch(n, @"\A[A-Za-z][A-Za-z0-9_]*\z"))
                 throw new ArgumentException("Use a letter followed by letters, digits or underscores.");
         }
-        public Module(string name) { CheckName(name); Name=name; }
+        public MemoryOptions MemoryOptions { get; }
+        public Module(string name) : this(name,null) { }
+        public Module(string name,MemoryOptions memoryOptions) { CheckName(name); Name=name; MemoryOptions=memoryOptions??new MemoryOptions(); }
         void Editable() { if (Frozen) throw new InvalidOperationException("Design has been frozen."); }
         Signal Add(string name, int width, string kind)
         {
@@ -388,6 +390,11 @@ namespace SharpHDL
                 memoryPorts[ram]=new[]{Emit(ram.Address),Emit(ram.WriteEnable),Emit(ram.WriteData)};
                 b.AppendLine("// RAM "+ram.Name+": "+ram.Depth+" words x "+ram.Width+" bits; synchronous read-before-write; independent enables.");
                 b.AppendLine("// Configuration initialization below; reset retains contents and suppresses writes. Out-of-range writes ignored.");
+                if(ram.Options.Target!=MemoryTarget.Generic)
+                {
+                    b.AppendLine("// Memory target: "+ram.Options+"; old-data collisions remain required. No no_rw_check relaxation.");
+                    if(ram.Options.Attribute!=null)b.AppendLine(ram.Options.Attribute);
+                }
                 b.AppendLine("reg "+Range(ram.Width)+"mem_"+ram.Name+" [0:"+(ram.Depth-1)+"];\ninitial begin");
                 for(int i=0;i<ram.Depth;i++)b.AppendLine("  mem_"+ram.Name+"["+i+"] = "+ram.Width+"'d"+ram.Initial[i]+";");
                 b.AppendLine("end");

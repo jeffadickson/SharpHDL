@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using System.Collections.Generic;
 namespace SharpHDL
 {
     /// <summary>A single-producer, single-consumer ready/valid channel. No implicit storage.</summary>
@@ -11,9 +12,32 @@ namespace SharpHDL
         public Type TokenType { get; internal set; }
         public Expr Fire { get { return Valid & Ready; } }
     }
-    public sealed class HwStream<T> : HwChannel where T : struct
+    public sealed class HwStream<T> : HwChannel, IDisposable where T : struct
     {
         private HwStream() { }
+        Func<T> nativeRead;
+        Action<T> nativeWrite;
+        Action nativeDispose;
+        bool disposed;
+        /// <summary>Direct .NET functional source: no module, simulated clocks, or synthesis. Single-threaded.</summary>
+        public static HwStream<T> FromEnumerable(IEnumerable<T> values)
+        {
+            if(values==null)throw new ArgumentNullException(nameof(values));
+            var iterator=values.GetEnumerator();bool ended=false;
+            return new HwStream<T>{TokenType=typeof(T),nativeDispose=iterator.Dispose,nativeRead=()=>
+            {
+                if(ended||!iterator.MoveNext()){ended=true;throw new NativeInputEndedException();}
+                return iterator.Current;
+            }};
+        }
+        /// <summary>Direct .NET functional sink; callback executes synchronously on the calling thread.</summary>
+        public static HwStream<T> ToAction(Action<T> consume)
+        {
+            if(consume==null)throw new ArgumentNullException(nameof(consume));
+            return new HwStream<T>{TokenType=typeof(T),nativeWrite=consume};
+        }
+        public void Dispose(){if(!disposed){disposed=true;nativeDispose?.Invoke();}}
+
         static HwStream<T> Create(Module m,string name,int direction)
         {
             int width=PackedLayout.Width(typeof(T));
@@ -28,8 +52,8 @@ namespace SharpHDL
         public static HwStream<T> Input(Module m,string name) { return Create(m,name,1); }
         public static HwStream<T> Output(Module m,string name) { return Create(m,name,2); }
         public static HwStream<T> Internal(Module m,string name) { return Create(m,name,0); }
-        public T Read() { throw new InvalidOperationException("Hardware intrinsic: compile this method with CilCompiler.AttachProcess."); }
-        public void Write(T value) { throw new InvalidOperationException("Hardware intrinsic: compile this method with CilCompiler.AttachProcess."); }
+        public T Read() { if(disposed)throw new ObjectDisposedException(nameof(HwStream<T>)); if(nativeRead!=null)return nativeRead(); throw new InvalidOperationException("Hardware intrinsic: compile this method with CilCompiler.AttachProcess."); }
+        public void Write(T value) { if(disposed)throw new ObjectDisposedException(nameof(HwStream<T>)); if(nativeWrite!=null){nativeWrite(value);return;} throw new InvalidOperationException("Hardware intrinsic: compile this method with CilCompiler.AttachProcess."); }
         public static void Connect(Module m,HwStream<T> source,HwStream<T> sink)
         { m.Drive(sink.Data,source.Data);m.Drive(sink.Valid,source.Valid);m.Drive(source.Ready,sink.Ready); }
         /// <summary>Explicit register FIFO, depth 1..256. Allows simultaneous push/pop at full occupancy.</summary>

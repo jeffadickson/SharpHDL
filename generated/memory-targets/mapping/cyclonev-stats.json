@@ -1,0 +1,42 @@
+{
+   "creator": "Yosys 0.33 (git sha1 2584903a060)",
+   "invocation": "stat -json ",
+   "modules": {
+      "\\h_RamIntelCycloneVBlock": {
+         "num_wires":         33,
+         "num_wire_bits":     145,
+         "num_pub_wires":     33,
+         "num_pub_wire_bits": 145,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         65,
+         "num_cells_by_type": {
+            "MISTRAL_ALUT2": 18,
+            "MISTRAL_CLKBUF": 1,
+            "MISTRAL_FF": 1,
+            "MISTRAL_IB": 28,
+            "MISTRAL_M10K": 1,
+            "MISTRAL_OB": 16
+         }
+      }
+   },
+      "design": {
+         "num_wires":         33,
+         "num_wire_bits":     145,
+         "num_pub_wires":     33,
+         "num_pub_wire_bits": 145,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         65,
+         "num_cells_by_type": {
+            "MISTRAL_ALUT2": 18,
+            "MISTRAL_CLKBUF": 1,
+            "MISTRAL_FF": 1,
+            "MISTRAL_IB": 28,
+            "MISTRAL_M10K": 1,
+            "MISTRAL_OB": 16
+         }
+      }
+}

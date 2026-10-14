@@ -312,3 +312,7 @@ Five further FPGA-design/instruction review rounds improved identifier handling,
 rising-edge waveform controls and the guided shot-counter lesson. See
 [the review record](REVIEW_ITERATIONS.md) for findings, validation and the physical
 classroom checks still required.
+
+[Memory targets](MEMORY.md) now include Xilinx 7-series and Intel/Altera Cyclone V
+and Arria 10 inference policies. [Native execution](NATIVE_EXECUTION.md) runs the
+original stream methods and array algorithms on .NET without synthesis.

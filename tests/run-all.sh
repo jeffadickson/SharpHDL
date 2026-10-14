@@ -20,6 +20,8 @@ mkdir -p build/audit
 : > build/audit/stages.log
 run() { echo "Running $1"; local name="$1"; shift; "$@" > "build/audit/$name.log" 2>&1 || { tail -40 "build/audit/$name.log"; echo "FAIL $name" >> build/audit/stages.log; return 1; }; echo "PASS $name" >> build/audit/stages.log; }
 run core bash tests/run.sh
+run memory-targets bash tests/run-memory-targets.sh
+run memory-mapping bash tests/map-memory-targets.sh
 run pipelines bash tests/run-pipelines.sh
 run packet-benchmark bash tests/run-packet-benchmark.sh
 for suite in behavioral advanced fsharp three-languages learning tinyrisc; do

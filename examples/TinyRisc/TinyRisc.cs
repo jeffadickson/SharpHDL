@@ -9,10 +9,10 @@ public static class TinyRisc
     static Expr K(int w,int v){return Expr.Const(w,v);}
     static Expr M(Expr c,Expr a,Expr b){return Expr.Mux(c,a,b);}
     static Expr Shift(Expr a,Expr n,bool left){for(int i=0;i<4;i++)a=M(n.Slice(i,i),left?a<<(1<<i):a>>(1<<i),a);return a;}
-    public static Module Build(ushort[] program,string name="TinyRisc16")
+    public static Module Build(ushort[] program,string name="TinyRisc16",MemoryOptions memoryOptions=null)
     {
         if(program==null||program.Length<1||program.Length>256)throw new ArgumentException("ROM needs 1..256 words.");
-        var m=new Module(name);
+        var m=new Module(name,memoryOptions);
         var run=m.Input("run",1);var step=m.Input("step",1);var sw=m.Input("switches",16);
         var rxv=m.Input("rx_valid",1);var rxd=m.Input("rx_data",8);var txr=m.Input("tx_ready",1);
         run.Describe("Run continuously when high; low pauses at an instruction boundary. Does not abort a stalled instruction.");

@@ -1,0 +1,40 @@
+{
+   "creator": "Yosys 0.33 (git sha1 2584903a060)",
+   "invocation": "stat -json ",
+   "modules": {
+      "\\h_RamXilinx7SeriesBlock": {
+         "num_wires":         23,
+         "num_wire_bits":     289,
+         "num_pub_wires":     10,
+         "num_pub_wire_bits": 70,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         48,
+         "num_cells_by_type": {
+            "BUFG": 1,
+            "IBUF": 28,
+            "LUT2": 2,
+            "OBUF": 16,
+            "RAMB18E1": 1
+         }
+      }
+   },
+      "design": {
+         "num_wires":         23,
+         "num_wire_bits":     289,
+         "num_pub_wires":     10,
+         "num_pub_wire_bits": 70,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         48,
+         "num_cells_by_type": {
+            "BUFG": 1,
+            "IBUF": 28,
+            "LUT2": 2,
+            "OBUF": 16,
+            "RAMB18E1": 1
+         }
+      }
+}

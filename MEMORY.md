@@ -60,3 +60,81 @@ targets may map to several blocks or to logic. No timing or board claim is made.
 Dual-port RAM, byte enables, asynchronous reads, configurable collision modes,
 external DDR, automatic port arbitration and general CIL arrays are future work.
 Existing Lookup remains a constant ROM and the existing FIFO remains register-based.
+
+## Xilinx and Intel/Altera inference targets
+
+Memory behavior is independent of the physical inference policy. Choose a default
+for a module or override it on an individual `SynchronousRam.Create` call:
+
+```csharp
+var policy = new MemoryOptions(MemoryTarget.Xilinx7Series, MemoryStorage.Block);
+var m = new Module("PacketMemory", policy);
+// All RAMs in this module inherit policy unless options: is supplied to Create.
+```
+
+`MemoryOptions` is immutable. `SynchronousRam.Options` exposes the effective policy.
+The sequential CIL frontend accepts the same policy via
+`SequentialOptions.MemoryOptions`, so the existing owned uint[] lowering can target
+these memories too. `TinyRisc.Build(program, name, memoryOptions)` also accepts
+the policy for its scratch RAM (the instruction lookup ROM is unchanged). Native software still uses ordinary arrays; see
+[NATIVE_EXECUTION.md](NATIVE_EXECUTION.md).
+
+| Target | Auto | Block | Distributed | Registers |
+|---|---|---|---|---|
+| Generic | Existing inferred RTL, no attribute | Rejected: select target | Rejected | Rejected |
+| Xilinx7Series | No attribute | `ram_style="block"` | `ram_style="distributed"` | `ram_style="registers"` |
+| IntelCycloneV | No attribute | `ramstyle="M10K"` | Rejected: MLAB contract not implemented | `ramstyle="logic"` |
+| IntelArria10 | No attribute | `ramstyle="M20K"` | Rejected: MLAB contract not implemented | `ramstyle="logic"` |
+
+These are **inferred RTL backends**, not instantiations of XPM or altsyncram IP.
+The selected tool may use extra logic or multiple blocks to preserve enables,
+initialization, bounds checks, output reset and old-data collisions. A shared
+logical address does not require one physical port: a backend can use separate
+read and write ports tied to the same address. Never assume a same-port vendor
+mode is equivalent merely because it is called single-port RAM.
+
+The RTL contract does not change with the attribute. We deliberately never emit
+`no_rw_check`: losing collision guarantees would change observable behavior.
+Unsupported enum values/policy combinations are rejected, and initial contents
+are copied so later mutation of the caller's array cannot change the design.
+The existing broad width/depth limits are logical limits, not a device capacity
+promise. Selecting Block is an implementation request; a final mapping report
+must confirm the actual hardware. This API does not certify device fit or timing.
+
+## Target verification status
+
+| Check | Result |
+|---|---|
+| .NET graph versus independent array oracle | 11 RAM configurations, 700 edges each; initial data, read-before-write, enables, reset retention and bounds |
+| Generated RTL replay | All 11 RAM configurations plus three sequential array targets, Debug and optimized CIL |
+| Xilinx 7-series open-source mapping | Yosys maps the 256x16 fixture to one RAMB18E1 |
+| Cyclone V open-source mapping | Yosys synth_intel_alm maps the 256x16 fixture to one MISTRAL_M10K |
+| Arria 10 M20K | Attribute emission and RTL behavior tested; technology mapping pending Quartus |
+| Vivado / Quartus | Not installed in this environment; vendor synthesis, fitter and vendor primitive simulation remain unverified |
+
+Run `tests/run-memory-targets.sh` with DOTNET_ROOT and Icarus on PATH, then
+`tests/map-memory-targets.sh` with Yosys on PATH. Mapping evidence is in
+`generated/memory-targets/mapping`. Open-source mapping checks resource types;
+it is **not** vendor primitive simulation or physical FPGA validation.
+Optional Vivado and Quartus scripts are in `tests/vendor-memory`. The Quartus
+script requires an exact installed device and leaves the fitter resource/collision
+review explicit. These vendor scripts are provided for subsequent validation and
+have not been run here.
+
+Targets currently apply only to SynchronousRam and sequential owned arrays.
+`Expr.Lookup` remains combinational ROM; forcing it into synchronous block memory
+would change latency, so ROM target selection is not silently applied. Multiport
+interfaces, byte writes, MLAB, UltraRAM, external DDR, automatic memory-port
+scheduling in stream pipelines, and automatic BRAM-backed FIFOs remain future work.
+
+| Requirement | Status |
+|---|---|
+| MEM03: immutable module/per-RAM target policy, inherited by sequential arrays | Implemented; default/override/invalid-policy tests |
+| MEM04: preserve all memory semantics across targets | Independent oracle and RTL tests for all accepted profiles; no collision relaxation |
+| MEM05: Xilinx and Intel/Altera inference attributes with family-specific block choice | Xilinx7Series, CycloneV M10K, Arria10 M20K implemented; MLAB explicitly rejected |
+| MEM06: verify mapping separately from functional correctness | Xilinx and Cyclone V open-source mapping gates; vendor flows and Arria 10 mapping pending |
+| MEM07: preserve fast native execution of memory algorithms | Native uint[] plus original method; sequential target cross-checks; see NATIVE03 |
+
+Attribute references: [AMD RAM_STYLE](https://docs.amd.com/r/en-US/ug912-vivado-properties/RAM_STYLE),
+[Intel RAM inference controls](https://www.intel.com/content/www/us/en/docs/programmable/683082/25-1/controlling-ram-inference-and-implementation.html),
+[Cyclone V memory handbook](https://docs.altera.com/r/docs/683375/current/cyclone-v-device-handbook-volume-1-device-interfaces-and-integration/ram-blocks-operations).

@@ -19,6 +19,8 @@ class Program
         if(args.Length==1 && args[0]=="--pipelines") { PipelineTests.Run();return; }
         if(args.Length==1 && args[0]=="--feedback") { FeedbackPipelineTests.Run();return; }
         if(args.Length==1 && args[0]=="--packet-benchmark") { PacketBenchmarkTests.Run();return; }
+        if(args.Length==1 && args[0]=="--memory-targets") { MemoryTargetTests.Run();NativeProcessTests.Run();return; }
+        MemoryTargetTests.Run();NativeProcessTests.Run();
         FeedbackPipelineTests.Run();
         PipelineTests.Run();
         StreamingProcessTests.Run();

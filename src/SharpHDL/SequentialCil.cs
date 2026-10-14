@@ -11,6 +11,7 @@ namespace SharpHDL
     {
         public int MaxCycles=4096;
         public int MemoryDepth=16;
+        public MemoryOptions MemoryOptions;
         public BigInteger[] InitialMemory;
         public int MaxInstructions=512;
     }
@@ -62,7 +63,7 @@ namespace SharpHDL
             var reachable=list.Where(i=>height.ContainsKey(i.Offset)).ToArray();var ids=reachable.Select((i,n)=>new{i.Offset,n}).ToDictionary(x=>x.Offset,x=>x.n);
             int states=reachable.Length;var waits=new Dictionary<int,int>();foreach(var i in reachable.Where(i=>i.Name=="ldelem.u4"||i.Name=="ldelem.i4"))waits[i.Offset]=states++;
             int pw=1;while((1<<pw)<states)pw++;int cw=1;while((1<<cw)<=o.MaxCycles)cw++;
-            var m=new Module(name);var start=m.Input("start",1);var busy=m.Register("busy_state",1,0);var done=m.Register("done_state",1,0);var fault=m.Register("fault_state",1,0);var assertion=m.Register("assertion_state",1,0);var timeout=m.Register("timeout_state",1,0);
+            var m=new Module(name,o.MemoryOptions);var start=m.Input("start",1);var busy=m.Register("busy_state",1,0);var done=m.Register("done_state",1,0);var fault=m.Register("fault_state",1,0);var assertion=m.Register("assertion_state",1,0);var timeout=m.Register("timeout_state",1,0);
             start.Describe("Request: accepted at rising edge only while busy=0; deassert after acceptance to prevent retriggering.");
             var pc=m.Register("pc",pw,0);var cycles=m.Register("cycles",cw,0);var result=m.Register("result_state",PortWidth(method.ReturnParameter),0);
             pc.Describe("Sequential CIL program counter; one operation per active edge, RAM load adds one wait edge. "+string.Join("; ",reachable.Select(i=>ids[i.Offset]+"=IL_"+i.Offset.ToString("x4")+" "+i.Name)));

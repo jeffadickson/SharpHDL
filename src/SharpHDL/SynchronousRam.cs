@@ -11,9 +11,10 @@ namespace SharpHDL
     {
         internal Module Owner;internal string Name;internal int Width,Depth;
         internal Expr Address,WriteEnable,WriteData;internal BigInteger[] Initial;
+        public MemoryOptions Options { get; private set; }
         public Signal ReadData { get; private set; }
         public static SynchronousRam Create(Module m,string name,int width,int depth,
-            Expr address,Expr writeEnable,Expr writeData,Expr readEnable,BigInteger[] initial=null)
+            Expr address,Expr writeEnable,Expr writeData,Expr readEnable,BigInteger[] initial=null,MemoryOptions options=null)
         {
             if(m.Frozen)throw new InvalidOperationException("Design has been frozen.");
             if(name==null||!Regex.IsMatch(name,@"\A[A-Za-z][A-Za-z0-9_]*\z")||m.Memories.Any(x=>x.Name==name))throw new ArgumentException("Invalid or duplicate RAM name.");
@@ -22,7 +23,7 @@ namespace SharpHDL
             if(initial!=null&&initial.Length!=depth)throw new ArgumentException("RAM initialization must contain exactly depth words.");
             var contents=initial==null?new BigInteger[depth]:(BigInteger[])initial.Clone();
             foreach(var value in contents)Expr.Const(width,value);
-            var ram=new SynchronousRam{Owner=m,Name=name,Width=width,Depth=depth,Address=address,WriteEnable=writeEnable,WriteData=writeData,Initial=contents};
+            var ram=new SynchronousRam{Owner=m,Name=name,Width=width,Depth=depth,Address=address,WriteEnable=writeEnable,WriteData=writeData,Initial=contents,Options=options??m.MemoryOptions};
             ram.ReadData=m.Register(name+"_read_data",width,0);
             ram.ReadData.Describe(name+": synchronous RAM output; read-before-write; holds when read enable=0; reset clears output only. Out-of-range enabled reads yield zero.");
             var read=new Expr(width,"memory",address);read.Memory=ram;

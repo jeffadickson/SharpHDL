@@ -170,3 +170,11 @@ mapping and routed timing. Single-stage accepted-input state optimization is imp
 Physical FPGA measurements and generalized multistage optimization remain open.
 [TinyRisc baseline](generated/tinyrisc-benchmark/RESULTS.md) adds a larger structural
 CPU mapping/routing and mapped-state regression (RISC-BENCH01–03).
+
+## Portable memory and native execution
+
+MEMORY.md defines MEM03–MEM07 for target policy, behavioral preservation, Xilinx
+and Intel/Altera inference and verification scope. NATIVE_EXECUTION.md defines
+NATIVE01–NATIVE05 for direct JIT execution, error propagation, owned arrays and
+performance measurements. Multiport/MLAB/DDR and concurrent native stream networks
+remain unsupported.
