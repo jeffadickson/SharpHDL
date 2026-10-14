@@ -10,7 +10,10 @@ iverilog -V | head -n 2
 verilator --version
 yosys -V
 nextpnr-ice40 --version
-echo 'Building .NET library, examples, unit tests and live debugging host'
+echo 'Building Core, HLS, Simulation, compatibility library, tests and live host'
+dotnet build src/SharpHDL.Core/SharpHDL.Core.csproj -c Release
+dotnet build src/SharpHDL.HLS/SharpHDL.HLS.csproj -c Release
+dotnet build src/SharpHDL.Simulation/SharpHDL.Simulation.csproj -c Release
 dotnet build tests/Tests.csproj -c Release
 dotnet build tools/SharpHDL.Live/SharpHDL.Live.csproj -c Release
 dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --logger 'trx;LogFileName=container-unit.trx'
