@@ -9,3 +9,4 @@ stage 1 | level 1 | 32 bits | + | Polynomial_IL_0009_add
 stage 1 | level 1 | 32 bits | * | Polynomial_IL_000d_mul
 stage 1 | level 2 | 32 bits | * | Polynomial_IL_0012_mul
 stage 2 | level 3 | 32 bits | ^ | Polynomial_IL_0014_xor
+Predicated control: 0 path-expanded branches, 1 terminal paths, 20 visited instructions.

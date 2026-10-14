@@ -1,0 +1,11 @@
+Elastic pipeline actor
+Latency: 3 register boundaries (acceptance edge counts as boundary 1); stalls extend latency.
+Initiation interval: 1 with a continuously ready sink; capacity: 3 tokens.
+Logic levels per stage: 1; abstract operation count, not device timing.
+Payload register bits: 98; valid register bits: 3.
+No resource sharing; multiply is a whole combinational operator in one logic level.
+Ready propagates combinationally backward; no automatic skid-buffer insertion.
+stage 1 | level 1 | 1 bits | < | expression
+stage 2 | level 2 | 1 bits | ~ | expression
+stage 3 | level 3 | 32 bits | mux | Branch_IL_0009_select
+Predicated control: 1 path-expanded branches, 2 terminal paths, 14 visited instructions.

@@ -14,6 +14,19 @@ public static class ScheduledPipeline
             output.Write(unchecked((ushort)((a*b)^x)));
         }
     }
+    // Stateless signed gain selection followed by saturation; all paths emit one token.
+    [HardwareProcess]
+    public static void ClipGain(HwStream<short> input,HwStream<short> output)
+    {
+        while(true)
+        {
+            int x=input.Read();
+            int y=x<0?x*3:x*5;
+            if(y>12000)y=12000;
+            else if(y< -12000)y= -12000;
+            output.Write((short)y);
+        }
+    }
     public static Module Build(out PipelineHandle schedule,int logicLevelsPerStage=1)
     {
         var m=new Module("ScheduledPolynomial"+logicLevelsPerStage);

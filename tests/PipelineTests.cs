@@ -19,6 +19,30 @@ static class PipelineTests
     public static void Signed(HwStream<short> input,HwStream<int> output){while(true){int x=input.Read();output.Write((x>>3)-x);}}
     public static void Recurrence(HwStream<uint> input,HwStream<uint> output){uint sum=0;while(true){sum+=input.Read();output.Write(sum);}}
     public static void Branch(HwStream<uint> input,HwStream<uint> output){while(true){uint x=input.Read();if(x>5)output.Write(x);else output.Write(0);}}
+    public static void Switch(HwStream<uint> input,HwStream<uint> output)
+    {
+        while(true)
+        {
+            uint x=input.Read(),y;
+            switch(x&7){case 0:y=x+7;break;case 1:y=x*3;break;case 2:y=x^17;break;case 3:y=x>>2;break;default:y=~x;break;}
+            output.Write(y+x);
+        }
+    }
+    public static void MissingWrite(HwStream<uint> input,HwStream<uint> output){while(true){uint x=input.Read();if(x>5)output.Write(x);}}
+    public static void ConditionalRead(HwStream<uint> input,HwStream<uint> output){while(true){uint x=input.Read();if(x>5)x=input.Read();output.Write(x);}}
+    public static void ConditionalFault(HwStream<uint> input,HwStream<uint> output){while(true){uint x=input.Read();output.Write(x>5?checked(x+1):x);}}
+    public static void ConditionalState(HwStream<uint> input,HwStream<uint> output){uint y=0;while(true){uint x=input.Read();if(x>5)y=x;output.Write(y);}}
+    public static void NestedLoop(HwStream<uint> input,HwStream<uint> output){while(true){uint x=input.Read();while(x>5)x--;output.Write(x);}}
+    public static void ManyPaths(HwStream<uint> input,HwStream<uint> output)
+    {
+        while(true)
+        {
+            uint x=input.Read(),y=0;
+            if((x&1)!=0)y+=3;if((x&2)!=0)y+=5;if((x&4)!=0)y+=7;if((x&8)!=0)y+=11;
+            if((x&16)!=0)y+=13;if((x&32)!=0)y+=17;if((x&64)!=0)y+=19;if((x&128)!=0)y+=23;
+            output.Write(y);
+        }
+    }
     public static void DoubleRead(HwStream<uint> input,HwStream<uint> output){while(true)output.Write(input.Read()+input.Read());}
     public static void DoubleWrite(HwStream<uint> input,HwStream<uint> output){while(true){uint x=input.Read();output.Write(x);output.Write(x);}}
     public static void Checked(HwStream<uint> input,HwStream<uint> output){while(true)output.Write(checked(input.Read()+1));}
@@ -33,6 +57,9 @@ static class PipelineTests
         CheckTransform<int,bool>("Comparison",x=>unchecked((int)x)<0?1u:0u,1);
         CheckTransform<short,int>("Signed",x=>unchecked((uint)(((short)x>>3)-(short)x)),1);
         CheckTransform<UBits<W4>,UBits<W4>>("Narrow",x=>(((x+3)&15)*5)&15,2);
+        CheckTransform<uint,uint>("Branch",x=>x>5?x:0,0,true);
+        CheckTransform<uint,uint>("Switch",x=>unchecked(((x&7)==0?x+7:(x&7)==1?x*3:(x&7)==2?x^17:(x&7)==3?x>>2:~x)+x),0,true);
+        CheckTransform<short,short>("ClipGain",x=>(uint)(ushort)Math.Clamp((short)x*((short)x<0?3:5),-12000,12000),0,true);
         Rejections();Console.WriteLine("PASS: "+checks+" automatic pipeline assertions and scheduled RTL benches.");
     }
     static void Polynomial(int budget)
@@ -80,26 +107,50 @@ static class PipelineTests
         tb.AppendLine("$display(\"PASS scheduled polynomial "+budget+" RTL\");$finish;end endmodule");File.WriteAllText(stem+"_tb.v",tb.ToString());
     }
     static int Expected(int x){return unchecked((ushort)(((uint)x+2u)*((uint)x*3u)^(uint)x));}
-    static void CheckTransform<TIn,TOut>(string method,Func<uint,uint> oracle,int latency) where TIn:struct where TOut:struct
+    static void CheckTransform<TIn,TOut>(string method,Func<uint,uint> oracle,int latency,bool emitRtl=false) where TIn:struct where TOut:struct
     {
         var m=new Module("Pipeline"+method);var input=HwStream<TIn>.Input(m,"in");var output=HwStream<TOut>.Output(m,"out");
-        var handle=CilCompiler.AttachPipeline(m,"actor",typeof(PipelineTests).GetMethod(method),input,output);Check(handle.Latency==latency,"latency of "+method+": "+handle.Latency+" expected "+latency);
+        var handle=CilCompiler.AttachPipeline(m,"actor",(method=="ClipGain"?typeof(ScheduledPipeline):typeof(PipelineTests)).GetMethod(method),input,output);Check(latency==0||handle.Latency==latency,"latency of "+method+": "+handle.Latency+" expected "+latency);
         var sim=m.Simulate();sim.Set(input.Valid,0);sim.Set(input.Data,0);sim.Set(output.Ready,0);sim.Tick(true);
-        var q=new Queue<uint>();var rng=new Random(104);bool pending=false,held=false;uint x=0,old=0;int sent=0,received=0;
+        var tb=new StringBuilder("module tb;reg clk=0,rst=1;\n");
+        foreach(var port in m.Ports)tb.AppendLine((port.IsInput?"reg ":"wire ")+"["+(port.Width-1)+":0] "+port.Name+(port.IsInput?"=0":"")+";");
+        tb.Append("h_Pipeline"+method+" dut(.clk(clk),.rst(rst)");foreach(var port in m.Ports)tb.Append(",.s_"+port.Name+"("+port.Name+")");tb.AppendLine(");initial begin #5;clk=1;#5;clk=0;rst=0;");
+        var boundaries=new uint[]{0,1,4,5,6,7,8,2399,2400,2401,3999,4000,4001,unchecked((uint)-3999),unchecked((uint)-4000),unchecked((uint)-4001),32767,32768,65535,0x7fffffff,0x80000000,0xffffffff};
+        var q=new Queue<uint>();var rng=new Random(104);bool pending=false,held=false;uint x=0,old=0;int sent=0,received=0,discarded=0;
         for(int cycle=0;cycle<1500;cycle++)
         {
-            if(!pending&&sent<256){x=unchecked((uint)rng.NextInt64(0,1L<<32)) & (uint)Expr.Mask(input.Data.Width);pending=true;}
+            if(!pending&&sent<256){x=(sent<boundaries.Length?boundaries[sent]:unchecked((uint)rng.NextInt64(0,1L<<32))) & (uint)Expr.Mask(input.Data.Width);pending=true;}
             sim.Set(input.Data,x);sim.Set(input.Valid,pending?1:0);sim.Set(output.Ready,rng.Next(4)!=0?1:0);
+            bool reset=emitRtl&&(cycle==70||cycle==170);
+            if(emitRtl)
+            {
+                tb.AppendLine("rst="+(reset?1:0)+";in_data="+input.Data.Width+"'d"+x+";in_valid="+sim.Read(input.Valid)+";out_ready="+sim.Read(output.Ready)+";#1;");
+                var outputs=m.Ports.Where(s=>s.IsOutput).ToArray();BigInteger packed=0;int width=0;foreach(var port in outputs){packed=(packed<<port.Width)|sim.Read(port);width+=port.Width;}
+                tb.AppendLine("if ({"+string.Join(",",outputs.Select(s=>s.Name))+"} !== "+width+"'h"+packed.ToString("x")+") $fatal(1,\"branch cycle "+cycle+"\");#4;clk=1;#5;clk=0;");
+            }
+            if(reset){discarded+=q.Count;q.Clear();sim.Tick(true);held=false;Check(handle.StageValid.All(s=>sim.Read(s)==0),"conditional pipeline reset");continue;}
             if(held)Check(sim.Read(output.Valid)==1&&sim.Read(output.Data)==old,"stable "+method);
             if(sim.Read(output.Fire)==1){Check(q.Count>0&&sim.Read(output.Data)==q.Dequeue(),"oracle "+method);received++;}
             if(sim.Read(input.Fire)==1){q.Enqueue(oracle(x)&(uint)Expr.Mask(output.Data.Width));pending=false;sent++;}
             held=sim.Read(output.Valid)==1&&sim.Read(output.Ready)==0;old=(uint)sim.Read(output.Data);sim.Tick();
         }
-        Check(received==256&&q.Count==0,"drain "+method);
+        Check(received+discarded==256&&q.Count==0,"drain "+method);
+        if(emitRtl)
+        {
+            string stem="generated/scheduled_"+method.ToLowerInvariant();
+            File.WriteAllText(stem+".v",m.Verilog());File.WriteAllText(stem+".schedule.txt",handle.Report);
+            tb.AppendLine("$display(\"PASS scheduled "+method+" RTL\");$finish;end endmodule");File.WriteAllText(stem+"_tb.v",tb.ToString());
+        }
     }
     static void Rejections()
     {
-        foreach(string method in new[]{"Recurrence","Branch","DoubleRead","DoubleWrite","Checked","Divide","Finite"})
+        var bounded=new Module("BoundedControl");var bi=HwStream<uint>.Input(bounded,"in");var bo=HwStream<uint>.Output(bounded,"out");
+        bool limited=false;
+        try{CilCompiler.AttachPipeline(bounded,"limited",typeof(PipelineTests).GetMethod("ManyPaths"),bi,bo);}
+        catch(NotSupportedException e){limited=e.Message.Contains("exceeds");}
+        Check(limited,"control expansion must hit an explicit budget");
+        Check(!bounded.Signals.Any(s=>s.Name.StartsWith("limited_")),"control-limit failure mutated module");
+        foreach(string method in new[]{"Recurrence","MissingWrite","ConditionalRead","ConditionalFault","ConditionalState","NestedLoop","DoubleRead","DoubleWrite","Checked","Divide","Finite"})
         {
             var m=new Module("Bad"+method);var input=HwStream<uint>.Input(m,"in");var output=HwStream<uint>.Output(m,"out");
             Reject(()=>CilCompiler.AttachPipeline(m,"bad",typeof(PipelineTests).GetMethod(method),input,output),method);

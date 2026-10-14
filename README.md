@@ -21,6 +21,8 @@ adapters define external packet behavior. `AttachProcess` uses one CIL instructi
 per clock. New: [automatic pipeline scheduling](PIPELINE_SCHEDULER.md) via
 `AttachPipeline` overlaps stateless arithmetic iterations at II=1, with explicit
 logic-depth grouping, elastic backpressure and generated schedule reports.
+Conditional arithmetic (`if/else`, ternary and `switch`) is supported when every
+path consumes and produces exactly one token; gain-and-clipping is a worked example.
 
 Version 0.14 adds [TinyRisc16](examples/TinyRisc/ISA.md): a structural 16-bit
 processor, assembler, instruction stepping, scratch RAM, memory-mapped I/O and

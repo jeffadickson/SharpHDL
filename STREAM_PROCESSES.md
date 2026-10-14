@@ -139,7 +139,7 @@ stages and packet-preserving buffering today.
 | PROC07 | AXI boundary defines byte and packet metadata semantics explicitly | Implemented; scalar output sidebands checked in simulator and RTL replay; unsafe import requires opt-in |
 | PROC08 | Document cycle model, unsupported constructs and meaningful bus/PC comments | Implemented; this document and generated example RTL |
 | PROC09 | Reject ambiguous channel ownership/provenance rather than infer runtime wiring | Implemented; aliases, duplicate bindings/drivers and read/write-same-channel rejected |
-| PROC10 | Automatic pipelining with requested II and scheduling report | Partial: `AttachPipeline` schedules stateless arithmetic loops at II=1 and emits a stage report; arbitrary II, resources and device timing remain future (PIPE01–PIPE12) |
+| PROC10 | Automatic pipelining with requested II and scheduling report | Partial: `AttachPipeline` schedules stateless arithmetic loops at II=1 and emits a stage report; arbitrary II, resources and device timing remain future (PIPE01–PIPE14) |
 | PROC11 | Automatic FIFO sizing, deadlock analysis and explicit fork/join process operators | Future; current composition and diagnostics are explicit |
 | PROC12 | Packet-record CIL processes and verified F#/VB process examples | Future; existing packet structural blocks remain available |
 

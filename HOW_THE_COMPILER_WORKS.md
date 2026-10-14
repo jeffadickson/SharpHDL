@@ -560,7 +560,8 @@ After filling, this circuit accepts a token every clock when the sink is ready.
 The generated schedule lists stages, operations, widths and register costs;
 backpressure stalls occupied stages without mixing tokens.
 
-This first scheduler accepts one read/write per unconditional iteration with no
-loop-carried state. It rejects recurrences, conditional control and faults rather
+The scheduler accepts one read/write on every path through each iteration with
+no loop-carried state. Forward conditional arithmetic becomes muxes, with predicates
+aligned to the data. It rejects recurrences, nested loops and faults rather
 than silently choosing slower timing. Device delays and shared multi-cycle units
 are future extensions; graph depth is not a claimed FPGA clock frequency.

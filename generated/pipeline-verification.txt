@@ -2,8 +2,8 @@ Automatic pipeline scheduler verification
 Toolchain: .NET SDK 8.0.100 / Roslyn; Icarus Verilog 12.0
 
 PASS tests/run-pipelines.sh
-  Debug CIL: 16733 assertions; all three scheduled RTL benches passed.
-  Optimized CIL: 16733 assertions; all three scheduled RTL benches passed.
+  Debug CIL: 17730 assertions; all six scheduled RTL benches passed.
+  Optimized CIL: 17730 assertions; all six scheduled RTL benches passed.
   Optimized fixtures regenerated last.
 
 PASS tests/run.sh (including pipeline, blocking process, arithmetic and root RTL suites)
@@ -23,8 +23,14 @@ Pipeline evidence:
   capacity checks, mid-traffic reset flushing, token accounting and complete drain.
 - Every external output replayed against Icarus for 1800 cycles per design in
   both debug and optimized CIL runs.
-- Explicit rejection of recurrences, branches, multi-rate transfers, checked
-  arithmetic, division, finite return and invalid scheduling options.
+- Conditional if/else, ternary, signed gain/clipping and switch: independent
+  scoreboards include exact thresholds, integer boundaries, stalls and resets;
+  every output replayed for 1500 cycles per conditional design in both builds.
+- Control expansion budget rejection is tested without mutating the module.
+- Explicit rejection of recurrences, missing/multiple transfers, nested loops, checked
+  arithmetic (including on one conditional path), division, finite return and
+  invalid scheduling options. A local assigned on only some iteration paths
+  cannot silently carry state into other paths.
 
 The new pipeline bodies are verified in C#. Existing F#/VB regression tests pass;
 new F#/VB pipelined body coverage is not claimed. No new physical FPGA, device

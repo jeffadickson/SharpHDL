@@ -1,0 +1,26 @@
+Elastic pipeline actor
+Latency: 6 register boundaries (acceptance edge counts as boundary 1); stalls extend latency.
+Initiation interval: 1 with a continuously ready sink; capacity: 6 tokens.
+Logic levels per stage: 1; abstract operation count, not device timing.
+Payload register bits: 714; valid register bits: 6.
+No resource sharing; multiply is a whole combinational operator in one logic level.
+Ready propagates combinationally backward; no automatic skid-buffer insertion.
+stage 1 | level 1 | 32 bits | & | Switch_IL_0009_and
+stage 2 | level 2 | 1 bits | == | expression
+stage 1 | level 1 | 32 bits | + | Switch_IL_0025_add
+stage 2 | level 2 | 32 bits | + | Switch_IL_0042_add
+stage 2 | level 2 | 1 bits | == | expression
+stage 1 | level 1 | 32 bits | * | Switch_IL_002b_mul
+stage 2 | level 2 | 32 bits | + | Switch_IL_0042_add
+stage 2 | level 2 | 1 bits | == | expression
+stage 1 | level 1 | 32 bits | ^ | Switch_IL_0032_xor
+stage 2 | level 2 | 32 bits | + | Switch_IL_0042_add
+stage 2 | level 2 | 1 bits | == | expression
+stage 1 | level 1 | 32 bits | + | Switch_IL_0042_add
+stage 1 | level 1 | 32 bits | ~ | Switch_IL_003d_not
+stage 2 | level 2 | 32 bits | + | Switch_IL_0042_add
+stage 3 | level 3 | 32 bits | mux | expression
+stage 4 | level 4 | 32 bits | mux | expression
+stage 5 | level 5 | 32 bits | mux | expression
+stage 6 | level 6 | 32 bits | mux | Switch_IL_000c_switch
+Predicated control: 1 path-expanded branches, 5 terminal paths, 63 visited instructions.

@@ -10,7 +10,8 @@ Typed channels and free-running blocking CIL actors are now available through
 `AttachProcess`; see [stream process requirements PROC01–PROC12](STREAM_PROCESSES.md).
 Their support subset and timing differ from the combinational and start/done backends.
 [Automatic pipeline scheduling](PIPELINE_SCHEDULER.md) additionally supports stateless
-single-read/single-write arithmetic loops with elastic stages at II=1; see PIPE01–PIPE12.
+single-read/single-write arithmetic loops with elastic stages at II=1, including
+predicated scalar if/else and switch; see PIPE01–PIPE14.
 
 ## Supported constructs
 

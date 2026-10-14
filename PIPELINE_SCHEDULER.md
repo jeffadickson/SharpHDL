@@ -3,7 +3,8 @@
 SharpHDL can now automatically pipeline a **stateless stream transform** written
 as an ordinary C# loop. Unlike `AttachProcess`, `AttachPipeline` removes CIL stack
 loads/stores from the clock schedule, builds the arithmetic dependency graph,
-then inserts registers between groups of operations. Several inputs can be in
+then inserts registers between groups of operations. Conditional arithmetic
+(`if/else`, ternary expressions and forward `switch`) becomes predicated mux logic. Several inputs can be in
 flight simultaneously. With a ready sink, the implemented initiation interval is
 **one input per clock (II=1)**.
 
@@ -135,7 +136,7 @@ when those semantics are needed.
 
 | Construct | Pipeline behavior |
 |---|---|
-| One unconditional infinite loop | Exactly one read of parameter 0 and one write of parameter 1 per iteration |
+| One unconditional infinite outer loop | Exactly one read of parameter 0 and one write of parameter 1 on every path through each iteration |
 | Static void method, two scalar typed channels | Same signed/unsigned 1..32-bit token types as the process backend |
 | Local intermediates | Must be assigned before use within each iteration |
 | Integer wrapping add/subtract/multiply, bitwise logic | Dependency-scheduled; CIL widths preserved |
@@ -143,7 +144,8 @@ when those semantics are needed.
 | Constant/variable integer shifts | CIL shift-count masking and signedness retained |
 | Byte/short conversions, UBits arithmetic | Narrowing and per-operation wrapping preserved |
 | Identity or constant result | One elastic stage, still consumes one input per output |
-| Conditional branches, switch, finite return | Rejected: need control-aware scheduling and token/fault semantics |
+| Forward if/else, ternary and switch | Supported through predication; every path must consume and produce exactly one token |
+| Nested loops, conditional back edges, finite return | Rejected: need more general loop and termination semantics |
 | Running sums or other loop-carried locals | Rejected: need recurrence analysis and an achievable II calculation |
 | More than one read/write per iteration | Rejected: need explicit multi-rate and join/split semantics |
 | Checked overflow, division/remainder, assertions | Rejected: need pipeline fault policy and/or operator implementation selection |
@@ -152,7 +154,10 @@ when those semantics are needed.
 `AttachProcess` continues to support the broader sequential subset. There is
 **no silent fallback** to a slower backend when pipeline compilation fails.
 Errors identify the method and IL offset for unsupported CIL. Decode is limited
-to 512 instructions; scheduling is bounded to 4096 expression nodes. Debug and
+to 512 instructions; scheduling is bounded to 4096 expression nodes. Control
+expansion is bounded to 128 expanded branches, 128 terminal paths and 8192
+visited instructions. Prefix-only constant initialization is ignored; each local
+must still be assigned before use on every iteration path. Debug and
 optimized C# CIL are tested. F#/VB pipeline body coverage is not yet claimed.
 
 ## Requirements and verification
@@ -167,15 +172,65 @@ optimized C# CIL are tested. F#/VB pipeline body coverage is not yet claimed.
 | PIPE06 | Synchronous reset flushes every occupied stage | Implemented; mid-traffic resets, occupancy and discarded-token accounting |
 | PIPE07 | Preserve signedness, width truncation and per-operation UBits wrap | Implemented; signed shifts, comparison, narrow arithmetic and native arithmetic oracles |
 | PIPE08 | Report stage operations and register cost, retain meaningful RTL names | Implemented; checked-in reports and commented generated RTL |
-| PIPE09 | Reject unsupported semantics and invalid limits explicitly | Implemented; recurrences, branches, multiple transfers, faults, finite methods and option tests |
+| PIPE09 | Reject unsupported semantics and invalid limits explicitly | Implemented; recurrences, nested loops, missing/multiple transfers, faults, finite methods and option tests |
 | PIPE10 | Device delay model and timing-constrained operator/DSP selection | Future; current grouping is abstract logic depth only |
 | PIPE11 | Shared/multi-cycle operators, recurrence-aware II, memory scheduling | Future; requires scheduling/resource constraints and new correctness tests |
-| PIPE12 | Packet metadata, branches/predication and multi-rate processes | Future; needs explicit token matching and fault/side-effect contracts |
+| PIPE12 | Packet metadata, branches/predication and multi-rate processes | Partial: scalar branch predication implemented; packet metadata and multi-rate processes remain future |
+| PIPE13 | Predicated paths preserve signed/unsigned selection and one token per input | Implemented; if/else, ternary, saturation and switch scoreboards plus debug/optimized RTL replay |
+| PIPE14 | Bound control expansion and reject state/faults on any explored path | Implemented; fixed branch/path/instruction limits, conditional-state and conditional-fault rejection tests |
 
 `bash tests/run-pipelines.sh` compiles both debug and optimized CIL, runs the
-independent numeric/handshake tests and replays all three scheduled polynomial
+independent numeric/handshake tests and replays the three polynomial and three conditional
 RTL benches with Icarus. It leaves optimized generated fixtures last. Set
 `DOTNET_ROOT` to a .NET 8 SDK directory and put `iverilog`/`vvp` on PATH.
 The core `tests/run.sh` also includes the pipeline suite, and `tests/run-all.sh`
 includes the dedicated debug/optimized runner. No placed-and-routed timing result
 is claimed for these new examples.
+
+## Worked conditional pipeline: gain and clipping
+
+`ScheduledPipeline.ClipGain` is now compiled by the same scheduler:
+
+```csharp
+while (true)
+{
+    int x = input.Read();          // signed 16-bit token
+    int y = x < 0 ? x * 3 : x * 5;
+    if (y > 12000) y = 12000;
+    else if (y < -12000) y = -12000;
+    output.Write((short)y);
+}
+```
+
+Use `AttachPipeline` with `HwStream<short>` input/output and the `ClipGain`
+method. The optimized example produces a six-stage II=1 pipeline under the
+one-logic-level setting. See its [schedule](generated/scheduled_clipgain.schedule.txt)
+and [commented RTL](generated/scheduled_clipgain.v). Debug compilation may introduce
+extra boolean operations and change the schedule; the report is authoritative.
+
+| Input | Selected gain | Before clipping | Output |
+|---:|---:|---:|---:|
+| -5000 | 3 | -15000 | -12000 |
+| -10 | 3 | -30 | -30 |
+| 0 | 5 | 0 | 0 |
+| 2400 | 5 | 12000 | 12000 |
+| 2401 | 5 | 12005 | 12000 |
+
+Both pure arithmetic paths can exist in hardware. A mux selects the appropriate
+result; the condition is delayed alongside the data when it crosses a pipeline
+boundary. This is predication, not a CPU predicting which branch to execute.
+Backpressure must hold predicates and values together, or one input's condition
+could select another input's result.
+
+The frontend explores each control path and validates one read and one write
+on every path. `if (x > 5) output.Write(x);` with no else is rejected: it is a
+filter with a variable output rate. An extra conditional read, checked operation,
+assertion, or use of state from a previous iteration is also rejected even if
+another path would be valid. There are no speculative memory writes or hidden
+side effects. Switch indices use CIL equality semantics, with unmatched values
+selecting the default path.
+
+Path exploration can duplicate common suffix logic before downstream synthesis;
+this implementation does not promise minimal area or perform general control-flow
+merging. The report includes the expanded branch/path/instruction counts. Fixed
+limits stop excessive expansion with an explicit diagnostic.
