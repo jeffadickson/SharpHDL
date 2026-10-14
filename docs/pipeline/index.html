@@ -83,7 +83,7 @@ function liveShow(data){
  const state=data.state||data;
  txt(liveText,JSON.stringify({cycle:state.cycle,stageOccupied:state.stageOccupied,
   inputReady:state.inputReady,outputValid:state.outputValid,
-  outputData:state.outputData,acceptedTokenIds:state.pendingTokens,
+  outputData:state.outputData,stageTokenIds:state.stageTokenIds,acceptedTokenIds:state.pendingTokens,
   transfer:data.transfer||null},null,2));
 }
 $("liveConnect").onclick=async()=>{try{liveShow(await liveRequest("/api/state"))}catch(e){txt(liveText,e.message+" — open this page at http://127.0.0.1:8093/")}};
