@@ -14,12 +14,15 @@ namespace SharpHDL
         readonly Signal[] inputs;
         public IReadOnlyList<string> InputNames => Array.AsReadOnly(inputs.Select(x => x.Name).ToArray());
 
-        public CompiledCombinational(Module module, Expr output)
+        public CompiledCombinational(Module module, Expr output) : this(module, output, false) { }
+
+        // Sequential engines compile next-state cones with registers as explicit read-only inputs.
+        internal CompiledCombinational(Module module, Expr output, bool includeRegisters)
         {
             if (module == null) throw new ArgumentNullException(nameof(module));
             if (output == null) throw new ArgumentNullException(nameof(output));
             module.Validate();
-            inputs = module.Signals.Where(x => x.IsInput).ToArray();
+            inputs = module.Signals.Where(x => x.IsInput || (includeRegisters && x.Kind == "reg")).ToArray();
             var values = Expression.Parameter(typeof(BigInteger[]), "values");
             var indexes = inputs.Select((s, i) => new { s, i }).ToDictionary(x => x.s, x => x.i);
             var stack = new HashSet<Expr>();
@@ -36,7 +39,10 @@ namespace SharpHDL
                         if (signal.IsInput)
                             result = Expression.ArrayIndex(values, Expression.Constant(indexes[signal]));
                         else if (signal.Kind == "reg")
-                            throw new NotSupportedException("Sequential state is not part of a pure combinational cone");
+                        {
+                            if (!includeRegisters) throw new NotSupportedException("Sequential state is not part of a pure combinational cone");
+                            result = Expression.ArrayIndex(values, Expression.Constant(indexes[signal]));
+                        }
                         else result = Build(signal.Driver);
                     }
                     else if (e.Op == "const") result = Expression.Constant(e.Literal);
