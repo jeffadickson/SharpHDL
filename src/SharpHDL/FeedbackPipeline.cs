@@ -10,6 +10,8 @@ namespace SharpHDL
     {
         public int LogicLevelsPerStage=1;
         public int MaxStages=64;
+        /// <summary>Allow a new input on the output commit edge using completed next state. Default: false.</summary>
+        public bool ForwardOnCommit=false;
     }
     public sealed class FeedbackPipelineHandle
     {
@@ -36,20 +38,30 @@ namespace SharpHDL
             if(o.LogicLevelsPerStage<1||o.LogicLevelsPerStage>32||o.MaxStages<1||o.MaxStages>256)throw new ArgumentException("Invalid feedback pipeline stage limits.");
             var program=CompilePipeline(method,input,output,true);
             var states=program.StateIds.Select(id=>m.Register(name+"_state_local"+id,32,program.Initial[id].Literal)).ToArray();
-            var stateMap=program.StateIds.Select((id,n)=>new{id,n}).ToDictionary(x=>x.id,x=>states[x.n]);
+            var stateMap=program.StateIds.Select((id,n)=>new{id,n}).ToDictionary(x=>x.id,x=>x.n);
             var incoming=new PackedPipelineChannel(m,name+"_iteration_input",program.Placeholder.Width);
             var completed=new PackedPipelineChannel(m,name+"_iteration_result",output.Data.Width+32*states.Length);
             var busy=m.Register(name+"_busy",1,0);
-            busy.Describe(name+": one dependent iteration in flight; blocks input until output acceptance commits state. Reset discards the iteration.");
+            busy.Describe(name+": one dependent iteration in flight; "+(o.ForwardOnCommit?"allows replacement on the commit edge using forwarded next state":"blocks input through the commit edge")+". Reset discards the iteration.");
+            var commit=output.Fire;
+            Expr admit=o.ForwardOnCommit?(~busy | commit):~busy;
             Expr packedInput=input.Data;var inputLayout=new StringBuilder("Iteration bundle: low "+input.Data.Width+" bits are input data.");
             for(int n=0;n<program.Candidates.Length;n++)
             {
-                int id=program.Candidates[n];Signal state;Expr value=stateMap.TryGetValue(id,out state)?(Expr)state:program.Initial[id];
+                int id=program.Candidates[n],stateIndex;Expr value=program.Initial[id];
+                if(stateMap.TryGetValue(id,out stateIndex))
+                {
+                    int low=output.Data.Width+32*stateIndex;
+                    // The completed bundle is registered. Forward every state field atomically
+                    // only when its output transfers, never merely when it becomes valid.
+                    value=o.ForwardOnCommit?Select(commit,completed.Data.Slice(low+31,low),states[stateIndex]):(Expr)states[stateIndex];
+                }
                 packedInput=Expr.Concat(value,packedInput);
                 inputLayout.Append(" ["+(input.Data.Width+32*n+31)+":"+(input.Data.Width+32*n)+"] local "+id+" snapshot/constant.");
             }
+            if(o.ForwardOnCommit)inputLayout.Append(" State snapshots select completed next-state fields on output acceptance; otherwise committed registers.");
             incoming.Data.Describe(inputLayout.ToString());m.Drive(incoming.Data,packedInput);
-            m.Drive(incoming.Valid,input.Valid & ~busy);m.Drive(input.Ready,incoming.Ready & ~busy);
+            m.Drive(incoming.Valid,input.Valid & admit);m.Drive(input.Ready,incoming.Ready & admit);
             var copies=new Dictionary<Expr,Expr>();
             Func<Expr,Expr> replace=null;
             replace=e=>
@@ -64,8 +76,9 @@ namespace SharpHDL
             var datapath=PipelineScheduler.Attach(m,name+"_datapath",incoming,completed,replace(result),
                 new PipelineOptions{LogicLevelsPerStage=o.LogicLevelsPerStage,MaxStages=o.MaxStages});
             m.Drive(output.Data,completed.Data.Slice(output.Data.Width-1,0));m.Drive(output.Valid,completed.Valid);m.Drive(completed.Ready,output.Ready);
-            var commit=output.Fire;var accept=input.Fire;
-            m.Next(busy,Select(commit,K(1,0),Select(accept,K(1,1),busy)));
+            var accept=input.Fire;
+            // Acceptance wins when commit and replacement happen on the same edge.
+            m.Next(busy,Select(accept,K(1,1),Select(commit,K(1,0),busy)));
             var layout=new StringBuilder("Completed iteration: low "+output.Data.Width+" bits are output; upper fields commit together only on output valid AND ready.");
             for(int n=0;n<states.Length;n++)
             {
@@ -75,14 +88,17 @@ namespace SharpHDL
                 layout.Append(" ["+(low+31)+":"+low+"] next local "+program.StateIds[n]+".");
             }
             completed.Data.Describe(layout.ToString());
+            int initiationInterval=datapath.Latency+(o.ForwardOnCommit?0:1);
             var report=new StringBuilder("Feedback pipeline "+name+"\n");
             report.AppendLine("External latency: "+datapath.Latency+" clocks to earliest output transfer; stalls extend latency.");
-            report.AppendLine("External initiation interval: "+(datapath.Latency+1)+" clocks with continuously valid input and ready output; capacity: 1 iteration.");
-            report.AppendLine("State commits on output acceptance; next input accepted no earlier than the following edge. No same-edge forwarding.");
+            report.AppendLine("External initiation interval: "+initiationInterval+" clocks with continuously valid input and ready output; capacity: 1 iteration.");
+            report.AppendLine(o.ForwardOnCommit
+                ?"State commits on output acceptance; a simultaneous input snapshots completed next state. Same-edge forwarding enabled."
+                :"State commits on output acceptance; next input accepted no earlier than the following edge. No same-edge forwarding.");
             report.AppendLine("State registers: "+states.Length+" x 32 bits; busy: 1 bit. Reset restores declared initial constants and flushes in-flight output.");
-            report.AppendLine("This is conservative recurrence scheduling, not modulo scheduling or resource sharing.");
+            report.AppendLine("This is single-iteration recurrence scheduling, not modulo scheduling or resource sharing.");
             report.Append(program.Report);report.AppendLine("Internal datapath schedule (its II=1 is gated by the external recurrence controller):");report.Append(datapath.Report);
-            return new FeedbackPipelineHandle{Latency=datapath.Latency,InitiationInterval=datapath.Latency+1,Busy=busy,
+            return new FeedbackPipelineHandle{Latency=datapath.Latency,InitiationInterval=initiationInterval,Busy=busy,
                 StateRegisters=Array.AsReadOnly(states),StageValid=datapath.StageValid,Report=report.ToString()};
         }
     }

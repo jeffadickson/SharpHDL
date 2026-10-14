@@ -35,7 +35,7 @@ wire [95:0] s_feedback_iteration_result_data;
 wire [0:0] s_feedback_iteration_result_valid;
 // Unsigned 1-bit wire; bit 0 is least significant.
 wire [0:0] s_feedback_iteration_result_ready;
-// feedback: one dependent iteration in flight; blocks input until output acceptance commits state. Reset discards the iteration.
+// feedback: one dependent iteration in flight; blocks input through the commit edge. Reset discards the iteration.
 reg [0:0] s_feedback_busy;
 // feedback_datapath: stage 1 holds one token; synchronous reset empties every stage.
 reg [0:0] s_feedback_datapath_stage1_valid;
@@ -89,28 +89,28 @@ wire [31:0] n_mux_7;
 wire [63:0] n_concat_8;
 // Packed bus: [95:64] = high operand; [63:0] = low operand.
 wire [95:0] n_concat_9;
-// Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_not_10;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_11;
+wire [0:0] n_and_10;
+// Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
+wire [0:0] n_not_11;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
 wire [0:0] n_not_12;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
 wire [0:0] n_not_13;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
 wire [0:0] n_not_14;
-// Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_not_15;
+// Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
+wire [0:0] n_or_15;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
 wire [0:0] n_or_16;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
 wire [0:0] n_or_17;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
 wire [0:0] n_or_18;
-// Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_or_19;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_20;
+wire [0:0] n_and_19;
+// Select true operand when condition is 1; false operand otherwise.
+wire [0:0] n_mux_20;
 // Select true operand when condition is 1; false operand otherwise.
 wire [0:0] n_mux_21;
 // Select true operand when condition is 1; false operand otherwise.
@@ -121,84 +121,82 @@ wire [0:0] n_mux_23;
 wire [0:0] n_mux_24;
 // Select true operand when condition is 1; false operand otherwise.
 wire [0:0] n_mux_25;
-// Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_mux_26;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_27;
+wire [0:0] n_and_26;
 // Operation slice Scheduled in feedback_datapath stage 0.
-wire [31:0] n_bits_31_0_28;
+wire [31:0] n_bits_31_0_27;
 // Operation == Scheduled in feedback_datapath stage 1.
-wire [0:0] n_eq_29;
+wire [0:0] n_eq_28;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_mux_30;
+wire [0:0] n_mux_29;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_31;
+wire [0:0] n_and_30;
 // Operation ~ Scheduled in feedback_datapath stage 2.
-wire [0:0] n_not_32;
+wire [0:0] n_not_31;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_mux_33;
+wire [0:0] n_mux_32;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_34;
+wire [0:0] n_and_33;
 // Operation slice Scheduled in feedback_datapath stage 0.
-wire [31:0] n_bits_95_64_35;
+wire [31:0] n_bits_95_64_34;
 // ConditionalChecksum IL_0020 add; explicit CIL width/sign semantics. Scheduled in feedback_datapath stage 1.
 wire [31:0] n_feedback_datapath_stage1_ConditionalChecksum_IL_0020_add;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_mux_36;
+wire [31:0] n_mux_35;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_37;
+wire [0:0] n_and_36;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_mux_38;
+wire [31:0] n_mux_37;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_39;
+wire [0:0] n_and_38;
 // Operation mux Scheduled in feedback_datapath stage 3.
-wire [31:0] n_mux_40;
+wire [31:0] n_mux_39;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_mux_41;
+wire [31:0] n_mux_40;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_42;
+wire [0:0] n_and_41;
 // Operation slice Scheduled in feedback_datapath stage 0.
-wire [31:0] n_bits_63_32_43;
+wire [31:0] n_bits_63_32_42;
 // ConditionalChecksum IL_001a mul; explicit CIL width/sign semantics. Scheduled in feedback_datapath stage 1.
 wire [31:0] n_feedback_datapath_stage1_ConditionalChecksum_IL_001a_mul;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_mux_44;
+wire [31:0] n_mux_43;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_45;
+wire [0:0] n_and_44;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_mux_46;
+wire [31:0] n_mux_45;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_47;
+wire [0:0] n_and_46;
 // ConditionalChecksum IL_001c xor; explicit CIL width/sign semantics. Scheduled in feedback_datapath stage 2.
 wire [31:0] n_feedback_datapath_stage2_ConditionalChecksum_IL_001c_xor;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_mux_48;
+wire [31:0] n_mux_47;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_49;
+wire [0:0] n_and_48;
 // Operation mux Scheduled in feedback_datapath stage 3.
+wire [31:0] n_mux_49;
+// Select true operand when condition is 1; false operand otherwise.
 wire [31:0] n_mux_50;
-// Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_mux_51;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_52;
+wire [0:0] n_and_51;
 // Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_mux_53;
+wire [0:0] n_mux_52;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_54;
+wire [0:0] n_and_53;
 // ConditionalChecksum IL_0025 add; explicit CIL width/sign semantics. Scheduled in feedback_datapath stage 3.
 wire [31:0] n_feedback_datapath_stage3_ConditionalChecksum_IL_0025_add;
 // Select true operand when condition is 1; false operand otherwise.
-wire [31:0] n_mux_55;
+wire [31:0] n_mux_54;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_56;
+wire [0:0] n_and_55;
 // ConditionalChecksum IL_0010: predicated branch; condition and data aligned by scheduler. Scheduled in feedback_datapath stage 4.
 wire [31:0] n_feedback_datapath_stage4_ConditionalChecksum_IL_0010_select;
 // Operation concat Scheduled in feedback_datapath stage 4.
-wire [63:0] n_concat_57;
+wire [63:0] n_concat_56;
 // Operation concat Scheduled in feedback_datapath stage 4.
-wire [95:0] n_concat_58;
+wire [95:0] n_concat_57;
 // Select true operand when condition is 1; false operand otherwise.
-wire [95:0] n_mux_59;
+wire [95:0] n_mux_58;
 assign n_not_0 = ~s_feedback_busy;
 assign n_and_1 = s_feedback_iteration_input_ready & n_not_0;
 assign n_bits_31_0_2 = s_feedback_iteration_result_data >> 0;
@@ -209,67 +207,66 @@ assign n_bits_95_64_6 = s_feedback_iteration_result_data >> 64;
 assign n_mux_7 = n_and_3 ? n_bits_95_64_6 : s_feedback_state_local1;
 assign n_concat_8 = {s_feedback_state_local0, s_in_data};
 assign n_concat_9 = {s_feedback_state_local1, n_concat_8};
-assign n_not_10 = ~s_feedback_busy;
-assign n_and_11 = s_in_valid & n_not_10;
-assign n_not_12 = ~s_feedback_datapath_stage1_valid;
-assign n_not_13 = ~s_feedback_datapath_stage2_valid;
-assign n_not_14 = ~s_feedback_datapath_stage3_valid;
-assign n_not_15 = ~s_feedback_datapath_stage4_valid;
-assign n_or_16 = n_not_15 | s_feedback_iteration_result_ready;
-assign n_or_17 = n_not_14 | n_or_16;
-assign n_or_18 = n_not_13 | n_or_17;
-assign n_or_19 = n_not_12 | n_or_18;
-assign n_and_20 = s_in_valid & s_in_ready;
-assign n_mux_21 = n_and_20 ? 1'd1 : s_feedback_busy;
-assign n_mux_22 = n_and_3 ? 1'd0 : n_mux_21;
-assign n_mux_23 = n_or_19 ? s_feedback_iteration_input_valid : s_feedback_datapath_stage1_valid;
-assign n_mux_24 = n_or_18 ? s_feedback_datapath_stage1_valid : s_feedback_datapath_stage2_valid;
-assign n_mux_25 = n_or_17 ? s_feedback_datapath_stage2_valid : s_feedback_datapath_stage3_valid;
-assign n_mux_26 = n_or_16 ? s_feedback_datapath_stage3_valid : s_feedback_datapath_stage4_valid;
-assign n_and_27 = n_or_19 & s_feedback_iteration_input_valid;
-assign n_bits_31_0_28 = s_feedback_iteration_input_data >> 0;
-assign n_eq_29 = n_bits_31_0_28 == 32'd0;
-assign n_mux_30 = n_and_27 ? n_eq_29 : s_feedback_datapath_stage1_value0;
-assign n_and_31 = n_or_18 & s_feedback_datapath_stage1_valid;
-assign n_not_32 = ~s_feedback_datapath_stage1_value0;
-assign n_mux_33 = n_and_31 ? n_not_32 : s_feedback_datapath_stage2_value1;
-assign n_and_34 = n_or_19 & s_feedback_iteration_input_valid;
-assign n_bits_95_64_35 = s_feedback_iteration_input_data >> 64;
-assign n_feedback_datapath_stage1_ConditionalChecksum_IL_0020_add = n_bits_95_64_35 + 32'd1;
-assign n_mux_36 = n_and_34 ? n_feedback_datapath_stage1_ConditionalChecksum_IL_0020_add : s_feedback_datapath_stage1_value2;
-assign n_and_37 = n_or_18 & s_feedback_datapath_stage1_valid;
-assign n_mux_38 = n_and_37 ? s_feedback_datapath_stage1_value2 : s_feedback_datapath_stage2_value3;
-assign n_and_39 = n_or_17 & s_feedback_datapath_stage2_valid;
-assign n_mux_40 = s_feedback_datapath_stage2_value1 ? s_feedback_datapath_stage2_value3 : 32'd0;
-assign n_mux_41 = n_and_39 ? n_mux_40 : s_feedback_datapath_stage3_value4;
-assign n_and_42 = n_or_19 & s_feedback_iteration_input_valid;
-assign n_bits_63_32_43 = s_feedback_iteration_input_data >> 32;
-assign n_feedback_datapath_stage1_ConditionalChecksum_IL_001a_mul = n_bits_63_32_43 * 32'd3;
-assign n_mux_44 = n_and_42 ? n_feedback_datapath_stage1_ConditionalChecksum_IL_001a_mul : s_feedback_datapath_stage1_value5;
-assign n_and_45 = n_or_19 & s_feedback_iteration_input_valid;
-assign n_mux_46 = n_and_45 ? n_bits_31_0_28 : s_feedback_datapath_stage1_value6;
-assign n_and_47 = n_or_18 & s_feedback_datapath_stage1_valid;
+assign n_and_10 = s_in_valid & n_not_0;
+assign n_not_11 = ~s_feedback_datapath_stage1_valid;
+assign n_not_12 = ~s_feedback_datapath_stage2_valid;
+assign n_not_13 = ~s_feedback_datapath_stage3_valid;
+assign n_not_14 = ~s_feedback_datapath_stage4_valid;
+assign n_or_15 = n_not_14 | s_feedback_iteration_result_ready;
+assign n_or_16 = n_not_13 | n_or_15;
+assign n_or_17 = n_not_12 | n_or_16;
+assign n_or_18 = n_not_11 | n_or_17;
+assign n_and_19 = s_in_valid & s_in_ready;
+assign n_mux_20 = n_and_3 ? 1'd0 : s_feedback_busy;
+assign n_mux_21 = n_and_19 ? 1'd1 : n_mux_20;
+assign n_mux_22 = n_or_18 ? s_feedback_iteration_input_valid : s_feedback_datapath_stage1_valid;
+assign n_mux_23 = n_or_17 ? s_feedback_datapath_stage1_valid : s_feedback_datapath_stage2_valid;
+assign n_mux_24 = n_or_16 ? s_feedback_datapath_stage2_valid : s_feedback_datapath_stage3_valid;
+assign n_mux_25 = n_or_15 ? s_feedback_datapath_stage3_valid : s_feedback_datapath_stage4_valid;
+assign n_and_26 = n_or_18 & s_feedback_iteration_input_valid;
+assign n_bits_31_0_27 = s_feedback_iteration_input_data >> 0;
+assign n_eq_28 = n_bits_31_0_27 == 32'd0;
+assign n_mux_29 = n_and_26 ? n_eq_28 : s_feedback_datapath_stage1_value0;
+assign n_and_30 = n_or_17 & s_feedback_datapath_stage1_valid;
+assign n_not_31 = ~s_feedback_datapath_stage1_value0;
+assign n_mux_32 = n_and_30 ? n_not_31 : s_feedback_datapath_stage2_value1;
+assign n_and_33 = n_or_18 & s_feedback_iteration_input_valid;
+assign n_bits_95_64_34 = s_feedback_iteration_input_data >> 64;
+assign n_feedback_datapath_stage1_ConditionalChecksum_IL_0020_add = n_bits_95_64_34 + 32'd1;
+assign n_mux_35 = n_and_33 ? n_feedback_datapath_stage1_ConditionalChecksum_IL_0020_add : s_feedback_datapath_stage1_value2;
+assign n_and_36 = n_or_17 & s_feedback_datapath_stage1_valid;
+assign n_mux_37 = n_and_36 ? s_feedback_datapath_stage1_value2 : s_feedback_datapath_stage2_value3;
+assign n_and_38 = n_or_16 & s_feedback_datapath_stage2_valid;
+assign n_mux_39 = s_feedback_datapath_stage2_value1 ? s_feedback_datapath_stage2_value3 : 32'd0;
+assign n_mux_40 = n_and_38 ? n_mux_39 : s_feedback_datapath_stage3_value4;
+assign n_and_41 = n_or_18 & s_feedback_iteration_input_valid;
+assign n_bits_63_32_42 = s_feedback_iteration_input_data >> 32;
+assign n_feedback_datapath_stage1_ConditionalChecksum_IL_001a_mul = n_bits_63_32_42 * 32'd3;
+assign n_mux_43 = n_and_41 ? n_feedback_datapath_stage1_ConditionalChecksum_IL_001a_mul : s_feedback_datapath_stage1_value5;
+assign n_and_44 = n_or_18 & s_feedback_iteration_input_valid;
+assign n_mux_45 = n_and_44 ? n_bits_31_0_27 : s_feedback_datapath_stage1_value6;
+assign n_and_46 = n_or_17 & s_feedback_datapath_stage1_valid;
 assign n_feedback_datapath_stage2_ConditionalChecksum_IL_001c_xor = s_feedback_datapath_stage1_value5 ^ s_feedback_datapath_stage1_value6;
-assign n_mux_48 = n_and_47 ? n_feedback_datapath_stage2_ConditionalChecksum_IL_001c_xor : s_feedback_datapath_stage2_value7;
-assign n_and_49 = n_or_17 & s_feedback_datapath_stage2_valid;
-assign n_mux_50 = s_feedback_datapath_stage2_value1 ? s_feedback_datapath_stage2_value7 : 32'd0;
-assign n_mux_51 = n_and_49 ? n_mux_50 : s_feedback_datapath_stage3_value8;
-assign n_and_52 = n_or_17 & s_feedback_datapath_stage2_valid;
-assign n_mux_53 = n_and_52 ? s_feedback_datapath_stage2_value1 : s_feedback_datapath_stage3_value9;
-assign n_and_54 = n_or_17 & s_feedback_datapath_stage2_valid;
+assign n_mux_47 = n_and_46 ? n_feedback_datapath_stage2_ConditionalChecksum_IL_001c_xor : s_feedback_datapath_stage2_value7;
+assign n_and_48 = n_or_16 & s_feedback_datapath_stage2_valid;
+assign n_mux_49 = s_feedback_datapath_stage2_value1 ? s_feedback_datapath_stage2_value7 : 32'd0;
+assign n_mux_50 = n_and_48 ? n_mux_49 : s_feedback_datapath_stage3_value8;
+assign n_and_51 = n_or_16 & s_feedback_datapath_stage2_valid;
+assign n_mux_52 = n_and_51 ? s_feedback_datapath_stage2_value1 : s_feedback_datapath_stage3_value9;
+assign n_and_53 = n_or_16 & s_feedback_datapath_stage2_valid;
 assign n_feedback_datapath_stage3_ConditionalChecksum_IL_0025_add = s_feedback_datapath_stage2_value7 + s_feedback_datapath_stage2_value3;
-assign n_mux_55 = n_and_54 ? n_feedback_datapath_stage3_ConditionalChecksum_IL_0025_add : s_feedback_datapath_stage3_value10;
-assign n_and_56 = n_or_16 & s_feedback_datapath_stage3_valid;
+assign n_mux_54 = n_and_53 ? n_feedback_datapath_stage3_ConditionalChecksum_IL_0025_add : s_feedback_datapath_stage3_value10;
+assign n_and_55 = n_or_15 & s_feedback_datapath_stage3_valid;
 assign n_feedback_datapath_stage4_ConditionalChecksum_IL_0010_select = s_feedback_datapath_stage3_value9 ? s_feedback_datapath_stage3_value10 : 32'd0;
-assign n_concat_57 = {s_feedback_datapath_stage3_value8, n_feedback_datapath_stage4_ConditionalChecksum_IL_0010_select};
-assign n_concat_58 = {s_feedback_datapath_stage3_value4, n_concat_57};
-assign n_mux_59 = n_and_56 ? n_concat_58 : s_feedback_datapath_stage4_value11;
+assign n_concat_56 = {s_feedback_datapath_stage3_value8, n_feedback_datapath_stage4_ConditionalChecksum_IL_0010_select};
+assign n_concat_57 = {s_feedback_datapath_stage3_value4, n_concat_56};
+assign n_mux_58 = n_and_55 ? n_concat_57 : s_feedback_datapath_stage4_value11;
 assign s_in_ready = n_and_1;
 assign s_out_data = n_bits_31_0_2;
 assign s_out_valid = s_feedback_iteration_result_valid;
 assign s_feedback_iteration_input_data = n_concat_9;
-assign s_feedback_iteration_input_valid = n_and_11;
-assign s_feedback_iteration_input_ready = n_or_19;
+assign s_feedback_iteration_input_valid = n_and_10;
+assign s_feedback_iteration_input_ready = n_or_18;
 assign s_feedback_iteration_result_data = s_feedback_datapath_stage4_value11;
 assign s_feedback_iteration_result_valid = s_feedback_datapath_stage4_valid;
 assign s_feedback_iteration_result_ready = s_out_ready;
@@ -297,23 +294,23 @@ always @(posedge clk) begin
   end else begin
     s_feedback_state_local0 <= n_mux_5;
     s_feedback_state_local1 <= n_mux_7;
-    s_feedback_busy <= n_mux_22;
-    s_feedback_datapath_stage1_valid <= n_mux_23;
-    s_feedback_datapath_stage2_valid <= n_mux_24;
-    s_feedback_datapath_stage3_valid <= n_mux_25;
-    s_feedback_datapath_stage4_valid <= n_mux_26;
-    s_feedback_datapath_stage1_value0 <= n_mux_30;
-    s_feedback_datapath_stage2_value1 <= n_mux_33;
-    s_feedback_datapath_stage1_value2 <= n_mux_36;
-    s_feedback_datapath_stage2_value3 <= n_mux_38;
-    s_feedback_datapath_stage3_value4 <= n_mux_41;
-    s_feedback_datapath_stage1_value5 <= n_mux_44;
-    s_feedback_datapath_stage1_value6 <= n_mux_46;
-    s_feedback_datapath_stage2_value7 <= n_mux_48;
-    s_feedback_datapath_stage3_value8 <= n_mux_51;
-    s_feedback_datapath_stage3_value9 <= n_mux_53;
-    s_feedback_datapath_stage3_value10 <= n_mux_55;
-    s_feedback_datapath_stage4_value11 <= n_mux_59;
+    s_feedback_busy <= n_mux_21;
+    s_feedback_datapath_stage1_valid <= n_mux_22;
+    s_feedback_datapath_stage2_valid <= n_mux_23;
+    s_feedback_datapath_stage3_valid <= n_mux_24;
+    s_feedback_datapath_stage4_valid <= n_mux_25;
+    s_feedback_datapath_stage1_value0 <= n_mux_29;
+    s_feedback_datapath_stage2_value1 <= n_mux_32;
+    s_feedback_datapath_stage1_value2 <= n_mux_35;
+    s_feedback_datapath_stage2_value3 <= n_mux_37;
+    s_feedback_datapath_stage3_value4 <= n_mux_40;
+    s_feedback_datapath_stage1_value5 <= n_mux_43;
+    s_feedback_datapath_stage1_value6 <= n_mux_45;
+    s_feedback_datapath_stage2_value7 <= n_mux_47;
+    s_feedback_datapath_stage3_value8 <= n_mux_50;
+    s_feedback_datapath_stage3_value9 <= n_mux_52;
+    s_feedback_datapath_stage3_value10 <= n_mux_54;
+    s_feedback_datapath_stage4_value11 <= n_mux_58;
   end
 end
 endmodule

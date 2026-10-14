@@ -149,7 +149,7 @@ when those semantics are needed.
 | Identity or constant result | One elastic stage, still consumes one input per output |
 | Forward if/else, ternary and switch | Supported through predication; every path must consume and produce exactly one token |
 | Nested loops, conditional back edges, finite return | Rejected: need more general loop and termination semantics |
-| Running sums or other loop-carried locals | Use `AttachFeedbackPipeline` explicitly; its conservative II is latency + 1 |
+| Running sums or other loop-carried locals | Use `AttachFeedbackPipeline` explicitly; its II is latency + 1 by default or latency with optional commit forwarding |
 | More than one read/write per iteration | Rejected: need explicit multi-rate and join/split semantics |
 | Checked overflow, division/remainder, assertions | Rejected: need pipeline fault policy and/or operator implementation selection |
 | RAM, arrays, helpers, exceptions, mutable packet records | Rejected by this first pipeline frontend |
@@ -177,7 +177,7 @@ optimized C# CIL are tested. F#/VB pipeline body coverage is not yet claimed.
 | PIPE08 | Report stage operations and register cost, retain meaningful RTL names | Implemented; checked-in reports and commented generated RTL |
 | PIPE09 | Reject unsupported semantics and invalid limits explicitly | Implemented; recurrences, nested loops, missing/multiple transfers, faults, finite methods and option tests |
 | PIPE10 | Device delay model and timing-constrained operator/DSP selection | Future; current grouping is abstract logic depth only |
-| PIPE11 | Shared/multi-cycle operators, recurrence-aware II, memory scheduling | Partial: separate feedback backend supports scalar state at conservative II=D+1; sharing, memory and optimal-II analysis remain future |
+| PIPE11 | Shared/multi-cycle operators, recurrence-aware II, memory scheduling | Partial: separate feedback backend supports scalar state at II=D+1 by default or II=D with optional commit forwarding; sharing, memory and optimal-II analysis remain future |
 | PIPE12 | Packet metadata, branches/predication and multi-rate processes | Partial: scalar branch predication implemented; packet metadata and multi-rate processes remain future |
 | PIPE13 | Predicated paths preserve signed/unsigned selection and one token per input | Implemented; if/else, ternary, saturation and switch scoreboards plus debug/optimized RTL replay |
 | PIPE14 | Bound control expansion and reject state/faults on any explored path | Implemented; fixed branch/path/instruction limits, conditional-state and conditional-fault rejection tests |

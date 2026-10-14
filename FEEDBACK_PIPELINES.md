@@ -8,8 +8,10 @@ No later input is accepted before that commit.
 
 This is conservative recurrence scheduling. It does not overlap dependent
 iterations, perform modulo scheduling, or share arithmetic resources. For a
-D-stage datapath the implemented external initiation interval is **D + 1 clocks**
-with a continuously valid source and ready sink. Backpressure can increase it.
+D-stage datapath the default external initiation interval is **D + 1 clocks**
+with a continuously valid source and ready sink. Setting `ForwardOnCommit = true`
+reduces this to **D clocks** by forwarding completed state on the commit edge.
+Backpressure can increase either interval.
 The ordinary stateless `AttachPipeline` retains its II=1 behavior and continues
 to reject state unless this feedback API is explicitly selected.
 
@@ -59,8 +61,51 @@ has one arithmetic stage, latency 1 and II=2:
 If the consumer stalls before accepting 10, the output holds 10, the committed
 sum stays 7, and input ready stays low. When acceptance finally occurs, state
 changes to 10. The earliest next input transfer is the following clock edge.
-No same-edge forwarding is implemented. A hand-designed accumulator can achieve
-II=1; this implementation deliberately uses the more conservative schedule.
+This is the default conservative mode. The optional forwarding mode below removes
+that extra edge.
+
+## Forwarding: one input per clock for a one-stage accumulator
+
+The C# process stays unchanged; enable forwarding when attaching it:
+
+```csharp
+var schedule = CilCompiler.AttachFeedbackPipeline(
+    m, "sum", typeof(FeedbackExamples).GetMethod("RunningSum"), input, output,
+    new FeedbackPipelineOptions { ForwardOnCommit = true });
+```
+
+| Edge | Event | Committed sum after edge |
+|---|---|---:|
+| Reset | Initialize state and empty the datapath | 7 |
+| 0 | Accept input 3 with state 7 | 7 |
+| 1 | Transfer output 10; accept input 5 with forwarded state 10 | 10 |
+| 2 | Transfer output 15; accept input 2 with forwarded state 15 | 15 |
+| 3 | Transfer output 17; no replacement input | 17 |
+
+The completed bundle is registered. On `output.Valid && output.Ready`, a mux
+selects its next-state fields for the new input snapshot. All fields are forwarded
+together; output data is not substituted for state (which matters for `PreviousValue`).
+When both transfers happen, busy stays set for the replacement iteration.
+When only the output transfers, busy clears. The committed state registers still
+change only on accepted output, and synchronous reset overrides both transfers.
+
+If output ready goes low, the result and proposed state hold steady, committed
+state remains unchanged, and no replacement input is accepted. Raising ready
+allows the pending output and next input to transfer together on the next edge.
+There is still at most one iteration in flight after each edge.
+
+| Example | Datapath depth D | Default II | Forwarding II |
+|---|---:|---:|---:|
+| Running sum | 1 | 2 | 1 |
+| Conditional checksum and count | 4 | 5 | 4 |
+| Previous value | 1 | 2 | 1 |
+
+These values use the default one abstract logic level per stage, with no stalls.
+Forwarding adds state muxes and a ready/control path; it does not establish an
+FPGA clock frequency. It removes the commit bubble, but cannot make a D-stage
+dependent recurrence accept every clock when D is greater than one.
+See the [forwarded sum RTL](generated/feedback_runningsumforwarded.v) and
+[its schedule](generated/feedback_runningsumforwarded.schedule.txt).
 
 ## Multiple states and conditional updates
 
@@ -100,8 +145,9 @@ expression captured at the source `Write` call distinct from the final local val
 |---|---|
 | `FeedbackPipelineOptions.LogicLevelsPerStage` | Abstract logic grouping, 1..32; default 1 |
 | `FeedbackPipelineOptions.MaxStages` | Limit 1..256; default 64 |
+| `FeedbackPipelineOptions.ForwardOnCommit` | Default false; enable atomic same-edge next-state forwarding |
 | `Latency` | Datapath depth; earliest output acceptance is D clocks after input acceptance |
-| `InitiationInterval` | Actual conservative external II = D + 1, with no stalls |
+| `InitiationInterval` | External II = D + 1 by default, D with forwarding, with no stalls |
 | `Busy` | Exactly one iteration has been accepted and not yet committed |
 | `StateRegisters` | Committed state, ordered by CIL local index; names contain that index |
 | `StageValid` | Datapath occupancy; at most one stage is occupied |
@@ -129,7 +175,7 @@ The general scalar/operation restrictions and control-expansion bounds from
 multiple reads/writes on a path, nested loops and conditional loop back edges
 remain unsupported. A method with no carried state should use `AttachPipeline`.
 
-There is no recurrence-distance analysis, same-edge feedback bypass, interleaving
+There is no recurrence-distance analysis, interleaving
 of independent state contexts, minimum-II search, resource sharing or device
 latency model. The generated arithmetic is still parallel hardware partitioned
 by abstract logic depth; no FPGA clock rate or post-synthesis area is claimed.
@@ -141,16 +187,17 @@ by abstract logic depth; no FPGA clock rate or post-synthesis area is claimed.
 | FEED01 | Recognize initialized loop-carried scalar locals from CIL | Implemented; nonzero running-sum seed and two-state checksum; debug-only locals excluded |
 | FEED02 | Preserve source ordering of output and state assignments | Implemented; sum emits new state, PreviousValue emits old state |
 | FEED03 | Capture state with input and commit all state with accepted output | Implemented; independent recurrence oracle checks every commit edge and blocked cycle |
-| FEED04 | Prevent a dependent input from using stale state | Implemented; ready is low while busy; occupancy and one-in-flight checks |
-| FEED05 | Report actual external latency and initiation interval | Implemented; exact-cycle continuous-traffic tests, external II=D+1 |
+| FEED04 | Prevent a dependent input from using stale state | Implemented; ready is low while busy unless forwarding and commit coincide; occupancy and one-in-flight checks |
+| FEED05 | Report actual external latency and initiation interval | Implemented; exact-cycle continuous-traffic tests, external II=D+1 or D with forwarding |
 | FEED06 | Preserve conditional state updates and integer wrapping | Implemented; conditional checksum, zero-word clear, uint overflow and random data |
-| FEED07 | Reset restores initial constants and discards in-flight work | Implemented; reset during stalled output and during computation where depth permits |
+| FEED07 | Reset restores initial constants and discards in-flight work | Implemented; reset during stalled output, during computation where depth permits, and on a commit/replacement edge |
 | FEED08 | Emit readable bundle layouts, state comments and schedules | Implemented; named state locals and bit ranges in generated Verilog |
 | FEED09 | Keep the stateless scheduler behavior and reject unsupported feedback | Implemented; existing pipeline suite plus invalid body/no-state rejection tests |
-| FEED10 | Improve recurrence II using dependence analysis and safe bypass | Future; current one-iteration controller is deliberately conservative |
+| FEED10 | Improve recurrence II using dependence analysis and safe bypass | Partial; optional same-edge bypass implemented; general dependence analysis remains future |
+| FEED11 | Forward every completed state field atomically on simultaneous commit/input acceptance; retain busy for replacement | Implemented; both modes tested for all three examples, exact II, stalls, old/new output ordering, multi-state updates and reset priority |
 
 Run `bash tests/run-pipelines.sh` with `DOTNET_ROOT` and Icarus on PATH. It checks
-both debug and optimized CIL, including three feedback RTL trace benches.
+both debug and optimized CIL, including six feedback RTL trace benches (three examples in each mode).
 The core suite also runs these tests. Generated examples:
 [running sum](generated/feedback_runningsum.v),
 [conditional checksum](generated/feedback_conditionalchecksum.v), and

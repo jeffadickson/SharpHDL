@@ -13,7 +13,7 @@ Their support subset and timing differ from the combinational and start/done bac
 single-read/single-write arithmetic loops with elastic stages at II=1, including
 predicated scalar if/else and switch; see PIPE01–PIPE14.
 [Feedback pipelines](FEEDBACK_PIPELINES.md) additionally support constant-initialized
-scalar recurrence state with one iteration in flight; see FEED01–FEED10.
+scalar recurrence state with one iteration in flight; optional same-edge commit forwarding removes the extra admission clock; see FEED01–FEED11.
 
 ## Supported constructs
 

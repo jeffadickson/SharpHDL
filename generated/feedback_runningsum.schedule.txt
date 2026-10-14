@@ -3,7 +3,7 @@ External latency: 1 clocks to earliest output transfer; stalls extend latency.
 External initiation interval: 2 clocks with continuously valid input and ready output; capacity: 1 iteration.
 State commits on output acceptance; next input accepted no earlier than the following edge. No same-edge forwarding.
 State registers: 1 x 32 bits; busy: 1 bit. Reset restores declared initial constants and flushes in-flight output.
-This is conservative recurrence scheduling, not modulo scheduling or resource sharing.
+This is single-iteration recurrence scheduling, not modulo scheduling or resource sharing.
 Predicated control: 0 path-expanded branches, 1 terminal paths, 9 visited instructions.
 Internal datapath schedule (its II=1 is gated by the external recurrence controller):
 Elastic pipeline feedback_datapath

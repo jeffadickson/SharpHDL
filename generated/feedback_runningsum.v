@@ -33,7 +33,7 @@ wire [63:0] s_feedback_iteration_result_data;
 wire [0:0] s_feedback_iteration_result_valid;
 // Unsigned 1-bit wire; bit 0 is least significant.
 wire [0:0] s_feedback_iteration_result_ready;
-// feedback: one dependent iteration in flight; blocks input until output acceptance commits state. Reset discards the iteration.
+// feedback: one dependent iteration in flight; blocks input through the commit edge. Reset discards the iteration.
 reg [0:0] s_feedback_busy;
 // feedback_datapath: stage 1 holds one token; synchronous reset empties every stage.
 reg [0:0] s_feedback_datapath_stage1_valid;
@@ -53,34 +53,32 @@ wire [31:0] n_bits_63_32_4;
 wire [31:0] n_mux_5;
 // Packed bus: [63:32] = high operand; [31:0] = low operand.
 wire [63:0] n_concat_6;
-// Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_not_7;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_8;
+wire [0:0] n_and_7;
 // Operation '~'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_not_9;
+wire [0:0] n_not_8;
 // Operation '|'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_or_10;
+wire [0:0] n_or_9;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_11;
+wire [0:0] n_and_10;
+// Select true operand when condition is 1; false operand otherwise.
+wire [0:0] n_mux_11;
 // Select true operand when condition is 1; false operand otherwise.
 wire [0:0] n_mux_12;
 // Select true operand when condition is 1; false operand otherwise.
 wire [0:0] n_mux_13;
-// Select true operand when condition is 1; false operand otherwise.
-wire [0:0] n_mux_14;
 // Operation '&'; result limited to 1 bits. Signed interpretation only for slt/asr/signextend.
-wire [0:0] n_and_15;
+wire [0:0] n_and_14;
 // Operation slice Scheduled in feedback_datapath stage 0.
-wire [31:0] n_bits_63_32_16;
+wire [31:0] n_bits_63_32_15;
 // Operation slice Scheduled in feedback_datapath stage 0.
-wire [31:0] n_bits_31_0_17;
+wire [31:0] n_bits_31_0_16;
 // RunningSum IL_0009 add; explicit CIL width/sign semantics. Scheduled in feedback_datapath stage 1.
 wire [31:0] n_feedback_datapath_stage1_RunningSum_IL_0009_add;
 // Operation concat Scheduled in feedback_datapath stage 1.
-wire [63:0] n_concat_18;
+wire [63:0] n_concat_17;
 // Select true operand when condition is 1; false operand otherwise.
-wire [63:0] n_mux_19;
+wire [63:0] n_mux_18;
 assign n_not_0 = ~s_feedback_busy;
 assign n_and_1 = s_feedback_iteration_input_ready & n_not_0;
 assign n_bits_31_0_2 = s_feedback_iteration_result_data >> 0;
@@ -88,26 +86,25 @@ assign n_and_3 = s_out_valid & s_out_ready;
 assign n_bits_63_32_4 = s_feedback_iteration_result_data >> 32;
 assign n_mux_5 = n_and_3 ? n_bits_63_32_4 : s_feedback_state_local0;
 assign n_concat_6 = {s_feedback_state_local0, s_in_data};
-assign n_not_7 = ~s_feedback_busy;
-assign n_and_8 = s_in_valid & n_not_7;
-assign n_not_9 = ~s_feedback_datapath_stage1_valid;
-assign n_or_10 = n_not_9 | s_feedback_iteration_result_ready;
-assign n_and_11 = s_in_valid & s_in_ready;
-assign n_mux_12 = n_and_11 ? 1'd1 : s_feedback_busy;
-assign n_mux_13 = n_and_3 ? 1'd0 : n_mux_12;
-assign n_mux_14 = n_or_10 ? s_feedback_iteration_input_valid : s_feedback_datapath_stage1_valid;
-assign n_and_15 = n_or_10 & s_feedback_iteration_input_valid;
-assign n_bits_63_32_16 = s_feedback_iteration_input_data >> 32;
-assign n_bits_31_0_17 = s_feedback_iteration_input_data >> 0;
-assign n_feedback_datapath_stage1_RunningSum_IL_0009_add = n_bits_63_32_16 + n_bits_31_0_17;
-assign n_concat_18 = {n_feedback_datapath_stage1_RunningSum_IL_0009_add, n_feedback_datapath_stage1_RunningSum_IL_0009_add};
-assign n_mux_19 = n_and_15 ? n_concat_18 : s_feedback_datapath_stage1_value0;
+assign n_and_7 = s_in_valid & n_not_0;
+assign n_not_8 = ~s_feedback_datapath_stage1_valid;
+assign n_or_9 = n_not_8 | s_feedback_iteration_result_ready;
+assign n_and_10 = s_in_valid & s_in_ready;
+assign n_mux_11 = n_and_3 ? 1'd0 : s_feedback_busy;
+assign n_mux_12 = n_and_10 ? 1'd1 : n_mux_11;
+assign n_mux_13 = n_or_9 ? s_feedback_iteration_input_valid : s_feedback_datapath_stage1_valid;
+assign n_and_14 = n_or_9 & s_feedback_iteration_input_valid;
+assign n_bits_63_32_15 = s_feedback_iteration_input_data >> 32;
+assign n_bits_31_0_16 = s_feedback_iteration_input_data >> 0;
+assign n_feedback_datapath_stage1_RunningSum_IL_0009_add = n_bits_63_32_15 + n_bits_31_0_16;
+assign n_concat_17 = {n_feedback_datapath_stage1_RunningSum_IL_0009_add, n_feedback_datapath_stage1_RunningSum_IL_0009_add};
+assign n_mux_18 = n_and_14 ? n_concat_17 : s_feedback_datapath_stage1_value0;
 assign s_in_ready = n_and_1;
 assign s_out_data = n_bits_31_0_2;
 assign s_out_valid = s_feedback_iteration_result_valid;
 assign s_feedback_iteration_input_data = n_concat_6;
-assign s_feedback_iteration_input_valid = n_and_8;
-assign s_feedback_iteration_input_ready = n_or_10;
+assign s_feedback_iteration_input_valid = n_and_7;
+assign s_feedback_iteration_input_ready = n_or_9;
 assign s_feedback_iteration_result_data = s_feedback_datapath_stage1_value0;
 assign s_feedback_iteration_result_valid = s_feedback_datapath_stage1_valid;
 assign s_feedback_iteration_result_ready = s_out_ready;
@@ -119,9 +116,9 @@ always @(posedge clk) begin
     s_feedback_datapath_stage1_value0 <= 64'd0;
   end else begin
     s_feedback_state_local0 <= n_mux_5;
-    s_feedback_busy <= n_mux_13;
-    s_feedback_datapath_stage1_valid <= n_mux_14;
-    s_feedback_datapath_stage1_value0 <= n_mux_19;
+    s_feedback_busy <= n_mux_12;
+    s_feedback_datapath_stage1_valid <= n_mux_13;
+    s_feedback_datapath_stage1_value0 <= n_mux_18;
   end
 end
 endmodule
