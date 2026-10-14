@@ -55,3 +55,11 @@ container-shell:
 # Clean container smoke path; does not require .NET installed on host.
 container-verify:
     docker run --rm -v "{{justfile_directory()}}:/workspace" -w /workspace sharphdl-dev:local bash tools/container-smoke.sh
+
+# Full TinyRisc16 ROM/RAM/UART end-to-end verification in provisioned toolchain.
+tinyrisc-hello:
+    docker run --rm -v "{{justfile_directory()}}:/workspace" -w /workspace sharphdl-dev:local bash tools/run-tinyrisc-container.sh
+
+setup-and-hello:
+    python3 tools/dev.py setup
+    docker run --rm -v "{{justfile_directory()}}:/workspace" -w /workspace sharphdl-dev:local bash tools/run-tinyrisc-container.sh
