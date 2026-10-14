@@ -1,0 +1,108 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Numerics;
+
+namespace SharpHDL
+{
+    /// <summary>Compiles a pure two-state combinational cone into a .NET delegate.
+    /// Inputs are supplied in the order of InputNames; unsupported operations fail explicitly.</summary>
+    public sealed class CompiledCombinational
+    {
+        readonly Func<BigInteger[], BigInteger> evaluator;
+        readonly Signal[] inputs;
+        public IReadOnlyList<string> InputNames => Array.AsReadOnly(inputs.Select(x => x.Name).ToArray());
+
+        public CompiledCombinational(Module module, Expr output)
+        {
+            if (module == null) throw new ArgumentNullException(nameof(module));
+            if (output == null) throw new ArgumentNullException(nameof(output));
+            module.Validate();
+            inputs = module.Signals.Where(x => x.IsInput).ToArray();
+            var values = Expression.Parameter(typeof(BigInteger[]), "values");
+            var indexes = inputs.Select((s, i) => new { s, i }).ToDictionary(x => x.s, x => x.i);
+            var stack = new HashSet<Expr>();
+            Expression Build(Expr e)
+            {
+                if (!stack.Add(e)) throw new InvalidOperationException("Combinational cycle");
+                try
+                {
+                    Expression a, b, result;
+                    var signal = e as Signal;
+                    if (signal != null)
+                    {
+                        if (signal.Owner != module) throw new ArgumentException("Foreign module signal");
+                        if (signal.IsInput)
+                            result = Expression.ArrayIndex(values, Expression.Constant(indexes[signal]));
+                        else if (signal.Kind == "reg")
+                            throw new NotSupportedException("Sequential state is not part of a pure combinational cone");
+                        else result = Build(signal.Driver);
+                    }
+                    else if (e.Op == "const") result = Expression.Constant(e.Literal);
+                    else
+                    {
+                        a = Build(e.Args[0]);
+                        if (e.Op == "mux")
+                            result = Expression.Condition(Expression.Equal(a, Expression.Constant(BigInteger.Zero)),
+                                Build(e.Args[2]), Build(e.Args[1]));
+                        else if (e.Op == "~") result = Expression.OnesComplement(a);
+                        else if (e.Op == "resize") result = a;
+                        else if (e.Op == "slice" || e.Op == ">>")
+                            result = Expression.RightShift(a, Expression.Constant(e.Offset));
+                        else if (e.Op == "<<")
+                            result = Expression.LeftShift(a, Expression.Constant(e.Offset));
+                        else if (e.Op == "signextend")
+                            result = Expression.Call(typeof(Expr).GetMethod(nameof(Expr.SignedValue))!, a,
+                                Expression.Constant(e.Args[0].Width));
+                        else if (e.Op == "asr")
+                            result = Expression.RightShift(Expression.Call(typeof(Expr).GetMethod(nameof(Expr.SignedValue))!, a,
+                                Expression.Constant(e.Args[0].Width)), Expression.Constant(e.Offset));
+                        else if (e.Op == "lookup")
+                        {
+                            var table = Expression.Constant(e.Table);
+                            result = Expression.Condition(Expression.LessThan(a, Expression.Constant(new BigInteger(e.Table.Length))),
+                                Expression.ArrayIndex(table, Expression.Convert(a, typeof(int))),
+                                Expression.Constant(BigInteger.Zero));
+                        }
+                        else
+                        {
+                            b = Build(e.Args[1]);
+                            switch (e.Op)
+                            {
+                                case "+": result = Expression.Add(a, b); break;
+                                case "-": result = Expression.Subtract(a, b); break;
+                                case "*": result = Expression.Multiply(a, b); break;
+                                case "&": result = Expression.And(a, b); break;
+                                case "|": result = Expression.Or(a, b); break;
+                                case "^": result = Expression.ExclusiveOr(a, b); break;
+                                case "==": result = Bool(Expression.Equal(a, b)); break;
+                                case "<": result = Bool(Expression.LessThan(a, b)); break;
+                                case "slt":
+                                    result = Bool(Expression.LessThan(Signed(a, e.Args[0].Width), Signed(b, e.Args[1].Width)));
+                                    break;
+                                case "concat":
+                                    result = Expression.Or(Expression.LeftShift(a, Expression.Constant(e.Args[1].Width)), b); break;
+                                default: throw new NotSupportedException("Unsupported compiled operation: " + e.Op);
+                            }
+                        }
+                    }
+                    return Expression.And(result, Expression.Constant(Expr.Mask(e.Width)));
+                }
+                finally { stack.Remove(e); }
+            }
+            static Expression Bool(Expression predicate) => Expression.Condition(predicate,
+                Expression.Constant(BigInteger.One), Expression.Constant(BigInteger.Zero));
+            static Expression Signed(Expression value, int width) => Expression.Call(
+                typeof(Expr).GetMethod(nameof(Expr.SignedValue))!, value, Expression.Constant(width));
+            evaluator = Expression.Lambda<Func<BigInteger[], BigInteger>>(Build(output), values).Compile();
+        }
+        public BigInteger Evaluate(params BigInteger[] values)
+        {
+            if (values == null || values.Length != inputs.Length) throw new ArgumentException("Incorrect input count");
+            for (int i = 0; i < values.Length; i++)
+                if (values[i] < 0 || values[i] > Expr.Mask(inputs[i].Width)) throw new ArgumentOutOfRangeException(nameof(values));
+            return evaluator(values);
+        }
+    }
+}
