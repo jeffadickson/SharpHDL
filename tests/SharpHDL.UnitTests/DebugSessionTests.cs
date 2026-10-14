@@ -109,4 +109,43 @@ public sealed class DebugSessionTests
         Assert.Throws<ArgumentOutOfRangeException>(() => debug.Run(-1));
     }
 
+    [Fact]
+    public void Trace_retention_is_bounded_and_keeps_latest_samples()
+    {
+        var m = new Module("BoundedTrace");
+        var q = m.Register("q", 8, 0);
+        m.Next(q, q + Expr.Const(8, 1));
+        var session = new HardwareDebugSession(m, Substitute.For<IHardwareDebugObserver>())
+        {
+            MaxTraceSamples = 3
+        };
+        session.Watch("q", q);
+        session.Step(true);
+        session.Run(6);
+        Assert.Equal(3, session.Trace.Count);
+        Assert.Equal(new long[] { 5, 6, 7 }, session.Trace.Select(x => x.Cycle).ToArray());
+        Assert.Equal(new BigInteger(6), session.Trace[^1].Value);
+        session.MaxTraceSamples = 0;
+        session.Step();
+        Assert.Equal(3, session.Trace.Count);
+        session.ClearTrace();
+        Assert.Empty(session.Trace);
+    }
+
+    [Fact]
+    public void Reset_rearms_breakpoints_without_triggering()
+    {
+        var m = new Module("ResetRearm");
+        var q = m.Register("q", 8, 0);
+        m.Next(q, q + Expr.Const(8, 1));
+        var session = new HardwareDebugSession(m, Substitute.For<IHardwareDebugObserver>());
+        session.BreakWhen("zero", q, 0);
+        session.Step(true);
+        Assert.Null(session.LastBreakpointId);
+        session.Step();
+        Assert.Null(session.LastBreakpointId);
+        session.Step(true);
+        Assert.Null(session.LastBreakpointId);
+    }
+
 }
