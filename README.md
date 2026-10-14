@@ -340,3 +340,6 @@ adds independent Lite channels, byte-strobed register access, cyclic RAM banks,
 and an integrated capture/readback example with native functional models.
 Requirements AXIL01–AXIL05, BANK01–BANK04, CAP01–CAP03 and DMA01–DMA03 distinguish
 implemented local transfers from the remaining full AXI burst DMA work.
+
+
+**Pipeline debugging preview:** [Browser inspector](docs/pipeline/index.html) · [Build and usage instructions](docs/pipeline/README.md). The initial inspector replays a versioned trace from the .NET simulator rather than running a live DUT in JavaScript; see limitations in its README.
