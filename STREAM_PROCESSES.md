@@ -115,7 +115,9 @@ fixed-point objects in process bodies are not implemented. Other .NET languages
 can target the same supported CIL, but this new process suite currently verifies
 C#; language-specific generated patterns may need additional lowering.
 
-This is an explicit instruction-per-clock backend, **not an automatic HLS pipeline
+`AttachPipeline` now provides a separate [automatic scheduler](PIPELINE_SCHEDULER.md)
+for stateless arithmetic stream loops at II=1. The `AttachProcess` API described
+here remains an explicit instruction-per-clock backend, **not an automatic HLS pipeline
 scheduler**. It does not overlap loop iterations or promise initiation interval 1,
 share arithmetic resources, automatically choose FIFO depth, insert skid buffers,
 or detect all dataflow deadlocks. Cyclic networks can deadlock without an initial
@@ -137,7 +139,7 @@ stages and packet-preserving buffering today.
 | PROC07 | AXI boundary defines byte and packet metadata semantics explicitly | Implemented; scalar output sidebands checked in simulator and RTL replay; unsafe import requires opt-in |
 | PROC08 | Document cycle model, unsupported constructs and meaningful bus/PC comments | Implemented; this document and generated example RTL |
 | PROC09 | Reject ambiguous channel ownership/provenance rather than infer runtime wiring | Implemented; aliases, duplicate bindings/drivers and read/write-same-channel rejected |
-| PROC10 | Automatic pipelining with requested II and scheduling report | Future; requires dependency/resource scheduling and timing validation |
+| PROC10 | Automatic pipelining with requested II and scheduling report | Partial: `AttachPipeline` schedules stateless arithmetic loops at II=1 and emits a stage report; arbitrary II, resources and device timing remain future (PIPE01–PIPE12) |
 | PROC11 | Automatic FIFO sizing, deadlock analysis and explicit fork/join process operators | Future; current composition and diagnostics are explicit |
 | PROC12 | Packet-record CIL processes and verified F#/VB process examples | Future; existing packet structural blocks remain available |
 

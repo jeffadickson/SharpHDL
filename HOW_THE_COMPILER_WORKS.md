@@ -530,9 +530,10 @@ then shows how one versus two C# Map calls change the register boundaries.
 
 ## Why SharpHDL and what it won't synthesize
 
-The .NET compiler handles the source language; executing its CIL constructs the
-circuit through SharpHDL's API. The hardware graph is built by the library, not
-recovered by a general CIL synthesis engine. Read [the explicit boundary and
+For structural builders, the .NET compiler handles the source language and
+executing its CIL constructs the circuit through SharpHDL's API. Behavioral
+backends instead decode explicitly selected CIL methods into hardware; each
+backend has a documented supported subset, not general .NET synthesis. Read [the explicit boundary and
 rationale](SYNTHESIS_BOUNDARIES.md), including host loops, muxes and state examples.
 [Integer division](INTEGER_DIVISION.md) shows how one ordinary builder call can
 select unrolled combinational logic or an iterative state machine, and how rounding
@@ -541,3 +542,25 @@ and transaction timing become part of that block's contract.
 The [workbook WebAssembly lab](WASM_WORKBOOK.md) runs the generated adder,
 counter, state machine and loop examples with a waveform viewer and prepared
 student predictions. Fresh runs execute real Verilog in the browser.
+
+## Automatically scheduling stream arithmetic
+
+The new [pipeline scheduler](PIPELINE_SCHEDULER.md) adds a third timing choice
+for behavioral CIL. `AttachProcess` executes CIL instructions in clock states;
+`AttachPipeline` symbolically extracts a stateless stream iteration, schedules
+its operation dependencies and inserts elastic registers. Loads and stores to
+CIL locals become graph references rather than clock states. Neither backend
+runs a CLR on the FPGA.
+
+In [ScheduledPipeline.cs](examples/ScheduledPipeline.cs), `(x + 2) * (x * 3) ^ x`
+has three dependent arithmetic levels. With one level per stage, the first add
+and multiply run together, the second multiply occupies stage 2, and XOR is in
+stage 3. The scheduler delays the original x to keep it aligned with the product.
+After filling, this circuit accepts a token every clock when the sink is ready.
+The generated schedule lists stages, operations, widths and register costs;
+backpressure stalls occupied stages without mixing tokens.
+
+This first scheduler accepts one read/write per unconditional iteration with no
+loop-carried state. It rejects recurrences, conditional control and faults rather
+than silently choosing slower timing. Device delays and shared multi-cycle units
+are future extensions; graph depth is not a claimed FPGA clock frequency.

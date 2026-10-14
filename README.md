@@ -17,8 +17,10 @@ Build a single-clock RTL design in C#, simulate it, and emit Verilog.
 New: [typed channels and concurrent CIL processes](STREAM_PROCESSES.md). Write
 blocking `Read`/`Write` loops, attach independent hardware actors, and connect
 explicit FIFOs. Ready/valid handshakes are generated internally; scalar AXI4-Stream
-adapters define external packet behavior. This first backend uses one CIL
-instruction per clock, without automatic pipeline scheduling.
+adapters define external packet behavior. `AttachProcess` uses one CIL instruction
+per clock. New: [automatic pipeline scheduling](PIPELINE_SCHEDULER.md) via
+`AttachPipeline` overlaps stateless arithmetic iterations at II=1, with explicit
+logic-depth grouping, elastic backpressure and generated schedule reports.
 
 Version 0.14 adds [TinyRisc16](examples/TinyRisc/ISA.md): a structural 16-bit
 processor, assembler, instruction stepping, scratch RAM, memory-mapped I/O and

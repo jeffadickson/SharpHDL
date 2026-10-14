@@ -1,0 +1,11 @@
+Elastic pipeline polynomial
+Latency: 1 register boundaries (acceptance edge counts as boundary 1); stalls extend latency.
+Initiation interval: 1 with a continuously ready sink; capacity: 1 tokens.
+Logic levels per stage: 3; abstract operation count, not device timing.
+Payload register bits: 16; valid register bits: 1.
+No resource sharing; multiply is a whole combinational operator in one logic level.
+Ready propagates combinationally backward; no automatic skid-buffer insertion.
+stage 1 | level 1 | 32 bits | + | Polynomial_IL_0009_add
+stage 1 | level 1 | 32 bits | * | Polynomial_IL_000d_mul
+stage 1 | level 2 | 32 bits | * | Polynomial_IL_0012_mul
+stage 1 | level 3 | 32 bits | ^ | Polynomial_IL_0014_xor
