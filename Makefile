@@ -2,5 +2,5 @@
 help:
 	@echo "SharpHDL uses just for developer orchestration. Run: just --list"
 	@echo "Install just: https://just.systems"
-doctor setup build test test-hdl simulate benchmark browser vscode verify clean container-build container-test container-shell:
+doctor setup build test test-hdl simulate benchmark browser vscode verify clean container-build container-test container-shell container-verify:
 	@just $@
