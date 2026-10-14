@@ -61,6 +61,45 @@ class Program
   if(expectedTx!=null)Check(Encoding.ASCII.GetString(txBytes.ToArray())==expectedTx,name+" UART byte sequence; got "+Encoding.ASCII.GetString(txBytes.ToArray()));
   t.Save();
  }
+ static void RunCompiledHello(ushort[] rom)
+ {
+  var m=TinyRisc.Build(rom,"CompiledHello");
+  var reference=m.Simulate();
+  var jit=new CompiledSequentialSimulator(m);
+  var ports=m.Ports.ToArray();
+  Signal Port(string name)=>ports.Single(p=>p.Name==name);
+  void SetBoth(string name,int value){var p=Port(name);reference.Set(p,value);jit.Set(p,value);}
+  void Compare(int edge){
+   foreach(var p in ports.Where(p=>p.IsOutput))
+    if(reference.Read(p)!=jit.Read((Expr)p))
+      throw new Exception("Compiled TinyRisc mismatch edge "+edge+" port "+p.Name+
+        " interpreted="+reference.Read(p)+" compiled="+jit.Read((Expr)p));
+  }
+  var bytes=new System.Collections.Generic.List<byte>();
+  reference.Tick(true);jit.Tick(true);
+  SetBoth("run",1);SetBoth("step",0);SetBoth("switches",0);
+  SetBoth("rx_valid",0);SetBoth("rx_data",0);
+  for(int edge=0;edge<20000;edge++)
+  {
+   // Repeatable stalls, including sustained not-ready periods.
+   int ready=(edge%13<5)?0:1;
+   SetBoth("tx_ready",ready);
+   int accepted=ready!=0 && reference.Read(Port("tx_valid"))!=0?1:0;
+   int octet=(int)reference.Read(Port("tx_data"));
+   reference.Tick();jit.Tick();Compare(edge);
+   if(accepted!=0)bytes.Add((byte)octet);
+   if(reference.Read(Port("halted"))!=0)
+   {
+    if(reference.Read(Port("fault"))!=0)throw new Exception("TinyRisc hardware fault");
+    var message=Encoding.ASCII.GetString(bytes.ToArray());
+    Check(message=="Hello, world!\\r\\n","Compiled UART payload was "+message);
+    Console.WriteLine("PASS compiled vs interpreter TinyRisc: "+(edge+1)+
+      " clock edges, "+bytes.Count+" UART bytes; no fault");
+    return;
+   }
+  }
+  throw new Exception("Compiled TinyRisc did not halt by 20000 edges");
+ }
  static void Main(string[] args)
  {
   Directory.CreateDirectory("generated/tinyrisc");var demo=File.ReadAllLines("generated/tinyrisc/count.hex").Select(x=>Convert.ToUInt16(x,16)).ToArray();Run(demo,"CountRun");Run(demo,"CountStep",true);
