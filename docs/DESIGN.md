@@ -1,6 +1,8 @@
 # SharpHDL engineering design and implementation record
 
-**Revision:** 2026-10-14  
+**Revision:** 2026-10-14
+
+**Continuously maintained feature coverage:** [Feature parity matrix](FEATURE_PARITY.md). Treat PAR-001–PAR-018 as minimum verified user-facing parity targets; PAR-019–PAR-024 are differentiation targets. Review evidence weekly and on milestone completion.  
 **Status:** Active architecture and development record. For normative requirements and acceptance gates see [PRODUCT_REQUIREMENTS.md](PRODUCT_REQUIREMENTS.md).  
 **Evidence policy:** *Committed* means present in Git; *verified* requires executed tests and retained results. Neither a committed test nor a CI workflow automatically establishes a passing test.
 
