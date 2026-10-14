@@ -39,4 +39,4 @@ VS Code is the **primary integrated developer UI**, through the Debug Adapter Pr
 
 ## Status (2026-10-14)
 
-Assembly source committed. CPU memory and byte transmit interface pre-exist. A working serial UART integration, automated Hello World test, and source-level debugger acceptance have **not** yet been verified. This document is a completion checklist, not a completion claim.
+Assembly ROM, scratch RAM round-trip, CPU/RTL exact-byte regression, real UART serializer, independent 8N1 decoder testbench, and GitHub Actions .NET/Icarus/Yosys verification job are **committed**. Their execution results have **not** yet been verified; an end-to-end VS Code source-level debugger acceptance run also remains open. This document tracks implementation and verification separately.
