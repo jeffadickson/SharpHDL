@@ -2,6 +2,11 @@
 
 A small, executable C# hardware-description library inspired by MyHDL.
 
+For teaching, start with the [eight short learner chapters](docs/LEARNER_CHAPTERS.md)
+and [teacher pilot guide](docs/LEARNER_LED_PILOT.md). The illustrated workbook
+includes this route before the longer reference lessons. Begin with one mission;
+binary and waveform chapters can come later. [Review record](docs/LEARNER_REVIEW_ITERATIONS.md).
+
 Read [How the compiler works](HOW_THE_COMPILER_WORKS.md) for worked counter,
 width, F# FIR, CORDIC, reciprocal and packet-reducer examples, with actual IR
 dumps and generated HDL.

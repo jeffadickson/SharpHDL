@@ -14,48 +14,66 @@ These perspectives are design prompts, not fixed categories for children. Do not
 
 ## The children control the questions
 
-Offer two feasible missions, then let each pair choose. If a pair disagrees, give both missions a short turn rather than taking a class-wide majority vote. Let them choose the next prediction, who operates first, and whether to draw, explain or act out the answer. They may ask to repeat, slow down or take a movement break.
+Offer two feasible missions, then let each pair choose. If a pair disagrees, briefly preview each, then agree one mission for today and reserve the other for next time. Offer each child a private choice before discussion; do not let a confident partner choose every time. Let them choose the next prediction, who operates first, and whether to draw, explain or act out the answer. They may ask to repeat, slow down or take a movement break.
 
 A learner may say “I do not know yet” and still operate the experiment; ask them to notice one change and revise their explanation afterward. Hand out only the chosen activity page and needed cards rather than requiring the entire workbook at once.
 
-The adult handles installation, programming, safe board connections and recovery. The adult also preserves the experiment's rules: changing a clock rate or pausing a receiver is allowed; claiming an unobserved result is not. Ask “What could we try to find out?” before supplying an explanation.
+The adult handles installation, programming, safe board connections and recovery. The adult also preserves the experiment's rules: choosing manual clock presses or a receiver pause is allowed; claiming an unobserved result is not. Ask “What could we try to find out?” before supplying an explanation.
 
-## A proposed 40-minute first session
+## A proposed first session of 25 to 30 minutes
 
-Times are trial allocations, not measured attention spans. Shorten or split the session when observation calls for it.
+Choose one mission and one goal. Use Chapters 2 or 4 from [the learner chapters](LEARNER_CHAPTERS.md). Chapter 1 is an optional simpler input experiment; Chapters 3 and 5–8 are later activities, not a first-session checklist. Binary and waveforms are optional branches. Give each learner the chosen page, not the full teacher guide.
 
 | Time | Learner decision/action | Adult's job |
 |---|---|---|
-| 0–4 min | Watch one working example. Pick controller or card-delivery mission. | Show only the controls needed; avoid starting with a vocabulary lecture. |
-| 4–12 min | Choose a prediction, run it, and try a second idea. Swap operator and predictor after one experiment. | Ask what changed and what stayed the same. Record help needed. |
-| 12–16 min | Act out the circuit: be a stored number or pass a card on a clap. | Introduce “clock edge” and “remember” at the moment they matter. |
-| 16–24 min | Choose a challenge below. Invent a test that could reveal a mistake. | Keep the mechanism accurate; model how to recover from a wrong guess. |
-| 24–29 min | Use four number cards to make a number of their choice. | Introduce 8, 4, 2, 1 only as needed; decimal remains alongside binary. |
-| 29–35 min | Investigate one prepared waveform or repeat the hands-on experiment. | Clearly distinguish a completed trace from an interactive circuit. |
-| 35–40 min | Teach the partner one discovery. Choose what to do next time. | Collect feedback privately before discussing it as a group. |
+| 0–3 min | Choose controller pause or direct card delivery. | Show a working example and one recovery action. |
+| 3–8 min | Try the relevant controls or cards. | Model one test and its immediate result. |
+| 8–20 min | Each child chooses a change and operates its short test. Swap after each test. | Help only as needed; record the unaided attempt and response to help. |
+| 20–25 min | Each demonstrates one discovery for their chosen mission. | Use the mission-specific observation below. |
+| 25–28 min | Give feedback separately; choose what to try next time. | Record enjoyment separately from understanding. |
+
+These are trial allocations, not measured attention spans. Stop earlier when needed. Offer up to ten more minutes only if both children want to continue; another chapter is never required to complete today's mission.
 
 ## Mission A: you are the controller
 
 Use [the offline Clock Lab](interactive/SharpHDL_Learning_Lab.html), **Hockey drill controller** tab. This evaluates the exported hardware graph in JavaScript; it is distinct from running the Verilog in WASM.
 
-1. Reset. Select Start and Enable, then press Clock. Notice that entering Running starts at zero ticks.
-2. Release Start. Let the child choose when to turn Enable off and back on. Predict before each Clock press.
-3. Offer a challenge: “Can you make time pass without adding a tick?” or “Can you reach Done?”
+1. The guide presses **Reset edge**, turns **Stop off**, turns **Start** and **Practice enabled** on, and presses **Clock +1**. Entering Running starts at zero ticks. Turn Start off before handing over. Reset clears registers but leaves checkbox selections unchanged.
+2. With Start already off, let the child choose when to turn Practice enabled off and back on. Predict before each Clock press.
+3. Offer a challenge: “Can you make time pass without adding a tick?” Stop at this pause challenge for the first session; reaching Done is Chapter 3.
 4. Change roles. The new operator chooses a different pause pattern.
 
-An input checkbox alone is not a clock edge. Four following enabled edges reach Done. Inspect the visible state and history rather than assuming every click increments the count. Treat Stop as a later prediction to investigate, not an extra rule to memorize at the beginning.
+An input checkbox alone is not a clock edge. Four following enabled edges reach Done. Inspect the visible state and history rather than assuming every click increments the count. Treat Stop as a later prediction to investigate, not an extra rule to memorize at the beginning. Do not use Run slowly for this first test. Pause animation stops automatic clock presses; turning Practice enabled off allows manual clocks while holding the count.
 
-## Mission B: can you deliver every parcel?
+With Start off, the edges after completion show **Done/4 → Ready/4 → Ready/0**. Both the state and counter use the old state when computing their next values. Chapter 3 deliberately explores this; Chapter 2 stays in Running and is restarted between learners.
 
-Use number cards 10, 11 and 12, Ready/Valid cards and two marked waiting places. Children choose the story and a receiver pause of three or four claps. A third participant calls the clock; with two children the adult can do this.
+## Mission B first session with direct delivery
 
-- First try a direct connection. The sender holds its offered card while the receiver waits.
-- Then try the registered two-place skid buffer. Decide transfers from the state **before** each clap; update the slots after the clap.
-- At each interface, transfer only when Valid and Ready are both on at the clap. An accepted input is not necessarily a delivered output.
-- If the buffer is full before the clap, it cannot accept a new card on that clap, even if its first card leaves. That is the behavior of this specific buffer.
-- Challenge: “Can we finish with every card delivered exactly once?” Try Ready without Valid too: no card is transferred.
+Use Chapter 4 with cards 10, 11 and 12, Offer/Valid and Can take/Ready cards. No buffer slots are needed today. Sender offers 10 with Valid on; receiver chooses one or two waiting edges with Ready off, then Ready on. Keep the card and Valid stable while waiting. Only a clock edge with both Valid and Ready on transfers a card. Offer the next card for a later edge. After the receiver takes card 12, turn Valid off and keep Ready on for one more edge to check nothing extra arrives.
 
-Use the workbook's worked three-clap table and four-clap practice answers to check the acting. The children choose the pause in the **card activity**. The prepared browser stream tests always use the existing three-edge pause unless the teacher changes and rebuilds the bench.
+A third participant calls the clock; with two children the adult can do this. Offer a seated silent version using a printed upward-arrow clock card. Use words and shapes as well as color. Swap sender and receiver after one short test. Each learner can demonstrate a wait and a transfer; do not require buffer accounting yet.
+
+## Later chapters with a buffer
+
+Introduce Chapter 5 only after direct delivery is comfortable. The adult manages Head (next to leave) and Spill (extra place), initially empty. Sender offers 10 with Valid on; receiver Ready off. Children choose three or four waiting edges, then Ready stays on. Mark input and output decisions from the state before the edge, then move cards together. After card 12 is accepted at the buffer input, turn sender Valid off. Keep receiver Ready on through an extra empty edge after delivery.
+
+The input is Ready when fewer than two cards are stored before the edge. Output is Valid when Head contains a card. On output transfer remove Head, moving Spill forward if present. On input transfer put the arriving card at the tail after those removals. This ordering describes the simultaneous result; it does not permit an input when the old state was full. A newly arriving card cannot depart at that same edge.
+
+For a three-edge receiver wait, this is the complete teacher reference. Slot values below are after the edge. Input acceptance and output delivery are decisions made before it.
+
+| Edge | Receiver Ready | Input accepted | Output delivered | Head after | Spill after | Accepted total | Delivered total |
+|---|---|---|---|---|---|---|---|
+| 1 | 0 | 10 | none | 10 | empty | 1 | 0 |
+| 2 | 0 | 11 | none | 10 | 11 | 2 | 0 |
+| 3 | 0 | none | none | 10 | 11 | 2 | 0 |
+| 4 | 1 | none | 10 | 11 | empty | 2 | 1 |
+| 5 | 1 | 12 | 11 | 12 | empty | 3 | 2 |
+| 6 | 1 | none | 12 | empty | empty | 3 | 3 |
+| 7 | 1 | none | none | empty | empty | 3 | 3 |
+
+At edge 5, delivering 11 and accepting 12 happen together. With a four-edge wait, insert one extra full waiting edge after edge 3; delivery begins at edge 5 and finishes at 7. The bundled browser bench uses the three-edge pause, not the child's new pause pattern.
+
+Chapter 6 adds the ledger. After each edge without reset, check **accepted = delivered + stored**, with stored between zero and two. Track the delivered numbers too: totals alone cannot detect reordering. Compare direct and buffered experiments with the same offered list and receiver pause but independent sender progress. The full buffer refuses input on its first draining edge; that behavior belongs to this particular registered design, not every possible buffer.
 
 ## What can learners actually control today?
 
@@ -80,7 +98,7 @@ Run a small supervised pilot before calling the class suitable for nine-year-old
 3. Which thing should we remove or change?
 4. What would you build next?
 
-Observe rather than infer: did both children operate, choose an experiment, recover after a wrong prediction, and distinguish an input change from a clock? Can each show one correct transfer and one wait using the cards? They may answer with actions instead of technical vocabulary.
+Observe the chosen mission only. A controller learner demonstrates a count and a hold while Running, distinguishing an input change from a clock. A direct-delivery learner demonstrates one transfer and one wait with the offered card held. Do not require both missions. Did each child choose and operate a short test and recover after a wrong prediction? They may answer with actions instead of technical vocabulary.
 
 | Session record | Fill in after observation |
 |---|---|
@@ -89,7 +107,12 @@ Observe rather than infer: did both children operate, choose an experiment, reco
 | Each learner's independent turn and choice | |
 | Exact confusing action or instruction | |
 | Help given and whether it worked | |
-| Demonstrated understanding (specific action) | |
+| Unaided attempt and prediction (or “not sure”) | |
+| Control-finding difficulty versus circuit misconception | |
+| What happened after help | |
+| Independent retry with a changed input or wait | |
+| Enjoyment or requested repeat (separate from understanding) | |
+| Demonstrated understanding for chosen mission | |
 | Learner's requested change | |
 | Next session change and reason | |
 
@@ -106,3 +129,14 @@ Record anonymous observations, not invented quotations or scores. If one child n
 | EDU-AGENCY-05 | Actual learner feedback changes the next session plan. | Blank observation record supplied; not yet performed. |
 
 Teacher preparation: [station acceptance](../boards/GoBoard/CLASSROOM_PILOT.md) and [WASM setup](../WASM_WORKBOOK.md). Physical station acceptance and actual learner trials remain unperformed.
+
+## Chapter requirements
+
+| ID | Requirement | Verification boundary |
+|---|---|---|
+| EDU-CH-01 | Controller setup works after any checkbox selections; reset preserves them. | Browser-control check and teacher station rehearsal. |
+| EDU-CH-02 | Separate input changes, disabled clocks, enabled clocks and completion behavior. | Graph/control checks; actual learner explanation still to observe. |
+| EDU-CH-03 | Model empty/full buffer and simultaneous acceptance/delivery using pre-edge state. | Teacher table matches prepared trace; card enactment needs a pilot. |
+| EDU-CH-04 | Eight-row ledger accommodates both pause choices; check order and conservation. | Reference row review; child independent retry still to observe. |
+| EDU-CH-05 | Each chapter states a goal and demonstration; route respects prerequisites. | Editorial review; actual time and engagement unmeasured. |
+| EDU-CH-06 | Prepared waveform exploration starts at a defined event and never implies editable stimulus. | Trace/control tests and documented navigation. |

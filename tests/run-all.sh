@@ -25,6 +25,7 @@ for suite in behavioral advanced fsharp three-languages learning tinyrisc; do
 done
 run naming python3 tests/check-net-naming.py
 run browser-graph node tests/check-learning-browser.js
+run learner-controls node tests/check-learner-controls.js --browser
 run verisim python3 tests/check-verisim.py
 run wasm-workbook node tests/check-wasm-workbook.js --browser
 for script in synthesize synthesize-numeric synthesize-multiply synthesize-divide synthesize-behavioral synthesize-examples synthesize-tinyrisc; do

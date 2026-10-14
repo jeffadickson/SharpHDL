@@ -127,3 +127,10 @@ Verilog event-region debugger or an arbitrary trace-upload facility.
 For a child-directed first session, use the [learner-led pilot guide](docs/LEARNER_LED_PILOT.md).
 It includes an explicitly simulated focus-group critique, feasible learner choices,
 and an observation sheet for an actual nine-year-old pilot. No child trial is claimed.
+
+The [eight learner chapters](docs/LEARNER_CHAPTERS.md) separate direct transfer,
+buffering, parcel accounting, binary and waveform reading into later choices.
+Start with one mission in a proposed 25–30 minute session.
+`node tests/check-learner-controls.js` checks the graph route; add `--browser`
+for actual Clock Lab controls (Playwright/Chromium required). The latter is
+a separate gate and a graph pass does not imply browser-control acceptance.

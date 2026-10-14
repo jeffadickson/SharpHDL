@@ -9,6 +9,7 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from pathlib import Path
 import sys
+import re
 
 ROOT=Path(__file__).resolve().parents[1];ART=ROOT/'docs/course-art'
 d=Document();sec=d.sections[0]
@@ -25,7 +26,7 @@ def code(text):
  para=p(text);para.paragraph_format.space_after=Pt(10)
  for run in para.runs:run.font.name='DejaVu Sans Mono';run.font.size=Pt(10)
 def h(text):d.add_heading(text,2)
-def page(title):d.add_page_break();d.add_heading(title,1)
+def page(title):d.add_heading(title,1).paragraph_format.page_break_before=True
 def boldline(label,text):
  para=d.add_paragraph();para.add_run(label+' ').bold=True;para.add_run(text);return para
 def lablink(key,label):
@@ -80,15 +81,57 @@ def note(text):
 
 # 1 Cover
 p('Digital Hardware with SharpHDL','Title')
-p('An illustrated workbook for curious builders around age ten','Subtitle')
+p('An illustrated workbook for curious builders around ages nine and ten','Subtitle')
 p('Make numbers glow. Build a circuit that adds. Teach a register to remember. Then turn a clock into a blinking counter.')
 picture('cover','A picture of discovery and teamwork. The pictured board is imaginative cover art, not the real board layout.')
 h('How to use this workbook')
-p('Work with a partner and a grown-up guide. Predict the answer before you press a button or change the code. Test your idea, then explain what you saw. Swap the builder and predictor jobs halfway through.')
-table([['First explore','Then build','Finally explain'],['Bits and lights','Adders and memory','Counters and an assembly line'],['Number cards and gate puzzles','A small edit to real C# code','Your own useful circuit']],[2.3,2.3,2.4],11)
+p('Begin with one short chapter and one question. Work with a partner and a grown-up guide. You may predict, or say that you do not know yet and try. Explain by talking, drawing, pointing or moving cards. Both partners get a turn at the controls.')
+table([['Choose today','Try a question','Show a discovery'],['Change a number or pause a drill','What changes and what stays still','Point, talk, draw or use cards'],['Pass a parcel with a partner','When may the parcel move','Both partners take a turn']],[2.3,2.3,2.4],11)
 boldline('Name','________________________________   Partner ________________________________')
-p('Eight one-hour lessons, plus printable number cards, a display key, a teacher guide, and answers. The first six lessons can be a complete shorter course. Language comparison is optional enrichment.')
+p('Start with a 25–30 minute visit using the short chapters that follow. Binary and waveforms are optional later choices. The longer illustrated lessons, printable cards, guide and reference pages remain available when you want to explore further.')
 
+# The learner route has one Markdown source shared with the web/documentation.
+def markdown_chapters(path):
+ lines=path.read_text().splitlines()
+ i=0
+ intro=True
+ while i<len(lines):
+  line=lines[i].strip()
+  if not line:
+   i+=1;continue
+  if line.startswith('# '):
+   page(line[2:])
+  elif line.startswith('## '):
+   if intro:
+    h('Choose a chapter together')
+    table([['Chapter','Try this'],*[ [re.sub(r'^## Chapter (\d+) .*',r'\1',x),re.sub(r'^## Chapter \d+ ','',x)] for x in lines if x.startswith('## Chapter ')]],[.85,6.15],11)
+    p('Choose one mission for this visit. The later illustrated lessons explain the ideas in more detail. Your guide can use docs/LEARNER_LED_PILOT.md to prepare and record what you discover.')
+    intro=False
+   page(line[3:])
+  elif line.startswith('### '):
+   h(line[4:])
+  elif line.startswith('|'):
+   rows=[]
+   while i<len(lines) and lines[i].strip().startswith('|'):
+    row=[x.strip() for x in lines[i].strip().strip('|').split('|')]
+    if not all(re.fullmatch(r':?-+:?',x) for x in row):
+     rows.append(row)
+    i+=1
+   widths={3:[2.1,2.3,2.6],5:[.7,1.25,1.25,1.1,2.7]}.get(len(rows[0]),[7/len(rows[0])]*len(rows[0]))
+   table(rows,widths,11)
+   continue
+  else:
+   para=d.add_paragraph()
+   for j,part in enumerate(re.split(r'(\*\*.*?\*\*|\x60[^\x60]+\x60)',line)):
+    run=para.add_run(part[2:-2] if part.startswith('**') else part.strip('\x60'))
+    if part.startswith('**'):run.bold=True
+    elif part.startswith('\x60'):run.font.name='DejaVu Sans Mono'
+   if re.match(r'^\d+\. ',line):
+    para.paragraph_format.left_indent=Inches(.15)
+    para.paragraph_format.first_line_indent=Inches(-.15)
+  i+=1
+
+markdown_chapters(ROOT/'docs/LEARNER_CHAPTERS.md')
 # 2 Board and controls
 page('Meet your little hardware workshop')
 mission('Find the buttons, lights and number displays before writing any code.')
@@ -218,9 +261,13 @@ tryit('Find binary 1011. Which hex digit represents it? Find F. What decimal num
 
 # 14 Teacher plan
 page('Guide for the grown up builder')
-p('Start with one board per pair and one source language. Prepare the shell, editor and USB programming before class. Keep the first edit to a constant in StudentLogic.cs.')
-table([['Minutes','Activity','Guide’s job'],[10,'Predict the result','Ask for a reason before the answer'],[10,'Cards or a physical model','Make bits and registers tangible'],[25,'Build and try','Handle tool setup and programming'],[10,'Test predictions','Keep automatic checks in the build'],[5,'Explain and reflect','Have partners swap explanations']],[.8,2.7,3.5])
-h('The supported classroom target')
+p('For a first session, use one short learner chapter for 25–30 minutes. Let the pair choose a mission and test. Binary, code and waveforms can wait. Use docs/LEARNER_LED_PILOT.md for the exact buffer transition table, startup steps, mission-specific observations and a printable observation sheet. For later board work, prepare the shell, editor and USB programming before class.')
+table([['Minutes','Activity','Guide’s job'],[3,'Choose one mission','Offer two manageable choices'],[5,'First learner tries','Allow a prediction or an open question'],[5,'Swap the controls','Give the second learner a fresh start'],[7,'Choose another test','Help both children notice cause and effect'],[5,'Show a discovery','Ask each learner to demonstrate or point'],[3,'Private feedback and next choice','Ask each learner what to repeat or change']],[.8,2.7,3.5])
+p('This plan totals 28 minutes. Repeats and extra missions belong in another visit or outside this budget. Stop earlier for a break when needed.')
+h('Record what each learner actually does')
+p('Use the mission-specific prompts and observation sheet in docs/LEARNER_LED_PILOT.md. Keep enjoyment and demonstrated understanding separate. Record the learner’s own question, their turn at the controls, and whether they showed the idea independently or with help. Do not turn this into a score or a race.')
+p('For parcel chapters, the guide uses that file’s exact buffer transition table. Decide all transfers from the cards and signals visible before the edge, then move the agreed cards together. Check accepted = delivered + stored, and check the delivered order too.')
+page('Teacher preparation and classroom target')
 p('Use .NET 8 SDK, Python, Icarus, Yosys, nextpnr-ice40 and IceStorm. OSS CAD Suite packages the FPGA tools. The supplied shell scripts require a POSIX shell; prepare the environment and USB drivers for your computers. The small student file calls the same explicit-width expression API as the larger examples.')
 p('The teacher-owned board shell handles startup reset, two-register input synchronization, 10 ms debouncing, pin constraints and segment encoding. The C# application logic supplies B, the adder, a counter and display mode. Use clock enables; do not create a clock from a button.')
 h('What was actually checked')
@@ -239,7 +286,7 @@ for text in [
 
 # 15 Answers
 page('Answer key and progress passport')
-p('Use the answers after children have made predictions. Praise a clear explanation and a test that catches a mistake, rather than the number of lines typed.')
+p('Use the answers after children have had a chance to explore or predict. Praise a clear explanation and a test that catches a mistake, rather than the number of lines typed.')
 table([['Activity','Answer'],['Lesson 1','6 = 0110. A bit has 2 choices. Four bits have 16 patterns.'],['Lesson 2 AND','00 -> 0; 01 -> 0; 10 -> 0; 11 -> 1.'],['Lesson 2 OR','00 -> 0; 01 -> 1; 10 -> 1; 11 -> 1.'],['Lesson 3 add two','B = 0, 3, 5, 7 gives A = 2, 5, 7, 9.'],['Lesson 4','B = 15 gives A = 1 after adding two in four bits.'],['Lesson 5','Change to 8 without a clap: hold 3. Next clap: store 8.'],['Lesson 6','Count 2: OFF; count 3: ON; count 4: 0100 and OFF.'],['Lesson 7','C = 5 -> 7 -> 21. One boundary is crossed per clap.'],['Lesson 8','After one shot, two more give 3. A new held press adds one count.'],['Number cards','3: 2+1 = 0011; 6: 4+2 = 0110; 12: 8+4 = 1100; 15: all = 1111.'],['Display detective','1011 is hex B and decimal 11. F is decimal 15.']],[1.65,5.35],10.5)
 h('My hardware passport')
 table([['I can show or explain','Date','Partner’s initials'],['Read a four-bit number','________','________'],['Predict AND and OR','________','________'],['Explain a four-bit overflow','________','________'],['Explain why a register remembers','________','________'],['Predict the blinking low bit','________','________'],['Track two pipeline cards','________','________'],['Write a test that catches a mistake','________','________']],[4.3,1.35,1.35],10.5)
@@ -327,14 +374,15 @@ note('Try it with envelopes and number cards. The simultaneous read/write rule i
 
 # 22 Interactive companion
 page('Clock lab  Coach the circuit')
-p('Open SharpHDL_Learning_Lab.html in a modern browser. It works offline. This companion is most useful after Lesson 5, when children know that a register changes on a clock edge. Start with the hockey drill; the number shifts and loops are optional extensions.')
-picture('fsm_lab','The controller remembers one state. Start enters Running; four enabled practice ticks reach Done. Stop cancels a running drill. Reset returns to Ready.',width=6.2)
-h('Predict before you press the clock')
-table([['Try this','Predict and explain'],['Turn Start on and press Clock once','Running begins, but count is still zero. The first practice tick is the next edge.'],['Turn Start off and clock four times','Count reaches four and state becomes Done. One more edge returns to Ready.'],['Pause by turning Practice enabled off','Running and count hold until practice is enabled again.'],['Turn Stop on during a drill','The next edge returns to Ready. Reset also clears the count immediately on its edge.']],[2.9,4.1],10.5)
+p('Open SharpHDL_Learning_Lab.html in a modern browser. It works offline. This companion is most useful after Lesson 5, when children know that a register changes on a clock edge. The short learner chapters also offer an earlier guided route. Hide the code and focus on one control at a time.')
+picture('fsm_lab','Start enters Running; four enabled ticks reach Done. Stop cancels a drill. Reset returns to Ready.',width=5.4)
+h('Try one edge at a time')
+p('For a fresh drill, stop Auto if running. Turn Start and Stop off, turn Practice enabled on, and press Reset. Reset clears registers but leaves input checkboxes unchanged. Turn Start on, press Clock +1 once, then turn Start off. You are now Running at count zero.')
+table([['Try this','Predict and explain'],['From Ready/0, turn Start on and press Clock once','Running begins at zero. Turn Start off; the first practice tick is the next edge.'],['From Running/0 with Start off, clock four times','Done/4 is temporary. The next two edges show Ready/4, then Ready/0.'],['Pause by turning Practice enabled off','Running and count hold until practice is enabled again.'],['Turn Stop on during a drill','The next edge returns to Ready. Reset also clears the count immediately on its edge.']],[2.9,4.1],10.5)
 h('A coach with a very small memory')
 p('Ready, Running and Done fit in a two-bit state register. The helper generates its next-state choices. The count is a separate four-bit register. Both update together from their old values: writing one does not instantly change the other within the same clock tick.')
 code('var fsm = new StateMachine(m, "drill",\n    "Ready", "Running", "Done");\nfsm.When("Ready", start, "Running")\n   .When("Running", finished, "Done");\nfsm.Build();')
-p('This short extract shows the idea; the HTML includes the full C# with Stop and Done transitions. A missing transition holds the state. When two transitions match, the first listed wins. The helper creates real hardware; it does not automatically schedule an arbitrary while loop.')
+p('The HTML contains the full C# including Stop and Done transitions. A missing transition holds state; the first matching transition wins. This helper builds hardware, not an automatically clocked while loop.')
 note('The Clock Lab simulates exported graphs. The linked WASM lab runs generated Verilog with a teacher bench. Both are checked against expected traces. Fresh WASM runs need engine files.')
 
 lablink('fsm','Coach the hockey drill in real RTL')

@@ -49,3 +49,10 @@ Three synthesis logs appeared incomplete during the final artifact audit despite
 passing stage results. The affected TinyRisc, multiplier and divider stages were
 rerun; each completed successfully, produced complete backend logs and passed
 its post-synthesis simulation. No claim relies on the incomplete copies.
+
+## Subsequent learner course review
+
+The 30-page count and full-suite result above describe that completed release.
+Later learner-led chapter additions and their separate five review rounds are
+recorded in [the learner review log](docs/LEARNER_REVIEW_ITERATIONS.md), including
+their own validation limits.

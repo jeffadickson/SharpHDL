@@ -1,0 +1,29 @@
+Learner course five-round scoped verification
+Not a full tests/run-all.sh pass.
+$ node tests/check-learner-controls.js
+PASS learner lab inline JavaScript parses
+PASS 168 graph-only learner-route assertions (not browser control tests)
+SKIP actual learner-control browser checks (add --browser)
+
+Exit 0
+$ node tests/check-learning-browser.js
+PASS 11139 browser-engine/reference comparisons
+
+Exit 0
+$ node tests/check-wasm-workbook.js
+PASS seven workbook RTL fixtures, expected values, counter timing, inline JS and VeriSim payloads
+
+Exit 0
+$ python3 tests/check-generated-docs.py
+PASS generated net names, actual Verilog excerpts, board hashes and workbook naming and WASM sections
+
+Exit 0
+$ bash -n tests/run-all.sh
+
+Exit 0
+$ git diff --check
+
+Exit 0
+Actual Chromium --browser attempt failed before page load: process_singleton_posix.cc socket() denied by environment. Browser-control acceptance is UNVERIFIED.
+Final workbook: 40 pages; all pages visually inspected by builder; instructor separately inspected pages2–10 and23–24.
+No physical station or actual child trial performed.

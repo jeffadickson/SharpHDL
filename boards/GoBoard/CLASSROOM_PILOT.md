@@ -53,3 +53,21 @@ Do not treat suggested lesson durations as measured classroom results.
 For a child-directed first session, use the [learner-led pilot guide](../../docs/LEARNER_LED_PILOT.md).
 It includes an explicitly simulated focus-group critique, feasible learner choices,
 and an observation sheet for an actual nine-year-old pilot. No child trial is claimed.
+
+## Rehearse the learner controlled Clock Lab
+
+Use docs/interactive/SharpHDL_Learning_Lab.html. This graph simulator is separate
+from the WASM testbench runner and does not require a physical board.
+
+- Try arbitrary Start, Practice enabled and Stop selections. Press Reset edge:
+  Ready and count zero return, automatic playback stops, checkbox selections remain.
+- Turn Stop off; Start and Practice enabled on; press Clock +1: Running, zero.
+  Turn Start off before handing over. Changing a checkbox alone must not clock it.
+- One enabled edge counts one; two disabled edges hold one; enable and clock again
+  to reach two. Restart for the second learner.
+- On a fresh run, four enabled edges after entry reach Done/4. With Start off,
+  the next two edges give Ready/4 then Ready/0. Use manual Clock +1 to see each.
+- Record operator, browser and result for the actual learner device. Automated
+  checks do not establish that school-device setup or learner usability passed.
+
+Status on actual learner devices: **Not performed**.
