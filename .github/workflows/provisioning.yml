@@ -1,0 +1,24 @@
+name: Clean environment provisioning
+on:
+  workflow_dispatch:
+  pull_request:
+    paths: ['tools/**', 'justfile', 'Makefile', 'global.json', 'src/**', 'tests/**', '.github/workflows/provisioning.yml']
+jobs:
+  provision-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build development toolchain from clean checkout
+        run: docker build -f tools/Dockerfile.dev -t sharphdl-dev:local .
+      - name: Run actual compiler, simulator, synthesis and unit-test checks
+        run: docker run --rm -v "${{ github.workspace }}:/workspace" -w /workspace sharphdl-dev:local bash tools/container-smoke.sh
+      - name: Upload verification artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: clean-provisioning-verification
+          path: |
+            **/TestResults/*.trx
+            generated/counter.v
+          if-no-files-found: warn
