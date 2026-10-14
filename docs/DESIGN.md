@@ -193,3 +193,7 @@ Root `justfile` is the recommended human entry point, with a minimal compatibili
 
 
 **2026-10-14 automatic toolchain provisioning:** `just setup` now builds the [development container](../tools/Dockerfile.dev) with the .NET SDK, Icarus, Verilator, Yosys, nextpnr/IceStorm, Python and Node, and restores .NET dependencies. Container commands run builds and xUnit tests without a native .NET installation. Docker itself must be installed and running; image and package versions are not yet digest locked and build results have not been verified in this GitHub-only session.
+
+## 19. Fresh clone toolchain smoke gate (2026-10-14)
+
+A new `tools/container-smoke.sh` and `.github/workflows/provisioning.yml` execute actual .NET compilation and xUnit, reference simulation, Icarus parsing and Yosys elaboration from the auto-provisioned environment. `just container-verify` exposes the same path locally. The `setup` command now restores all .NET projects and checks installed HDL executables. It does not validate real vendor timing closure. The code is committed but not yet confirmed passing on GitHub Actions.
