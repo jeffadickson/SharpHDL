@@ -245,3 +245,9 @@ The structural pipeline scheduler now also returns `PipelineHandle.Operations` c
 ## Dataflow DAG export (initial implementation)
 
 For structural expressions, `StructuralPipeline.Attach(module, name, input, output, expression, options)` returns a `PipelineHandle` containing `DataflowGraph`. Nodes carry postorder IDs, stage, abstract logic level, width, operation and optional name. Directed edges map source operand IDs to consuming nodes with an operand index. `handle.DataflowGraph.ToJson()` produces machine-readable JSON. xUnit graph tests check topological order, determinism and generated RTL. This is an IR-level *dependency DAG*; it is not a placement-level schematic or a timing measurement. The behavior CIL scheduler has not yet been unified with this representation.
+
+## CIL-generated graph and live occupancy sampling
+
+`CilCompiler.AttachPipeline` uses `PipelineScheduler.Attach` internally; its resulting `PipelineHandle.DataflowGraph` includes DAG nodes/edges and existing method/IL operation name hints. No independent CIL DAG implementation is needed.
+
+`PipelineFlowProbe(handle, input, output)` and `PipelineSignalProbe(handle, inputValid, inputReady, outputValid, outputReady)` can sample stage-valid bits and handshake values from a `Simulator` without advancing the clock. A `PipelineFlowSample` exposes `StageOccupied`, `InputAccepted`, `OutputAccepted`, `InputStalled`, and `OutputStalled`. Call `Sample(sim, cycle)` at a defined pre-edge point **before** `sim.Tick()`. These values show stage occupancy and transfers, but do not yet correlate individual tokens across stages or estimate actual FPGA timing. Dedicated xUnit coverage exists but awaits execution.
