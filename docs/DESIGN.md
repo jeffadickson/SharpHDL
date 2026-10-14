@@ -145,3 +145,9 @@ Development issues: [#1–#17](https://github.com/jeffadickson/SharpHDL/issues).
 - Shared debug state, variable watches and boundary semantics need isolation, snapshots and large-trace ring-buffer optimization.
 - Integration tests currently rely on runtime package installation and must become reproducible with pinned toolchain images.
 - New code and workflows are **unverified in this GitHub-only session**; build/test failures remain possible and must be triaged before declaring a milestone complete.
+
+## 12. Visualization priority decision (2026-10-14)
+
+**P0:** Source-linked pipeline/dataflow explorer: stage boundaries, operations, graph edges, estimated operator latency, payload register bits, FIFO occupancy and backpressure. **P1:** Module/clock/bus/memory hierarchy inspector and synthesis reports tied to generated Verilog and actual target-tool evidence. **P2:** Optional generic gate-cone schematic/diagram for focused diagnostics and education. Do not build a full-chip interactive gate schematic as a primary workflow. Gate-level *IR, simulation and equivalence* remain important independently of diagram UI.
+
+Current first step: `PipelineHandle.Operations` exposes structured stage/level/width/operation/name data for the structural pipeline scheduler. This does **not** yet include edges, critical paths, real delay, timing closure, DSP mapping or the other CIL pipeline backends. All later viewers must consume structured metadata, not parse human-formatted schedule text. Track source provenance and source-to-stage links explicitly.
