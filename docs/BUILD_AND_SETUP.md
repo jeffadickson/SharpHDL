@@ -58,3 +58,9 @@ The VS Code extension is still a prototype; `just vscode` prints the setup instr
 The root SDK policy is 8.0.100 with `latestFeature`, allowing newer .NET 8 SDK feature bands. Realized SDK version should be recorded by CI. NuGet versions are in existing project files, and `Testcontainers` currently bootstraps Icarus from Ubuntu at runtime; that integration image/package setup is not fully reproducible until digest-pinned. Full vendor FPGA synthesis and timing are not included in ordinary developer verification. A future `mise` manifest/devcontainer may pin language runtimes and HDL tools more comprehensively.
 
 Do not call these scripts passing until they have been executed with recorded output.
+
+## Clean environment verification
+
+Run `just container-verify` after `just setup`. The container smoke test checks executable availability, builds the existing test driver and live debugging host, runs the xUnit suite and legacy reference regression, parses generated Verilog using real Icarus and processes it with Yosys. The provisioning CI workflow performs a clean `docker build` followed by this test, storing test and generated RTL artifacts.
+
+`just setup` restores **all six** .NET projects and verifies key HDL commands inside the container. This is automated open-source tool provisioning, not a claim of fully hermetic/reproducible versions: the base image is tag-based and Debian packages are not snapshot-pinned. Docker is still a bootstrap prerequisite. Proprietary FPGA toolchains and browser Playwright dependencies are outside this initial smoke gate. Testcontainers with nested Docker is not exercised inside the development container; the separate integration CI job runs on a Docker-capable host.
