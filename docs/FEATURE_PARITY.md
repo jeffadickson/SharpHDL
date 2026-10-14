@@ -43,7 +43,7 @@ No row can be marked verified based solely on README text or a committed but une
 
 1. **PAR-004/006/016:** Canonical IR, atomic compiled edge simulation and strict two-/four-state modes.
 2. **PAR-007–012/014–015:** One debugger service powering VS Code, offline browser, schematics, memory panels, waveforms and CLI.
-3. **PAR-005:** Generic gate-level lowering, interpreter and structural equivalence.
+3. **PAR-005:** Generic gate-level lowering, interpreter and structural equivalence (without mandatory full-chip schematics).
 4. **PAR-013:** Larger executable system with ROM, peripherals, video/keyboard or serial I/O and save/restore.
 5. **PAR-017:** Better typed language ergonomics and packed/array interfaces.
 
@@ -55,3 +55,5 @@ Use `git log` and upstream `git diff` when accessible. Never auto-merge upstream
 
 ### Review log
 - **2026-10-14:** Baseline matrix created from public upstream README, simulation, debugger, gate backend, performance and web documentation; SharpHDL main source/docs and existing tests. Passing CI and runtime parity not established in this session.\n- **2026-10-14 (implementation):** Basic two-state VCD export added with serialization tests; PAR-008 remains partial until tested and a unified waveform viewer exists.
+
+- **2026-10-14 (priority revision):** Interactive full-design gate diagrams moved behind structured pipeline/dataflow scheduling visualization (P0), hierarchy and source-linked reports (P1). PAR-005 still requires gate-level *simulation/equivalence*, but PAR-012's large interactive schematic is now optional P2. Initial structured `PipelineHandle.Operations` was committed; provenance, edges and visualization UI remain open.
