@@ -32,9 +32,9 @@ class Program
   public void Tick(bool reset=false){S.Tick(reset);T.AppendLine("rst="+(reset?1:0)+";#1;clk=1;#1;");foreach(var p in Ports.Where(p=>p.IsOutput))T.AppendLine("if(s_"+p.Name+"!=="+p.Width+"'d"+S.Read(p)+")$fatal(1,\""+M.Name+" "+p.Name+"\");");T.AppendLine("clk=0;rst=0;");cycles++;}
   public void Save(){var path="generated/tinyrisc/"+M.Name;File.WriteAllText(path+".v",M.Verilog());File.WriteAllText(path+".graph.txt",M.DumpGraph());T.AppendLine("$display(\"PASS HDL "+M.Name+"\");$finish;end endmodule");File.WriteAllText(path+"_tb.v",T.ToString());}
  }
- static void Run(ushort[] rom,string name,bool stepping=false,bool twice=false)
+ static void Run(ushort[] rom,string name,bool stepping=false,bool twice=false,string expectedTx=null)
  {
-  var t=new Bench(rom,name);var model=new Model();int tx=0,rx=0;
+  var t=new Bench(rom,name);var model=new Model();int tx=0,rx=0;var txBytes=new System.Collections.Generic.List<byte>();
   for(int pass=0;pass<(twice?2:1);pass++)
   {
    t.Tick(true);model.Reset();t.Set("switches",42);t.Set("rx_data",165);t.Set("step",0);t.Set("run",stepping?0:1);
@@ -52,23 +52,25 @@ class Program
      Check(t.Read("pc")==model.Pc,name+" PC");Check(t.Read("leds")==model.Led,name+" LEDs");Check(t.Read("halted")== (model.Halt?1:0),name+" halt");
      for(int i=0;i<8;i++)Check(t.Read("r"+i)==model.R[i],name+" R"+i);
      Check(sent==(model.Tx>=0?1:0)&&got==model.Rx,name+" peripheral transfer");if(sent!=0)Check(data==model.Tx,name+" tx byte");
-     tx+=sent;rx+=got;if(stepping){outstanding=false;pause=6;}
+     if(sent!=0)txBytes.Add((byte)data);tx+=sent;rx+=got;if(stepping){outstanding=false;pause=6;}
     }
     else {Check(sent==0&&got==0,name+" no extra peripheral effect");if(stepping&&!outstanding){Check(t.Read("pc")==model.Pc,name+" held step must not repeat");pause--;}}
    }
    Check(model.Halt,name+" progress limit");for(int j=0;j<4;j++){t.Tick();Check(t.Read("halted")==1&&t.Read("retired")==0,name+" halted hold");}
   }
+  if(expectedTx!=null)Check(Encoding.ASCII.GetString(txBytes.ToArray())==expectedTx,name+" UART byte sequence; got "+Encoding.ASCII.GetString(txBytes.ToArray()));
   t.Save();
  }
  static void Main(string[] args)
  {
   Directory.CreateDirectory("generated/tinyrisc");var demo=File.ReadAllLines("generated/tinyrisc/count.hex").Select(x=>Convert.ToUInt16(x,16)).ToArray();Run(demo,"CountRun");Run(demo,"CountStep",true);
+  var hello=File.ReadAllLines("generated/tinyrisc/hello_world.hex").Select(x=>Convert.ToUInt16(x,16)).ToArray();Run(hello,"HelloWorld",expectedTx:"Hello, world!\r\n");
   var random=new Random(93);var code=new System.Collections.Generic.List<ushort>();for(int i=1;i<8;i++)code.Add(I(8,i,0,random.Next(512)));for(int i=0;i<180;i++){int op=random.Next(9);code.Add(op<=6?I(op,random.Next(8),random.Next(8),random.Next(8)<<3):op==7?I(op,random.Next(8),random.Next(8),random.Next(64)):I(op,random.Next(8),0,random.Next(512)));}code.Add(0xf000);Run(code.ToArray(),"RandomAlu");
   Run(new[]{I(8,1,0,256),I(9,2,1,1),I(10,2,1,2),I(9,3,1,3),I(9,4,1,4),I(10,3,1,0),(ushort)0xf000},"PeripheralStalls",true);
   Run(new[]{I(8,1,0,3),I(13,1,1),I(8,2,0,99),I(0,3,1,0),(ushort)0xf000},"JumpAlias");
   Run(new[]{I(9,1,0,0),I(7,1,1,1),I(10,1,0,0),(ushort)0xf000},"ResetRetainsRam",false,true);
   Run(new ushort[]{0xe000},"IllegalOpcode");Run(new ushort[]{0x0001},"IllegalEncoding");Run(new[]{I(8,1,0,256),I(9,2,1,5)},"BadAddress");Run(new ushort[]{0xf001},"RomBounds");
   Run(new[]{I(8,1,0,1),I(11,1,0,1),I(11,1,1,1),(ushort)0xe000,(ushort)0xf000},"Branches");
-  string report="PASS "+checks+" independent checks; "+retirements+" retired instructions; "+cycles+" traced edges; 11 RTL benches.\n";File.WriteAllText("generated/tinyrisc/verification.txt",report);Console.Write(report);
+  string report="PASS "+checks+" independent checks; "+retirements+" retired instructions; "+cycles+" traced edges; 12 RTL benches.\n";File.WriteAllText("generated/tinyrisc/verification.txt",report);Console.Write(report);
  }
 }
