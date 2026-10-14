@@ -24,6 +24,10 @@ on:
       - 'tools/build_learning_html.py'
   workflow_dispatch:
 
+defaults:
+  run:
+    shell: bash
+
 permissions:
   contents: read
 

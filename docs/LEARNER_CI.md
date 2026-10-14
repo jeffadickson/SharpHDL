@@ -5,6 +5,15 @@ controls in Chromium on a GitHub-hosted Ubuntu runner. It runs on relevant pushe
 to main, pull requests, or a manual workflow dispatch. No board or classroom
 hardware is needed.
 
+## First observed result
+
+[Run 38492790520](https://github.com/jeffadickson/SharpHDL/actions/runs/38492790520)
+passed on commit `a487ffeaaf0231485bb5b0bedcb5bc03a5c6e91a`, including
+**229 actual Chromium checks**, 168 graph-route assertions, 11,139 graph/reference
+comparisons, seven prepared waveform fixtures and document checks. This closes
+the previously blocked browser-control execution for those committed page/test
+files. The original local launch failure is retained in the review history.
+
 ## What a green run establishes
 
 - The actual page opens and executes without browser JavaScript errors.

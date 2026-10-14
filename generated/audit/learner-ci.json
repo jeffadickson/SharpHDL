@@ -1,0 +1,11 @@
+{
+  "run_url": "https://github.com/jeffadickson/SharpHDL/actions/runs/38492790520",
+  "tested_commit": "a487ffeaaf0231485bb5b0bedcb5bc03a5c6e91a",
+  "job_id": 115621689958,
+  "conclusion": "success",
+  "chromium_checks": 229,
+  "graph_route_assertions": 168,
+  "graph_reference_comparisons": 11139,
+  "prepared_trace_fixtures": 7,
+  "scope": "Actual learner Clock Lab browser controls, graph references, saved waveform fixtures and document checks. Not full compiler regression, fresh WASM runs, physical hardware or child trials."
+}
