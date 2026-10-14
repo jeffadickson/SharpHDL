@@ -57,6 +57,7 @@ app.MapPost("/api/step",(StepCommand cmd)=>{
     lock(gate){
       if(cmd.Data is <0 or >65535)return Results.BadRequest("Data must fit in 16 bits.");
       var checkpoint=Capture();
+      try {
       sim.Set(input.Valid,cmd.Valid?1:0);
       sim.Set(input.Data,cmd.Data);
       sim.Set(output.Ready,cmd.Ready?1:0);
@@ -88,6 +89,12 @@ app.MapPost("/api/step",(StepCommand cmd)=>{
       rewind.Push(checkpoint);
       return Results.Json(new {state=Snapshot(),transfer=new {before.InputAccepted,before.OutputAccepted,
        before.InputStalled,before.OutputStalled,cycle=cycle-1}});
+      } catch {
+          // All-or-nothing execution: a failed transfer invariant must not corrupt
+          // the simulator, token shadow model, or the previous rewind history.
+          Restore(checkpoint);
+          throw;
+      }
     }
 });
 app.MapGet("/",()=>Results.Redirect("/index.html"));
