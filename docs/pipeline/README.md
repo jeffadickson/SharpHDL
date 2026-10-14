@@ -38,3 +38,15 @@ The fixture and schema unit test have been committed but have not been run in th
 - [Pipeline scheduler](../../PIPELINE_SCHEDULER.md)
 - [Feature parity](../FEATURE_PARITY.md)
 - [Issue #23](https://github.com/jeffadickson/SharpHDL/issues/23)
+
+## Live simulation on localhost
+
+```sh
+dotnet run --project tools/SharpHDL.Live/SharpHDL.Live.csproj -c Release
+```
+
+Open **http://127.0.0.1:8093/**. This serves the same pipeline inspector with **Connect localhost**, **Reset live**, and **Step live clock** controls. Adjust input data, input valid, and output ready before stepping. The browser sends POST requests to the actual .NET simulator, then shows live stage occupancy and accepted transaction sequence IDs. Live control does not rely on `trace.json`.
+
+API: `GET /api/state`, `POST /api/reset`, `POST /api/step` with JSON `{"valid":true,"data":10,"ready":true}`. Only localhost is bound; do not expose this unauthenticated development API publicly.
+
+**Current limits:** ID queue tracks overall accepted transaction order, **not** exact token placement per stage. Source hints are generated method/IL identifiers, **not** genuine source file/line mappings. The runnable service has been committed but not yet build-tested here. The inspector's replay mode still works independently of the live server.
