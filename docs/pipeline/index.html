@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SharpHDL Pipeline Inspector</title>
+<style>
+:root{font:15px system-ui,Segoe UI,sans-serif;color-scheme:dark;background:#0d1422;color:#ecf2ff}
+*{box-sizing:border-box}body{max-width:1200px;margin:auto;padding:26px}h1{margin:0 0 4px;font-size:28px}p{color:#aebbd3}
+header,section{margin-bottom:18px}.panel{background:#172236;border:1px solid #31435c;border-radius:13px;padding:18px}button,.upload{background:#253a57;color:#e5f1ff;border:1px solid #536b89;padding:9px 13px;border-radius:8px;cursor:pointer;font:inherit}button:hover,.upload:hover{background:#35547a}button:disabled{opacity:.4}.controls{display:flex;flex-wrap:wrap;gap:9px;align-items:center}input[type=range]{width:min(380px,80vw)}.stagegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:18px 0}.stage{background:#101a2a;border:1px solid #536781;border-radius:12px;padding:20px 10px;text-align:center;min-height:115px}.occupied{border-color:#4dd5a3;background:#0c403c}.stalled{border-color:#fbbf63}.marker{font-size:24px}.statrow{display:flex;flex-wrap:wrap;gap:12px}.stat{min-width:140px;padding:12px;background:#101b2e;border-radius:9px}.stat strong{display:block;font-size:23px}small,.muted{color:#aebbd3}#nodes{width:100%;border-collapse:collapse}th,td{padding:8px;text-align:left;border-bottom:1px solid #334258}tr.active{background:#24466e}tbody tr{cursor:pointer}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0e182a;border-radius:8px;padding:13px}#error{color:#ffc1b5}.tag{background:#25435b;border-radius:18px;padding:4px 11px;font-size:12px}
+</style></head><body>
+<header><h1>SharpHDL <span style="color:#5bd7b0">Pipeline Inspector</span></h1>
+<p>Clock-by-clock replay of <strong>recorded SharpHDL simulator signals</strong>. Dataflow topology comes from the scheduler; no synthetic token animation.</p></header>
+<section class="panel"><div class="controls">
+<button id="prev">◀ Previous</button><button id="next">Next edge ▶</button><button id="play">Play</button><button id="reset">First cycle</button>
+<label class="upload" for="file">Import trace JSON</label><input id="file" type="file" accept=".json,application/json" hidden>
+<span class="tag" id="source">No trace loaded</span></div>
+<div style="margin-top:15px"><label for="seek">Cycle <strong id="cycle">–</strong></label><input id="seek" type="range" min="0" max="0" value="0"></div>
+<div role="status" id="error"></div></section>
+<section class="panel"><h2>Handshake and stage occupancy</h2><div class="statrow" id="stats"></div><div id="stages" class="stagegrid"></div>
+<p class="muted">Stages show the actual sampled <code>StageValid</code> bits. A filled stage means occupied; the trace does not yet identify individual payload tokens.</p></section>
+<section class="panel"><h2>Dataflow operations</h2><p>Choose a node to inspect its operation and dependencies. Stage numbers represent abstract scheduling depth—not physical timing.</p>
+<table id="nodes"><thead><tr><th>Node</th><th>Stage</th><th>Operation</th><th>Width</th><th>Source hint</th></tr></thead><tbody></tbody></table>
+<h3>Selected operation</h3><pre id="detail">Select a node.</pre></section>
+<section class="panel"><h2>Trace provenance</h2><p id="provenance">To generate a real sample: <code>dotnet run --project tests/Tests.csproj -- --pipeline-browser</code>, then serve this directory.</p><p>All processing is local; imported files remain in your browser. This is an offline trace replay viewer, not a live hardware debugger or RTL simulator.</p></section>
+<script>
+"use strict";
+let trace=null,index=0,selected=null,playing=null;
+const $=id=>document.getElementById(id);
+const txt=(e,t)=>{e.textContent=String(t)};
+function stop(){if(playing){clearInterval(playing);playing=null}txt($("play"),"Play")}
+function validate(j){
+ if(j.SchemaVersion!==1||j.Observation!=="pre-edge"||!j.Graph||!Array.isArray(j.Graph.Nodes)||!Array.isArray(j.Graph.Edges)||!Array.isArray(j.Samples))throw Error("Expected SharpHDL pre-edge schema version 1");
+ const stages=j.Graph.Latency;
+ if(!Number.isInteger(stages)||stages<1||stages>256)throw Error("Invalid pipeline latency");
+ if(j.Samples.some((s,i)=>!Number.isSafeInteger(s.Cycle)||(i>0&&s.Cycle<=j.Samples[i-1].Cycle)||!Array.isArray(s.StageOccupied)||s.StageOccupied.length!==stages))throw Error("Invalid stage samples or cycle order");
+ const ids=new Set(j.Graph.Nodes.map(n=>n.Id));
+ if(ids.size!==j.Graph.Nodes.length||j.Graph.Edges.some(e=>!ids.has(e.SourceId)||!ids.has(e.TargetId)))throw Error("Invalid dataflow graph");
+}
+function load(j,source){
+ validate(j);stop();trace=j;index=0;selected=null;
+ $("seek").max=Math.max(j.Samples.length-1,0);txt($("source"),source);
+ txt($("provenance"),source+" · "+j.Samples.length+" sampled edges · "+j.Graph.Nodes.length+" DAG nodes · "+j.Graph.Edges.length+" connections");
+ const body=$("nodes").querySelector("tbody");body.replaceChildren();
+ for(const n of j.Graph.Nodes){
+   const tr=document.createElement("tr");tr.dataset.id=n.Id;
+   for(const val of [n.Id,n.Stage,n.Operation,n.Width,n.Name]){const td=document.createElement("td");txt(td,val);tr.append(td)}
+   tr.onclick=()=>choose(n.Id);body.append(tr);
+ }
+ render(); if(j.Graph.Nodes.length)choose(j.Graph.Nodes[j.Graph.Nodes.length-1].Id);
+}
+function choose(id){
+ selected=id;
+ for(const tr of $("nodes").querySelectorAll("tbody tr"))tr.classList.toggle("active",Number(tr.dataset.id)===id);
+ const n=trace.Graph.Nodes.find(n=>n.Id===id);
+ const deps=trace.Graph.Edges.filter(e=>e.TargetId===id).map(e=>"operand "+e.OperandIndex+" from node "+e.SourceId);
+ txt($("detail"),JSON.stringify({id:n.Id,stage:n.Stage,level:n.LogicLevel,width:n.Width,operation:n.Operation,sourceHint:n.Name,dependencies:deps},null,2));
+}
+function stat(label,value){const el=document.createElement("div");el.className="stat";const strong=document.createElement("strong");txt(strong,value);const small=document.createElement("small");txt(small,label);el.append(strong,small);return el}
+function render(){
+ const available=trace&&trace.Samples.length;for(const id of ["prev","next","play","reset"])$(id).disabled=!available;
+ $("prev").disabled=!available||index===0;$("next").disabled=!available||index===trace.Samples.length-1;
+ $("seek").value=index;$("seek").disabled=!available;txt($("error"),"");
+ if(!available){txt($("cycle"),"–");$("stats").replaceChildren();$("stages").replaceChildren();return}
+ const s=trace.Samples[index];txt($("cycle"),s.Cycle);
+ $("stats").replaceChildren(stat("Input handshake",s.InputAccepted?"Accepted":s.InputStalled?"Stalled":"Idle"),stat("Output handshake",s.OutputAccepted?"Accepted":s.OutputStalled?"Stalled":"Idle"),stat("Input valid / ready",Number(s.InputValid)+" / "+Number(s.InputReady)),stat("Output valid / ready",Number(s.OutputValid)+" / "+Number(s.OutputReady)));
+ const grid=$("stages");grid.replaceChildren();
+ s.StageOccupied.forEach((v,i)=>{const div=document.createElement("div");div.className="stage"+(v?" occupied":"")+(v&&s.OutputStalled?" stalled":"");const mark=document.createElement("div");mark.className="marker";txt(mark,v?"●":"○");const label=document.createElement("div");txt(label,"Stage "+(i+1));const state=document.createElement("small");txt(state,v?"Occupied":"Empty");div.append(mark,label,state);grid.append(div)});
+}
+$("prev").onclick=()=>{stop();index=Math.max(0,index-1);render()};
+$("next").onclick=()=>{stop();index=Math.min(trace.Samples.length-1,index+1);render()};
+$("reset").onclick=()=>{stop();index=0;render()};
+$("play").onclick=()=>{if(playing){stop();return}if(!trace?.Samples.length)return;txt($("play"),"Pause");playing=setInterval(()=>{if(index===trace.Samples.length-1){stop();return}index++;render()},450)};
+$("seek").oninput=e=>{stop();index=Number(e.target.value);render()};
+$("file").onchange=async e=>{try{const file=e.target.files[0];if(file)load(JSON.parse(await file.text()),file.name)}catch(err){txt($("error"),err.message)}};
+fetch("trace.json").then(r=>{if(!r.ok)throw Error("No generated trace.json");return r.json()}).then(j=>load(j,"Generated SharpHDL trace")).catch(()=>txt($("error"),"Generate trace.json using the command below, or import a recorded trace JSON."));
+render();
+</script></body></html>
