@@ -23,6 +23,7 @@ class Program
         if(args.Length==1 && args[0]=="--feedback") { FeedbackPipelineTests.Run();return; }
         if(args.Length==1 && args[0]=="--packet-benchmark") { PacketBenchmarkTests.Run();return; }
         if(args.Length==1 && args[0]=="--simulation-benchmark") { SimulationBenchmark.Run();return; }
+        if(args.Length==1 && args[0]=="--pipeline-browser") { PipelineBrowserFixture.Run();return; }
         if(args.Length==1 && args[0]=="--memory-targets") { MemoryTargetTests.Run();NativeProcessTests.Run();return; }
         ControlMemoryTests.Run();
         FrameReductionTests.Run();
