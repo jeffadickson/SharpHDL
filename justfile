@@ -40,3 +40,14 @@ clean:
     dotnet clean src/SharpHDL/SharpHDL.csproj
     dotnet clean tests/Tests.csproj
     dotnet clean tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj
+
+# Builds and tests require only Docker after 'just setup'.
+container-build:
+    docker run --rm -v "{{justfile_directory()}}:/workspace" -w /workspace sharphdl-dev:local dotnet build tests/Tests.csproj -c Release
+
+container-test:
+    docker run --rm -v "{{justfile_directory()}}:/workspace" -w /workspace sharphdl-dev:local dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release
+
+container-shell:
+    docker run --rm -it -v "{{justfile_directory()}}:/workspace" -w /workspace sharphdl-dev:local bash
+
