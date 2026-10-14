@@ -1,0 +1,42 @@
+# SharpHDL developer entry points. just is a command runner, not the compiler.
+set positional-arguments
+
+default:
+    @just --list
+
+doctor:
+    python3 tools/dev.py doctor
+
+setup:
+    python3 tools/dev.py setup
+
+build:
+    dotnet build src/SharpHDL/SharpHDL.csproj -c Release
+    dotnet build tests/Tests.csproj -c Release
+    dotnet build tools/SharpHDL.Live/SharpHDL.Live.csproj -c Release
+
+test:
+    dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release
+
+test-hdl:
+    dotnet test tests/SharpHDL.IntegrationTests/SharpHDL.IntegrationTests.csproj -c Release
+
+simulate:
+    dotnet run --project tests/Tests.csproj -c Release -- --pipelines
+
+benchmark:
+    dotnet run --project tests/SharpHDL.Benchmarks/SharpHDL.Benchmarks.csproj -c Release
+
+browser:
+    dotnet run --project tools/SharpHDL.Live/SharpHDL.Live.csproj -c Release
+
+vscode:
+    @echo "Open vscode/sharphdl in VS Code; see vscode/sharphdl/README.md"
+
+verify:
+    python3 tools/dev.py verify
+
+clean:
+    dotnet clean src/SharpHDL/SharpHDL.csproj
+    dotnet clean tests/Tests.csproj
+    dotnet clean tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj
