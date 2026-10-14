@@ -55,7 +55,7 @@ The canonical, versioned hardware IR is a **planned design**; today the structur
 | Structural graph, Verilog writer, reference simulator | `src/SharpHDL/Hardware.cs` | Existing | Legacy tests exist; latest run not verified here |
 | CIL processing and pipelines | `CilCompiler.cs`, `PipelineScheduler.cs`, `PipelineCil.cs`, `FeedbackPipeline.cs` | Existing scoped implementations | Existing differential scripts; no new result claimed |
 | Vendor RAM inference | `SynchronousRam.cs`, `MemoryOptions.cs`, `BankedRam.cs` | Existing target policies | Mapping documented; physical-vendor timing is not proven |
-| Hardware debugger façade | `src/SharpHDL/DebugSession.cs` | Implemented initial stepping, watches, value/change breakpoints, trace retention | xUnit cases committed, not executed here |
+| VCD export for watch traces | `src/SharpHDL/HardwareTraceVcd.cs` | Initial two-state VCD export committed | xUnit serialization cases committed; not executed here |\n| Hardware debugger façade | `src/SharpHDL/DebugSession.cs` | Implemented initial stepping, watches, value/change breakpoints, trace retention | xUnit cases committed, not executed here |
 | xUnit/NSubstitute seam tests | `tests/SharpHDL.UnitTests` | Committed | Windows/Linux CI configured; outcome not confirmed |
 | Docker/Icarus integration | `tests/SharpHDL.IntegrationTests` | Initial fixture committed | Docker execution not confirmed; Ubuntu package install is non-hermetic |
 | Reference simulator baseline | `tests/SimulationBenchmark.cs` | Committed | Reports per-cycle oracle and environment; no numbers claimed |
@@ -73,7 +73,7 @@ Two distinct concepts must not be conflated:
 
 `HardwareDebugSession` currently encapsulates an existing `Simulator`; it provides `Set`, `Read`, `Step(reset)`, `Run(maximumEdges)`, named `Watch`, `BreakWhen`, `BreakOnChange`, `RemoveBreakpoint`, `ClearTrace`, `MaxTraceSamples` and `LastBreakpointId`. The observer callback occurs after the edge, and values in the trace represent post-edge state. Value-breakpoints compare post-edge values and change-breakpoints arm on the first observed sample. Reset reestablishes the breakpoint baseline without triggering stops; zero max samples disables retention. `MaxTraceSamples` is a sample-count cap; if there are multiple watches, it is *not* a cycle-count limit. Current eviction uses list removal, which is sufficient for small fixtures but needs a ring-buffer implementation for large traces.
 
-Current limitations: no multi-clock timestamp, no async/event delta cycles, no source/IR provenance, no DAP, no waveform file writer, no state snapshot, no memory editor, no pause-in-the-middle-of-an-edge, and no four-state inspection. A hardware watch is not an ordinary CLR local variable.
+Current limitations: no multi-clock timestamp, no async/event delta cycles, no source/IR provenance, no DAP, basic VCD watch exporter exists, but no streaming VCD writer, no state snapshot, no memory editor, no pause-in-the-middle-of-an-edge, and no four-state inspection. A hardware watch is not an ordinary CLR local variable.
 
 The shared service should expose: version/feature negotiation, controlled start/stop, atomic clock-edge stepping, grouped state reads, breakpoint events, trace subscriptions, snapshot/checkpoint and breakpoint metadata. DAP should translate protocol concepts without duplicating simulation or waveform behavior. A source breakpoint requires source/CIL-to-IR-to-RTL provenance (DBG-003), not line numbers guessed from generated Verilog.
 
