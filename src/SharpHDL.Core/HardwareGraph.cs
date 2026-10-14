@@ -22,7 +22,7 @@ public sealed class HardwareGraph
         {
             if (node == null) throw new ArgumentException("Null IR node.");
             node.Type.Validate();
-            if (node.Id < 0 || !known.TryAdd(node.Id, node))
+            if (node.Id < 0 || known.ContainsKey(node.Id))
                 throw new ArgumentException("Node IDs must be unique nonnegative integers.");
             if (node.Operands == null) throw new ArgumentException("Missing node operands.");
             foreach (var id in node.Operands)
@@ -50,6 +50,7 @@ public sealed class HardwareGraph
                 default:
                     throw new NotSupportedException($"Operation {node.Operation} is not yet supported by the version 1 graph validator.");
             }
+            known.Add(node.Id, node);
         }
         Nodes = Array.AsReadOnly(list.Select(n =>
             n with { Operands = Array.AsReadOnly(n.Operands.ToArray()) }).ToArray());
