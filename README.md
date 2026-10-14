@@ -14,6 +14,12 @@ Original implementation; not a port of MyHDL and not affiliated with it.
 
 Build a single-clock RTL design in C#, simulate it, and emit Verilog.
 
+New: [typed channels and concurrent CIL processes](STREAM_PROCESSES.md). Write
+blocking `Read`/`Write` loops, attach independent hardware actors, and connect
+explicit FIFOs. Ready/valid handshakes are generated internally; scalar AXI4-Stream
+adapters define external packet behavior. This first backend uses one CIL
+instruction per clock, without automatic pipeline scheduling.
+
 Version 0.14 adds [TinyRisc16](examples/TinyRisc/ISA.md): a structural 16-bit
 processor, assembler, instruction stepping, scratch RAM, memory-mapped I/O and
 an independent architectural test model. The [TinyRisc HTML explorer](docs/tinyrisc/TinyRisc_Demo.html)

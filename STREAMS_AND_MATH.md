@@ -42,8 +42,8 @@ math operands are outside the interface contract. Last and User remain aligned
 with each result. The source is responsible for providing valid inputs.
 
 Map stages and FIFO input readiness can depend combinationally on downstream
-readiness. Long pipelines can have a long ready path. This release does not
-include a registered-ready skid-buffer timing cut. One sample/clock is a logical
+readiness. Long pipelines can have a long ready path. Use `StreamBlocks.SkidBuffer`
+for a registered-ready timing cut with two slots. One sample/clock is a logical
 throughput property, not an achieved target-device clock frequency.
 
 The FIFO permits simultaneous push and pop, including when full. Its storage
@@ -234,3 +234,9 @@ clock/reset rejection, internal collisions and reset masking in emitted Icarus R
 |---|---|---|
 | AXI-NAME-01 | Accept valid graph identifiers without emitting HDL keywords as plain identifiers. | Core and wrapper keyword compilation tests. |
 | AXI-NAME-02 | Reject reserved wrapper clock/reset ports clearly; avoid generated internal collisions. | Reserved-name checks and colliding-port RTL simulation. |
+
+## Typed blocking processes
+
+See [Typed channels and concurrent CIL processes](STREAM_PROCESSES.md) for
+`HwStream<T>`, explicit FIFOs, `Read`/`Write` CIL lowering and scalar AXI adapters.
+Packet `Stream` and scalar typed channels have different metadata contracts.

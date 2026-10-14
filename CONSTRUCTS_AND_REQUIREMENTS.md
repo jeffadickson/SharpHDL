@@ -6,6 +6,10 @@ into combinational graphs or clocked operation state machines. A construct avail
 necessarily translate inside a behavioral method. This matrix describes the
 current implementation, not all constructs the source languages can express.
 
+Typed channels and free-running blocking CIL actors are now available through
+`AttachProcess`; see [stream process requirements PROC01–PROC12](STREAM_PROCESSES.md).
+Their support subset and timing differ from the combinational and start/done backends.
+
 ## Supported constructs
 
 | Construct | Current behavior | Evidence |

@@ -1,0 +1,24 @@
+Typed stream process verification
+Toolchain: .NET SDK 8.0.100 / Roslyn; Icarus Verilog 12.0
+
+PASS tests/run.sh (core software and all generated root RTL benches)
+PASS tests/run-behavioral.sh
+PASS tests/run-advanced.sh
+PASS tests/run-fsharp.sh
+PASS tests/run-three-languages.sh
+PASS tests/run-learning.sh
+PASS tests/run-tinyrisc.sh
+PASS tests/check-net-naming.py
+
+Final focused rerun after adding scalar-adapter checks and CIL net annotations:
+PASS: 12405 streaming process/channel assertions and generated RTL trace bench.
+PASS streaming process RTL trace
+
+New pipeline: 96 ordered 16-bit transactions, deterministic randomized gaps and
+backpressure plus a long initial stall. RTL replay checks every output each cycle.
+Additional graph tests: signed finite loops, stalled reset, four-bit wraparound,
+divide/overflow/assertion faults, FIFO queue models (depths 1/2/3/16), adapters,
+and rejected ownership/aliasing cases.
+
+No new target-device synthesis, placement, timing, or physical-board result is claimed.
+The new CIL process frontend is tested with C#; existing F#/VB regressions passed.
