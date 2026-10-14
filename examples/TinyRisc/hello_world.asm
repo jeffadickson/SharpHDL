@@ -4,6 +4,8 @@
 ; It does not independently drive a physical UART TX pin.
 LDI R2, -254 ; 0xFF02: UART transmit register
 LDI R1, 72 ; H
+ST R1, R0, 0 ; prove scratch RAM writes
+LD R1, R0, 0 ; and synchronous scratch RAM reads
 ST R1, R2, 0
 LDI R1, 101 ; e
 ST R1, R2, 0
