@@ -1,0 +1,45 @@
+name: TinyRisc16 UART Hello World
+on:
+  push:
+    paths:
+      - 'src/SharpHDL/**'
+      - 'examples/TinyRisc/**'
+      - 'tests/run-tinyrisc.sh'
+      - '.github/workflows/tinyrisc-hello.yml'
+  pull_request:
+    paths:
+      - 'src/SharpHDL/**'
+      - 'examples/TinyRisc/**'
+      - 'tests/run-tinyrisc.sh'
+      - '.github/workflows/tinyrisc-hello.yml'
+  workflow_dispatch:
+
+jobs:
+  uart-hello:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Provision Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Show tool versions
+        run: |
+          dotnet --version
+          iverilog -V | head -n 2
+          python3 --version
+      - name: Run TinyRisc CPU/RTL/serial UART tests
+        run: |
+          export DOTNET_ROOT="$(dirname "$(readlink -f "$(command -v dotnet)")")"
+          bash tests/run-tinyrisc.sh
+      - name: Retain results on failure or success
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tinyrisc-hello-verification
+          path: |
+            generated/tinyrisc/
+            build/tinyrisc/hello_uart_test
+          if-no-files-found: warn
