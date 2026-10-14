@@ -1,0 +1,40 @@
+{
+  "name": "sharphdl-debug",
+  "displayName": "SharpHDL Debug",
+  "description": "Prototype hardware-clock debugging for SharpHDL localhost simulator",
+  "version": "0.1.0",
+  "publisher": "sharphdl",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Debuggers"
+  ],
+  "activationEvents": [
+    "onDebugResolve:sharphdl"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "debuggers": [
+      {
+        "type": "sharphdl",
+        "label": "SharpHDL Hardware",
+        "languages": [
+          "csharp"
+        ]
+      }
+    ],
+    "breakpoints": [
+      {
+        "language": "csharp"
+      }
+    ],
+    "configurationDefaults": {
+      "launch": {
+        "type": "sharphdl",
+        "request": "launch",
+        "name": "SharpHDL hardware (localhost)"
+      }
+    }
+  }
+}
