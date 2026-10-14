@@ -187,3 +187,8 @@ See [SCI01–SCI09](SCIENTIFIC_APPLICATIONS.md) for exact sample energy, invalid
 sample handling, numerical verification and the scientific roadmap.
 These APIs construct hardware structurally; they do not extend the set of CIL
 instructions accepted by the behavioral compiler.
+
+[FRAME01–FRAME07 and NUMREP01–NUMREP02](FRAME_REDUCTIONS.md) implement the initial
+scientific frame-reduction and numerical-report requirements (SCI04 and SCI06).
+Frame reduction is structural hardware with a separate native many-to-one runner;
+it does not add a CIL intrinsic or change AxisPipeline.Run's one-beat model.

@@ -325,3 +325,8 @@ models. [Scientific applications](SCIENTIFIC_APPLICATIONS.md) includes a working
 signed sensor calibration/energy pipeline, numerical contracts, and a prioritized
 list of remaining scientific features. Run `tests/run-axis-interop.sh` to verify
 the native model and actual mixed RTL in Debug and optimized builds.
+
+[Frame reductions](FRAME_REDUCTIONS.md) compute sum, count, signed extrema and
+energy per TLAST, with overflow flags, a native PC runner, annotated result buses,
+and numerical-error reports. Run `tests/run-frame-reduction.sh` for Debug and
+optimized native/graph/RTL verification.

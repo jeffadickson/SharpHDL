@@ -139,3 +139,7 @@ at the end. No Vivado/Quartus mapping, board execution, or formal proof is claim
 | MIX10 | Automated external signature checking, including parameter widths | Planned; currently rely on RTL tool diagnostics |
 
 Protocol reference: [AMD AXI4-Stream guide](https://docs.amd.com/r/en-US/ug1483-model-composer-sys-gen-user-guide/AXI4-Stream-Support-in-Model-Composer).
+
+For many-input-beats/one-result scientific blocks, see [frame reductions](FRAME_REDUCTIONS.md).
+They can be composed as hardware with `FromSharp`, but use their dedicated native
+runner; the one-beat `AxisPipeline.Run` contract remains unchanged.

@@ -59,8 +59,8 @@ The mixed RTL test checks arbitrary keep masks, tags, frame ends, stalls and res
 | Elementary functions | CORDIC and lookup-based hardware building blocks | Accuracy budgets, domain/error reporting and target-qualified implementations |
 | Streaming | Ready/valid, skid/FIFO, scheduled pipelines, external AXI RTL | General rate-changing native networks and arbitrary mixed-module topology |
 | Arrays/memory | Owned sequential RAM, Xilinx/Intel inference policies | Banking, burst DMA, tiled arrays, memory-aware scheduling |
-| Scientific primitives | Exact signed sample energy, calibration integration example | Tested frame reductions, FIR/FFT, complex arithmetic, covariance |
-| Verification | Native/graph/RTL checks | Standard scientific reference datasets and numerical error reports |
+| Scientific primitives | Exact signed sample energy, calibration example, frame sum/count/min/max/energy | FIR/FFT, complex arithmetic, covariance |
+| Verification | Native/graph/RTL checks and domain-specific numerical error reports | Standard scientific reference datasets and wider accuracy budgets |
 
 `CompactFloat` is explicitly **not IEEE-754**: it flushes its zero-exponent range
 to zero, uses NaR, rounds nearest-even, and saturates finite overflow. Calling it
@@ -75,16 +75,17 @@ The native scientific helper added here operates on `AxisBeat`/`BigInteger`.
 | SCI01 | Widen signed sample square and preserve fractional scale | Implemented; signed extrema and mixed RTL oracle |
 | SCI02 | Define partial sample, metadata, stall and reset behavior | Implemented; invalid keep propagation and reset/discard scoreboard |
 | SCI03 | Native execution of the same stream calculation | Implemented through explicit functional models, not RTL simulation |
-| SCI04 | Frame sum/count/min/max with widened accumulators and overflow flags | Planned; test empty/invalid frames, TLAST, overflow and long stalls |
+| SCI04 | Frame sum/count/min/max with widened accumulators and overflow flags | Implemented in FrameReduction; empty/invalid frames, TLAST, overflow, stalls and reset tested |
 | SCI05 | Dot products and complex multiply with explicit scaling | Planned; full-precision reference, rounding ties, extrema and DSP mapping |
-| SCI06 | Numerical validation report | Planned; maximum absolute/relative error and RMS error across defined domains, plus special-case counts |
+| SCI06 | Numerical validation report | Initial facility implemented: absolute/relative/RMS error and special-case counts; exhaustive energy and quantization reports |
 | SCI07 | Banked/tiled memory and burst transfer support | Planned; port conflicts, bandwidth, reset and target RAM mapping tests |
 | SCI08 | Optional IEEE floating-point external IP adapters | Planned; explicit latency/backpressure and numerical exception contracts, native reference and RTL comparisons |
 | SCI09 | AXI4-Lite configuration and status | Planned; independent address/data handshakes, byte strobes, reset and response tests |
 
-Frame reductions are the next useful addition: a detector or telemetry instrument
-can compute per-frame energy, peak, and sample count without sending every sample
-to a host. We should establish accumulator widths and invalid-sample semantics
-before adding FFTs or matrix algorithms. Floating-point external IP is another
-use for the new RTL boundary, but most such IP needs a wrapper to match this
-first version's one-input/one-output, six-field stream contract.
+[Frame reductions and numerical reports](FRAME_REDUCTIONS.md) are now implemented.
+An instrument can compute per-frame energy, peak and sample count without sending
+every sample to a host. The reducer has explicit overflow and invalid-sample
+semantics and a dedicated native many-to-one runner. It does not extend the
+one-beat native model of AxisPipeline.Run. Banked memory/DMA and AXI4-Lite remain
+the next integration tasks; complex arithmetic and external IEEE floating-point
+IP still need explicit numerical and timing contracts.

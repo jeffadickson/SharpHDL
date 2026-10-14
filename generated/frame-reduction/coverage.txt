@@ -1,0 +1,7 @@
+Cycles: 17452
+Input beats accepted: 10627
+Results delivered: 506
+Results discarded by reset: 1
+Partial-frame beats discarded by reset: 38
+Stalled output cycles: 4190
+Resets: 4
