@@ -51,3 +51,7 @@ container-test:
 container-shell:
     docker run --rm -it -v "{{justfile_directory()}}:/workspace" -w /workspace sharphdl-dev:local bash
 
+
+# Clean container smoke path; does not require .NET installed on host.
+container-verify:
+    docker run --rm -v "{{justfile_directory()}}:/workspace" -w /workspace sharphdl-dev:local bash tools/container-smoke.sh
