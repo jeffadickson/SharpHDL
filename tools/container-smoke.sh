@@ -10,6 +10,8 @@ iverilog -V | head -n 2
 verilator --version
 yosys -V
 nextpnr-ice40 --version
+echo 'Checking project dependency architecture'
+python3 tests/check-project-layers.py
 echo 'Building Core, HLS, Simulation, compatibility library, tests and live host'
 dotnet build src/SharpHDL.Core/SharpHDL.Core.csproj -c Release
 dotnet build src/SharpHDL.HLS/SharpHDL.HLS.csproj -c Release
