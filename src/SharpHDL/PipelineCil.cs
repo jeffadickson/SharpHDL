@@ -14,6 +14,7 @@ namespace SharpHDL
             if(input==null||input.Data.Owner!=m)throw new ArgumentException("Pipeline input must belong to this module.");
             var program=CompilePipeline(method,input,output,false);
             var handle=PipelineScheduler.Attach(m,name,input,output,program.Value,options);
+            PortablePdbSourceMap.Annotate(method,handle.DataflowGraph);
             handle.Report+=program.Report;return handle;
         }
         sealed class PipelineIteration
