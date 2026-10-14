@@ -61,4 +61,52 @@ public sealed class DebugSessionTests
     {
         Assert.Throws<ArgumentNullException>(() => new HardwareDebugSession(new Module("MissingObserver"), null!));
     }
+    [Fact]
+    public void Watch_traces_and_breakpoint_stop_on_post_edge_value()
+    {
+        var module = new Module("WatchCounter");
+        var count = module.Register("count", 8, 0);
+        module.Next(count, count + Expr.Const(8, 1));
+        var observer = Substitute.For<IHardwareDebugObserver>();
+        var debug = new HardwareDebugSession(module, observer);
+        debug.Watch("count", count);
+        var bp = debug.BreakWhen("three", count, 3);
+        debug.Step(true);
+        Assert.Equal(3, debug.Run(10));
+        Assert.Equal(bp.Id, debug.LastBreakpointId);
+        Assert.Equal(4, debug.Cycle);
+        Assert.Equal(new BigInteger(3), debug.Read(count));
+        Assert.Equal(new BigInteger(3), debug.Trace[^1].Value);
+        Assert.True(debug.RemoveBreakpoint(bp.Id));
+        debug.ClearTrace();
+        Assert.Empty(debug.Trace);
+        Assert.Equal(2, debug.Run(2));
+        observer.Received(6).AfterEdge(Arg.Any<long>(), Arg.Any<bool>());
+    }
+
+    [Fact]
+    public void Change_breakpoint_arms_after_first_sample()
+    {
+        var module = new Module("ChangeCounter");
+        var count = module.Register("count", 8, 0);
+        module.Next(count, count + Expr.Const(8, 1));
+        var debug = new HardwareDebugSession(module, Substitute.For<IHardwareDebugObserver>());
+        var bp = debug.BreakOnChange("count changed", count);
+        debug.Step(true);
+        Assert.Null(debug.LastBreakpointId);
+        Assert.Equal(1, debug.Run(10));
+        Assert.Equal(bp.Id, debug.LastBreakpointId);
+    }
+
+    [Fact]
+    public void Breakpoint_rejects_out_of_range_values()
+    {
+        var module = new Module("Range");
+        var count = module.Register("count", 8, 0);
+        module.Next(count, count);
+        var debug = new HardwareDebugSession(module, Substitute.For<IHardwareDebugObserver>());
+        Assert.Throws<ArgumentOutOfRangeException>(() => debug.BreakWhen("invalid", count, 256));
+        Assert.Throws<ArgumentOutOfRangeException>(() => debug.Run(-1));
+    }
+
 }
