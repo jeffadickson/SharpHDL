@@ -178,3 +178,12 @@ and Intel/Altera inference and verification scope. NATIVE_EXECUTION.md defines
 NATIVE01–NATIVE05 for direct JIT execution, error propagation, owned arrays and
 performance measurements. Multiport/MLAB/DDR and concurrent native stream networks
 remain unsupported.
+
+## Mixed RTL and scientific streams
+
+See [MIX01–MIX10](AXI_INTEROP.md) for external Verilog AXI4-Stream composition,
+checked declared interfaces, native models and remaining integration work.
+See [SCI01–SCI09](SCIENTIFIC_APPLICATIONS.md) for exact sample energy, invalid
+sample handling, numerical verification and the scientific roadmap.
+These APIs construct hardware structurally; they do not extend the set of CIL
+instructions accepted by the behavioral compiler.

@@ -316,3 +316,12 @@ classroom checks still required.
 [Memory targets](MEMORY.md) now include Xilinx 7-series and Intel/Altera Cyclone V
 and Arria 10 inference policies. [Native execution](NATIVE_EXECUTION.md) runs the
 original stream methods and array algorithms on .NET without synthesis.
+
+## Mixed RTL and scientific streams
+
+[AXI interoperability](AXI_INTEROP.md) composes SharpHDL modules and handwritten
+Verilog in a checked single-clock stream chain, with explicit native functional
+models. [Scientific applications](SCIENTIFIC_APPLICATIONS.md) includes a working
+signed sensor calibration/energy pipeline, numerical contracts, and a prioritized
+list of remaining scientific features. Run `tests/run-axis-interop.sh` to verify
+the native model and actual mixed RTL in Debug and optimized builds.

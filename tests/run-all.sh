@@ -28,6 +28,7 @@ for suite in behavioral advanced fsharp three-languages learning tinyrisc; do
   run "$suite" bash "tests/run-$suite.sh"
 done
 run tinyrisc-benchmark python3 tools/run_tinyrisc_benchmark.py
+run axis-interop bash tests/run-axis-interop.sh
 run naming python3 tests/check-net-naming.py
 run browser-graph node tests/check-learning-browser.js
 run learner-controls node tests/check-learner-controls.js --browser

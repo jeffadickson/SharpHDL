@@ -14,12 +14,14 @@ class Program
     static void Main(string[] args)
     {
         Directory.CreateDirectory("generated");
+        if(args.Length==1 && args[0]=="--axis-interop") { AxisInteropTests.Run();return; }
         if(args.Length==1 && args[0]=="--axi-names") { AxiNameTests.Run();return; }
         if(args.Length==1 && args[0]=="--stream-processes") { StreamingProcessTests.Run();return; }
         if(args.Length==1 && args[0]=="--pipelines") { PipelineTests.Run();return; }
         if(args.Length==1 && args[0]=="--feedback") { FeedbackPipelineTests.Run();return; }
         if(args.Length==1 && args[0]=="--packet-benchmark") { PacketBenchmarkTests.Run();return; }
         if(args.Length==1 && args[0]=="--memory-targets") { MemoryTargetTests.Run();NativeProcessTests.Run();return; }
+        AxisInteropTests.Run();
         MemoryTargetTests.Run();NativeProcessTests.Run();
         FeedbackPipelineTests.Run();
         PipelineTests.Run();
