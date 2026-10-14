@@ -59,3 +59,5 @@ Use `git log` and upstream `git diff` when accessible. Never auto-merge upstream
 - **2026-10-14 (priority revision):** Interactive full-design gate diagrams moved behind structured pipeline/dataflow scheduling visualization (P0), hierarchy and source-linked reports (P1). PAR-005 still requires gate-level *simulation/equivalence*, but PAR-012's large interactive schematic is now optional P2. Initial structured `PipelineHandle.Operations` was committed; provenance, edges and visualization UI remain open.
 
 - **2026-10-14 (dataflow graph):** Structural scheduler gained deterministic node/edge graph, JSON export and a public explicit-attach entry point, with xUnit topology tests. PAR-020 remains partial until CIL scheduling, live occupancy and source mapping are covered; no CI pass asserted.
+
+- **2026-10-14 (CIL + live flow):** Confirmed CIL `AttachPipeline` reuses the single DAG scheduler. Added `PipelineFlowProbe`/`PipelineSignalProbe` with real simulator handshake/stage occupancy sampling and a self-contained xUnit fixture. PAR-020 remains partial until source spans, UI and verification evidence. No passing test result claimed.
