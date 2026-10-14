@@ -18,6 +18,10 @@ namespace SharpHDL
 
         // Sequential engines compile next-state cones with registers as explicit read-only inputs.
         internal CompiledCombinational(Module module, Expr output, bool includeRegisters)
+            : this(module, output, includeRegisters, null) { }
+
+        internal CompiledCombinational(Module module, Expr output, bool includeRegisters,
+            IReadOnlyDictionary<SynchronousRam, BigInteger[]>? memoryImages)
         {
             if (module == null) throw new ArgumentNullException(nameof(module));
             if (output == null) throw new ArgumentNullException(nameof(output));
@@ -64,6 +68,14 @@ namespace SharpHDL
                         else if (e.Op == "asr")
                             result = Expression.RightShift(Expression.Call(typeof(Expr).GetMethod(nameof(Expr.SignedValue))!, a,
                                 Expression.Constant(e.Args[0].Width)), Expression.Constant(e.Offset));
+                        else if (e.Op == "memory")
+                        {
+                            if (memoryImages == null || e.Memory == null || !memoryImages.TryGetValue(e.Memory, out var image))
+                                throw new NotSupportedException("Compiled memory read requires an owned RAM image.");
+                            result = Expression.Condition(Expression.LessThan(a, Expression.Constant(new BigInteger(image.Length))),
+                                Expression.ArrayIndex(Expression.Constant(image), Expression.Convert(a, typeof(int))),
+                                Expression.Constant(BigInteger.Zero));
+                        }
                         else if (e.Op == "lookup")
                         {
                             var table = Expression.Constant(e.Table);
