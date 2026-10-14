@@ -211,3 +211,11 @@ Gate: all observable state is derived from the canonical IR and simulator, cross
 - **VIZ-003 P1:** Display module hierarchy, interfaces, clock domains, memory blocks, AXI channels and source links without exploding designs into individual gate-level cells.
 - **VIZ-004 P1:** Source-linked synthesis/performance explorer shall distinguish pre-route estimates from post-placement utilization and timing reports; identify expensive operations and implementation choices.
 - **VIZ-005 P2:** Support optional scoped gate-cone schematic and SVG/DOT export for debugging/education. Do not require or prioritize a full-design interactive gate editor; preserve gate-level IR/equivalence requirements.
+
+## 19. Pipeline browser inspector milestone gates
+
+- **VIZ-006 P0:** Deliver an offline browser panel driven by versioned scheduler graph and real `PipelineSignalProbe` trace samples (no independent toy circuit model), with clock seek/step/playback and stage occupancy. Initial implementation is committed in `docs/pipeline`; runtime verification pending.
+- **VIZ-007 P0:** Provide an interactive live debug session interface to the .NET simulator (run/pause/step/stimulus/watch) shared with the future VS Code adapter. This is *not* fulfilled by recorded replay.
+- **VIZ-008 P1:** Map CIL operation and pipeline stage to real source file/line spans, handle optimized-away and duplicated expressions, and support source-side selection.
+- **VIZ-009 P1:** Track deterministic token identities/values across accepted transfers and stage stalls using compiler/simulator instrumentation; do not guess IDs from stage occupancy alone.
+- **VIZ-010 P0:** Add browser automation for replay, seek, malformed trace handling, offline behavior and cross-browser rendering, and commit verified CI output.
