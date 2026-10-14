@@ -1,5 +1,25 @@
 # SharpHDL developer build workflow
 
+## Make-first automatic setup and TinyRisc verification (2026-10-14)
+
+GNU Make, Python 3, and an installed/running Docker Engine/Desktop are host prerequisites. The Makefile does **not** require `just` for toolchain provisioning. Use WSL2 with Docker Desktop integration on Windows.
+
+```sh
+make setup
+make tinyrisc-hello
+# Or in one command:
+make setup-and-hello
+```
+
+`make setup` invokes `python3 tools/dev.py setup`: it builds the development image from `tools/Dockerfile.dev`, downloading the .NET 8 SDK base image and installing Icarus Verilog, Verilator, Yosys, nextpnr-ice40, IceStorm, Python, and related utilities inside Docker. It restores all six managed projects and checks HDL executables. No host administrator privileges are silently requested by the Makefile. It will fail explicitly if Docker is absent/unavailable.
+
+`make tinyrisc-hello` uses the provisioned image to execute `tests/run-tinyrisc.sh` and a Yosys top-level structural check via `tools/run-tinyrisc-container.sh`. This includes ROM assembly, independent CPU model and RTL edge comparison, the Hello World UART byte stream, and a separate serial 8N1 decoder testbench. Exit code is nonzero on any failed command. A committed command/test is **not proof of a passing execution**; inspect the invocation logs.
+
+`make container-verify` remains the broader smoke verification tier. The original `just setup` and `just container-verify` commands also remain supported. Package repositories are not fully locked; use versioned CI records for reproducibility evidence.
+
+---
+
+
 ## Automatic toolchain provisioning (current workflow)
 
 **Yes: `just setup` now builds a development container that installs the .NET 8 SDK, Python, Node.js, Icarus Verilog, Verilator, Yosys, nextpnr-ice40 and IceStorm.** It also restores the core and xUnit .NET dependencies inside the container. You do not need to install those compilers/simulators separately on the host.
