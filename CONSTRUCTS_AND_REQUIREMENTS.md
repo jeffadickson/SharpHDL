@@ -192,3 +192,11 @@ instructions accepted by the behavioral compiler.
 scientific frame-reduction and numerical-report requirements (SCI04 and SCI06).
 Frame reduction is structural hardware with a separate native many-to-one runner;
 it does not add a CIL intrinsic or change AxisPipeline.Run's one-beat model.
+
+## Control and banked capture
+
+[AXI4-Lite control, banked memory and local stream capture](CONTROL_AND_MEMORY.md)
+adds independent Lite channels, byte-strobed register access, cyclic RAM banks,
+and an integrated capture/readback example with native functional models.
+Requirements AXIL01–AXIL05, BANK01–BANK04, CAP01–CAP03 and DMA01–DMA03 distinguish
+implemented local transfers from the remaining full AXI burst DMA work.

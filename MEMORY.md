@@ -138,3 +138,11 @@ scheduling in stream pipelines, and automatic BRAM-backed FIFOs remain future wo
 Attribute references: [AMD RAM_STYLE](https://docs.amd.com/r/en-US/ug912-vivado-properties/RAM_STYLE),
 [Intel RAM inference controls](https://www.intel.com/content/www/us/en/docs/programmable/683082/25-1/controlling-ram-inference-and-implementation.html),
 [Cyclone V memory handbook](https://docs.altera.com/r/docs/683375/current/cyclone-v-device-handbook-volume-1-device-interfaces-and-integration/ram-blocks-operations).
+
+## Control and banked capture
+
+[AXI4-Lite control, banked memory and local stream capture](CONTROL_AND_MEMORY.md)
+adds independent Lite channels, byte-strobed register access, cyclic RAM banks,
+and an integrated capture/readback example with native functional models.
+Requirements AXIL01–AXIL05, BANK01–BANK04, CAP01–CAP03 and DMA01–DMA03 distinguish
+implemented local transfers from the remaining full AXI burst DMA work.

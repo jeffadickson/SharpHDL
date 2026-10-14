@@ -330,3 +330,11 @@ the native model and actual mixed RTL in Debug and optimized builds.
 energy per TLAST, with overflow flags, a native PC runner, annotated result buses,
 and numerical-error reports. Run `tests/run-frame-reduction.sh` for Debug and
 optimized native/graph/RTL verification.
+
+## Control and banked capture
+
+[AXI4-Lite control, banked memory and local stream capture](CONTROL_AND_MEMORY.md)
+adds independent Lite channels, byte-strobed register access, cyclic RAM banks,
+and an integrated capture/readback example with native functional models.
+Requirements AXIL01–AXIL05, BANK01–BANK04, CAP01–CAP03 and DMA01–DMA03 distinguish
+implemented local transfers from the remaining full AXI burst DMA work.

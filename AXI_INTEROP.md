@@ -80,7 +80,7 @@ The current API is deliberately a **linear, single-input/single-output chain**.
 Each internal connection has one producer and one consumer by construction.
 There is no automatic combinational-loop analysis inside opaque external RTL.
 Use a registered skid boundary where needed and run RTL lint/timing checks.
-Fanout, arbitrary hierarchical port binding, multi-clock designs, AXI4-Lite,
+Fanout, arbitrary hierarchical port binding, multi-clock designs,
 AXI memory-mapped transactions, TID/TDEST/TSTRB and optional omitted stream fields
 are not yet supported by this composition API. Existing structural modules can
 still implement richer networks behind a two-stream wrapper.
@@ -134,7 +134,7 @@ at the end. No Vivado/Quartus mapping, board execution, or formal proof is claim
 | MIX05 | Annotate buses and emit external source list | Generated RTL and `sources.f` |
 | MIX06 | Run optional native one-beat models without synthesis | Exhaustive 16-bit sample test; missing-model preflight and exception checks |
 | MIX07 | Repeat test in Debug and optimized builds | `tests/run-axis-interop.sh` |
-| MIX08 | AXI4-Lite control register bridge | Planned; not implemented |
+| MIX08 | AXI4-Lite control register bridge | Implemented separately in AxiLiteRegisterBank; see CONTROL_AND_MEMORY.md |
 | MIX09 | Arbitrary port binding, multi-input/output composition | Planned; not implemented |
 | MIX10 | Automated external signature checking, including parameter widths | Planned; currently rely on RTL tool diagnostics |
 
@@ -143,3 +143,7 @@ Protocol reference: [AMD AXI4-Stream guide](https://docs.amd.com/r/en-US/ug1483-
 For many-input-beats/one-result scientific blocks, see [frame reductions](FRAME_REDUCTIONS.md).
 They can be composed as hardware with `FromSharp`, but use their dedicated native
 runner; the one-beat `AxisPipeline.Run` contract remains unchanged.
+
+[AXI4-Lite control and local capture](CONTROL_AND_MEMORY.md) provide an explicit
+register-bank API and a mixed control/stream example. AxisPipeline itself remains
+a stream-chain compositor; it does not bind arbitrary Lite ports.

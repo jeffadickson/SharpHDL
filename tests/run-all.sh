@@ -30,6 +30,8 @@ done
 run tinyrisc-benchmark python3 tools/run_tinyrisc_benchmark.py
 run axis-interop bash tests/run-axis-interop.sh
 run frame-reduction bash tests/run-frame-reduction.sh
+run control-memory bash tests/run-control-memory.sh
+run map-banked-memory bash tests/map-banked-memory.sh
 run naming python3 tests/check-net-naming.py
 run browser-graph node tests/check-learning-browser.js
 run learner-controls node tests/check-learner-controls.js --browser

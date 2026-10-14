@@ -1,0 +1,42 @@
+{
+  "creator": "Yosys 0.33 (git sha1 2584903a060)",
+  "design": {
+    "num_cells": 167,
+    "num_cells_by_type": {
+      "BUFG": 1,
+      "IBUF": 90,
+      "LUT2": 4,
+      "LUT6": 4,
+      "OBUF": 64,
+      "RAMB18E1": 4
+    },
+    "num_memories": 0,
+    "num_memory_bits": 0,
+    "num_processes": 0,
+    "num_pub_wire_bits": 262,
+    "num_pub_wires": 38,
+    "num_wire_bits": 1148,
+    "num_wires": 84
+  },
+  "invocation": "stat -json ",
+  "modules": {
+    "\\h_BankedXilinx7Series": {
+      "num_cells": 167,
+      "num_cells_by_type": {
+        "BUFG": 1,
+        "IBUF": 90,
+        "LUT2": 4,
+        "LUT6": 4,
+        "OBUF": 64,
+        "RAMB18E1": 4
+      },
+      "num_memories": 0,
+      "num_memory_bits": 0,
+      "num_processes": 0,
+      "num_pub_wire_bits": 262,
+      "num_pub_wires": 38,
+      "num_wire_bits": 1148,
+      "num_wires": 84
+    }
+  }
+}

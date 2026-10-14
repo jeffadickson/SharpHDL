@@ -86,3 +86,11 @@ CPU affect performance. This is native execution, not a claim of zero overhead.
 | NATIVE03 | Preserve native array execution alongside target lowering | Same Bump method compared against three target RAM/controller configurations and RTL benches |
 | NATIVE04 | Separate functional and cycle semantics | Explicit execution-mode contract above; no native concurrent-network or timing claims |
 | NATIVE05 | Measure throughput without brittle timing gates | Million-token and million-array-update workloads print measurements and verify results |
+
+## Control and banked capture
+
+[AXI4-Lite control, banked memory and local stream capture](CONTROL_AND_MEMORY.md)
+adds independent Lite channels, byte-strobed register access, cyclic RAM banks,
+and an integrated capture/readback example with native functional models.
+Requirements AXIL01–AXIL05, BANK01–BANK04, CAP01–CAP03 and DMA01–DMA03 distinguish
+implemented local transfers from the remaining full AXI burst DMA work.

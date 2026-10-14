@@ -58,7 +58,7 @@ The mixed RTL test checks arbitrary keep masks, tags, frame ends, stalls and res
 | Compact float | Custom finite formats, arithmetic and ROM-based functions | IEEE-754 compliance; ordinary C# float/double synthesis |
 | Elementary functions | CORDIC and lookup-based hardware building blocks | Accuracy budgets, domain/error reporting and target-qualified implementations |
 | Streaming | Ready/valid, skid/FIFO, scheduled pipelines, external AXI RTL | General rate-changing native networks and arbitrary mixed-module topology |
-| Arrays/memory | Owned sequential RAM, Xilinx/Intel inference policies | Banking, burst DMA, tiled arrays, memory-aware scheduling |
+| Arrays/memory | Owned RAM, explicit cyclic banks, Xilinx/Intel policies, AXI-controlled local capture | Burst DMA, tiled arrays, automatic memory-aware scheduling |
 | Scientific primitives | Exact signed sample energy, calibration example, frame sum/count/min/max/energy | FIR/FFT, complex arithmetic, covariance |
 | Verification | Native/graph/RTL checks and domain-specific numerical error reports | Standard scientific reference datasets and wider accuracy budgets |
 
@@ -78,14 +78,15 @@ The native scientific helper added here operates on `AxisBeat`/`BigInteger`.
 | SCI04 | Frame sum/count/min/max with widened accumulators and overflow flags | Implemented in FrameReduction; empty/invalid frames, TLAST, overflow, stalls and reset tested |
 | SCI05 | Dot products and complex multiply with explicit scaling | Planned; full-precision reference, rounding ties, extrema and DSP mapping |
 | SCI06 | Numerical validation report | Initial facility implemented: absolute/relative/RMS error and special-case counts; exhaustive energy and quantization reports |
-| SCI07 | Banked/tiled memory and burst transfer support | Planned; port conflicts, bandwidth, reset and target RAM mapping tests |
+| SCI07 | Banked/tiled memory and burst transfer support | Partially implemented: explicit banks and local capture tested; tiled scheduling and AXI burst DMA remain planned |
 | SCI08 | Optional IEEE floating-point external IP adapters | Planned; explicit latency/backpressure and numerical exception contracts, native reference and RTL comparisons |
-| SCI09 | AXI4-Lite configuration and status | Planned; independent address/data handshakes, byte strobes, reset and response tests |
+| SCI09 | AXI4-Lite configuration and status | Implemented; independent channels, strobes, reset, responses and integrated capture tested |
 
 [Frame reductions and numerical reports](FRAME_REDUCTIONS.md) are now implemented.
 An instrument can compute per-frame energy, peak and sample count without sending
 every sample to a host. The reducer has explicit overflow and invalid-sample
 semantics and a dedicated native many-to-one runner. It does not extend the
-one-beat native model of AxisPipeline.Run. Banked memory/DMA and AXI4-Lite remain
-the next integration tasks; complex arithmetic and external IEEE floating-point
-IP still need explicit numerical and timing contracts.
+one-beat native model of AxisPipeline.Run. [AXI4-Lite control, explicit banked
+memory and local stream capture](CONTROL_AND_MEMORY.md) are now implemented.
+Full AXI burst DMA, automatic tiled-memory scheduling, complex arithmetic and
+external IEEE floating-point IP still need implementation and verification.

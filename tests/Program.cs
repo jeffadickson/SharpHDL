@@ -14,6 +14,7 @@ class Program
     static void Main(string[] args)
     {
         Directory.CreateDirectory("generated");
+        if(args.Length==1 && args[0]=="--control-memory") { ControlMemoryTests.Run();return; }
         if(args.Length==1 && args[0]=="--frame-reduction") { FrameReductionTests.Run();return; }
         if(args.Length==1 && args[0]=="--axis-interop") { AxisInteropTests.Run();return; }
         if(args.Length==1 && args[0]=="--axi-names") { AxiNameTests.Run();return; }
@@ -22,6 +23,7 @@ class Program
         if(args.Length==1 && args[0]=="--feedback") { FeedbackPipelineTests.Run();return; }
         if(args.Length==1 && args[0]=="--packet-benchmark") { PacketBenchmarkTests.Run();return; }
         if(args.Length==1 && args[0]=="--memory-targets") { MemoryTargetTests.Run();NativeProcessTests.Run();return; }
+        ControlMemoryTests.Run();
         FrameReductionTests.Run();
         AxisInteropTests.Run();
         MemoryTargetTests.Run();NativeProcessTests.Run();

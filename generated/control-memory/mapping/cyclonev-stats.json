@@ -1,0 +1,42 @@
+{
+  "creator": "Yosys 0.33 (git sha1 2584903a060)",
+  "design": {
+    "num_cells": 251,
+    "num_cells_by_type": {
+      "MISTRAL_ALUT2": 72,
+      "MISTRAL_CLKBUF": 1,
+      "MISTRAL_FF": 4,
+      "MISTRAL_IB": 106,
+      "MISTRAL_M10K": 4,
+      "MISTRAL_OB": 64
+    },
+    "num_memories": 0,
+    "num_memory_bits": 0,
+    "num_processes": 0,
+    "num_pub_wire_bits": 564,
+    "num_pub_wires": 120,
+    "num_wire_bits": 564,
+    "num_wires": 120
+  },
+  "invocation": "stat -json ",
+  "modules": {
+    "\\h_BankedIntelCycloneVMapping": {
+      "num_cells": 251,
+      "num_cells_by_type": {
+        "MISTRAL_ALUT2": 72,
+        "MISTRAL_CLKBUF": 1,
+        "MISTRAL_FF": 4,
+        "MISTRAL_IB": 106,
+        "MISTRAL_M10K": 4,
+        "MISTRAL_OB": 64
+      },
+      "num_memories": 0,
+      "num_memory_bits": 0,
+      "num_processes": 0,
+      "num_pub_wire_bits": 564,
+      "num_pub_wires": 120,
+      "num_wire_bits": 564,
+      "num_wires": 120
+    }
+  }
+}

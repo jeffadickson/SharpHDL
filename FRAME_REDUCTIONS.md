@@ -175,5 +175,6 @@ trace after graph values have been checked against the independent oracle.
 | NUMREP02 | State domain and execution mode for each numerical report | Exhaustive native-energy and graph-quantization reports |
 
 These implement SCI04 (frame reductions) and the initial SCI06 numerical report
-facility. General rate-changing mixed native networks, DMA/banking, AXI4-Lite,
-complex arithmetic, FFTs and IEEE floating-point adapters remain separate work.
+facility. [AXI4-Lite and explicit banked local capture](CONTROL_AND_MEMORY.md)
+are implemented separately. General rate-changing mixed native networks, full
+burst DMA, complex arithmetic, FFTs and IEEE floating-point adapters remain work.
