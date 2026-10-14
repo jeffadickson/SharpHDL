@@ -187,3 +187,13 @@ This is a requirements inventory for an end-to-end hardware development environm
 A user opens a SharpHDL design in VS Code, compiles with the supported frontend and starts a hardware debugging session. They select a clock domain, set a signal-change breakpoint, inspect a fixed-point register, examine its source expression, and step a clock. A waveform pane and schematic show the same post-edge value; pipeline occupancy explains stalls. They export VCD and a reproducible trace bundle. The same example is loadable offline in the browser, with matching waveforms and memory state. If the design violates a formal assertion, its counterexample imports into the same debug timeline.
 
 Gate: all observable state is derived from the canonical IR and simulator, cross-client values match, and no unsupported construct silently executes only as CLR code.
+
+## 16. Testing infrastructure and quality gates
+
+- **TEST-001 P0:** Introduce xUnit-based deterministic unit and parameterized tests for simulation, language type rules, reset/clock edges and dataflow semantics; preserve existing regression cases during migration.
+- **TEST-002 P0:** Use NSubstitute only at external seams (debug observers, tool invokers, trace sinks and host peripherals) to verify callback ordering, error paths and event counts. Never substitute the DUT for correctness tests.
+- **TEST-003 P1:** Run actual Icarus, Verilator and Yosys integrations in isolated Testcontainers environments with pinned tool images/digests. Compare generated output against independent reference models and keep real container artifacts.
+- **TEST-004 P0:** Separate fast deterministic unit tests from Docker-dependent integration tests and long synthesis benchmarks; ensure CI requires and reports the correct tier, never silently skipping required evidence.
+- **TEST-005 P1:** Publish per-commit trace checksums, RTL hash, simulator version, seed, first failing cycle and machine-readable test results.
+- **TEST-006 P1:** Add mutation/property-based regression for widths, signedness, FIFO backpressure, collision behavior, reset and parameter configurations, with reproducible minimized counterexamples.
+- **TEST-007 P1:** Add compiler IR-to-RTL equivalence testing with explicit assumptions and coverage; require independent tools where appropriate.
