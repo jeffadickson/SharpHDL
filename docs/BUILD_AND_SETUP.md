@@ -1,5 +1,21 @@
 # SharpHDL developer build workflow
 
+## Automatic toolchain provisioning (current workflow)
+
+**Yes: `just setup` now builds a development container that installs the .NET 8 SDK, Python, Node.js, Icarus Verilog, Verilator, Yosys, nextpnr-ice40 and IceStorm.** It also restores the core and xUnit .NET dependencies inside the container. You do not need to install those compilers/simulators separately on the host.
+
+Docker Engine or Docker Desktop must already be installed, started, and accessible to your user. It is the one bootstrap prerequisite for this container-first path, in addition to Python 3 and `just` for the command interface. The setup returns a failure when Docker is unavailable; it does not silently modify the host OS or request administrator privileges.
+
+```sh
+just setup
+just container-build
+just container-test
+just container-shell
+```
+
+The provisioning recipe is [tools/Dockerfile.dev](../tools/Dockerfile.dev). Image tag `sharphdl-dev:local` is locally built, not a published trusted image. Package versions still follow the selected Debian/Ubuntu package repositories; **this is automated provisioning but not yet a digest-locked/hermetic toolchain**. Portable browser testing, proprietary FPGA toolchains and VS Code packaging are not all included. A second, optional native installer could be implemented for developers who want HDL tools on the host.
+
+
 ## Tool ownership
 
 - **.NET CLI/MSBuild** builds .NET projects; `global.json` pins the selected major SDK feature band.
@@ -9,19 +25,19 @@
 
 ## Quick start
 
-Install Python 3, just, and a compatible .NET 8 SDK. Optional for hardware verification: Docker. From the repo root:
+For automatic provisioning install Python 3, just, and Docker. The .NET 8 SDK and open-source HDL tools are installed in the container; native SDK installations are optional. From the repo root:
 
 ```sh
 just doctor
 just setup
-just build
-just test
+just container-build
+just container-test
 just browser
 ```
 
 On systems without just, `python3 tools/dev.py doctor` and `python3 tools/dev.py setup` work directly, and `dotnet build` / `dotnet test` remain available. The Makefile does **not** install just.
 
-`just setup` restores NuGet dependencies for all declared .NET projects; it **does not** silently install system packages, start Docker, install an FPGA vendor IDE, install Icarus/Yosys/nextpnr, or change PATH. A missing prerequisite produces an actionable diagnostic. Use explicit OS package managers or a developer container if native tools are needed.
+`just setup` restores NuGet dependencies for all declared .NET projects; it automatically installs open-source HDL tools **inside the development container**, never silently onto the host. It does not install/start Docker itself or install proprietary FPGA vendor IDEs. A missing prerequisite produces an actionable diagnostic. Use explicit OS package managers or a developer container if native tools are needed.
 
 `just test` runs fast xUnit tests. `just test-hdl` runs the Docker-required Icarus integration project. `just verify` runs xUnit and the legacy main test program plus the Testcontainers test suite, and exits nonzero if Docker is missing. This is a developer verification tier rather than the complete board/document/browser regression represented by `tests/run-all.sh`; the latter has additional dependencies and stricter release criteria.
 
