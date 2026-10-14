@@ -237,3 +237,7 @@ Path exploration can duplicate common suffix logic before downstream synthesis;
 this implementation does not promise minimal area or perform general control-flow
 merging. The report includes the expanded branch/path/instruction counts. Fixed
 limits stop excessive expansion with an explicit diagnostic.
+
+## Structured schedule metadata
+
+The structural pipeline scheduler now also returns `PipelineHandle.Operations` containing immutable `PipelineOperation` records (stage, logic level, bit width, operator and name). This is a first step toward a dataflow/pipeline inspector: it avoids parsing the human-readable `Report` string. This initial metadata does not yet contain dependency edges or scheduling from the CIL-based pipeline frontend, and its logic levels remain abstract—not a target frequency or timing estimate.
