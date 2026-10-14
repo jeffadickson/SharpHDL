@@ -36,8 +36,11 @@ def doctor():
             print("Configured .NET SDK is not usable.", file=sys.stderr)
             return 1
     else:
-        print("Install the .NET 8 SDK from https://dotnet.microsoft.com/download/dotnet/8.0", file=sys.stderr)
-        return 1
+        if shutil.which("docker"):
+            print("Local .NET SDK is optional: 'just setup' provisions it in Docker.")
+        else:
+            print("Install Docker to provision the toolchain, or install .NET 8 locally.", file=sys.stderr)
+            return 1
     return 0
 
 def setup():
