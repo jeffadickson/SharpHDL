@@ -201,3 +201,9 @@ A new `tools/container-smoke.sh` and `.github/workflows/provisioning.yml` execut
 ## Simulator checkpoint increment (2026-10-14)
 
 `src/SharpHDL/SimulatorSnapshot.cs` adds `Simulator.CaptureSnapshot()` and `RestoreSnapshot()` for in-process rollback of every tracked signal and scratch RAM cell. Snapshots are deep-copied and tied to an elaborated Module instance; restoration rejects another module. Pre-reset uninitialized registers remain uninitialized. `tests/SharpHDL.UnitTests/SimulatorSnapshotTests.cs` exercises replay, RAM rollback and invalid ownership. This is the first increment for PAR-010, not an on-disk save-state format, debugger memory editor, or proof of performance. Test execution has not been confirmed.
+
+## Debugger-level checkpoint/replay increment (2026-10-14)
+
+`src/SharpHDL/DebugCheckpoint.cs` provides `CaptureCheckpoint`/`RestoreCheckpoint` on `HardwareDebugSession`. It wraps the simulator deep-copy RAM/register snapshot and records cycle number, last-triggered breakpoint, value/change breakpoint baselines and retained watch samples. Restore does not fabricate a hardware clock edge or notify an observer. A checkpoint is scoped to the owning session and restore refuses changed breakpoint sets before state mutation. Test fixtures: `tests/SharpHDL.UnitTests/DebugCheckpointTests.cs`.
+
+**Boundaries:** In-process only; watch registration/retention settings and breakpoint membership must remain stable; trace restoration is a state rewind rather than timestamp-preserving branch history. Hosted live ASP.NET debug service and VS Code DAP do not yet expose rewind; no passing new test execution was observed in this session. Portable snapshots, memory editing and integration with actual TinyRisc debugger remain planned.
