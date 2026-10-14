@@ -203,3 +203,11 @@ Gate: all observable state is derived from the canonical IR and simulator, cross
 - **PARITY-001 P0:** Maintain [feature parity matrix](FEATURE_PARITY.md), with stable PAR identifiers, source evidence, implementation/test maturity, owner issues and explicit acceptance goals. Review weekly and after significant releases.
 - **PARITY-002 P1:** Close each parity gap with runnable examples and automated verification, not document-only equivalence claims. Focus on debugger, browser, gate simulation, visual diagrams, four-state semantics and system examples.
 - **PARITY-003 P1:** Store reviewed upstream source commit and SharpHDL source commit, substantive changes and impacts in a dated review log. Keep design, requirements and tracked issues synchronized.
+
+## 18. Visualization priorities (revised 2026-10-14)
+
+- **VIZ-001 P0:** Produce stable machine-readable pipeline schedule graph (nodes, edges, stage, latency, initiation interval, resource estimates, source provenance) from each supported scheduler; guarantee equivalence to emitted RTL behavior through tests.
+- **VIZ-002 P0:** Visualize stalls, FIFO occupancy, token advancement, bubbles and valid/ready state on the dataflow graph with clock-step synchronization.
+- **VIZ-003 P1:** Display module hierarchy, interfaces, clock domains, memory blocks, AXI channels and source links without exploding designs into individual gate-level cells.
+- **VIZ-004 P1:** Source-linked synthesis/performance explorer shall distinguish pre-route estimates from post-placement utilization and timing reports; identify expensive operations and implementation choices.
+- **VIZ-005 P2:** Support optional scoped gate-cone schematic and SVG/DOT export for debugging/education. Do not require or prioritize a full-design interactive gate editor; preserve gate-level IR/equivalence requirements.
