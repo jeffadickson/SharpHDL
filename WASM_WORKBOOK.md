@@ -134,3 +134,7 @@ Start with one mission in a proposed 25–30 minute session.
 `node tests/check-learner-controls.js` checks the graph route; add `--browser`
 for actual Clock Lab controls (Playwright/Chromium required). The latter is
 a separate gate and a graph pass does not imply browser-control acceptance.
+
+The [learner browser CI guide](docs/LEARNER_CI.md) describes the GitHub-hosted
+Chromium check and its limits. Check the run result for the exact commit;
+adding a workflow is not itself browser acceptance.

@@ -1,0 +1,61 @@
+name: Learner browser checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/learner-browser.yml'
+      - 'docs/**'
+      - 'generated/learning/**'
+      - 'tests/check-learner-controls.js'
+      - 'tests/check-learning-browser.js'
+      - 'tests/check-wasm-workbook.js'
+      - 'tests/check-generated-docs.py'
+      - 'tools/build_learning_html.py'
+  pull_request:
+    paths:
+      - '.github/workflows/learner-browser.yml'
+      - 'docs/**'
+      - 'generated/learning/**'
+      - 'tests/check-learner-controls.js'
+      - 'tests/check-learning-browser.js'
+      - 'tests/check-wasm-workbook.js'
+      - 'tests/check-generated-docs.py'
+      - 'tools/build_learning_html.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  learner-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Install pinned browser test dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/learner-browser" --no-audit --no-fund --package-lock=false playwright@1.62.1
+          echo "NODE_PATH=$RUNNER_TEMP/learner-browser/node_modules" >> "$GITHUB_ENV"
+          node "$RUNNER_TEMP/learner-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Check graph and prepared trace references
+        run: |
+          mkdir -p build/learner-ci
+          node tests/check-learning-browser.js | tee build/learner-ci/graph.log
+          node tests/check-wasm-workbook.js | tee build/learner-ci/prepared-traces.log
+          python3 tests/check-generated-docs.py | tee build/learner-ci/documents.log
+      - name: Exercise actual learner controls in Chromium
+        run: node tests/check-learner-controls.js --browser 2>&1 | tee build/learner-ci/browser.log
+      - name: Keep validation logs
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: learner-browser-logs
+          path: build/learner-ci/*.log
+          if-no-files-found: warn
+          retention-days: 14
