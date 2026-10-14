@@ -1,0 +1,33 @@
+Feedback pipeline verification
+Toolchain: .NET SDK 8.0.100 / Roslyn; Icarus Verilog 12.0
+
+PASS tests/run-pipelines.sh, debug and optimized builds:
+  17730 existing automatic pipeline assertions per build.
+  25268 feedback pipeline assertions per build.
+  Six stateless and three feedback RTL trace benches per build.
+  Final feedback replay probes every external output, busy and all committed
+  state registers for 2200 cycles per design.
+
+PASS tests/run.sh
+PASS tests/run-behavioral.sh
+PASS tests/run-advanced.sh
+PASS tests/run-fsharp.sh
+PASS tests/run-three-languages.sh
+PASS tests/run-learning.sh
+PASS tests/run-tinyrisc.sh
+PASS tests/check-net-naming.py
+
+Independent recurrence models cover:
+- Running sum with nonzero reset seed and uint wraparound.
+- Conditional checksum plus count, atomically updated or cleared.
+- Previous-value output captured before the new state assignment.
+- Exact continuously-ready external latency and II = latency + 1.
+- Randomized input/output stalls; no stale-state admission.
+- State frozen until output acceptance; one in-flight iteration matches occupancy.
+- Reset during blocked output and computation, seed restoration and discard accounting.
+- Explicit rejection of stateless bodies, checked operations and nested cycles
+  through the feedback API before creating state registers.
+
+Generated schedules report external recurrence behavior separately from the
+internal elastic datapath. These tests do not establish target-device timing,
+optimal initiation intervals, modulo scheduling or resource sharing.

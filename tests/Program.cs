@@ -17,6 +17,8 @@ class Program
         if(args.Length==1 && args[0]=="--axi-names") { AxiNameTests.Run();return; }
         if(args.Length==1 && args[0]=="--stream-processes") { StreamingProcessTests.Run();return; }
         if(args.Length==1 && args[0]=="--pipelines") { PipelineTests.Run();return; }
+        if(args.Length==1 && args[0]=="--feedback") { FeedbackPipelineTests.Run();return; }
+        FeedbackPipelineTests.Run();
         PipelineTests.Run();
         StreamingProcessTests.Run();
         AxiNameTests.Run();

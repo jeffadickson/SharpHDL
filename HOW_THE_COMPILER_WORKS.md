@@ -565,3 +565,10 @@ no loop-carried state. Forward conditional arithmetic becomes muxes, with predic
 aligned to the data. It rejects recurrences, nested loops and faults rather
 than silently choosing slower timing. Device delays and shared multi-cycle units
 are future extensions; graph depth is not a claimed FPGA clock frequency.
+
+The separate [feedback backend](FEEDBACK_PIPELINES.md) now schedules initialized
+loop-carried scalars. It bundles next-state values with the output, commits them
+on output acceptance, and holds off the next input until the following edge.
+It reports external II=latency+1 rather than claiming the internal datapath
+rate for dependent iterations. Running sum and conditional checksum examples
+show the source CIL, state registers and reset/commit contract.

@@ -23,6 +23,8 @@ per clock. New: [automatic pipeline scheduling](PIPELINE_SCHEDULER.md) via
 logic-depth grouping, elastic backpressure and generated schedule reports.
 Conditional arithmetic (`if/else`, ternary and `switch`) is supported when every
 path consumes and produces exactly one token; gain-and-clipping is a worked example.
+[Feedback pipelines](FEEDBACK_PIPELINES.md) add constant-initialized loop-carried
+state with one iteration in flight and an explicitly reported II of latency + 1.
 
 Version 0.14 adds [TinyRisc16](examples/TinyRisc/ISA.md): a structural 16-bit
 processor, assembler, instruction stepping, scratch RAM, memory-mapped I/O and

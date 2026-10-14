@@ -1,0 +1,24 @@
+Feedback pipeline feedback
+External latency: 4 clocks to earliest output transfer; stalls extend latency.
+External initiation interval: 5 clocks with continuously valid input and ready output; capacity: 1 iteration.
+State commits on output acceptance; next input accepted no earlier than the following edge. No same-edge forwarding.
+State registers: 2 x 32 bits; busy: 1 bit. Reset restores declared initial constants and flushes in-flight output.
+This is conservative recurrence scheduling, not modulo scheduling or resource sharing.
+Predicated control: 1 path-expanded branches, 2 terminal paths, 32 visited instructions.
+Internal datapath schedule (its II=1 is gated by the external recurrence controller):
+Elastic pipeline feedback_datapath
+Latency: 4 register boundaries (acceptance edge counts as boundary 1); stalls extend latency.
+Initiation interval: 1 with a continuously ready sink; capacity: 4 tokens.
+Logic levels per stage: 1; abstract operation count, not device timing.
+Payload register bits: 355; valid register bits: 4.
+No resource sharing; multiply is a whole combinational operator in one logic level.
+Ready propagates combinationally backward; no automatic skid-buffer insertion.
+stage 1 | level 1 | 1 bits | == | expression
+stage 2 | level 2 | 1 bits | ~ | expression
+stage 1 | level 1 | 32 bits | + | ConditionalChecksum_IL_0020_add
+stage 3 | level 3 | 32 bits | mux | expression
+stage 1 | level 1 | 32 bits | * | ConditionalChecksum_IL_001a_mul
+stage 2 | level 2 | 32 bits | ^ | ConditionalChecksum_IL_001c_xor
+stage 3 | level 3 | 32 bits | mux | expression
+stage 3 | level 3 | 32 bits | + | ConditionalChecksum_IL_0025_add
+stage 4 | level 4 | 32 bits | mux | ConditionalChecksum_IL_0010_select

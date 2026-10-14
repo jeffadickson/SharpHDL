@@ -11,6 +11,29 @@ namespace SharpHDL
         public static PipelineHandle AttachPipeline<TIn,TOut>(Module m,string name,MethodInfo method,
             HwStream<TIn> input,HwStream<TOut> output,PipelineOptions options=null) where TIn:struct where TOut:struct
         {
+            if(input==null||input.Data.Owner!=m)throw new ArgumentException("Pipeline input must belong to this module.");
+            var program=CompilePipeline(method,input,output,false);
+            var handle=PipelineScheduler.Attach(m,name,input,output,program.Value,options);
+            handle.Report+=program.Report;return handle;
+        }
+        sealed class PipelineIteration
+        {
+            public Expr Value;
+            public Expr[] Locals;
+        }
+        sealed class PipelineProgram
+        {
+            public Expr Value;
+            public Expr[] Initial;
+            public int[] Candidates,StateIds;
+            public Expr[] NextState;
+            public Signal Placeholder;
+            public string Report;
+        }
+        static PipelineProgram CompilePipeline<TIn,TOut>(MethodInfo method,HwStream<TIn> input,HwStream<TOut> output,bool feedback)
+            where TIn:struct where TOut:struct
+        {
+            var m=input==null?null:input.Data.Owner;
             var body=method.GetMethodBody();var ps=method.GetParameters();
             if(!method.IsStatic||method.ContainsGenericParameters||method.ReturnType!=typeof(void)||body==null||body.ExceptionHandlingClauses.Count!=0)
                 throw Error(method,0,"Pipelines require a static void CIL body without exception handlers.");
@@ -23,21 +46,33 @@ namespace SharpHDL
             var backEdges=list.Where(i=>(i.Name=="br"||i.Name=="br.s"||Conditional(i.Name))&&(int)i.Operand<=i.Offset).ToArray();
             if(backEdges.Length==0||backEdges.Any(i=>Conditional(i.Name))||backEdges.Select(i=>(int)i.Operand).Distinct().Count()!=1)
                 throw Error(method,0,"Pipeline requires one unconditional outer loop; nested loops and conditional back edges are unsupported.");
-            int entry=(int)backEdges[0].Operand;int prefix=0,prefixConstants=0;var prefixSeen=new HashSet<int>();
+            int entry=(int)backEdges[0].Operand;int prefix=0;var prefixStack=new Stack<Expr>();var initial=new Expr[body.LocalVariables.Count];var prefixSeen=new HashSet<int>();
             while(prefix!=entry)
             {
                 Instruction i;if(!prefixSeen.Add(prefix)||!code.TryGetValue(prefix,out i))throw Error(method,prefix,"Invalid loop entry.");
-                if(i.Name.StartsWith("ldc.i4"))prefixConstants++;
+                if(i.Name.StartsWith("ldc.i4"))prefixStack.Push(K(32,i.Name=="ldc.i4.m1"?-1:i.Name=="ldc.i4"||i.Name=="ldc.i4.s"?(int)i.Operand:int.Parse(i.Name.Substring(7))));
                 else if(i.Name=="stloc"||i.Name=="stloc.s"||i.Name.StartsWith("stloc."))
-                {if(prefixConstants--<=0)throw Error(method,prefix,"Nonconstant pipeline initialization is unsupported.");}
+                {if(prefixStack.Count==0)throw Error(method,prefix,"Nonconstant pipeline initialization is unsupported.");initial[VarIndex(i,"stloc")]=prefixStack.Pop();}
                 else if(i.Name!="nop"&&i.Name!="br"&&i.Name!="br.s")throw Error(method,prefix,"Pipeline initialization outside the repeated iteration is unsupported; no loop-carried state.");
                 prefix=i.Name=="br"||i.Name=="br.s"?(int)i.Operand:i.Next;
             }
-            if(prefixConstants!=0)throw Error(method,entry,"Nonempty stack entering pipeline loop.");
-            // Discard prefix-only constants, including debug compiler loop flags. Each local
-            // must still be assigned before use on EVERY iteration path; no carried state.
+            if(prefixStack.Count!=0)throw Error(method,entry,"Nonempty stack entering pipeline loop.");
+            // Stateless mode requires assignment on every iteration path. Feedback mode
+            // seeds initialized locals symbolically and records those actually read before assignment.
+            var candidates=Enumerable.Range(0,initial.Length).Where(i=>initial[i]!=null).ToArray();
+            if(feedback&&candidates.Length>32)throw Error(method,entry,"Pipeline has more than 32 initialized locals.");
+            var placeholder=feedback?new Signal(m,"feedback_input_placeholder",input.Data.Width+32*candidates.Length,"wire"):input.Data;
+            var seeds=new Expr[initial.Length];var used=new HashSet<int>();
+            if(feedback)for(int n=0;n<candidates.Length;n++)seeds[candidates[n]]=placeholder.Slice(input.Data.Width+32*n+31,input.Data.Width+32*n);
+            Expr token=feedback?placeholder.Slice(input.Data.Width-1,0):input.Data;
             int steps=0,branches=0,paths=0;
-            Func<int,List<object>,Expr[],Expr,int,int,HashSet<int>,Expr> run=null;
+            Func<Expr,PipelineIteration,PipelineIteration,PipelineIteration> merge=(condition,yes,no)=>
+            {
+                var values=new Expr[initial.Length];
+                if(feedback)foreach(int id in candidates)values[id]=Select(condition,yes.Locals[id],no.Locals[id]);
+                return new PipelineIteration{Value=Select(condition,yes.Value,no.Value),Locals=values};
+            };
+            Func<int,List<object>,Expr[],Expr,int,int,HashSet<int>,PipelineIteration> run=null;
             run=(start,stack,locals,result,reads,writes,visited)=>
             {
                 int offset=start;
@@ -51,7 +86,7 @@ namespace SharpHDL
                     {
                         if(++paths>128)throw Error(method,pc,"Pipeline exceeds 128 control paths.");
                         if(reads!=1||writes!=1||result==null||stack.Count!=0)throw Error(method,pc,"Every pipeline path must have exactly one read/write and an empty stack at the back edge.");
-                        return result;
+                        return new PipelineIteration{Value=result,Locals=locals};
                     }
                     Instruction i;if(!code.TryGetValue(pc,out i)||!visited.Add(pc))throw Error(method,pc,"Nested cycles or invalid pipeline branch target.");
                     if(++steps>8192)throw Error(method,pc,"Pipeline exceeds 8192 path-expanded instructions.");
@@ -63,14 +98,14 @@ namespace SharpHDL
                     if(Conditional(op)||op=="switch")
                     {
                         if(++branches>128)throw Error(method,offset,"Pipeline exceeds 128 path-expanded branches.");
-                        Func<int,Expr> branch=target=>run(target,new List<object>(stack),(Expr[])locals.Clone(),result,reads,writes,new HashSet<int>(visited));
+                        Func<int,PipelineIteration> branch=target=>run(target,new List<object>(stack),(Expr[])locals.Clone(),result,reads,writes,new HashSet<int>(visited));
                         if(op=="switch")
                         {
                             var selector=scalar();var targets=(int[])i.Operand;
                             if(targets.Any(t=>t<=offset))throw Error(method,offset,"Backward switch targets are unsupported.");
                             var selected=branch(i.Next);
-                            for(int k=targets.Length-1;k>=0;k--)selected=Select(selector.Eq(K(32,k)),branch(targets[k]),selected);
-                            return selected.Named(method.Name+"_IL_"+offset.ToString("x4")+"_switch").Describe(method.Name+": predicated switch; one output token on every path.");
+                            for(int k=targets.Length-1;k>=0;k--)selected=merge(selector.Eq(K(32,k)),branch(targets[k]),selected);
+                            selected.Value.Named(method.Name+"_IL_"+offset.ToString("x4")+"_switch").Describe(method.Name+": predicated switch; one output token on every path.");return selected;
                         }
                         Expr c;
                         if(op.StartsWith("brtrue")||op.StartsWith("brfalse"))
@@ -81,12 +116,14 @@ namespace SharpHDL
                             c=Test(test=="beq"||test=="bne"?"eq":test=="blt"||test=="bge"?"lt":"gt",a,b,op.Contains(".un"));
                             if(test=="bne"||test=="ble"||test=="bge")c=Not(c);
                         }
-                        return Select(c,branch((int)i.Operand),branch(i.Next)).Named(method.Name+"_IL_"+offset.ToString("x4")+"_select")
+                        var selectedBranch=merge(c,branch((int)i.Operand),branch(i.Next));
+                        selectedBranch.Value.Named(method.Name+"_IL_"+offset.ToString("x4")+"_select")
                             .Describe(method.Name+" IL_"+offset.ToString("x4")+": predicated branch; condition and data aligned by scheduler.");
+                        return selectedBranch;
                     }
                     if(op.StartsWith("ldc.i4")){stack.Add(K(32,op=="ldc.i4.m1"?-1:op=="ldc.i4"||op=="ldc.i4.s"?(int)i.Operand:int.Parse(op.Substring(7))));continue;}
                     if(op=="ldarg"||op=="ldarg.s"||op.StartsWith("ldarg.")){int arg=VarIndex(i,"ldarg");if(arg<0||arg>1)throw Error(method,offset,"Invalid channel parameter.");stack.Add(arg);continue;}
-                    if(op=="ldloc"||op=="ldloc.s"||op.StartsWith("ldloc.")){var e=locals[VarIndex(i,"ldloc")];if(e==null)throw Error(method,offset,"Local read before assignment in this iteration: loop-carried state is unsupported.");stack.Add(e);continue;}
+                    if(op=="ldloc"||op=="ldloc.s"||op.StartsWith("ldloc.")){int id=VarIndex(i,"ldloc");var e=locals[id];if(e==null)throw Error(method,offset,"Local read before assignment: use constant-initialized state with AttachFeedbackPipeline, or assign on every path.");if(feedback&&ReferenceEquals(e,seeds[id]))used.Add(id);stack.Add(e);continue;}
                     if(op=="stloc"||op=="stloc.s"||op.StartsWith("stloc.")){locals[VarIndex(i,"stloc")]=scalar();continue;}
                     if(op=="dup"){var x=pop();stack.Add(x);stack.Add(x);continue;}
                     if(op=="pop"){pop();continue;}
@@ -98,7 +135,7 @@ namespace SharpHDL
                             if(!callee.IsStatic&&callee.Name=="Read"&&callee.GetParameters().Length==0)
                             {
                                 var receiver=pop();if(!(receiver is int)||(int)receiver!=0||callee.DeclaringType!=ps[0].ParameterType||++reads!=1||writes!=0)throw Error(method,offset,"Exactly one input.Read before output.Write is required per iteration.");
-                                stack.Add(Resize(input.Data,32,ProcessSigned(typeof(TIn))));continue;
+                                stack.Add(Resize(token,32,ProcessSigned(typeof(TIn))));continue;
                             }
                             if(!callee.IsStatic&&callee.Name=="Write"&&callee.GetParameters().Length==1)
                             {
@@ -125,10 +162,13 @@ namespace SharpHDL
                     throw Error(method,offset,"Unsupported pipelined opcode "+op+"; use AttachProcess for sequential semantics.");
                 }
             };
-            var value=run(entry,new List<object>(),new Expr[body.LocalVariables.Count],null,0,0,new HashSet<int>());
-            var handle=PipelineScheduler.Attach(m,name,input,output,value,options);
-            handle.Report+="Predicated control: "+branches+" path-expanded branches, "+paths+" terminal paths, "+steps+" visited instructions.\n";
-            return handle;
+            var iteration=run(entry,new List<object>(),(Expr[])seeds.Clone(),null,0,0,new HashSet<int>());
+            if(feedback&&used.Count==0)throw Error(method,entry,"No loop-carried state found; use AttachPipeline.");
+            if(used.Count>16)throw Error(method,entry,"Feedback pipeline supports at most 16 state locals.");
+            var ids=used.OrderBy(i=>i).ToArray();
+            return new PipelineProgram{Value=iteration.Value,Initial=initial,Candidates=candidates,StateIds=ids,
+                NextState=ids.Select(i=>iteration.Locals[i]).ToArray(),Placeholder=placeholder,
+                Report="Predicated control: "+branches+" path-expanded branches, "+paths+" terminal paths, "+steps+" visited instructions.\n"};
         }
     }
 }
