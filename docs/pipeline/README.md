@@ -50,3 +50,6 @@ Open **http://127.0.0.1:8093/**. This serves the same pipeline inspector with **
 API: `GET /api/state`, `POST /api/reset`, `POST /api/step` with JSON `{"valid":true,"data":10,"ready":true}`. Only localhost is bound; do not expose this unauthenticated development API publicly.
 
 **Current limits:** ID queue tracks overall accepted transaction order, **not** exact token placement per stage. Source hints are generated method/IL identifiers, **not** genuine source file/line mappings. The runnable service has been committed but not yet build-tested here. The inspector's replay mode still works independently of the live server.
+
+
+**2026-10-14 refinement:** The localhost host now maintains a stage-by-stage transaction-ID shadow register model, advancing IDs according to observed ready/valid and stage occupancy, and checks tag occupancy against actual simulator `StageValid` bits after each edge. `stageTokenIds` in `/api/state` identifies the accepted transaction occupying each stage of the supported single-clock elastic pipeline. This is a debug overlay rather than tags physically synthesized into RTL; generalized multicycle actors, feedback, multi-clock and reset-in-flight behavior require independent validation. The code is still unexecuted in this session. Genuine Portable PDB source spans remain open.
