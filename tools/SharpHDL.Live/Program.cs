@@ -4,7 +4,11 @@ using SharpHDL;
 var builder=WebApplication.CreateBuilder(args);
 builder.WebHost.UseUrls("http://127.0.0.1:8093");
 var app=builder.Build();
-var root=Path.GetFullPath(Path.Combine(app.Environment.ContentRootPath,"../../docs/pipeline"));
+var search=new DirectoryInfo(app.Environment.ContentRootPath);
+while(search!=null && !Directory.Exists(Path.Combine(search.FullName,"docs","pipeline")))
+    search=search.Parent;
+if(search==null)throw new DirectoryNotFoundException("Cannot locate SharpHDL docs/pipeline from the working directory.");
+var root=Path.Combine(search.FullName,"docs","pipeline");
 app.UseStaticFiles(new StaticFileOptions{FileProvider=new Microsoft.Extensions.FileProviders.PhysicalFileProvider(root)});
 
 var m=new Module("BrowserPipeline");
