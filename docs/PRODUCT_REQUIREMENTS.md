@@ -219,3 +219,10 @@ Gate: all observable state is derived from the canonical IR and simulator, cross
 - **VIZ-008 P1:** Map CIL operation and pipeline stage to real source file/line spans, handle optimized-away and duplicated expressions, and support source-side selection.
 - **VIZ-009 P1:** Track deterministic token identities/values across accepted transfers and stage stalls using compiler/simulator instrumentation; do not guess IDs from stage occupancy alone.
 - **VIZ-010 P0:** Add browser automation for replay, seek, malformed trace handling, offline behavior and cross-browser rendering, and commit verified CI output.
+
+## 20. Source-aware VS Code hardware debugging acceptance gates
+
+- **DBG-018 P0:** Read matching .NET Portable PDBs and map supported CIL IL offsets to original file/line/column information on IR/dataflow nodes. Missing symbols are reported as unavailable, never guessed. Initial code committed, tests not yet executed.
+- **DBG-019 P0:** Provide a runnable VS Code Debug Adapter Protocol client that can launch/attach, step a real hardware clock, and read hardware-state variables from the shared live simulator. Initial inline adapter committed, requires execution verification.
+- **DBG-020 P0:** Bind source-line breakpoints to explicitly defined synthesized stage/token events (including duplicated operations and stalls), with verified/unverified DAP status and positive/negative breakpoint integration tests. Not implemented.
+- **DBG-021 P1:** Allow VS Code to select an arbitrary compiled C#/F# hardware module with matching debug symbols, not merely the fixed structural demo. Not implemented.
