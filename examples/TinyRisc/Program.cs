@@ -104,6 +104,7 @@ class Program
  {
   Directory.CreateDirectory("generated/tinyrisc");var demo=File.ReadAllLines("generated/tinyrisc/count.hex").Select(x=>Convert.ToUInt16(x,16)).ToArray();Run(demo,"CountRun");Run(demo,"CountStep",true);
   var hello=File.ReadAllLines("generated/tinyrisc/hello_world.hex").Select(x=>Convert.ToUInt16(x,16)).ToArray();Run(hello,"HelloWorld",expectedTx:"Hello, world!\r\n");
+  if(args.Contains("--compiled-tinyrisc")) RunCompiledHello(hello);
   var random=new Random(93);var code=new System.Collections.Generic.List<ushort>();for(int i=1;i<8;i++)code.Add(I(8,i,0,random.Next(512)));for(int i=0;i<180;i++){int op=random.Next(9);code.Add(op<=6?I(op,random.Next(8),random.Next(8),random.Next(8)<<3):op==7?I(op,random.Next(8),random.Next(8),random.Next(64)):I(op,random.Next(8),0,random.Next(512)));}code.Add(0xf000);Run(code.ToArray(),"RandomAlu");
   Run(new[]{I(8,1,0,256),I(9,2,1,1),I(10,2,1,2),I(9,3,1,3),I(9,4,1,4),I(10,3,1,0),(ushort)0xf000},"PeripheralStalls",true);
   Run(new[]{I(8,1,0,3),I(13,1,1),I(8,2,0,99),I(0,3,1,0),(ushort)0xf000},"JumpAlias");
