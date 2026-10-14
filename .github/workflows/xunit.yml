@@ -1,0 +1,27 @@
+name: SharpHDL xUnit tests
+on:
+  push:
+    paths: ['src/**', 'tests/SharpHDL.UnitTests/**', '.github/workflows/xunit.yml']
+  pull_request:
+    paths: ['src/**', 'tests/SharpHDL.UnitTests/**', '.github/workflows/xunit.yml']
+  workflow_dispatch:
+jobs:
+  unit:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - run: dotnet restore tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj
+      - run: dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --no-restore --logger 'trx;LogFileName=unit-results.trx'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unit-results-${{ matrix.os }}
+          path: '**/TestResults/*.trx'
+          if-no-files-found: warn
