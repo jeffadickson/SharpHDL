@@ -197,3 +197,9 @@ Gate: all observable state is derived from the canonical IR and simulator, cross
 - **TEST-005 P1:** Publish per-commit trace checksums, RTL hash, simulator version, seed, first failing cycle and machine-readable test results.
 - **TEST-006 P1:** Add mutation/property-based regression for widths, signedness, FIFO backpressure, collision behavior, reset and parameter configurations, with reproducible minimized counterexamples.
 - **TEST-007 P1:** Add compiler IR-to-RTL equivalence testing with explicit assumptions and coverage; require independent tools where appropriate.
+
+## 17. Competitive capability coverage and change management
+
+- **PARITY-001 P0:** Maintain [feature parity matrix](FEATURE_PARITY.md), with stable PAR identifiers, source evidence, implementation/test maturity, owner issues and explicit acceptance goals. Review weekly and after significant releases.
+- **PARITY-002 P1:** Close each parity gap with runnable examples and automated verification, not document-only equivalence claims. Focus on debugger, browser, gate simulation, visual diagrams, four-state semantics and system examples.
+- **PARITY-003 P1:** Store reviewed upstream source commit and SharpHDL source commit, substantive changes and impacts in a dated review log. Keep design, requirements and tracked issues synchronized.
