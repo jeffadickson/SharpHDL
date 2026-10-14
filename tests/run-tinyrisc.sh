@@ -7,7 +7,7 @@ python3 examples/TinyRisc/assemble.py examples/TinyRisc/count.asm generated/tiny
 python3 examples/TinyRisc/test_hello_world_smoke.py
 python3 examples/TinyRisc/assemble.py examples/TinyRisc/hello_world.asm generated/tinyrisc/hello_world.hex
 python3 examples/TinyRisc/build.py "$DOTNET_ROOT"
-"$DOTNET_ROOT/dotnet" build/tinyrisc/TinyRisc.dll
+"$DOTNET_ROOT/dotnet" build/tinyrisc/TinyRisc.dll --compiled-tinyrisc
 for bench in generated/tinyrisc/*_tb.v; do
   iverilog -g2012 -s tb -o build/tinyrisc/test "${bench%_tb.v}.v" "$bench"
   vvp build/tinyrisc/test
