@@ -197,7 +197,7 @@ namespace SharpHDL
         }
     }
 
-    public sealed class Simulator
+    public sealed partial class Simulator
     {
         readonly Module module;
         readonly Dictionary<Signal,BigInteger> state=new Dictionary<Signal,BigInteger>();
