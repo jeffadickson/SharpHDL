@@ -7,9 +7,9 @@ namespace SharpHDL
 {
     /// <summary>
     /// First two-state sequential .NET-JIT backend. Compiles each register's D cone
-    /// into a delegate; evaluates all D inputs from the same pre-edge state, then
-    /// atomically commits them. Memory-backed designs fail explicitly for now.
-    /// This is not a native AOT compiler or a complete CPU simulation backend.
+    /// into a delegate; evaluates all D inputs and RAM writes from pre-edge state,
+    /// then commits memory and registers atomically.
+    /// This is .NET JIT execution, not native AOT or a verified whole-CPU benchmark.
     /// </summary>
     public sealed class CompiledSequentialSimulator
     {
@@ -17,6 +17,11 @@ namespace SharpHDL
         readonly Signal[] operands;
         readonly Signal[] registers;
         readonly CompiledCombinational[] next;
+        readonly SynchronousRam[] rams;
+        readonly Dictionary<SynchronousRam, BigInteger[]> ramImages = new();
+        readonly CompiledCombinational[] ramAddresses;
+        readonly CompiledCombinational[] ramEnables;
+        readonly CompiledCombinational[] ramWriteData;
         readonly Dictionary<Signal, BigInteger> values = new();
         bool initialized;
 
@@ -24,13 +29,16 @@ namespace SharpHDL
         {
             this.module = module ?? throw new ArgumentNullException(nameof(module));
             module.Validate();
-            if (module.Memories.Count != 0)
-                throw new NotSupportedException("Compiled sequential RAM semantics are not yet implemented; use the reference simulator.");
+            rams = module.Memories.ToArray();
+            foreach (var ram in rams) ramImages.Add(ram, (BigInteger[])ram.Initial.Clone());
             operands = module.Signals.Where(s => s.IsInput || s.Kind == "reg").ToArray();
             registers = module.Signals.Where(s => s.Kind == "reg").ToArray();
             // CompiledCombinational explicitly rejects unsupported opcodes rather
             // than silently interpreting the original graph.
-            next = registers.Select(s => new CompiledCombinational(module, s.Driver, true)).ToArray();
+            next = registers.Select(s => new CompiledCombinational(module, s.Driver, true, ramImages)).ToArray();
+            ramAddresses = rams.Select(r => new CompiledCombinational(module, r.Address, true, ramImages)).ToArray();
+            ramEnables = rams.Select(r => new CompiledCombinational(module, r.WriteEnable, true, ramImages)).ToArray();
+            ramWriteData = rams.Select(r => new CompiledCombinational(module, r.WriteData, true, ramImages)).ToArray();
             foreach (var input in operands.Where(s => s.IsInput)) values[input] = 0;
         }
 
@@ -66,6 +74,17 @@ namespace SharpHDL
             // This guarantees nonblocking-assignment/atomic clock-edge semantics.
             var oldValues = operands.Select(s => values[s]).ToArray();
             var pending = next.Select(d => d.Evaluate(oldValues)).ToArray();
+            var writes = new List<(SynchronousRam Ram, int Address, BigInteger Data)>();
+            for (var i = 0; i < rams.Length; i++)
+            {
+                if (ramEnables[i].Evaluate(oldValues).IsZero) continue;
+                var address = ramAddresses[i].Evaluate(oldValues);
+                if (address >= rams[i].Depth) continue;
+                writes.Add((rams[i], (int)address, ramWriteData[i].Evaluate(oldValues)));
+            }
+            // Same contract as Simulator.Tick: reads and writes sample the old state;
+            // RAM contents update before register commit, without affecting sampled D inputs.
+            foreach (var write in writes) ramImages[write.Ram][write.Address] = write.Data;
             for (var i = 0; i < registers.Length; i++) values[registers[i]] = pending[i];
         }
     }
