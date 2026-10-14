@@ -197,3 +197,7 @@ Root `justfile` is the recommended human entry point, with a minimal compatibili
 ## 19. Fresh clone toolchain smoke gate (2026-10-14)
 
 A new `tools/container-smoke.sh` and `.github/workflows/provisioning.yml` execute actual .NET compilation and xUnit, reference simulation, Icarus parsing and Yosys elaboration from the auto-provisioned environment. `just container-verify` exposes the same path locally. The `setup` command now restores all .NET projects and checks installed HDL executables. It does not validate real vendor timing closure. The code is committed but not yet confirmed passing on GitHub Actions.
+
+## Simulator checkpoint increment (2026-10-14)
+
+`src/SharpHDL/SimulatorSnapshot.cs` adds `Simulator.CaptureSnapshot()` and `RestoreSnapshot()` for in-process rollback of every tracked signal and scratch RAM cell. Snapshots are deep-copied and tied to an elaborated Module instance; restoration rejects another module. Pre-reset uninitialized registers remain uninitialized. `tests/SharpHDL.UnitTests/SimulatorSnapshotTests.cs` exercises replay, RAM rollback and invalid ownership. This is the first increment for PAR-010, not an on-disk save-state format, debugger memory editor, or proof of performance. Test execution has not been confirmed.
