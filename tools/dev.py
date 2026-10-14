@@ -41,13 +41,27 @@ def doctor():
     return 0
 
 def setup():
-    if doctor():
+    """Provision the toolchain in Docker automatically, then restore .NET packages.
+
+    No root access or unmanaged OS package installation is performed on the host.
+    Docker Desktop/Engine is a prerequisite; native developer SDK is optional.
+    """
+    docker = shutil.which("docker")
+    if not docker:
+        print("Docker is required for automatic HDL tool provisioning.", file=sys.stderr)
+        print("Install Docker Desktop/Engine, start it, and run 'just setup' again.", file=sys.stderr)
         return 1
-    for project in PROJECTS:
-        run(["dotnet", "restore", project])
-    print("Restored .NET projects. HDL/FPGA tools are intentionally not installed on the host.")
-    print("For real HDL integration tests, install/start Docker and run: just test-hdl")
-    print("Optional front-end requirements: Node/Playwright per existing browser test scripts.")
+    status = subprocess.run([docker, "info"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    if status.returncode != 0:
+        print("Docker daemon is unavailable; start Docker and run setup again.", file=sys.stderr)
+        return 1
+    run([docker, "build", "-f", "tools/Dockerfile.dev", "-t", "sharphdl-dev:local", "."])
+    run([docker, "run", "--rm", "-v", str(ROOT) + ":/workspace", "-w", "/workspace",
+         "sharphdl-dev:local", "dotnet", "restore", "tests/Tests.csproj"])
+    run([docker, "run", "--rm", "-v", str(ROOT) + ":/workspace", "-w", "/workspace",
+         "sharphdl-dev:local", "dotnet", "restore", "tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj"])
+    print("Automatic container provisioning complete (HDL tools, .NET SDK, Python, Node).")
+    print("Use 'just container-build' or 'just container-test' without local .NET installs.")
     return 0
 
 def verify():
