@@ -241,3 +241,7 @@ limits stop excessive expansion with an explicit diagnostic.
 ## Structured schedule metadata
 
 The structural pipeline scheduler now also returns `PipelineHandle.Operations` containing immutable `PipelineOperation` records (stage, logic level, bit width, operator and name). This is a first step toward a dataflow/pipeline inspector: it avoids parsing the human-readable `Report` string. This initial metadata does not yet contain dependency edges or scheduling from the CIL-based pipeline frontend, and its logic levels remain abstract—not a target frequency or timing estimate.
+
+## Dataflow DAG export (initial implementation)
+
+For structural expressions, `StructuralPipeline.Attach(module, name, input, output, expression, options)` returns a `PipelineHandle` containing `DataflowGraph`. Nodes carry postorder IDs, stage, abstract logic level, width, operation and optional name. Directed edges map source operand IDs to consuming nodes with an operand index. `handle.DataflowGraph.ToJson()` produces machine-readable JSON. xUnit graph tests check topological order, determinism and generated RTL. This is an IR-level *dependency DAG*; it is not a placement-level schematic or a timing measurement. The behavior CIL scheduler has not yet been unified with this representation.
