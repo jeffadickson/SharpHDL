@@ -136,3 +136,54 @@ Not arbitrary C#/CLR synthesis; not automatic translation of GC, threads, reflec
 5. Add CI gates; publish results with CPU/OS/runtime, workload hash and correctness evidence.
 
 Track each workstream as an issue; do not mark a requirement implemented on the strength of documentation alone.
+
+## 13. Integrated debugging architecture and developer tooling (expanded)
+
+The primary engineering editor is VS Code (and compatible Debug Adapter Protocol clients). The browser workbench is a second client of the **same** simulator/debug service. Never build a second hardware execution model merely to support the browser. Standard .NET debugging of elaboration and host code remains independent of hardware-clock debugging.
+
+- **DBG-001 P0:** Define a versioned simulator-debug service API for launch/attach, run/pause, reset, single-edge/multi-edge step, snapshot, state inspection and trace subscription. Specify deterministic responses and feature capability negotiation. Verify operation from a CLI without a UI.
+- **DBG-002 P0:** Add a Debug Adapter Protocol implementation supporting launch, disconnect, continue, pause, step, scopes, variables and breakpoint lifecycle, backed by simulator state (not .NET CLR variables). Test against DAP protocol fixtures and VS Code.
+- **DBG-003 P0:** Preserve compiler source provenance (C#/F#/VB method, source span and CIL offset) through IR optimization, scheduling and RTL emission. Round-trip from source to stage/signal and generated HDL. Where multiple mapped nodes exist, show all.
+- **DBG-004 P0:** Implement clock-cycle, signal value/edge/change, state-transition and assertion-failure breakpoints. Define whether a breakpoint observes pre-edge or post-edge values; test reset and multi-cycle stages.
+- **DBG-005 P1:** Support hardware watches and hover values in binary, decimal, signed, hexadecimal and fixed-point formats; show X/Z when enabled and mark unavailable/optimized-away signals explicitly.
+- **DBG-006 P1:** Add signal hierarchy exploration, watch groups, search/filter, and exportable watch configurations. Verify stable hierarchical identities between simulator/RTL.
+- **DBG-007 P1:** Add trace cursors, value-change database, bounded buffering and streaming VCD/FST where supported; compare emitted traces to cycle oracles. Expose capture overhead and dropped-event conditions.
+- **DBG-008 P1:** Provide RAM/ROM and peripheral inspectors: address, width, byte order, reads/writes, diff, binary/hex dumps, import, and safe paused-state editing. Preserve snapshots and determinism.
+- **DBG-009 P1:** Add portable simulation snapshots with memory, peripheral and pipeline state, versioned format, IR/build hashes, optional compressed backing, and atomic import. Test resumed-cycle identity.
+- **DBG-010 P1:** Add pipeline debugger that visualizes stage occupancy, accepted/stalled tokens, side-effect commits, bubble propagation, latency and II. Verify displays against instrumented traces.
+- **DBG-011 P1:** Support custom VS Code extension contributions: SharpHDL launch configurations, run/debug tasks, waveform and schematic webviews, RTL links and diagnostics. Reuse existing C# language server/editor functionality; do not fork it.
+- **DBG-012 P1:** Provide target-aware hardware/Verilog mapping for diagnostic symbols and support external simulator waveforms. Explicitly distinguish RTL simulation from post-placement timing simulation.
+- **DBG-013 P2:** Add backwards stepping via deterministic trace replay/checkpoints, with documented performance and device-I/O limitations.
+- **DBG-014 P2:** Provide multi-clock time-based stepping, domain-specific breakpoint scoping, and CDC signal annotation.
+- **DBG-015 P2:** Add terminal/TUI debug client built on the shared debug service for headless and SSH environments.
+- **DBG-016 P1:** Add a formal-counterexample importer mapping witness values to source-linked waveforms and step controls.
+- **DBG-017 P1:** Capture a reproducible failure bundle: IR/hash, input stimuli, simulator version, seed, breakpoints, trace and environment; redact secrets and allow offline replay.
+
+## 14. Feature completeness: simulation, visualization and system-level examples
+
+This is a requirements inventory for an end-to-end hardware development environment. These requirements may overlap the core requirements; overlapping IDs establish more specific acceptance criteria without replacing the baseline.
+
+- **ENV-001 P0:** Unified navigation among source, hierarchy, waveform, watch table, memory, schematic, synthesized RTL and console; persist layout/settings locally without network access.
+- **ENV-002 P1:** High-performance scalable waveform navigation with time cursors, search, grouping, radix selection, zoom, triggers and VCD import/export; large traces must not lock the UI.
+- **ENV-003 P1:** Interactive hierarchical schematics with auto-layout, pan/zoom, port/net highlighting, drill-down, live activity and SVG/PNG/DOT export. Ensure an accessible non-WebGL fallback.
+- **ENV-004 P1:** Schematic generated both at pre-synthesis RTL/IR and generic gate-level; distinguish inferred logic from technology-mapped primitives.
+- **ENV-005 P1:** Browser runners for generic combinational/clocked modules, a small CPU, TinyRisc, streaming science pipeline and a memory/peripheral system.
+- **ENV-006 P1:** Provide reusable synthesizable library blocks: logic gates, encoder/decoder, multiplexers, counters, FSMs, registers, arithmetic units, RAM/ROM, FIFO, serial I/O, and CPU datapath helpers.
+- **ENV-007 P1:** Provide circuit metrics: primitive/gate count, registers, nets, logical depth, inferred memories/DSPs, switching activity and resource mapping; qualify estimates until technology mapping.
+- **ENV-008 P1:** Provide backend selection with runtime capabilities (reference interpreter, optimized native, external RTL, browser WASM), performance counters, setup costs and fallbacks reported explicitly.
+- **ENV-009 P1:** Provide a CLI with discover/list, elaborate, simulate, synthesize, diagram, export, inspect, benchmark, verify and debug subcommands; produce structured output and stable exit codes.
+- **ENV-010 P1:** Provide an embeddable example/system harness with CPU, ROM/RAM, MMIO, UART, keyboard/display emulation and binary loading; verify against an architectural software oracle.
+- **ENV-011 P1:** Provide debug console commands for help, run/step/pause/reset, watch/breakpoint management, memory reads/writes and backend selection; commands should work in desktop and browser.
+- **ENV-012 P1:** Provide portable system snapshots including memory contents and reset/start addresses, and optionally associate user-generated snapshots with a named example.
+- **ENV-013 P2:** Add desktop packaging of the web workbench for offline use, without duplicating backend code.
+- **ENV-014 P1:** Provide formal and simulation regression dashboards with passing/failing tests, runtime, design revisions and downloadable failure traces.
+- **ENV-015 P2:** Support optimized gate-level simulation and optional acceleration where benchmarks justify it; never require a GPU to use the tool.
+- **ENV-016 P1:** Provide an explicit supported hardware semantic profile for 2-state fast simulation and 4-state validation, including reset and initialization rules.
+- **ENV-017 P1:** Offer source browsing for all generated code and per-component export, plus HDL/IR/netlist files downloadable independently.
+- **ENV-018 P2:** Provide guided interactive educational labs using actual generated designs, shared simulation engine and waveform view, not a separate toy model.
+
+## 15. Debugging acceptance scenario
+
+A user opens a SharpHDL design in VS Code, compiles with the supported frontend and starts a hardware debugging session. They select a clock domain, set a signal-change breakpoint, inspect a fixed-point register, examine its source expression, and step a clock. A waveform pane and schematic show the same post-edge value; pipeline occupancy explains stalls. They export VCD and a reproducible trace bundle. The same example is loadable offline in the browser, with matching waveforms and memory state. If the design violates a formal assertion, its counterexample imports into the same debug timeline.
+
+Gate: all observable state is derived from the canonical IR and simulator, cross-client values match, and no unsupported construct silently executes only as CLR code.
