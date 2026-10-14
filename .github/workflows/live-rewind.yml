@@ -1,0 +1,41 @@
+name: Live debugger rewind API
+on:
+  push:
+    paths:
+      - 'src/SharpHDL/**'
+      - 'tools/SharpHDL.Live/**'
+      - 'tests/test_live_rewind_api.py'
+      - '.github/workflows/live-rewind.yml'
+  pull_request:
+    paths:
+      - 'src/SharpHDL/**'
+      - 'tools/SharpHDL.Live/**'
+      - 'tests/test_live_rewind_api.py'
+      - '.github/workflows/live-rewind.yml'
+  workflow_dispatch:
+
+jobs:
+  live-rewind:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Build actual SharpHDL live simulator
+        run: dotnet build tools/SharpHDL.Live/SharpHDL.Live.csproj -c Release
+      - name: Run actual localhost API and verify deterministic rewind
+        shell: bash
+        run: |
+          set -euo pipefail
+          dotnet run --no-build -c Release --project tools/SharpHDL.Live/SharpHDL.Live.csproj > /tmp/sharphdl-live.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true; cat /tmp/sharphdl-live.log' EXIT
+          ready=0
+          for i in {1..40}; do
+            if curl --fail --silent http://127.0.0.1:8093/api/state >/dev/null; then ready=1; break; fi
+            sleep 1
+          done
+          if [ "$ready" != "1" ]; then echo "Live service did not start"; exit 1; fi
+          python3 tests/test_live_rewind_api.py
