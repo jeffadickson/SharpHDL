@@ -22,7 +22,7 @@ class SharpHDLAdapter {
     try {
       switch(req.command) {
         case 'initialize':
-          this.response(req,{supportsConfigurationDoneRequest:true,supportsEvaluateForHovers:false,supportsSetVariable:false,supportsStepBack:false});
+          this.response(req,{supportsConfigurationDoneRequest:true,supportsEvaluateForHovers:false,supportsSetVariable:false,supportsStepBack:true});
           this.event('initialized'); break;
         case 'launch':
           this.state=await this.api('/api/state');
@@ -49,6 +49,13 @@ class SharpHDLAdapter {
             this.state=result.state;
             this.response(req);
             this.event('stopped',{reason:'step',threadId:1,allThreadsStopped:true});
+          }break;
+        case 'stepBack':
+          {
+            const result=await this.api('/api/stepBack','POST',{});
+            this.state=result.state;
+            this.response(req);
+            this.event('stopped',{reason:'step',description:'Restored prior hardware clock state',threadId:1,allThreadsStopped:true});
           }break;
         case 'continue':
           this.response(req,{allThreadsContinued:false});
