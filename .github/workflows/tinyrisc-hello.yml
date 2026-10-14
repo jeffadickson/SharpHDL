@@ -24,16 +24,20 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Provision Icarus Verilog
-        run: sudo apt-get update && sudo apt-get install -y iverilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog yosys
       - name: Show tool versions
         run: |
           dotnet --version
           iverilog -V | head -n 2
           python3 --version
+          yosys -V
       - name: Run TinyRisc CPU/RTL/serial UART tests
         run: |
           export DOTNET_ROOT="$(dirname "$(readlink -f "$(command -v dotnet)")")"
           bash tests/run-tinyrisc.sh
+      - name: Synthesize full CPU plus UART top and check design
+        run: |
+          yosys -Q -T -l generated/tinyrisc/hello_uart_yosys.log -p 'read_verilog -sv generated/tinyrisc/HelloWorld.v examples/TinyRisc/hello_uart_top.v; hierarchy -check -top tinyrisc_hello_top; proc; opt; check -assert; stat'
       - name: Retain results on failure or success
         if: always()
         uses: actions/upload-artifact@v4
