@@ -14,6 +14,9 @@ header,section{margin-bottom:18px}.panel{background:#172236;border:1px solid #31
 <span class="tag" id="source">No trace loaded</span></div>
 <div style="margin-top:15px"><label for="seek">Cycle <strong id="cycle">–</strong></label><input id="seek" type="range" min="0" max="0" value="0"></div>
 <div role="status" id="error"></div></section>
+<section class="panel"><h2>Live .NET simulator</h2><p>Connect through the localhost SharpHDL server to apply inputs and advance the actual circuit one rising edge. The recorded replay above remains available independently.</p>
+<div class="controls"><button id="liveConnect">Connect localhost</button><button id="liveReset">Reset live</button><label>Data <input id="liveData" type="number" min="0" max="65535" value="10" style="width:95px"></label><label><input id="liveValid" type="checkbox" checked> Input valid</label><label><input id="liveReady" type="checkbox" checked> Output ready</label><button id="liveStep">Step live clock</button></div>
+<pre id="liveState">Not connected. Start: dotnet run --project tools/SharpHDL.Live</pre></section>
 <section class="panel"><h2>Handshake and stage occupancy</h2><div class="statrow" id="stats"></div><div id="stages" class="stagegrid"></div>
 <p class="muted">Stages show the actual sampled <code>StageValid</code> bits. A filled stage means occupied; the trace does not yet identify individual payload tokens.</p></section>
 <section class="panel"><h2>Dataflow operations</h2><p>Choose a node to inspect its operation and dependencies. Stage numbers represent abstract scheduling depth—not physical timing.</p>
@@ -70,6 +73,22 @@ $("reset").onclick=()=>{stop();index=0;render()};
 $("play").onclick=()=>{if(playing){stop();return}if(!trace?.Samples.length)return;txt($("play"),"Pause");playing=setInterval(()=>{if(index===trace.Samples.length-1){stop();return}index++;render()},450)};
 $("seek").oninput=e=>{stop();index=Number(e.target.value);render()};
 $("file").onchange=async e=>{try{const file=e.target.files[0];if(file)load(JSON.parse(await file.text()),file.name)}catch(err){txt($("error"),err.message)}};
+const liveText=$("liveState");
+async function liveRequest(path,body){
+ const resp=await fetch(path,{method:body?"POST":"GET",headers:{"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});
+ if(!resp.ok)throw Error("Live API "+resp.status+": "+await resp.text());
+ return resp.json();
+}
+function liveShow(data){
+ const state=data.state||data;
+ txt(liveText,JSON.stringify({cycle:state.cycle,stageOccupied:state.stageOccupied,
+  inputReady:state.inputReady,outputValid:state.outputValid,
+  outputData:state.outputData,acceptedTokenIds:state.pendingTokens,
+  transfer:data.transfer||null},null,2));
+}
+$("liveConnect").onclick=async()=>{try{liveShow(await liveRequest("/api/state"))}catch(e){txt(liveText,e.message+" — open this page at http://127.0.0.1:8093/")}};
+$("liveReset").onclick=async()=>{try{liveShow(await liveRequest("/api/reset",{}))}catch(e){txt(liveText,e.message)}};
+$("liveStep").onclick=async()=>{try{liveShow(await liveRequest("/api/step",{valid:$("liveValid").checked,data:Number($("liveData").value),ready:$("liveReady").checked}))}catch(e){txt(liveText,e.message)}};
 fetch("trace.json").then(r=>{if(!r.ok)throw Error("No generated trace.json");return r.json()}).then(j=>load(j,"Generated SharpHDL trace")).catch(()=>txt($("error"),"Generate trace.json using the command below, or import a recorded trace JSON."));
 render();
 </script></body></html>
