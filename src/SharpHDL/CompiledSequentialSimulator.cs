@@ -23,6 +23,7 @@ namespace SharpHDL
         readonly CompiledCombinational[] ramEnables;
         readonly CompiledCombinational[] ramWriteData;
         readonly Dictionary<Signal, BigInteger> values = new();
+        readonly Dictionary<Expr, CompiledCombinational> probes = new();
         bool initialized;
 
         public CompiledSequentialSimulator(Module module)
@@ -58,6 +59,21 @@ namespace SharpHDL
             if (!values.TryGetValue(signal, out var value))
                 throw new InvalidOperationException("Reset before reading registers.");
             return value;
+        }
+
+        /// <summary>Read any local hardware expression (including output ports)
+        /// using compiled combinational logic over the current register/input state.</summary>
+        public BigInteger Read(Expr expression)
+        {
+            if (expression is Signal s && (s.IsInput || s.Kind == "reg")) return Read(s);
+            if (expression == null) throw new ArgumentNullException(nameof(expression));
+            if (!initialized) throw new InvalidOperationException("Reset before reading compiled hardware outputs.");
+            if (!probes.TryGetValue(expression, out var evaluator))
+            {
+                evaluator = new CompiledCombinational(module, expression, true, ramImages);
+                probes.Add(expression, evaluator);
+            }
+            return evaluator.Evaluate(operands.Select(s => values[s]).ToArray());
         }
 
         public void Tick(bool reset = false)
