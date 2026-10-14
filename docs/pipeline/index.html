@@ -15,7 +15,7 @@ header,section{margin-bottom:18px}.panel{background:#172236;border:1px solid #31
 <div style="margin-top:15px"><label for="seek">Cycle <strong id="cycle">–</strong></label><input id="seek" type="range" min="0" max="0" value="0"></div>
 <div role="status" id="error"></div></section>
 <section class="panel"><h2>Live .NET simulator</h2><p>Connect through the localhost SharpHDL server to apply inputs and advance the actual circuit one rising edge. The recorded replay above remains available independently.</p>
-<div class="controls"><button id="liveConnect">Connect localhost</button><button id="liveReset">Reset live</button><label>Data <input id="liveData" type="number" min="0" max="65535" value="10" style="width:95px"></label><label><input id="liveValid" type="checkbox" checked> Input valid</label><label><input id="liveReady" type="checkbox" checked> Output ready</label><button id="liveStep">Step live clock</button></div>
+<div class="controls"><button id="liveConnect">Connect localhost</button><button id="liveReset">Reset live</button><label>Data <input id="liveData" type="number" min="0" max="65535" value="10" style="width:95px"></label><label><input id="liveValid" type="checkbox" checked> Input valid</label><label><input id="liveReady" type="checkbox" checked> Output ready</label><button id="liveStep">Step live clock</button><button id="liveBack" disabled>◀ Step back</button></div>
 <pre id="liveState">Not connected. Start: dotnet run --project tools/SharpHDL.Live</pre></section>
 <section class="panel"><h2>Handshake and stage occupancy</h2><div class="statrow" id="stats"></div><div id="stages" class="stagegrid"></div>
 <p class="muted">Stages show the actual sampled <code>StageValid</code> bits. A filled stage means occupied; the trace does not yet identify individual payload tokens.</p></section>
@@ -81,14 +81,16 @@ async function liveRequest(path,body){
 }
 function liveShow(data){
  const state=data.state||data;
+ $("liveBack").disabled=!state.canStepBack;
  txt(liveText,JSON.stringify({cycle:state.cycle,stageOccupied:state.stageOccupied,
   inputReady:state.inputReady,outputValid:state.outputValid,
   outputData:state.outputData,stageTokenIds:state.stageTokenIds,acceptedTokenIds:state.pendingTokens,
-  transfer:data.transfer||null},null,2));
+  rewindDepth:state.rewindDepth,transfer:data.transfer||null},null,2));
 }
 $("liveConnect").onclick=async()=>{try{liveShow(await liveRequest("/api/state"))}catch(e){txt(liveText,e.message+" — open this page at http://127.0.0.1:8093/")}};
 $("liveReset").onclick=async()=>{try{liveShow(await liveRequest("/api/reset",{}))}catch(e){txt(liveText,e.message)}};
 $("liveStep").onclick=async()=>{try{liveShow(await liveRequest("/api/step",{valid:$("liveValid").checked,data:Number($("liveData").value),ready:$("liveReady").checked}))}catch(e){txt(liveText,e.message)}};
+$("liveBack").onclick=async()=>{try{liveShow(await liveRequest("/api/stepBack",{}))}catch(e){txt(liveText,e.message)}};
 fetch("trace.json").then(r=>{if(!r.ok)throw Error("No generated trace.json");return r.json()}).then(j=>load(j,"Generated SharpHDL trace")).catch(()=>txt($("error"),"Generate trace.json using the command below, or import a recorded trace JSON."));
 render();
 </script></body></html>
