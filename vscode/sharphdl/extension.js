@@ -159,11 +159,11 @@ function activate(context) {
     if(!choice)return;
     let condition;
     if(choice==='Cycle threshold'){
-      const answer=await vscode.window.showInputBox({prompt:'Stop at or after clock cycle',validateInput:s=>/^\\d+$/.test(s)?null:'Enter a nonnegative integer'});
+      const answer=await vscode.window.showInputBox({prompt:'Stop at or after clock cycle',validateInput:s=>/^\d+$/.test(s)?null:'Enter a nonnegative integer'});
       if(answer===undefined)return;
       condition={kind:'cycle',value:Number(answer)};
     } else if(choice==='Occupied pipeline stage'){
-      const answer=await vscode.window.showInputBox({prompt:'Zero-based stage index',validateInput:s=>/^\\d+$/.test(s)?null:'Enter a nonnegative index'});
+      const answer=await vscode.window.showInputBox({prompt:'Zero-based stage index',validateInput:s=>/^\d+$/.test(s)?null:'Enter a nonnegative index'});
       if(answer===undefined)return;
       condition={kind:'stage',index:Number(answer)};
     }else condition={kind:'boolean',field:choice};
