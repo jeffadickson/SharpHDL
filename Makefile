@@ -1,7 +1,7 @@
 # SharpHDL make compatibility entry point.
 # Docker + Python 3 are the only host prerequisites for automatic HDL/.NET provisioning.
 # Toolchain itself is installed in tools/Dockerfile.dev, never silently on host.
-.PHONY: help doctor setup setup-tools setup-and-hello tinyrisc-hello benchmark-simulator benchmark-tinyrisc container-verify container-build container-test container-shell build test test-hdl simulate benchmark browser vscode vscode-test vscode-provenance multiplier-rtl multiplier-compare verify clean
+.PHONY: help doctor setup setup-tools setup-and-hello tinyrisc-hello benchmark-simulator benchmark-tinyrisc container-verify container-build container-test container-shell build test test-hdl simulate benchmark browser vscode vscode-test vscode-provenance multiplier-rtl multiplier-compare dsp-verify verify clean
 
 IMAGE := sharphdl-dev:local
 DOCKER_RUN = docker run --rm -v "$(CURDIR):/workspace" -w /workspace $(IMAGE)
@@ -18,6 +18,7 @@ help:
 	@echo "  make vscode-test     Run extension JavaScript unit tests in Node 22 container"
 	@echo "  make vscode-provenance Generate CIL source-to-RTL map for scheduled pipeline"
 	@echo "  make multiplier-compare Generate and synthesize alternative multiplier architectures"
+	@echo "  make dsp-verify       Simulate direct and pipelined DSP48E2 wrappers (behavioral mode)"
 	@echo "  just --list          Optional extra native developer tasks"
 
 doctor:
@@ -59,6 +60,12 @@ multiplier-rtl:
 
 multiplier-compare: multiplier-rtl
 	$(DOCKER_RUN) python3 tools/compare_multiplier_synthesis.py
+
+dsp-verify: multiplier-rtl
+	$(DOCKER_RUN) bash -c 'mkdir -p build/dsp && \
+	iverilog -g2012 -DSHARPH_DL_DSP_BEHAVIORAL -s tb_dsp48e2_mul -o build/dsp/direct rtl/amd/sharphdl_dsp48e2_mul_unsigned.v tests/rtl/tb_dsp48e2_mul.sv && vvp build/dsp/direct && \
+	iverilog -g2012 -DSHARPH_DL_DSP_BEHAVIORAL -s tb_dsp48e2_pipeline -o build/dsp/pipelined rtl/amd/sharphdl_dsp48e2_mul_pipeline.v tests/rtl/tb_dsp48e2_pipeline.sv && vvp build/dsp/pipelined && \
+	iverilog -g2012 -DSHARPH_DL_DSP_BEHAVIORAL -s tb_generated_direct_dsp -o build/dsp/generated generated/multipliers/DirectDsp.v rtl/amd/sharphdl_dsp48e2_mul_unsigned.v tests/rtl/tb_generated_direct_dsp.sv && vvp build/dsp/generated'
 
 vscode-test:
 	docker run --rm -v "$(CURDIR):/workspace" -w /workspace/vscode/sharphdl node:22-bookworm \
