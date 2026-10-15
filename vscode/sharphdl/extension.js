@@ -9,7 +9,8 @@ const hardwareConditions=[];
 const adapters=new Set();
 
 class SharpHDLAdapter {
-  constructor() {
+  constructor(conditions=hardwareConditions) {
+    this.conditions=conditions;
     this.emitter = new vscode.EventEmitter();
     this.onDidSendMessage = this.emitter.event;
     this.sequence = 1;
@@ -88,9 +89,11 @@ class SharpHDLAdapter {
       for(let i=0;i<10000&&!this.cancelled;i++) {
         const result=await this.api('/api/step','POST',{valid:false,data:0,ready:true});
         this.state=result.state;
-        if(hardwareConditions.some(c=>matches(this.state,c))) {
+        if(this.conditions.some(c=>matches(this.state,c))) {
           reason='breakpoint';description='Hardware condition matched';break;
         }
+        // Yield periodically so a Pause request can interrupt fast local simulators.
+        if(i%32===31)await new Promise(resolve=>setImmediate(resolve));
         if(i===9999)description='Run limit: 10000 clock edges';
       }
     }catch(e){description='Hardware execution failed: '+e.message;}
@@ -185,4 +188,4 @@ function activate(context) {
   }));
 }
 function deactivate() {}
-module.exports={activate,deactivate};
+module.exports={activate,deactivate,SharpHDLAdapter};
