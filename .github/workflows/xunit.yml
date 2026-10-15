@@ -1,7 +1,7 @@
 name: SharpHDL xUnit tests
 on:
   push:
-    paths: ['src/**', 'tests/SharpHDL.UnitTests/**', '.github/workflows/xunit.yml']
+    paths: ['src/**', 'tests/SharpHDL.UnitTests/**', 'tests/check-project-layers.py', 'Makefile', '.github/workflows/xunit.yml']
   pull_request:
     paths: ['src/**', 'tests/SharpHDL.UnitTests/**', '.github/workflows/xunit.yml']
   workflow_dispatch:
@@ -25,3 +25,23 @@ jobs:
           name: unit-results-${{ matrix.os }}
           path: '**/TestResults/*.trx'
           if-no-files-found: warn
+  core-layering:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Enforce Core/HLS/Simulation dependency direction
+        run: python3 tests/check-project-layers.py
+      - name: Build independent Core IR assembly
+        run: dotnet build src/SharpHDL.Core/SharpHDL.Core.csproj -c Release
+      - name: Build independent HLS assembly
+        run: dotnet build src/SharpHDL.HLS/SharpHDL.HLS.csproj -c Release
+      - name: Build independent Simulation assembly
+        run: dotnet build src/SharpHDL.Simulation/SharpHDL.Simulation.csproj -c Release
+      - name: Run canonical Core, HLS and Simulation regressions
+        run: >
+          dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj
+          -c Release
+          --filter "FullyQualifiedName~CoreHardwareGraphTests|FullyQualifiedName~CoreGraphLoweringTests|FullyQualifiedName~CoreIrExtendedParityTests|FullyQualifiedName~TinyRiscCoreIrTests|FullyQualifiedName~HlsGraphAnalyzerTests"
