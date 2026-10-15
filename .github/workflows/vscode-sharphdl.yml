@@ -66,13 +66,13 @@ jobs:
         run: |
           export DOTNET_ROOT="$(dirname "$(readlink -f "$(command -v dotnet)")")"
           bash tests/run-tinyrisc.sh
-      - name: Compile and run manifest-defined multi-file Verilator project
-        run: node vscode/sharphdl/cliSmoke.js
       - name: Generate actual CIL-to-RTL provenance
         run: |
           dotnet run --project tools/SharpHDL.Provenance/SharpHDL.Provenance.csproj -c Debug -- "$PWD"
           test -s generated/vscode/ScheduledPolynomial1.v.source-map.json
           python3 -c 'import json; x=json.load(open("generated/vscode/ScheduledPolynomial1.v.source-map.json")); assert x["mappings"], "missing exact CIL source mappings"'
+      - name: Compile and run TinyRisc and HLS multi-file Verilator projects with VCD checks
+        run: node vscode/sharphdl/cliSmoke.js
   extension-host:
     strategy:
       fail-fast: false
