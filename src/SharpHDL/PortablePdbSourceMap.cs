@@ -29,7 +29,11 @@ namespace SharpHDL
             using (var provider = MetadataReaderProvider.FromPortablePdbStream(stream))
             {
                 var reader = provider.GetMetadataReader();
-                var methodRow = MetadataTokens.GetRowNumber(MetadataTokens.Handle(method.MetadataToken));
+                // GetRowNumber accepts a metadata table entity, not the general
+                // Handle returned by MetadataTokens.Handle(int), which can name a heap.
+                var methodEntity = MetadataTokens.EntityHandle(method.MetadataToken);
+                if (methodEntity.Kind != HandleKind.MethodDefinition) return;
+                var methodRow = MetadataTokens.GetRowNumber(methodEntity);
                 var handle = MetadataTokens.MethodDebugInformationHandle(methodRow);
                 if (handle.IsNil) return;
                 var info = reader.GetMethodDebugInformation(handle);
