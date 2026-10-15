@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup><TargetFramework>net8.0</TargetFramework><ImplicitUsings>disable</ImplicitUsings><Nullable>disable</Nullable></PropertyGroup>
   <ItemGroup><ProjectReference Include="../SharpHDL.Core/SharpHDL.Core.csproj" />
-    <ProjectReference Include="../SharpHDL.Simulation/SharpHDL.Simulation.csproj" /></ItemGroup>
+    <ProjectReference Include="../SharpHDL.Simulation/SharpHDL.Simulation.csproj" />
+    <ProjectReference Include="../SharpHDL.HLS/SharpHDL.HLS.csproj" /></ItemGroup>
 </Project>
