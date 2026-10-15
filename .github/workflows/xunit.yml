@@ -49,7 +49,7 @@ jobs:
         run: >
           dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj
           -c Release
-          --filter "FullyQualifiedName~CoreHardwareGraphTests|FullyQualifiedName~CoreGraphLoweringTests|FullyQualifiedName~CoreIrExtendedParityTests|FullyQualifiedName~TinyRiscCoreIrTests|FullyQualifiedName~HlsGraphAnalyzerTests|FullyQualifiedName~HlsElasticCompilerTests"
+          --filter "FullyQualifiedName~CoreHardwareGraphTests|FullyQualifiedName~CoreGraphLoweringTests|FullyQualifiedName~CoreIrExtendedParityTests|FullyQualifiedName~TinyRiscCoreIrTests|FullyQualifiedName~HlsGraphAnalyzerTests|FullyQualifiedName~HlsElasticCompilerTests|FullyQualifiedName~CoreVerilogEmitterTests"
   core-hls-verilator:
     runs-on: ubuntu-latest
     timeout-minutes: 15
