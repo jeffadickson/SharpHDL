@@ -118,3 +118,63 @@ public static class HlsElasticCompiler
         int Binary(HardwareOperation op,int width,int a,int b)=>Add(op,width,new[]{a,b});
         int Mux(int cond,int yes,int no,int width)=>
             Add(HardwareOperation.Select,width,new[]{cond,yes,no});
+        int one=Constant(1,1);
+        int tokenInput=Input(prefix+"_input_data",token.Type.Width);
+        int inputValid=Input(prefix+"_input_valid",1);
+        int outputReady=Input(prefix+"_output_ready",1);
+        var valid=new int[latency];
+        for(int i=0;i<latency;i++)
+            valid[i]=Input(prefix+"_valid_"+i,1,true);
+        var ready=new int[latency];
+        for(int i=latency-1;i>=0;i--)
+        {
+            int downstream=i==latency-1?outputReady:ready[i+1];
+            ready[i]=Binary(HardwareOperation.Or,1,
+                Unary(HardwareOperation.Not,1,valid[i]),downstream);
+        }
+        for(int i=0;i<latency;i++)
+            next.Add(prefix+"_valid_"+i,
+                Mux(ready[i],i==0?inputValid:valid[i-1],valid[i],1));
+        outputs.Add(prefix+"_input_ready",ready[0]);
+        outputs.Add(prefix+"_output_valid",valid[latency-1]);
+
+        var values=new Dictionary<(int,int),int>();
+        var registers=new Dictionary<(int,int),int>();
+        int payloadBits=0;
+        int At(int id,int stage)
+        {
+            if(!reachable.Contains(id))throw new InvalidOperationException("Unreachable expression.");
+            var n=byId[id];
+            if(n.Operation==HardwareOperation.Constant)
+                return Constant(n.Type.Width,n.ConstantValue!.Value);
+            if(stage>Stage(id))return Register(id,stage);
+            if(stage<Stage(id))throw new InvalidOperationException("Expression scheduled too early.");
+            if(n.Operation==HardwareOperation.Input)return tokenInput;
+            var key=(id,stage);
+            if(values.TryGetValue(key,out var cached))return cached;
+            var args=n.Operands.Select(a=>At(a,stage)).ToArray();
+            var value=Add(n.Operation,n.Type.Width,args,n.ConstantValue,n.Name,n.Offset,n.Table);
+            values.Add(key,value);
+            return value;
+        }
+        int Register(int id,int stage)
+        {
+            if(stage<1||stage>latency)throw new ArgumentOutOfRangeException(nameof(stage));
+            var key=(id,stage);
+            if(registers.TryGetValue(key,out var cached))return cached;
+            var width=byId[id].Type.Width;
+            var name=prefix+"_data_"+stage+"_"+id;
+            var reg=Input(name,width,true);
+            registers.Add(key,reg);
+            payloadBits+=width;
+            int priorValid=stage==1?inputValid:valid[stage-2];
+            int write=Binary(HardwareOperation.And,1,ready[stage-1],priorValid);
+            var computed=At(id,stage-1);
+            next.Add(name,Mux(write,computed,reg,width));
+            return reg;
+        }
+        outputs.Add(prefix+"_output_data",Register(outputNodeId,latency));
+        return new HlsElasticPipeline(new HardwareGraph(nodes),inputs,outputs,next,
+            reset,latency,payloadBits);
+    }
+}
