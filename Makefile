@@ -1,7 +1,7 @@
 # SharpHDL make compatibility entry point.
 # Docker + Python 3 are the only host prerequisites for automatic HDL/.NET provisioning.
 # Toolchain itself is installed in tools/Dockerfile.dev, never silently on host.
-.PHONY: help doctor setup setup-tools setup-and-hello tinyrisc-hello benchmark-simulator benchmark-tinyrisc container-verify container-build container-test container-shell build test test-hdl simulate benchmark browser vscode vscode-test vscode-provenance multiplier-rtl multiplier-compare dsp-verify verify clean
+.PHONY: help doctor setup setup-tools setup-and-hello tinyrisc-hello benchmark-simulator benchmark-tinyrisc container-verify container-build container-test container-shell build test test-hdl simulate benchmark browser vscode vscode-test vscode-provenance multiplier-rtl multiplier-compare dsp-verify core-ir-verify verify clean
 
 IMAGE := sharphdl-dev:local
 DOCKER_RUN = docker run --rm -v "$(CURDIR):/workspace" -w /workspace $(IMAGE)
@@ -19,6 +19,7 @@ help:
 	@echo "  make vscode-provenance Generate CIL source-to-RTL map for scheduled pipeline"
 	@echo "  make multiplier-compare Generate and synthesize alternative multiplier architectures"
 	@echo "  make dsp-verify       Simulate direct and pipelined DSP48E2 wrappers (behavioral mode)"
+	@echo "  make core-ir-verify   Check Core/HLS/Simulation layers and run canonical IR parity tests"
 	@echo "  just --list          Optional extra native developer tasks"
 
 doctor:
@@ -37,6 +38,10 @@ benchmark-tinyrisc:
 
 benchmark-simulator:
 	$(DOCKER_RUN) dotnet run --project tools/SharpHDL.SimulatorBench/SharpHDL.SimulatorBench.csproj -c Release -- 200000
+
+core-ir-verify:
+	$(DOCKER_RUN) python3 tests/check-project-layers.py
+	$(DOCKER_RUN) dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --filter 'FullyQualifiedName~CoreHardwareGraphTests|FullyQualifiedName~CoreGraphLoweringTests'
 
 container-verify:
 	$(DOCKER_RUN) bash tools/container-smoke.sh
