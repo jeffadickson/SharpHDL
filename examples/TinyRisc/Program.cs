@@ -71,9 +71,9 @@ class Program
   void SetBoth(string name,int value){var p=Port(name);reference.Set(p,value);jit.Set(p,value);}
   void Compare(int edge){
    foreach(var p in ports.Where(p=>p.IsOutput))
-    if(reference.Read(p)!=jit.Read((Expr)p))
+    if(reference.Read(p)!=jit.Read(p))
       throw new Exception("Compiled TinyRisc mismatch edge "+edge+" port "+p.Name+
-        " interpreted="+reference.Read(p)+" compiled="+jit.Read((Expr)p));
+        " interpreted="+reference.Read(p)+" compiled="+jit.Read(p));
   }
   var bytes=new System.Collections.Generic.List<byte>();
   reference.Tick(true);jit.Tick(true);
@@ -126,7 +126,7 @@ class Program
   for(int i=0;i<edges;i++)jit.Tick(i%128==0);
   sw.Stop();double compiled=sw.Elapsed.TotalSeconds;
   foreach(var p in ports.Values.Where(p=>p.IsOutput))
-    Check(reference.Read(p)==jit.Read((Expr)p),"CPU benchmark mismatch "+p.Name);
+    Check(reference.Read(p)==jit.Read(p),"CPU benchmark mismatch "+p.Name);
   Console.WriteLine("BENCH TinyRisc repeating ROM: compiled "+(edges/compiled).ToString("F0")+
     " edges/sec; interpreter "+(edges/interpreted).ToString("F0")+
     " edges/sec; ratio "+(interpreted/compiled).ToString("F3")+
