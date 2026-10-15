@@ -89,6 +89,12 @@ jobs:
         run: |
           dotnet run --project tools/SharpHDL.MultiplierBench/SharpHDL.MultiplierBench.csproj -c Release -- "$PWD"
           python3 tools/compare_multiplier_synthesis.py
+          iverilog -g2012 -DSHARPH_DL_DSP_BEHAVIORAL -s tb_generated_direct_dsp \
+            -o build/dsp/tb_generated_direct_dsp \
+            generated/multipliers/DirectDsp.v \
+            rtl/amd/sharphdl_dsp48e2_mul_unsigned.v \
+            tests/rtl/tb_generated_direct_dsp.sv
+          vvp build/dsp/tb_generated_direct_dsp
       - name: Generate actual CIL-to-RTL provenance
         run: |
           dotnet run --project tools/SharpHDL.Provenance/SharpHDL.Provenance.csproj -c Debug -- "$PWD"
