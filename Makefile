@@ -10,7 +10,7 @@ help:
 	@echo "SharpHDL (Docker + Python 3 required for automatic provisioning)"
 	@echo "  make setup           Download/build .NET SDK and HDL toolchain in Docker; restore NuGet projects"
 	@echo "  make setup-and-hello Run provisioning and full Hello World verification"
-	@echo "  make tinyrisc-hello  Run actual CPU/RTL, UART serial, and Yosys regression"
+	@echo "  make tinyrisc-hello  Run both legacy/native CPU RTL, UART serial, and Yosys regressions"
 	@echo "  make container-verify Run full .NET/Icarus/Yosys smoke suite"
 	@echo "  make container-build / container-test / container-shell"
 	@echo "  make doctor          Inspect host prerequisites"
