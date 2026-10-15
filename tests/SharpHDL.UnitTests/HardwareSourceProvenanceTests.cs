@@ -158,4 +158,36 @@ public sealed class HardwareSourceProvenanceTests
         Assert.Contains("use_dsp",dspRtl);
     }
 
+    [Theory]
+    [InlineData(nameof(MultiplyShiftAdd))]
+    [InlineData(nameof(MultiplyDspPreferred))]
+    public void Multiplier_architectures_match_modulo_32_bit_software_oracle(string methodName)
+    {
+        var m=new Module("MulOracle");
+        var input=HwStream<uint>.Input(m,"in");
+        var output=HwStream<uint>.Output(m,"out");
+        var method=typeof(HardwareSourceProvenanceTests).GetMethod(methodName)!;
+        CilCompiler.AttachPipeline(m,"mul",method,input,output);
+        var sim=m.Simulate();
+        sim.Tick(true);
+        sim.Set(output.Ready,1);
+        foreach(uint x in new uint[]{0,1,7,65535,0x80000000,uint.MaxValue})
+        {
+            sim.Set(input.Data,x);
+            sim.Set(input.Valid,1);
+            int guard=0;
+            while(sim.Read(input.Ready).IsZero && guard++<200)sim.Tick();
+            Assert.True(guard<200,"Multiplier input did not become ready");
+            sim.Tick();
+            sim.Set(input.Valid,0);
+            guard=0;
+            while(sim.Read(output.Valid).IsZero && guard++<200)sim.Tick();
+            Assert.True(guard<200,"Multiplier output did not become valid");
+            var expected=((System.Numerics.BigInteger)x *
+                (System.Numerics.BigInteger)(unchecked(x+3u))) & Expr.Mask(32);
+            Assert.Equal(expected,sim.Read(output.Data));
+            sim.Tick();
+        }
+    }
+
 }
