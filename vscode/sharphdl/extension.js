@@ -4,6 +4,9 @@ const path = require('node:path');
 const {parseDiagnostics} = require('./verilator');
 const {registerVerificationExplorer} = require('./verificationExplorer');
 const {registerProjectIntegration} = require('./projectIntegration');
+const {matches,FIELDS}=require('./hardwareBreakpoints');
+const hardwareConditions=[];
+const adapters=new Set();
 
 class SharpHDLAdapter {
   constructor() {
@@ -13,6 +16,9 @@ class SharpHDLAdapter {
     this.cycle = 0;
     this.state = null;
     this.base = 'http://127.0.0.1:8093';
+    this.running=false;
+    this.cancelled=false;
+    adapters.add(this);
   }
   send(message) { this.emitter.fire({seq:this.sequence++,...message}); }
   response(req,body={}) { this.send({type:'response',request_seq:req.seq,success:true,command:req.command,body}); }
@@ -62,18 +68,38 @@ class SharpHDLAdapter {
             this.response(req);
             this.event('stopped',{reason:'step',description:'Restored prior hardware clock state',threadId:1,allThreadsStopped:true});
           }break;
-        case 'continue':
-          this.response(req,{allThreadsContinued:false});
-          this.event('stopped',{reason:'pause',description:'Continuous running is not supported in this adapter; use Step.',threadId:1});break;
-        case 'pause':this.response(req);this.event('stopped',{reason:'pause',threadId:1});break;
+        case 'continue': {
+          this.cancelled=false;
+          this.response(req,{allThreadsContinued:true});
+          if(!this.running)void this.runUntilBreakpoint();
+        }break;
+        case 'pause':this.cancelled=true;this.response(req);break;
         case 'setBreakpoints':
           this.response(req,{breakpoints:(req.arguments?.breakpoints||[]).map(()=>({verified:false,message:'C# hardware source breakpoints not implemented yet'}))});break;
-        case 'disconnect':this.response(req);this.event('terminated');break;
+        case 'disconnect':this.cancelled=true;this.response(req);this.event('terminated');break;
         default:this.response(req);
       }
     } catch(e) { this.error(req,String(e.message||e)); }
   }
-  dispose() { this.emitter.dispose(); }
+  async runUntilBreakpoint() {
+    this.running=true;
+    let reason='pause',description='Execution stopped';
+    try {
+      for(let i=0;i<10000&&!this.cancelled;i++) {
+        const result=await this.api('/api/step','POST',{valid:false,data:0,ready:true});
+        this.state=result.state;
+        if(hardwareConditions.some(c=>matches(this.state,c))) {
+          reason='breakpoint';description='Hardware condition matched';break;
+        }
+        if(i===9999)description='Run limit: 10000 clock edges';
+      }
+    }catch(e){description='Hardware execution failed: '+e.message;}
+    finally {
+      this.running=false;
+      this.event('stopped',{reason,description,threadId:1,allThreadsStopped:true});
+    }
+  }
+  dispose() { this.cancelled=true;adapters.delete(this);this.emitter.dispose(); }
 }
 
 /** Run Verilator without a shell and surface errors in VS Code Problems.
@@ -125,6 +151,26 @@ function runVerilatorLint(document, diagnostics, output) {
   });
 }
 function activate(context) {
+  context.subscriptions.push(vscode.commands.registerCommand('sharphdl.addHardwareBreakpoint',async()=>{
+    const choice=await vscode.window.showQuickPick(['Cycle threshold',...FIELDS,'Occupied pipeline stage'],{placeHolder:'Hardware breakpoint condition (post-edge)'});
+    if(!choice)return;
+    let condition;
+    if(choice==='Cycle threshold'){
+      const answer=await vscode.window.showInputBox({prompt:'Stop at or after clock cycle',validateInput:s=>/^\\d+$/.test(s)?null:'Enter a nonnegative integer'});
+      if(answer===undefined)return;
+      condition={kind:'cycle',value:Number(answer)};
+    } else if(choice==='Occupied pipeline stage'){
+      const answer=await vscode.window.showInputBox({prompt:'Zero-based stage index',validateInput:s=>/^\\d+$/.test(s)?null:'Enter a nonnegative index'});
+      if(answer===undefined)return;
+      condition={kind:'stage',index:Number(answer)};
+    }else condition={kind:'boolean',field:choice};
+    hardwareConditions.push(condition);
+    vscode.window.showInformationMessage('Hardware breakpoint added: '+JSON.stringify(condition));
+  }));
+  context.subscriptions.push(vscode.commands.registerCommand('sharphdl.clearHardwareBreakpoints',()=>{
+    hardwareConditions.length=0;
+    vscode.window.showInformationMessage('Hardware breakpoint conditions cleared');
+  }));
   registerVerificationExplorer(context);
   registerProjectIntegration(context);
   const diagnostics=vscode.languages.createDiagnosticCollection('SharpHDL Verilator');
