@@ -67,6 +67,22 @@ async function run(){
     assert.equal(pauseEvent.body.reason,'pause');
     assert.ok(adapter.state.cycle<10000,'Pause should interrupt bounded Continue');
   } finally {adapter.dispose();}
+  if(process.env.SHARPHDL_LIVE_INTEGRATION==='1') {
+    // Exercise the real ASP.NET localhost simulator, not the mock transport.
+    const real=new SharpHDLAdapter([{kind:'cycle',value:3}]);
+    try {
+      await real.api('/api/reset','POST',{});
+      await real.handleMessage({seq:11,command:'launch'});
+      const stop=waitForStopped(real);
+      await real.handleMessage({seq:12,command:'continue'});
+      const event=await stop;
+      assert.equal(event.body.reason,'breakpoint');
+      assert.equal(real.state.cycle,3);
+      await real.handleMessage({seq:13,command:'stepBack'});
+      assert.equal(real.state.cycle,2);
+      console.log('PASS real localhost DAP cycle breakpoint and rewind');
+    } finally {real.dispose();}
+  }
   console.log('PASS VS Code host: activation, VCD webview, breakpoint, rewind and pause');
 }
 module.exports={run};
