@@ -382,3 +382,20 @@ combinational alternatives with Yosys and writes
 for regression and relative comparison but are **not** acceptable inputs
 for target-specific Fmax/DSP decisions. Native DSP48E2 simulation and
 Vivado synthesis are separate qualification gates.
+
+### Registered direct DSP48E2 pipeline
+
+`rtl/amd/sharphdl_dsp48e2_mul_pipeline.v` provides an explicit
+three-stage DSP48E2 primitive configuration with `AREG=BREG=MREG=PREG=1`,
+`OPMODE=9'b000000101`, and a matching three-stage `input_valid` to
+`output_valid` pipeline. It accepts a new operand pair every rising edge
+(II=1) and produces its corresponding product after three registered
+boundaries. **There is no downstream ready input or automatic stall
+propagation**. Use a FIFO or an elastic wrapper before connecting this
+component to a backpressured SharpHDL stream.
+
+The two direct-DSP wrappers have portable behavioral simulation guarded by
+`SHARPH_DL_DSP_BEHAVIORAL`. Icarus tests check arithmetic and valid/data
+alignment. These behavioral tests do not validate actual AMD primitive
+simulation or Vivado timing. The physical implementation must still be
+verified with the target device's UNISIM libraries and post-route STA.
