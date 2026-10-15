@@ -11,7 +11,9 @@
         "examples/TinyRisc/hello_uart_tb.v"
       ],
       "outputDir": "build/tinyrisc/verilator_vscode",
-      "waveforms": []
+      "waveforms": [
+        "generated/tinyrisc/hello_uart.vcd"
+      ]
     },
     {
       "id": "scheduledPolynomial",
