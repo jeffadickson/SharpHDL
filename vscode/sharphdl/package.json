@@ -11,7 +11,8 @@
     "Debuggers"
   ],
   "activationEvents": [
-    "onDebugResolve:sharphdl"
+    "onDebugResolve:sharphdl",
+    "onCommand:sharphdl.verilatorLint"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -34,6 +35,30 @@
         "type": "sharphdl",
         "request": "launch",
         "name": "SharpHDL hardware (localhost)"
+      }
+    },
+    "commands": [
+      {
+        "command": "sharphdl.verilatorLint",
+        "title": "SharpHDL: Lint Active Verilog with Verilator"
+      }
+    ],
+    "configuration": {
+      "title": "SharpHDL",
+      "properties": {
+        "sharphdl.verilator.path": {
+          "type": "string",
+          "default": "verilator",
+          "description": "Verilator executable path; must be installed on the VS Code extension host."
+        },
+        "sharphdl.verilator.arguments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Additional Verilator arguments, passed without shell expansion."
+        }
       }
     }
   }
