@@ -43,6 +43,8 @@ jobs:
         run: dotnet build src/SharpHDL.HLS/SharpHDL.HLS.csproj -c Release
       - name: Build independent Simulation assembly
         run: dotnet build src/SharpHDL.Simulation/SharpHDL.Simulation.csproj -c Release
+      - name: Build independent RTL assembly
+        run: dotnet build src/SharpHDL.RTL/SharpHDL.RTL.csproj -c Release
       - name: Run canonical Core, HLS and Simulation regressions
         run: >
           dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj
