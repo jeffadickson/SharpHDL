@@ -152,6 +152,11 @@ class ProjectExplorer {
     }
     if(item.entry) {
       const entry=item.entry, actions=[];
+      if(entry.project.id==='scheduledPolynomial') {
+        const node=new vscode.TreeItem('Generate C# source map and RTL');
+        node.command={command:'sharphdl.generateProvenance',title:'Generate provenance'};
+        actions.push(node);
+      }
       for(const [label,command] of [['Build Verilator design','sharphdl.buildDesign'],...(entry.project.runnable===false?[]:[['Run Verilator test','sharphdl.runDesign']]),['Go to mapped source / RTL','sharphdl.jumpToMapped'],['Find waveform signals','sharphdl.showMappedSignals']]){
         const node=new vscode.TreeItem(label);
         node.iconPath=new vscode.ThemeIcon(command==='sharphdl.jumpToMapped'?'go-to-file':'play');
