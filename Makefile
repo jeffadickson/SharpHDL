@@ -60,8 +60,8 @@ vscode: vscode-test
 	@mkdir -p dist
 	docker run --rm -u "$(id -u):$(id -g)" -e HOME=/tmp -e npm_config_cache=/tmp/npm-cache \
 		-v "$(CURDIR):/workspace" -w /workspace/vscode/sharphdl node:22-bookworm \
-		sh -c 'npx --yes @vscode/vsce@3.6.0 package --no-dependencies --out /workspace/dist/sharphdl-0.4.0.vsix'
-	@echo "Install in VS Code: code --install-extension dist/sharphdl-0.4.0.vsix"
+		sh -c 'npx --yes @vscode/vsce@3.6.0 package --no-dependencies --out /workspace/dist/sharphdl-0.5.0.vsix'
+	@echo "Install in VS Code: code --install-extension dist/sharphdl-0.5.0.vsix"
 
 # Native developer tasks remain owned by just.
 build test test-hdl simulate benchmark browser verify clean:
