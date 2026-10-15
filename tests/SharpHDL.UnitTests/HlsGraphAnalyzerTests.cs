@@ -73,4 +73,50 @@ public sealed class HlsGraphAnalyzerTests
         Assert.Throws<ArgumentOutOfRangeException>(()=>
             HlsGraphAnalyzer.Analyze(graph,4,new HlsCostProfile{MultiplyCost=0}));
     }
+    [Fact]
+    public void Constant_folder_preserves_modulo_arithmetic_and_source_node_ids()
+    {
+        var m=new Module("FoldCanonical");
+        var input=m.Input("input",8);
+        var output=m.Output("output",8);
+        var subexpression=(Expr.Const(8,255)+Expr.Const(8,2))*
+            Expr.Const(8,7);
+        m.Drive(output,input+subexpression);
+        var before=m.ExportCoreGraph();
+        var after=HlsConstantFolder.Fold(before.Graph);
+        Assert.Equal(before.Graph.Nodes.Select(n=>n.Id),after.Nodes.Select(n=>n.Id));
+        Assert.True(after.Nodes.Count(n=>n.Operation==HardwareOperation.Constant)>
+            before.Graph.Nodes.Count(n=>n.Operation==HardwareOperation.Constant));
+        Assert.Equal(0,after.Nodes.Count(n=>n.Operation==HardwareOperation.Multiply));
+        var sim=m.Simulate();
+        sim.Tick(true);
+        foreach(var x in new[]{0,1,7,100,255})
+        {
+            sim.Set(input,x);
+            var inputs=new System.Collections.Generic.Dictionary<int,System.Numerics.BigInteger>
+            { [before.Inputs["input"]]=x };
+            var actual=SharpHDL.Simulation.HardwareGraphEvaluator.Evaluate(after,inputs);
+            Assert.Equal(sim.Read(output),actual[before.Outputs["output"]]);
+        }
+        Assert.Equal(before.Graph.Nodes.Count,after.Nodes.Count);
+    }
+
+    [Fact]
+    public void Constant_folder_does_not_fold_memory_reads_or_state_inputs()
+    {
+        var m=new Module("FoldMemory");
+        var address=m.Input("address",2);
+        var write=m.Input("write",1);
+        var data=m.Input("data",8);
+        var ram=SynchronousRam.Create(m,"ram",8,4,address,write,data,
+            Expr.Const(1,1),new System.Numerics.BigInteger[]{1,2,3,4});
+        var output=m.Output("output",8);
+        m.Drive(output,ram.ReadData);
+        var original=m.ExportCoreGraph();
+        var folded=HlsConstantFolder.Fold(original.Graph);
+        Assert.Contains(folded.Nodes,n=>n.Operation==HardwareOperation.MemoryRead);
+        Assert.Contains(folded.Nodes,n=>n.Operation==HardwareOperation.Input &&
+            n.Name=="ram_read_data");
+    }
+
 }
