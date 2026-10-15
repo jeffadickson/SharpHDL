@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/SharpHDL/SharpHDL.csproj" />
+    <ProjectReference Include="../../src/SharpHDL.RTL/SharpHDL.RTL.csproj" />
+    <Compile Include="../../examples/TinyRisc/TinyRisc.cs" Link="TinyRisc.cs" />
+  </ItemGroup>
+</Project>
