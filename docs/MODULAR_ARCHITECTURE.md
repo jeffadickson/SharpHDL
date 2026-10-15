@@ -193,3 +193,42 @@ folded graph's output with the legacy simulator over boundary values
 and confirm that RAM and register inputs are preserved. It remains
 opt-in while HLS lowering and Verilog generation are migrated;
 the existing CIL frontend does not silently switch to the new pass.
+
+## 2026-10-15 — first actual Core IR elastic HLS compiler
+
+`SharpHDL.HLS.HlsElasticCompiler.Compile(graph, inputNodeId,
+outputNodeId, stageBudget, profile)` now performs an **actual clocked
+hardware transformation** in the independent HLS assembly. It lowers
+a stateless, single-input Core IR expression DAG into a new canonical
+`HardwareGraph` containing payload registers, valid bits, combinational
+backpressure-ready propagation, next-state muxes and named input/output
+ports. It is not merely a scheduling report.
+
+The compiled result exposes `Graph`, `Inputs`, `Outputs`,
+`NextState`, `ResetValues`, `Latency`, `InitiationInterval=1`
+and `PayloadRegisterBits`. It runs directly in the independent
+`HardwareGraphMachine`, preserving token order and values under
+randomized ready/valid stalls. Individual operations whose abstract
+cost exceeds the configured stage budget are **rejected**, not
+silently split into unverified multicycle hardware.
+
+The legacy compatibility assembly adds
+`HlsPipelineCompatibility.ToModule(compiled, name)`, which maps
+the compiled Core IR back into the existing, proven Verilog emitter.
+This bridge preserves all register and handshake logic, and will
+be retired once the Core-native RTL backend is qualified.
+`tools/SharpHDL.CoreHlsDemo` demonstrates C# expression -> Core IR ->
+registered elastic Core IR -> Verilog. The testbench
+`tests/rtl/tb_core_hls_elastic.sv` exercises the resulting RTL under
+randomized backpressure using Verilator.
+
+Use `make core-hls-verilator` for the full hardware regression or
+`make core-ir-verify` for Core/HLS/Simulation unit parity.
+
+**Scope limits:** this compiler currently accepts one input token and
+one result expression. It rejects external state, RAM, direct DSP
+primitive nodes and operators too expensive for one stage. It does
+not yet replace the existing CIL stream-loop compiler, perform
+resource sharing, support multicycle II, or characterize physical
+FPGA timing. The production `CilCompiler.AttachPipeline` remains
+unchanged pending differential qualification of these features.
