@@ -1,4 +1,7 @@
 const vscode = require('vscode');
+const {spawn} = require('node:child_process');
+const path = require('node:path');
+const {parseDiagnostics} = require('./verilator');
 
 class SharpHDLAdapter {
   constructor() {
@@ -71,7 +74,60 @@ class SharpHDLAdapter {
   dispose() { this.emitter.dispose(); }
 }
 
+/** Run Verilator without a shell and surface errors in VS Code Problems.
+ * This complements HDL language extensions; it is not a second HDL language server.
+ */
+function runVerilatorLint(document, diagnostics, output) {
+  if (!document || !['verilog', 'systemverilog'].includes(document.languageId)) {
+    vscode.window.showWarningMessage('Open a Verilog or SystemVerilog file first.');
+    return;
+  }
+  if (document.isDirty) {
+    vscode.window.showWarningMessage('Save the HDL file before running Verilator lint.');
+    return;
+  }
+  const config = vscode.workspace.getConfiguration('sharphdl.verilator',document.uri);
+  const executable = config.get('path','verilator');
+  const extra = config.get('arguments',[]);
+  const root = vscode.workspace.getWorkspaceFolder(document.uri)?.uri.fsPath || path.dirname(document.uri.fsPath);
+  const args = ['--lint-only','--sv','--Wall','-Wno-fatal',...extra,document.uri.fsPath];
+  output.appendLine('Running Verilator: '+executable+' '+args.join(' '));
+  diagnostics.clear();
+  const proc = spawn(executable,args,{cwd:root,shell:false,windowsHide:true});
+  let text='';
+  proc.stdout.on('data',d=>{text+=d.toString();});
+  proc.stderr.on('data',d=>{text+=d.toString();});
+  proc.on('error',error=>{
+    output.appendLine(String(error));
+    vscode.window.showErrorMessage('Verilator failed to start: '+error.message);
+  });
+  proc.on('close',code=>{
+    output.appendLine(text);
+    const byUri=new Map();
+    for(const item of parseDiagnostics(text)) {
+      const file=path.isAbsolute(item.file)?item.file:path.resolve(root,item.file);
+      const uri=vscode.Uri.file(file);
+      const key=uri.toString();
+      if(!byUri.has(key))byUri.set(key,{uri,items:[]});
+      const range=new vscode.Range(Math.max(0,item.line-1),Math.max(0,item.column-1),
+        Math.max(0,item.line-1),Math.max(0,item.column));
+      const diagnostic=new vscode.Diagnostic(range,item.message,
+        item.severity==='error'?vscode.DiagnosticSeverity.Error:vscode.DiagnosticSeverity.Warning);
+      diagnostic.source='Verilator';
+      diagnostic.code=item.code;
+      byUri.get(key).items.push(diagnostic);
+    }
+    for(const {uri,items} of byUri.values())diagnostics.set(uri,items);
+    output.appendLine('Verilator exit '+code+'; '+[...byUri.values()].reduce((n,v)=>n+v.items.length,0)+' diagnostics');
+    if(code!==0 && !byUri.size) vscode.window.showErrorMessage('Verilator failed without parsed diagnostics; see SharpHDL Verilator output.');
+  });
+}
 function activate(context) {
+  const diagnostics=vscode.languages.createDiagnosticCollection('SharpHDL Verilator');
+  const output=vscode.window.createOutputChannel('SharpHDL Verilator');
+  context.subscriptions.push(diagnostics,output,
+    vscode.commands.registerCommand('sharphdl.verilatorLint',()=>
+      runVerilatorLint(vscode.window.activeTextEditor?.document,diagnostics,output)));
   context.subscriptions.push(vscode.debug.registerDebugAdapterDescriptorFactory('sharphdl',{
     createDebugAdapterDescriptor() {
       return new vscode.DebugAdapterInlineImplementation(new SharpHDLAdapter());
