@@ -53,7 +53,7 @@ function draw(){
   for(const change of [...s.changes,{time:data.duration,value:lastValue}]){
    const x=800*change.time/Math.max(1,data.duration);
    const y=lastValue==='1'?5:lastValue==='0'?25:15;
-   points+=`${x},${y} ${x},${change.value==='1'?5:change.value==='0'?25:15} `;
+   points+=x+','+y+' '+x+','+(change.value==='1'?5:change.value==='0'?25:15)+' ';
    last=change.time;lastValue=change.value;
   }
   const poly=document.createElementNS('http://www.w3.org/2000/svg','polyline');
