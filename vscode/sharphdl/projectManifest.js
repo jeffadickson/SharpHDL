@@ -1,6 +1,5 @@
 'use strict';
 const path=require('node:path');
-const fs=require('node:fs');
 const NAME=/^[A-Za-z_][A-Za-z0-9_$]*$/;
 function relativePath(value) {
   if(typeof value!=='string'||!value||value.includes('\0')||
@@ -46,9 +45,9 @@ function parseSourceMap(data) {
 function mappedLocation(mappings,fromFile,fromLine,direction) {
   const from=direction==='rtlToSource'?'rtl':'source';
   const to=direction==='rtlToSource'?'source':'rtl';
-  const candidates=mappings.filter(m=>m[from].file===fromFile && m[from].line<=fromLine);
-  candidates.sort((a,b)=>b[from].line-a[from].line);
-  return candidates[0]?.[to]||null;
+  // Never guess the nearest preceding source line: a wrong RTL mapping is worse
+  // than an explicit absence of provenance.
+  return mappings.find(m=>m[from].file===fromFile && m[from].line===fromLine)?.[to]||null;
 }
 function verilogArgs(project) {
   return ['--binary','--timing','--trace','-Wno-fatal','--top-module',project.top,
