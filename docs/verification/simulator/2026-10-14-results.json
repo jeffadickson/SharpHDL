@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "qualified": true,
+  "commit": "5c5fea0d7db7f0d3645055bfd4e18bcea8942581",
+  "workload": "tinyrisc-hello-reset128-v1",
+  "edges_per_trial": 100000,
+  "trials": 5,
+  "warmup_edges": 100,
+  "reset_period": 128,
+  "qualification_edges": 256,
+  "qualification_hash": "f15dd42a4544d121",
+  "final_state": {
+    "tx_valid": 0,
+    "tx_data": 32,
+    "rx_ready": 0,
+    "pc": 15,
+    "ir": 33312,
+    "phase": 0,
+    "halted": 0,
+    "fault": 0,
+    "retired": 1,
+    "last_pc": 14,
+    "leds": 0,
+    "r0": 0,
+    "r1": 32,
+    "r2": 65282,
+    "r3": 0,
+    "r4": 0,
+    "r5": 0,
+    "r6": 0,
+    "r7": 0
+  },
+  "rom_sha256": "290cd679b84939927348b755123f77f43a8263e1b5603dc35cf3947d41a51804",
+  "rtl_sha256": "d957c349025306de0d268c8700de4c98133083b0a1b8eb24013db2255dbbfadf",
+  "managed_runtime": ".NET 8.0.32",
+  "managed_architecture": "X64",
+  "tiered_compilation": "0",
+  "jit_construction_ms": 47.8625,
+  "machine": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "tool_versions": "8.0.426\nVerilator 5.020 2024-01-01 rev (Debian 5.020-1)\ng++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\nLinux runnervm8k3b6 6.17.0-1022-azure #22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux\n",
+  "engines": {
+    "interpreter": {
+      "seconds": [4.3612477, 4.3566818, 4.3580449, 4.3758957, 4.3851069],
+      "median_seconds": 4.3612477,
+      "median_edges_per_second": 22929.218168461288,
+      "minimum_seconds": 4.3566818,
+      "maximum_seconds": 4.3851069
+    },
+    "compiled_dotnet": {
+      "seconds": [0.1293075, 0.1314622, 0.13052, 0.1305313, 0.1292168],
+      "median_seconds": 0.13052,
+      "median_edges_per_second": 766166.1048115231,
+      "minimum_seconds": 0.1292168,
+      "maximum_seconds": 0.1314622
+    },
+    "verilator": {
+      "seconds": [0.013716621, 0.013553503, 0.013546138, 0.013444015, 0.013465727],
+      "median_seconds": 0.013546138,
+      "median_edges_per_second": 7382177.857629976,
+      "minimum_seconds": 0.013444015,
+      "maximum_seconds": 0.013716621
+    }
+  },
+  "compiled_over_interpreter": 33.41440162427214,
+  "verilator_over_compiled": 9.635218539778645,
+  "scope": "Single-clock two-state Hello World CPU; reset every 128 edges; includes reset and halted cycles. Timed clock loops exclude construction, warm-up, output reads, checks and process startup. No wave tracing. Native loop includes clock settling eval calls. Single CI machine; not an RHDL comparison."
+}
