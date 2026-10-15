@@ -232,3 +232,42 @@ not yet replace the existing CIL stream-loop compiler, perform
 resource sharing, support multicycle II, or characterize physical
 FPGA timing. The production `CilCompiler.AttachPipeline` remains
 unchanged pending differential qualification of these features.
+
+## 2026-10-15 — legacy RTL isolation and independent Core-native RTL
+
+The original Verilog emitter has been **physically extracted** from
+`src/SharpHDL/Hardware.cs` into
+`src/SharpHDL.LegacyRtl/LegacyVerilogWriter.cs`. It is still compiled
+into the legacy compatibility assembly using an explicit linked source
+entry in `SharpHDL.csproj`, rather than a project reference that would
+create a dependency cycle. `Module.Verilog()` remains the same public
+API and calls the relocated legacy writer. Its implementation and
+generated Verilog behavior are deliberately retained for differential
+verification. All six standalone direct Roslyn build paths were
+updated to include the relocated source.
+
+A separate `src/SharpHDL.RTL` assembly now implements
+`CoreVerilogEmitter.Emit` with a **Core-only dependency**. It emits
+single-clock synthesizable Verilog directly from validated canonical
+Core IR, including registers, synchronous reset, arithmetic,
+comparisons, bitfield operators and muxes. It does not reference
+legacy `Module`, the HLS compiler or the simulation engine. RAM,
+ROM lookup, direct DSP primitives and other unsupported operations
+currently produce explicit diagnostics.
+
+`tools/SharpHDL.CoreHlsDemo` generates two independent RTL files
+from the same compiled elastic Core IR graph:
+`generated/core-hls/CoreHlsElastic.v` (preserved legacy writer) and
+`generated/core-hls/CoreHlsElasticNative.v` (new Core-native writer).
+The same randomized ready/valid and reset testbench runs against both
+backends under Verilator. `make core-hls-verilator` verifies the
+legacy route; `make core-rtl-native` verifies the new backend.
+The xUnit workflow has a dedicated `core-rtl-native` acceptance job.
+Do not claim native RTL acceptance until its CI job passes.
+
+The long-term dependency direction is Core <- HLS, Simulation and
+RTL; the compatibility assembly references the new subsystems but
+continues to contain the original public API and legacy RTL writer.
+Once Core-native RTL covers RAM/DSP and all production designs,
+we can retire the source-linked legacy emitter without breaking
+the `Module.Verilog()` compatibility contract.
