@@ -49,12 +49,26 @@ async function validateInputs(folder,project) {
   // Never execute arbitrary commands from project manifests.
   if(!folder.uri.fsPath)throw new Error('A local filesystem workspace is required');
 }
+function executionCommand(folder,program,args) {
+  const config=vscode.workspace.getConfiguration('sharphdl.verilator',folder.uri);
+  const runner=config.get('runner','docker');
+  if(runner==='host')return {command:program,args};
+  if(runner!=='docker')throw new Error('Unsupported Verilator runner: '+runner);
+  const dockerArgs=['run','--rm','--mount',
+    'type=bind,source='+folder.uri.fsPath+',target=/workspace',
+    '-w','/workspace'];
+  if(typeof process.getuid==='function'&&typeof process.getgid==='function')
+    dockerArgs.push('--user',process.getuid()+':'+process.getgid());
+  dockerArgs.push('sharphdl-dev:local',program,...args);
+  return {command:'docker',args:dockerArgs};
+}
 async function buildProject(entry) {
   const {folder,project}=entry;
   await validateInputs(folder,project);
   await vscode.workspace.fs.createDirectory(projectUri(folder,project.outputDir));
   const executable=vscode.workspace.getConfiguration('sharphdl.verilator',folder.uri).get('path','verilator');
-  const status=await taskProcess(folder,'Verilator build '+project.id,executable,verilogArgs(project));
+  const processArgs=executionCommand(folder,executable,verilogArgs(project));
+  const status=await taskProcess(folder,'Verilator build '+project.id,processArgs.command,processArgs.args);
   if(status!==0)throw new Error('Verilator build failed for '+project.id+' (exit '+status+')');
 }
 async function runProject(entry) {
@@ -62,7 +76,10 @@ async function runProject(entry) {
   const {folder,project}=entry;
   const binary=projectUri(folder,executablePath(project));
   if(!await exists(binary))throw new Error('Verilator did not produce '+binary.fsPath);
-  const status=await taskProcess(folder,'Verilator test '+project.id,binary.fsPath,[]);
+  const runner=vscode.workspace.getConfiguration('sharphdl.verilator',folder.uri).get('runner','docker');
+  const program=runner==='docker'?'/workspace/'+executablePath(project).replaceAll('\\','/'):binary.fsPath;
+  const processArgs=executionCommand(folder,program,[]);
+  const status=await taskProcess(folder,'Verilator test '+project.id,processArgs.command,processArgs.args);
   if(status!==0)throw new Error('Verilator test failed for '+project.id+' (exit '+status+')');
 }
 async function chooseProject() {
