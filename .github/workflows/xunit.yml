@@ -60,6 +60,7 @@ jobs:
       - name: Verify Core HLS RTL with randomized backpressure
         run: |
           mkdir -p build/core-hls
+          mkdir -p build/core-hls/obj
           verilator --binary --timing -Wno-fatal --top-module tb_core_hls_elastic \
             --Mdir build/core-hls/obj \
             generated/core-hls/CoreHlsElastic.v tests/rtl/tb_core_hls_elastic.sv
