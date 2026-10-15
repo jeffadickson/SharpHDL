@@ -7,7 +7,7 @@ async function main(){
   // VS Code 1.142 macOS bundles name the executable Code, while some
   // versions of @vscode/test-electron still resolve Contents/MacOS/Electron.
   if(process.platform==='darwin'&&!fs.existsSync(executable)) {
-    const candidate=executable.replace(/\\/Electron$/,'/Code');
+    const candidate=path.join(path.dirname(executable),'Code');
     if(fs.existsSync(candidate))executable=candidate;
   }
   await runTests({
