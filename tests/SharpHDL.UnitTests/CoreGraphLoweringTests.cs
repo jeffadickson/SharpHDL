@@ -61,9 +61,9 @@ public sealed class CoreGraphLoweringTests
         var m=new Module("UnsupportedCoreLowering");
         var input=m.Input("input",8);
         var output=m.Output("output",8);
-        m.Drive(output,input<<1);
+        m.Drive(output,Expr.Mux(input.Eq(Expr.Const(8,0)),Expr.Const(8,0),input % Expr.Const(8,3)));
         var ex=Assert.Throws<NotSupportedException>(()=>m.ExportCoreGraph());
-        Assert.Contains("<<",ex.Message);
+        Assert.Contains("does not yet support",ex.Message);
     }
 
     [Fact]
