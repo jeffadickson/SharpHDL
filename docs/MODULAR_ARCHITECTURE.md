@@ -75,3 +75,35 @@ have **not** moved to their new assemblies. The next steps are extending the
 canonical operation contract and lowering to cover full TinyRisc, then moving
 simulation execution and frontends without breaking the public API. Keep
 issue #24 open until end-to-end parity and clean builds pass.
+
+## 2026-10-15 — expanded canonical operations and synchronous memory
+
+The production `Module.ExportCoreGraph()` bridge now lowers constant shifts
+(left, logical right, arithmetic signed right), slices, resizing, sign
+extension, concatenation, equality and signed/unsigned comparisons, ROM
+lookup, full-precision direct DSP48E2 multiplication, and RAM read expressions
+in addition to the earlier arithmetic and mux subset.
+
+The `HardwareGraph` validator checks operation-specific widths, slice
+ranges, constant shift offsets, ROM contents/address capacity, DSP48E2
+unsigned 26x17 limits, and explicit RAM identities. Immutable ROM and RAM
+initialization payloads are copied on export. No missing memory values are
+treated as zero.
+
+RAM is represented with `HardwareMemoryPort` (read/write address, enable,
+data and initial contents). `HardwareGraphEvaluator` reads a supplied
+pre-edge RAM snapshot; `HardwareMemoryTransitions.Commit` separately applies
+the evaluated writes and returns a new immutable snapshot. This preserves
+synchronous read-before-write behavior, including disabled reads and writes.
+Reset behavior remains owned by the sequential controller: resetting clears
+the RAM output register but does not clear the memory cells.
+
+Differential tests now cover 300 random bitfield/ROM vectors, direct DSP
+arithmetic, and 180 RAM cycles with simultaneous read/write and disabled
+read cases. These tests are part of `make core-ir-verify`.
+
+**Still not migrated:** the main legacy simulator's event loop, HLS CIL
+compiler/scheduler, the Verilog backend, and broader memory/bus/multiclock
+semantics. The canonical evaluator is independent but not yet the default
+runtime. End-to-end test status must be checked against CI before closing
+issue #24.
