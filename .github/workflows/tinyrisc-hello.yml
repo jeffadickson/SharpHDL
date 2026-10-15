@@ -3,6 +3,9 @@ on:
   push:
     paths:
       - 'src/SharpHDL/**'
+      - 'src/SharpHDL.RTL/**'
+      - 'src/SharpHDL.Core/**'
+      - 'tools/SharpHDL.NativeTinyRisc/**'
       - 'examples/TinyRisc/**'
       - 'tests/run-tinyrisc.sh'
       - '.github/workflows/tinyrisc-hello.yml'
@@ -38,6 +41,9 @@ jobs:
       - name: Synthesize full CPU plus UART top and check design
         run: |
           yosys -Q -T -l generated/tinyrisc/hello_uart_yosys.log -p 'read_verilog -sv generated/tinyrisc/HelloWorld.v examples/TinyRisc/hello_uart_top.v; hierarchy -check -top tinyrisc_hello_top; proc; opt; check -assert; stat'
+      - name: Synthesize native Core CPU plus UART top and check design
+        run: |
+          yosys -Q -T -l generated/tinyrisc/native/hello_uart_yosys.log -p 'read_verilog -sv generated/tinyrisc/native/HelloWorld.v examples/TinyRisc/hello_uart_top.v; hierarchy -check -top tinyrisc_hello_top; proc; opt; check -assert; stat'
       - name: Retain results on failure or success
         if: always()
         uses: actions/upload-artifact@v4
