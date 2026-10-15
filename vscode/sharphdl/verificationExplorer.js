@@ -82,7 +82,7 @@ function registerVerificationExplorer(context) {
     vscode.commands.registerCommand('sharphdl.verifyTinyRisc',()=>executeMakeTarget('benchmark-tinyrisc',provider)),
     vscode.commands.registerCommand('sharphdl.setupTools',()=>executeMakeTarget('setup',provider)),
     vscode.commands.registerCommand('sharphdl.refreshVerification',()=>provider.refresh()),
-    vscode.commands.registerCommand('sharphdl.openVerificationFile',uri=>vscode.window.showTextDocument(uri,{preview:false})));
+    vscode.commands.registerCommand('sharphdl.openVerificationFile',uri=>vscode.commands.executeCommand('vscode.open',uri)));
   for(const pattern of ['generated/tinyrisc/**','generated/tinyrisc/backend-benchmark/**']) {
     const watcher=vscode.workspace.createFileSystemWatcher(pattern);
     watcher.onDidCreate(()=>provider.refresh());
