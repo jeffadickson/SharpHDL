@@ -115,6 +115,10 @@ namespace SharpHDL
                 typeof(Expr).GetMethod(nameof(Expr.SignedValue))!, value, Expression.Constant(width));
             evaluator = Expression.Lambda<Func<BigInteger[], BigInteger>>(Build(output), values).Compile();
         }
+        // The sequential backend supplies a trusted width-checked state vector.
+        // Do not repeat caller-boundary validation inside every clock-edge cone.
+        internal BigInteger EvaluateUnchecked(BigInteger[] values) => evaluator(values);
+
         public BigInteger Evaluate(params BigInteger[] values)
         {
             if (values == null || values.Length != inputs.Length) throw new ArgumentException("Incorrect input count");
