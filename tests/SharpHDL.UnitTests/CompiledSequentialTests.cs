@@ -203,4 +203,28 @@ public sealed class CompiledSequentialTests
         Assert.Equal(reference.Read(ram.ReadData), compiled.Read(ram.ReadData));
     }
 
+    [Fact]
+    public void Output_signal_reads_do_not_require_expr_cast()
+    {
+        var m = new Module("OutputReadCompatibility");
+        var input = m.Input("input", 16);
+        var accumulator = m.Register("accumulator", 16, 0);
+        var output = m.Output("output", 16);
+        m.Next(accumulator, accumulator + input);
+        m.Drive(output, accumulator + Expr.Const(16, 9));
+
+        var reference = m.Simulate();
+        var compiled = new CompiledSequentialSimulator(m);
+        Assert.Throws<InvalidOperationException>(() => compiled.Read(output));
+        reference.Tick(true); compiled.Tick(true);
+        for (int i = 0; i < 256; i++)
+        {
+            reference.Set(input, i);
+            compiled.Set(input, i);
+            Assert.Equal(reference.Read(output), compiled.Read(output));
+            reference.Tick(); compiled.Tick();
+            Assert.Equal(reference.Read(output), compiled.Read(output));
+        }
+    }
+
 }
