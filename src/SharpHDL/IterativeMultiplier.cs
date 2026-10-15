@@ -39,7 +39,7 @@ namespace SharpHDL
             var ir=module.Output(name+"_input_ready",1);
             var result=module.Output(name+"_result",width);
             var ov=module.Output(name+"_output_valid",1);
-            var or=module.Input(name+"_output_ready",1);
+            var outputReady=module.Input(name+"_output_ready",1);
             var busy=module.Register(name+"_busy",1,0);
             var done=module.Register(name+"_done",1,0);
             var x=module.Register(name+"_shifted_a",width,0);
@@ -57,7 +57,7 @@ namespace SharpHDL
             module.Next(busy,Expr.Mux(accept,Expr.Const(1,1),
                 Expr.Mux(finish,Expr.Const(1,0),busy)));
             module.Next(done,Expr.Mux(finish,Expr.Const(1,1),
-                Expr.Mux(done & or,Expr.Const(1,0),done)));
+                Expr.Mux(done & outputReady,Expr.Const(1,0),done)));
             module.Next(x,Expr.Mux(accept,a,Expr.Mux(step,x<<1,x)));
             module.Next(y,Expr.Mux(accept,b,Expr.Mux(step,y>>1,y)));
             module.Next(acc,Expr.Mux(accept,Expr.Const(width,0),
@@ -65,7 +65,7 @@ namespace SharpHDL
             module.Next(count,Expr.Mux(accept,Expr.Const(cw,0),
                 Expr.Mux(step,count+Expr.Const(cw,1),count)));
             return new Ports { A=a,B=b,InputValid=iv,InputReady=ir,Result=result,
-                OutputValid=ov,OutputReady=or,CyclesPerProduct=width+1 };
+                OutputValid=ov,OutputReady=outputReady,CyclesPerProduct=width+1 };
         }
     }
 }
