@@ -12,6 +12,8 @@ on:
       - 'src/SharpHDL/**'
       - 'rtl/amd/**'
       - 'tests/rtl/tb_dsp48e2_mul.sv'
+      - 'tools/SharpHDL.MultiplierBench/**'
+      - 'tools/compare_multiplier_synthesis.py'
       - 'tools/SharpHDL.Provenance/**'
       - '.github/workflows/vscode-sharphdl.yml'
   pull_request:
@@ -77,6 +79,10 @@ jobs:
           bash tests/run-tinyrisc.sh
       - name: HLS multiplier inference and timing-advisory unit test
         run: dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Debug --filter 'FullyQualifiedName~Hls_'
+      - name: Generate and synthesize alternative HLS multiplier architectures
+        run: |
+          dotnet run --project tools/SharpHDL.MultiplierBench/SharpHDL.MultiplierBench.csproj -c Release -- "$PWD"
+          python3 tools/compare_multiplier_synthesis.py
       - name: Generate actual CIL-to-RTL provenance
         run: |
           dotnet run --project tools/SharpHDL.Provenance/SharpHDL.Provenance.csproj -c Debug -- "$PWD"
