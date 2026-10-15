@@ -16,7 +16,7 @@ public sealed class CoreHardwareGraphTests
     {
         var graph = new HardwareGraph(new[] {
             N(0, HardwareOperation.Input, 8),
-            N(1, HardwareOperation.Constant, 8),
+            new HardwareNode(1,HardwareOperation.Constant,W(8),Array.Empty<int>(),1),
             N(2, HardwareOperation.Add, 8, 0, 1),
             N(3, HardwareOperation.Register, 8, 2)
         });
@@ -41,6 +41,6 @@ public sealed class CoreHardwareGraphTests
             N(2, HardwareOperation.Add, 8, 0, 1)
         }));
         Assert.Throws<ArgumentOutOfRangeException>(() => new HardwareGraph(new[] { N(0, HardwareOperation.Input, 0) }));
-        Assert.Throws<NotSupportedException>(() => new HardwareGraph(new[] { N(0, HardwareOperation.MemoryRead, 8) }));
+        Assert.Throws<ArgumentException>(() => new HardwareGraph(new[] { N(0, HardwareOperation.MemoryRead, 8) }));
     }
 }
