@@ -15,3 +15,18 @@ This is a real VS Code Debug Adapter Protocol *inline adapter* implemented throu
 Source mapping: `PortablePdbSourceMap` can attach file/line/column to the CIL pipeline graph when a matching portable PDB exists. Mapping is not yet connected to the live structural-only example or to DAP stack/source breakpoints. This limitation is intentional and visible.
 
 Security: the API binds to localhost only; do not expose to public networks. The adapter is an experimental developer preview requiring .NET and VS Code build verification.
+
+## Verilator integration
+
+Use an existing HDL language extension such as [mshr-h.veriloghdl](https://marketplace.visualstudio.com/items?itemName=mshr-h.veriloghdl) for syntax highlighting, editor navigation and ordinary on-save linting. SharpHDL deliberately does not reproduce those features. The SharpHDL extension adds the command **SharpHDL: Lint Active Verilog with Verilator** in the VS Code Command Palette. It spawns the installed `verilator` binary directly, sends diagnostics to the VS Code Problems panel, and records stdout/stderr in the **SharpHDL Verilator** output channel.
+
+Settings:
+
+```json
+{
+  "sharphdl.verilator.path": "verilator",
+  "sharphdl.verilator.arguments": ["-Irtl/include"]
+}
+```
+
+Run `node --test vscode/sharphdl/verilator.test.js` from the repository root for diagnostic-parser tests. The lint command works on **saved** Verilog/SystemVerilog source files; it does not yet resolve a complete multi-file project, compile a generated testbench, attach waveforms to source spans or run Verilator as a simulator through DAP. Multi-file Verilator elaboration and SharpHDL-generated RTL build/test integration are the next extension milestone. Current debug DAP uses the SharpHDL localhost reference simulator, not Verilator.
