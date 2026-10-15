@@ -17,8 +17,10 @@ public static class CoreVerilogEmitter
 {
     /// <summary>
     /// Emit synthesizable Verilog for a validated graph with named ports and
-    /// synchronous active-high reset. Memory and direct-DSP nodes fail
-    /// explicitly until their native backend lowering is implemented.
+    /// synchronous active-high reset. The six-argument overload has no RAM
+    /// metadata and rejects memory reads rather than guessing contents.
+    /// Use the memory-port overload for synchronous RAM and constant ROM.
+    /// Direct DSP primitives remain unsupported.
     /// </summary>
     public static string Emit(HardwareGraph graph,
         IReadOnlyDictionary<string,int> inputs,
