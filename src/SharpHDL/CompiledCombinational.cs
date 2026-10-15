@@ -93,7 +93,22 @@ namespace SharpHDL
                         else
                         {
                             b = Build(e.Args[1]);
-                            switch (e.Op)
+                            if (e.Width <= 64 && (e.Op == "+" || e.Op == "-" || e.Op == "*" ||
+                                e.Op == "&" || e.Op == "|" || e.Op == "^"))
+                            {
+                                var left = Expression.Convert(a, typeof(ulong));
+                                var right = Expression.Convert(b, typeof(ulong));
+                                Expression word = e.Op switch {
+                                    "+" => Expression.Add(left, right),
+                                    "-" => Expression.Subtract(left, right),
+                                    "*" => Expression.Multiply(left, right),
+                                    "&" => Expression.And(left, right),
+                                    "|" => Expression.Or(left, right),
+                                    _ => Expression.ExclusiveOr(left, right)
+                                };
+                                result = Expression.Convert(word, typeof(BigInteger));
+                            }
+                            else switch (e.Op)
                             {
                                 case "+": result = Expression.Add(a, b); break;
                                 case "-": result = Expression.Subtract(a, b); break;
