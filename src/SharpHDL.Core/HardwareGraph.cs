@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace SharpHDL.Core;
 
@@ -33,6 +34,11 @@ public sealed class HardwareGraph
             switch (node.Operation)
             {
                 case HardwareOperation.Constant:
+                    Require(args.Length == 0, node, "expected no operands");
+                    if (node.ConstantValue is BigInteger value &&
+                        (value < 0 || value >= (BigInteger.One << width)))
+                        throw new ArgumentException($"IR node {node.Id}: literal out of range");
+                    break;
                 case HardwareOperation.Input:
                     Require(args.Length == 0, node, "expected no operands"); break;
                 case HardwareOperation.Not:
@@ -40,6 +46,7 @@ public sealed class HardwareGraph
                     Require(args.Length == 1 && args[0].Type.Width == width, node, "unary width mismatch"); break;
                 case HardwareOperation.Add:
                 case HardwareOperation.Subtract:
+                case HardwareOperation.Multiply:
                 case HardwareOperation.And:
                 case HardwareOperation.Or:
                 case HardwareOperation.Xor:
