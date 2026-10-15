@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Reflection;
 using SharpHDL;
 
 /// <summary>Generates comparable 32-bit multiplier pipelines for RTL verification and synthesis.</summary>
