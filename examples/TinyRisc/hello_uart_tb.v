@@ -12,6 +12,11 @@ module tb_tinyrisc_uart;
         .halted(halted),.fault(fault),.pc(pc)
     );
     always #5 clk=~clk;
+    // Optional bounded signal set for the VS Code waveform cross-probe.
+    initial if ($test$plusargs("sharphdl_trace")) begin
+        $dumpfile("generated/tinyrisc/hello_uart.vcd");
+        $dumpvars(0,clk,rst,uart_tx,pc,halted,fault);
+    end
     initial begin
         expected[0]="H";expected[1]="e";expected[2]="l";
         expected[3]="l";expected[4]="o";expected[5]=",";
