@@ -20,7 +20,7 @@ lib=build/'SharpHDL.dll'
 def run(args):subprocess.run([str(x) for x in args],check=True)
 def cs(out,files,extra=(),target='library'):
  run([host,sdk/'Roslyn/bincore/csc.dll','-nologo','-optimize+','-nostdlib+','-target:'+target,'-out:'+str(out)]+refs+list(extra)+list(files))
-cs(lib,sorted((root/'src/SharpHDL.Core').glob('*.cs'))+sorted((root/'src/SharpHDL.Simulation').glob('*.cs'))+sorted((root/'src/SharpHDL.HLS').glob('*.cs'))+sorted((root/'src/SharpHDL').glob('*.cs')))
+cs(lib,sorted((root/'src/SharpHDL.Core').glob('*.cs'))+sorted((root/'src/SharpHDL.Simulation').glob('*.cs'))+sorted((root/'src/SharpHDL.HLS').glob('*.cs'))+sorted((root/'src/SharpHDL.LegacyRtl').glob('*.cs'))+sorted((root/'src/SharpHDL').glob('*.cs')))
 cs(build/'AdvancedFunctions.dll',[source/'Functions.cs'],['-r:'+str(lib)])
 run([host,sdk/'Roslyn/bincore/csc.dll','-nologo','-optimize-','-nostdlib+','-target:library','-out:'+str(build/'AdvancedDebug.dll')]+refs+['-r:'+str(lib),source/'Functions.cs'])
 cs(build/'Advanced.dll',[source/'Program.cs'],['-r:'+str(lib),'-r:'+str(build/'AdvancedFunctions.dll')],target='exe')
