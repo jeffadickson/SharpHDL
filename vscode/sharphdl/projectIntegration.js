@@ -27,9 +27,10 @@ async function taskProcess(folder,name,command,args) {
   task.problemMatchers=['$sharphdlVerilator'];
   task.presentationOptions={reveal:vscode.TaskRevealKind.Always,panel:vscode.TaskPanelKind.Dedicated};
   return new Promise(async(resolve,reject)=>{
-    let running,settled=false;
+    let running,settled=false,grace=null;
     const done=(err,code)=>{
       if(settled)return;settled=true;
+      if(grace!==null)clearTimeout(grace);
       ended.dispose();terminated.dispose();
       if(err)reject(err);else resolve(code);
     };
@@ -37,7 +38,10 @@ async function taskProcess(folder,name,command,args) {
       if(e.execution===running)done(null,e.exitCode);
     });
     const terminated=vscode.tasks.onDidEndTask(e=>{
-      if(e.execution===running)done(new Error(name+' was cancelled or ended without process status'));
+      // Task-end can arrive before the process-exit event. Give the latter a
+      // short opportunity to report the actual exit code before failing.
+      if(e.execution===running&&!settled)
+        grace=setTimeout(()=>done(new Error(name+' ended without process exit status')),500);
     });
     try{running=await vscode.tasks.executeTask(task);}
     catch(e){done(e);}
