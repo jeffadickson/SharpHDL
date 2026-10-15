@@ -15,6 +15,11 @@ if command -v verilator >/dev/null; then
     examples/TinyRisc/hello_uart_tb.v
   /usr/bin/time -p build/tinyrisc/verilator_hello/Vtb_tinyrisc_uart \
     2>&1 | tee generated/tinyrisc/verilator-hello.log
+  verilator --binary --timing -Wno-fatal --top-module tb_compiled_benchmark \
+    --Mdir build/tinyrisc/verilator_cpu_bench \
+    generated/tinyrisc/BenchmarkTinyRisc.v examples/TinyRisc/tinyrisc_benchmark_tb.sv
+  /usr/bin/time -p build/tinyrisc/verilator_cpu_bench/Vtb_compiled_benchmark \
+    2>&1 | tee generated/tinyrisc/verilator-cpu-benchmark.log
 else
   echo "SKIP Verilator (not installed); no Verilator performance comparison claimed"
 fi
