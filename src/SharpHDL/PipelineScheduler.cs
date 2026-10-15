@@ -11,6 +11,8 @@ namespace SharpHDL
         public int LogicLevelsPerStage = 1;
         public int MaxStages = 64;
         public int InitiationInterval = 1;
+        /// <summary>Optional multiplier implementation, overriding method-level HlsMultiplier attribute.</summary>
+        public MultiplierImplementation MultiplierImplementation = MultiplierImplementation.Auto;
     }
     /// <summary>Operation-level abstract schedule metadata, not placed-and-routed timing.</summary>
     public sealed class PipelineOperation
@@ -128,7 +130,7 @@ namespace SharpHDL
                 if(e.Op=="const"||e==input.Data)return e;
                 var key=Tuple.Create(e,s);Expr cached;if(combinations.TryGetValue(key,out cached))return cached;
                 var args=e.Args.Select(a=>stage(a)==s?combine(a,s):at(a,Math.Max(0,s-1))).ToArray();
-                var result=new Expr(e.Width,e.Op,args){Literal=e.Literal,Offset=e.Offset};
+                var result=new Expr(e.Width,e.Op,args){Literal=e.Literal,Offset=e.Offset,MultiplierHint=e.MultiplierHint};
                 if(e.NameHint!=null)result.Named(name+"_stage"+s+"_"+e.NameHint);
                 result.Describe((e.Description??("Operation "+e.Op))+" Scheduled in "+name+" stage "+s+".");
                 combinations[key]=result;return result;
