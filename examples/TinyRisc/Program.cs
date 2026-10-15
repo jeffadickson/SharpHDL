@@ -92,7 +92,7 @@ class Program
    {
     if(reference.Read(Port("fault"))!=0)throw new Exception("TinyRisc hardware fault");
     var message=Encoding.ASCII.GetString(bytes.ToArray());
-    Check(message=="Hello, world!\\r\\n","Compiled UART payload was "+message);
+    Check(message=="Hello, world!\r\n","Compiled UART payload was "+message);
     Console.WriteLine("PASS compiled vs interpreter TinyRisc: "+(edge+1)+
       " clock edges, "+bytes.Count+" UART bytes; no fault");
     return;
