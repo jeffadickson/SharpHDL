@@ -30,19 +30,22 @@ jobs:
           node --check vscode/sharphdl/verificationManifest.js
           node --check vscode/sharphdl/projectIntegration.js
           node --check vscode/sharphdl/projectManifest.js
-          node --test vscode/sharphdl/verilator.test.js vscode/sharphdl/verificationManifest.test.js vscode/sharphdl/projectManifest.test.js
+          node --check vscode/sharphdl/waveformViewer.js
+          node --check vscode/sharphdl/vcd.js
+          node --check vscode/sharphdl/hardwareBreakpoints.js
+          node --test vscode/sharphdl/verilator.test.js vscode/sharphdl/verificationManifest.test.js vscode/sharphdl/projectManifest.test.js vscode/sharphdl/waveform.test.js
           node -e "const p=require('./vscode/sharphdl/package.json'); const commands=p.contributes.commands.map(x=>x.command); if(!commands.includes('sharphdl.verilatorLint') || !commands.includes('sharphdl.verifyTinyRisc') || !p.contributes.views.explorer.some(x=>x.id==='sharphdl.verification')) process.exit(1)"
       - name: Package installable VSIX
         run: |
           mkdir -p dist
           cd vscode/sharphdl
-          npx --yes @vscode/vsce@3.6.0 package --no-dependencies --out ../../dist/sharphdl-0.4.0.vsix
-          test -s ../../dist/sharphdl-0.4.0.vsix
+          npx --yes @vscode/vsce@3.6.0 package --no-dependencies --out ../../dist/sharphdl-0.5.0.vsix
+          test -s ../../dist/sharphdl-0.5.0.vsix
       - name: Publish extension build artifact
         uses: actions/upload-artifact@v4
         with:
           name: sharphdl-vscode-vsix
-          path: dist/sharphdl-0.4.0.vsix
+          path: dist/sharphdl-0.5.0.vsix
   verilator-manifest-smoke:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
