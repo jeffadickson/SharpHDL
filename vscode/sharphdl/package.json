@@ -2,7 +2,7 @@
   "name": "sharphdl-debug",
   "displayName": "SharpHDL Hardware & Verification",
   "description": "Hardware clock debugger, Verilator lint, and TinyRisc verification Explorer",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "publisher": "sharphdl",
   "engines": {
     "vscode": "^1.85.0"
@@ -83,6 +83,18 @@
       {
         "command": "sharphdl.showMappedSignals",
         "title": "SharpHDL: Find Mapped Waveform Signals"
+      },
+      {
+        "command": "sharphdl.openWaveforms",
+        "title": "SharpHDL: Open Waveform Cross-Probe"
+      },
+      {
+        "command": "sharphdl.addHardwareBreakpoint",
+        "title": "SharpHDL: Add Hardware Condition Breakpoint"
+      },
+      {
+        "command": "sharphdl.clearHardwareBreakpoints",
+        "title": "SharpHDL: Clear Hardware Breakpoints"
       }
     ],
     "configuration": {
