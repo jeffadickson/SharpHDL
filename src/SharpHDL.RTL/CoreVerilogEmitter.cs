@@ -45,6 +45,15 @@ public static class CoreVerilogEmitter
         foreach(var (name,id) in inputs)
             if(!byId.TryGetValue(id,out var n) || n.Operation!=HardwareOperation.Input)
                 throw new ArgumentException("Invalid input node: "+name);
+        var declaredInputIds=new HashSet<int>(inputs.Values);
+        foreach(var node in graph.Nodes.Where(n=>n.Operation==HardwareOperation.Input))
+            if(!declaredInputIds.Contains(node.Id))
+                throw new ArgumentException("Undeclared Core IR input node "+node.Id);
+        foreach(var (name,id) in nextState)
+            if(inputs.TryGetValue(name,out var inputId) &&
+                byId.ContainsKey(id) &&
+                byId[inputId].Type.Width!=byId[id].Type.Width)
+                throw new ArgumentException("Register next-state width mismatch: "+name);
         foreach(var id in outputs.Values.Concat(nextState.Values))
             if(!byId.ContainsKey(id))throw new ArgumentException("Unknown output/next-state node.");
         foreach(var name in resetValues.Keys)
