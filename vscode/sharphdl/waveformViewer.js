@@ -51,12 +51,13 @@ function draw(){
   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 800 30');svg.classList.add('wave');
   svg.onclick=e=>{const x=e.offsetX/e.currentTarget.getBoundingClientRect().width;slider.value=String(Math.round(x*data.duration));draw();};
   let points='0,15 ',lastValue='?';
-  for(const change of [...s.changes,{time:data.duration,value:lastValue}]){
+  for(const change of s.changes){
    const x=800*change.time/Math.max(1,data.duration);
    const y=lastValue==='1'?5:lastValue==='0'?25:15;
    points+=x+','+y+' '+x+','+(change.value==='1'?5:change.value==='0'?25:15)+' ';
    lastValue=change.value;
   }
+  points+='800,'+(lastValue==='1'?5:lastValue==='0'?25:15);
   const poly=document.createElementNS('http://www.w3.org/2000/svg','polyline');
   poly.setAttribute('points',points);poly.setAttribute('stroke','currentColor');poly.setAttribute('fill','none');poly.setAttribute('stroke-width','1.6');svg.append(poly);
   row.append(name,value,svg);container.append(row);
