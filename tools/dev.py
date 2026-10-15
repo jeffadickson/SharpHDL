@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CORE = ["dotnet"]
 OPTIONAL = ["just", "git", "docker", "node", "iverilog", "vvp", "verilator", "yosys", "nextpnr-ice40", "icepack"]
 PROJECTS = [
+    "tools/SharpHDL.SimulatorBench/SharpHDL.SimulatorBench.csproj",
     "src/SharpHDL.Core/SharpHDL.Core.csproj",
     "src/SharpHDL.HLS/SharpHDL.HLS.csproj",
     "src/SharpHDL.Simulation/SharpHDL.Simulation.csproj",
