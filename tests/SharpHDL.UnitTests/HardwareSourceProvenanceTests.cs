@@ -190,4 +190,62 @@ public sealed class HardwareSourceProvenanceTests
         }
     }
 
+    [HardwareProcess]
+    [HlsMultiplier(MultiplierImplementation.BoothRadix4)]
+    public static void MultiplyBooth(HwStream<uint> input,HwStream<uint> output)
+    {
+        while(true)
+        {
+            uint x=input.Read();
+            output.Write(x*(x+3u));
+        }
+    }
+
+    [HardwareProcess]
+    [HlsMultiplier(MultiplierImplementation.WallaceTree)]
+    public static void MultiplyWallace(HwStream<uint> input,HwStream<uint> output)
+    {
+        while(true)
+        {
+            uint x=input.Read();
+            output.Write(x*(x+3u));
+        }
+    }
+
+    [Theory]
+    [InlineData(nameof(MultiplyBooth))]
+    [InlineData(nameof(MultiplyWallace))]
+    public void New_multiplier_architectures_match_modulo_32_bit_software_oracle(string methodName)
+    {
+        var m=new Module("MulNewOracle");
+        var input=HwStream<uint>.Input(m,"in");
+        var output=HwStream<uint>.Output(m,"out");
+        var method=typeof(HardwareSourceProvenanceTests).GetMethod(methodName)!;
+        var pipeline=CilCompiler.AttachPipeline(m,"mul",method,input,output,
+            new PipelineOptions{MaxStages=256,LogicLevelsPerStage=4});
+        var rtl=m.Verilog();
+        Assert.DoesNotContain(" * ",rtl);
+        Assert.True(pipeline.Latency>0);
+        var sim=m.Simulate();
+        sim.Tick(true);
+        sim.Set(output.Ready,1);
+        foreach(uint x in new uint[]{0,1,3,7,65535,0x80000000,uint.MaxValue})
+        {
+            sim.Set(input.Data,x);
+            sim.Set(input.Valid,1);
+            int guard=0;
+            while(sim.Read(input.Ready).IsZero && guard++<300)sim.Tick();
+            Assert.True(guard<300);
+            sim.Tick();
+            sim.Set(input.Valid,0);
+            guard=0;
+            while(sim.Read(output.Valid).IsZero && guard++<300)sim.Tick();
+            Assert.True(guard<300);
+            var expected=((System.Numerics.BigInteger)x *
+                (System.Numerics.BigInteger)(unchecked(x+3u))) & Expr.Mask(32);
+            Assert.Equal(expected,sim.Read(output.Data));
+            sim.Tick();
+        }
+    }
+
 }
