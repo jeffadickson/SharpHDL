@@ -92,6 +92,15 @@
           },
           "default": [],
           "description": "Additional Verilator arguments, passed without shell expansion."
+        },
+        "sharphdl.verilator.runner": {
+          "type": "string",
+          "enum": [
+            "docker",
+            "host"
+          ],
+          "default": "docker",
+          "description": "Use SharpHDL's provisioned Docker image (default), or an installed host Verilator."
         }
       }
     },
