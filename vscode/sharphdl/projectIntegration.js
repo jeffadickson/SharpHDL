@@ -138,6 +138,24 @@ async function showMappedSignals(entry) {
     vscode.window.showInformationMessage('Copied '+selection.label+'; paste into your waveform viewer signal search.');
   }
 }
+/** Select mapped waveform nets for the currently active source line. */
+async function openMappedWaveforms(entry) {
+  const editor=vscode.window.activeTextEditor;
+  const {folder,project}=entry;
+  let signals=[];
+  if(editor&&project.sourceMap) {
+    try {
+      const mapUri=projectUri(folder,project.sourceMap);
+      const mappings=parseSourceMap(Buffer.from(await vscode.workspace.fs.readFile(mapUri)).toString('utf8'));
+      const file=path.relative(folder.uri.fsPath,editor.document.uri.fsPath).replaceAll('\\','/');
+      const line=editor.selection.active.line+1;
+      signals=[...new Set(mappings.filter(m=>
+        (m.source.file===file&&m.source.line===line)||
+        (m.rtl.file===file&&m.rtl.line===line)).flatMap(m=>m.signals))];
+    }catch {/* A missing map means show ordinary trace signals instead. */}
+  }
+  return showWaveforms(entry,signals);
+}
 class ProjectExplorer {
   constructor(){this.emitter=new vscode.EventEmitter();this.onDidChangeTreeData=this.emitter.event;}
   refresh(){this.emitter.fire(undefined);}
@@ -193,7 +211,7 @@ function registerProjectIntegration(context) {
     vscode.commands.registerCommand('sharphdl.runDesign',entry=>invoke(runProject,entry)),
     vscode.commands.registerCommand('sharphdl.jumpToMapped',entry=>invoke(jumpToMapped,entry)),
     vscode.commands.registerCommand('sharphdl.showMappedSignals',entry=>invoke(showMappedSignals,entry)),
-    vscode.commands.registerCommand('sharphdl.openWaveforms',entry=>invoke(showWaveforms,entry)),
+    vscode.commands.registerCommand('sharphdl.openWaveforms',entry=>invoke(openMappedWaveforms,entry)),
     vscode.commands.registerCommand('sharphdl.refreshProjects',()=>explorer.refresh()),
     vscode.commands.registerCommand('sharphdl.generateProvenance',async()=>{
       const folder=(vscode.workspace.workspaceFolders||[])[0];
