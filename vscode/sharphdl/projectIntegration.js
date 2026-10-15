@@ -110,6 +110,32 @@ async function jumpToMapped(entry) {
   destination.selection=new vscode.Selection(pos,pos);
   destination.revealRange(new vscode.Range(pos,pos),vscode.TextEditorRevealType.InCenter);
 }
+/** Correlate the current C# or generated RTL line with an exact mapped net.
+ * Signal names can be copied into a waveform viewer's signal search; VS Code
+ * does not expose a standard cross-extension waveform-selection API.
+ */
+async function showMappedSignals(entry) {
+  const editor=vscode.window.activeTextEditor;
+  if(!editor)throw new Error('Open mapped C# or Verilog source first');
+  const {folder,project}=entry;
+  if(!project.sourceMap)throw new Error('No compiler source map configured for '+project.id);
+  const uri=projectUri(folder,project.sourceMap);
+  if(!await exists(uri))throw new Error('Compiler source map not generated yet');
+  const mappings=parseSourceMap(Buffer.from(await vscode.workspace.fs.readFile(uri)).toString('utf8'));
+  const current=path.relative(folder.uri.fsPath,editor.document.uri.fsPath).replaceAll('\\','/');
+  const line=editor.selection.active.line+1;
+  const matches=mappings.filter(m=>(m.source.file===current&&m.source.line===line)||
+    (m.rtl.file===current&&m.rtl.line===line));
+  const signals=[...new Set(matches.flatMap(m=>m.signals))];
+  if(!signals.length)throw new Error('No exact mapped signals at '+current+':'+line);
+  const selection=await vscode.window.showQuickPick(signals.map(label=>({label})),{
+    placeHolder:'Select mapped signal to copy for VCD/FST waveform search'
+  });
+  if(selection) {
+    await vscode.env.clipboard.writeText(selection.label);
+    vscode.window.showInformationMessage('Copied '+selection.label+'; paste into your waveform viewer signal search.');
+  }
+}
 class ProjectExplorer {
   constructor(){this.emitter=new vscode.EventEmitter();this.onDidChangeTreeData=this.emitter.event;}
   refresh(){this.emitter.fire(undefined);}
@@ -125,7 +151,7 @@ class ProjectExplorer {
     }
     if(item.entry) {
       const entry=item.entry, actions=[];
-      for(const [label,command] of [['Build Verilator design','sharphdl.buildDesign'],['Run Verilator test','sharphdl.runDesign'],['Go to mapped source / RTL','sharphdl.jumpToMapped']]){
+      for(const [label,command] of [['Build Verilator design','sharphdl.buildDesign'],['Run Verilator test','sharphdl.runDesign'],['Go to mapped source / RTL','sharphdl.jumpToMapped'],['Find waveform signals','sharphdl.showMappedSignals']]){
         const node=new vscode.TreeItem(label);
         node.iconPath=new vscode.ThemeIcon(command==='sharphdl.jumpToMapped'?'go-to-file':'play');
         node.command={title:label,command,arguments:[entry]};
@@ -159,6 +185,7 @@ function registerProjectIntegration(context) {
     vscode.commands.registerCommand('sharphdl.buildDesign',entry=>invoke(buildProject,entry)),
     vscode.commands.registerCommand('sharphdl.runDesign',entry=>invoke(runProject,entry)),
     vscode.commands.registerCommand('sharphdl.jumpToMapped',entry=>invoke(jumpToMapped,entry)),
+    vscode.commands.registerCommand('sharphdl.showMappedSignals',entry=>invoke(showMappedSignals,entry)),
     vscode.commands.registerCommand('sharphdl.refreshProjects',()=>explorer.refresh()));
   const watcher=vscode.workspace.createFileSystemWatcher('**/sharphdl.project.json');
   watcher.onDidChange(()=>explorer.refresh());
