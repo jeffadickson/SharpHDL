@@ -166,6 +166,7 @@ public sealed class CoreIrExtendedParityTests
         machine.SetInput("data",0);
         machine.Tick();
         Assert.Equal(1,machine.Cycle);
+        Assert.Equal(new BigInteger(9),machine.ReadRegister("ram_read_data"));
     }
 
 }
