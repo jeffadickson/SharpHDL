@@ -472,7 +472,7 @@ Useful source entry points:
 | Hardware.cs / Module.Validate | Validate connectivity and combinational cycles |
 | GraphDump.cs | Print the actual elaborated graph |
 | Hardware.cs / Simulator.Eval, Tick | Evaluate expressions and commit simultaneous state |
-| Hardware.cs / VerilogWriter.Emit, Write | Emit sized expressions, ports and clocked RTL |
+| SharpHDL.LegacyRtl/LegacyVerilogWriter.cs / Emit, Write | Emit sized expressions, ports and clocked RTL |
 | Streams.cs / StreamBlocks.Map | Construct one elastic pipeline stage |
 | MathHardware.cs / HwMath.SinCos | Elaborate a CORDIC stage chain |
 | MathHardware.cs / RomMath, PolynomialMath | Build table/interpolation or Horner hardware |
