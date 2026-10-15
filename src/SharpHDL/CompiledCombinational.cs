@@ -10,7 +10,8 @@ namespace SharpHDL
     /// Inputs are supplied in the order of InputNames; unsupported operations fail explicitly.</summary>
     public sealed class CompiledCombinational
     {
-        readonly Func<BigInteger[], BigInteger> evaluator;
+        readonly Func<BigInteger[], BigInteger>? evaluator;
+        readonly Func<BigInteger[], BigInteger[]>? evaluatorVector;
         readonly Signal[] inputs;
         public IReadOnlyList<string> InputNames => Array.AsReadOnly(inputs.Select(x => x.Name).ToArray());
 
@@ -22,9 +23,15 @@ namespace SharpHDL
 
         internal CompiledCombinational(Module module, Expr output, bool includeRegisters,
             IReadOnlyDictionary<SynchronousRam, BigInteger[]>? memoryImages)
+            : this(module, new[] { output }, includeRegisters, memoryImages, false) { }
+
+        // One expression tree + one .NET JIT delegate for the complete next-state vector.
+        internal CompiledCombinational(Module module, Expr[] outputs, bool includeRegisters,
+            IReadOnlyDictionary<SynchronousRam, BigInteger[]>? memoryImages, bool vector)
         {
             if (module == null) throw new ArgumentNullException(nameof(module));
-            if (output == null) throw new ArgumentNullException(nameof(output));
+            if (outputs == null || outputs.Length == 0 || outputs.Any(x => x == null))
+                throw new ArgumentException("At least one non-null expression is required.", nameof(outputs));
             module.Validate();
             inputs = module.Signals.Where(x => x.IsInput || (includeRegisters && x.Kind == "reg")).ToArray();
             var values = Expression.Parameter(typeof(BigInteger[]), "values");
@@ -113,18 +120,23 @@ namespace SharpHDL
                 Expression.Constant(BigInteger.One), Expression.Constant(BigInteger.Zero));
             static Expression Signed(Expression value, int width) => Expression.Call(
                 typeof(Expr).GetMethod(nameof(Expr.SignedValue))!, value, Expression.Constant(width));
-            evaluator = Expression.Lambda<Func<BigInteger[], BigInteger>>(Build(output), values).Compile();
+            if (vector)
+                evaluatorVector = Expression.Lambda<Func<BigInteger[], BigInteger[]>>(
+                    Expression.NewArrayInit(typeof(BigInteger), outputs.Select(Build)), values).Compile();
+            else
+                evaluator = Expression.Lambda<Func<BigInteger[], BigInteger>>(Build(outputs[0]), values).Compile();
         }
         // The sequential backend supplies a trusted width-checked state vector.
         // Do not repeat caller-boundary validation inside every clock-edge cone.
-        internal BigInteger EvaluateUnchecked(BigInteger[] values) => evaluator(values);
+        internal BigInteger EvaluateUnchecked(BigInteger[] values) => evaluator!(values);
+        internal BigInteger[] EvaluateVectorUnchecked(BigInteger[] values) => evaluatorVector!(values);
 
         public BigInteger Evaluate(params BigInteger[] values)
         {
             if (values == null || values.Length != inputs.Length) throw new ArgumentException("Incorrect input count");
             for (int i = 0; i < values.Length; i++)
                 if (values[i] < 0 || values[i] > Expr.Mask(inputs[i].Width)) throw new ArgumentOutOfRangeException(nameof(values));
-            return evaluator(values);
+            return evaluator!(values);
         }
     }
 }
