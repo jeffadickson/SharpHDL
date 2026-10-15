@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 // End-to-end HLS provenance fixture: C# Polynomial -> generated RTL ->
-// Verilator -> VCD containing generated internal nets and the result handshake.
+// RTL simulation generates VCD with internal nets and the result handshake.
 module tb_scheduled_polynomial;
   reg clk=0, rst=1;
   reg [15:0] input_data=16'd3;
