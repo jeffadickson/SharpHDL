@@ -109,8 +109,7 @@ namespace SharpHDL
             // The operand vector is snapshotted once before evaluating any D input.
             // This guarantees nonblocking-assignment/atomic clock-edge semantics.
             var oldValues = operandBuffer;
-            var evaluated = fusedNext.EvaluateVectorUnchecked(oldValues);
-            Array.Copy(evaluated, pendingBuffer, pendingBuffer.Length);
+            fusedNext.EvaluateVectorUnchecked(oldValues, pendingBuffer);
             // Fixed-size per-edge scratch avoids List allocations on every clock.
             var writeCount = 0;
             for (var i = 0; i < rams.Length; i++)
