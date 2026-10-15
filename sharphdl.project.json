@@ -12,6 +12,18 @@
       ],
       "outputDir": "build/tinyrisc/verilator_vscode",
       "waveforms": []
+    },
+    {
+      "id": "scheduledPolynomial",
+      "label": "C# Scheduled Polynomial — source mapping",
+      "top": "h_ScheduledPolynomial1",
+      "sources": [
+        "generated/vscode/ScheduledPolynomial1.v"
+      ],
+      "outputDir": "build/vscode/scheduledPolynomial",
+      "sourceMap": "generated/vscode/ScheduledPolynomial1.v.source-map.json",
+      "waveforms": [],
+      "runnable": false
     }
   ]
 }
