@@ -89,4 +89,26 @@ public sealed class HardwareSourceProvenanceTests
         Assert.Contains("*",m.Verilog());
     }
 
+    [HardwareProcess]
+    public static void CheckedMultiply(HwStream<uint> input,HwStream<uint> output)
+    {
+        while(true)
+        {
+            uint x=input.Read();
+            output.Write(checked(x*3u));
+        }
+    }
+
+    [Fact]
+    public void Checked_multiplication_reports_unsupported_overflow_semantics()
+    {
+        var m=new Module("CheckedMultiply");
+        var input=HwStream<uint>.Input(m,"in");
+        var output=HwStream<uint>.Output(m,"out");
+        var method=typeof(HardwareSourceProvenanceTests).GetMethod(nameof(CheckedMultiply))!;
+        var error=Assert.Throws<NotSupportedException>(()=>
+            CilCompiler.AttachPipeline(m,"checked_mul",method,input,output));
+        Assert.Contains("Checked multiplication",error.Message);
+    }
+
 }
