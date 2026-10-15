@@ -25,12 +25,12 @@ From the repository root:
 make vscode
 ```
 
-This target first executes the Node.js parser/manifest tests, then downloads the official Node 22 Docker image if necessary, runs the pinned VS Code extension packaging tool, and writes `dist/sharphdl-0.3.0.vsix`. Host Node/npm installation is not required.
+This target first executes the Node.js parser/manifest tests, then downloads the official Node 22 Docker image if necessary, runs the pinned VS Code extension packaging tool, and writes `dist/sharphdl-0.4.0.vsix`. Host Node/npm installation is not required.
 
 Install the resulting extension using **VS Code → Extensions → ... → Install from VSIX**, selecting that file. Alternatively, when the `code` CLI is available:
 
 ```sh
-code --install-extension dist/sharphdl-0.3.0.vsix
+code --install-extension dist/sharphdl-0.4.0.vsix
 code .
 ```
 
@@ -103,3 +103,19 @@ If `make vscode` fails, check Docker is running and that Docker can download the
 ## Verification status
 
 Node parser and extension command checks run in `.github/workflows/vscode-sharphdl.yml`. The new multi-project runner and VSIX packaging also require real VS Code host testing before issue #25 can be closed. See [the extension README](../vscode/sharphdl/README.md) and [issue #25](https://github.com/jeffadickson/SharpHDL/issues/25).
+
+## 6. Automatically map C# operations to generated Verilog
+
+The `scheduledPolynomial` entry in `sharphdl.project.json` is an HLS example. In the VS Code **SharpHDL Projects** view, expand **C# Scheduled Polynomial — source mapping** and select **Generate C# source map and RTL**. Alternatively, run:
+
+```sh
+make vscode-provenance
+```
+
+This compiles the real `examples/ScheduledPipeline.cs` CIL method with Portable PDB symbols, schedules its arithmetic into a hardware pipeline, emits `generated/vscode/ScheduledPolynomial1.v`, and automatically creates `generated/vscode/ScheduledPolynomial1.v.source-map.json`. No manual source map authoring is needed. Only nodes with actual PDB sequence points and exact generated RTL net declarations appear in the map; unknown locations are omitted rather than guessed.
+
+Open `examples/ScheduledPipeline.cs` and position the cursor on a mapped arithmetic line. Run **SharpHDL: Go to Source / Generated RTL**, choosing the scheduled-polynomial project. VS Code opens the corresponding generated Verilog declaration. Use the same command from that exact Verilog declaration to navigate back to C#.
+
+Select **Find waveform signals** in the project tree while the cursor is on a mapped C# or Verilog line. The extension lists the generated signal names, and copies the selected signal to the clipboard for use in a VCD/FST viewer's signal search. This is a signal-name correlation, not automatic waveform selection or time cursor synchronization. Verilator waveforms require an instrumented testbench that emits a trace; the example's RTL-only project intentionally does not offer a Run Test action.
+
+For a different HLS project, call `HardwareSourceProvenance.Write(module, rtlPath, workspaceRoot)` after `CilCompiler.AttachPipeline` and register the generated sidecar in the project manifest's `sourceMap` property. This API currently maps supported CIL scheduled pipeline operations; general structural C# code has no inherent one-to-one hardware source line.
