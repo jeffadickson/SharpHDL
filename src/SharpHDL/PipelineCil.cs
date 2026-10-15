@@ -156,6 +156,8 @@ namespace SharpHDL
                     if(op=="conv.i4"||op=="conv.u4"){stack.Add(scalar());continue;}
                     if(op=="conv.i1"||op=="conv.u1"||op=="conv.i2"||op=="conv.u2"){push(Resize(Resize(scalar(),op.EndsWith("1")?8:16),32,op[5]=='i'),op);continue;}
                     if(op=="not"||op=="neg"){push(Unary(op,scalar()),op);continue;}
+                    if(op=="mul.ovf"||op=="mul.ovf.un")
+                        throw Error(method,offset,"Checked multiplication ("+op+") is not supported in pipelined HLS. Use explicitly unchecked fixed-width multiplication or implement an overflow flag in hardware.");
                     if(op=="add"||op=="sub"||op=="mul"||op=="and"||op=="or"||op=="xor")
                     {var b=scalar();var a=scalar();push(Bin(op,a,b),op);continue;}
                     if(op=="ceq"||op=="clt"||op=="clt.un"||op=="cgt"||op=="cgt.un")
