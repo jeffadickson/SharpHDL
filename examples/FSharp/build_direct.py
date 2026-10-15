@@ -26,6 +26,7 @@ subprocess.run([str(host), str(sdk / 'Roslyn/bincore/csc.dll'), '-nologo',
                [str(p) for p in sorted((root / 'src/SharpHDL.Core').glob('*.cs'))] +
                [str(p) for p in sorted((root / 'src/SharpHDL.Simulation').glob('*.cs'))] +
                [str(p) for p in sorted((root / 'src/SharpHDL.HLS').glob('*.cs'))] +
+               [str(p) for p in sorted((root / 'src/SharpHDL.LegacyRtl').glob('*.cs'))] +
                [str(p) for p in sorted((root / 'src/SharpHDL').glob('*.cs'))], check=True)
 fsharp_core = sdk / 'FSharp/FSharp.Core.dll'
 subprocess.run([str(host), str(sdk / 'FSharp/fsc.dll'), '--target:exe',
