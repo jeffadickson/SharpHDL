@@ -44,7 +44,7 @@ Run the regression once to produce the generated HDL:
 make tinyrisc-hello
 ```
 
-The repository root contains `sharphdl.project.json`, a version-1 design manifest listing the TinyRisc UART testbench, generated Verilog, top module and output directory. In the VS Code Explorer sidebar, expand **SharpHDL Projects → TinyRisc16 — Hello World UART**. Choose **Build Verilator design** or **Run Verilator test**. These commands use `verilator --binary --timing --trace` and the sources from the manifest, run in VS Code's task terminal, and report process failures. Terminate the task in VS Code to cancel the run. A Verilator build error is displayed in Problems when it matches the Verilator task problem matcher.
+The repository root contains `sharphdl.project.json`, a version-1 design manifest listing the TinyRisc UART testbench, generated Verilog, top module and output directory. In the VS Code Explorer sidebar, expand **SharpHDL Projects → TinyRisc16 — Hello World UART**. Choose **Build Verilator design** or **Run Verilator test**. These commands use `verilator --binary --timing --trace` and the sources from the manifest, run in VS Code's task terminal, and report process failures. By default, the extension launches Verilator inside the `sharphdl-dev:local` Docker image built by `make setup`; no native Verilator installation is needed. Set `sharphdl.verilator.runner` to `host` if you have installed a compatible native toolchain. Terminate the task in VS Code to cancel the run. A Verilator build error is displayed in Problems when it matches the Verilator task problem matcher.
 
 For the full CPU/reference/JIT/Icarus/Verilator regression and benchmarks, use the **SharpHDL Verification** Explorer view and select **Run TinyRisc verification**. That command runs the existing `make benchmark-tinyrisc` target, then exposes generated reports and logs.
 
@@ -98,7 +98,7 @@ Start debugging, use F10 to step hardware clocks, and inspect state in the Varia
 
 ## Troubleshooting
 
-If `make vscode` fails, check Docker is running and that Docker can download the Node 22 image. If `verilator` is not on the host PATH, set `sharphdl.verilator.path` to its executable; for Docker-only toolchains, use `make benchmark-tinyrisc` until a container-backed VS Code task runner is available. If a project source is missing, run the appropriate SharpHDL generation target first. If no waveforms appear, verify that the testbench uses `$dumpfile` and `$dumpvars`. On Windows, WSL2 is the tested-oriented development path; native Windows Verilator compilation is not claimed supported without a compatible C++ toolchain.
+If `make vscode` fails, check Docker is running and that Docker can download the Node 22 image. The default Docker runner requires the `sharphdl-dev:local` image from `make setup`. If using the optional `host` runner and `verilator` is not on PATH, set `sharphdl.verilator.path` to the native executable. On Windows, use WSL2 for the Make/Docker workflow; native Windows compilation has not been qualified. If a project source is missing, run the appropriate SharpHDL generation target first. If no waveforms appear, verify that the testbench uses `$dumpfile` and `$dumpvars`. On Windows, WSL2 is the tested-oriented development path; native Windows Verilator compilation is not claimed supported without a compatible C++ toolchain.
 
 ## Verification status
 
