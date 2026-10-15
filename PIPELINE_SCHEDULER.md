@@ -355,3 +355,30 @@ pipelines and collect actual **generic Yosys logic-cell counts**. These
 measurements are not FPGA LUT/DSP utilization, maximum clock frequency or
 timing slack. Target-specific architecture selection and multicycle DSP
 register scheduling remain open under issue #26.
+
+### Architecture selection from measured target results
+
+`tools/select_multiplier_architecture.py` accepts a JSON report of **actual**
+target-device measurements and selects a candidate using area, throughput or
+latency criteria, with optional clock and resource constraints:
+
+```sh
+python3 tools/select_multiplier_architecture.py results.json \
+    --objective throughput --target-mhz 200 --max-dsp 4
+```
+
+The report must identify `device` and provide `results` rows with
+`architecture`, `lut`, `dsp`, `fmax_mhz`, `latency` and
+`initiation_interval`. Missing metrics are rejected, not treated as zero.
+Area selection is lexicographic (LUTs, then DSPs), not a fabricated
+DSP-to-LUT conversion. Throughput compares `fmax_mhz/II`; latency
+compares `latency/fmax_mhz`. The selector does not invent timing estimates.
+It recommends an architecture; applying that choice to an HLS pipeline is
+currently explicit via `PipelineOptions` or a method attribute.
+
+`make multiplier-compare` generates and synthesizes the five current
+combinational alternatives with Yosys and writes
+`generated/multipliers/comparison.json`. Generic gate counts are useful
+for regression and relative comparison but are **not** acceptable inputs
+for target-specific Fmax/DSP decisions. Native DSP48E2 simulation and
+Vivado synthesis are separate qualification gates.
