@@ -66,6 +66,8 @@ jobs:
         run: |
           export DOTNET_ROOT="$(dirname "$(readlink -f "$(command -v dotnet)")")"
           bash tests/run-tinyrisc.sh
+      - name: HLS multiplier inference and timing-advisory unit test
+        run: dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Debug --filter 'FullyQualifiedName~Hls_reports_multiplier_resource_and_timing_limitations'
       - name: Generate actual CIL-to-RTL provenance
         run: |
           dotnet run --project tools/SharpHDL.Provenance/SharpHDL.Provenance.csproj -c Debug -- "$PWD"
