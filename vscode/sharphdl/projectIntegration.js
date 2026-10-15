@@ -23,6 +23,7 @@ async function taskProcess(folder,name,command,args) {
   const execution=new vscode.ProcessExecution(command,args,{cwd:folder.uri.fsPath});
   const task=new vscode.Task({type:'sharphdl-verilator',name},folder,
     name,'SharpHDL Verilator',execution);
+  task.problemMatchers=['$sharphdlVerilator'];
   task.presentationOptions={reveal:vscode.TaskRevealKind.Always,panel:vscode.TaskPanelKind.Dedicated};
   return new Promise(async(resolve,reject)=>{
     let running,settled=false;
