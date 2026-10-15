@@ -116,7 +116,7 @@ public sealed class HlsElasticCompilerTests
             new HlsCostProfile{MultiplyCost=2,ArithmeticCost=1});
         var rtlModule=pipeline.ToModule("ElasticRtlFixture");
         var rtl=rtlModule.Verilog();
-        Assert.Contains("stage",rtl,StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("hls_valid_",rtl);
         Assert.Contains("h_ElasticRtlFixture",rtl);
         var core=new HardwareGraphMachine(pipeline.Graph,pipeline.Inputs,pipeline.Outputs,
             pipeline.NextState,pipeline.ResetValues,
