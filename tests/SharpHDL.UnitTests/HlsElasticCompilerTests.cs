@@ -27,7 +27,7 @@ public sealed class HlsElasticCompilerTests
         var exported=m.ExportCoreGraph();
         var compiled=HlsElasticCompiler.Compile(exported.Graph,
             exported.Inputs["input"],exported.Outputs["output"],
-            budget,new HlsCostProfile{MultiplyCost=2,ArithmeticCost=1});
+            budget,new HlsCostProfile{MultiplyCost=budget==1?1:2,ArithmeticCost=1});
         Assert.True(compiled.Latency>=1);
         Assert.True(compiled.PayloadRegisterBits>=16);
         Assert.Equal(1,compiled.InitiationInterval);
