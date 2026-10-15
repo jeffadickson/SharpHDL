@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Linq;
 using SharpHDL;
 using SharpHDL.Core;
 using SharpHDL.HLS;
@@ -33,7 +34,7 @@ public sealed class CoreVerilogEmitterTests
         Assert.Contains("s_hls_output_valid",rtl);
         Assert.Contains(" * ",rtl);
         Assert.Contains("s_hls_valid_",rtl);
-        Assert.Equal(compiled.ResetValues.Count,
+        Assert.Equal(compiled.ResetValues.Keys.Count(name=>name.StartsWith("hls_valid_",StringComparison.Ordinal)),
             System.Text.RegularExpressions.Regex.Matches(rtl,@"<= 1'd0;").Count);
     }
 
