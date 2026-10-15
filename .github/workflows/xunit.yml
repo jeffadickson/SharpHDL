@@ -45,3 +45,22 @@ jobs:
           dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj
           -c Release
           --filter "FullyQualifiedName~CoreHardwareGraphTests|FullyQualifiedName~CoreGraphLoweringTests|FullyQualifiedName~CoreIrExtendedParityTests|FullyQualifiedName~TinyRiscCoreIrTests|FullyQualifiedName~HlsGraphAnalyzerTests|FullyQualifiedName~HlsElasticCompilerTests"
+  core-hls-verilator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Install Verilator
+        run: sudo apt-get update && sudo apt-get install -y verilator
+      - name: Compile Core IR into registered RTL
+        run: dotnet run --project tools/SharpHDL.CoreHlsDemo/SharpHDL.CoreHlsDemo.csproj -c Release -- "$PWD"
+      - name: Verify Core HLS RTL with randomized backpressure
+        run: |
+          mkdir -p build/core-hls
+          verilator --binary --timing -Wno-fatal --top-module tb_core_hls_elastic \
+            --Mdir build/core-hls/obj \
+            generated/core-hls/CoreHlsElastic.v tests/rtl/tb_core_hls_elastic.sv
+          build/core-hls/obj/Vtb_core_hls_elastic
