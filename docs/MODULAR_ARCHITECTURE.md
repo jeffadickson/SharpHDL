@@ -177,3 +177,19 @@ Standalone Roslyn C#/F#/VB build scripts now include the independent
 Simulation source files to preserve clean-checkout compilation of
 the compatibility API. `make core-ir-verify` includes the new HLS
 analysis and TinyRisc compatibility regressions.
+
+### Canonical IR optimization pass
+
+`SharpHDL.HLS.HlsConstantFolder.Fold(graph)` now implements an
+independent, side-effect-free HLS optimization on validated Core IR.
+It folds fully constant arithmetic (with modulo-width truncation),
+bitwise logic, comparisons, mux, shifts, slices, concatenation,
+sign-extension and ROM lookup. It preserves every node ID and
+source name so port maps and provenance references remain stable.
+Register/state boundaries and RAM reads/writes are never folded.
+
+This is an actual transformed graph, not a report. Tests compare the
+folded graph's output with the legacy simulator over boundary values
+and confirm that RAM and register inputs are preserved. It remains
+opt-in while HLS lowering and Verilog generation are migrated;
+the existing CIL frontend does not silently switch to the new pass.
