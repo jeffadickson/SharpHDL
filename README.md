@@ -183,7 +183,7 @@ available in the build environment.
    `Drive` associates an expression with a wire or output.
 4. Validation rejects mixed ownership, missing drivers, multiple drivers,
    mismatched assignment widths, and combinational cycles.
-5. `VerilogWriter.Emit` recursively visits expression nodes. Each operation
+5. `LegacyVerilogWriter.Emit` (in `src/SharpHDL.LegacyRtl`) recursively visits expression nodes. Each operation
    becomes a sized temporary wire and a continuous assignment.
 6. Registers become `always @(posedge clk)` blocks using nonblocking assignments.
 7. The simulator evaluates the same graph and masks every node to its width.
