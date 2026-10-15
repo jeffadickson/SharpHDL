@@ -32,13 +32,6 @@
         "language": "csharp"
       }
     ],
-    "configurationDefaults": {
-      "launch": {
-        "type": "sharphdl",
-        "request": "launch",
-        "name": "SharpHDL hardware (localhost)"
-      }
-    },
     "commands": [
       {
         "command": "sharphdl.verilatorLint",
