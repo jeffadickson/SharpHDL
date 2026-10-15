@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Numerics;
+using System.Linq;
 using SharpHDL.Core;
 
 namespace SharpHDL.Simulation;
@@ -34,6 +35,7 @@ public static class HardwareGraphEvaluator
         if(graph==null)throw new ArgumentNullException(nameof(graph));
         if(inputs==null)throw new ArgumentNullException(nameof(inputs));
         var values=new Dictionary<int,BigInteger>();
+        var byId=graph.Nodes.ToDictionary(n=>n.Id);
         foreach(var node in graph.Nodes)
         {
             var mask=(BigInteger.One<<node.Type.Width)-1;
@@ -65,16 +67,16 @@ public static class HardwareGraphEvaluator
                 case HardwareOperation.ShiftRight:
                 case HardwareOperation.Slice:v=A(0)>>node.Offset;break;
                 case HardwareOperation.ArithmeticShiftRight:
-                    v=Signed(A(0),graph.Nodes[node.Operands[0]].Type.Width)>>node.Offset;break;
+                    v=Signed(A(0),byId[node.Operands[0]].Type.Width)>>node.Offset;break;
                 case HardwareOperation.Resize:v=A(0);break;
                 case HardwareOperation.SignExtend:
-                    v=Signed(A(0),graph.Nodes[node.Operands[0]].Type.Width);break;
+                    v=Signed(A(0),byId[node.Operands[0]].Type.Width);break;
                 case HardwareOperation.Concat:
-                    v=(A(0)<<graph.Nodes[node.Operands[1]].Type.Width)|A(1);break;
+                    v=(A(0)<<byId[node.Operands[1]].Type.Width)|A(1);break;
                 case HardwareOperation.Equal:v=A(0)==A(1)?1:0;break;
                 case HardwareOperation.LessThan:v=A(0)<A(1)?1:0;break;
                 case HardwareOperation.SignedLessThan:
-                    var argWidth=graph.Nodes[node.Operands[0]].Type.Width;
+                    var argWidth=byId[node.Operands[0]].Type.Width;
                     v=Signed(A(0),argWidth)<Signed(A(1),argWidth)?1:0;break;
                 case HardwareOperation.Lookup:
                     v=A(0)<node.Table!.Count?node.Table[(int)A(0)]:BigInteger.Zero;break;
