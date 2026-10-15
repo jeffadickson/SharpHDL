@@ -16,7 +16,7 @@ namespace SharpHDL
         readonly Module module;
         readonly Signal[] operands;
         readonly Signal[] registers;
-        readonly CompiledCombinational[] next;
+        readonly CompiledCombinational fusedNext;
         readonly SynchronousRam[] rams;
         readonly Dictionary<SynchronousRam, BigInteger[]> ramImages = new();
         readonly CompiledCombinational[] ramAddresses;
@@ -26,6 +26,8 @@ namespace SharpHDL
         readonly Dictionary<Expr, CompiledCombinational> probes = new();
         readonly BigInteger[] operandBuffer;
         readonly BigInteger[] pendingBuffer;
+        // One fused JIT delegate replaces per-register delegates; its current
+        // array-valued result remains an allocation until direct-buffer lowering.
         readonly Dictionary<Signal,int> operandIndexes;
         bool initialized;
 
@@ -42,7 +44,7 @@ namespace SharpHDL
             operandIndexes = operands.Select((signal,index)=>(signal,index)).ToDictionary(x=>x.signal,x=>x.index);
             // CompiledCombinational explicitly rejects unsupported opcodes rather
             // than silently interpreting the original graph.
-            next = registers.Select(s => new CompiledCombinational(module, s.Driver, true, ramImages)).ToArray();
+            fusedNext = new CompiledCombinational(module, registers.Select(s => s.Driver).ToArray(), true, ramImages, true);
             ramAddresses = rams.Select(r => new CompiledCombinational(module, r.Address, true, ramImages)).ToArray();
             ramEnables = rams.Select(r => new CompiledCombinational(module, r.WriteEnable, true, ramImages)).ToArray();
             ramWriteData = rams.Select(r => new CompiledCombinational(module, r.WriteData, true, ramImages)).ToArray();
@@ -101,8 +103,8 @@ namespace SharpHDL
             // The operand vector is snapshotted once before evaluating any D input.
             // This guarantees nonblocking-assignment/atomic clock-edge semantics.
             var oldValues = operandBuffer;
-            for (var i = 0; i < next.Length; i++)
-                pendingBuffer[i] = next[i].EvaluateUnchecked(oldValues);
+            var evaluated = fusedNext.EvaluateVectorUnchecked(oldValues);
+            Array.Copy(evaluated, pendingBuffer, pendingBuffer.Length);
             var writes = new List<(SynchronousRam Ram, int Address, BigInteger Data)>();
             for (var i = 0; i < rams.Length; i++)
             {
