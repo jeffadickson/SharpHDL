@@ -34,33 +34,69 @@ public sealed class HardwareGraph
             switch (node.Operation)
             {
                 case HardwareOperation.Constant:
-                    Require(args.Length == 0, node, "expected no operands");
-                    if (node.ConstantValue is BigInteger value &&
-                        (value < 0 || value >= (BigInteger.One << width)))
-                        throw new ArgumentException($"IR node {node.Id}: literal out of range");
+                    Require(args.Length == 0 && node.ConstantValue.HasValue,node,"constant requires a literal");
+                    Require(node.ConstantValue!.Value >= 0 &&
+                        node.ConstantValue.Value < (BigInteger.One << width),node,"literal out of range");
                     break;
                 case HardwareOperation.Input:
-                    Require(args.Length == 0, node, "expected no operands"); break;
+                    Require(args.Length == 0,node,"input has no operands");break;
                 case HardwareOperation.Not:
                 case HardwareOperation.Register:
-                    Require(args.Length == 1 && args[0].Type.Width == width, node, "unary width mismatch"); break;
+                    Require(args.Length == 1 && args[0].Type.Width == width,node,"unary width mismatch");break;
                 case HardwareOperation.Add:
                 case HardwareOperation.Subtract:
                 case HardwareOperation.Multiply:
                 case HardwareOperation.And:
                 case HardwareOperation.Or:
                 case HardwareOperation.Xor:
-                    Require(args.Length == 2 && args.All(a => a.Type.Width == width), node, "binary width mismatch"); break;
+                    Require(args.Length == 2 && args.All(a => a.Type.Width == width),node,"binary width mismatch");break;
+                case HardwareOperation.DspMultiplyUnsigned:
+                    Require(args.Length == 2 && args[0].Type.Width <= 26 &&
+                        args[1].Type.Width <= 17 &&
+                        width == args[0].Type.Width + args[1].Type.Width,
+                        node,"DSP48E2 unsigned operand/result widths invalid");break;
+                case HardwareOperation.Equal:
+                case HardwareOperation.LessThan:
+                case HardwareOperation.SignedLessThan:
+                    Require(args.Length == 2 && args[0].Type.Width == args[1].Type.Width &&
+                        width == 1,node,"comparison width mismatch");break;
                 case HardwareOperation.Select:
                     Require(args.Length == 3 && args[0].Type.Width == 1 &&
-                            args[1].Type.Width == width && args[2].Type.Width == width, node, "mux width mismatch"); break;
+                        args[1].Type.Width == width && args[2].Type.Width == width,node,"mux width mismatch");break;
+                case HardwareOperation.ShiftLeft:
+                case HardwareOperation.ShiftRight:
+                case HardwareOperation.ArithmeticShiftRight:
+                    Require(args.Length == 1 && args[0].Type.Width == width &&
+                        node.Offset >= 0,node,"constant shift width/offset invalid");break;
+                case HardwareOperation.Slice:
+                    Require(args.Length == 1 && node.Offset >= 0 &&
+                        (long)node.Offset + width <= args[0].Type.Width,node,"slice range invalid");break;
+                case HardwareOperation.Resize:
+                    Require(args.Length == 1,node,"resize requires one operand");break;
+                case HardwareOperation.SignExtend:
+                    Require(args.Length == 1 && width >= args[0].Type.Width,
+                        node,"sign extension cannot narrow");break;
+                case HardwareOperation.Concat:
+                    Require(args.Length == 2 &&
+                        (long)args[0].Type.Width + args[1].Type.Width == width,
+                        node,"concat width mismatch");break;
+                case HardwareOperation.Lookup:
+                    Require(args.Length == 1 && node.Table != null &&
+                        node.Table.Count > 0 && node.Table.Count <= 65536 &&
+                        new BigInteger(node.Table.Count) <= (BigInteger.One << args[0].Type.Width) &&
+                        node.Table.All(v => v >= 0 && v < (BigInteger.One << width)),
+                        node,"ROM table/address/element invalid");break;
+                case HardwareOperation.MemoryRead:
+                    Require(args.Length == 1 && !string.IsNullOrWhiteSpace(node.MemoryName),
+                        node,"RAM read requires address and memory identifier");break;
                 default:
                     throw new NotSupportedException($"Operation {node.Operation} is not yet supported by the version 1 graph validator.");
             }
             known.Add(node.Id, node);
         }
         Nodes = Array.AsReadOnly(list.Select(n =>
-            n with { Operands = Array.AsReadOnly(n.Operands.ToArray()) }).ToArray());
+            n with { Operands = Array.AsReadOnly(n.Operands.ToArray()),
+                Table = n.Table == null ? null : Array.AsReadOnly(n.Table.ToArray()) }).ToArray());
     }
 
     private static void Require(bool ok, HardwareNode node, string reason)
