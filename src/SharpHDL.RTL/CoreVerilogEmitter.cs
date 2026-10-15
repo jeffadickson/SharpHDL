@@ -27,6 +27,24 @@ public static class CoreVerilogEmitter
         IReadOnlyDictionary<string,BigInteger> resetValues,
         string moduleName)
     {
+        return Emit(graph,inputs,outputs,nextState,resetValues,
+            new Dictionary<string,HardwareMemoryPort>(),moduleName);
+    }
+
+    /// <summary>
+    /// Emit Core IR with initialized constant ROM and synchronous single-port
+    /// RAM. RAM reads observe pre-edge contents; writes commit at the edge
+    /// unless reset is asserted. Reset does not clear memory cells.
+    /// </summary>
+    public static string Emit(HardwareGraph graph,
+        IReadOnlyDictionary<string,int> inputs,
+        IReadOnlyDictionary<string,int> outputs,
+        IReadOnlyDictionary<string,int> nextState,
+        IReadOnlyDictionary<string,BigInteger> resetValues,
+        IReadOnlyDictionary<string,HardwareMemoryPort> memories,
+        string moduleName)
+    {
+        if(memories==null)throw new ArgumentNullException(nameof(memories));
         if(graph==null)throw new ArgumentNullException(nameof(graph));
         if(inputs==null)throw new ArgumentNullException(nameof(inputs));
         if(outputs==null)throw new ArgumentNullException(nameof(outputs));
@@ -40,7 +58,7 @@ public static class CoreVerilogEmitter
         }
         Identifier(moduleName);
         var byId=graph.Nodes.ToDictionary(n=>n.Id);
-        foreach(var name in inputs.Keys.Concat(outputs.Keys).Concat(nextState.Keys))
+        foreach(var name in inputs.Keys.Concat(outputs.Keys).Concat(nextState.Keys).Concat(memories.Keys))
             Identifier(name);
         foreach(var (name,id) in inputs)
             if(!byId.TryGetValue(id,out var n) || n.Operation!=HardwareOperation.Input)
@@ -62,6 +80,23 @@ public static class CoreVerilogEmitter
         foreach(var name in nextState.Keys)
             if(!resetValues.ContainsKey(name))
                 throw new ArgumentException("Next-state requires reset value: "+name);
+        foreach(var (name,port) in memories)
+        {
+            if(port.Name!=name)throw new ArgumentException("Memory name mismatch: "+name);
+            if(!byId.TryGetValue(port.AddressNode,out var addr) ||
+                !byId.TryGetValue(port.WriteEnableNode,out var wen) ||
+                !byId.TryGetValue(port.WriteDataNode,out var data) ||
+                wen.Type.Width!=1 || data.Type.Width!=port.Width ||
+                port.Initial.Count > (BigInteger.One<<addr.Type.Width))
+                throw new ArgumentException("Invalid memory port: "+name);
+        }
+        foreach(var node in graph.Nodes.Where(n=>n.Operation==HardwareOperation.MemoryRead))
+            if(node.MemoryName==null ||
+                !memories.TryGetValue(node.MemoryName,out var ram) ||
+                ram.Width!=node.Type.Width ||
+                node.Operands.Count!=1 ||
+                byId[node.Operands[0]].Type.Width != byId[ram.AddressNode].Type.Width)
+                throw new ArgumentException("Missing or mismatched RAM for node "+node.Id);
         if(inputs.Keys.Intersect(outputs.Keys).Any())
             throw new ArgumentException("Input and output names must not overlap.");
 
@@ -84,10 +119,21 @@ public static class CoreVerilogEmitter
         foreach(var (name,id) in inputs)
             if(resetValues.ContainsKey(name))
                 sb.AppendLine("reg "+Range(byId[id].Type.Width)+" "+Port(name)+";");
+        foreach(var (name,port) in memories)
+        {
+            sb.AppendLine("// "+name+": initialized synchronous read-before-write RAM.");
+            sb.AppendLine("reg "+Range(port.Width)+" mem_"+name+
+                " [0:"+(port.Initial.Count-1)+"];");
+            sb.AppendLine("initial begin");
+            for(int i=0;i<port.Initial.Count;i++)
+                sb.AppendLine("  mem_"+name+"["+i+"] = "+
+                    Literal(port.Width,port.Initial[i])+";");
+            sb.AppendLine("end");
+        }
         foreach(var n in graph.Nodes)
         {
             if(n.Operation==HardwareOperation.Input)continue;
-            if(n.Operation is HardwareOperation.MemoryRead or HardwareOperation.MemoryWrite
+            if(n.Operation is HardwareOperation.MemoryWrite
                 or HardwareOperation.Register or HardwareOperation.DspMultiplyUnsigned)
                 throw new NotSupportedException("Native Core RTL backend does not yet support "+n.Operation);
             string A(int i)=>Node(n.Operands[i]);
@@ -116,6 +162,34 @@ public static class CoreVerilogEmitter
                 case HardwareOperation.LessThan:rhs=A(0)+" < "+A(1);break;
                 case HardwareOperation.SignedLessThan:
                     rhs="$signed("+A(0)+") < $signed("+A(1)+")";break;
+                case HardwareOperation.Lookup:
+                    {
+                        var function="rom_"+Node(n.Id);
+                        var addressWidth=byId[n.Operands[0]].Type.Width;
+                        sb.AppendLine("function "+Range(n.Type.Width)+" "+function+";");
+                        sb.AppendLine("  input "+Range(addressWidth)+" address;");
+                        sb.AppendLine("  begin");
+                        sb.AppendLine("    case (address)");
+                        for(int i=0;i<n.Table!.Count;i++)
+                            sb.AppendLine("      "+Literal(addressWidth,i)+": "+
+                                function+" = "+Literal(n.Type.Width,n.Table[i])+";");
+                        sb.AppendLine("      default: "+function+" = "+
+                            Literal(n.Type.Width,0)+";");
+                        sb.AppendLine("    endcase");
+                        sb.AppendLine("  end");
+                        sb.AppendLine("endfunction");
+                        rhs=function+"("+A(0)+")";
+                        break;
+                    }
+                case HardwareOperation.MemoryRead:
+                    {
+                        var ram=memories[n.MemoryName!];
+                        var addrWidth=byId[n.Operands[0]].Type.Width;
+                        rhs="({1'b0,"+A(0)+"} < "+
+                            Literal(addrWidth+1,ram.Initial.Count)+") ? mem_"+
+                            n.MemoryName+"["+A(0)+"] : "+Literal(n.Type.Width,0);
+                        break;
+                    }
                 default:throw new NotSupportedException(
                     "Native Core RTL backend does not yet support "+n.Operation);
             }
@@ -127,6 +201,17 @@ public static class CoreVerilogEmitter
                 " = "+Port(name)+";");
         foreach(var (name,id) in outputs)
             sb.AppendLine("assign "+Port(name)+" = "+Node(id)+";");
+        foreach(var (name,port) in memories)
+        {
+            var addrWidth=byId[port.AddressNode].Type.Width;
+            sb.AppendLine("always @(posedge clk) begin");
+            sb.AppendLine("  if (!rst && "+Node(port.WriteEnableNode)+
+                " && ({1'b0,"+Node(port.AddressNode)+"} < "+
+                Literal(addrWidth+1,port.Initial.Count)+"))");
+            sb.AppendLine("    mem_"+name+"["+Node(port.AddressNode)+
+                "] <= "+Node(port.WriteDataNode)+";");
+            sb.AppendLine("end");
+        }
         if(resetValues.Count>0)
         {
             sb.AppendLine("always @(posedge clk) begin");
