@@ -6,6 +6,8 @@ on:
       - 'sharphdl.project.json'
       - 'Makefile'
       - 'docs/VSCODE_GETTING_STARTED.md'
+      - 'src/SharpHDL/**'
+      - 'tools/SharpHDL.Provenance/**'
       - '.github/workflows/vscode-sharphdl.yml'
   pull_request:
     paths:
@@ -34,13 +36,13 @@ jobs:
         run: |
           mkdir -p dist
           cd vscode/sharphdl
-          npx --yes @vscode/vsce@3.6.0 package --no-dependencies --out ../../dist/sharphdl-0.3.0.vsix
-          test -s ../../dist/sharphdl-0.3.0.vsix
+          npx --yes @vscode/vsce@3.6.0 package --no-dependencies --out ../../dist/sharphdl-0.4.0.vsix
+          test -s ../../dist/sharphdl-0.4.0.vsix
       - name: Publish extension build artifact
         uses: actions/upload-artifact@v4
         with:
           name: sharphdl-vscode-vsix
-          path: dist/sharphdl-0.3.0.vsix
+          path: dist/sharphdl-0.4.0.vsix
   verilator-manifest-smoke:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
@@ -60,3 +62,8 @@ jobs:
           bash tests/run-tinyrisc.sh
       - name: Compile and run manifest-defined multi-file Verilator project
         run: node vscode/sharphdl/cliSmoke.js
+      - name: Generate actual CIL-to-RTL provenance
+        run: |
+          dotnet run --project tools/SharpHDL.Provenance/SharpHDL.Provenance.csproj -c Debug -- "$PWD"
+          test -s generated/vscode/ScheduledPolynomial1.v.source-map.json
+          python3 -c 'import json; x=json.load(open("generated/vscode/ScheduledPolynomial1.v.source-map.json")); assert x["mappings"], "missing exact CIL source mappings"'
