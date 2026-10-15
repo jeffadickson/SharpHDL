@@ -257,3 +257,50 @@ For structural expressions, `StructuralPipeline.Attach(module, name, input, outp
 CIL `mul` creates a hardware multiply node. SharpHDL assigns it one abstract scheduling level, not a measured device delay. The schedule report includes a MULTIPLIER ADVISORY listing each multiplier's operand widths, result width, and stage. For widths above 18 bits it also includes a TIMING WARNING. This threshold is a conservative review trigger, not a vendor DSP capacity or frequency guarantee. Constant operands may be simplified by synthesis. Physical DSP/LUT mapping and achieved clock timing must be established with downstream synthesis and static timing analysis.
 
 C# fixed-width multiplication uses the destination expression's bit width, so a `uint * uint` operation does not automatically produce a 64-bit mathematical product. Use explicit widening only where supported by the HLS frontend. Checked C# multiplication emits a `mul.ovf` CIL instruction; the current pipelined compiler rejects it with a specific diagnostic rather than inventing overflow-trap hardware. For overflow detection, specify a supported fixed-width overflow flag or an explicit wider arithmetic design.
+
+## Multiplier implementation directive
+
+C# does not have C-style `#pragma` directives, so SharpHDL uses a method
+attribute or an explicit pipeline option. The implementation directive is
+applied to the **HLS-compiled hardware**, not to ordinary .NET execution.
+
+```csharp
+[HardwareProcess]
+[HlsMultiplier(MultiplierImplementation.ShiftAdd)]
+public static void Transform(HwStream<uint> input, HwStream<uint> output)
+{
+    while (true)
+    {
+        uint x = input.Read();
+        output.Write(x * (x + 3u));
+    }
+}
+```
+
+`PipelineOptions.MultiplierImplementation` overrides the method attribute
+when it is not `Auto`.
+
+| Choice | Current implementation | Important tradeoff |
+|---|---|---|
+| `Auto` | Ordinary Verilog `*` | Downstream synthesis selects the physical multiplier |
+| `Operator` | Ordinary Verilog `*` | Explicitly request default operator without hint |
+| `DspPreferred` | Verilog `*` with `(* use_dsp = "yes" *)` net attribute | Vendor-specific *preference*, not guaranteed DSP allocation |
+| `ShiftAdd` | Balanced combinational tree of gated shifted partial products | Real alternative RTL structure; may use substantially more LUTs and routing |
+
+`ShiftAdd` currently supports results up to 32 bits and retains modulo
+`2^width` arithmetic. It is **combinational** within each scheduled operation;
+the existing elastic pipeline scheduler adds register boundaries based on
+abstract operation depth. This is not a multicycle iterative multiplier and
+does not automatically optimize the timing of a wide product. The balanced
+adder tree can create more intermediate nodes, stages and registers than a
+single `*`. The report identifies the chosen implementation.
+
+The directive applies to **all multiply expressions within one annotated
+pipeline method**. A per-expression pragma, Booth/Wallace compressor,
+vendor-specific DSP macro binding, multicycle iterative multiplier,
+target-frequency scheduling and resource sharing remain future work in
+[issue #26](https://github.com/jeffadickson/SharpHDL/issues/26).
+
+`DspPreferred` is intentionally a soft hint: vendor toolchains may ignore
+it, particularly outside AMD/Xilinx flows. DSP use, LUTs, clock rate and
+slack must be measured after synthesis and timing analysis.
