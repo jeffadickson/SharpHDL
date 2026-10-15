@@ -42,5 +42,12 @@ public static class Program
                 " registerBits="+schedule.PayloadRegisterBits+
                 " II="+schedule.InitiationInterval);
         }
+        var direct=new Module("DirectDsp");
+        var a=direct.Input("a",16);
+        var b=direct.Input("b",16);
+        var product=direct.Output("product",32);
+        direct.Drive(product,Dsp48E2.MultiplyUnsigned(a,b));
+        File.WriteAllText(Path.Combine(dir,"DirectDsp.v"),direct.Verilog());
+        Console.WriteLine("Generated direct DSP48E2 instance (16x16 unsigned)");
     }
 }
