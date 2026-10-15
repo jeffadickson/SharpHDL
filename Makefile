@@ -1,7 +1,7 @@
 # SharpHDL make compatibility entry point.
 # Docker + Python 3 are the only host prerequisites for automatic HDL/.NET provisioning.
 # Toolchain itself is installed in tools/Dockerfile.dev, never silently on host.
-.PHONY: help doctor setup setup-tools setup-and-hello tinyrisc-hello benchmark-simulator benchmark-tinyrisc container-verify container-build container-test container-shell build test test-hdl simulate benchmark browser vscode vscode-test vscode-provenance verify clean
+.PHONY: help doctor setup setup-tools setup-and-hello tinyrisc-hello benchmark-simulator benchmark-tinyrisc container-verify container-build container-test container-shell build test test-hdl simulate benchmark browser vscode vscode-test vscode-provenance multiplier-rtl multiplier-compare verify clean
 
 IMAGE := sharphdl-dev:local
 DOCKER_RUN = docker run --rm -v "$(CURDIR):/workspace" -w /workspace $(IMAGE)
@@ -15,7 +15,9 @@ help:
 	@echo "  make container-build / container-test / container-shell"
 	@echo "  make doctor          Inspect host prerequisites"
 	@echo "  make vscode          Test and package SharpHDL VS Code extension as dist/*.vsix (downloads Node 22 Docker image)"
-	@echo "  make vscode-test     Run extension JavaScript unit tests in Node 22 container\n\t@echo "  make vscode-provenance Generate CIL source-to-RTL map for scheduled pipeline""
+	@echo "  make vscode-test     Run extension JavaScript unit tests in Node 22 container"
+	@echo "  make vscode-provenance Generate CIL source-to-RTL map for scheduled pipeline"
+	@echo "  make multiplier-compare Generate and synthesize alternative multiplier architectures"
 	@echo "  just --list          Optional extra native developer tasks"
 
 doctor:
@@ -51,6 +53,12 @@ container-shell:
 # installation required; Docker pulls the image on first use.
 vscode-provenance:
 	$(DOCKER_RUN) dotnet run --project tools/SharpHDL.Provenance/SharpHDL.Provenance.csproj -c Debug -- /workspace
+
+multiplier-rtl:
+	$(DOCKER_RUN) dotnet run --project tools/SharpHDL.MultiplierBench/SharpHDL.MultiplierBench.csproj -c Release -- /workspace
+
+multiplier-compare: multiplier-rtl
+	$(DOCKER_RUN) python3 tools/compare_multiplier_synthesis.py
 
 vscode-test:
 	docker run --rm -v "$(CURDIR):/workspace" -w /workspace/vscode/sharphdl node:22-bookworm \
