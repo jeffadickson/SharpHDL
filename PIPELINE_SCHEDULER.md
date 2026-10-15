@@ -251,3 +251,7 @@ For structural expressions, `StructuralPipeline.Attach(module, name, input, outp
 `CilCompiler.AttachPipeline` uses `PipelineScheduler.Attach` internally; its resulting `PipelineHandle.DataflowGraph` includes DAG nodes/edges and existing method/IL operation name hints. No independent CIL DAG implementation is needed.
 
 `PipelineFlowProbe(handle, input, output)` and `PipelineSignalProbe(handle, inputValid, inputReady, outputValid, outputReady)` can sample stage-valid bits and handshake values from a `Simulator` without advancing the clock. A `PipelineFlowSample` exposes `StageOccupied`, `InputAccepted`, `OutputAccepted`, `InputStalled`, and `OutputStalled`. Call `Sample(sim, cycle)` at a defined pre-edge point **before** `sim.Tick()`. These values show stage occupancy and transfers, but do not yet correlate individual tokens across stages or estimate actual FPGA timing. Dedicated xUnit coverage exists but awaits execution.
+
+## C# multiplication in HLS
+
+CIL `mul` creates a hardware multiply node. SharpHDL assigns it one abstract scheduling level, not a measured device delay. The schedule report includes a MULTIPLIER ADVISORY listing each multiplier's operand widths, result width, and stage. For widths above 18 bits it also includes a TIMING WARNING. This threshold is a conservative review trigger, not a vendor DSP capacity or frequency guarantee. Constant operands may be simplified by synthesis. Physical DSP/LUT mapping and achieved clock timing must be established with downstream synthesis and static timing analysis.
