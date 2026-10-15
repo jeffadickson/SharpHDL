@@ -32,6 +32,10 @@ jobs:
           dotnet --version
           verilator --version
           yosys -V
+      - name: Compile simulator and benchmark projects before executing tests
+        run: |
+          dotnet build tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release
+          dotnet build tools/SharpHDL.SimulatorBench/SharpHDL.SimulatorBench.csproj -c Release
       - name: Compiled simulator xUnit regression
         run: dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --filter 'FullyQualifiedName~CompiledSequentialTests' --logger 'trx;LogFileName=compiled-simulator.trx'
       - name: Correctness before CPU benchmarks
