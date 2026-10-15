@@ -21,5 +21,7 @@ jobs:
         run: |
           node --check vscode/sharphdl/extension.js
           node --check vscode/sharphdl/verilator.js
-          node --test vscode/sharphdl/verilator.test.js
-          node -e "const p=require('./vscode/sharphdl/package.json'); if(!p.contributes.commands.find(x=>x.command==='sharphdl.verilatorLint')) process.exit(1)"
+          node --check vscode/sharphdl/verificationExplorer.js
+          node --check vscode/sharphdl/verificationManifest.js
+          node --test vscode/sharphdl/verilator.test.js vscode/sharphdl/verificationManifest.test.js
+          node -e "const p=require('./vscode/sharphdl/package.json'); const commands=p.contributes.commands.map(x=>x.command); if(!commands.includes('sharphdl.verilatorLint') || !commands.includes('sharphdl.verifyTinyRisc') || !p.contributes.views.explorer.some(x=>x.id==='sharphdl.verification')) process.exit(1)"
