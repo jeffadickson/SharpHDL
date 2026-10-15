@@ -6,9 +6,16 @@ cd "$(dirname "$0")/.."
 for tool in python3 iverilog vvp verilator g++ make; do
   command -v "$tool" >/dev/null || { echo "Required benchmark tool missing: $tool" >&2; exit 1; }
 done
+root="$PWD"
 bash tests/run-tinyrisc.sh
 python3 tests/test_simulator_benchmark_report.py
-root="$PWD"
+conformance="$root/generated/tinyrisc/compiled-conformance"
+"$DOTNET_ROOT/dotnet" run --project tools/SharpHDL.SimulatorBench/SharpHDL.SimulatorBench.csproj \
+  -c Release -- --conformance "$conformance" | tee generated/tinyrisc/conformance-oracles.log
+for bench in "$conformance"/*_tb.v; do
+  iverilog -g2012 -s tb_conformance -o "$conformance/test.vvp" "${bench%_tb.v}.v" "$bench"
+  vvp "$conformance/test.vvp"
+done | tee generated/tinyrisc/conformance-rtl.log
 out="$root/generated/tinyrisc/backend-benchmark"
 mkdir -p "$out"
 edges="${SHARPHDL_BENCH_EDGES:-100000}"
