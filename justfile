@@ -66,3 +66,7 @@ tinyrisc-hello:
 setup-and-hello:
     python3 tools/dev.py setup
     docker run --rm -v "{{justfile_directory()}}:/workspace" -w /workspace sharphdl-dev:local bash tools/run-tinyrisc-container.sh
+
+# Reference vs compiled two-state simulator microbenchmark (not a CPU benchmark).
+benchmark-simulator:
+    dotnet run --project tools/SharpHDL.SimulatorBench/SharpHDL.SimulatorBench.csproj -c Release -- 200000
