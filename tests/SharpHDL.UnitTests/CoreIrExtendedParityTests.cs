@@ -126,4 +126,46 @@ public sealed class CoreIrExtendedParityTests
         Assert.Throws<ArgumentException>(()=>HardwareGraphEvaluator.Evaluate(
             graph.Graph,new Dictionary<int,BigInteger>(),null));
     }
+    [Fact]
+    public void Clocked_core_machine_matches_reference_with_registers_and_ram()
+    {
+        var m=new Module("CoreClockedMachine");
+        var address=m.Input("address",2);
+        var write=m.Input("write",1);
+        var data=m.Input("data",8);
+        var ram=SynchronousRam.Create(m,"ram",8,4,address,write,data,
+            Expr.Const(1,1),new BigInteger[]{5,6,7,8});
+        var count=m.Register("count",8,0);
+        m.Next(count,count+Expr.Const(8,1));
+        var result=m.Output("result",8);
+        m.Drive(result,ram.ReadData+count);
+        var export=m.ExportCoreGraph();
+        var machine=new HardwareGraphMachine(export.Graph,export.Inputs,export.Outputs,
+            export.NextState,export.ResetValues,export.Memories);
+        var legacy=m.Simulate();
+        legacy.Tick(true);
+        for(int edge=0;edge<120;edge++)
+        {
+            int addr=edge%4,enable=edge%3==0?1:0,word=(edge*7)&255;
+            machine.SetInput("address",addr);
+            machine.SetInput("write",enable);
+            machine.SetInput("data",word);
+            legacy.Set(address,addr);
+            legacy.Set(write,enable);
+            legacy.Set(data,word);
+            Assert.Equal(legacy.Read(result),machine.ReadOutput("result"));
+            legacy.Tick();
+            machine.Tick();
+            Assert.Equal(legacy.Read(count),machine.ReadRegister("count"));
+        }
+        machine.Reset();
+        Assert.Equal(BigInteger.Zero,machine.ReadRegister("count"));
+        // Reset does not erase the previously written RAM cells.
+        machine.SetInput("address",3);
+        machine.SetInput("write",0);
+        machine.SetInput("data",0);
+        machine.Tick();
+        Assert.Equal(1,machine.Cycle);
+    }
+
 }
