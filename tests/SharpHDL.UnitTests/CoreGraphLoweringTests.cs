@@ -56,14 +56,16 @@ public sealed class CoreGraphLoweringTests
     }
 
     [Fact]
-    public void Unsupported_legacy_expression_fails_explicitly()
+    public void Shift_expression_is_lowered_and_evaluated()
     {
-        var m=new Module("UnsupportedCoreLowering");
+        var m=new Module("ShiftCoreLowering");
         var input=m.Input("input",8);
         var output=m.Output("output",8);
-        m.Drive(output,Expr.Mux(input.Eq(Expr.Const(8,0)),Expr.Const(8,0),input % Expr.Const(8,3)));
-        var ex=Assert.Throws<NotSupportedException>(()=>m.ExportCoreGraph());
-        Assert.Contains("does not yet support",ex.Message);
+        m.Drive(output,input<<1);
+        var graph=m.ExportCoreGraph();
+        var result=HardwareGraphEvaluator.Evaluate(graph.Graph,new Dictionary<int,BigInteger>
+        { [graph.Inputs["input"]]=0x81 });
+        Assert.Equal(new BigInteger(2),result[graph.Outputs["output"]]);
     }
 
     [Fact]
