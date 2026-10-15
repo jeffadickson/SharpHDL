@@ -21,7 +21,7 @@ module tb_core_hls_elastic;
     rst=0;
     for(cycle=0;cycle<650;cycle=cycle+1) begin
       @(negedge clk);
-      input_data=$urandom_range(0,65535);
+      input_data=16'($urandom_range(0,65535));
       input_valid=cycle<550 ? ($urandom_range(0,3)!=0) : 0;
       output_ready=cycle>=550 ? 1 : ($urandom_range(0,2)!=0);
       @(posedge clk);
