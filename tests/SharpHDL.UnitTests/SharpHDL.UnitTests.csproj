@@ -12,5 +12,5 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
     <PackageReference Include="NSubstitute" Version="5.3.0" />
   </ItemGroup>
-  <ItemGroup><ProjectReference Include="../../src/SharpHDL/SharpHDL.csproj" /><ProjectReference Include="../../src/SharpHDL.Core/SharpHDL.Core.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="../../src/SharpHDL/SharpHDL.csproj" /><ProjectReference Include="../../src/SharpHDL.Core/SharpHDL.Core.csproj" /><ProjectReference Include="../../src/SharpHDL.Simulation/SharpHDL.Simulation.csproj" /></ItemGroup>
 </Project>
