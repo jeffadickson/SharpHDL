@@ -103,6 +103,7 @@ class Program
  static void BenchmarkCompiledCpu(ushort[] rom)
  {
   var m=TinyRisc.Build(rom,"BenchmarkTinyRisc");
+  File.WriteAllText("generated/tinyrisc/BenchmarkTinyRisc.v",m.Verilog());
   var reference=m.Simulate();
   var stopwatch=System.Diagnostics.Stopwatch.StartNew();
   var jit=new CompiledSequentialSimulator(m);
