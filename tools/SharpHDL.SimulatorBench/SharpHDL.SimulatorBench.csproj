@@ -7,5 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../../src/SharpHDL/SharpHDL.csproj" />
+    <Compile Include="../../examples/TinyRisc/TinyRisc.cs" Link="TinyRisc.cs" />
   </ItemGroup>
 </Project>

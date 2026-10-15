@@ -1,25 +1,42 @@
 #!/usr/bin/env bash
-# Full TinyRisc correctness first; separately report measured simulator timings.
+# Correctness gates first, then a matched workload with high-resolution timers.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 : "${DOTNET_ROOT:?Set DOTNET_ROOT to a .NET SDK directory}"
+for tool in python3 iverilog vvp verilator g++ make; do
+  command -v "$tool" >/dev/null || { echo "Required benchmark tool missing: $tool" >&2; exit 1; }
+done
 bash tests/run-tinyrisc.sh
-"$DOTNET_ROOT/dotnet" build/tinyrisc/TinyRisc.dll --benchmark-compiled-tinyrisc | tee generated/tinyrisc/compiled-benchmark.log
-# Verilator is a third backend and independent RTL comparator. Its separate
-# wall-clock metric includes testbench and scheduler overhead; not cycles/sec parity.
-if command -v verilator >/dev/null; then
-  verilator --version | tee generated/tinyrisc/verilator-version.txt
-  verilator --binary --timing -Wno-fatal --top-module tb_tinyrisc_uart \
-    --Mdir build/tinyrisc/verilator_hello \
-    generated/tinyrisc/HelloWorld.v examples/TinyRisc/hello_uart_top.v \
-    examples/TinyRisc/hello_uart_tb.v
-  /usr/bin/time -p build/tinyrisc/verilator_hello/Vtb_tinyrisc_uart \
-    2>&1 | tee generated/tinyrisc/verilator-hello.log
-  verilator --binary --timing -Wno-fatal --top-module tb_compiled_benchmark \
-    --Mdir build/tinyrisc/verilator_cpu_bench \
-    generated/tinyrisc/BenchmarkTinyRisc.v examples/TinyRisc/tinyrisc_benchmark_tb.sv
-  /usr/bin/time -p build/tinyrisc/verilator_cpu_bench/Vtb_compiled_benchmark \
-    2>&1 | tee generated/tinyrisc/verilator-cpu-benchmark.log
-else
-  echo "SKIP Verilator (not installed); no Verilator performance comparison claimed"
-fi
+python3 tests/test_simulator_benchmark_report.py
+root="$PWD"
+out="$root/generated/tinyrisc/backend-benchmark"
+mkdir -p "$out"
+edges="${SHARPHDL_BENCH_EDGES:-100000}"
+trials="${SHARPHDL_BENCH_TRIALS:-5}"
+{
+  "$DOTNET_ROOT/dotnet" --version
+  verilator --version
+  g++ --version
+  uname -a
+} > "$out/tool-versions.txt"
+# Hold JIT tiering fixed so tier promotion is not confused with backend speed.
+DOTNET_TieredCompilation=0 "$DOTNET_ROOT/dotnet" run \
+  --project tools/SharpHDL.SimulatorBench/SharpHDL.SimulatorBench.csproj -c Release -- \
+  --tinyrisc generated/tinyrisc/hello_world.hex "$edges" "$trials" "$out" \
+  | tee "$out/dotnet.log"
+
+# Independent serial-pin verification remains separate from CPU clock timing.
+verilator --binary --timing -Wno-fatal --top-module tb_tinyrisc_uart \
+  --Mdir "$root/build/tinyrisc/verilator_hello" \
+  generated/tinyrisc/HelloWorld.v examples/TinyRisc/hello_uart_top.v \
+  examples/TinyRisc/hello_uart_tb.v > "$out/verilator-uart-build.log" 2>&1
+"$root/build/tinyrisc/verilator_hello/Vtb_tinyrisc_uart" \
+  | tee "$out/verilator-uart.log"
+
+# The native driver times only identical clock loops, not compiler/process startup.
+verilator --cc --exe --build -j 2 -Wno-fatal --top-module h_BenchmarkTinyRisc \
+  --prefix VBenchmarkTinyRisc -CFLAGS "-O3" --Mdir "$out/native" \
+  "$out/BenchmarkTinyRisc.v" "$root/examples/TinyRisc/tinyrisc_native_benchmark.cpp" \
+  > "$out/verilator-build.log" 2>&1
+"$out/native/VBenchmarkTinyRisc" "$edges" "$trials" > "$out/verilator.json"
+python3 tools/compare-simulator-benchmarks.py "$out" | tee "$out/results.txt"
