@@ -41,7 +41,7 @@ benchmark-simulator:
 	$(DOCKER_RUN) dotnet run --project tools/SharpHDL.SimulatorBench/SharpHDL.SimulatorBench.csproj -c Release -- 200000
 
 core-hls-verilator:
-	$(DOCKER_RUN) bash -c 'dotnet run --project tools/SharpHDL.CoreHlsDemo/SharpHDL.CoreHlsDemo.csproj -c Release -- /workspace && mkdir -p build/core-hls && verilator --binary --timing -Wno-fatal --top-module tb_core_hls_elastic --Mdir build/core-hls/obj generated/core-hls/CoreHlsElastic.v tests/rtl/tb_core_hls_elastic.sv && build/core-hls/obj/Vtb_core_hls_elastic'
+	$(DOCKER_RUN) bash -c 'dotnet run --project tools/SharpHDL.CoreHlsDemo/SharpHDL.CoreHlsDemo.csproj -c Release -- /workspace && mkdir -p build/core-hls/obj && verilator --binary --timing -Wno-fatal --top-module tb_core_hls_elastic --Mdir build/core-hls/obj generated/core-hls/CoreHlsElastic.v tests/rtl/tb_core_hls_elastic.sv && build/core-hls/obj/Vtb_core_hls_elastic'
 
 core-ir-verify:
 	$(DOCKER_RUN) python3 tests/check-project-layers.py
