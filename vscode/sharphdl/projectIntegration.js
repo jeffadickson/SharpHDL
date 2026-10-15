@@ -192,7 +192,16 @@ function registerProjectIntegration(context) {
     vscode.commands.registerCommand('sharphdl.runDesign',entry=>invoke(runProject,entry)),
     vscode.commands.registerCommand('sharphdl.jumpToMapped',entry=>invoke(jumpToMapped,entry)),
     vscode.commands.registerCommand('sharphdl.showMappedSignals',entry=>invoke(showMappedSignals,entry)),
-    vscode.commands.registerCommand('sharphdl.refreshProjects',()=>explorer.refresh()));
+    vscode.commands.registerCommand('sharphdl.refreshProjects',()=>explorer.refresh()),
+    vscode.commands.registerCommand('sharphdl.generateProvenance',async()=>{
+      const folder=(vscode.workspace.workspaceFolders||[])[0];
+      if(!folder)return vscode.window.showErrorMessage('Open the SharpHDL repository first');
+      try {
+        const status=await taskProcess(folder,'Generate HLS source provenance','make',['vscode-provenance']);
+        explorer.refresh();
+        if(status!==0)vscode.window.showErrorMessage('Provenance generation failed; see task terminal');
+      }catch(e){vscode.window.showErrorMessage(String(e.message||e));}
+    }));
   const watcher=vscode.workspace.createFileSystemWatcher('**/sharphdl.project.json');
   watcher.onDidChange(()=>explorer.refresh());
   watcher.onDidCreate(()=>explorer.refresh());
