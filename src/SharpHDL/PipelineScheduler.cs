@@ -153,6 +153,28 @@ namespace SharpHDL
             report.AppendLine("Logic levels per stage: "+o.LogicLevelsPerStage+"; abstract operation count, not device timing.");
             report.AppendLine("Payload register bits: "+bits+"; valid register bits: "+depth+".");
             report.AppendLine("No resource sharing; multiply is a whole combinational operator in one logic level.");
+            var multipliers=nodes.Where(e=>e.Op=="*").ToArray();
+            if(multipliers.Length>0)
+            {
+                report.AppendLine("MULTIPLIER ADVISORY: "+multipliers.Length+
+                    " multiplication node(s) in the expression graph. These are combinational "+
+                    "operators; no DSP primitive, multiplier pipeline latency, or target frequency "+
+                    "is guaranteed by SharpHDL.");
+                foreach(var e in multipliers)
+                {
+                    var lhs=e.Args[0];var rhs=e.Args[1];
+                    bool constantOperand=lhs.Op=="const"||rhs.Op=="const";
+                    report.AppendLine("  multiply stage "+stage(e)+": "+
+                        lhs.Width+" x "+rhs.Width+" -> "+e.Width+" bits"+
+                        (constantOperand?" (constant operand; downstream synthesis may simplify)":"")+
+                        "; implementation, DSP use and timing require target synthesis/STA.");
+                }
+                if(multipliers.Any(e=>e.Width>18 ||
+                    e.Args.Any(a=>a.Width>18)))
+                    report.AppendLine("  TIMING WARNING: wide multiplication may exceed a single "+
+                        "clock period despite being assigned one abstract scheduling level. "+
+                        "Inspect mapped DSP/LUT resources and post-place-and-route slack.");
+            }
             report.AppendLine("Ready propagates combinationally backward; no automatic skid-buffer insertion.");
             foreach(var e in nodes.Where(e=>costs[e]>0))report.AppendLine("stage "+stage(e)+" | level "+levels[e]+" | "+e.Width+" bits | "+e.Op+" | "+(e.NameHint??"expression"));
             var operations=nodes.Where(e=>costs[e]>0).Select(e=>new PipelineOperation(stage(e), levels[e], e.Width, e.Op, e.NameHint??"expression")).ToArray();
