@@ -26,17 +26,18 @@ async function showWaveforms(entry,sourceSignals=[]) {
   if(bytes.length>MAX_BYTES)throw new Error('VCD exceeds 12 MiB viewer limit');
   const vcd=parseVcd(Buffer.from(bytes).toString('utf8'));
   const relevant=findSignals(vcd,sourceSignals);
-  const selected=relevant.length?relevant:vcd.signals.slice(0,24);
+  const clocks=vcd.signals.filter(s=>s.width===1 && /(?:^|\\.)(clk|clock)$/i.test(s.name));
+  const selected=relevant.length?[...new Set([...clocks,...relevant])]:vcd.signals.slice(0,24);
   const panel=vscode.window.createWebviewPanel('sharphdl.waveforms','SharpHDL Waveforms — '+project.label,
     vscode.ViewColumn.Beside,{enableScripts:true,retainContextWhenHidden:true});
   const nonce=crypto.randomBytes(16).toString('hex');
-  const payload=JSON.stringify({timescale:vcd.timescale,duration:vcd.duration,signals:selected})
+  const payload=JSON.stringify({timescale:vcd.timescale,duration:vcd.duration,signals:selected,clock:clocks[0]?.name||null})
     .replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026');
   panel.webview.html=`<!doctype html><html><head><meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'nonce-${nonce}'; script-src 'nonce-${nonce}';">
 <style nonce="${nonce}">body{font:13px system-ui;color:var(--vscode-foreground);background:var(--vscode-editor-background);padding:12px}h2{margin:0 0 12px}.line{display:flex;gap:12px;align-items:center;margin:7px 0}.name{width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}.wave{width:100%;height:30px;cursor:crosshair;border-bottom:1px solid var(--vscode-panel-border)}input{width:100%}button{color:var(--vscode-button-foreground);background:var(--vscode-button-background);border:0;padding:5px 10px;cursor:pointer}small{opacity:.75}</style></head>
 <body><h2>SharpHDL waveform cross-probe</h2><small>VCD ticks: ${htmlEscape(vcd.timescale||'unknown timescale')} · Select a signal to navigate to mapped C#</small>
-<div class="line"><label>Time <strong id="time">0</strong></label><input id="slider" type="range" min="0" max="${Math.max(1,vcd.duration)}" value="0"></div><div id="signals"></div>
+<div class="line"><label>Clock cycle <input id="cycle" type="number" min="0" step="1" style="width:90px"></label><button id="goCycle">Go to cycle</button></div><div class="line"><label>Time <strong id="time">0</strong></label><input id="slider" type="range" min="0" max="${Math.max(1,vcd.duration)}" value="0"></div><div id="signals"></div>
 <script nonce="${nonce}">const data=${payload};const host=acquireVsCodeApi();
 const slider=document.getElementById('slider'),clock=document.getElementById('time'),container=document.getElementById('signals');
 function valueAt(changes,t){let lo=0,hi=changes.length;while(lo<hi){const mid=(lo+hi)>>1;if(changes[mid].time<=t)lo=mid+1;else hi=mid;}return lo?changes[lo-1].value:'?';}
@@ -61,6 +62,14 @@ function draw(){
   row.append(name,value,svg);container.append(row);
  }
 }
+const clockSignal=data.signals.find(s=>s.name===data.clock);
+const rising=[];
+if(clockSignal){let old='?';for(const change of clockSignal.changes){if(change.value==='1'&&old!=='1')rising.push(change.time);old=change.value;}}
+document.getElementById('goCycle').onclick=()=>{
+ const cycle=Number(document.getElementById('cycle').value);
+ if(!Number.isSafeInteger(cycle)||cycle<0||cycle>=rising.length){alert('No captured rising edge for this cycle');return;}
+ slider.value=String(rising[cycle]);draw();
+};
 slider.addEventListener('input',draw);draw();</script></body></html>`;
   panel.webview.onDidReceiveMessage(async message=>{
     if(message?.type!=='source'||typeof message.signal!=='string'||!project.sourceMap)return;
