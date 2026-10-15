@@ -13,7 +13,18 @@ namespace SharpHDL
         {
             if(input==null||input.Data.Owner!=m)throw new ArgumentException("Pipeline input must belong to this module.");
             var program=CompilePipeline(method,input,output,false);
-            var handle=PipelineScheduler.Attach(m,name,input,output,program.Value,options);
+            var selected=options?.MultiplierImplementation??MultiplierImplementation.Auto;
+            var directive=(HlsMultiplierAttribute)Attribute.GetCustomAttribute(method,typeof(HlsMultiplierAttribute));
+            if(selected==MultiplierImplementation.Auto && directive!=null)
+                selected=directive.Implementation;
+            var lowered=MultiplierLowering.Lower(program.Value,selected);
+            var handle=PipelineScheduler.Attach(m,name,input,output,lowered,options);
+            handle.Report+="Multiplier implementation: "+selected+
+                (selected==MultiplierImplementation.DspPreferred?
+                 " (use_dsp preference only; actual mapping is synthesis-dependent).":
+                 selected==MultiplierImplementation.ShiftAdd?
+                 " (combinational partial-product tree; no * operator in lowered multiplier).":
+                 " (ordinary Verilog multiplication).")+"\n";
             PortablePdbSourceMap.Annotate(method,handle.DataflowGraph);
             m.SourceGraphs.Add(handle.DataflowGraph);
             m.SourceGraphPrefixes[handle.DataflowGraph]=name;
