@@ -12,22 +12,6 @@ namespace SharpHDL
     /// evaluated from the old state and committed simultaneously by a caller.
     /// This is an explicit compatibility bridge, not a second hardware model.
     /// </summary>
-    /// <summary>RAM write controls and immutable initial contents, sampled before each edge.</summary>
-    public sealed class CoreMemoryPort
-    {
-        public string Name { get; }
-        public int Width { get; }
-        public int AddressNode { get; }
-        public int WriteEnableNode { get; }
-        public int WriteDataNode { get; }
-        public IReadOnlyList<BigInteger> Initial { get; }
-        internal CoreMemoryPort(string name,int width,int address,int enable,int data,BigInteger[] initial)
-        {
-            Name=name;Width=width;AddressNode=address;WriteEnableNode=enable;
-            WriteDataNode=data;Initial=Array.AsReadOnly((BigInteger[])initial.Clone());
-        }
-    }
-
     public sealed class CoreGraphExport
     {
         /// <summary>The validated backend-neutral combinational graph.</summary>
@@ -39,20 +23,20 @@ namespace SharpHDL
         /// <summary>Next-state expressions for every register mapped to node IDs.</summary>
         public IReadOnlyDictionary<string,int> NextState { get; }
         /// <summary>RAM ports and initial words. Writes commit after all pre-edge reads.</summary>
-        public IReadOnlyDictionary<string,CoreMemoryPort> Memories { get; }
+        public IReadOnlyDictionary<string,HardwareMemoryPort> Memories { get; }
         /// <summary>Register reset values, with exact hardware widths.</summary>
         public IReadOnlyDictionary<string,BigInteger> ResetValues { get; }
 
         internal CoreGraphExport(HardwareGraph graph,Dictionary<string,int> inputs,
             Dictionary<string,int> outputs,Dictionary<string,int> next,
-            Dictionary<string,BigInteger> reset,Dictionary<string,CoreMemoryPort> memories)
+            Dictionary<string,BigInteger> reset,Dictionary<string,HardwareMemoryPort> memories)
         {
             Graph=graph;
             Inputs=new System.Collections.ObjectModel.ReadOnlyDictionary<string,int>(inputs);
             Outputs=new System.Collections.ObjectModel.ReadOnlyDictionary<string,int>(outputs);
             NextState=new System.Collections.ObjectModel.ReadOnlyDictionary<string,int>(next);
             ResetValues=new System.Collections.ObjectModel.ReadOnlyDictionary<string,BigInteger>(reset);
-            Memories=new System.Collections.ObjectModel.ReadOnlyDictionary<string,CoreMemoryPort>(memories);
+            Memories=new System.Collections.ObjectModel.ReadOnlyDictionary<string,HardwareMemoryPort>(memories);
         }
     }
 
@@ -72,7 +56,7 @@ namespace SharpHDL
             var outputs=new Dictionary<string,int>(StringComparer.Ordinal);
             var next=new Dictionary<string,int>(StringComparer.Ordinal);
             var reset=new Dictionary<string,BigInteger>(StringComparer.Ordinal);
-            var memories=new Dictionary<string,CoreMemoryPort>(StringComparer.Ordinal);
+            var memories=new Dictionary<string,HardwareMemoryPort>(StringComparer.Ordinal);
             int Add(Expr expression,HardwareOperation operation,int[] operands,
                 BigInteger? literal=null,string name=null,int offset=0,
                 IReadOnlyList<BigInteger> table=null,string memoryName=null)
@@ -148,7 +132,7 @@ namespace SharpHDL
                 next.Add(signal.Name,Visit(signal.Driver));
             // RAM writes use pre-edge operands, and commit after reads and state evaluation.
             foreach(var ram in module.Memories)
-                memories.Add(ram.Name,new CoreMemoryPort(ram.Name,ram.Width,
+                memories.Add(ram.Name,new HardwareMemoryPort(ram.Name,ram.Width,
                     Visit(ram.Address),Visit(ram.WriteEnable),Visit(ram.WriteData),ram.Initial));
             return new CoreGraphExport(new HardwareGraph(nodes),inputs,outputs,next,reset,memories);
         }
