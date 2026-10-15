@@ -33,7 +33,7 @@ def select_architecture(report, objective, target_mhz=None, max_lut=None, max_ds
     if not candidates:
         raise ValueError("No measured architecture satisfies the constraints")
     if objective=="area":
-        key=lambda r:(r["lut"]+r["dsp"]*100,r["latency"],r["architecture"])
+        key=lambda r:(r["lut"],r["dsp"],r["latency"],r["architecture"])
     elif objective=="throughput":
         key=lambda r:(-r["fmax_mhz"]/r["initiation_interval"],r["lut"],r["architecture"])
     elif objective=="latency":
