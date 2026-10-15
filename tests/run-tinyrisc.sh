@@ -16,3 +16,11 @@ iverilog -g2012 -s tb_tinyrisc_uart -o build/tinyrisc/hello_uart_test \
   generated/tinyrisc/HelloWorld.v \
   examples/TinyRisc/hello_uart_top.v examples/TinyRisc/hello_uart_tb.v
 vvp build/tinyrisc/hello_uart_test
+
+# Independent Core IR RTL backend must pass the identical cycle-by-cycle
+# HelloWorld CPU bench and full serial UART top-level bench.
+dotnet run --project tools/SharpHDL.NativeTinyRisc/SharpHDL.NativeTinyRisc.csproj -c Release -- "$PWD"
+iverilog -g2012 -s tb -o build/tinyrisc/native_hello   generated/tinyrisc/native/HelloWorld.v generated/tinyrisc/HelloWorld_tb.v
+vvp build/tinyrisc/native_hello
+iverilog -g2012 -s tb_tinyrisc_uart -o build/tinyrisc/native_uart   generated/tinyrisc/native/HelloWorld.v   examples/TinyRisc/hello_uart_top.v examples/TinyRisc/hello_uart_tb.v
+vvp build/tinyrisc/native_uart
