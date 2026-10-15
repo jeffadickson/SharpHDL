@@ -121,4 +121,34 @@ public sealed class CompiledSequentialTests
         }
     }
 
+    [Theory]
+    [InlineData(8)]
+    [InlineData(32)]
+    [InlineData(64)]
+    [InlineData(65)]
+    public void Word_arithmetic_matches_big_integer_reference_across_overflow(int bits)
+    {
+        var m = new Module("ArithmeticFastPath" + bits);
+        var input = m.Input("input", bits);
+        var add = m.Register("add", bits, Expr.Mask(bits));
+        var mul = m.Register("mul", bits, 7);
+        m.Next(add, add + input);
+        m.Next(mul, mul * input);
+        var reference = m.Simulate();
+        var compiled = new CompiledSequentialSimulator(m);
+        reference.Tick(true); compiled.Tick(true);
+        var random = new Random(304 + bits);
+        for (int i = 0; i < 400; i++)
+        {
+            BigInteger v = (new BigInteger(random.NextInt64()) &
+                            Expr.Mask(Math.Min(bits, 63))) & Expr.Mask(bits);
+            if (i % 7 == 0) v = Expr.Mask(bits);
+            reference.Set(input, v);
+            compiled.Set(input, v);
+            reference.Tick(); compiled.Tick();
+            Assert.Equal(reference.Read(add), compiled.Read(add));
+            Assert.Equal(reference.Read(mul), compiled.Read(mul));
+        }
+    }
+
 }
