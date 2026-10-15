@@ -151,4 +151,56 @@ public sealed class CompiledSequentialTests
         }
     }
 
+    [Fact]
+    public void Register_free_combinational_module_uses_compiled_output_probe()
+    {
+        var m = new Module("CombinationalOnly");
+        var a = m.Input("a", 32);
+        var b = m.Input("b", 32);
+        var result = m.Output("result", 32);
+        m.Drive(result, a + b);
+        var reference = m.Simulate();
+        var compiled = new CompiledSequentialSimulator(m);
+        reference.Tick(true); compiled.Tick(true);
+        var random = new Random(31337);
+        for (int i = 0; i < 200; i++)
+        {
+            var x = (uint)random.NextInt64(0, 1L << 32);
+            var y = (uint)random.NextInt64(0, 1L << 32);
+            reference.Set(a, x); compiled.Set(a, x);
+            reference.Set(b, y); compiled.Set(b, y);
+            Assert.Equal(reference.Read(result), compiled.Read((Expr)result));
+            reference.Tick(); compiled.Tick();
+        }
+    }
+
+    [Fact]
+    public void Ram_persists_across_reset_and_obeys_read_before_write()
+    {
+        var m = new Module("ResetRam");
+        var address = m.Input("address", 4);
+        var data = m.Input("data", 8);
+        var we = m.Input("write", 1);
+        var re = m.Input("read", 1);
+        var ram = SynchronousRam.Create(m, "cells", 8, 16, address, we, data, re);
+        var reference = m.Simulate();
+        var compiled = new CompiledSequentialSimulator(m);
+        reference.Tick(true); compiled.Tick(true);
+        void Set(Signal signal, int v)
+        {
+            reference.Set(signal, v);
+            compiled.Set(signal, v);
+        }
+        Set(address, 7); Set(data, 123); Set(we, 1); Set(re, 1);
+        reference.Tick(); compiled.Tick();
+        // Both engines sample the old RAM content on the write edge.
+        Assert.Equal(BigInteger.Zero, reference.Read(ram.ReadData));
+        Assert.Equal(reference.Read(ram.ReadData), compiled.Read(ram.ReadData));
+        reference.Tick(true); compiled.Tick(true);
+        Set(we, 0); Set(re, 1);
+        reference.Tick(); compiled.Tick();
+        Assert.Equal(new BigInteger(123), reference.Read(ram.ReadData));
+        Assert.Equal(reference.Read(ram.ReadData), compiled.Read(ram.ReadData));
+    }
+
 }
