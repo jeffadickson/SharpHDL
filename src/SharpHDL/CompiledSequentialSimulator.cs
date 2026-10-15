@@ -25,7 +25,10 @@ namespace SharpHDL
         readonly Dictionary<Signal, BigInteger> values = new();
         readonly Dictionary<Expr, CompiledCombinational> probes = new();
         readonly BigInteger[] operandBuffer;
-        readonly BigInteger[] pendingBuffer;\n        readonly int[] writeOwners;\n        readonly int[] writeAddresses;\n        readonly BigInteger[] writeData;
+        readonly BigInteger[] pendingBuffer;
+        readonly int[] writeOwners;
+        readonly int[] writeAddresses;
+        readonly BigInteger[] writeData;
         // One fused JIT delegate replaces per-register delegates; its current
         // array-valued result remains an allocation until direct-buffer lowering.
         readonly Dictionary<Signal,int> operandIndexes;
@@ -40,7 +43,10 @@ namespace SharpHDL
             operands = module.Signals.Where(s => s.IsInput || s.Kind == "reg").ToArray();
             registers = module.Signals.Where(s => s.Kind == "reg").ToArray();
             operandBuffer = new BigInteger[operands.Length];
-            pendingBuffer = new BigInteger[registers.Length];\n            writeOwners = new int[rams.Length];\n            writeAddresses = new int[rams.Length];\n            writeData = new BigInteger[rams.Length];
+            pendingBuffer = new BigInteger[registers.Length];
+            writeOwners = new int[rams.Length];
+            writeAddresses = new int[rams.Length];
+            writeData = new BigInteger[rams.Length];
             operandIndexes = operands.Select((signal,index)=>(signal,index)).ToDictionary(x=>x.signal,x=>x.index);
             // CompiledCombinational explicitly rejects unsupported opcodes rather
             // than silently interpreting the original graph.
@@ -105,17 +111,24 @@ namespace SharpHDL
             var oldValues = operandBuffer;
             var evaluated = fusedNext.EvaluateVectorUnchecked(oldValues);
             Array.Copy(evaluated, pendingBuffer, pendingBuffer.Length);
-            // Fixed-size per-edge scratch avoids List allocations on every clock.\n            var writeCount = 0;
+            // Fixed-size per-edge scratch avoids List allocations on every clock.
+            var writeCount = 0;
             for (var i = 0; i < rams.Length; i++)
             {
                 if (ramEnables[i].EvaluateUnchecked(oldValues).IsZero) continue;
                 var address = ramAddresses[i].EvaluateUnchecked(oldValues);
                 if (address >= rams[i].Depth) continue;
-                writeOwners[writeCount] = i;\n                writeAddresses[writeCount] = (int)address;\n                writeData[writeCount] = ramWriteData[i].EvaluateUnchecked(oldValues);\n                writeCount++;
+                writeOwners[writeCount] = i;
+                writeAddresses[writeCount] = (int)address;
+                writeData[writeCount] = ramWriteData[i].EvaluateUnchecked(oldValues);
+                writeCount++;
             }
             // Same contract as Simulator.Tick: reads and writes sample the old state;
             // RAM contents update before register commit, without affecting sampled D inputs.
-            // RAMs are scanned in index order, so retain the owner index alongside each write.\n            // (A disabled or out-of-range port does not create a write.)\n            for (var i = 0; i < writeCount; i++)\n                ramImages[rams[writeOwners[i]]][writeAddresses[i]] = writeData[i];
+            // RAMs are scanned in index order, so retain the owner index alongside each write.
+            // (A disabled or out-of-range port does not create a write.)
+            for (var i = 0; i < writeCount; i++)
+                ramImages[rams[writeOwners[i]]][writeAddresses[i]] = writeData[i];
             for (var i = 0; i < registers.Length; i++)
             {
                 values[registers[i]] = pendingBuffer[i];
