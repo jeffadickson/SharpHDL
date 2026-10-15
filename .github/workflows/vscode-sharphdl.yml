@@ -1,0 +1,25 @@
+name: SharpHDL VS Code adapter
+on:
+  push:
+    paths:
+      - 'vscode/sharphdl/**'
+      - '.github/workflows/vscode-sharphdl.yml'
+  pull_request:
+    paths:
+      - 'vscode/sharphdl/**'
+      - '.github/workflows/vscode-sharphdl.yml'
+  workflow_dispatch:
+jobs:
+  extension-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax and diagnostic tests
+        run: |
+          node --check vscode/sharphdl/extension.js
+          node --check vscode/sharphdl/verilator.js
+          node --test vscode/sharphdl/verilator.test.js
+          node -e "const p=require('./vscode/sharphdl/package.json'); if(!p.contributes.commands.find(x=>x.command==='sharphdl.verilatorLint')) process.exit(1)"
