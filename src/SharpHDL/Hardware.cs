@@ -193,6 +193,8 @@ namespace SharpHDL
             Frozen=true;
         }
         public Simulator Simulate() { Validate(); return new Simulator(this); }
+        /// <summary>Export the supported design subset into the validated canonical Core IR.</summary>
+        public CoreGraphExport ExportCoreGraph() { return CoreGraphLowering.Export(this); }
         public string DumpGraph() { Validate(); return GraphDump.Write(this); }
         public string Verilog()
         {
