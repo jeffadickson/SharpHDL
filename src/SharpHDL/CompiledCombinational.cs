@@ -118,7 +118,7 @@ namespace SharpHDL
                                 {
                                     case "+": result = Expression.Add(a, b); break;
                                     case "-": result = Expression.Subtract(a, b); break;
-                                    case "*": result = Expression.Multiply(a, b); break;
+                                    case "*": case "dsp48e2": result = Expression.Multiply(a, b); break;
                                     case "&": result = Expression.And(a, b); break;
                                     case "|": result = Expression.Or(a, b); break;
                                     case "^": result = Expression.ExclusiveOr(a, b); break;
