@@ -30,3 +30,18 @@ Settings:
 ```
 
 Run `node --test vscode/sharphdl/verilator.test.js` from the repository root for diagnostic-parser tests. The lint command works on **saved** Verilog/SystemVerilog source files; it does not yet resolve a complete multi-file project, compile a generated testbench, attach waveforms to source spans or run Verilator as a simulator through DAP. Multi-file Verilator elaboration and SharpHDL-generated RTL build/test integration are the next extension milestone. Current debug DAP uses the SharpHDL localhost reference simulator, not Verilator.
+
+## Verification Explorer (v0.2)
+
+Open the **SharpHDL repository root** as a VS Code workspace. The **SharpHDL Verification** view appears in the Explorer sidebar. It has two explicit task actions:
+
+- **Provision development tools** invokes the existing `make setup`, which builds the Docker development image and restores tool dependencies.
+- **Run TinyRisc verification** invokes `make benchmark-tinyrisc`. This runs the CPU/RTL/UART correctness suite and the interpreter/.NET/Verilator matched benchmark. Its task terminal displays the live output and exit status.
+
+The view lists **existing** verification summaries, logs, generated Verilog and any known VCD file. Files are discovered relative to the opened repository root; no success state is inferred from an old artifact. The task completion refreshes the tree, and the Refresh action can be used after external builds. Clicking an artifact opens it in VS Code. A waveform viewer extension may provide a specialized view for VCD files; SharpHDL does not yet embed one.
+
+The first version intentionally uses the project's Make/Docker toolchain rather than silently downloading compilers on every editor launch. If Docker or `make` is unavailable, use the setup instructions in the root README and inspect the task terminal.
+
+### Next integration boundaries
+
+The Explorer currently recognizes the TinyRisc example only. General project discovery, configurable verification manifests, source↔generated-RTL navigation, waveform cross-probing, and interactive Verilator simulation are still future work. The existing DAP debugger remains backed by the SharpHDL localhost simulation service, not Verilator. This extension has not been manually validated in a graphical VS Code Extension Development Host.
