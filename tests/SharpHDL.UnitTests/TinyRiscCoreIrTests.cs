@@ -65,4 +65,38 @@ public sealed class TinyRiscCoreIrTests
             memory=nextMemory;
         }
     }
+    [Fact]
+    public void Public_compatibility_factory_runs_real_TinyRisc_with_independent_Core_machine()
+    {
+        var module=TinyRisc.Build(new ushort[]{0xf001,0xf001,0xf000},"CoreMachineTinyRisc");
+        var reference=module.Simulate();
+        reference.Tick(true);
+        var core=module.SimulateCore();
+        var inputs=module.Ports.Where(p=>p.IsInput).ToDictionary(p=>p.Name,p=>p);
+        var outputs=module.Ports.Where(p=>p.IsOutput).ToArray();
+        for(int cycle=0;cycle<80;cycle++)
+        {
+            foreach(var (name,port) in inputs)
+            {
+                BigInteger value=name switch
+                {
+                    "run"=>1,
+                    "tx_ready"=>1,
+                    "switches"=>(cycle*127)&65535,
+                    "rx_data"=>(cycle*11)&255,
+                    _=>0
+                };
+                reference.Set(port,value);
+                core.SetInput(name,value);
+            }
+            foreach(var output in outputs)
+                Assert.Equal(reference.Read(output),core.ReadOutput(output.Name));
+            reference.Tick();
+            core.Tick();
+        }
+        Assert.Equal(80,core.Cycle);
+        core.Reset();
+        Assert.Equal(0,core.Cycle);
+    }
+
 }
