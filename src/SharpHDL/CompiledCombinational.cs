@@ -11,7 +11,7 @@ namespace SharpHDL
     public sealed class CompiledCombinational
     {
         readonly Func<BigInteger[], BigInteger>? evaluator;
-        readonly Func<BigInteger[], BigInteger[]>? evaluatorVector;
+        readonly Action<BigInteger[], BigInteger[]>? evaluatorVector;
         readonly Signal[] inputs;
         public IReadOnlyList<string> InputNames => Array.AsReadOnly(inputs.Select(x => x.Name).ToArray());
 
@@ -136,15 +136,20 @@ namespace SharpHDL
             static Expression Signed(Expression value, int width) => Expression.Call(
                 typeof(Expr).GetMethod(nameof(Expr.SignedValue))!, value, Expression.Constant(width));
             if (vector)
-                evaluatorVector = Expression.Lambda<Func<BigInteger[], BigInteger[]>>(
-                    Expression.NewArrayInit(typeof(BigInteger), outputs.Select(Build)), values).Compile();
+            {
+                var target = Expression.Parameter(typeof(BigInteger[]), "next");
+                var assigns = outputs.Select((node, i) => (Expression)Expression.Assign(
+                    Expression.ArrayAccess(target, Expression.Constant(i)), Build(node))).ToArray();
+                evaluatorVector = Expression.Lambda<Action<BigInteger[], BigInteger[]>>(
+                    Expression.Block(assigns), values, target).Compile();
+            }
             else
                 evaluator = Expression.Lambda<Func<BigInteger[], BigInteger>>(Build(outputs[0]), values).Compile();
         }
         // The sequential backend supplies a trusted width-checked state vector.
         // Do not repeat caller-boundary validation inside every clock-edge cone.
         internal BigInteger EvaluateUnchecked(BigInteger[] values) => evaluator!(values);
-        internal BigInteger[] EvaluateVectorUnchecked(BigInteger[] values) => evaluatorVector!(values);
+        internal void EvaluateVectorUnchecked(BigInteger[] values, BigInteger[] target) => evaluatorVector!(values, target);
 
         public BigInteger Evaluate(params BigInteger[] values)
         {
