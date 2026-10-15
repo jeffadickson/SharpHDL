@@ -111,4 +111,51 @@ public sealed class HardwareSourceProvenanceTests
         Assert.Contains("Checked multiplication",error.Message);
     }
 
+    [HardwareProcess]
+    [HlsMultiplier(MultiplierImplementation.ShiftAdd)]
+    public static void MultiplyShiftAdd(HwStream<uint> input,HwStream<uint> output)
+    {
+        while(true)
+        {
+            uint x=input.Read();
+            output.Write(x*(x+3u));
+        }
+    }
+
+    [HardwareProcess]
+    [HlsMultiplier(MultiplierImplementation.DspPreferred)]
+    public static void MultiplyDspPreferred(HwStream<uint> input,HwStream<uint> output)
+    {
+        while(true)
+        {
+            uint x=input.Read();
+            output.Write(x*(x+3u));
+        }
+    }
+
+    [Fact]
+    public void Hls_multiplier_pragma_selects_real_structural_shift_add_or_dsp_hint()
+    {
+        Module Build(string name,string methodName,out PipelineHandle pipeline)
+        {
+            var m=new Module(name);
+            var input=HwStream<uint>.Input(m,"in");
+            var output=HwStream<uint>.Output(m,"out");
+            pipeline=CilCompiler.AttachPipeline(m,"mul",
+                typeof(HardwareSourceProvenanceTests).GetMethod(methodName)!,input,output);
+            return m;
+        }
+        var fabric=Build("MulShiftAdd",nameof(MultiplyShiftAdd),out var fabricSchedule);
+        var dsp=Build("MulDsp",nameof(MultiplyDspPreferred),out var dspSchedule);
+        var fabricRtl=fabric.Verilog();
+        var dspRtl=dsp.Verilog();
+        Assert.Contains("Multiplier implementation: ShiftAdd",fabricSchedule.Report);
+        Assert.Contains("Multiplier implementation: DspPreferred",dspSchedule.Report);
+        Assert.DoesNotContain(" * ",fabricRtl);
+        Assert.Contains(" ? ",fabricRtl);
+        Assert.Contains(" + ",fabricRtl);
+        Assert.Contains(" * ",dspRtl);
+        Assert.Contains("use_dsp",dspRtl);
+    }
+
 }
