@@ -44,4 +44,4 @@ jobs:
         run: >
           dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj
           -c Release
-          --filter "FullyQualifiedName~CoreHardwareGraphTests|FullyQualifiedName~CoreGraphLoweringTests|FullyQualifiedName~CoreIrExtendedParityTests|FullyQualifiedName~TinyRiscCoreIrTests|FullyQualifiedName~HlsGraphAnalyzerTests"
+          --filter "FullyQualifiedName~CoreHardwareGraphTests|FullyQualifiedName~CoreGraphLoweringTests|FullyQualifiedName~CoreIrExtendedParityTests|FullyQualifiedName~TinyRiscCoreIrTests|FullyQualifiedName~HlsGraphAnalyzerTests|FullyQualifiedName~HlsElasticCompilerTests"
