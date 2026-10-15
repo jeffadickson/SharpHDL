@@ -2,6 +2,7 @@ const vscode = require('vscode');
 const {spawn} = require('node:child_process');
 const path = require('node:path');
 const {parseDiagnostics} = require('./verilator');
+const {registerVerificationExplorer} = require('./verificationExplorer');
 
 class SharpHDLAdapter {
   constructor() {
@@ -123,6 +124,7 @@ function runVerilatorLint(document, diagnostics, output) {
   });
 }
 function activate(context) {
+  registerVerificationExplorer(context);
   const diagnostics=vscode.languages.createDiagnosticCollection('SharpHDL Verilator');
   const output=vscode.window.createOutputChannel('SharpHDL Verilator');
   context.subscriptions.push(diagnostics,output,
