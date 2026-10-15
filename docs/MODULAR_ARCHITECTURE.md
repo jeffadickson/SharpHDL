@@ -263,7 +263,7 @@ The same randomized ready/valid and reset testbench runs against both
 backends under Verilator. `make core-hls-verilator` verifies the
 legacy route; `make core-rtl-native` verifies the new backend.
 The xUnit workflow has a dedicated `core-rtl-native` acceptance job.
-Do not claim native RTL acceptance until its CI job passes.
+Native RTL acceptance passed in [run 38823125300](https://github.com/jeffadickson/SharpHDL/actions/runs/38823125300): both old and new emitters completed 303/303 randomized transactions with stall, drain and reset checks. Ubuntu/Windows xUnit and architecture layering also passed.
 
 The long-term dependency direction is Core <- HLS, Simulation and
 RTL; the compatibility assembly references the new subsystems but
