@@ -9,6 +9,7 @@ const {parseProjectManifest,verilogArgs,executablePath}=require('./projectManife
 const root=path.resolve(__dirname,'../..');
 const manifest=parseProjectManifest(fs.readFileSync(path.join(root,'sharphdl.project.json'),'utf8'));
 for(const project of manifest.projects) {
+  if(project.runnable===false)continue; // HLS source-only projects have no executable testbench.
   for(const source of project.sources) {
     if(!fs.existsSync(path.join(root,source)))throw new Error('Missing source '+source);
   }
