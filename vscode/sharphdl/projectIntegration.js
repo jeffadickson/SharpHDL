@@ -72,6 +72,7 @@ async function buildProject(entry) {
   if(status!==0)throw new Error('Verilator build failed for '+project.id+' (exit '+status+')');
 }
 async function runProject(entry) {
+  if(entry.project.runnable===false)throw new Error('This source-mapped design has no testbench; build only.');
   await buildProject(entry);
   const {folder,project}=entry;
   const binary=projectUri(folder,executablePath(project));
@@ -151,7 +152,7 @@ class ProjectExplorer {
     }
     if(item.entry) {
       const entry=item.entry, actions=[];
-      for(const [label,command] of [['Build Verilator design','sharphdl.buildDesign'],['Run Verilator test','sharphdl.runDesign'],['Go to mapped source / RTL','sharphdl.jumpToMapped'],['Find waveform signals','sharphdl.showMappedSignals']]){
+      for(const [label,command] of [['Build Verilator design','sharphdl.buildDesign'],...(entry.project.runnable===false?[]:[['Run Verilator test','sharphdl.runDesign']]),['Go to mapped source / RTL','sharphdl.jumpToMapped'],['Find waveform signals','sharphdl.showMappedSignals']]){
         const node=new vscode.TreeItem(label);
         node.iconPath=new vscode.ThemeIcon(command==='sharphdl.jumpToMapped'?'go-to-file':'play');
         node.command={title:label,command,arguments:[entry]};
