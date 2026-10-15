@@ -121,7 +121,7 @@ code .
 
 Then run `make tinyrisc-hello` to generate the first CPU design and use **SharpHDL Projects → TinyRisc16 → Run Verilator test**. For the full interpreter/JIT/Verilator regression, use **SharpHDL Verification → Run TinyRisc verification**.
 
-**Complete setup, Windows/WSL2 and macOS notes, debugging and troubleshooting:** [Getting started with SharpHDL in VS Code](docs/VSCODE_GETTING_STARTED.md). The extension's generalized project integration is in development; consult [issue #25](https://github.com/jeffadickson/SharpHDL/issues/25) for remaining acceptance work.
+The scheduled C# polynomial example now emits an automatic Portable-PDB-to-Verilog source map, allowing source/RTL navigation and signal-name lookup in VS Code. **Complete setup, Windows/WSL2 and macOS notes, debugging and troubleshooting:** [Getting started with SharpHDL in VS Code](docs/VSCODE_GETTING_STARTED.md). The extension's generalized project integration is in development; consult [issue #25](https://github.com/jeffadickson/SharpHDL/issues/25) for remaining acceptance work.
 
 ## A counter
 
