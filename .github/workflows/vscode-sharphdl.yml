@@ -70,3 +70,26 @@ jobs:
           dotnet run --project tools/SharpHDL.Provenance/SharpHDL.Provenance.csproj -c Debug -- "$PWD"
           test -s generated/vscode/ScheduledPolynomial1.v.source-map.json
           python3 -c 'import json; x=json.load(open("generated/vscode/ScheduledPolynomial1.v.source-map.json")); assert x["mappings"], "missing exact CIL source mappings"'
+  extension-host:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2022, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install VS Code integration test runner
+        working-directory: vscode/sharphdl
+        run: npm install --no-save --ignore-scripts @vscode/test-electron@2.5.2
+      - name: Run real extension host (Linux)
+        if: runner.os == 'Linux'
+        working-directory: vscode/sharphdl
+        run: xvfb-run -a node test/runExtensionHost.js
+      - name: Run real extension host (macOS and Windows)
+        if: runner.os != 'Linux'
+        working-directory: vscode/sharphdl
+        run: node test/runExtensionHost.js
