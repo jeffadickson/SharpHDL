@@ -145,4 +145,36 @@ public sealed class HlsElasticCompilerTests
         }
     }
 
+    [Fact]
+    public void Reset_discards_all_inflight_tokens_even_when_pipeline_is_stalled()
+    {
+        var m=new Module("ElasticResetSource");
+        var x=m.Input("x",8);
+        var y=m.Output("y",8);
+        m.Drive(y,(x+Expr.Const(8,1))*(x+Expr.Const(8,2)));
+        var exported=m.ExportCoreGraph();
+        var compiled=HlsElasticCompiler.Compile(exported.Graph,
+            exported.Inputs["x"],exported.Outputs["y"],2,
+            new HlsCostProfile{ArithmeticCost=1,MultiplyCost=2});
+        var machine=new HardwareGraphMachine(compiled.Graph,compiled.Inputs,
+            compiled.Outputs,compiled.NextState,compiled.ResetValues,
+            new Dictionary<string,SharpHDL.Core.HardwareMemoryPort>());
+        machine.SetInput("hls_output_ready",0);
+        machine.SetInput("hls_input_valid",1);
+        machine.SetInput("hls_input_data",42);
+        for(int cycle=0;cycle<compiled.Latency+3;cycle++)machine.Tick();
+        Assert.Equal(BigInteger.One,machine.ReadOutput("hls_output_valid"));
+        Assert.Equal(BigInteger.Zero,machine.ReadOutput("hls_input_ready"));
+        machine.Reset();
+        machine.SetInput("hls_input_valid",0);
+        Assert.Equal(BigInteger.Zero,machine.ReadOutput("hls_output_valid"));
+        Assert.Equal(BigInteger.One,machine.ReadOutput("hls_input_ready"));
+        machine.SetInput("hls_output_ready",1);
+        for(int i=0;i<compiled.Latency+3;i++)
+        {
+            Assert.Equal(BigInteger.Zero,machine.ReadOutput("hls_output_valid"));
+            machine.Tick();
+        }
+    }
+
 }
