@@ -15,6 +15,8 @@ namespace SharpHDL
             var program=CompilePipeline(method,input,output,false);
             var handle=PipelineScheduler.Attach(m,name,input,output,program.Value,options);
             PortablePdbSourceMap.Annotate(method,handle.DataflowGraph);
+            m.SourceGraphs.Add(handle.DataflowGraph);
+            m.SourceGraphPrefixes[handle.DataflowGraph]=name;
             handle.Report+=program.Report;return handle;
         }
         sealed class PipelineIteration
