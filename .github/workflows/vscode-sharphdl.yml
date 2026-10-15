@@ -79,6 +79,8 @@ jobs:
           bash tests/run-tinyrisc.sh
       - name: HLS multiplier inference and timing-advisory unit test
         run: dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Debug --filter 'FullyQualifiedName~Hls_'
+      - name: Validate measured architecture selector
+        run: python3 -m unittest discover -s tools -p test_select_multiplier_architecture.py
       - name: Generate and synthesize alternative HLS multiplier architectures
         run: |
           dotnet run --project tools/SharpHDL.MultiplierBench/SharpHDL.MultiplierBench.csproj -c Release -- "$PWD"
