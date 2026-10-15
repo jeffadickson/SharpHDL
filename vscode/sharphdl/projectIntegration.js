@@ -81,7 +81,7 @@ async function runProject(entry) {
   const runner=vscode.workspace.getConfiguration('sharphdl.verilator',folder.uri).get('runner','docker');
   const program=runner==='docker'?'/workspace/'+executablePath(project).replaceAll('\\','/'):binary.fsPath;
   const processArgs=executionCommand(folder,program,[]);
-  const status=await taskProcess(folder,'Verilator test '+project.id,processArgs.command,processArgs.args);
+  const status=await taskProcess(folder,'Verilator test '+project.id,processArgs.command,[...processArgs.args,'+sharphdl_trace']);
   if(status!==0)throw new Error('Verilator test failed for '+project.id+' (exit '+status+')');
 }
 async function chooseProject() {
