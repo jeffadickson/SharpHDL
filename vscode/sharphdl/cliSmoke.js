@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+'use strict';
+// Actual multi-file Verilator acceptance without VS Code UI. Uses exactly the
+// same manifest and process arguments as the extension, and checks exit codes.
+const fs=require('node:fs');
+const path=require('node:path');
+const {spawnSync}=require('node:child_process');
+const {parseProjectManifest,verilogArgs,executablePath}=require('./projectManifest');
+const root=path.resolve(__dirname,'../..');
+const manifest=parseProjectManifest(fs.readFileSync(path.join(root,'sharphdl.project.json'),'utf8'));
+for(const project of manifest.projects) {
+  for(const source of project.sources) {
+    if(!fs.existsSync(path.join(root,source)))throw new Error('Missing source '+source);
+  }
+  fs.mkdirSync(path.join(root,project.outputDir),{recursive:true});
+  const executable=process.env.VERILATOR||'verilator';
+  const build=spawnSync(executable,verilogArgs(project),{cwd:root,stdio:'inherit',shell:false});
+  if(build.error)throw build.error;
+  if(build.status!==0)throw new Error('Verilator build failed for '+project.id+': '+build.status);
+  const binary=path.join(root,executablePath(project));
+  const run=spawnSync(binary,[],{cwd:root,stdio:'inherit',shell:false});
+  if(run.error)throw run.error;
+  if(run.status!==0)throw new Error('Verilator test failed for '+project.id+': '+run.status);
+  console.log('PASS multi-file Verilator project: '+project.id);
+}
