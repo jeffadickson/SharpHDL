@@ -10,6 +10,8 @@ on:
       - 'Makefile'
       - 'docs/VSCODE_GETTING_STARTED.md'
       - 'src/SharpHDL/**'
+      - 'rtl/amd/**'
+      - 'tests/rtl/tb_dsp48e2_mul.sv'
       - 'tools/SharpHDL.Provenance/**'
       - '.github/workflows/vscode-sharphdl.yml'
   pull_request:
