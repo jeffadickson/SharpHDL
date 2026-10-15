@@ -73,6 +73,10 @@ jobs:
             -o build/dsp/tb_dsp48e2_mul \
             rtl/amd/sharphdl_dsp48e2_mul_unsigned.v tests/rtl/tb_dsp48e2_mul.sv
           vvp build/dsp/tb_dsp48e2_mul
+          iverilog -g2012 -DSHARPH_DL_DSP_BEHAVIORAL -s tb_dsp48e2_pipeline \
+            -o build/dsp/tb_dsp48e2_pipeline \
+            rtl/amd/sharphdl_dsp48e2_mul_pipeline.v tests/rtl/tb_dsp48e2_pipeline.sv
+          vvp build/dsp/tb_dsp48e2_pipeline
       - name: Generate real TinyRisc Verilog and verify reference RTL
         run: |
           export DOTNET_ROOT="$(dirname "$(readlink -f "$(command -v dotnet)")")"
