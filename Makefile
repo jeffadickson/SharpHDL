@@ -49,7 +49,7 @@ core-rtl-native:
 
 core-ir-verify:
 	$(DOCKER_RUN) python3 tests/check-project-layers.py
-	$(DOCKER_RUN) dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --filter 'FullyQualifiedName~CoreHardwareGraphTests|FullyQualifiedName~CoreGraphLoweringTests|FullyQualifiedName~CoreIrExtendedParityTests|FullyQualifiedName~TinyRiscCoreIrTests|FullyQualifiedName~HlsGraphAnalyzerTests|FullyQualifiedName~HlsElasticCompilerTests'
+	$(DOCKER_RUN) dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --filter 'FullyQualifiedName~CoreHardwareGraphTests|FullyQualifiedName~CoreGraphLoweringTests|FullyQualifiedName~CoreIrExtendedParityTests|FullyQualifiedName~TinyRiscCoreIrTests|FullyQualifiedName~HlsGraphAnalyzerTests|FullyQualifiedName~HlsElasticCompilerTests|FullyQualifiedName~CoreVerilogEmitterTests'
 
 container-verify:
 	$(DOCKER_RUN) bash tools/container-smoke.sh
