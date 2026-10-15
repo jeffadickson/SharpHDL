@@ -50,12 +50,12 @@ function draw(){
   const value=document.createElement('strong');value.textContent=valueAt(s.changes,t);value.style.width='70px';
   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 800 30');svg.classList.add('wave');
   svg.onclick=e=>{const x=e.offsetX/e.currentTarget.getBoundingClientRect().width;slider.value=String(Math.round(x*data.duration));draw();};
-  let points='',last=0,lastValue='?';
+  let points='0,15 ',lastValue='?';
   for(const change of [...s.changes,{time:data.duration,value:lastValue}]){
    const x=800*change.time/Math.max(1,data.duration);
    const y=lastValue==='1'?5:lastValue==='0'?25:15;
    points+=x+','+y+' '+x+','+(change.value==='1'?5:change.value==='0'?25:15)+' ';
-   last=change.time;lastValue=change.value;
+   lastValue=change.value;
   }
   const poly=document.createElementNS('http://www.w3.org/2000/svg','polyline');
   poly.setAttribute('points',points);poly.setAttribute('stroke','currentColor');poly.setAttribute('fill','none');poly.setAttribute('stroke-width','1.6');svg.append(poly);
