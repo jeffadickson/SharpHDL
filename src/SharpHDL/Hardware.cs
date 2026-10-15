@@ -249,7 +249,7 @@ namespace SharpHDL
                     var b=Eval(e.Args[1],cache);
                     switch(e.Op)
                     {
-                        case "+": v=a+b; break; case "-": v=a-b; break; case "*": v=a*b; break;
+                        case "+": v=a+b; break; case "-": v=a-b; break; case "*": case "dsp48e2": v=a*b; break;
                         case "&": v=a&b; break; case "|": v=a|b; break; case "^": v=a^b; break;
                         case "slt": v=Expr.SignedValue(a,e.Args[0].Width)<Expr.SignedValue(b,e.Args[1].Width)?1:0; break;
                         case "==": v=a==b?1:0; break; case "<": v=a<b?1:0; break;
@@ -342,6 +342,15 @@ namespace SharpHDL
             if(names.TryGetValue(e,out name)) return name;
             var args=e.Args.Select(Emit).ToArray();
             name=NetName(e); names[e]=name;
+            if(e.Op=="dsp48e2")
+            {
+                declarations.AppendLine("// "+Meaning(e));
+                declarations.AppendLine("wire "+Range(e.Width)+name+";");
+                assignments.AppendLine("sharphdl_dsp48e2_mul_unsigned #(.A_WIDTH("+
+                    e.Args[0].Width+"), .B_WIDTH("+e.Args[1].Width+")) dsp_"+name+
+                    " (.clk(clk), .a("+args[0]+"), .b("+args[1]+"), .product("+name+"));");
+                return name;
+            }
             string rhs;
             switch(e.Op)
             {
