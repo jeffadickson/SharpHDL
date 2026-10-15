@@ -2,7 +2,7 @@
   "name": "sharphdl-debug",
   "displayName": "SharpHDL Hardware & Verification",
   "description": "Hardware clock debugger, Verilator lint, and TinyRisc verification Explorer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publisher": "sharphdl",
   "engines": {
     "vscode": "^1.85.0"
@@ -13,7 +13,8 @@
   "activationEvents": [
     "onDebugResolve:sharphdl",
     "onCommand:sharphdl.verilatorLint",
-    "onView:sharphdl.verification"
+    "onView:sharphdl.verification",
+    "onView:sharphdl.projects"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -58,6 +59,22 @@
       {
         "command": "sharphdl.openVerificationFile",
         "title": "SharpHDL: Open Verification Artifact"
+      },
+      {
+        "command": "sharphdl.buildDesign",
+        "title": "SharpHDL: Build Verilator Design"
+      },
+      {
+        "command": "sharphdl.runDesign",
+        "title": "SharpHDL: Run Verilator Test"
+      },
+      {
+        "command": "sharphdl.jumpToMapped",
+        "title": "SharpHDL: Go to Source / Generated RTL"
+      },
+      {
+        "command": "sharphdl.refreshProjects",
+        "title": "SharpHDL: Refresh Projects"
       }
     ],
     "configuration": {
@@ -84,6 +101,11 @@
           "id": "sharphdl.verification",
           "name": "SharpHDL Verification",
           "contextualTitle": "SharpHDL Verification"
+        },
+        {
+          "id": "sharphdl.projects",
+          "name": "SharpHDL Projects",
+          "contextualTitle": "SharpHDL Projects"
         }
       ]
     },
@@ -93,8 +115,35 @@
           "command": "sharphdl.refreshVerification",
           "when": "view == sharphdl.verification",
           "group": "navigation"
+        },
+        {
+          "command": "sharphdl.refreshProjects",
+          "when": "view == sharphdl.projects",
+          "group": "navigation"
         }
       ]
-    }
+    },
+    "problemMatchers": [
+      {
+        "name": "sharphdlVerilator",
+        "owner": "sharphdl",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": {
+          "regexp": "^%(Error|Warning(?:-[A-Za-z0-9_-]+)?):\\\\s+(.+?):(\\\\d+):(\\\\d+):\\\\s*(.*)$",
+          "severity": 1,
+          "file": 2,
+          "line": 3,
+          "column": 4,
+          "message": 5
+        }
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeffadickson/SharpHDL.git"
   }
 }
