@@ -1,7 +1,7 @@
 name: SharpHDL xUnit tests
 on:
   push:
-    paths: ['src/**', 'tests/SharpHDL.UnitTests/**', 'tests/check-project-layers.py', 'Makefile', '.github/workflows/xunit.yml']
+    paths: ['src/**', 'tests/SharpHDL.UnitTests/**', 'tests/check-project-layers.py', 'tests/rtl/tb_core_hls_elastic.sv', 'tools/SharpHDL.CoreHlsDemo/**', 'Makefile', '.github/workflows/xunit.yml']
   pull_request:
     paths: ['src/**', 'tests/SharpHDL.UnitTests/**', '.github/workflows/xunit.yml']
   workflow_dispatch:
