@@ -1,7 +1,7 @@
 # SharpHDL make compatibility entry point.
 # Docker + Python 3 are the only host prerequisites for automatic HDL/.NET provisioning.
 # Toolchain itself is installed in tools/Dockerfile.dev, never silently on host.
-.PHONY: help doctor setup setup-tools setup-and-hello tinyrisc-hello benchmark-simulator benchmark-tinyrisc container-verify container-build container-test container-shell build test test-hdl simulate benchmark browser vscode vscode-test vscode-provenance multiplier-rtl multiplier-compare dsp-verify core-ir-verify verify clean
+.PHONY: help doctor setup setup-tools setup-and-hello tinyrisc-hello benchmark-simulator benchmark-tinyrisc container-verify container-build container-test container-shell build test test-hdl simulate benchmark browser vscode vscode-test vscode-provenance multiplier-rtl multiplier-compare dsp-verify core-ir-verify core-hls-verilator verify clean
 
 IMAGE := sharphdl-dev:local
 DOCKER_RUN = docker run --rm -v "$(CURDIR):/workspace" -w /workspace $(IMAGE)
@@ -20,6 +20,7 @@ help:
 	@echo "  make multiplier-compare Generate and synthesize alternative multiplier architectures"
 	@echo "  make dsp-verify       Simulate direct and pipelined DSP48E2 wrappers (behavioral mode)"
 	@echo "  make core-ir-verify   Check Core/HLS/Simulation layers and run canonical IR parity tests"
+	@echo "  make core-hls-verilator  Compile Core IR elastic HLS and run Verilator stall regression"
 	@echo "  just --list          Optional extra native developer tasks"
 
 doctor:
@@ -38,6 +39,9 @@ benchmark-tinyrisc:
 
 benchmark-simulator:
 	$(DOCKER_RUN) dotnet run --project tools/SharpHDL.SimulatorBench/SharpHDL.SimulatorBench.csproj -c Release -- 200000
+
+core-hls-verilator:
+	$(DOCKER_RUN) bash -c 'dotnet run --project tools/SharpHDL.CoreHlsDemo/SharpHDL.CoreHlsDemo.csproj -c Release -- /workspace && mkdir -p build/core-hls && verilator --binary --timing -Wno-fatal --top-module tb_core_hls_elastic --Mdir build/core-hls/obj generated/core-hls/CoreHlsElastic.v tests/rtl/tb_core_hls_elastic.sv && build/core-hls/obj/Vtb_core_hls_elastic'
 
 core-ir-verify:
 	$(DOCKER_RUN) python3 tests/check-project-layers.py
