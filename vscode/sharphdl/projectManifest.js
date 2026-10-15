@@ -25,7 +25,7 @@ function parseProjectManifest(input) {
     const waveforms=fileList(p.waveforms||[],'waveforms');
     const sourceMap=p.sourceMap?relativePath(p.sourceMap):null;
     return {id:p.id,label:typeof p.label==='string'&&p.label?p.label:p.id,
-      top:p.top,sources,outputDir,waveforms,sourceMap};
+      top:p.top,sources,outputDir,waveforms,sourceMap,runnable:p.runnable!==false};
   });
   return {version:1,projects};
 }
