@@ -106,6 +106,23 @@ CRC-32, AXI4-Stream wrappers, signed bit-vector operations, CORDIC sine/cosine,
 and interpolated-table and polynomial math. See [STREAMS_AND_MATH.md](STREAMS_AND_MATH.md).
 This release is a working foundation, not a complete MyHDL replacement.
 
+## Getting started with VS Code
+
+The SharpHDL extension adds a **Verification Explorer**, a multi-design **Verilator Projects** panel, generated RTL/report navigation and an experimental hardware clock debugger. Use a standard C# extension and a Verilog/SystemVerilog extension for language editing; SharpHDL focuses on synthesis and verification workflows.
+
+From a new clone, with Docker, Make and Python 3 installed:
+
+```sh
+make setup
+make vscode
+code --install-extension dist/sharphdl-0.3.0.vsix
+code .
+```
+
+Then run `make tinyrisc-hello` to generate the first CPU design and use **SharpHDL Projects → TinyRisc16 → Run Verilator test**. For the full interpreter/JIT/Verilator regression, use **SharpHDL Verification → Run TinyRisc verification**.
+
+**Complete setup, Windows/WSL2 and macOS notes, debugging and troubleshooting:** [Getting started with SharpHDL in VS Code](docs/VSCODE_GETTING_STARTED.md). The extension's generalized project integration is in development; consult [issue #25](https://github.com/jeffadickson/SharpHDL/issues/25) for remaining acceptance work.
+
 ## A counter
 
 ```csharp
