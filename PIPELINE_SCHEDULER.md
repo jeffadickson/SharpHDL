@@ -399,3 +399,32 @@ The two direct-DSP wrappers have portable behavioral simulation guarded by
 alignment. These behavioral tests do not validate actual AMD primitive
 simulation or Vivado timing. The physical implementation must still be
 verified with the target device's UNISIM libraries and post-route STA.
+
+### First executed generic synthesis comparison (2026-10-15)
+
+[GitHub Actions run 38814950387](https://github.com/jeffadickson/SharpHDL/actions/runs/38814950387)
+passed the five-job workflow, including direct DSP wrapper tests,
+C#-generated DSP RTL simulation, HLS provenance/Verilator and generic Yosys
+synthesis of the five 32-bit streaming multiplier designs.
+
+| Implementation | Generic Yosys cells |
+|---|---:|
+| Operator | 3,222 |
+| ShiftAdd | 3,211 |
+| BoothRadix4 | 4,579 |
+| WallaceTree | 4,459 |
+| DspPreferred | 3,222 |
+
+These are **generic logic cell counts for complete streaming pipeline
+implementations**, including control and registers, not DSP counts or
+placed-and-routed FPGA LUT counts. They do not establish which architecture
+has the best Fmax. The first Booth/Wallace lowerings are functionally
+correct but not yet area-optimized; this is a useful concrete reason to
+improve compressor and recoding implementations rather than assuming their
+theoretical benefits translate directly to the generated netlist.
+
+The same CI run passed 1,002 combinational DSP wrapper vectors, a
+three-stage DSP valid/data alignment regression and 500 vectors through
+C#-generated RTL instantiating the direct DSP wrapper. The direct DSP tests
+used the portable behavioral model; **Vivado UNISIM and target P&R remain
+unverified**.
