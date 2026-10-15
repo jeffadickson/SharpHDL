@@ -100,6 +100,7 @@ jobs:
       - name: Generate and verify independent Core IR elastic HLS RTL
         run: |
           dotnet run --project tools/SharpHDL.CoreHlsDemo/SharpHDL.CoreHlsDemo.csproj -c Release -- "$PWD"
+          mkdir -p build/core-hls/obj
           verilator --binary --timing -Wno-fatal --top-module tb_core_hls_elastic \
             --Mdir build/core-hls/obj \
             generated/core-hls/CoreHlsElastic.v tests/rtl/tb_core_hls_elastic.sv
