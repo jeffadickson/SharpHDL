@@ -88,9 +88,26 @@ jobs:
       - name: Install VS Code integration test runner
         working-directory: vscode/sharphdl
         run: npm install --no-save --ignore-scripts @vscode/test-electron@2.5.2
+      - uses: actions/setup-dotnet@v4
+        if: runner.os == 'Linux'
+        with:
+          dotnet-version: '8.0.x'
+      - name: Start real SharpHDL localhost simulator (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          dotnet run --project tools/SharpHDL.Live/SharpHDL.Live.csproj -c Release > /tmp/sharphdl-live.log 2>&1 &
+          echo $! > /tmp/sharphdl-live.pid
+          for i in $(seq 1 90); do
+            if curl --silent --fail http://127.0.0.1:8093/api/state >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/sharphdl-live.log
+          exit 1
       - name: Run real extension host (Linux)
         if: runner.os == 'Linux'
         working-directory: vscode/sharphdl
+        env:
+          SHARPHDL_LIVE_INTEGRATION: '1'
         run: xvfb-run -a node test/runExtensionHost.js
       - name: Run real extension host (macOS and Windows)
         if: runner.os != 'Linux'
