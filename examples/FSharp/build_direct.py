@@ -23,6 +23,7 @@ refs = ['-r:' + str(p) for p in sorted((reference_pack / 'ref/net8.0').glob('*.d
 library = build / 'SharpHDL.dll'
 subprocess.run([str(host), str(sdk / 'Roslyn/bincore/csc.dll'), '-nologo',
                 '-target:library', '-nostdlib+', '-out:' + str(library)] + refs +
+               [str(p) for p in sorted((root / 'src/SharpHDL.Core').glob('*.cs'))] +
                [str(p) for p in sorted((root / 'src/SharpHDL').glob('*.cs'))], check=True)
 fsharp_core = sdk / 'FSharp/FSharp.Core.dll'
 subprocess.run([str(host), str(sdk / 'FSharp/fsc.dll'), '--target:exe',
