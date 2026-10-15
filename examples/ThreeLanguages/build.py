@@ -20,7 +20,7 @@ lib=build/'SharpHDL.dll'
 def run(args):subprocess.run([str(x) for x in args],check=True)
 def cs(out,files,extra=(),target='library'):
  run([host,sdk/'Roslyn/bincore/csc.dll','-nologo','-optimize+','-nostdlib+','-target:'+target,'-out:'+str(out)]+refs+list(extra)+list(files))
-cs(lib,sorted((root/'src/SharpHDL').glob('*.cs')))
+cs(lib,sorted((root/'src/SharpHDL.Core').glob('*.cs'))+sorted((root/'src/SharpHDL').glob('*.cs')))
 cs(build/'CSharpPiece.dll',[source/'CSharpPiece.cs'],['-r:'+str(lib)])
 fs=sdk/'FSharp/FSharp.Core.dll'
 run([host,sdk/'FSharp/fsc.dll','--target:library','--targetprofile:netcore','--noframework','--optimize+',
