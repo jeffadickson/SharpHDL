@@ -1,5 +1,6 @@
 using SharpHDL;
 using SharpHDL.HLS;
+using SharpHDL.RTL;
 
 // Production C# expression -> canonical Core IR -> independent HLS compiler
 // -> registered Core IR -> compatibility RTL backend -> Verilator.
@@ -16,5 +17,8 @@ var rtl=pipeline.ToModule("CoreHlsElastic");
 var dir=Path.Combine(root,"generated/core-hls");
 Directory.CreateDirectory(dir);
 File.WriteAllText(Path.Combine(dir,"CoreHlsElastic.v"),rtl.Verilog());
+File.WriteAllText(Path.Combine(dir,"CoreHlsElasticNative.v"),
+    CoreVerilogEmitter.Emit(pipeline.Graph,pipeline.Inputs,pipeline.Outputs,
+        pipeline.NextState,pipeline.ResetValues,"CoreHlsElasticNative"));
 Console.WriteLine($"Generated Core IR elastic pipeline: latency={pipeline.Latency}, "+
     $"II={pipeline.InitiationInterval}, payloadBits={pipeline.PayloadRegisterBits}");
