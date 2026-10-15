@@ -142,3 +142,38 @@ execution itself has **no reference to legacy Module or HLS**. This is
 the first independently usable sequential simulation engine in the
 Simulation assembly. Multiclock, four-state, waveform and rewind behavior
 remain on the legacy path pending migration.
+
+## 2026-10-15 — production compatibility and first independent HLS consumer
+
+The existing `SharpHDL.Module` API now offers
+`module.SimulateCore()`, a compatibility factory that exports its
+validated design into Core IR and constructs a
+`SharpHDL.Simulation.HardwareGraphMachine`. The independent engine
+owns all clock stepping, RAM snapshots and register commits; the
+legacy assembly supplies only the initial lowering. Existing
+`module.Simulate()` remains unchanged for regression comparison.
+An 80-cycle TinyRisc16 test drives both engines through the public
+factory and compares output ports at every clock edge.
+
+The `SharpHDL.HLS` assembly now contains
+`HlsGraphAnalyzer.Analyze(HardwareGraph, stageBudget, HlsCostProfile)`,
+the first independent HLS pass over **real production canonical IR**.
+It analyzes operation dependency paths, separately counts ordinary
+multiply and direct DSP nodes, and reports an abstract critical-path
+cost and suggested stage count. Unlike the legacy depth-only policy,
+multiplication, DSP multiplication, add/compare and memory operations
+can have distinct configurable weights. The pass is tested against
+real `Module.ExportCoreGraph()` output, including TinyRisc16 and
+direct DSP multiplication.
+
+**Important distinction:** HLS graph analysis does not insert
+pipeline registers, change initiation intervals, or guarantee timing.
+Its costs are arbitrary planning units, not characterized target
+delays. The legacy production CIL pipeline scheduler remains in
+place until a compatible IR-driven ready/valid scheduling backend
+is implemented and differentially verified.
+
+Standalone Roslyn C#/F#/VB build scripts now include the independent
+Simulation source files to preserve clean-checkout compilation of
+the compatibility API. `make core-ir-verify` includes the new HLS
+analysis and TinyRisc compatibility regressions.
