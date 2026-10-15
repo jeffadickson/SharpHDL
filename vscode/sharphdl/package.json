@@ -1,8 +1,8 @@
 {
   "name": "sharphdl-debug",
-  "displayName": "SharpHDL Debug",
-  "description": "Prototype hardware-clock debugging for SharpHDL localhost simulator",
-  "version": "0.1.0",
+  "displayName": "SharpHDL Hardware & Verification",
+  "description": "Hardware clock debugger, Verilator lint, and TinyRisc verification Explorer",
+  "version": "0.2.0",
   "publisher": "sharphdl",
   "engines": {
     "vscode": "^1.85.0"
@@ -12,7 +12,8 @@
   ],
   "activationEvents": [
     "onDebugResolve:sharphdl",
-    "onCommand:sharphdl.verilatorLint"
+    "onCommand:sharphdl.verilatorLint",
+    "onView:sharphdl.verification"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -41,6 +42,22 @@
       {
         "command": "sharphdl.verilatorLint",
         "title": "SharpHDL: Lint Active Verilog with Verilator"
+      },
+      {
+        "command": "sharphdl.verifyTinyRisc",
+        "title": "SharpHDL: Run TinyRisc Verification"
+      },
+      {
+        "command": "sharphdl.setupTools",
+        "title": "SharpHDL: Set Up Toolchain"
+      },
+      {
+        "command": "sharphdl.refreshVerification",
+        "title": "SharpHDL: Refresh Verification Explorer"
+      },
+      {
+        "command": "sharphdl.openVerificationFile",
+        "title": "SharpHDL: Open Verification Artifact"
       }
     ],
     "configuration": {
@@ -60,6 +77,24 @@
           "description": "Additional Verilator arguments, passed without shell expansion."
         }
       }
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "sharphdl.verification",
+          "name": "SharpHDL Verification",
+          "contextualTitle": "SharpHDL Verification"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "sharphdl.refreshVerification",
+          "when": "view == sharphdl.verification",
+          "group": "navigation"
+        }
+      ]
     }
   }
 }
