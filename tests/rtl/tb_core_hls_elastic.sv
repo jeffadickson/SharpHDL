@@ -42,6 +42,28 @@ module tb_core_hls_elastic;
     if(head!=tail)$fatal(1,"Core HLS lost %0d accepted tokens",tail-head);
     if(accepted<100)$fatal(1,"Core HLS insufficient randomized coverage");
     if(completed!=accepted)$fatal(1,"Core HLS token count mismatch");
+    // Force backpressure, fill the pipeline, then synchronously reset.
+    repeat(8) begin
+      @(negedge clk);
+      input_valid=1;
+      input_data=16'h1234;
+      output_ready=0;
+      @(posedge clk);
+    end
+    @(negedge clk);
+    rst=1;
+    input_valid=0;
+    @(posedge clk);
+    #1;
+    if(output_valid!==0)$fatal(1,"Reset failed to flush stalled pipeline");
+    @(negedge clk);
+    rst=0;
+    output_ready=1;
+    repeat(5) begin
+      @(posedge clk);
+      #1;
+      if(output_valid!==0)$fatal(1,"Ghost token after reset");
+    end
     $display("PASS Core IR elastic HLS Verilator: accepted=%0d completed=%0d",
              accepted,completed);
     $finish;
