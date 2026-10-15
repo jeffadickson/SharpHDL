@@ -8,11 +8,13 @@ PROJECTS = {
     "SharpHDL.Core": ROOT / "src/SharpHDL.Core/SharpHDL.Core.csproj",
     "SharpHDL.HLS": ROOT / "src/SharpHDL.HLS/SharpHDL.HLS.csproj",
     "SharpHDL.Simulation": ROOT / "src/SharpHDL.Simulation/SharpHDL.Simulation.csproj",
+    "SharpHDL.RTL": ROOT / "src/SharpHDL.RTL/SharpHDL.RTL.csproj",
 }
 ALLOWED = {
     "SharpHDL.Core": set(),
     "SharpHDL.HLS": {"SharpHDL.Core"},
     "SharpHDL.Simulation": {"SharpHDL.Core"},
+    "SharpHDL.RTL": {"SharpHDL.Core"},
 }
 graph = {}
 for name, path in PROJECTS.items():
@@ -42,4 +44,4 @@ def visit(name, active, visited):
 visited = set()
 for n in graph:
     visit(n, [], visited)
-print("PASS: Core <- HLS and Core <- Simulation; no project dependency cycles")
+print("PASS: Core <- HLS, Simulation and RTL; no project dependency cycles")
