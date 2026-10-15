@@ -271,3 +271,36 @@ continues to contain the original public API and legacy RTL writer.
 Once Core-native RTL covers RAM/DSP and all production designs,
 we can retire the source-linked legacy emitter without breaking
 the `Module.Verilog()` compatibility contract.
+
+## 2026-10-15 — native TinyRisc16 ROM/RAM and full UART acceptance
+
+The independent `SharpHDL.RTL.CoreVerilogEmitter` now accepts the
+canonical `HardwareMemoryPort` map and emits initialized ROM lookup
+functions (with zero for out-of-range addresses) and initialized,
+single-port synchronous RAM. RAM reads are combinational views of the
+pre-edge array, captured by the existing Core IR read-data register;
+writes occur at the rising edge, suppressed by reset and out-of-range
+addresses. RAM cells retain their values through synchronous reset.
+This preserves the existing read-before-write contract.
+
+`tools/SharpHDL.NativeTinyRisc` constructs the **real** 33-word
+Hello World TinyRisc16 program and exports its full canonical graph
+(428 nodes and one scratch RAM) directly through the native Core RTL
+backend. It generates `generated/tinyrisc/native/HelloWorld.v`.
+
+`tests/run-tinyrisc.sh` executes the same two existing independent
+Icarus testbenches against **both** the preserved legacy and the new
+native RTL: the complete CPU cycle-by-cycle output oracle and the
+8N1 serial UART top-level test expecting `Hello, world!\r\n`,
+HALT and no fault. Both native benches passed in
+[run 38825376134](https://github.com/jeffadickson/SharpHDL/actions/runs/38825376134).
+The additional native Yosys `hierarchy -check; proc; opt; check -assert`
+gate passed in
+[run 38825395067](https://github.com/jeffadickson/SharpHDL/actions/runs/38825395067).
+These results establish behavioral equivalence for this design, not
+formal equivalence for all possible programs or physical FPGA timing.
+
+Run `make tinyrisc-hello` to exercise both backends, including
+UART and Yosys checks. The legacy emitter is retained as an oracle.
+Direct DSP48E2, multiport memories and broader backend capabilities
+remain for further migration.
