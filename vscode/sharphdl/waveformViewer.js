@@ -90,5 +90,6 @@ slider.addEventListener('input',draw);draw();</script></body></html>`;
       editor.selection=new vscode.Selection(pos,pos);editor.revealRange(new vscode.Range(pos,pos));
     }catch(e){vscode.window.showErrorMessage('Waveform cross-probe: '+e.message);}
   });
+  return panel;
 }
 module.exports={showWaveforms};
