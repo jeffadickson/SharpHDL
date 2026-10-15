@@ -67,4 +67,29 @@ public sealed class CoreVerilogEmitterTests
             CoreVerilogEmitter.Emit(export.Graph,export.Inputs,export.Outputs,
                 export.NextState,export.ResetValues,"not-valid!"));
     }
+    [Fact]
+    public void Native_backend_emits_initialized_ROM_and_read_before_write_RAM()
+    {
+        var m=new Module("NativeMemory");
+        var addr=m.Input("addr",2);
+        var write=m.Input("write",1);
+        var data=m.Input("data",8);
+        var ram=SynchronousRam.Create(m,"ram",8,4,addr,write,data,
+            Expr.Const(1,1),new BigInteger[]{17,33,65,129});
+        var rom=m.Output("rom",8);
+        var result=m.Output("result",8);
+        m.Drive(rom,Expr.Lookup(8,addr,new BigInteger[]{3,5,7,11}));
+        m.Drive(result,ram.ReadData);
+        var core=m.ExportCoreGraph();
+        var rtl=CoreVerilogEmitter.Emit(core.Graph,core.Inputs,core.Outputs,
+            core.NextState,core.ResetValues,core.Memories,"NativeMemory");
+        Assert.Contains("function [7:0] rom_n_",rtl);
+        Assert.Contains("default: rom_n_",rtl);
+        Assert.Contains("reg [7:0] mem_ram [0:3]",rtl);
+        Assert.Contains("mem_ram[0] = 8'd17",rtl);
+        Assert.Contains("if (!rst &&",rtl);
+        Assert.Contains("mem_ram[n_",rtl);
+        Assert.Contains("always @(posedge clk)",rtl);
+    }
+
 }
