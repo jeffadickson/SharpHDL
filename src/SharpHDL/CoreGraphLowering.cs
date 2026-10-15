@@ -12,6 +12,22 @@ namespace SharpHDL
     /// evaluated from the old state and committed simultaneously by a caller.
     /// This is an explicit compatibility bridge, not a second hardware model.
     /// </summary>
+    /// <summary>RAM write controls and immutable initial contents, sampled before each edge.</summary>
+    public sealed class CoreMemoryPort
+    {
+        public string Name { get; }
+        public int Width { get; }
+        public int AddressNode { get; }
+        public int WriteEnableNode { get; }
+        public int WriteDataNode { get; }
+        public IReadOnlyList<BigInteger> Initial { get; }
+        internal CoreMemoryPort(string name,int width,int address,int enable,int data,BigInteger[] initial)
+        {
+            Name=name;Width=width;AddressNode=address;WriteEnableNode=enable;
+            WriteDataNode=data;Initial=Array.AsReadOnly((BigInteger[])initial.Clone());
+        }
+    }
+
     public sealed class CoreGraphExport
     {
         /// <summary>The validated backend-neutral combinational graph.</summary>
@@ -22,18 +38,21 @@ namespace SharpHDL
         public IReadOnlyDictionary<string,int> Outputs { get; }
         /// <summary>Next-state expressions for every register mapped to node IDs.</summary>
         public IReadOnlyDictionary<string,int> NextState { get; }
+        /// <summary>RAM ports and initial words. Writes commit after all pre-edge reads.</summary>
+        public IReadOnlyDictionary<string,CoreMemoryPort> Memories { get; }
         /// <summary>Register reset values, with exact hardware widths.</summary>
         public IReadOnlyDictionary<string,BigInteger> ResetValues { get; }
 
         internal CoreGraphExport(HardwareGraph graph,Dictionary<string,int> inputs,
             Dictionary<string,int> outputs,Dictionary<string,int> next,
-            Dictionary<string,BigInteger> reset)
+            Dictionary<string,BigInteger> reset,Dictionary<string,CoreMemoryPort> memories)
         {
             Graph=graph;
             Inputs=new System.Collections.ObjectModel.ReadOnlyDictionary<string,int>(inputs);
             Outputs=new System.Collections.ObjectModel.ReadOnlyDictionary<string,int>(outputs);
             NextState=new System.Collections.ObjectModel.ReadOnlyDictionary<string,int>(next);
             ResetValues=new System.Collections.ObjectModel.ReadOnlyDictionary<string,BigInteger>(reset);
+            Memories=new System.Collections.ObjectModel.ReadOnlyDictionary<string,CoreMemoryPort>(memories);
         }
     }
 
@@ -53,12 +72,14 @@ namespace SharpHDL
             var outputs=new Dictionary<string,int>(StringComparer.Ordinal);
             var next=new Dictionary<string,int>(StringComparer.Ordinal);
             var reset=new Dictionary<string,BigInteger>(StringComparer.Ordinal);
+            var memories=new Dictionary<string,CoreMemoryPort>(StringComparer.Ordinal);
             int Add(Expr expression,HardwareOperation operation,int[] operands,
-                BigInteger? literal=null,string name=null)
+                BigInteger? literal=null,string name=null,int offset=0,
+                IReadOnlyList<BigInteger> table=null,string memoryName=null)
             {
                 int id=nodes.Count;
                 nodes.Add(new HardwareNode(id,operation,new HardwareType(expression.Width),
-                    operands,literal,name));
+                    operands,literal,name,offset,table,memoryName));
                 ids.Add(expression,id);
                 return id;
             }
@@ -93,24 +114,43 @@ namespace SharpHDL
                     case "+": op=HardwareOperation.Add; break;
                     case "-": op=HardwareOperation.Subtract; break;
                     case "*": op=HardwareOperation.Multiply; break;
+                    case "dsp48e2": op=HardwareOperation.DspMultiplyUnsigned; break;
                     case "&": op=HardwareOperation.And; break;
                     case "|": op=HardwareOperation.Or; break;
                     case "^": op=HardwareOperation.Xor; break;
                     case "~": op=HardwareOperation.Not; break;
                     case "mux": op=HardwareOperation.Select; break;
+                    case "<<": op=HardwareOperation.ShiftLeft; break;
+                    case ">>": op=HardwareOperation.ShiftRight; break;
+                    case "asr": op=HardwareOperation.ArithmeticShiftRight; break;
+                    case "slice": op=HardwareOperation.Slice; break;
+                    case "resize": op=HardwareOperation.Resize; break;
+                    case "signextend": op=HardwareOperation.SignExtend; break;
+                    case "concat": op=HardwareOperation.Concat; break;
+                    case "==": op=HardwareOperation.Equal; break;
+                    case "<": op=HardwareOperation.LessThan; break;
+                    case "slt": op=HardwareOperation.SignedLessThan; break;
+                    case "lookup": op=HardwareOperation.Lookup; break;
+                    case "memory": op=HardwareOperation.MemoryRead; break;
                     default:
                         throw new NotSupportedException("Core IR lowering does not yet support expression '"+
                             e.Op+"' ("+e.Width+" bits).");
                 }
                 var operands=e.Args.Select(Visit).ToArray();
-                return Add(e,op,operands,null,e.NameHint);
+                return Add(e,op,operands,null,e.NameHint,e.Offset,
+                    e.Table==null?null:Array.AsReadOnly((BigInteger[])e.Table.Clone()),
+                    e.Memory==null?null:e.Memory.Name);
             }
 
             foreach(var signal in module.Signals.Where(s=>s.Kind=="output"))
                 outputs.Add(signal.Name,Visit(signal.Driver));
             foreach(var signal in module.Signals.Where(s=>s.Kind=="reg"))
                 next.Add(signal.Name,Visit(signal.Driver));
-            return new CoreGraphExport(new HardwareGraph(nodes),inputs,outputs,next,reset);
+            // RAM writes use pre-edge operands, and commit after reads and state evaluation.
+            foreach(var ram in module.Memories)
+                memories.Add(ram.Name,new CoreMemoryPort(ram.Name,ram.Width,
+                    Visit(ram.Address),Visit(ram.WriteEnable),Visit(ram.WriteData),ram.Initial));
+            return new CoreGraphExport(new HardwareGraph(nodes),inputs,outputs,next,reset,memories);
         }
     }
 }
