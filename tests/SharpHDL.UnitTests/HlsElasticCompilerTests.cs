@@ -103,4 +103,46 @@ public sealed class HlsElasticCompilerTests
         Assert.Contains(compiled.Graph.Nodes,n=>n.Operation==
             SharpHDL.Core.HardwareOperation.Constant && n.ConstantValue==14);
     }
+    [Fact]
+    public void Compiled_Core_pipeline_and_emitted_Verilog_model_match_under_stalls()
+    {
+        var m=new Module("ElasticRtlSource");
+        var input=m.Input("input",16);
+        var output=m.Output("output",16);
+        m.Drive(output,((input+Expr.Const(16,11))*input)+Expr.Const(16,9));
+        var export=m.ExportCoreGraph();
+        var pipeline=HlsElasticCompiler.Compile(export.Graph,
+            export.Inputs["input"],export.Outputs["output"],2,
+            new HlsCostProfile{MultiplyCost=2,ArithmeticCost=1});
+        var rtlModule=pipeline.ToModule("ElasticRtlFixture");
+        var rtl=rtlModule.Verilog();
+        Assert.Contains("stage",rtl,StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("h_ElasticRtlFixture",rtl);
+        var core=new HardwareGraphMachine(pipeline.Graph,pipeline.Inputs,pipeline.Outputs,
+            pipeline.NextState,pipeline.ResetValues,
+            new Dictionary<string,SharpHDL.Core.HardwareMemoryPort>());
+        var reference=rtlModule.Simulate();
+        reference.Tick(true);
+        var ports=rtlModule.Ports.ToDictionary(p=>p.Name,p=>p);
+        var rng=new Random(2112);
+        for(int cycle=0;cycle<400;cycle++)
+        {
+            int value=rng.Next(65536);
+            int valid=rng.Next(4)==0?0:1;
+            int ready=rng.Next(3)==0?0:1;
+            foreach(var (name,data) in new[]{
+                ("hls_input_data",value),
+                ("hls_input_valid",valid),
+                ("hls_output_ready",ready)})
+            {
+                core.SetInput(name,data);
+                reference.Set(ports[name],data);
+            }
+            foreach(var name in new[]{"hls_input_ready","hls_output_valid","hls_output_data"})
+                Assert.Equal(reference.Read(ports[name]),core.ReadOutput(name));
+            core.Tick();
+            reference.Tick();
+        }
+    }
+
 }
