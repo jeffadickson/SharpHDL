@@ -304,3 +304,54 @@ target-frequency scheduling and resource sharing remain future work in
 `DspPreferred` is intentionally a soft hint: vendor toolchains may ignore
 it, particularly outside AMD/Xilinx flows. DSP use, LUTs, clock rate and
 slack must be measured after synthesis and timing analysis.
+
+## Additional multiplier architectures and explicit DSP access
+
+The method attribute now also accepts `BoothRadix4` (unsigned radix-4 recoding
+with a balanced partial-product sum) and `WallaceTree` (3:2 carry-save
+compression followed by a final carry-propagate adder). Both preserve
+modulo-`2^width` arithmetic for widths through 32 bits. These are **real
+combinational RTL architectures**, not DSP binding hints. Their arithmetic
+nodes are still scheduled by the existing abstract-depth elastic scheduler;
+this is not timing-driven pipelining.
+
+For area-constrained designs, a separate **iterative** unit is available:
+
+```csharp
+var ports = IterativeMultiplier.Attach(module, "mul", 16);
+// Connect ports.A, ports.B, ports.InputValid, ports.OutputReady;
+// Observe ports.InputReady, ports.Result, ports.OutputValid.
+```
+
+This uses one shared 16-bit adder/accumulator with 16 computation edges after
+acceptance. The output is held stable under backpressure. Its initiation
+interval is **not one**; the next transaction starts after the previous
+result is consumed. It is deliberately not a drop-in replacement for the
+ordinary `[HlsMultiplier]` directive because doing so would change the
+stream pipeline's timing and handshake semantics.
+
+For direct AMD UltraScale/UltraScale+ DSP48E2 instantiation:
+
+```csharp
+var a = module.Input("a", 16);
+var b = module.Input("b", 16);
+var product = module.Output("product", 32);
+module.Drive(product, Dsp48E2.MultiplyUnsigned(a, b));
+```
+
+Include `rtl/amd/sharphdl_dsp48e2_mul_unsigned.v` alongside the generated
+Verilog. This instantiates **one actual DSP48E2 primitive** with
+`AREG=BREG=MREG=PREG=0` and `OPMODE=9'b000000101` for combinational
+multiplication. The unsigned operands must be at most **26x17** bits,
+allowing zero extension into the signed 27x18 DSP datapath. The wrapper
+supports `SHARPH_DL_DSP_BEHAVIORAL` for portable functional simulation;
+that fallback does **not** validate AMD's physical primitive, routing or
+timing. Real primitive simulation and timing require Vivado/UNISIM and a
+matching FPGA target. Direct DSP is nonportable and does not automatically
+decompose a 32x32 product into multiple slices.
+
+Run `make multiplier-compare` to generate five equivalent 32-bit HLS
+pipelines and collect actual **generic Yosys logic-cell counts**. These
+measurements are not FPGA LUT/DSP utilization, maximum clock frequency or
+timing slack. Target-specific architecture selection and multicycle DSP
+register scheduling remain open under issue #26.
