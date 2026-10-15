@@ -114,19 +114,19 @@ class Program
   foreach(var p in new[]{"run","step","switches","rx_valid","rx_data"})
     Input(reference,jit,p,p=="run"?1:0);
   const int edges=10000;
-  // The benchmark deliberately repeats the halted CPU's steady-state clocks.
-  // It is a full circuit timing comparison, NOT 10k Hello World executions.
+  // Periodically reset to execute active CPU instructions throughout timing.
+  // Counts reset cycles; this is not 10k independent program completions.
   Input(reference,jit,"tx_ready",1);
   for(int i=0;i<100;i++){reference.Tick();jit.Tick();}
   var sw=System.Diagnostics.Stopwatch.StartNew();
-  for(int i=0;i<edges;i++)reference.Tick();
+  for(int i=0;i<edges;i++)reference.Tick(i%128==0);
   sw.Stop();double interpreted=sw.Elapsed.TotalSeconds;
   sw.Restart();
-  for(int i=0;i<edges;i++)jit.Tick();
+  for(int i=0;i<edges;i++)jit.Tick(i%128==0);
   sw.Stop();double compiled=sw.Elapsed.TotalSeconds;
   foreach(var p in ports.Values.Where(p=>p.IsOutput))
     Check(reference.Read(p)==jit.Read((Expr)p),"CPU benchmark mismatch "+p.Name);
-  Console.WriteLine("BENCH TinyRisc steady-state: compiled "+(edges/compiled).ToString("F0")+
+  Console.WriteLine("BENCH TinyRisc repeating ROM: compiled "+(edges/compiled).ToString("F0")+
     " edges/sec; interpreter "+(edges/interpreted).ToString("F0")+
     " edges/sec; ratio "+(interpreted/compiled).ToString("F3")+
     "x; JIT construction "+compileMs.ToString("F2")+" ms");
