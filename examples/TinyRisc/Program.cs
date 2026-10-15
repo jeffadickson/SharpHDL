@@ -100,11 +100,43 @@ class Program
   }
   throw new Exception("Compiled TinyRisc did not halt by 20000 edges");
  }
+ static void BenchmarkCompiledCpu(ushort[] rom)
+ {
+  var m=TinyRisc.Build(rom,"BenchmarkTinyRisc");
+  var reference=m.Simulate();
+  var stopwatch=System.Diagnostics.Stopwatch.StartNew();
+  var jit=new CompiledSequentialSimulator(m);
+  stopwatch.Stop();var compileMs=stopwatch.Elapsed.TotalMilliseconds;
+  var ports=m.Ports.ToDictionary(p=>p.Name,p=>p);
+  void Input(Simulator a,CompiledSequentialSimulator b,string name,int value)
+  {a.Set(ports[name],value);b.Set(ports[name],value);}
+  reference.Tick(true);jit.Tick(true);
+  foreach(var p in new[]{"run","step","switches","rx_valid","rx_data"})
+    Input(reference,jit,p,p=="run"?1:0);
+  const int edges=10000;
+  // The benchmark deliberately repeats the halted CPU's steady-state clocks.
+  // It is a full circuit timing comparison, NOT 10k Hello World executions.
+  Input(reference,jit,"tx_ready",1);
+  for(int i=0;i<100;i++){reference.Tick();jit.Tick();}
+  var sw=System.Diagnostics.Stopwatch.StartNew();
+  for(int i=0;i<edges;i++)reference.Tick();
+  sw.Stop();double interpreted=sw.Elapsed.TotalSeconds;
+  sw.Restart();
+  for(int i=0;i<edges;i++)jit.Tick();
+  sw.Stop();double compiled=sw.Elapsed.TotalSeconds;
+  foreach(var p in ports.Values.Where(p=>p.IsOutput))
+    Check(reference.Read(p)==jit.Read((Expr)p),"CPU benchmark mismatch "+p.Name);
+  Console.WriteLine("BENCH TinyRisc steady-state: compiled "+(edges/compiled).ToString("F0")+
+    " edges/sec; interpreter "+(edges/interpreted).ToString("F0")+
+    " edges/sec; ratio "+(interpreted/compiled).ToString("F3")+
+    "x; JIT construction "+compileMs.ToString("F2")+" ms");
+ }
  static void Main(string[] args)
  {
   Directory.CreateDirectory("generated/tinyrisc");var demo=File.ReadAllLines("generated/tinyrisc/count.hex").Select(x=>Convert.ToUInt16(x,16)).ToArray();Run(demo,"CountRun");Run(demo,"CountStep",true);
   var hello=File.ReadAllLines("generated/tinyrisc/hello_world.hex").Select(x=>Convert.ToUInt16(x,16)).ToArray();Run(hello,"HelloWorld",expectedTx:"Hello, world!\r\n");
   if(args.Contains("--compiled-tinyrisc")) RunCompiledHello(hello);
+  if(args.Contains("--benchmark-compiled-tinyrisc")) BenchmarkCompiledCpu(hello);
   var random=new Random(93);var code=new System.Collections.Generic.List<ushort>();for(int i=1;i<8;i++)code.Add(I(8,i,0,random.Next(512)));for(int i=0;i<180;i++){int op=random.Next(9);code.Add(op<=6?I(op,random.Next(8),random.Next(8),random.Next(8)<<3):op==7?I(op,random.Next(8),random.Next(8),random.Next(64)):I(op,random.Next(8),0,random.Next(512)));}code.Add(0xf000);Run(code.ToArray(),"RandomAlu");
   Run(new[]{I(8,1,0,256),I(9,2,1,1),I(10,2,1,2),I(9,3,1,3),I(9,4,1,4),I(10,3,1,0),(ushort)0xf000},"PeripheralStalls",true);
   Run(new[]{I(8,1,0,3),I(13,1,1),I(8,2,0,99),I(0,3,1,0),(ushort)0xf000},"JumpAlias");
