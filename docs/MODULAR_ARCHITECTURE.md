@@ -107,3 +107,19 @@ compiler/scheduler, the Verilog backend, and broader memory/bus/multiclock
 semantics. The canonical evaluator is independent but not yet the default
 runtime. End-to-end test status must be checked against CI before closing
 issue #24.
+
+### TinyRisc16 end-to-end canonical-IR regression
+
+The unit suite now compiles the real `examples/TinyRisc/TinyRisc.cs`
+design and exports its full combinational, register, ROM and scratch-RAM
+cones into Core. The regression compares output ports against the legacy
+simulator over 60 clock edges with a NOP/NOP/HALT program. It applies
+register next-state values and RAM writes through the independent Core
+evaluator/transition APIs and uses actual ROM lookup and synchronous
+read-before-write semantics. This is a **differential verification path**,
+not yet a replacement for the production simulator.
+
+Run `make core-ir-verify` for the Core IR validation, arithmetic, memory
+and TinyRisc parity tests. The full xUnit workflow additionally checks
+Windows and Linux. Results for this newly added TinyRisc canonical test
+must be confirmed from the corresponding CI run before declaring acceptance.
