@@ -1,4 +1,7 @@
 name: SharpHDL xUnit tests
+concurrency:
+  group: sharphdl-xunit-${{ github.ref }}
+  cancel-in-progress: true
 on:
   push:
     paths: ['src/**', 'tests/SharpHDL.UnitTests/**', 'tests/check-project-layers.py', 'tests/rtl/tb_core_hls_elastic.sv', 'tools/SharpHDL.CoreHlsDemo/**', 'Makefile', '.github/workflows/xunit.yml']
