@@ -119,6 +119,8 @@ namespace SharpHDL
         public string Name { get; private set; }
         internal readonly List<Signal> Signals = new List<Signal>();
         internal readonly List<SynchronousRam> Memories = new List<SynchronousRam>();
+        internal readonly List<PipelineDataflowGraph> SourceGraphs = new List<PipelineDataflowGraph>();
+        internal readonly Dictionary<PipelineDataflowGraph,string> SourceGraphPrefixes = new Dictionary<PipelineDataflowGraph,string>();
         internal bool Frozen;
         public IEnumerable<Signal> Ports { get { return Signals.Where(s=>s.IsInput||s.IsOutput); } }
         // Prefix avoids HDL keywords while preserving readable generated names.
