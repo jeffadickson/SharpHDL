@@ -91,4 +91,34 @@ public sealed class CompiledSequentialTests
             }
         }
     }
+    [Fact]
+    public void Reused_operand_buffer_reflects_input_changes_and_atomic_register_commit()
+    {
+        var m = new Module("ReusableOperands");
+        var input = m.Input("input", 8);
+        var a = m.Register("a", 8, 2);
+        var b = m.Register("b", 8, 5);
+        var probe = m.Output("probe", 8);
+        m.Next(a, b + input);
+        m.Next(b, a);
+        m.Drive(probe, a + input);
+        var reference = m.Simulate();
+        var compiled = new CompiledSequentialSimulator(m);
+        reference.Tick(true);
+        compiled.Tick(true);
+        for (var i = 0; i < 100; i++)
+        {
+            var value = (i * 17) & 255;
+            reference.Set(input, value);
+            compiled.Set(input, value);
+            // Combinational reads must immediately reflect changed inputs.
+            Assert.Equal(reference.Read(probe), compiled.Read((Expr)probe));
+            reference.Tick();
+            compiled.Tick();
+            Assert.Equal(reference.Read(a), compiled.Read(a));
+            Assert.Equal(reference.Read(b), compiled.Read(b));
+            Assert.Equal(reference.Read(probe), compiled.Read((Expr)probe));
+        }
+    }
+
 }
