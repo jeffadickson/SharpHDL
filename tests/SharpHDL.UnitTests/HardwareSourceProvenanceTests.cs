@@ -61,4 +61,32 @@ public sealed class HardwareSourceProvenanceTests
             if(File.Exists(target+".source-map.json"))File.Delete(target+".source-map.json");
         }
     }
+    [HardwareProcess]
+    public static void MultiplyTwoPaths(HwStream<uint> input,HwStream<uint> output)
+    {
+        while(true)
+        {
+            uint x=input.Read();
+            uint a=x*7u;
+            uint b=x*x;
+            output.Write(a+b);
+        }
+    }
+
+    [Fact]
+    public void Hls_reports_multiplier_resource_and_timing_limitations()
+    {
+        var m=new Module("MultiplyResourceAdvisory");
+        var input=HwStream<uint>.Input(m,"in");
+        var output=HwStream<uint>.Output(m,"out");
+        var method=typeof(HardwareSourceProvenanceTests).GetMethod(nameof(MultiplyTwoPaths))!;
+        var pipeline=CilCompiler.AttachPipeline(m,"multiplier",method,input,output);
+        Assert.Equal(2,pipeline.Operations.Count(op=>op.Operation=="*"));
+        Assert.Contains("MULTIPLIER ADVISORY: 2",pipeline.Report);
+        Assert.Contains("TIMING WARNING: wide multiplication",pipeline.Report);
+        Assert.Contains("constant operand",pipeline.Report);
+        Assert.Contains("target synthesis/STA",pipeline.Report);
+        Assert.Contains("*",m.Verilog());
+    }
+
 }
