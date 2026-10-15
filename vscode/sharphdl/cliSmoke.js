@@ -19,7 +19,7 @@ for(const project of manifest.projects) {
   if(build.error)throw build.error;
   if(build.status!==0)throw new Error('Verilator build failed for '+project.id+': '+build.status);
   const binary=path.join(root,executablePath(project));
-  const run=spawnSync(binary,[],{cwd:root,stdio:'inherit',shell:false});
+  const run=spawnSync(binary,['+sharphdl_trace'],{cwd:root,stdio:'inherit',shell:false});
   if(run.error)throw run.error;
   if(run.status!==0)throw new Error('Verilator test failed for '+project.id+': '+run.status);
   console.log('PASS multi-file Verilator project: '+project.id);
