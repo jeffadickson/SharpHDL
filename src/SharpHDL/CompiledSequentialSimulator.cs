@@ -24,6 +24,9 @@ namespace SharpHDL
         readonly CompiledCombinational[] ramWriteData;
         readonly Dictionary<Signal, BigInteger> values = new();
         readonly Dictionary<Expr, CompiledCombinational> probes = new();
+        readonly BigInteger[] operandBuffer;
+        readonly BigInteger[] pendingBuffer;
+        readonly Dictionary<Signal,int> operandIndexes;
         bool initialized;
 
         public CompiledSequentialSimulator(Module module)
@@ -34,6 +37,9 @@ namespace SharpHDL
             foreach (var ram in rams) ramImages.Add(ram, (BigInteger[])ram.Initial.Clone());
             operands = module.Signals.Where(s => s.IsInput || s.Kind == "reg").ToArray();
             registers = module.Signals.Where(s => s.Kind == "reg").ToArray();
+            operandBuffer = new BigInteger[operands.Length];
+            pendingBuffer = new BigInteger[registers.Length];
+            operandIndexes = operands.Select((signal,index)=>(signal,index)).ToDictionary(x=>x.signal,x=>x.index);
             // CompiledCombinational explicitly rejects unsupported opcodes rather
             // than silently interpreting the original graph.
             next = registers.Select(s => new CompiledCombinational(module, s.Driver, true, ramImages)).ToArray();
@@ -49,6 +55,7 @@ namespace SharpHDL
                 throw new ArgumentException("Not a local input.", nameof(input));
             Expr.Const(input.Width, value);
             values[input] = value;
+            operandBuffer[operandIndexes[input]] = value;
         }
 
         public BigInteger Read(Signal signal)
@@ -73,14 +80,19 @@ namespace SharpHDL
                 evaluator = new CompiledCombinational(module, expression, true, ramImages);
                 probes.Add(expression, evaluator);
             }
-            return evaluator.Evaluate(operands.Select(s => values[s]).ToArray());
+            // Values in the operand buffer are refreshed on writes and clock commits.
+            return evaluator.EvaluateUnchecked(operandBuffer);
         }
 
         public void Tick(bool reset = false)
         {
             if (reset)
             {
-                foreach (var register in registers) values[register] = register.ResetValue;
+                foreach (var register in registers)
+                {
+                    values[register] = register.ResetValue;
+                    operandBuffer[operandIndexes[register]] = register.ResetValue;
+                }
                 initialized = true;
                 return;
             }
@@ -88,20 +100,25 @@ namespace SharpHDL
                 throw new InvalidOperationException("Reset before clocking compiled sequential hardware.");
             // The operand vector is snapshotted once before evaluating any D input.
             // This guarantees nonblocking-assignment/atomic clock-edge semantics.
-            var oldValues = operands.Select(s => values[s]).ToArray();
-            var pending = next.Select(d => d.Evaluate(oldValues)).ToArray();
+            var oldValues = operandBuffer;
+            for (var i = 0; i < next.Length; i++)
+                pendingBuffer[i] = next[i].EvaluateUnchecked(oldValues);
             var writes = new List<(SynchronousRam Ram, int Address, BigInteger Data)>();
             for (var i = 0; i < rams.Length; i++)
             {
-                if (ramEnables[i].Evaluate(oldValues).IsZero) continue;
-                var address = ramAddresses[i].Evaluate(oldValues);
+                if (ramEnables[i].EvaluateUnchecked(oldValues).IsZero) continue;
+                var address = ramAddresses[i].EvaluateUnchecked(oldValues);
                 if (address >= rams[i].Depth) continue;
-                writes.Add((rams[i], (int)address, ramWriteData[i].Evaluate(oldValues)));
+                writes.Add((rams[i], (int)address, ramWriteData[i].EvaluateUnchecked(oldValues)));
             }
             // Same contract as Simulator.Tick: reads and writes sample the old state;
             // RAM contents update before register commit, without affecting sampled D inputs.
             foreach (var write in writes) ramImages[write.Ram][write.Address] = write.Data;
-            for (var i = 0; i < registers.Length; i++) values[registers[i]] = pending[i];
+            for (var i = 0; i < registers.Length; i++)
+            {
+                values[registers[i]] = pendingBuffer[i];
+                operandBuffer[operandIndexes[registers[i]]] = pendingBuffer[i];
+            }
         }
     }
 }
