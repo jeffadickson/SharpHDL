@@ -13,6 +13,8 @@ on:
       - 'rtl/amd/**'
       - 'tests/rtl/tb_dsp48e2_mul.sv'
       - 'tools/SharpHDL.MultiplierBench/**'
+      - 'tools/SharpHDL.CoreHlsDemo/**'
+      - 'tests/rtl/tb_core_hls_elastic.sv'
       - 'tools/compare_multiplier_synthesis.py'
       - 'tools/SharpHDL.Provenance/**'
       - '.github/workflows/vscode-sharphdl.yml'
@@ -95,6 +97,13 @@ jobs:
             rtl/amd/sharphdl_dsp48e2_mul_unsigned.v \
             tests/rtl/tb_generated_direct_dsp.sv
           vvp build/dsp/tb_generated_direct_dsp
+      - name: Generate and verify independent Core IR elastic HLS RTL
+        run: |
+          dotnet run --project tools/SharpHDL.CoreHlsDemo/SharpHDL.CoreHlsDemo.csproj -c Release -- "$PWD"
+          verilator --binary --timing -Wno-fatal --top-module tb_core_hls_elastic \
+            --Mdir build/core-hls/obj \
+            generated/core-hls/CoreHlsElastic.v tests/rtl/tb_core_hls_elastic.sv
+          build/core-hls/obj/Vtb_core_hls_elastic
       - name: Generate actual CIL-to-RTL provenance
         run: |
           dotnet run --project tools/SharpHDL.Provenance/SharpHDL.Provenance.csproj -c Debug -- "$PWD"
