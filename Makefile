@@ -1,7 +1,7 @@
 # SharpHDL make compatibility entry point.
 # Docker + Python 3 are the only host prerequisites for automatic HDL/.NET provisioning.
 # Toolchain itself is installed in tools/Dockerfile.dev, never silently on host.
-.PHONY: help doctor setup setup-tools setup-and-hello tinyrisc-hello container-verify container-build container-test container-shell build test test-hdl simulate benchmark browser vscode verify clean
+.PHONY: help doctor setup setup-tools setup-and-hello tinyrisc-hello benchmark-simulator container-verify container-build container-test container-shell build test test-hdl simulate benchmark browser vscode verify clean
 
 IMAGE := sharphdl-dev:local
 DOCKER_RUN = docker run --rm -v "$(CURDIR):/workspace" -w /workspace $(IMAGE)
@@ -26,6 +26,9 @@ setup-and-hello: setup tinyrisc-hello
 
 tinyrisc-hello:
 	$(DOCKER_RUN) bash tools/run-tinyrisc-container.sh
+
+benchmark-simulator:
+	$(DOCKER_RUN) dotnet run --project tools/SharpHDL.SimulatorBench/SharpHDL.SimulatorBench.csproj -c Release -- 200000
 
 container-verify:
 	$(DOCKER_RUN) bash tools/container-smoke.sh
