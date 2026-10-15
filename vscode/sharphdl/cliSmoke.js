@@ -6,7 +6,8 @@ const fs=require('node:fs');
 const path=require('node:path');
 const {spawnSync}=require('node:child_process');
 const {parseProjectManifest,verilogArgs,executablePath}=require('./projectManifest');
-const {parseVcd}=require('./vcd');
+const {parseVcd,findSignals}=require('./vcd');
+const {parseSourceMap}=require('./projectManifest');
 const root=path.resolve(__dirname,'../..');
 const manifest=parseProjectManifest(fs.readFileSync(path.join(root,'sharphdl.project.json'),'utf8'));
 for(const project of manifest.projects) {
@@ -29,6 +30,14 @@ for(const project of manifest.projects) {
     const vcd=parseVcd(fs.readFileSync(target,'utf8'));
     if(!vcd.signals.length || vcd.duration<=0)throw new Error('Empty VCD trace: '+file);
     console.log('PASS waveform '+file+' ('+vcd.signals.length+' signals, '+vcd.duration+' ticks)');
+    if(project.sourceMap) {
+      const mapFile=path.join(root,project.sourceMap);
+      const mappings=parseSourceMap(fs.readFileSync(mapFile,'utf8'));
+      const expected=[...new Set(mappings.flatMap(m=>m.signals))];
+      const found=findSignals(vcd,expected);
+      console.log('HLS cross-probe signal coverage: '+found.length+'/'+expected.length);
+      if(!found.length)throw new Error('No mapped HLS net survives in Verilator VCD; source cross-probing is not verified');
+    }
   }
   console.log('PASS multi-file Verilator project: '+project.id);
 }
