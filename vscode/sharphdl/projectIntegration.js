@@ -3,6 +3,7 @@ const vscode=require('vscode');
 const path=require('node:path');
 const {parseProjectManifest,parseSourceMap,mappedLocation,relativePath,verilogArgs,executablePath}=require('./projectManifest');
 const MANIFEST='sharphdl.project.json';
+const {showWaveforms}=require('./waveformViewer');
 async function exists(uri) {try{await vscode.workspace.fs.stat(uri);return true;}catch{return false;}}
 async function discover() {
   const projects=[];
@@ -157,7 +158,7 @@ class ProjectExplorer {
         node.command={command:'sharphdl.generateProvenance',title:'Generate provenance'};
         actions.push(node);
       }
-      for(const [label,command] of [['Build Verilator design','sharphdl.buildDesign'],...(entry.project.runnable===false?[]:[['Run Verilator test','sharphdl.runDesign']]),['Go to mapped source / RTL','sharphdl.jumpToMapped'],['Find waveform signals','sharphdl.showMappedSignals']]){
+      for(const [label,command] of [['Build Verilator design','sharphdl.buildDesign'],...(entry.project.runnable===false?[]:[['Run Verilator test','sharphdl.runDesign']]),['Go to mapped source / RTL','sharphdl.jumpToMapped'],['Find waveform signals','sharphdl.showMappedSignals'],['Open waveform cross-probe','sharphdl.openWaveforms']]){
         const node=new vscode.TreeItem(label);
         node.iconPath=new vscode.ThemeIcon(command==='sharphdl.jumpToMapped'?'go-to-file':'play');
         node.command={title:label,command,arguments:[entry]};
@@ -192,6 +193,7 @@ function registerProjectIntegration(context) {
     vscode.commands.registerCommand('sharphdl.runDesign',entry=>invoke(runProject,entry)),
     vscode.commands.registerCommand('sharphdl.jumpToMapped',entry=>invoke(jumpToMapped,entry)),
     vscode.commands.registerCommand('sharphdl.showMappedSignals',entry=>invoke(showMappedSignals,entry)),
+    vscode.commands.registerCommand('sharphdl.openWaveforms',entry=>invoke(showWaveforms,entry)),
     vscode.commands.registerCommand('sharphdl.refreshProjects',()=>explorer.refresh()),
     vscode.commands.registerCommand('sharphdl.generateProvenance',async()=>{
       const folder=(vscode.workspace.workspaceFolders||[])[0];
