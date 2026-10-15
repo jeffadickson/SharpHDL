@@ -123,3 +123,22 @@ Run `make core-ir-verify` for the Core IR validation, arithmetic, memory
 and TinyRisc parity tests. The full xUnit workflow additionally checks
 Windows and Linux. Results for this newly added TinyRisc canonical test
 must be confirmed from the corresponding CI run before declaring acceptance.
+
+### Clocked canonical simulation engine
+
+`SharpHDL.Simulation.HardwareGraphMachine` now executes a complete
+two-state clock step directly from Core IR. It owns external input values,
+register state and immutable RAM snapshots; `Tick()` evaluates all
+combinational cones from pre-edge state and atomically commits register
+next-state and RAM writes. `Reset()` resets registers without erasing
+RAM cells, as in the original simulator. `ReadOutput()`,
+`ReadRegister()` and `SetInput()` expose a minimal independent runtime.
+
+A new 120-cycle RAM/register differential regression compares this clocked
+machine against the original `Module.Simulate()` implementation, including
+read-before-write and RAM retention across reset. The compatibility
+`Module` still performs the initial lowering, but the new clocked
+execution itself has **no reference to legacy Module or HLS**. This is
+the first independently usable sequential simulation engine in the
+Simulation assembly. Multiclock, four-state, waveform and rewind behavior
+remain on the legacy path pending migration.
