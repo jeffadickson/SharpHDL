@@ -1,4 +1,7 @@
 name: SharpHDL VS Code adapter
+concurrency:
+  group: sharphdl-vscode-${{ github.ref }}
+  cancel-in-progress: true
 on:
   push:
     paths:
