@@ -3,4 +3,8 @@
   <ItemGroup><ProjectReference Include="../SharpHDL.Core/SharpHDL.Core.csproj" />
     <ProjectReference Include="../SharpHDL.Simulation/SharpHDL.Simulation.csproj" />
     <ProjectReference Include="../SharpHDL.HLS/SharpHDL.HLS.csproj" /></ItemGroup>
+  <ItemGroup>
+    <!-- Legacy backend remains source-linked into the compatibility assembly; no dependency cycle. -->
+    <Compile Include="../SharpHDL.LegacyRtl/LegacyVerilogWriter.cs" Link="LegacyRtl/LegacyVerilogWriter.cs" />
+  </ItemGroup>
 </Project>
