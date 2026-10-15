@@ -26,7 +26,7 @@ async function showWaveforms(entry,sourceSignals=[]) {
   if(bytes.length>MAX_BYTES)throw new Error('VCD exceeds 12 MiB viewer limit');
   const vcd=parseVcd(Buffer.from(bytes).toString('utf8'));
   const relevant=findSignals(vcd,sourceSignals);
-  const clocks=vcd.signals.filter(s=>s.width===1 && /(?:^|\\.)(clk|clock)$/i.test(s.name));
+  const clocks=vcd.signals.filter(s=>s.width===1 && /(?:^|\.)(clk|clock)$/i.test(s.name));
   const selected=relevant.length?[...new Set([...clocks,...relevant])]:vcd.signals.slice(0,24);
   const panel=vscode.window.createWebviewPanel('sharphdl.waveforms','SharpHDL Waveforms — '+project.label,
     vscode.ViewColumn.Beside,{enableScripts:true,retainContextWhenHidden:true});
