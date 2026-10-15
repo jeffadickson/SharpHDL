@@ -66,29 +66,36 @@ namespace SharpHDL
             operandBuffer[operandIndexes[input]] = value;
         }
 
+        /// <summary>Read a local input, register or output signal. Combinational
+        /// output evaluation uses the same compiled backend as Read(Expr).</summary>
         public BigInteger Read(Signal signal)
         {
-            if (signal == null || signal.Owner != module ||
-                !(signal.IsInput || signal.Kind == "reg"))
-                throw new ArgumentException("Read accepts local inputs or registers only.", nameof(signal));
-            if (!values.TryGetValue(signal, out var value))
-                throw new InvalidOperationException("Reset before reading registers.");
-            return value;
+            if (signal == null) throw new ArgumentNullException(nameof(signal));
+            if (signal.Owner != module)
+                throw new ArgumentException("Signal belongs to another module.", nameof(signal));
+            if (signal.IsInput || signal.Kind == "reg")
+            {
+                if (!values.TryGetValue(signal, out var value))
+                    throw new InvalidOperationException("Reset before reading registers.");
+                return value;
+            }
+            return Read((Expr)signal);
         }
 
-        /// <summary>Read any local hardware expression (including output ports)
-        /// using compiled combinational logic over the current register/input state.</summary>
+        /// <summary>Evaluate a local signal or expression, including output ports.
+        /// The compiled cone reads current registers, inputs and RAM.</summary>
         public BigInteger Read(Expr expression)
         {
-            if (expression is Signal s && (s.IsInput || s.Kind == "reg")) return Read(s);
             if (expression == null) throw new ArgumentNullException(nameof(expression));
-            if (!initialized) throw new InvalidOperationException("Reset before reading compiled hardware outputs.");
+            if (expression is Signal s && (s.IsInput || s.Kind == "reg"))
+                return Read(s);
+            if (!initialized)
+                throw new InvalidOperationException("Reset before reading compiled hardware outputs.");
             if (!probes.TryGetValue(expression, out var evaluator))
             {
                 evaluator = new CompiledCombinational(module, expression, true, ramImages);
                 probes.Add(expression, evaluator);
             }
-            // Values in the operand buffer are refreshed on writes and clock commits.
             return evaluator.EvaluateUnchecked(operandBuffer);
         }
 
