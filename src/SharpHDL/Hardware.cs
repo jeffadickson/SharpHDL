@@ -353,9 +353,7 @@ namespace SharpHDL
                 case "memory": rhs="mem_"+e.Memory.Name+"["+args[0]+"]"; break;
                 case "lookup":
                     declarations.AppendLine("// "+Meaning(e));
-            if(e.Op=="*" && e.MultiplierHint=="yes")
-                declarations.AppendLine("(* use_dsp = \"yes\" *)");
-            declarations.AppendLine("wire "+Range(e.Width)+name+";");
+                    declarations.AppendLine("wire "+Range(e.Width)+name+";");
                     declarations.AppendLine("function "+Range(e.Width)+"rom_"+name+";");
                     declarations.AppendLine("  input "+Range(e.Args[0].Width)+"address;");
                     declarations.AppendLine("  begin\n    case (address)");
@@ -373,7 +371,9 @@ namespace SharpHDL
             }
             // Each node gets its own sized wire: preserve intermediate truncation.
             declarations.AppendLine("// "+Meaning(e));
-                    declarations.AppendLine("wire "+Range(e.Width)+name+";");
+            if(e.Op=="*" && e.MultiplierHint=="yes")
+                declarations.AppendLine("(* use_dsp = \"yes\" *)");
+            declarations.AppendLine("wire "+Range(e.Width)+name+";");
             assignments.AppendLine("assign "+name+" = "+rhs+";");
             return name;
         }
