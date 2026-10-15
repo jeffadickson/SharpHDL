@@ -39,7 +39,7 @@ public sealed class CoreVerilogEmitterTests
     }
 
     [Fact]
-    public void Native_backend_rejects_memory_instead_of_miscompiling()
+    public void Native_backend_rejects_missing_memory_metadata_instead_of_miscompiling()
     {
         var m=new Module("NativeMemoryReject");
         var addr=m.Input("addr",2);
@@ -50,7 +50,7 @@ public sealed class CoreVerilogEmitterTests
         var result=m.Output("result",8);
         m.Drive(result,ram.ReadData);
         var export=m.ExportCoreGraph();
-        Assert.Throws<NotSupportedException>(()=>
+        Assert.Throws<ArgumentException>(()=>
             CoreVerilogEmitter.Emit(export.Graph,export.Inputs,export.Outputs,
                 export.NextState,export.ResetValues,"NativeMemoryReject"));
     }
