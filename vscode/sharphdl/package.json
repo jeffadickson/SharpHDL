@@ -161,7 +161,7 @@
           "${workspaceFolder}"
         ],
         "pattern": {
-          "regexp": "^%(Error|Warning(?:-[A-Za-z0-9_-]+)?):\\\\s+(.+?):(\\\\d+):(\\\\d+):\\\\s*(.*)$",
+          "regexp": "^%(Error|Warning(?:-[A-Za-z0-9_-]+)?):\\s+(.+?):(\\d+):(\\d+):\\s*(.*)$",
           "severity": 1,
           "file": 2,
           "line": 3,
