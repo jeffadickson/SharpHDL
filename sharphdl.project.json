@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "projects": [
+    {
+      "id": "tinyRiscUart",
+      "label": "TinyRisc16 — Hello World UART",
+      "top": "tb_tinyrisc_uart",
+      "sources": [
+        "generated/tinyrisc/HelloWorld.v",
+        "examples/TinyRisc/hello_uart_top.v",
+        "examples/TinyRisc/hello_uart_tb.v"
+      ],
+      "outputDir": "build/tinyrisc/verilator_vscode",
+      "waveforms": []
+    }
+  ]
+}
