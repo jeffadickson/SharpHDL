@@ -25,12 +25,12 @@ From the repository root:
 make vscode
 ```
 
-This target first executes the Node.js parser/manifest tests, then downloads the official Node 22 Docker image if necessary, runs the pinned VS Code extension packaging tool, and writes `dist/sharphdl-0.4.0.vsix`. Host Node/npm installation is not required.
+This target first executes the Node.js parser/manifest tests, then downloads the official Node 22 Docker image if necessary, runs the pinned VS Code extension packaging tool, and writes `dist/sharphdl-0.5.0.vsix`. Host Node/npm installation is not required.
 
 Install the resulting extension using **VS Code → Extensions → ... → Install from VSIX**, selecting that file. Alternatively, when the `code` CLI is available:
 
 ```sh
-code --install-extension dist/sharphdl-0.4.0.vsix
+code --install-extension dist/sharphdl-0.5.0.vsix
 code .
 ```
 
@@ -119,3 +119,11 @@ Open `examples/ScheduledPipeline.cs` and position the cursor on a mapped arithme
 Select **Find waveform signals** in the project tree while the cursor is on a mapped C# or Verilog line. The extension lists the generated signal names, and copies the selected signal to the clipboard for use in a VCD/FST viewer's signal search. This is a signal-name correlation, not automatic waveform selection or time cursor synchronization. Verilator waveforms require an instrumented testbench that emits a trace; the example's RTL-only project intentionally does not offer a Run Test action.
 
 For a different HLS project, call `HardwareSourceProvenance.Write(module, rtlPath, workspaceRoot)` after `CilCompiler.AttachPipeline` and register the generated sidecar in the project manifest's `sourceMap` property. This API currently maps supported CIL scheduled pipeline operations; general structural C# code has no inherent one-to-one hardware source line.
+
+## 7. Waveform cross-probing and hardware breakpoints (v0.5)
+
+After running a trace-producing Verilator testbench, expand the design in **SharpHDL Projects** and select **Open waveform cross-probe**. The integrated viewer reads VCD traces up to 12 MiB, displays digital signals and a timestamp slider, and can navigate by the index of captured rising clock edges. **VCD ticks are not automatically equivalent to clock cycles.** Clicking a signal name opens its exact mapped C# source line when the compiler emitted provenance for that net. FST files continue to open in a registered external viewer; the built-in timeline supports VCD only. Large VCD traces should use a dedicated waveform viewer.
+
+To stop the localhost reference simulator at a hardware condition, run **SharpHDL: Add Hardware Condition Breakpoint** in the Command Palette. Select a cycle threshold, output-valid/ready/stall signal, or an occupied pipeline stage. Start the SharpHDL debug session, then press Continue (F5). The adapter advances clock edges until a post-edge condition matches, Pause is requested, or the 10,000-edge safety limit is reached. Use **SharpHDL: Clear Hardware Breakpoints** to remove conditions. These are **post-edge sampled conditions on the fixed localhost pipeline**, not C# source breakpoints and not Verilator breakpoints. They use the adapter's default input pattern (valid=false, ready=true) until the live debugger supports configurable stimulus.
+
+The integrated VCD viewer is independent of the live reference simulator. It does not automatically synchronize Verilator's simulation timestamp with a live DAP cycle. Cross-probing to C# is based on compiler-emitted signal provenance; the waveform must contain the relevant net. The extension-host test workflow covers command registration across operating systems; interactive waveform UI still requires manual verification.
