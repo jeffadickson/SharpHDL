@@ -9,7 +9,11 @@ module tb_core_hls_elastic;
   wire [15:0] output_data;
   reg [15:0] expected[0:2047];
   integer head=0,tail=0,accepted=0,completed=0,cycle;
+`ifdef CORE_HLS_NATIVE
+  h_CoreHlsElasticNative dut(
+`else
   h_CoreHlsElastic dut(
+`endif
     .clk(clk),.rst(rst),
     .s_hls_input_data(input_data),.s_hls_input_valid(input_valid),
     .s_hls_input_ready(input_ready),.s_hls_output_data(output_data),
