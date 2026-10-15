@@ -30,7 +30,7 @@ namespace SharpHDL
             IReadOnlyDictionary<SynchronousRam, BigInteger[]>? memoryImages, bool vector)
         {
             if (module == null) throw new ArgumentNullException(nameof(module));
-            if (outputs == null || outputs.Length == 0 || outputs.Any(x => x == null))
+            if (outputs == null || (!vector && outputs.Length == 0) || outputs.Any(x => x == null))
                 throw new ArgumentException("At least one non-null expression is required.", nameof(outputs));
             module.Validate();
             inputs = module.Signals.Where(x => x.IsInput || (includeRegisters && x.Kind == "reg")).ToArray();
@@ -141,7 +141,7 @@ namespace SharpHDL
                 var assigns = outputs.Select((node, i) => (Expression)Expression.Assign(
                     Expression.ArrayAccess(target, Expression.Constant(i)), Build(node))).ToArray();
                 evaluatorVector = Expression.Lambda<Action<BigInteger[], BigInteger[]>>(
-                    Expression.Block(assigns), values, target).Compile();
+                    Expression.Block(assigns.Concat(new Expression[] { Expression.Empty() })), values, target).Compile();
             }
             else
                 evaluator = Expression.Lambda<Func<BigInteger[], BigInteger>>(Build(outputs[0]), values).Compile();
