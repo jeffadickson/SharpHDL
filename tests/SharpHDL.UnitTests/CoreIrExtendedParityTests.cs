@@ -97,7 +97,7 @@ public sealed class CoreIrExtendedParityTests
         var graph=m.ExportCoreGraph();
         var sim=m.Simulate();
         sim.Tick(true);
-        var words=graph.Memories["ram"].Initial.ToArray();
+        IReadOnlyList<BigInteger> words=graph.Memories["ram"].Initial;
         var port=graph.Memories["ram"];
         var rng=new Random(783);
         for(int edge=0;edge<180;edge++)
@@ -118,13 +118,10 @@ public sealed class CoreIrExtendedParityTests
             var values=HardwareGraphEvaluator.Evaluate(graph.Graph,inputs,memory);
             Assert.Equal(sim.Read(output),values[graph.Outputs["result"]]);
             var next=values[graph.NextState["ram_read_data"]];
-            var writeAddr=values[port.AddressNode];
-            var writeEnable=values[port.WriteEnableNode];
-            var writeData=values[port.WriteDataNode];
+            var after=HardwareMemoryTransitions.Commit(graph.Graph,graph.Memories,memory,values);
             sim.Tick();
             Assert.Equal(next,sim.Read(ram.ReadData));
-            if(writeEnable!=0 && writeAddr<words.Length)
-                words[(int)writeAddr]=writeData;
+            words=after["ram"];
         }
         Assert.Throws<ArgumentException>(()=>HardwareGraphEvaluator.Evaluate(
             graph.Graph,new Dictionary<int,BigInteger>(),null));
