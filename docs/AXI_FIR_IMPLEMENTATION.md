@@ -81,3 +81,38 @@ It is not evidence of AXI protocol qualification until CI confirms the test.
 ```bash
 dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --filter "FullyQualifiedName~AxiFir"
 ```
+
+
+## Atomic coefficient bank (double-buffered)
+
+`AxiFirStructural.BuildWithAtomicAxiLite()` is a separate variant, so the
+original direct-register API remains compatible. The AXI4-Lite map is:
+
+| Offset | Name | Access | Reset | Meaning |
+|---|---|---|---|---|
+| 0x00 | staging0 | R/W | 1 | Tap 0 staging coefficient, bits 15:0 |
+| 0x04 | staging1 | R/W | 0 | Tap 1 staging coefficient |
+| 0x08 | staging2 | R/W | 0 | Tap 2 staging coefficient |
+| 0x0C | staging3 | R/W | 0 | Tap 3 staging coefficient |
+| 0x10 | apply | W/R | 0 | Any committed write with nonzero WSTRB triggers APPLY; written data ignored |
+| 0x20 | active0 | R/O | 1 | Active tap 0 coefficient |
+| 0x24 | active1 | R/O | 0 | Active tap 1 coefficient |
+| 0x28 | active2 | R/O | 0 | Active tap 2 coefficient |
+| 0x2C | active3 | R/O | 0 | Active tap 3 coefficient |
+
+Software writes all staging words, waits for their AXI write responses,
+then writes APPLY. On APPLY's write-commit edge all active taps capture
+the pre-edge staging values simultaneously. An input accepted on that same
+edge uses the old active bank; later accepted inputs use the new bank.
+An output already in flight never changes. Partial writes to staging
+honor AXI WSTRB, and a zero-strobe APPLY is ignored.
+
+The hardware does not clear sample history on APPLY. To change coefficients
+at a packet boundary, software must coordinate stream acceptance with
+the APPLY operation; an explicit TLAST-triggered commit policy is not yet
+implemented.
+
+**Verification:** the atomic-register regression test covers staging
+isolation, zero-strobe APPLY, readback, sample arithmetic, and reset.
+The new variant is not yet included in the standalone generated-Verilog
+replay job, which currently targets `Build()`.
