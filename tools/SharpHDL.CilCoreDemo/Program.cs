@@ -24,7 +24,7 @@ public static class Program
         var output=HwStream<uint>.Output(module,"out");
         var method=typeof(Program).GetMethod(nameof(Transform))!;
         var pipeline=CilCompiler.AttachPipeline(module,"core",method,input,output,
-            new PipelineOptions{UseCoreCompiler=true,LogicLevelsPerStage=3,MaxStages=64});
+            new PipelineOptions{UseCoreCompiler=true,LogicLevelsPerStage=1,MaxStages=64});
         File.WriteAllText(Path.Combine(dir,"CilCoreLegacy.v"),module.Verilog());
         var core=module.ExportCoreGraph();
         File.WriteAllText(Path.Combine(dir,"CilCoreNative.v"),
