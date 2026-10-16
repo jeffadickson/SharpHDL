@@ -51,7 +51,7 @@ public static class AxiFirRam
 
         // One shared address: write the incoming sample at HEAD, then read
         // preceding entries using the incremented HEAD on subsequent clocks.
-        var readAddress=head-tap.Resize(4);
+        var readAddress=head-(tap.Resize(4)+Expr.Const(4,1));
         var address=Expr.Mux(accept,head,readAddress);
         var readEnable=issue & ~count.Lt(tap);
         var ram=SynchronousRam.Create(m,"fir_history",16,16,address,
@@ -60,12 +60,10 @@ public static class AxiFirRam
         var selected=Expr.Mux(tap.Eq(Expr.Const(2,1)),latched[1],
             Expr.Mux(tap.Eq(Expr.Const(2,2)),latched[2],latched[3]));
         var history=Expr.Mux(~count.Lt(tap),ram.ReadData,Expr.Const(16,0));
-        m.NextWhen(result,accept,input.Data*coefficients[0]);
-        // The accumulator must have one driver; add the later tap updates
-        // using the same combined enable and mux expression.
-        // See the single assignment below (replaces the initial write).
+        m.Next(result,Expr.Mux(accept,input.Data*coefficients[0],
+            Expr.Mux(accumulate,result+history*selected,result)));
         m.NextWhen(head,accept,head+Expr.Const(4,1));
-        m.NextWhen(count,accept,Expr.Mux(count.Eq(Expr.Const(2,3)),
+        m.NextWhen(count,retire,Expr.Mux(count.Eq(Expr.Const(2,3)),
             count,count+Expr.Const(2,1)));
         m.Next(tap,Expr.Mux(accept,Expr.Const(2,1),
             Expr.Mux(accumulate & ~finalTap,tap+Expr.Const(2,1),tap)));
