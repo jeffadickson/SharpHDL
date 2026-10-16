@@ -8,6 +8,22 @@ namespace SharpHDL.UnitTests;
 /// <summary>Cycle-level acceptance of the structural AXI FIR against an independent oracle.</summary>
 public sealed class AxiFirStructuralTests
 {
+    /// <summary>Protect the public AXI4-Stream signal naming and widths.</summary>
+    [Fact]
+    public void Structural_fir_exposes_standard_axi_stream_ports()
+    {
+        var ports=AxiFirStructural.Build().Ports.ToDictionary(p=>p.Name,p=>p);
+        foreach(var prefix in new[]{"s_axis","m_axis"})
+        {
+            Assert.Equal(16,ports[prefix+"_tdata"].Width);
+            Assert.Equal(2,ports[prefix+"_tkeep"].Width);
+            Assert.Equal(8,ports[prefix+"_tuser"].Width);
+            Assert.Equal(1,ports[prefix+"_tvalid"].Width);
+            Assert.Equal(1,ports[prefix+"_tready"].Width);
+            Assert.Equal(1,ports[prefix+"_tlast"].Width);
+        }
+    }
+
     /// <summary>Check output transactions and sidebands through randomized AXI stalls.</summary>
     [Fact]
     public void Structural_fir_matches_reference_on_accepted_axi_transfers()
