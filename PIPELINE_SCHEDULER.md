@@ -469,3 +469,20 @@ Core IR → elastic pipeline → legacy/native RTL comparison.
 The testbench checks a software arithmetic oracle, randomized
 backpressure, token ordering, pipeline drain and reset flushing.
 Run `make core-ir-verify` for the CIL Core unit tests.
+
+### Executed Core CIL acceptance
+
+[GitHub Actions run 38828218303](https://github.com/jeffadickson/SharpHDL/actions/runs/38828218303)
+verified a **three-stage** pipeline generated from a real C#
+`HwStream<uint>` method. Both the preserved legacy RTL emitter
+and the native Core RTL emitter passed Verilator with **370/370**
+accepted/completed tokens, software-oracle arithmetic, randomized
+backpressure, full drain and stalled-reset flushing. The generated
+design reports latency 3, II=1 and 128 payload register bits.
+Linux xUnit and independent assembly layering also passed, including
+the expanded multistage arithmetic/branch CIL tests. Windows xUnit
+was still running at the last check.
+
+This verifies the supported stateless stream pipeline. It does not
+establish formal equivalence across all CIL programs, nor does it
+provide a timing guarantee or multicycle feedback scheduling.
