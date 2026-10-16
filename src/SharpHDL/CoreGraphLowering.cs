@@ -134,7 +134,7 @@ namespace SharpHDL
             foreach(var ram in module.Memories)
                 memories.Add(ram.Name,new HardwareMemoryPort(ram.Name,ram.Width,
                     Visit(ram.Address),Visit(ram.WriteEnable),Visit(ram.WriteData),ram.Initial));
-            return new CoreGraphExport(new HardwareGraph(nodes),inputs,outputs,next,reset,memories);
+            return new CoreGraphExport(new HardwareGraph(nodes,inputs.Where(pair=>reset.ContainsKey(pair.Key)).Select(pair=>pair.Value)),inputs,outputs,next,reset,memories);
         }
     }
 }
