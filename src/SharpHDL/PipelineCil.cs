@@ -18,7 +18,10 @@ namespace SharpHDL
             if(selected==MultiplierImplementation.Auto && directive!=null)
                 selected=directive.Implementation;
             var lowered=MultiplierLowering.Lower(program.Value,selected);
-            var handle=PipelineScheduler.Attach(m,name,input,output,lowered,options);
+            var handle=options!=null && options.UseCoreCompiler
+                ? AttachCorePipeline(m,name,method,input,output,lowered,options,selected)
+                : PipelineScheduler.Attach(m,name,input,output,lowered,options);
+            if(options==null || !options.UseCoreCompiler)
             handle.Report+="Multiplier implementation: "+selected+
                 (selected==MultiplierImplementation.DspPreferred?
                  " (use_dsp preference only; actual mapping is synthesis-dependent).":
