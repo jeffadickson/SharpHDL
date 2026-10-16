@@ -304,3 +304,38 @@ Run `make tinyrisc-hello` to exercise both backends, including
 UART and Yosys checks. The legacy emitter is retained as an oracle.
 Direct DSP48E2, multiport memories and broader backend capabilities
 remain for further migration.
+
+## 2026-10-15 — production CIL frontend connected to Core elastic HLS
+
+The existing `CilCompiler.AttachPipeline` now accepts
+`new PipelineOptions { UseCoreCompiler = true }`. The **same**
+production CIL decoder parses `HwStream<T>.Read/Write`, branches,
+fixed-width arithmetic and C# loop structure, then lowers the
+resulting token expression using `CoreTokenLowering` directly into
+canonical `HardwareGraph`. No temporary Module output is added.
+
+`SharpHDL.HLS.HlsElasticCompiler` creates actual registered
+ready/valid hardware with stalls, token ordering and II=1.
+`CorePipelineAttach` binds its register/next-state graph into the
+original Module's existing stream ports, while preserving the
+`PipelineHandle`, operation graph and source-map annotation path.
+The legacy `PipelineScheduler` remains available as the default
+until full CIL compatibility qualification. No silent fallback is
+performed if Core compilation rejects an unsupported feature.
+
+The initial Core CIL mode deliberately rejects DSP-preference hints
+that cannot be preserved and remains stateless, single-input,
+single-output and II=1. This is a real production-frontend integration,
+not yet a replacement for feedback, multicycle resource sharing or
+every legacy scheduler feature. Stage costs are abstract operation
+counts, not physical timing.
+
+`tools/SharpHDL.CilCoreDemo` generates legacy and native Core RTL
+from an actual C# `while(true)` stream method, and
+`tests/rtl/tb_cil_core.sv` checks both against a software arithmetic
+oracle with randomized backpressure, drain and stalled reset.
+Run `make cil-core-verilator` or the `cil-core-verilator` CI job.
+The C# xUnit suite additionally checks real CIL arithmetic and
+conditional-branch pipelines across 900 simulated clock cycles.
+The CI results for these new tests must pass before this milestone
+is declared verified.
