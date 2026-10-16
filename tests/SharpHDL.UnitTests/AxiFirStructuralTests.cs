@@ -52,4 +52,34 @@ public sealed class AxiFirStructuralTests
         Assert.True(completed > 100);
         Assert.Contains("module", module.Verilog());
     }
+    /// <summary>Verify reset removes a blocked output and clears FIR history.</summary>
+    [Fact]
+    public void Reset_during_output_stall_discards_old_sample_and_history()
+    {
+        var module=AxiFirStructural.Build();
+        var sim=module.Simulate();
+        var ports=module.Ports.ToDictionary(p=>p.Name,p=>p);
+        void Set(string name,int value)=>sim.Set(ports[name],value);
+        int Read(string name)=>(int)sim.Read(ports[name]);
+        sim.Tick(true);
+        for(int i=0;i<4;i++)Set("coefficient"+i,i+1);
+        Set("m_axis_ready",0);
+        Set("s_axis_valid",1);
+        Set("s_axis_data",123);
+        Set("s_axis_keep",3);
+        Set("s_axis_last",1);
+        Set("s_axis_user",0);
+        sim.Tick();
+        Assert.Equal(1,Read("m_axis_valid"));
+        Assert.Equal(123,Read("m_axis_data"));
+        sim.Tick(true);
+        Assert.Equal(0,Read("m_axis_valid"));
+        Set("s_axis_valid",1);
+        Set("s_axis_data",7);
+        Set("s_axis_last",0);
+        sim.Tick();
+        Assert.Equal(1,Read("m_axis_valid"));
+        Assert.Equal(7,Read("m_axis_data"));
+    }
+
 }
