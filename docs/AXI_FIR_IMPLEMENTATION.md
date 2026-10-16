@@ -146,3 +146,34 @@ that interval. It does **not** claim II=1.
 AXI backpressure, circular-address wraparound, and transaction counting.
 The test and design must pass CI before this implementation is considered
 verified. Generated-Verilog replay for this RAM variant is still pending.
+
+
+## HLS cycle-aware scheduling milestone
+
+The independent `SharpHDL.HLS.HlsSinglePortFirPlanner` now produces a
+resource-constrained schedule for 1–256 FIR taps using one synchronous RAM
+port. Unlike `HlsGraphAnalyzer`'s abstract operator weights, each step
+is a **real clock offset**:
+
+| Cycle (four taps) | Action |
+|---|---|
+| 0 | Accept sample and write it to RAM; compute tap 0 |
+| 1 | Issue RAM read for tap 1 |
+| 2 | Accumulate registered tap 1 data |
+| 3 | Issue RAM read for tap 2 |
+| 4 | Accumulate tap 2 |
+| 5 | Issue RAM read for tap 3 |
+| 6 | Accumulate tap 3 |
+| 7 | Offer output and wait for AXI handshake |
+
+For N taps the no-stall initiation interval is `2*N` cycles, with
+output-valid offered in cycle `2*N-1`. The planner guarantees no
+same-cycle contention for the one RAM port. Output backpressure extends
+the interval without losing transactions.
+
+**Scope:** This is a validated *schedule description*, not yet a
+Core IR state-machine emitter. The structural `AxiFirRam.Build()`
+implements the four-tap case. The next step is to consume the schedule
+and generate the controller automatically, then compare its Core IR RTL
+against the verified structural reference. Timing closure and DSP
+resource allocation remain separate work.
