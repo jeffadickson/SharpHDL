@@ -13,8 +13,10 @@ public sealed class HardwareGraph
     public const int CurrentSchemaVersion = 1;
     public int SchemaVersion => CurrentSchemaVersion;
     public IReadOnlyList<HardwareNode> Nodes { get; }
+    /// <summary>IDs of input-shaped nodes that represent pre-edge register state.</summary>
+    public IReadOnlySet<int> StateInputNodeIds { get; }
 
-    public HardwareGraph(IEnumerable<HardwareNode> nodes)
+    public HardwareGraph(IEnumerable<HardwareNode> nodes,IEnumerable<int>? stateInputNodeIds=null)
     {
         if (nodes == null) throw new ArgumentNullException(nameof(nodes));
         var list = nodes.ToArray();
@@ -94,6 +96,10 @@ public sealed class HardwareGraph
             }
             known.Add(node.Id, node);
         }
+        var stateIds=(stateInputNodeIds ?? Array.Empty<int>()).ToHashSet();
+        if(stateIds.Any(id=>!known.TryGetValue(id,out var n) || n.Operation!=HardwareOperation.Input))
+            throw new ArgumentException("State boundaries must reference existing input nodes.",nameof(stateInputNodeIds));
+        StateInputNodeIds=new System.Collections.ObjectModel.ReadOnlySet<int>(stateIds);
         Nodes = Array.AsReadOnly(list.Select(n =>
             n with { Operands = Array.AsReadOnly(n.Operands.ToArray()),
                 Table = n.Table == null ? null : Array.AsReadOnly(n.Table.ToArray()) }).ToArray());
