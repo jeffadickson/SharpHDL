@@ -13,5 +13,5 @@
     <PackageReference Include="NSubstitute" Version="5.3.0" />
   </ItemGroup>
   <ItemGroup><ProjectReference Include="../../src/SharpHDL/SharpHDL.csproj" /><ProjectReference Include="../../src/SharpHDL.Core/SharpHDL.Core.csproj" /><ProjectReference Include="../../src/SharpHDL.Simulation/SharpHDL.Simulation.csproj" /><ProjectReference Include="../../src/SharpHDL.HLS/SharpHDL.HLS.csproj" /><ProjectReference Include="../../src/SharpHDL.RTL/SharpHDL.RTL.csproj" /></ItemGroup>
-  <ItemGroup><Compile Include="../../examples/TinyRisc/TinyRisc.cs" Link="TinyRisc.cs" /><Compile Include="../../examples/AxiFirReference.cs" Link="AxiFirReference.cs" /><Compile Include="../../examples/AxiFirStructural.cs" Link="AxiFirStructural.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../examples/TinyRisc/TinyRisc.cs" Link="TinyRisc.cs" /><Compile Include="../../examples/AxiFirReference.cs" Link="AxiFirReference.cs" /><Compile Include="../../examples/AxiFirStructural.cs" Link="AxiFirStructural.cs" /><Compile Include="../../examples/AxiFirRam.cs" Link="AxiFirRam.cs" /></ItemGroup>
 </Project>
