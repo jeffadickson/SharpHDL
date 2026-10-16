@@ -18,7 +18,7 @@ public sealed class HlsCostProfile
     public int DspMultiplyCost { get; init; } = 2;
     /// <summary>Cost of an adder, subtractor, or comparison.</summary>
     public int ArithmeticCost { get; init; } = 2;
-    /// <summary>Cost of ROM lookup or combinational RAM read.</summary>
+    /// <summary>Abstract cost of ROM lookup or memory address logic; this is not synchronous RAM latency.</summary>
     public int MemoryReadCost { get; init; } = 3;
     /// <summary>Cost of a mux or ordinary bitwise operation.</summary>
     public int LogicCost { get; init; } = 1;
@@ -89,7 +89,8 @@ public static class HlsGraphAnalyzer
                 HardwareOperation.Add or HardwareOperation.Subtract or
                     HardwareOperation.Equal or HardwareOperation.LessThan or
                     HardwareOperation.SignedLessThan => profile.ArithmeticCost,
-                HardwareOperation.Lookup or HardwareOperation.MemoryRead => profile.MemoryReadCost,
+                HardwareOperation.Lookup => profile.MemoryReadCost,
+                HardwareOperation.MemoryRead => throw new NotSupportedException(\n                    "Synchronous RAM requires explicit cycle-latency scheduling; combinational HLS analysis cannot model it."),\n                HardwareOperation.Register => throw new NotSupportedException(\n                    "Register boundaries require sequential scheduling, not combinational HLS analysis."),
                 _ => profile.LogicCost
             };
             if(node.Operation==HardwareOperation.Multiply)multiply++;
