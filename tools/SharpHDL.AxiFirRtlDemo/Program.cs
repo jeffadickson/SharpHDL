@@ -55,8 +55,8 @@ for(int cycle=0;cycle<600;cycle++)
     // discards outstanding transfers and clears the FIR's logical history.
     if(cycle==300)
     {
-        Drive("s_axis_valid",0);
-        Drive("m_axis_ready",0);
+        Drive("s_axis_tvalid",0);
+        Drive("m_axis_tready",0);
         Clock(true);
         oracle.Reset();
         pending=false;
@@ -70,12 +70,12 @@ for(int cycle=0;cycle<600;cycle++)
         last=random.Next(19)==0?1:0;
     }
     int ready=cycle>=540 || random.Next(3)!=0?1:0;
-    Drive("s_axis_data",sample);
-    Drive("s_axis_valid",pending?1:0);
-    Drive("s_axis_last",last);
-    Drive("s_axis_keep",3);
-    Drive("s_axis_user",0);
-    Drive("m_axis_ready",ready);
+    Drive("s_axis_tdata",sample);
+    Drive("s_axis_tvalid",pending?1:0);
+    Drive("s_axis_tlast",last);
+    Drive("s_axis_tkeep",3);
+    Drive("s_axis_tuser",0);
+    Drive("m_axis_tready",ready);
     // Control inputs may change independently of the AXI data channel.
     // The FIR must capture the coefficient values on input acceptance,
     // while an already-valid output remains stable under backpressure.
@@ -86,18 +86,18 @@ for(int cycle=0;cycle<600;cycle++)
         (ushort)random.Next(65536)
     };
     for(int i=0;i<4;i++)Drive("coefficient"+i,coefficients[i]);
-    bool observedValid=simulator.Read(ports["m_axis_valid"])!=0;
-    bool observedReady=simulator.Read(ports["s_axis_ready"])!=0;
+    bool observedValid=simulator.Read(ports["m_axis_tvalid"])!=0;
+    bool observedReady=simulator.Read(ports["s_axis_tready"])!=0;
     bool expectedReady=oracle.InputReady || (oracle.OutputValid && ready!=0);
     if(observedValid!=oracle.OutputValid || observedReady!=expectedReady)
         throw new InvalidOperationException($"AXI handshake mismatch at cycle {cycle}.");
     if(observedValid)
     {
         var expected=oracle.Output;
-        if(simulator.Read(ports["m_axis_data"])!=(int)expected.Data ||
-           (simulator.Read(ports["m_axis_last"])!=0)!=expected.Last ||
-           simulator.Read(ports["m_axis_keep"])!=3 ||
-           simulator.Read(ports["m_axis_user"])!=0)
+        if(simulator.Read(ports["m_axis_tdata"])!=(int)expected.Data ||
+           (simulator.Read(ports["m_axis_tlast"])!=0)!=expected.Last ||
+           simulator.Read(ports["m_axis_tkeep"])!=3 ||
+           simulator.Read(ports["m_axis_tuser"])!=0)
             throw new InvalidOperationException($"FIR payload mismatch at cycle {cycle}.");
         if(ready!=0)completedCount++;
     }
