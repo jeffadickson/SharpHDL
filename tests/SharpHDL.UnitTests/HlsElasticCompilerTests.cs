@@ -231,4 +231,30 @@ public sealed class HlsElasticCompilerTests
         Assert.Equal(BigInteger.Zero,machine.ReadOutput("hls_output_valid"));
     }
 
+    /// <summary>
+    /// Generated pipeline registers must remain distinguishable from external
+    /// input ports after Core IR optimization.
+    /// </summary>
+    [Fact]
+    public void Generated_elastic_pipeline_retains_state_provenance_after_folding()
+    {
+        var source=new Module("ElasticProvenance");
+        var input=source.Input("input",16);
+        var output=source.Output("output",16);
+        source.Drive(output,input*Expr.Const(16,3)+Expr.Const(16,7));
+        var exported=source.ExportCoreGraph();
+        var pipeline=HlsElasticCompiler.Compile(exported.Graph,
+            exported.Inputs["input"],exported.Outputs["output"],4);
+        var stateIds=pipeline.Graph.StateInputNodeIds.OrderBy(id=>id).ToArray();
+        Assert.NotEmpty(stateIds);
+        Assert.Equal(pipeline.ResetValues.Count,stateIds.Length);
+        Assert.All(stateIds,id=>
+            Assert.Equal(SharpHDL.Core.HardwareOperation.Input,
+                pipeline.Graph.Nodes.Single(n=>n.Id==id).Operation));
+        var optimized=HlsConstantFolder.Fold(pipeline.Graph);
+        Assert.Equal(stateIds,optimized.StateInputNodeIds.OrderBy(id=>id));
+        Assert.Throws<NotSupportedException>(()=>
+            HlsGraphAnalyzer.Analyze(optimized,requireCombinational:true));
+    }
+
 }
