@@ -9,13 +9,13 @@ import sys,subprocess,shutil,json
 root=Path(__file__).resolve().parents[2]
 sdkroot=Path(sys.argv[1]).resolve()
 version=lambda p:tuple(map(int,p.name.split('.')))
-sdk=max((sdkroot/'sdk').glob('8.*'),key=version)
-pack=max((sdkroot/'packs/Microsoft.NETCore.App.Ref').glob('8.*'),key=version)
-runtime=max((sdkroot/'shared/Microsoft.NETCore.App').glob('8.*'),key=version)
+sdk=max((sdkroot/'sdk').glob('10.*'),key=version)
+pack=max((sdkroot/'packs/Microsoft.NETCore.App.Ref').glob('10.*'),key=version)
+runtime=max((sdkroot/'shared/Microsoft.NETCore.App').glob('10.*'),key=version)
 host=sdkroot/('dotnet.exe' if sys.platform=='win32' else 'dotnet')
 build=root/'build/behavioral';build.mkdir(parents=True,exist_ok=True)
 source=root/'examples/Behavioral'
-refs=['-r:'+str(p) for p in sorted((pack/'ref/net8.0').glob('*.dll'))]
+refs=['-r:'+str(p) for p in sorted((pack/'ref/net10.0').glob('*.dll'))]
 lib=build/'SharpHDL.dll'
 def run(args):subprocess.run([str(x) for x in args],check=True)
 def cs(out,files,extra=(),target='library'):
@@ -32,5 +32,5 @@ run([host,sdk/'Roslyn/bincore/vbc.dll','-nologo','-optimize+','-target:library',
 cs(build/'Behavioral.dll',[source/'Program.cs'],
    ['-r:'+str(lib),'-r:'+str(fs)]+['-r:'+str(build/name) for name in ['CSharpFunctions.dll','FSharpFunctions.dll','VisualBasicFunctions.dll']],target='exe')
 shutil.copy2(fs,build/'FSharp.Core.dll')
-(build/'Behavioral.runtimeconfig.json').write_text(json.dumps({'runtimeOptions':{'tfm':'net8.0','framework':{'name':'Microsoft.NETCore.App','version':runtime.name}}},indent=2))
+(build/'Behavioral.runtimeconfig.json').write_text(json.dumps({'runtimeOptions':{'tfm':'net10.0','framework':{'name':'Microsoft.NETCore.App','version':runtime.name}}},indent=2))
 print('Built',build/'Behavioral.dll')

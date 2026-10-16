@@ -2,9 +2,9 @@
 from pathlib import Path
 import os, subprocess, shutil
 r=Path(__file__).resolve().parents[1];os.chdir(r)
-sdkroot=Path(os.environ['DOTNET_ROOT']);sdk=max((sdkroot/'sdk').glob('8.*'));pack=max((sdkroot/'packs/Microsoft.NETCore.App.Ref').glob('8.*'))
+sdkroot=Path(os.environ['DOTNET_ROOT']);sdk=max((sdkroot/'sdk').glob('10.*'));pack=max((sdkroot/'packs/Microsoft.NETCore.App.Ref').glob('10.*'))
 b=r/'build/tinyrisc';host=str(sdkroot/'dotnet')
-subprocess.run([host,str(sdk/'Roslyn/bincore/csc.dll'),'-nologo','-nostdlib+','-target:exe','-out:'+str(b/'NetNaming.dll'),'-r:'+str(b/'TinyRisc.dll')]+['-r:'+str(p) for p in (pack/'ref/net8.0').glob('*.dll')]+['tests/naming/NetNaming.cs'],check=True)
+subprocess.run([host,str(sdk/'Roslyn/bincore/csc.dll'),'-nologo','-nostdlib+','-target:exe','-out:'+str(b/'NetNaming.dll'),'-r:'+str(b/'TinyRisc.dll')]+['-r:'+str(p) for p in (pack/'ref/net10.0').glob('*.dll')]+['tests/naming/NetNaming.cs'],check=True)
 shutil.copy(b/'TinyRisc.runtimeconfig.json',b/'NetNaming.runtimeconfig.json')
 subprocess.run([host,str(b/'NetNaming.dll')],check=True)
 subprocess.run(['iverilog','-g2012','-s','tb','-o',str(b/'names-test'),str(b/'names.v'),str(b/'names_tb.v')],check=True)
