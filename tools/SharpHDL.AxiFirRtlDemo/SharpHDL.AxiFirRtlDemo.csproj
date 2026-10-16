@@ -7,8 +7,10 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../../src/SharpHDL/SharpHDL.csproj" />
+    <ProjectReference Include="../../src/SharpHDL.HLS/SharpHDL.HLS.csproj" />
     <Compile Include="../../examples/AxiFirStructural.cs" Link="AxiFirStructural.cs" />
     <Compile Include="../../examples/AxiFirReference.cs" Link="AxiFirReference.cs" />
     <Compile Include="../../examples/AxiFirRam.cs" Link="AxiFirRam.cs" />
+    <Compile Include="../../examples/HlsScheduledFir.cs" Link="HlsScheduledFir.cs" />
   </ItemGroup>
 </Project>
