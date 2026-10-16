@@ -22,33 +22,51 @@ public sealed class AxiFirStructuralTests
         ushort[] coefficients = { 3, 5, 7, 11 };
         sim.Tick(true);
         int completed = 0;
+        bool pendingValid = false;
+        ushort pendingSample = 0;
+        bool pendingLast = false;
+        int accepted = 0;
         for (int cycle = 0; cycle < 600; cycle++)
         {
-            // AXI producers must hold VALID and payload stable until handshake.
-            bool valid = cycle < 540 && rng.Next(4) != 0;
+            // The producer may offer a new transaction only when no previous
+            // transaction is waiting. AXI requires stable VALID and payload
+            // until the receiver completes a handshake.
+            if (!pendingValid && cycle < 540 && rng.Next(4) != 0)
+            {
+                pendingValid = true;
+                pendingSample = (ushort)rng.Next(65536);
+                pendingLast = rng.Next(19) == 0;
+            }
             bool ready = cycle >= 540 || rng.Next(3) != 0;
-            ushort sample = (ushort)rng.Next(65536);
-            bool last = rng.Next(19) == 0;
-            Set("s_axis_data", sample);
-            Set("s_axis_valid", valid ? 1 : 0);
-            Set("s_axis_last", last ? 1 : 0);
+            Set("s_axis_data", pendingSample);
+            Set("s_axis_valid", pendingValid ? 1 : 0);
+            Set("s_axis_last", pendingLast ? 1 : 0);
             Set("s_axis_keep", 3);
             Set("s_axis_user", 0);
             Set("m_axis_ready", ready ? 1 : 0);
             for (int i = 0; i < 4; i++) Set("coefficient" + i, coefficients[i]);
-            Assert.Equal(reference.OutputValid, Read("m_axis_valid") != 0);
-            Assert.Equal(reference.InputReady || (reference.OutputValid && ready),
-                Read("s_axis_ready") != 0);
-            if (reference.OutputValid)
+            bool outputValid = reference.OutputValid;
+            bool inputReady = reference.InputReady || (outputValid && ready);
+            Assert.Equal(outputValid, Read("m_axis_valid") != 0);
+            Assert.Equal(inputReady, Read("s_axis_ready") != 0);
+            if (outputValid)
             {
                 Assert.Equal(reference.Output.Data, (ushort)Read("m_axis_data"));
                 Assert.Equal(reference.Output.Last, Read("m_axis_last") != 0);
                 Assert.Equal(3, Read("m_axis_keep"));
                 if (ready) completed++;
             }
-            reference.Tick(valid, sample, last, ready, coefficients);
+            bool inputHandshake = pendingValid && inputReady;
+            reference.Tick(pendingValid, pendingSample, pendingLast, ready, coefficients);
             sim.Tick();
+            if (inputHandshake)
+            {
+                pendingValid = false;
+                accepted++;
+            }
         }
+        Assert.False(pendingValid);
+        Assert.Equal(accepted, completed);
         Assert.False(reference.OutputValid);
         Assert.True(completed > 100);
         Assert.Contains("module", module.Verilog());
