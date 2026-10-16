@@ -177,3 +177,30 @@ implements the four-tap case. The next step is to consume the schedule
 and generate the controller automatically, then compare its Core IR RTL
 against the verified structural reference. Timing closure and DSP
 resource allocation remain separate work.
+
+
+## Schedule-driven FIR controller generation
+
+`HlsScheduledFir.Build(taps)` is the first specialized lowering bridge
+between the independent HLS memory planner and the SharpHDL hardware
+frontend. Supported tap counts are 2, 4, 8, 16 (and other integers 2..16).
+The emitter checks that the plan has the expected write, read, accumulate
+and output clock slots before constructing a parameterized controller.
+
+The generated hardware uses:
+- One synchronous RAM port, with power-of-two circular depth >= tap count.
+- One multiplier/accumulator datapath, reused across historical taps.
+- One captured coefficient register per tap.
+- A four-state controller with AXI4-Stream backpressure and sidebands.
+- A saturating logical history count, so unwritten RAM cells are never
+  interpreted as valid historical samples.
+
+`HlsScheduledFirTests` compare output transactions against an independent
+software convolution for 2, 4, 8 and 16 taps. The test checks modulo-16-bit
+arithmetic, history wraparound, TLAST and stalls. Passing the xUnit test
+does not establish FPGA timing closure or device DSP/BRAM utilization.
+
+**Boundary:** this emitter is a specialized structural lowering template.
+It is *not* yet general-purpose C# loop synthesis, generic Core IR state
+machine emission, or automatic multi-resource arbitration. Those require
+additional compiler IR constructs, scheduling and backend support.
