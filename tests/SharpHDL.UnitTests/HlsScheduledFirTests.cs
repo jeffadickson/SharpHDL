@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using SharpHDL.Examples;
+using SharpHDL.Core;
 using SharpHDL.HLS;
 using Xunit;
 
@@ -82,6 +83,10 @@ public sealed class HlsScheduledFirTests
         Assert.Equal(accepted,completed);
         Assert.True(completed>taps*2);
         Assert.Equal(2*taps,HlsSinglePortFirPlanner.Plan(taps).InitiationInterval);
+        // A single multiply node is shared across the acceptance and
+        // historical accumulation phases, rather than instantiating N DSPs.
+        Assert.Single(module.ExportCoreGraph().Graph.Nodes.Where(n=>
+            n.Operation==HardwareOperation.Multiply));
         Assert.Contains("fir_history",module.Verilog());
     }
 
