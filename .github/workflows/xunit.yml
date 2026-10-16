@@ -102,6 +102,30 @@ jobs:
           name: axi-fir-atomic-replay
           path: generated/axi-fir-atomic/
           if-no-files-found: warn
+  axi-fir-ram-rtl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Install Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Generate RAM FIR RTL and clocked replay
+        run: dotnet run --project tools/SharpHDL.AxiFirRtlDemo/SharpHDL.AxiFirRtlDemo.csproj -c Release -- --ram generated/axi-fir-ram
+      - name: Compare RAM FIR RTL against SharpHDL simulation
+        run: |
+          mkdir -p build/axi-fir-ram
+          iverilog -g2012 -s tb -o build/axi-fir-ram/replay generated/axi-fir-ram/AxiFirRam.v generated/axi-fir-ram/AxiFirRam_tb.sv
+          vvp build/axi-fir-ram/replay
+      - name: Upload RAM FIR replay artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: axi-fir-ram-replay
+          path: generated/axi-fir-ram/
+          if-no-files-found: warn
   core-hls-verilator:
     runs-on: ubuntu-latest
     timeout-minutes: 15
