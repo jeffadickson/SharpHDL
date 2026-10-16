@@ -428,3 +428,44 @@ three-stage DSP valid/data alignment regression and 500 vectors through
 C#-generated RTL instantiating the direct DSP wrapper. The direct DSP tests
 used the portable behavioral model; **Vivado UNISIM and target P&R remain
 unverified**.
+
+## Core-IR HLS backend for production CIL methods
+
+The original C# stream-loop compiler can now target the independent
+Core IR elastic compiler. The frontend is the **real** production CIL
+decoder, not a second restricted C# parser:
+
+```csharp
+var options = new PipelineOptions {
+    UseCoreCompiler = true,
+    LogicLevelsPerStage = 3,
+    MaxStages = 64
+};
+var handle = CilCompiler.AttachPipeline(
+    module, "kernel", typeof(MyKernels).GetMethod("Transform")!,
+    input, output, options);
+```
+
+`CoreTokenLowering` converts the CIL-generated expression to canonical
+`HardwareGraph`, `HlsElasticCompiler` schedules and inserts
+ready/valid and payload registers, and `CorePipelineAttach` binds
+the result directly to the original Module's stream ports. The
+`PipelineHandle`, source dataflow graph and PDB annotation remain
+available. Both legacy and native Core RTL emitters can then compile
+the same hardware for differential testing.
+
+**Compatibility gate:** `UseCoreCompiler` currently defaults to
+`false`, retaining the verified legacy scheduler for existing users.
+The Core path is stateless, one token in/one token out, and II=1.
+It supports the production CIL frontend's arithmetic and predicated
+branches but does not yet cover loop-carried feedback, multi-cycle
+resource sharing, memory side effects or vendor DSP-preference
+attributes. Unsupported cases raise exceptions rather than silently
+falling back to the old implementation. The operation budget is an
+abstract logic-level constraint, not timing closure.
+
+Run `make cil-core-verilator` for the end-to-end C# CIL →
+Core IR → elastic pipeline → legacy/native RTL comparison.
+The testbench checks a software arithmetic oracle, randomized
+backpressure, token ordering, pipeline drain and reset flushing.
+Run `make core-ir-verify` for the CIL Core unit tests.
