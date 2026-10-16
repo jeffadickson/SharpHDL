@@ -162,4 +162,22 @@ public sealed class HlsGraphAnalyzerTests
                 exported.Inputs["address"],exported.Outputs["output"]));
     }
 
+    /// <summary>Constant folding must not erase sequential provenance.</summary>
+    [Fact]
+    public void Constant_folding_preserves_register_state_provenance()
+    {
+        var module=new Module("StateFold");
+        var input=module.Input("input",8);
+        var state=module.Register("state",8,0);
+        var output=module.Output("output",8);
+        module.Next(state,state+input+Expr.Const(8,3));
+        module.Drive(output,state);
+        var original=module.ExportCoreGraph().Graph;
+        var folded=HlsConstantFolder.Fold(original);
+        Assert.Equal(original.StateInputNodeIds.OrderBy(x=>x),
+            folded.StateInputNodeIds.OrderBy(x=>x));
+        Assert.Throws<NotSupportedException>(()=>
+            HlsGraphAnalyzer.Analyze(folded,requireCombinational:true));
+    }
+
 }
