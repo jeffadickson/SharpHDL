@@ -17,6 +17,7 @@ var simulator=module.Simulate();
 var ports=module.Ports.ToDictionary(p=>p.Name,p=>p);
 void Set(string name,int value)=>simulator.Set(ports[name],value);
 var tb=new StringBuilder();
+tb.AppendLine("`timescale 1ns/1ps");
 tb.AppendLine("module tb;");
 tb.AppendLine("reg clk=0, rst=0;");
 foreach(var port in module.Ports)
