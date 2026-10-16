@@ -38,6 +38,103 @@ public sealed class AxiFirStructuralTests
         Assert.Contains("module",module.Verilog());
     }
 
+    /// <summary>
+    /// Verify real AXI4-Lite AW/W/B and AR/R handshakes, partial writes,
+    /// and the resulting FIR arithmetic on subsequently accepted samples.
+    /// </summary>
+    [Fact]
+    public void Axi_lite_writes_and_reads_change_fir_coefficients()
+    {
+        var module=AxiFirStructural.BuildWithAxiLite();
+        var sim=module.Simulate();
+        var ports=module.Ports.ToDictionary(p=>p.Name,p=>p);
+        void Set(string name,int value)=>sim.Set(ports[name],value);
+        int Read(string name)=>(int)sim.Read(ports[name]);
+        sim.Tick(true);
+        Set("s_axis_tvalid",0);
+        Set("m_axis_tready",1);
+        Set("s_axi_awvalid",0);
+        Set("s_axi_wvalid",0);
+        Set("s_axi_bready",0);
+        Set("s_axi_arvalid",0);
+        Set("s_axi_rready",0);
+
+        void Write(int address,int value,int strobe)
+        {
+            // AW and W may arrive independently. Capture address first.
+            Set("s_axi_awaddr",address);
+            Set("s_axi_awvalid",1);
+            Assert.Equal(1,Read("s_axi_awready"));
+            sim.Tick();
+            Set("s_axi_awvalid",0);
+            Set("s_axi_wdata",value);
+            Set("s_axi_wstrb",strobe);
+            Set("s_axi_wvalid",1);
+            Assert.Equal(1,Read("s_axi_wready"));
+            sim.Tick();
+            Set("s_axi_wvalid",0);
+            // A registered write pair commits on the following clock.
+            sim.Tick();
+            Assert.Equal(1,Read("s_axi_bvalid"));
+            Assert.Equal(0,Read("s_axi_bresp"));
+            // Backpressure must retain the write response.
+            sim.Tick();
+            Assert.Equal(1,Read("s_axi_bvalid"));
+            Set("s_axi_bready",1);
+            sim.Tick();
+            Set("s_axi_bready",0);
+            Assert.Equal(0,Read("s_axi_bvalid"));
+        }
+
+        int ReadRegister(int address)
+        {
+            Set("s_axi_araddr",address);
+            Set("s_axi_arvalid",1);
+            Assert.Equal(1,Read("s_axi_arready"));
+            sim.Tick();
+            Set("s_axi_arvalid",0);
+            Assert.Equal(1,Read("s_axi_rvalid"));
+            Assert.Equal(0,Read("s_axi_rresp"));
+            int value=Read("s_axi_rdata");
+            // RDATA remains a snapshot until the response is consumed.
+            sim.Tick();
+            Assert.Equal(value,Read("s_axi_rdata"));
+            Set("s_axi_rready",1);
+            sim.Tick();
+            Set("s_axi_rready",0);
+            Assert.Equal(0,Read("s_axi_rvalid"));
+            return value;
+        }
+
+        Assert.Equal(1,ReadRegister(0));
+        Assert.Equal(0,ReadRegister(4));
+        // WSTRB[0] updates only the low byte; upper coefficient bits hold.
+        Write(0,0x00000005,1);
+        Assert.Equal(5,ReadRegister(0));
+        Write(4,0x00000002,3);
+        Assert.Equal(2,ReadRegister(4));
+        Write(0,0x00001200,2);
+        Assert.Equal(0x1205,ReadRegister(0));
+        // Zero strobes must leave the coefficient unchanged.
+        Write(0,0x0000ffff,0);
+        Assert.Equal(0x1205,ReadRegister(0));
+
+        // y[0] = 0x1205 * 3, y[1] = 0x1205 * 4 + 2 * 3,
+        // modulo 2^16, with both samples accepted in order.
+        Set("s_axis_tkeep",3);
+        Set("s_axis_tuser",0);
+        Set("s_axis_tlast",0);
+        Set("s_axis_tvalid",1);
+        Set("s_axis_tdata",3);
+        Assert.Equal(1,Read("s_axis_tready"));
+        sim.Tick();
+        Assert.Equal((0x1205*3)&0xffff,Read("m_axis_tdata"));
+        Set("s_axis_tdata",4);
+        sim.Tick();
+        Assert.Equal(((0x1205*4)+(2*3))&0xffff,Read("m_axis_tdata"));
+        Set("s_axis_tvalid",0);
+    }
+
     /// <summary>Protect the public AXI4-Stream signal naming and widths.</summary>
     [Fact]
     public void Structural_fir_exposes_standard_axi_stream_ports()
