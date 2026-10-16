@@ -1,7 +1,7 @@
 # SharpHDL make compatibility entry point.
 # Docker + Python 3 are the only host prerequisites for automatic HDL/.NET provisioning.
 # Toolchain itself is installed in tools/Dockerfile.dev, never silently on host.
-.PHONY: help doctor setup setup-tools setup-and-hello tinyrisc-hello benchmark-simulator benchmark-tinyrisc container-verify container-build container-test container-shell build test test-hdl simulate benchmark browser vscode vscode-test vscode-provenance multiplier-rtl multiplier-compare dsp-verify core-ir-verify core-hls-verilator core-rtl-native verify clean
+.PHONY: help doctor setup setup-tools setup-and-hello tinyrisc-hello benchmark-simulator benchmark-tinyrisc container-verify container-build container-test container-shell build test test-hdl simulate benchmark browser vscode vscode-test vscode-provenance multiplier-rtl multiplier-compare dsp-verify core-ir-verify core-hls-verilator core-rtl-native cil-core-verilator verify clean
 
 IMAGE := sharphdl-dev:local
 DOCKER_RUN = docker run --rm -v "$(CURDIR):/workspace" -w /workspace $(IMAGE)
@@ -22,6 +22,7 @@ help:
 	@echo "  make core-ir-verify   Check Core/HLS/Simulation layers and run canonical IR parity tests"
 	@echo "  make core-hls-verilator  Compile Core IR elastic HLS and run Verilator stall regression"
 	@echo "  make core-rtl-native  Verify native Core RTL emitter against same stall/reset testbench"
+	@echo "  make cil-core-verilator  Verify real CIL -> Core HLS -> dual RTL backends"
 	@echo "  just --list          Optional extra native developer tasks"
 
 doctor:
@@ -46,6 +47,9 @@ core-hls-verilator:
 
 core-rtl-native:
 	$(DOCKER_RUN) bash -c 'dotnet run --project tools/SharpHDL.CoreHlsDemo/SharpHDL.CoreHlsDemo.csproj -c Release -- /workspace && mkdir -p build/core-hls/native && verilator --binary --timing -Wno-fatal -DCORE_HLS_NATIVE --top-module tb_core_hls_elastic --Mdir build/core-hls/native generated/core-hls/CoreHlsElasticNative.v tests/rtl/tb_core_hls_elastic.sv && build/core-hls/native/Vtb_core_hls_elastic'
+
+cil-core-verilator:
+	$(DOCKER_RUN) bash -c 'dotnet run --project tools/SharpHDL.CilCoreDemo/SharpHDL.CilCoreDemo.csproj -c Release -- /workspace && mkdir -p build/cil-core/obj && verilator --binary --timing -Wno-fatal --top-module tb_cil_core --Mdir build/cil-core/obj generated/cil-core/CilCoreLegacy.v generated/cil-core/CilCoreNative.v tests/rtl/tb_cil_core.sv && build/cil-core/obj/Vtb_cil_core'
 
 core-ir-verify:
 	$(DOCKER_RUN) python3 tests/check-project-layers.py
