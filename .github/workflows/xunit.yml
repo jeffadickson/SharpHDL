@@ -78,6 +78,30 @@ jobs:
             generated/axi-fir/*.v
             generated/axi-fir/*.sv
           if-no-files-found: warn
+  axi-fir-atomic-rtl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Install Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Generate atomic FIR RTL and AXI4-Lite replay
+        run: dotnet run --project tools/SharpHDL.AxiFirRtlDemo/SharpHDL.AxiFirRtlDemo.csproj -c Release -- --atomic generated/axi-fir-atomic
+      - name: Compare atomic FIR RTL against SharpHDL simulation
+        run: |
+          mkdir -p build/axi-fir-atomic
+          iverilog -g2012 -s tb -o build/axi-fir-atomic/replay generated/axi-fir-atomic/AxiFirAtomicConfigured.v generated/axi-fir-atomic/AxiFirAtomicConfigured_tb.sv
+          vvp build/axi-fir-atomic/replay
+      - name: Upload atomic FIR replay artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: axi-fir-atomic-replay
+          path: generated/axi-fir-atomic/
+          if-no-files-found: warn
   core-hls-verilator:
     runs-on: ubuntu-latest
     timeout-minutes: 15
