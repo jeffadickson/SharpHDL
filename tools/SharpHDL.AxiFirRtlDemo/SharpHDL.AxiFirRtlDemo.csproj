@@ -9,5 +9,6 @@
     <ProjectReference Include="../../src/SharpHDL/SharpHDL.csproj" />
     <Compile Include="../../examples/AxiFirStructural.cs" Link="AxiFirStructural.cs" />
     <Compile Include="../../examples/AxiFirReference.cs" Link="AxiFirReference.cs" />
+    <Compile Include="../../examples/AxiFirRam.cs" Link="AxiFirRam.cs" />
   </ItemGroup>
 </Project>
