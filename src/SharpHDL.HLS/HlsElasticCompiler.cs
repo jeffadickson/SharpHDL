@@ -174,7 +174,7 @@ public static class HlsElasticCompiler
             return reg;
         }
         outputs.Add(prefix+"_output_data",Register(outputNodeId,latency));
-        return new HlsElasticPipeline(new HardwareGraph(nodes),inputs,outputs,next,
+        return new HlsElasticPipeline(new HardwareGraph(nodes,inputs.Where(pair=>reset.ContainsKey(pair.Key)).Select(pair=>pair.Value)),inputs,outputs,next,
             reset,latency,payloadBits);
     }
 }
