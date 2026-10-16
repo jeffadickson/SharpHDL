@@ -35,20 +35,23 @@ public sealed class CoreCilPipelineTests
     }
 
     [Theory]
-    [InlineData(nameof(Arithmetic))]
-    [InlineData(nameof(Branch))]
-    public void Core_CIL_pipeline_preserves_tokens_through_random_stalls(string methodName)
+    [InlineData(nameof(Arithmetic),1)]
+    [InlineData(nameof(Arithmetic),3)]
+    [InlineData(nameof(Branch),1)]
+    [InlineData(nameof(Branch),3)]
+    public void Core_CIL_pipeline_preserves_tokens_through_random_stalls(string methodName,int budget)
     {
         var module=new Module("CoreCil"+methodName);
         var input=HwStream<uint>.Input(module,"in");
         var output=HwStream<uint>.Output(module,"out");
         var method=typeof(CoreCilPipelineTests).GetMethod(methodName)!;
         var options=new PipelineOptions{
-            UseCoreCompiler=true,LogicLevelsPerStage=3,MaxStages=128};
+            UseCoreCompiler=true,LogicLevelsPerStage=budget,MaxStages=128};
         var handle=CilCompiler.AttachPipeline(module,"core",method,input,output,options);
         Assert.Contains("Canonical Core IR",handle.Report);
         Assert.Equal(1,handle.InitiationInterval);
         Assert.True(handle.Latency>=1);
+        if(budget==1)Assert.True(handle.Latency>1);
         Assert.Equal(handle.Latency,handle.StageValid.Count);
         Assert.NotEmpty(handle.DataflowGraph.Nodes);
         Assert.Contains("core_valid_",module.Verilog());
