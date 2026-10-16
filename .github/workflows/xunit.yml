@@ -4,7 +4,7 @@ concurrency:
   cancel-in-progress: true
 on:
   push:
-    paths: ['src/**', 'tests/SharpHDL.UnitTests/**', 'tests/check-project-layers.py', 'tests/rtl/tb_core_hls_elastic.sv', 'tests/rtl/tb_cil_core.sv', 'tools/SharpHDL.CilCoreDemo/**', 'tools/SharpHDL.CoreHlsDemo/**', 'src/SharpHDL.RTL/**', 'src/SharpHDL.LegacyRtl/**', 'Makefile', '.github/workflows/xunit.yml']
+    paths: ['src/**', 'tests/SharpHDL.UnitTests/**', 'tests/check-project-layers.py', 'tests/rtl/tb_core_hls_elastic.sv', 'tests/rtl/tb_cil_core.sv', 'tools/SharpHDL.CilCoreDemo/**', 'tools/SharpHDL.CoreHlsDemo/**', 'tools/SharpHDL.AxiFirRtlDemo/**', 'src/SharpHDL.RTL/**', 'src/SharpHDL.LegacyRtl/**', 'Makefile', '.github/workflows/xunit.yml']
   pull_request:
     paths: ['src/**', 'tests/SharpHDL.UnitTests/**', '.github/workflows/xunit.yml']
   workflow_dispatch:
@@ -52,6 +52,23 @@ jobs:
           dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj
           -c Release
           --filter "FullyQualifiedName~CoreHardwareGraphTests|FullyQualifiedName~CoreGraphLoweringTests|FullyQualifiedName~CoreIrExtendedParityTests|FullyQualifiedName~TinyRiscCoreIrTests|FullyQualifiedName~HlsGraphAnalyzerTests|FullyQualifiedName~HlsElasticCompilerTests|FullyQualifiedName~CoreVerilogEmitterTests|FullyQualifiedName~CoreCilPipelineTests"
+  axi-fir-rtl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Install Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Generate AXI FIR RTL and cycle reference bench
+        run: dotnet run --project tools/SharpHDL.AxiFirRtlDemo/SharpHDL.AxiFirRtlDemo.csproj -c Release -- generated/axi-fir
+      - name: Compare generated Verilog against SharpHDL simulation
+        run: |
+          mkdir -p build/axi-fir
+          iverilog -g2012 -s tb -o build/axi-fir/replay generated/axi-fir/AxiFirStructural.v generated/axi-fir/AxiFirStructural_tb.sv
+          vvp build/axi-fir/replay
   core-hls-verilator:
     runs-on: ubuntu-latest
     timeout-minutes: 15
