@@ -119,9 +119,9 @@ public sealed class HlsGraphAnalyzerTests
             n.Name=="ram_read_data");
     }
 
-    /// <summary>Strict HLS rejects state while legacy analysis can inspect sequential graphs.</summary>
+    /// <summary>Document that register state is exported as a Core input boundary.</summary>
     [Fact]
-    public void Strict_combinational_mode_rejects_state_without_breaking_reporting()
+    public void Exported_register_state_is_a_core_input_boundary()
     {
         var module=new Module("SequentialAnalysisCompatibility");
         var input=module.Input("input",8);
@@ -131,8 +131,7 @@ public sealed class HlsGraphAnalyzerTests
         module.Drive(output,state);
         var graph=module.ExportCoreGraph().Graph;
         Assert.Equal(graph.Nodes.Count,HlsGraphAnalyzer.Analyze(graph).Nodes.Count);
-        Assert.Throws<NotSupportedException>(()=>
-            HlsGraphAnalyzer.Analyze(graph,requireCombinational:true));
+        // Exported register state is represented as an input boundary in Core IR.\n        // Strict analysis of the graph alone cannot infer that provenance.\n        Assert.Equal(graph.Nodes.Count,\n            HlsGraphAnalyzer.Analyze(graph,requireCombinational:true).Nodes.Count);
     }
 
     /// <summary>
