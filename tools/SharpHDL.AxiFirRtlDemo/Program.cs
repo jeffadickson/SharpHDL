@@ -51,6 +51,18 @@ ushort sample=0;
 int last=0;
 for(int cycle=0;cycle<600;cycle++)
 {
+    // Reset under traffic, including any stalled transaction. AXI reset
+    // discards outstanding transfers and clears the FIR's logical history.
+    if(cycle==300)
+    {
+        Drive("s_axis_valid",0);
+        Drive("m_axis_ready",0);
+        Clock(true);
+        oracle.Reset();
+        pending=false;
+        acceptedCount=0;
+        completedCount=0;
+    }
     if(!pending && cycle<540 && random.Next(4)!=0)
     {
         pending=true;
@@ -75,7 +87,9 @@ for(int cycle=0;cycle<600;cycle++)
     {
         var expected=oracle.Output;
         if(simulator.Read(ports["m_axis_data"])!=(int)expected.Data ||
-           (simulator.Read(ports["m_axis_last"])!=0)!=expected.Last)
+           (simulator.Read(ports["m_axis_last"])!=0)!=expected.Last ||
+           simulator.Read(ports["m_axis_keep"])!=3 ||
+           simulator.Read(ports["m_axis_user"])!=0)
             throw new InvalidOperationException($"FIR payload mismatch at cycle {cycle}.");
         if(ready!=0)completedCount++;
     }
@@ -89,5 +103,5 @@ if(pending || oracle.OutputValid || acceptedCount!=completedCount)
 tb.AppendLine("$display(\"PASS AXI FIR RTL cycle replay\"); $finish; end endmodule");
 File.WriteAllText(Path.Combine(directory,"AxiFirStructural.v"),module.Verilog());
 File.WriteAllText(Path.Combine(directory,"AxiFirStructural_tb.sv"),tb.ToString());
-Console.WriteLine("Generated 600-cycle AXI FIR RTL replay.");
+Console.WriteLine("Generated 600-cycle AXI FIR RTL replay with midstream reset and independent oracle.");
 return 0;
