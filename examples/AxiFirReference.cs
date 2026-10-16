@@ -51,10 +51,10 @@ public sealed class AxiFirReference
         if (consume) pending.Dequeue();
         if (!accept) return;
 
-        uint sum = (uint)inputData * coefficients[0]
-                 + (uint)history[0] * coefficients[1]
-                 + (uint)history[1] * coefficients[2]
-                 + (uint)history[2] * coefficients[3];
+        ulong sum = (ulong)inputData * coefficients[0]
+                  + (ulong)history[0] * coefficients[1]
+                  + (ulong)history[1] * coefficients[2]
+                  + (ulong)history[2] * coefficients[3];
         pending.Enqueue(((ushort)sum, inputLast));
         history[2] = history[1];
         history[1] = history[0];
