@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using SharpHDL;
 using SharpHDL.HLS;
 
@@ -24,8 +25,16 @@ public static class HlsScheduledFir
         if(taps<2 || taps>16)
             throw new ArgumentOutOfRangeException(nameof(taps),"Supported hardware emitter range is 2..16 taps.");
         var plan=HlsSinglePortFirPlanner.Plan(taps);
-        if(plan.InitiationInterval!=2*taps || plan.Steps.Count!=2*taps)
-            throw new InvalidOperationException("Unexpected memory schedule.");
+        if(plan.InitiationInterval!=2*taps || plan.Steps.Count!=2*taps ||
+            plan.Steps[0].Action!=HlsMemoryAction.AcceptAndWrite ||
+            plan.Steps[^1].Action!=HlsMemoryAction.Output ||
+            plan.Steps.Count(step=>step.Action==HlsMemoryAction.IssueRead)!=taps-1 ||
+            plan.Steps.Count(step=>step.Action==HlsMemoryAction.Accumulate)!=taps-1)
+            throw new InvalidOperationException("Unsupported memory schedule for this controller.");
+        for(int i=1;i<taps;i++)
+            if(plan.Steps[2*i-1]!=new HlsMemoryStep(2*i-1,HlsMemoryAction.IssueRead,i) ||
+               plan.Steps[2*i]!=new HlsMemoryStep(2*i,HlsMemoryAction.Accumulate,i))
+                throw new InvalidOperationException("Unsupported RAM read/accumulate ordering.");
         int addressBits=1, depth=2;
         while(depth<taps){depth*=2;addressBits++;}
         int tapBits=1;
