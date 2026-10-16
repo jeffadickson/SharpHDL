@@ -72,7 +72,7 @@ public static class HlsElasticCompiler
             foreach(var operand in n.Operands)Visit(operand);
         }
         Visit(outputNodeId);
-        var plan=HlsGraphAnalyzer.Analyze(source,stageBudget,profile);
+        var plan=HlsGraphAnalyzer.Analyze(source,stageBudget,profile,requireCombinational:true);
         var schedules=plan.Nodes.ToDictionary(n=>n.NodeId);
         foreach(var id in reachable)
             if(schedules[id].OperatorCost>stageBudget)
