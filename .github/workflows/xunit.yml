@@ -126,6 +126,32 @@ jobs:
           name: axi-fir-ram-replay
           path: generated/axi-fir-ram/
           if-no-files-found: warn
+  hls-scheduled-fir-rtl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Install Icarus Verilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+      - name: Generate scheduled FIR RTL and independently checked replay
+        run: dotnet run --project tools/SharpHDL.AxiFirRtlDemo/SharpHDL.AxiFirRtlDemo.csproj -c Release -- --scheduled generated/hls-scheduled-fir
+      - name: Run 2/4/8/16-tap Verilog equivalence
+        run: |
+          mkdir -p build/hls-scheduled-fir
+          for taps in 2 4 8 16; do
+            iverilog -g2012 -s tb -o "build/hls-scheduled-fir/replay-$taps" "generated/hls-scheduled-fir/HlsScheduledFir$taps.v" "generated/hls-scheduled-fir/HlsScheduledFir${taps}_tb.sv"
+            vvp "build/hls-scheduled-fir/replay-$taps"
+          done
+      - name: Upload scheduled FIR replay artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hls-scheduled-fir-replay
+          path: generated/hls-scheduled-fir/
+          if-no-files-found: warn
   core-hls-verilator:
     runs-on: ubuntu-latest
     timeout-minutes: 15
