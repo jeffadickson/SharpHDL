@@ -11,6 +11,8 @@ namespace SharpHDL
         public int LogicLevelsPerStage = 1;
         public int MaxStages = 64;
         public int InitiationInterval = 1;
+        /// <summary>Compile CIL into canonical Core IR before elastic scheduling. Legacy remains selectable for differential verification.</summary>
+        public bool UseCoreCompiler = false;
         /// <summary>Optional multiplier implementation, overriding method-level HlsMultiplier attribute.</summary>
         public MultiplierImplementation MultiplierImplementation = MultiplierImplementation.Auto;
     }
