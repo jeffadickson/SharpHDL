@@ -177,4 +177,58 @@ public sealed class HlsElasticCompilerTests
         }
     }
 
+    /// <summary>
+    /// Verify that a reset in the middle of a blocked transaction stream
+    /// invalidates old tokens and allows fresh transactions to complete.
+    /// </summary>
+    [Fact]
+    public void Reset_under_backpressure_recovers_with_only_post_reset_transactions()
+    {
+        var source=new Module("ElasticResetRecovery");
+        var x=source.Input("x",16);
+        var y=source.Output("y",16);
+        source.Drive(y,(x+Expr.Const(16,5))*Expr.Const(16,3));
+        var exported=source.ExportCoreGraph();
+        var compiled=HlsElasticCompiler.Compile(exported.Graph,
+            exported.Inputs["x"],exported.Outputs["y"],2,
+            new HlsCostProfile{ArithmeticCost=1,MultiplyCost=2});
+        var machine=new HardwareGraphMachine(compiled.Graph,compiled.Inputs,
+            compiled.Outputs,compiled.NextState,compiled.ResetValues,
+            new Dictionary<string,SharpHDL.Core.HardwareMemoryPort>());
+
+        // Fill the pipeline and force the last stage to remain blocked.
+        machine.SetInput("hls_output_ready",0);
+        machine.SetInput("hls_input_valid",1);
+        for(int i=0;i<compiled.Latency+3;i++)
+        {
+            machine.SetInput("hls_input_data",100+i);
+            machine.Tick();
+        }
+        Assert.Equal(BigInteger.One,machine.ReadOutput("hls_output_valid"));
+        machine.Reset();
+        Assert.Equal(BigInteger.Zero,machine.ReadOutput("hls_output_valid"));
+
+        // Drain only newly accepted tokens; pre-reset payloads must not leak.
+        var expected=new Queue<BigInteger>();
+        for(int cycle=0;cycle<120;cycle++)
+        {
+            bool sending=cycle<35;
+            int value=cycle+1;
+            machine.SetInput("hls_input_valid",sending?1:0);
+            machine.SetInput("hls_input_data",value);
+            machine.SetInput("hls_output_ready",cycle%5==0?0:1);
+            bool takeOutput=machine.ReadOutput("hls_output_valid")!=0 && cycle%5!=0;
+            bool takeInput=sending && machine.ReadOutput("hls_input_ready")!=0;
+            if(takeOutput)
+            {
+                Assert.NotEmpty(expected);
+                Assert.Equal(expected.Dequeue(),machine.ReadOutput("hls_output_data"));
+            }
+            if(takeInput)expected.Enqueue(((BigInteger)(value+5)*3)&65535);
+            machine.Tick();
+        }
+        Assert.Empty(expected);
+        Assert.Equal(BigInteger.Zero,machine.ReadOutput("hls_output_valid"));
+    }
+
 }
