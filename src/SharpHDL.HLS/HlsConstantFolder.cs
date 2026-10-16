@@ -92,6 +92,6 @@ public static class HlsConstantFolder
                 MemoryName=null
             });
         }
-        return new HardwareGraph(result);
+        return new HardwareGraph(result,graph.StateInputNodeIds);
     }
 }
