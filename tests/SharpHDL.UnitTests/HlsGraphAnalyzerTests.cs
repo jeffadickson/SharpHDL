@@ -121,7 +121,7 @@ public sealed class HlsGraphAnalyzerTests
 
     /// <summary>Document that register state is exported as a Core input boundary.</summary>
     [Fact]
-    public void Exported_register_state_is_a_core_input_boundary()
+    public void Exported_register_state_provenance_blocks_strict_scheduling()
     {
         var module=new Module("SequentialAnalysisCompatibility");
         var input=module.Input("input",8);
@@ -131,7 +131,9 @@ public sealed class HlsGraphAnalyzerTests
         module.Drive(output,state);
         var graph=module.ExportCoreGraph().Graph;
         Assert.Equal(graph.Nodes.Count,HlsGraphAnalyzer.Analyze(graph).Nodes.Count);
-        // Exported register state is represented as an input boundary in Core IR.\n        // Strict analysis of the graph alone cannot infer that provenance.\n        Assert.Equal(graph.Nodes.Count,\n            HlsGraphAnalyzer.Analyze(graph,requireCombinational:true).Nodes.Count);
+        Assert.Single(graph.StateInputNodeIds);
+        Assert.Throws<NotSupportedException>(()=>
+            HlsGraphAnalyzer.Analyze(graph,requireCombinational:true));
     }
 
     /// <summary>
