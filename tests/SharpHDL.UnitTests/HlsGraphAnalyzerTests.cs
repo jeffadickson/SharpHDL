@@ -135,4 +135,30 @@ public sealed class HlsGraphAnalyzerTests
             HlsGraphAnalyzer.Analyze(graph,requireCombinational:true));
     }
 
+    /// <summary>
+    /// Existing synchronous RAM graphs remain available for reporting, but
+    /// cannot be silently treated as combinational elastic pipelines.
+    /// </summary>
+    [Fact]
+    public void Synchronous_ram_requires_explicit_cycle_aware_scheduling()
+    {
+        var module=new Module("HlsMemoryBoundary");
+        var address=module.Input("address",2);
+        var write=module.Input("write",1);
+        var data=module.Input("data",8);
+        var ram=SynchronousRam.Create(module,"ram",8,4,address,write,data,
+            Expr.Const(1,1),new System.Numerics.BigInteger[]{1,2,3,4});
+        var output=module.Output("output",8);
+        module.Drive(output,ram.ReadData);
+        var exported=module.ExportCoreGraph();
+        Assert.Contains(exported.Graph.Nodes,n=>n.Operation==HardwareOperation.MemoryRead);
+        Assert.Equal(exported.Graph.Nodes.Count,
+            HlsGraphAnalyzer.Analyze(exported.Graph).Nodes.Count);
+        Assert.Throws<NotSupportedException>(()=>
+            HlsGraphAnalyzer.Analyze(exported.Graph,requireCombinational:true));
+        Assert.Throws<NotSupportedException>(()=>
+            HlsElasticCompiler.Compile(exported.Graph,
+                exported.Inputs["address"],exported.Outputs["output"]));
+    }
+
 }
