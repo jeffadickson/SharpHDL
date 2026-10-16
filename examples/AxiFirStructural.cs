@@ -39,6 +39,43 @@ public static class AxiFirStructural
     }
 
     /// <summary>
+    /// Build a FIR with double-buffered AXI4-Lite coefficients. Software writes
+    /// staging words at 0x00..0x0C, then writes any nonzero byte strobe to the
+    /// APPLY doorbell at 0x10. All four active coefficients update together
+    /// on the doorbell's write-commit edge. Read-only active values appear at
+    /// 0x20..0x2C. Staged writes never alter the running filter.
+    /// </summary>
+    /// <remarks>
+    /// A simultaneous sample handshake and APPLY edge uses the old active
+    /// coefficient bank because both registers sample pre-edge values.
+    /// The next accepted sample uses the new bank. APPLY snapshots staging
+    /// values as they existed before the commit edge. Do not issue a staging
+    /// write and APPLY in the same outstanding AXI write transaction.
+    /// </remarks>
+    public static Module BuildWithAtomicAxiLite()
+    {
+        var m = new Module("AxiFirAtomicConfigured");
+        var port = AxiLitePort.Slave(m, "s_axi", 8);
+        var bank = new AxiLiteRegisterBank(m, port, "fir_csr");
+        var staging = new Expr[4];
+        var active = new Signal[4];
+        for (int i = 0; i < 4; i++)
+        {
+            uint initial = i == 0 ? 1u : 0u;
+            staging[i] = bank.AddRegister("staging" + i,
+                (uint)(4 * i), initial).Value.Slice(15, 0);
+            active[i] = m.Register("active_coefficient" + i, 16, initial);
+            bank.AddStatus("active" + i, (uint)(0x20 + 4 * i),
+                active[i].Resize(32));
+        }
+        var apply = bank.AddRegister("apply", 0x10);
+        for (int i = 0; i < 4; i++)
+            m.NextWhen(active[i], apply.Written, staging[i]);
+        bank.Build();
+        return BuildDatapath(m, active);
+    }
+
+    /// <summary>
     /// Shared structural datapath for external and AXI4-Lite coefficients.
     /// The coefficient expressions are sampled combinationally only on
     /// accepted input transactions, with registered output isolation.
