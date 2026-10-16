@@ -5,6 +5,11 @@ using System.Text;
 using SharpHDL;
 using SharpHDL.Examples;
 
+if (args.Length == 2 && args[0] == "--atomic")
+{
+    AtomicFirReplay.Generate(Path.GetFullPath(args[1]));
+    return 0;
+}
 if (args.Length != 1)
 {
     Console.Error.WriteLine("Usage: AxiFirRtlDemo <output-directory>");
