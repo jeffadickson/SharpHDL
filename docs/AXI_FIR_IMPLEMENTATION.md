@@ -116,3 +116,33 @@ implemented.
 isolation, zero-strobe APPLY, readback, sample arithmetic, and reset.
 The new variant is not yet included in the standalone generated-Verilog
 replay job, which currently targets `Build()`.
+
+
+## Single-port RAM FIR prototype
+
+`AxiFirRam.Build()` implements a separate four-tap FIR using an inferred
+16 × 16-bit synchronous RAM, a circular write pointer, and a multicycle
+controller. It is deliberately not described as automatic HLS scheduling.
+
+- **IDLE**: accept an AXI beat, write it at HEAD, capture coefficients,
+  and calculate the newest-sample product.
+- **ISSUE**: present a historical address to the synchronous RAM.
+- **ACCUMULATE**: consume the registered RAM output and add the product
+  for the selected tap. Repeat for taps 1, 2, and 3.
+- **OUTPUT**: hold the result and all sidebands until AXI TREADY.
+
+The address of historical tap `k` is `(head_after_write - k - 1) mod 16`.
+The valid-history count is incremented only after output retirement;
+uninitialized history is logically zero regardless of RAM cell contents.
+This distinction is required for reset and initial startup correctness.
+
+The design captures all coefficients at input acceptance, so changing
+external coefficient ports during the multicycle operation cannot mix
+coefficient sets. It accepts at most one sample every eight clock cycles
+when the output consumer is continuously ready; downstream stalls increase
+that interval. It does **not** claim II=1.
+
+`AxiFirRamTests` provides a deterministic software scoreboard, random
+AXI backpressure, circular-address wraparound, and transaction counting.
+The test and design must pass CI before this implementation is considered
+verified. Generated-Verilog replay for this RAM variant is still pending.
