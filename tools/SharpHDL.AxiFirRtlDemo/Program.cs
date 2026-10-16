@@ -76,7 +76,15 @@ for(int cycle=0;cycle<600;cycle++)
     Drive("s_axis_keep",3);
     Drive("s_axis_user",0);
     Drive("m_axis_ready",ready);
-    ushort[] coefficients={3,5,7,11};
+    // Control inputs may change independently of the AXI data channel.
+    // The FIR must capture the coefficient values on input acceptance,
+    // while an already-valid output remains stable under backpressure.
+    ushort[] coefficients={
+        (ushort)random.Next(65536),
+        (ushort)random.Next(65536),
+        (ushort)random.Next(65536),
+        (ushort)random.Next(65536)
+    };
     for(int i=0;i<4;i++)Drive("coefficient"+i,coefficients[i]);
     bool observedValid=simulator.Read(ports["m_axis_valid"])!=0;
     bool observedReady=simulator.Read(ports["s_axis_ready"])!=0;
@@ -107,5 +115,5 @@ if(pending || oracle.OutputValid || acceptedCount!=completedCount)
 tb.AppendLine("$display(\"PASS AXI FIR RTL cycle replay\"); $finish; end endmodule");
 File.WriteAllText(Path.Combine(directory,"AxiFirStructural.v"),module.Verilog());
 File.WriteAllText(Path.Combine(directory,"AxiFirStructural_tb.sv"),tb.ToString());
-Console.WriteLine("Generated 600-cycle AXI FIR RTL replay with midstream reset and independent oracle.");
+Console.WriteLine("Generated 600-cycle AXI FIR RTL replay with randomized coefficients, midstream reset and independent oracle.");
 return 0;
