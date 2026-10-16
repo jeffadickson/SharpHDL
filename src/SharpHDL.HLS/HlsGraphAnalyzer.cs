@@ -67,7 +67,7 @@ public static class HlsGraphAnalyzer
     /// <summary>
     /// Analyze a validated Core graph with a per-stage abstract cost budget.
     /// Input and constant nodes have zero cost; all other operators are
-    /// counted on the longest operand-dependency path.
+    /// counted on the longest operand-dependency path. When requireCombinational\n    /// is true, reject stateful nodes rather than treating cost as clock latency.
     /// </summary>
     public static HlsGraphSchedule Analyze(HardwareGraph graph,int stageBudget=4,
         HlsCostProfile? profile=null)
@@ -76,6 +76,10 @@ public static class HlsGraphAnalyzer
         if(stageBudget<1)throw new ArgumentOutOfRangeException(nameof(stageBudget));
         profile??=new HlsCostProfile();
         profile.Validate();
+        if(requireCombinational && graph.Nodes.Any(n => n.Operation is
+            HardwareOperation.Register or HardwareOperation.MemoryRead or
+            HardwareOperation.MemoryWrite))
+            throw new NotSupportedException("Combinational HLS scheduling cannot assign cycle latency to stateful operations.");
         var arrival=new Dictionary<int,int>();
         var nodes=new List<HlsNodeSchedule>();
         int multiply=0,dsp=0,max=0;
@@ -90,7 +94,7 @@ public static class HlsGraphAnalyzer
                     HardwareOperation.Equal or HardwareOperation.LessThan or
                     HardwareOperation.SignedLessThan => profile.ArithmeticCost,
                 HardwareOperation.Lookup => profile.MemoryReadCost,
-                HardwareOperation.MemoryRead => throw new NotSupportedException(\n                    "Synchronous RAM requires explicit cycle-latency scheduling; combinational HLS analysis cannot model it."),\n                HardwareOperation.Register => throw new NotSupportedException(\n                    "Register boundaries require sequential scheduling, not combinational HLS analysis."),
+                // Compatibility reporting only: these weights are not clock latencies.\n                HardwareOperation.MemoryRead => profile.MemoryReadCost,\n                HardwareOperation.Register => 0,
                 _ => profile.LogicCost
             };
             if(node.Operation==HardwareOperation.Multiply)multiply++;
