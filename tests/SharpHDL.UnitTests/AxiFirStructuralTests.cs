@@ -9,6 +9,101 @@ namespace SharpHDL.UnitTests;
 public sealed class AxiFirStructuralTests
 {
     /// <summary>
+    /// Staging writes must not change the active filter until an APPLY write.
+    /// APPLY atomically copies all four coefficients, with readable active
+    /// values and a reset-defined pass-through response.
+    /// </summary>
+    [Fact]
+    public void Atomic_axi_lite_coefficients_activate_only_on_apply()
+    {
+        var module=AxiFirStructural.BuildWithAtomicAxiLite();
+        var ports=module.Ports.ToDictionary(p=>p.Name,p=>p);
+        var sim=module.Simulate();
+        void Set(string name,int value)=>sim.Set(ports[name],value);
+        int Read(string name)=>(int)sim.Read(ports[name]);
+        sim.Tick(true);
+        Set("s_axis_tvalid",0);
+        Set("m_axis_tready",1);
+        Set("s_axi_awvalid",0);
+        Set("s_axi_wvalid",0);
+        Set("s_axi_bready",0);
+        Set("s_axi_arvalid",0);
+        Set("s_axi_rready",0);
+
+        void Write(int address,int data,int strobes=15)
+        {
+            Set("s_axi_awaddr",address);
+            Set("s_axi_awvalid",1);
+            Assert.Equal(1,Read("s_axi_awready"));
+            sim.Tick();
+            Set("s_axi_awvalid",0);
+            Set("s_axi_wdata",data);
+            Set("s_axi_wstrb",strobes);
+            Set("s_axi_wvalid",1);
+            Assert.Equal(1,Read("s_axi_wready"));
+            sim.Tick();
+            Set("s_axi_wvalid",0);
+            sim.Tick();
+            Assert.Equal(1,Read("s_axi_bvalid"));
+            Assert.Equal(0,Read("s_axi_bresp"));
+            Set("s_axi_bready",1);
+            sim.Tick();
+            Set("s_axi_bready",0);
+            Assert.Equal(0,Read("s_axi_bvalid"));
+        }
+        int ReadRegister(int address)
+        {
+            Set("s_axi_araddr",address);
+            Set("s_axi_arvalid",1);
+            Assert.Equal(1,Read("s_axi_arready"));
+            sim.Tick();
+            Set("s_axi_arvalid",0);
+            Assert.Equal(1,Read("s_axi_rvalid"));
+            Assert.Equal(0,Read("s_axi_rresp"));
+            int value=Read("s_axi_rdata");
+            Set("s_axi_rready",1);
+            sim.Tick();
+            Set("s_axi_rready",0);
+            return value;
+        }
+
+        Assert.Equal(1,ReadRegister(0x20));
+        Assert.Equal(0,ReadRegister(0x24));
+        Write(0x00,5);
+        Write(0x04,7);
+        Assert.Equal(5,ReadRegister(0x00));
+        Assert.Equal(7,ReadRegister(0x04));
+        Assert.Equal(1,ReadRegister(0x20));
+        Assert.Equal(0,ReadRegister(0x24));
+
+        // APPLY with zero strobes must not commit anything.
+        Write(0x10,1,0);
+        Assert.Equal(1,ReadRegister(0x20));
+        Write(0x10,0,1);
+        Assert.Equal(5,ReadRegister(0x20));
+        Assert.Equal(7,ReadRegister(0x24));
+        Assert.Equal(0,ReadRegister(0x28));
+        Assert.Equal(0,ReadRegister(0x2c));
+
+        Set("s_axis_tvalid",1);
+        Set("s_axis_tdata",3);
+        Set("s_axis_tkeep",3);
+        Set("s_axis_tlast",0);
+        Set("s_axis_tuser",0);
+        sim.Tick();
+        Assert.Equal(15,Read("m_axis_tdata"));
+        Set("s_axis_tdata",4);
+        sim.Tick();
+        Assert.Equal(41,Read("m_axis_tdata")); // 5*4 + 7*3
+
+        Set("s_axis_tvalid",0);
+        sim.Tick(true);
+        Assert.Equal(1,ReadRegister(0x20));
+        Assert.Equal(0,ReadRegister(0x24));
+        Assert.Contains("module",module.Verilog());
+    }
+
+    /// <summary>
     /// The AXI4-Lite variant shares the FIR datapath and exposes four
     /// memory-mapped coefficients rather than external coefficient ports.
     /// </summary>
