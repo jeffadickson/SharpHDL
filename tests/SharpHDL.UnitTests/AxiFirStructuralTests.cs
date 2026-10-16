@@ -52,6 +52,48 @@ public sealed class AxiFirStructuralTests
         Assert.True(completed > 100);
         Assert.Contains("module", module.Verilog());
     }
+    /// <summary>
+    /// Exercise coefficient changes only on accepted samples, including a
+    /// blocked output that must retain its previous result and sidebands.
+    /// </summary>
+    [Fact]
+    public void Coefficients_change_between_handshakes_without_corrupting_blocked_output()
+    {
+        var module=AxiFirStructural.Build();
+        var sim=module.Simulate();
+        var ports=module.Ports.ToDictionary(p=>p.Name,p=>p);
+        void Set(string name,int value)=>sim.Set(ports[name],value);
+        int Read(string name)=>(int)sim.Read(ports[name]);
+        sim.Tick(true);
+        Set("m_axis_ready",0);
+        Set("s_axis_valid",1);
+        Set("s_axis_data",10);
+        Set("s_axis_keep",3);
+        Set("s_axis_last",1);
+        Set("s_axis_user",19);
+        for(int i=0;i<4;i++)Set("coefficient"+i,i==0?2:0);
+        sim.Tick();
+        Assert.Equal(20,Read("m_axis_data"));
+        Assert.Equal(1,Read("m_axis_valid"));
+        Assert.Equal(1,Read("m_axis_last"));
+        Assert.Equal(19,Read("m_axis_user"));
+        // An offered second sample cannot advance while the first is blocked.
+        Set("s_axis_data",7);
+        Set("s_axis_last",0);
+        Set("s_axis_user",23);
+        for(int i=0;i<4;i++)Set("coefficient"+i,i==0?3:0);
+        Assert.Equal(0,Read("s_axis_ready"));
+        sim.Tick();
+        Assert.Equal(20,Read("m_axis_data"));
+        Assert.Equal(19,Read("m_axis_user"));
+        // Consuming the old output and accepting the new input on one edge.
+        Set("m_axis_ready",1);
+        sim.Tick();
+        Assert.Equal(21,Read("m_axis_data"));
+        Assert.Equal(0,Read("m_axis_last"));
+        Assert.Equal(23,Read("m_axis_user"));
+    }
+
     /// <summary>Verify reset removes a blocked output and clears FIR history.</summary>
     [Fact]
     public void Reset_during_output_stall_discards_old_sample_and_history()
