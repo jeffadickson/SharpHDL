@@ -44,6 +44,8 @@ void Clock(bool reset=false)
 }
 Clock(true);
 var random=new Random(45110);
+var oracle=new AxiFirReference(capacity:1);
+int acceptedCount=0, completedCount=0;
 bool pending=false;
 ushort sample=0;
 int last=0;
@@ -62,12 +64,28 @@ for(int cycle=0;cycle<600;cycle++)
     Drive("s_axis_keep",3);
     Drive("s_axis_user",0);
     Drive("m_axis_ready",ready);
-    int[] coefficients={3,5,7,11};
+    ushort[] coefficients={3,5,7,11};
     for(int i=0;i<4;i++)Drive("coefficient"+i,coefficients[i]);
-    bool accepted=pending && simulator.Read(ports["s_axis_ready"])!=0;
+    bool observedValid=simulator.Read(ports["m_axis_valid"])!=0;
+    bool observedReady=simulator.Read(ports["s_axis_ready"])!=0;
+    bool expectedReady=oracle.InputReady || (oracle.OutputValid && ready!=0);
+    if(observedValid!=oracle.OutputValid || observedReady!=expectedReady)
+        throw new InvalidOperationException($"AXI handshake mismatch at cycle {cycle}.");
+    if(observedValid)
+    {
+        var expected=oracle.Output;
+        if(simulator.Read(ports["m_axis_data"])!=(int)expected.Data ||
+           (simulator.Read(ports["m_axis_last"])!=0)!=expected.Last)
+            throw new InvalidOperationException($"FIR payload mismatch at cycle {cycle}.");
+        if(ready!=0)completedCount++;
+    }
+    bool accepted=pending && observedReady;
+    oracle.Tick(pending,sample,last!=0,ready!=0,coefficients);
     Clock();
-    if(accepted)pending=false;
+    if(accepted){pending=false;acceptedCount++;}
 }
+if(pending || oracle.OutputValid || acceptedCount!=completedCount)
+    throw new InvalidOperationException($"Undrained FIR transactions: accepted={acceptedCount}, completed={completedCount}.");
 tb.AppendLine("$display(\"PASS AXI FIR RTL cycle replay\"); $finish; end endmodule");
 File.WriteAllText(Path.Combine(directory,"AxiFirStructural.v"),module.Verilog());
 File.WriteAllText(Path.Combine(directory,"AxiFirStructural_tb.sv"),tb.ToString());
