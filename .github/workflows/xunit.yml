@@ -22,6 +22,8 @@ jobs:
           dotnet-version: '8.0.x'
       - run: dotnet restore tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj
       - run: dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --no-restore --logger 'trx;LogFileName=unit-results.trx'
+      - name: Explicit AXI FIR regression gate
+        run: dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --no-restore --filter "FullyQualifiedName~AxiFir"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
