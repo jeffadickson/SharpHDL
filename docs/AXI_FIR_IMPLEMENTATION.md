@@ -46,3 +46,38 @@ The initial FIR must use a structural datapath or extend that compiler.
 
 This file is a design/acceptance contract, **not evidence that the FIR RTL
 has been implemented or that simulation has passed**.
+
+
+## Implemented AXI4-Lite configuration variant (.NET 10)
+
+`AxiFirStructural.BuildWithAxiLite()` reuses the verified four-tap
+register-history datapath. The AXI4-Lite slave is named `s_axi` and
+the AXI4-Stream slave/master are `s_axis` and `m_axis`.
+
+| Byte offset | Register | Reset value | Used bits |
+|---|---|---|---|
+| 0x00 | coefficient0 | 1 | [15:0] |
+| 0x04 | coefficient1 | 0 | [15:0] |
+| 0x08 | coefficient2 | 0 | [15:0] |
+| 0x0C | coefficient3 | 0 | [15:0] |
+
+The register bank supports independent AW/W handshakes, byte strobes,
+readback and backpressured B/R responses. A coefficient update takes effect
+on its write-commit clock edge. Samples accepted on subsequent edges use
+the updated coefficient values. An already registered output is unaffected
+by later coefficient changes.
+
+The current implementation does **not** provide atomic multi-coefficient
+updates: software must quiesce the sample stream if a complete coefficient
+set must change as one unit. A shadow-bank/commit mechanism is a future
+extension. This distinction is important for uninterrupted DSP streams.
+
+Test: `AxiFirStructuralTests.Axi_lite_writes_and_reads_change_fir_coefficients`
+checks real bus transactions, readback, byte strobes and FIR arithmetic.
+It is not evidence of AXI protocol qualification until CI confirms the test.
+
+### Run the .NET 10 regression
+
+```bash
+dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --filter "FullyQualifiedName~AxiFir"
+```
