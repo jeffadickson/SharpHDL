@@ -70,7 +70,7 @@ public static class HlsGraphAnalyzer
     /// counted on the longest operand-dependency path. When requireCombinational\n    /// is true, reject stateful nodes rather than treating cost as clock latency.
     /// </summary>
     public static HlsGraphSchedule Analyze(HardwareGraph graph,int stageBudget=4,
-        HlsCostProfile? profile=null)
+        HlsCostProfile? profile=null,bool requireCombinational=false)
     {
         if(graph==null)throw new ArgumentNullException(nameof(graph));
         if(stageBudget<1)throw new ArgumentOutOfRangeException(nameof(stageBudget));
