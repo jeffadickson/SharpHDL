@@ -93,6 +93,10 @@ for(int cycle=0;cycle<600;cycle++)
             throw new InvalidOperationException($"FIR payload mismatch at cycle {cycle}.");
         if(ready!=0)completedCount++;
     }
+    // Independently verify the DUT's pre-edge output, not just post-edge
+    // RTL parity. These are the values consumed on this clock edge.
+    if(observedValid && ready!=0 && !oracle.OutputValid)
+        throw new InvalidOperationException($"Unexpected output transfer at cycle {cycle}.");
     bool accepted=pending && observedReady;
     oracle.Tick(pending,sample,last!=0,ready!=0,coefficients);
     Clock();
