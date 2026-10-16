@@ -76,9 +76,9 @@ public static class HlsGraphAnalyzer
         if(stageBudget<1)throw new ArgumentOutOfRangeException(nameof(stageBudget));
         profile??=new HlsCostProfile();
         profile.Validate();
-        if(requireCombinational && graph.Nodes.Any(n => n.Operation is
+        if(requireCombinational && (graph.StateInputNodeIds.Count != 0 || graph.Nodes.Any(n => n.Operation is
             HardwareOperation.Register or HardwareOperation.MemoryRead or
-            HardwareOperation.MemoryWrite))
+            HardwareOperation.MemoryWrite)))
             throw new NotSupportedException("Combinational HLS scheduling cannot assign cycle latency to stateful operations.");
         var arrival=new Dictionary<int,int>();
         var nodes=new List<HlsNodeSchedule>();
