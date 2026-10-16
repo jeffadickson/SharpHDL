@@ -69,6 +69,15 @@ jobs:
           mkdir -p build/axi-fir
           iverilog -g2012 -s tb -o build/axi-fir/replay generated/axi-fir/AxiFirStructural.v generated/axi-fir/AxiFirStructural_tb.sv
           vvp build/axi-fir/replay
+      - name: Upload FIR RTL and replay artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: axi-fir-rtl-replay
+          path: |
+            generated/axi-fir/*.v
+            generated/axi-fir/*.sv
+          if-no-files-found: warn
   core-hls-verilator:
     runs-on: ubuntu-latest
     timeout-minutes: 15
