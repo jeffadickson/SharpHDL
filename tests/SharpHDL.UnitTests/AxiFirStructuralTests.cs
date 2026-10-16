@@ -8,6 +8,36 @@ namespace SharpHDL.UnitTests;
 /// <summary>Cycle-level acceptance of the structural AXI FIR against an independent oracle.</summary>
 public sealed class AxiFirStructuralTests
 {
+    /// <summary>
+    /// The AXI4-Lite variant shares the FIR datapath and exposes four
+    /// memory-mapped coefficients rather than external coefficient ports.
+    /// </summary>
+    [Fact]
+    public void Axi_lite_fir_builds_with_default_impulse_response()
+    {
+        var module=AxiFirStructural.BuildWithAxiLite();
+        var ports=module.Ports.ToDictionary(p=>p.Name,p=>p);
+        Assert.Contains("s_axi_awaddr",ports.Keys);
+        Assert.Contains("s_axi_wdata",ports.Keys);
+        Assert.Contains("s_axi_wstrb",ports.Keys);
+        Assert.Contains("s_axi_bvalid",ports.Keys);
+        Assert.Contains("s_axi_araddr",ports.Keys);
+        Assert.Contains("s_axi_rdata",ports.Keys);
+        Assert.DoesNotContain("coefficient0",ports.Keys);
+        var sim=module.Simulate();
+        sim.Tick(true);
+        sim.Set(ports["s_axis_tvalid"],1);
+        sim.Set(ports["s_axis_tdata"],17);
+        sim.Set(ports["s_axis_tkeep"],3);
+        sim.Set(ports["s_axis_tlast"],1);
+        sim.Set(ports["s_axis_tuser"],0);
+        sim.Set(ports["m_axis_tready"],1);
+        sim.Tick();
+        Assert.Equal(1,(int)sim.Read(ports["m_axis_tvalid"]));
+        Assert.Equal(17,(int)sim.Read(ports["m_axis_tdata"]));
+        Assert.Contains("module",module.Verilog());
+    }
+
     /// <summary>Protect the public AXI4-Stream signal naming and widths.</summary>
     [Fact]
     public void Structural_fir_exposes_standard_axi_stream_ports()
