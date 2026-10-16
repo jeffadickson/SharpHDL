@@ -24,6 +24,7 @@ public sealed class AxiFirStructuralTests
         int completed = 0;
         for (int cycle = 0; cycle < 600; cycle++)
         {
+            // AXI producers must hold VALID and payload stable until handshake.
             bool valid = cycle < 540 && rng.Next(4) != 0;
             bool ready = cycle >= 540 || rng.Next(3) != 0;
             ushort sample = (ushort)rng.Next(65536);
