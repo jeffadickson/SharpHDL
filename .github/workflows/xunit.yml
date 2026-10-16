@@ -4,7 +4,7 @@ concurrency:
   cancel-in-progress: true
 on:
   push:
-    paths: ['src/**', 'tests/SharpHDL.UnitTests/**', 'tests/check-project-layers.py', 'tests/rtl/tb_core_hls_elastic.sv', 'tests/rtl/tb_cil_core.sv', 'tools/SharpHDL.CilCoreDemo/**', 'tools/SharpHDL.CoreHlsDemo/**', 'tools/SharpHDL.AxiFirRtlDemo/**', 'src/SharpHDL.RTL/**', 'src/SharpHDL.LegacyRtl/**', 'Makefile', '.github/workflows/xunit.yml']
+    paths: ['src/**', 'tests/SharpHDL.UnitTests/**', 'tests/check-project-layers.py', 'tests/rtl/tb_core_hls_elastic.sv', 'tests/rtl/tb_cil_core.sv', 'tools/SharpHDL.CilCoreDemo/**', 'tools/SharpHDL.CoreHlsDemo/**', 'tools/SharpHDL.AxiFirRtlDemo/**', 'src/SharpHDL.RTL/**', 'src/SharpHDL.LegacyRtl/**', 'Makefile', 'global.json', '.github/workflows/xunit.yml']
   pull_request:
     paths: ['src/**', 'tests/SharpHDL.UnitTests/**', '.github/workflows/xunit.yml']
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '10.0.x'
       - run: dotnet restore tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj
       - run: dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --no-restore --logger 'trx;LogFileName=unit-results.trx'
       - name: Explicit AXI FIR regression gate
@@ -36,7 +36,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '10.0.x'
       - name: Enforce Core/HLS/Simulation dependency direction
         run: python3 tests/check-project-layers.py
       - name: Build independent Core IR assembly
@@ -59,7 +59,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '10.0.x'
       - name: Install Icarus Verilog
         run: sudo apt-get update && sudo apt-get install -y iverilog
       - name: Generate AXI FIR RTL and cycle reference bench
@@ -85,7 +85,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '10.0.x'
       - name: Install Verilator
         run: sudo apt-get update && sudo apt-get install -y verilator
       - name: Compile Core IR into registered RTL
@@ -105,7 +105,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '10.0.x'
       - name: Install Verilator
         run: sudo apt-get update && sudo apt-get install -y verilator
       - name: Build independent Core RTL backend
@@ -126,7 +126,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '10.0.x'
       - name: Install Verilator
         run: sudo apt-get update && sudo apt-get install -y verilator
       - name: Compile production CIL through Core HLS into dual RTL

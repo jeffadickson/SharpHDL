@@ -8,6 +8,7 @@ on:
       - 'tools/SharpHDL.NativeTinyRisc/**'
       - 'examples/TinyRisc/**'
       - 'tests/run-tinyrisc.sh'
+      - 'global.json'
       - '.github/workflows/tinyrisc-hello.yml'
   pull_request:
     paths:
@@ -25,7 +26,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: '10.0.x'
       - name: Provision Icarus Verilog
         run: sudo apt-get update && sudo apt-get install -y iverilog yosys
       - name: Show tool versions
