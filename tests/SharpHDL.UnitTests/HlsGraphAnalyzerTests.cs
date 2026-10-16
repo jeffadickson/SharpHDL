@@ -119,4 +119,20 @@ public sealed class HlsGraphAnalyzerTests
             n.Name=="ram_read_data");
     }
 
+    /// <summary>Strict HLS rejects state while legacy analysis can inspect sequential graphs.</summary>
+    [Fact]
+    public void Strict_combinational_mode_rejects_state_without_breaking_reporting()
+    {
+        var module=new Module("SequentialAnalysisCompatibility");
+        var input=module.Input("input",8);
+        var state=module.Register("state",8,0);
+        var output=module.Output("output",8);
+        module.Next(state,state+input);
+        module.Drive(output,state);
+        var graph=module.ExportCoreGraph().Graph;
+        Assert.Equal(graph.Nodes.Count,HlsGraphAnalyzer.Analyze(graph).Nodes.Count);
+        Assert.Throws<NotSupportedException>(()=>
+            HlsGraphAnalyzer.Analyze(graph,requireCombinational:true));
+    }
+
 }
