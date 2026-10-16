@@ -204,3 +204,29 @@ does not establish FPGA timing closure or device DSP/BRAM utilization.
 It is *not* yet general-purpose C# loop synthesis, generic Core IR state
 machine emission, or automatic multi-resource arbitration. Those require
 additional compiler IR constructs, scheduling and backend support.
+
+
+## Parameterized FIR generated-Verilog acceptance gate
+
+The `SharpHDL.AxiFirRtlDemo` tool now supports:
+
+```bash
+dotnet run --project tools/SharpHDL.AxiFirRtlDemo/SharpHDL.AxiFirRtlDemo.csproj -c Release -- --scheduled generated/hls-scheduled-fir
+```
+
+This generates a Verilog design and cycle-exact SystemVerilog replay for
+each of 2, 4, 8 and 16 taps. Each replay drives AXI-compliant held input
+beats, randomized downstream stalls, a midstream reset, and enough samples
+to wrap circular history. The generator checks every completed sample
+against an independent software convolution, then records the SharpHDL
+simulator's expected output pins for the Icarus testbench.
+
+The `hls-scheduled-fir-rtl` GitHub Actions job compiles and executes
+all four generated designs. Any output mismatch fails the job with tap
+count, clock edge and port name. The emitted artifacts are retained
+for debugging.
+
+The specialized emitter still constructs a legacy `Module`; direct
+canonical Core IR state-machine emission remains outstanding. Passing
+the generated-Verilog replay does not establish timing closure, RAM
+inference quality or DSP placement on a physical FPGA.
