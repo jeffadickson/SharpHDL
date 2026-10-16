@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Frozen;
 using System.Linq;
 using System.Numerics;
 
@@ -99,7 +100,7 @@ public sealed class HardwareGraph
         var stateIds=(stateInputNodeIds ?? Array.Empty<int>()).ToHashSet();
         if(stateIds.Any(id=>!known.TryGetValue(id,out var n) || n.Operation!=HardwareOperation.Input))
             throw new ArgumentException("State boundaries must reference existing input nodes.",nameof(stateInputNodeIds));
-        StateInputNodeIds=new System.Collections.ObjectModel.ReadOnlySet<int>(stateIds);
+        StateInputNodeIds=stateIds.ToFrozenSet();
         Nodes = Array.AsReadOnly(list.Select(n =>
             n with { Operands = Array.AsReadOnly(n.Operands.ToArray()),
                 Table = n.Table == null ? null : Array.AsReadOnly(n.Table.ToArray()) }).ToArray());
