@@ -34,6 +34,7 @@ void Drive(string name,int value)
 }
 void Clock(bool reset=false)
 {
+    // Settle the driven inputs before the edge, then compare post-edge outputs.
     simulator.Tick(reset);
     tb.AppendLine($"rst={(reset?1:0)}; #1; clk=1; #1;");
     foreach(var port in module.Ports.Where(p=>!p.IsInput))
