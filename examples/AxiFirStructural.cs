@@ -13,12 +13,40 @@ public static class AxiFirStructural
     public static Module Build()
     {
         var m = new Module("AxiFirStructural");
+        return BuildDatapath(m, new Expr[] { m.Input("coefficient0", 16),
+            m.Input("coefficient1", 16), m.Input("coefficient2", 16),
+            m.Input("coefficient3", 16) });
+    }
+
+    /// <summary>
+    /// Build the same FIR datapath with AXI4-Lite software-writable coefficients.
+    /// Four 32-bit registers at byte offsets 0, 4, 8 and 12 hold unsigned
+    /// coefficients in bits 15:0; upper bits are reserved and ignored.
+    /// The initial impulse response is [1,0,0,0]. Changes affect only
+    /// subsequently accepted AXI4-Stream samples.
+    /// </summary>
+    public static Module BuildWithAxiLite()
+    {
+        var m = new Module("AxiFirConfigured");
+        var port = AxiLitePort.Slave(m, "s_axi", 8);
+        var bank = new AxiLiteRegisterBank(m, port, "fir_csr");
+        var coefficients = new Expr[4];
+        for (int i = 0; i < coefficients.Length; i++)
+            coefficients[i] = bank.AddRegister("coefficient" + i,
+                (uint)(4 * i), i == 0 ? 1u : 0u).Value.Slice(15, 0);
+        bank.Build();
+        return BuildDatapath(m, coefficients);
+    }
+
+    /// <summary>
+    /// Shared structural datapath for external and AXI4-Lite coefficients.
+    /// The coefficient expressions are sampled combinationally only on
+    /// accepted input transactions, with registered output isolation.
+    /// </summary>
+    private static Module BuildDatapath(Module m, Expr[] coefficients)
+    {
         var input = Stream.Input(m, "s_axis", 16, 8);
         var output = Stream.Output(m, "m_axis", 16, 8);
-        var c0 = m.Input("coefficient0", 16);
-        var c1 = m.Input("coefficient1", 16);
-        var c2 = m.Input("coefficient2", 16);
-        var c3 = m.Input("coefficient3", 16);
         var h1 = m.Register("history1", 16, 0);
         var h2 = m.Register("history2", 16, 0);
         var h3 = m.Register("history3", 16, 0);
@@ -33,7 +61,8 @@ public static class AxiFirStructural
         m.Drive(input.Ready, canAdvance);
         var accept = input.Valid & canAdvance;
         var sample = input.Data;
-        var sum = sample * c0 + h1 * c1 + h2 * c2 + h3 * c3;
+        var sum = sample * coefficients[0] + h1 * coefficients[1] +
+            h2 * coefficients[2] + h3 * coefficients[3];
         m.NextWhen(h3, accept, h2);
         m.NextWhen(h2, accept, h1);
         m.NextWhen(h1, accept, sample);
