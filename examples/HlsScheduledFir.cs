@@ -83,8 +83,13 @@ public static class HlsScheduledFir
         for(int i=taps-2;i>=1;i--)
             selected=Expr.Mux(tap.Eq(Expr.Const(tapBits,i)),captured[i],selected);
         var history=Expr.Mux(~count.Lt(tap),ram.ReadData,Expr.Const(16,0));
-        m.Next(result,Expr.Mux(accept,input.Data*coefficients[0],
-            Expr.Mux(accumulate,result+history*selected,result)));
+        // Share exactly one 16-bit multiplier across the incoming sample
+        // and all historical taps. Mutually exclusive states select operands.
+        var multiplicand=Expr.Mux(accept,input.Data,history);
+        var coefficient=Expr.Mux(accept,coefficients[0],selected);
+        var product=multiplicand*coefficient;
+        m.Next(result,Expr.Mux(accept,product,
+            Expr.Mux(accumulate,result+product,result)));
         m.NextWhen(head,accept,head+Expr.Const(addressBits,1));
         m.NextWhen(count,retire,Expr.Mux(count.Eq(Expr.Const(tapBits,taps-1)),
             count,count+Expr.Const(tapBits,1)));
