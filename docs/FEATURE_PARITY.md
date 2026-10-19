@@ -1,6 +1,6 @@
 # Feature parity and engineering comparison: SharpHDL / RHDL
 
-**Updated:** October 14, 2026, Pacific time, after executed simulator CI.
+**Updated:** October 19, 2026 (scheduled FIR and upstream revision audit).
 **Current execution evidence:** [SIMULATOR_VERIFICATION.md](SIMULATOR_VERIFICATION.md).
 **Current compiler design:** [COMPILED_SIMULATOR_DESIGN.md](COMPILED_SIMULATOR_DESIGN.md).
 **Preserved prior matrix and complete implementation history:** [pre-verification record](history/FEATURE_PARITY_before_verified_simulator_0082cc0.md).
@@ -48,3 +48,9 @@ Keep PAR identifiers stable. Update execution status from actual logs and artifa
 
 - Earlier October 14 implementation and planning entries are preserved verbatim in the linked history file.
 - October 14 executed verification: corrected the PDB build failure and typed-channel test, measured the first fused-tree slowdown, replaced repeated tree expansion with typed shared-DAG scheduling, passed the expanded 60-case suite, qualified independent-oracle/RTL fixtures, and measured all three CPU engines. Exact sources and results are in the linked verification report.
+
+## Review — 2026-10-19
+
+Upstream `skryl/rhdl` master remains at [8dc7579](https://github.com/skryl/rhdl/commit/8dc75799ba4e02045237760c3cd95827f14db387) (2026-03-03). Its README and web simulator documentation have the same blob SHAs as the prior review (`126d5795`, `1171ef92`). There are **no new upstream commits** since the previous audit. The previously documented upstream CIRCT/Arcilator RISC-V modes, Linux/BusyBox runner, and Electrobun desktop packaging remain meaningful comparison targets; see [RISC-V](https://github.com/skryl/rhdl/blob/master/docs/riscv.md) and [web](https://github.com/skryl/rhdl/blob/master/docs/web_simulator.md).
+
+SharpHDL now has a specialized real-cycle single-port FIR planner (1..256-tap schedules) and an RTL-generating 2..16-tap controller that shares one RAM port and multiplier. The 2/4/8/16-tap replays succeeded with Icarus in the [2026-10-16 CI run](https://github.com/jeffadickson/SharpHDL/actions/runs/38845913306), which also passed Linux/Windows unit tests and Core RTL/Verilator jobs. Commits: [planner](https://github.com/jeffadickson/SharpHDL/commit/316b1a41705870eb21ec9cac2d8a6d51804caa82), [emitter](https://github.com/jeffadickson/SharpHDL/commit/22b3c791067fc7254e67a0709f097f8c5de84d54), [multiplier sharing](https://github.com/jeffadickson/SharpHDL/commit/96b5f56c3854fa041a052873e37b0d1f7080051e), [CI gate](https://github.com/jeffadickson/SharpHDL/commit/c016969b191505cb1ac71d40e98bc0164f9a6967). This advances **PAR-003, PAR-020, PAR-021, PAR-024** in a qualified subset. **Remaining:** general Core IR/CIL state-machine lowering, multi-resource scheduling, DSP/BRAM device mapping, timing closure, full-system and multi-clock/four-state simulation; no matched RHDL speed comparison. The reviewed SharpHDL head was [3e041470](https://github.com/jeffadickson/SharpHDL/commit/3e0414706052fc58ee57c6dc6f53160b9167ac19) (documentation-only after the tested commit). See [issue #6](https://github.com/jeffadickson/SharpHDL/issues/6), [#24](https://github.com/jeffadickson/SharpHDL/issues/24) and [#26](https://github.com/jeffadickson/SharpHDL/issues/26).
