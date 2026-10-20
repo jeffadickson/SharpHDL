@@ -305,6 +305,29 @@ UART and Yosys checks. The legacy emitter is retained as an oracle.
 Direct DSP48E2, multiport memories and broader backend capabilities
 remain for further migration.
 
+## 2026-10-19 — scheduled state machines lower directly to Core IR
+
+`SharpHDL.HLS.ScheduledMachineBuilder` is an algorithm-neutral control and
+datapath representation. It declares typed values, resettable registers,
+finite states, guarded assignments and transitions, and synchronous
+single-port RAM reads and writes. Lowering creates only canonical
+`HardwareGraph`, named boundary maps and `HardwareMemoryPort` metadata.
+HLS therefore remains independent of the legacy structural frontend,
+simulation and RTL assemblies.
+
+Each RAM access is attached to a schedule state. Lowering rejects more
+than one access to the same single-port memory in a state. A read captures
+the pre-edge RAM value into an explicit register, preserving one-clock
+synchronous latency; writes commit after pre-edge evaluation. Guarded
+transitions hold the current state when no condition fires, which provides
+ready/valid backpressure without a backend-specific scheduling rule.
+
+`HlsScheduledFirCompiler` is the first client. It maps the existing
+single-port FIR schedule to one state per clock slot and explicitly
+arbitrates all tap operands onto one multiplier. The resulting Core IR is
+simulated by `HardwareGraphMachine` and emitted by `CoreVerilogEmitter`.
+The legacy four-tap FIR remains an independent transaction-level oracle.
+
 ## 2026-10-15 — production CIL frontend connected to Core elastic HLS
 
 The existing `CilCompiler.AttachPipeline` now accepts

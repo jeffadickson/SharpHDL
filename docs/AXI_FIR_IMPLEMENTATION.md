@@ -171,27 +171,26 @@ output-valid offered in cycle `2*N-1`. The planner guarantees no
 same-cycle contention for the one RAM port. Output backpressure extends
 the interval without losing transactions.
 
-**Scope:** This is a validated *schedule description*, not yet a
-Core IR state-machine emitter. The structural `AxiFirRam.Build()`
-implements the four-tap case. The next step is to consume the schedule
-and generate the controller automatically, then compare its Core IR RTL
-against the verified structural reference. Timing closure and DSP
-resource allocation remain separate work.
+**Scope:** `HlsScheduledFirCompiler` now consumes this schedule through
+the reusable scheduled-machine lowering described below. The structural
+`AxiFirRam.Build()` remains an independent four-tap reference. Timing
+closure and device-specific DSP resource selection remain separate work.
 
 
 ## Schedule-driven FIR controller generation
 
-`HlsScheduledFir.Build(taps)` is the first specialized lowering bridge
-between the independent HLS memory planner and the SharpHDL hardware
-frontend. Supported tap counts are 2, 4, 8, 16 (and other integers 2..16).
-The emitter checks that the plan has the expected write, read, accumulate
-and output clock slots before constructing a parameterized controller.
+`HlsScheduledFir.Build(taps)` now invokes `HlsScheduledFirCompiler`, which
+maps FIR policy onto `ScheduledMachineBuilder`. The reusable builder owns
+states, guarded register transfers, synchronous RAM operations, state
+transitions, named inputs/outputs and single-port arbitration, then lowers
+them directly to canonical Core IR. It has no dependency on legacy
+`Module`, simulation or Verilog. Supported FIR tap counts are 2..16.
 
 The generated hardware uses:
 - One synchronous RAM port, with power-of-two circular depth >= tap count.
 - One multiplier/accumulator datapath, reused across historical taps.
 - One captured coefficient register per tap.
-- A four-state controller with AXI4-Stream backpressure and sidebands.
+- One schedule state per real clock slot, with AXI4-Stream backpressure.
 - A saturating logical history count, so unwritten RAM cells are never
   interpreted as valid historical samples.
 
@@ -200,10 +199,11 @@ software convolution for 2, 4, 8 and 16 taps. The test checks modulo-16-bit
 arithmetic, history wraparound, TLAST and stalls. Passing the xUnit test
 does not establish FPGA timing closure or device DSP/BRAM utilization.
 
-**Boundary:** this emitter is a specialized structural lowering template.
-It is *not* yet general-purpose C# loop synthesis, generic Core IR state
-machine emission, or automatic multi-resource arbitration. Those require
-additional compiler IR constructs, scheduling and backend support.
+**Boundary:** scheduled-machine lowering is now algorithm-neutral and can
+serve DSP, packet and memory kernels. FIR schedule construction remains a
+specialized planner. Automatic CIL loop extraction, multiport RAM,
+operator binding beyond the explicit shared FIR multiplier and overlapping
+iterations remain future compiler work.
 
 
 ## Parameterized FIR generated-Verilog acceptance gate
@@ -226,7 +226,7 @@ all four generated designs. Any output mismatch fails the job with tap
 count, clock edge and port name. The emitted artifacts are retained
 for debugging.
 
-The specialized emitter still constructs a legacy `Module`; direct
-canonical Core IR state-machine emission remains outstanding. Passing
-the generated-Verilog replay does not establish timing closure, RAM
-inference quality or DSP placement on a physical FPGA.
+The replay now simulates `ScheduledHardwareDesign` with the independent
+Core IR machine and emits Verilog with `CoreVerilogEmitter`; the legacy
+`Module` emitter is not used. Passing the replay does not establish timing
+closure, RAM inference quality or DSP placement on a physical FPGA.

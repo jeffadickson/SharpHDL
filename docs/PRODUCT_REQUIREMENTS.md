@@ -46,6 +46,7 @@ Each requirement has a persistent identifier, priority (P0 critical, P1 high, P2
 - **SCHED-005 P1:** Support resource sharing subject to initiation interval and latency constraints; report area-throughput tradeoffs.
 - **SCHED-006 P1:** Support explicit target-clock objectives with pre-route estimates and post-route timing feedback, always distinguishing requested and achieved frequencies.
 - **SCHED-007 P1:** Provide deterministic numerical reference models and RTL implementations for FIR, IIR (with feedback constraints), CIC, FFT building blocks, CORDIC, matrix/vector kernels and calibrated fixed-point quantization.
+- **SCHED-010 P0:** Lower finite resource schedules through an algorithm-neutral Core IR state-machine representation with guarded register transfers, explicit synchronous RAM latency, state transitions, ready/valid stalls and per-state resource arbitration. Acceptance requires independent Core simulation and generated-RTL replay for 2-, 4-, 8- and 16-tap FIR schedules.
 - **SCHED-008 P2:** Support scheduling across multiple kernels, FIFOs and dataflow graphs with deadlock, rate-balance and capacity diagnostics.
 - **SCHED-009 P2:** Add design-space exploration across pipeline stages, DSP usage, registers, BRAM and throughput; report Pareto candidates based on verified synthesis outputs.
 
