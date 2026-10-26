@@ -1,7 +1,7 @@
 # SharpHDL product requirements
 
 Status: Baseline proposal for version 0.15 and later. Owner: SharpHDL maintainers.
-Last revised: 2026-10-14.
+Last revised: 2026-10-26.
 
 ## 1. Vision and principles
 
@@ -47,6 +47,7 @@ Each requirement has a persistent identifier, priority (P0 critical, P1 high, P2
 - **SCHED-006 P1:** Support explicit target-clock objectives with pre-route estimates and post-route timing feedback, always distinguishing requested and achieved frequencies.
 - **SCHED-007 P1:** Provide deterministic numerical reference models and RTL implementations for FIR, IIR (with feedback constraints), CIC, FFT building blocks, CORDIC, matrix/vector kernels and calibrated fixed-point quantization.
 - **SCHED-010 P0:** Lower finite resource schedules through an algorithm-neutral Core IR state-machine representation with guarded register transfers, explicit synchronous RAM latency, state transitions, ready/valid stalls and per-state resource arbitration. Acceptance requires independent Core simulation and generated-RTL replay for 2-, 4-, 8- and 16-tap FIR schedules.
+- **SCHED-011 P1:** Prove that schedule-to-Core lowering is algorithm-neutral beyond FIR by implementing at least one independently specified non-FIR memory/control kernel (for example a packet-table update), with a deterministic software oracle, real Core IR execution, generated Verilog replay under seeded stalls/reset and explicit resource-capacity/latency assertions. Require evidence of no duplicate/lost transactions and preserve the boundary between an explicit schedule and *automatic* CIL scheduling. Track under existing issue #6; no new issue required.
 - **SCHED-008 P2:** Support scheduling across multiple kernels, FIFOs and dataflow graphs with deadlock, rate-balance and capacity diagnostics.
 - **SCHED-009 P2:** Add design-space exploration across pipeline stages, DSP usage, registers, BRAM and throughput; report Pareto candidates based on verified synthesis outputs.
 
@@ -227,3 +228,9 @@ Gate: all observable state is derived from the canonical IR and simulator, cross
 - **DBG-019 P0:** Provide a runnable VS Code Debug Adapter Protocol client that can launch/attach, step a real hardware clock, and read hardware-state variables from the shared live simulator. Initial inline adapter committed, requires execution verification.
 - **DBG-020 P0:** Bind source-line breakpoints to explicitly defined synthesized stage/token events (including duplicated operations and stalls), with verified/unverified DAP status and positive/negative breakpoint integration tests. Not implemented.
 - **DBG-021 P1:** Allow VS Code to select an arbitrary compiled C#/F# hardware module with matching debug symbols, not merely the fixed structural demo. Not implemented.
+
+## 21. HLS Core IR parity review and acceptance evidence (2026-10-26)
+
+- **Source revisions:** upstream RHDL `master` [`8dc7579`](https://github.com/skryl/rhdl/commit/8dc75799ba4e02045237760c3cd95827f14db387) unchanged since October 19; SharpHDL `main` [`90346c3`](https://github.com/jeffadickson/SharpHDL/commit/90346c36a2ae831a08876189578373fd3c745d69) (October 20 UTC), one commit beyond the previous [`19cb109`](https://github.com/jeffadickson/SharpHDL/commit/19cb109f22728cfe35ba85501877b493c841969a) parity review.
+- **SCHED-010 acceptance:** a reusable scheduled-machine builder now lowers guarded states, register and single-port RAM operations and resource uses into Core IR. The current specialized FIR compiler uses it for 2/4/8/16 taps. [October 21 xUnit workflow](https://github.com/jeffadickson/SharpHDL/actions/runs/39613566197) succeeded in all ten jobs, including real Icarus cycle replay, Linux/Windows xUnit and Core assembly-layer checks, providing acceptance evidence for **the stated FIR subset**. No local tests were executed as part of the October 26 review.
+- **SCHED-011 added:** require an independent *non-FIR* kernel before claiming algorithm-neutral applicability has been verified. Existing **SCHED-003/005/006/008/009** continue to cover CIL schedule extraction, automatic shared/multiple operator binding, clock objectives, multi-kernel deadlock/arbitration and synthesis-derived exploration; these requirements are **not satisfied** by one hand-scheduled multiplier and single-port memory. Multiport vendor-memory mapping and post-route timing stay open. Ownership: [#6](https://github.com/jeffadickson/SharpHDL/issues/6), [#24](https://github.com/jeffadickson/SharpHDL/issues/24), [#26](https://github.com/jeffadickson/SharpHDL/issues/26).
