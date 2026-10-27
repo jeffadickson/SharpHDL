@@ -2,6 +2,20 @@
 TITLE: Scheduled machine compiler boundary requirements
 
 [REQUIREMENT]
+UID: CIL-DIAG-001
+TITLE: Structured source-aware CIL rejection
+STATEMENT: >>>
+Compiler rejections shall retain NotSupportedException compatibility while exposing
+the original method, IL offset, actionable reason and a matched visible source span
+where available. Hidden/missing source shall remain explicitly absent. Malformed
+or unreadable optional symbols shall not replace the primary rejection; their
+failure shall be retained and identified in the diagnostic and exception.
+Implementation: CilDiagnostic.cs and CilCompiler.Error.
+Verification: CilDiagnosticTests covers visible, hidden, dynamic-image, malformed
+symbol and unrelated-exception cases.
+<<<
+
+[REQUIREMENT]
 UID: SCHED-VAL-001
 TITLE: Expression ownership
 STATEMENT: >>>

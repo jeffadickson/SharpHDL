@@ -1,0 +1,10 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.csproj",
+    "mutate": ["**/CilDiagnostic.cs"],
+    "test-case-filter": "FullyQualifiedName~CilDiagnosticTests",
+    "concurrency": 4,
+    "reporters": ["html", "json", "progress"],
+    "additional-timeout": 10000
+  }
+}

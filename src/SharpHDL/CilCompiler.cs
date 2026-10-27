@@ -50,7 +50,7 @@ namespace SharpHDL
         static bool Supported(Type t){return t==typeof(int)||t==typeof(uint)||t==typeof(bool)||PackedLayout.IsBits(t)||PackedLayout.IsRecord(t);}
         static bool Signed(Type t){return t==typeof(int);}
         static Exception Error(MethodInfo m,int offset,string reason)
-        {return new NotSupportedException(m.DeclaringType.FullName+"."+m.Name+" IL_"+offset.ToString("x4")+": "+reason);}
+        {return CilDiagnostic.CreateException(m,offset,reason);}
         static int PortWidth(ParameterInfo p)
         {
             if(!Supported(p.ParameterType))throw new NotSupportedException("CIL port type must be Int32, UInt32 or Boolean: "+p.Name);
