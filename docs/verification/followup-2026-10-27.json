@@ -1,0 +1,184 @@
+{
+  "baseline": "f34cad1",
+  "testedImplementation": "b11904121a2094b41d8cc6a7a2e46e473e1e0ff9",
+  "sourceHashes": {
+    "examples/ScheduledTable.cs": {
+      "gitBlob": "0eaa246dce30294eee3096c61d57353c0475c1a3",
+      "sha256": "608AB0A12C8C9CF544C8FB6C3A8A6EAD74810F81CFE7455CFC0357900E74A98F"
+    },
+    "src/SharpHDL.Core/HardwareMemoryPort.cs": {
+      "gitBlob": "2e765b1e2cfc236210b19b7b9245d5768473d791",
+      "sha256": "CEE436BC216A0B493F75340B60B0720602F580BAC097B5CD450C0B3D906DE8F8"
+    },
+    "src/SharpHDL.HLS/ScheduledMachine.cs": {
+      "gitBlob": "2ddbc17eaeb831432daea7de698b2c8fbbd7090a",
+      "sha256": "C801B86B2C396073742A009311064C4C47965DF13653E51297032238656C98AC"
+    },
+    "src/SharpHDL.HLS/ScheduledMemoryBanks.cs": {
+      "gitBlob": "f959fca264be28ad0e11afc82bfcfabb1e67684e",
+      "sha256": "3528A234511904314EA0DBC35143CB4411AF1983CB54F25EDD39806139058885"
+    },
+    "examples/ScheduledBankedTable.cs": {
+      "gitBlob": "2b876b773baf846cb2257416f6da44b6ae76f27e",
+      "sha256": "DA4515E27B36A8276F2C06DC364C0221DF9A39DEFC81CF7F2ED79C5B554DE7AC"
+    },
+    "src/SharpHDL.HLS/ScheduledArithmetic.cs": {
+      "gitBlob": "67dfc9d479a18f0aed34688b6746ec288b14816d",
+      "sha256": "906E58BEF671BA74E186D6CAF1492F099AF6412D6BCBB7E4BDB98A4046D6549F"
+    },
+    "src/SharpHDL.RTL/CoreVerilogEmitter.cs": {
+      "gitBlob": "578f8594ac35f55cf5222f7ef57527c0554a93af",
+      "sha256": "C5B9F3904ACBC47969F6C6B8B8F77BB8C7383F315B7773750F7E17878D532CE0"
+    },
+    "src/SharpHDL.HLS/HlsScheduledFirCompiler.cs": {
+      "gitBlob": "55dbed43ac64979d76f9b320cd9b68b33ecdb9f3",
+      "sha256": "460B906BE1699296FA4D661F7C5C8C6E9091E6C2EDB42411C6C23837088FAA7C"
+    },
+    "src/SharpHDL/ScheduledSequentialCil.cs": {
+      "gitBlob": "20ead08d748eb3fb40a4645f21618dbcac90b5f7",
+      "sha256": "A82AE061C6B7D3AE5A1BB71D95E384AFC35C5A19D85424444DFAD86898951611"
+    }
+  },
+  "itemCommits": [
+    "8852c88",
+    "36e06fc",
+    "94fe404",
+    "ee047ab",
+    "aa9dd53"
+  ],
+  "finalCorrection": "b119041",
+  "tests": {
+    "propertyCases": [
+      500,
+      500,
+      100
+    ],
+    "propertyReplay": "1145655947,296144285",
+    "windows": 180,
+    "linux": 180,
+    "failed": 0,
+    "skipped": 0
+  },
+  "coverage": {
+    "branchesValid": "5059",
+    "linesValid": "4861",
+    "branchesCovered": "2419",
+    "lineRate": "0.6107",
+    "artifactSha256": "BA1CA8664924E8195543A0FDD253BF03DA138029E80535890EB7F265A97C6804",
+    "branchRate": "0.4781",
+    "scope": "Managed assemblies and examples; tests/oracles excluded. CLI/fuzz/benchmark orchestration and HDL toggle coverage unmeasured.",
+    "linesCovered": "2969"
+  },
+  "compilerMutation": {
+    "scorePercent": 86.48,
+    "scope": "ScheduledMachine.cs and ScheduledArithmetic.cs; all Scheduled tests plus FIR",
+    "ignored": 548,
+    "killed": 298,
+    "survived": 44,
+    "compileErrors": 46,
+    "dispositions": "followup-mutant-dispositions.json",
+    "timeoutCaveat": "Tool score counts timeouts as detected; not confirmed assertion kills",
+    "uncovered": 4,
+    "timeout": 9
+  },
+  "fuzz": {
+    "artifact": "/tmp/sharphdl-fuzz-YvkjDN",
+    "bitmapOccupancyPercent": 1.21,
+    "savedHangs": 0,
+    "executions": 6157,
+    "framework": "SharpFuzz 2.2.0 / AFL++ 4.09c",
+    "seconds": 60,
+    "corpusEntries": 82,
+    "seed": 261026,
+    "savedCrashes": 0,
+    "bitmapEdges": 790
+  },
+  "rtl": {
+    "firTaps": [
+      2,
+      4,
+      8,
+      16
+    ],
+    "simulators": [
+      "Icarus 12.0",
+      "Verilator 5.020"
+    ],
+    "designs": {
+      "ScheduledBanksXilinxBlock": 513,
+      "ScheduledTable1": 3201,
+      "ScheduledBanksAuto": 513,
+      "ScheduledCilLoop": 764,
+      "ScheduledTable8": 3201,
+      "ScheduledTable4": 3201
+    },
+    "artifact": "/tmp/sharphdl-rtl-RkqbYR"
+  },
+  "synthesis": {
+    "target": "Xilinx xc7",
+    "postMapFunctionalSimulation": "Unverified: installed RAMB18E1 cell declaration lacks functional RAM behavior",
+    "tool": "Yosys 0.33",
+    "LUT2": 42,
+    "physicalTiming": "not performed",
+    "IntelMapping": "hints only, not mapped",
+    "FDRE": 9,
+    "RAMB18E1": 2
+  },
+  "benchmark": {
+    "cpu": "Intel Core i5-10505",
+    "implementation": "aa9dd53",
+    "workload": "Construction plus 256 table edges, final checksum 64",
+    "iterations": 3,
+    "limitations": "Short baseline with broad intervals and concurrent machine activity; no optimization/speedup claim",
+    "cases": [
+      {
+        "allocatedMb": 3.02,
+        "addressWidth": 1,
+        "meanMs": 3.35,
+        "stdDevMs": 0.1096
+      },
+      {
+        "allocatedMb": 4.01,
+        "addressWidth": 8,
+        "meanMs": 3.892,
+        "stdDevMs": 0.0483
+      }
+    ],
+    "tool": "BenchmarkDotNet 0.15.8",
+    "launches": 1,
+    "warmups": 2,
+    "runtime": ".NET 10.0.14 Windows"
+  },
+  "ci": {
+    "runningJobsAtDisable": 0,
+    "reason": "Explicit user instruction",
+    "enabled": false,
+    "hostedRun": "not dispatched"
+  },
+  "strictdoc": "0.30.4 parse/export passed",
+  "layers": "passed",
+  "workflowYaml": "parsed, dormant",
+  "tableMutation": {
+    "scorePercent": 100,
+    "killed": 38,
+    "survived": 0,
+    "timeout": 0,
+    "compileErrors": 1,
+    "ignored": 36,
+    "scope": "ScheduledTable.cs only; ScheduledTableTests including artifact-name contract"
+  },
+  "toolVersions": {
+    "windowsSdk": "10.0.403",
+    "linuxSdk": "10.0.402",
+    "coverlet": "10.1.0",
+    "fscheck": "3.3.3",
+    "stryker": "5.0.0",
+    "sharpfuzz": "2.2.0",
+    "afl": "4.09c",
+    "benchmarkdotnet": "0.15.8",
+    "strictdoc": "0.30.4",
+    "icarus": "12.0",
+    "verilator": "5.020",
+    "yosys": "0.33"
+  }
+}

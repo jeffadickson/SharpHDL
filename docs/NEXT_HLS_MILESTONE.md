@@ -41,3 +41,14 @@ Extend the existing CIL → Core IR → elastic RTL flow beyond stateless single
 
 ## Implementation order
 Start with the memory semantic model and tests (Gate A), then its Core IR lowering, then scheduling and RTL; proceed to Gate B only after both RTL paths pass the same randomized memory tests.
+
+## Library-fit follow-up tasks (2026-10-27 UTC)
+
+These are evaluation tasks linked to [the description/rationale review](LIBRARY_FIT_2026-10-27.md), not authorization to add every dependency. GitHub Actions remains disabled.
+
+- **Automatic resource scheduling:** evaluate QuikGraph for dependency/SCC/topological operations and Z3 for capacity/dependency constraints. Require deterministic tie-breaking, preserved IL diagnostics and independently replayed schedules. The current explicit-state allocator keeps BCL collections.
+- **Offline CIL input/provenance:** compare System.Reflection.Metadata/PEReader with Mono.Cecil on the same assemblies, Portable PDBs and malformed inputs. Prefer the existing BCL facility unless a higher-level instruction model materially reduces risk; preserve the production decoder's semantics.
+- **Reproducible external-tool qualification:** reuse the existing Testcontainers project with digest-pinned images and recorded HDL tool versions. Keep local fast tests independent of Docker and fail required qualification when a tool is absent.
+- **Unified managed HDL runner:** evaluate CliWrap against System.Diagnostics.Process for cancellation, timeouts, bounded output and failure propagation. Current shell orchestration does not need a new runtime dependency.
+- **Stable diagnostic/HDL goldens:** trial Verify.Xunit only after normalizing source paths and unstable IDs. Keep direct assertions for simple naming contracts and retain differential simulator checks for behavior.
+- **Measured simulator allocation work:** retain BenchmarkDotNet baselines and profile before changing dictionaries/snapshots. Prefer BCL facilities for any measured hot path; pool storage only if immutable snapshot ownership and deterministic behavior can be preserved and tested.

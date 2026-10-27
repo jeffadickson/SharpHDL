@@ -413,7 +413,7 @@ is inferred. FIR now uses this generic binding instead of handwritten muxes.
 Acceptance tests cover two simultaneous instances reused in another state, all
 byte inputs, guard gating, modulo arithmetic and rejected foreign, incompatible,
 chained or oversubscribed bindings. Per user cadence, tests execute at the end;
-this item is implemented but not yet verified by execution.
+final execution results are in FOLLOWUP_2026-10-27.md.
 
 ## Follow-up item 3 — stateful CIL to scheduled Core
 
@@ -428,9 +428,9 @@ Each instruction takes one edge, loads take two, and watchdog/bounds faults abor
 with committed memory retained. The result includes method and IL state offsets.
 
 Checked arithmetic, division, shifts, calls, packed/narrow ports, exception
-handlers, nonzero initial RAM and vendor options are rejected with method/IL
+handlers and legacy vendor options are rejected with method/IL
 diagnostics. These remain on the explicit legacy path, with no silent fallback.
-This is a verified-subset extension pending final execution, not arbitrary CLR
+Final evidence is recorded in FOLLOWUP_2026-10-27.md; this is not arbitrary CLR
 compilation. Tests compare real runtime-loop/RAM C# with host and legacy behavior.
 
 ## Follow-up item 5 — explicit banks, initialization and qualification

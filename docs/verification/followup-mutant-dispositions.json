@@ -1,0 +1,515 @@
+[
+  {
+    "source": "src/SharpHDL.HLS/ScheduledArithmetic.cs",
+    "id": "456",
+    "status": "Survived",
+    "line": 42,
+    "replacement": "$\"\"",
+    "original": "throw new ArgumentException($\"Resource '{resource.Name}' requires {resource.Width}-bit operands.\");",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledArithmetic.cs",
+    "id": "461",
+    "status": "Survived",
+    "line": 44,
+    "replacement": "\"\"",
+    "original": "throw new ArgumentException(\"Bound arithmetic dependencies require an explicit register boundary.\");",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledArithmetic.cs",
+    "id": "468",
+    "status": "Survived",
+    "line": 61,
+    "replacement": ";",
+    "original": "if(!visited.Add(current))continue;",
+    "disposition": "Requires review; may be redundant validation or a remaining test gap"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledArithmetic.cs",
+    "id": "480",
+    "status": "Survived",
+    "line": 82,
+    "replacement": "\"\"",
+    "original": "throw new ArgumentException(\"Arithmetic resources support Add, Subtract and Multiply only.\",nameof(operation));",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledArithmetic.cs",
+    "id": "488",
+    "status": "Survived",
+    "line": 91,
+    "replacement": ";",
+    "original": "EnsureMutable();",
+    "disposition": "Requires review; may be redundant validation or a remaining test gap"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledArithmetic.cs",
+    "id": "491",
+    "status": "Survived",
+    "line": 92,
+    "replacement": "\"\"",
+    "original": "if(!arithmeticResources.Contains(resource))throw new ArgumentException(\"Foreign arithmetic resource.\",nameof(resource));",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledArithmetic.cs",
+    "id": "505",
+    "status": "Survived",
+    "line": 112,
+    "replacement": "lane<=lanes",
+    "original": "for(int lane=0;lane<lanes;lane++)",
+    "disposition": "Requires review; may be redundant validation or a remaining test gap"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledArithmetic.cs",
+    "id": "512",
+    "status": "Survived",
+    "line": 123,
+    "replacement": "\"\"",
+    "original": "var shared=new ScheduledValue(resource.Width,resource.Operation,new[]{left,right},name:resource.Name+\"_\"+lane);",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "525",
+    "status": "Survived",
+    "line": 50,
+    "replacement": ">=4096",
+    "original": "if(width is <1 or >4096)throw new ArgumentOutOfRangeException(nameof(width));",
+    "disposition": "Requires review; may be redundant validation or a remaining test gap"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "526",
+    "status": "NoCoverage",
+    "line": 50,
+    "replacement": ";",
+    "original": "if(width is <1 or >4096)throw new ArgumentOutOfRangeException(nameof(width));",
+    "disposition": "Uncovered in this campaign; not qualified"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "528",
+    "status": "Survived",
+    "line": 51,
+    "replacement": "(false?this:new ScheduledValue(width,HardwareOperation.Resize,new[]{this}))",
+    "original": "return width==Width?this:new ScheduledValue(width,HardwareOperation.Resize,new[]{this});",
+    "disposition": "Requires review; may be redundant validation or a remaining test gap"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "534",
+    "status": "Survived",
+    "line": 59,
+    "replacement": "\"\"",
+    "original": "if(Width!=other.Width)throw new ArgumentException(\"Scheduled operand widths must match.\",nameof(other));",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "544",
+    "status": "Survived",
+    "line": 69,
+    "replacement": "\"\"",
+    "original": "throw new ArgumentException(\"Select requires a one-bit condition and equal branch widths.\");",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "556",
+    "status": "Survived",
+    "line": 140,
+    "replacement": "\"\"",
+    "original": "if(target.Width!=value.Width)throw new ArgumentException(\"Register assignment width mismatch.\");",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "565",
+    "status": "Survived",
+    "line": 152,
+    "replacement": "\"\"",
+    "original": "if(string.IsNullOrWhiteSpace(targetState))throw new ArgumentException(\"Target state required.\",nameof(targetState));",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "574",
+    "status": "Survived",
+    "line": 164,
+    "replacement": "\"\"",
+    "original": "if(target.Width!=memory.Width)throw new ArgumentException(\"RAM read target width mismatch.\");",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "584",
+    "status": "Survived",
+    "line": 173,
+    "replacement": "\"\"",
+    "original": "if(data.Width!=memory.Width)throw new ArgumentException(\"RAM write data width mismatch.\");",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "598",
+    "status": "Survived",
+    "line": 236,
+    "replacement": "\"\"",
+    "original": "if(string.IsNullOrWhiteSpace(name))throw new ArgumentException(\"Machine name required.\",nameof(name));",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "640",
+    "status": "NoCoverage",
+    "line": 279,
+    "replacement": ";",
+    "original": "if(!Enum.IsDefined(implementation))throw new ArgumentOutOfRangeException(nameof(implementation));",
+    "disposition": "Uncovered in this campaign; not qualified"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "658",
+    "status": "Survived",
+    "line": 282,
+    "replacement": "\"\"",
+    "original": "throw new ArgumentException(\"Initial RAM contents must contain exactly depth fitting words.\",nameof(initial));",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "670",
+    "status": "Survived",
+    "line": 299,
+    "replacement": ";",
+    "original": "EnsureMutable();",
+    "disposition": "Requires review; may be redundant validation or a remaining test gap"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "682",
+    "status": "Survived",
+    "line": 302,
+    "replacement": "\"\"",
+    "original": "throw new ArgumentException(\"State names must be nonempty and unique.\",nameof(stateName));",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "686",
+    "status": "Survived",
+    "line": 309,
+    "replacement": ";",
+    "original": "EnsureMutable();ValidateValue(value);AddName(outputName);outputs.Add(outputName,value);",
+    "disposition": "Requires review; may be redundant validation or a remaining test gap"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "693",
+    "status": "Survived",
+    "line": 315,
+    "replacement": "\"\"",
+    "original": "if(!states.Contains(state))throw new ArgumentException(\"Foreign state.\",nameof(state));",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "695",
+    "status": "Survived",
+    "line": 321,
+    "replacement": "\"\"",
+    "original": "private ScheduledValue StateValue()=>stateValue??=new ScheduledValue(StateWidth(),HardwareOperation.Input,name:\"scheduler_state\");",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "700",
+    "status": "Timeout",
+    "line": 322,
+    "replacement": "1>>width",
+    "original": "private int StateWidth(){int width=1;while((1<<width)<Math.Max(1,states.Count))width++;return width;}",
+    "disposition": "Timed out; not a confirmed assertion kill"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "701",
+    "status": "Timeout",
+    "line": 322,
+    "replacement": "1>>>width",
+    "original": "private int StateWidth(){int width=1;while((1<<width)<Math.Max(1,states.Count))width++;return width;}",
+    "disposition": "Timed out; not a confirmed assertion kill"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "704",
+    "status": "Timeout",
+    "line": 322,
+    "replacement": ";",
+    "original": "private int StateWidth(){int width=1;while((1<<width)<Math.Max(1,states.Count))width++;return width;}",
+    "disposition": "Timed out; not a confirmed assertion kill"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "711",
+    "status": "Survived",
+    "line": 328,
+    "replacement": "\"\"",
+    "original": "if(states.Count==0)throw new InvalidOperationException(\"A scheduled machine requires at least one state.\");",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "717",
+    "status": "Survived",
+    "line": 334,
+    "replacement": "$\"\"",
+    "original": "throw new InvalidOperationException($\"State '{state.Name}' targets unknown state '{transition.Target}'.\");",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "723",
+    "status": "Survived",
+    "line": 337,
+    "replacement": "$\"\"",
+    "original": "throw new InvalidOperationException($\"State '{state.Name}' oversubscribes single-port RAM '{group.Key.Name}'.\");",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "734",
+    "status": "Timeout",
+    "line": 343,
+    "replacement": "1>>width",
+    "original": "int width=1;while((1<<width)<access.Memory.Depth)width++;",
+    "disposition": "Timed out; not a confirmed assertion kill"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "735",
+    "status": "Timeout",
+    "line": 343,
+    "replacement": "1>>>width",
+    "original": "int width=1;while((1<<width)<access.Memory.Depth)width++;",
+    "disposition": "Timed out; not a confirmed assertion kill"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "736",
+    "status": "Timeout",
+    "line": 343,
+    "replacement": ";",
+    "original": "int width=1;while((1<<width)<access.Memory.Depth)width++;",
+    "disposition": "Timed out; not a confirmed assertion kill"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "748",
+    "status": "Survived",
+    "line": 364,
+    "replacement": ";",
+    "original": "int routedId=Compile(routed);ids.Add(value,routedId);return routedId;",
+    "disposition": "Requires review; may be redundant validation or a remaining test gap"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "762",
+    "status": "Survived",
+    "line": 383,
+    "replacement": "states.AsEnumerable().AsEnumerable",
+    "original": "foreach(var state in states.AsEnumerable().Reverse())",
+    "disposition": "Equivalence candidate under validated uniqueness/state exclusion; not formally proved"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "767",
+    "status": "Survived",
+    "line": 386,
+    "replacement": "states.SingleOrDefault",
+    "original": "int target=states.Single(s=>s.Name==transition.Target).Index;",
+    "disposition": "Equivalence candidate under validated uniqueness/state exclusion; not formally proved"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "770",
+    "status": "Survived",
+    "line": 392,
+    "replacement": "states.AsEnumerable().AsEnumerable",
+    "original": "foreach(var state in states.AsEnumerable().Reverse())",
+    "disposition": "Equivalence candidate under validated uniqueness/state exclusion; not formally proved"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "775",
+    "status": "Survived",
+    "line": 396,
+    "replacement": "state.MemoryAccesses.Where(a=>a.ReadTarget==register).AsEnumerable",
+    "original": "foreach(var access in state.MemoryAccesses.Where(a=>a.ReadTarget==register).Reverse())",
+    "disposition": "Equivalence candidate under validated uniqueness/state exclusion; not formally proved"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "784",
+    "status": "Timeout",
+    "line": 410,
+    "replacement": "1>>addressWidth",
+    "original": "int addressWidth=1;while((1<<addressWidth)<memory.Depth)addressWidth++;",
+    "disposition": "Timed out; not a confirmed assertion kill"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "785",
+    "status": "Timeout",
+    "line": 410,
+    "replacement": "1>>>addressWidth",
+    "original": "int addressWidth=1;while((1<<addressWidth)<memory.Depth)addressWidth++;",
+    "disposition": "Timed out; not a confirmed assertion kill"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "786",
+    "status": "Timeout",
+    "line": 410,
+    "replacement": ";",
+    "original": "int addressWidth=1;while((1<<addressWidth)<memory.Depth)addressWidth++;",
+    "disposition": "Timed out; not a confirmed assertion kill"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "788",
+    "status": "Survived",
+    "line": 412,
+    "replacement": "states.AsEnumerable().AsEnumerable",
+    "original": "foreach(var state in states.AsEnumerable().Reverse())",
+    "disposition": "Equivalence candidate under validated uniqueness/state exclusion; not formally proved"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "790",
+    "status": "Survived",
+    "line": 413,
+    "replacement": "state.MemoryAccesses.Where(a=>a.Memory==memory&&a.Write).AsEnumerable",
+    "original": "foreach(var access in state.MemoryAccesses.Where(a=>a.Memory==memory&&a.Write).Reverse())",
+    "disposition": "Equivalence candidate under validated uniqueness/state exclusion; not formally proved"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "795",
+    "status": "NoCoverage",
+    "line": 417,
+    "replacement": ";",
+    "original": "throw new InvalidOperationException($\"RAM '{memory.Name}' address width must be {addressWidth} bits.\");",
+    "disposition": "Uncovered in this campaign; not qualified"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "796",
+    "status": "NoCoverage",
+    "line": 417,
+    "replacement": "$\"\"",
+    "original": "throw new InvalidOperationException($\"RAM '{memory.Name}' address width must be {addressWidth} bits.\");",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "798",
+    "status": "Survived",
+    "line": 426,
+    "replacement": "inputMap.SingleOrDefault",
+    "original": "resetMap.ContainsKey(inputMap.Single(p=>p.Value==id).Key))),inputMap,outputMap,nextMap,resetMap,memoryMap);",
+    "disposition": "Equivalence candidate under validated uniqueness/state exclusion; not formally proved"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "802",
+    "status": "Survived",
+    "line": 432,
+    "replacement": ";",
+    "original": "{EnsureMutable();if(!registers.Contains(register))throw new ArgumentException(\"Foreign register.\",nameof(register));}",
+    "disposition": "Requires review; may be redundant validation or a remaining test gap"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "805",
+    "status": "Survived",
+    "line": 432,
+    "replacement": "\"\"",
+    "original": "{EnsureMutable();if(!registers.Contains(register))throw new ArgumentException(\"Foreign register.\",nameof(register));}",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "807",
+    "status": "Survived",
+    "line": 434,
+    "replacement": ";",
+    "original": "{EnsureMutable();if(!memories.Contains(memory))throw new ArgumentException(\"Foreign memory.\",nameof(memory));}",
+    "disposition": "Requires review; may be redundant validation or a remaining test gap"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "810",
+    "status": "Survived",
+    "line": 434,
+    "replacement": "\"\"",
+    "original": "{EnsureMutable();if(!memories.Contains(memory))throw new ArgumentException(\"Foreign memory.\",nameof(memory));}",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "815",
+    "status": "Survived",
+    "line": 436,
+    "replacement": "\"\"",
+    "original": "{EnsureMutable();if(!resources.Contains(resource))throw new ArgumentException(\"Foreign resource.\",nameof(resource));}",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "823",
+    "status": "Survived",
+    "line": 448,
+    "replacement": ";",
+    "original": "if(!visited.Add(current))continue;",
+    "disposition": "Requires review; may be redundant validation or a remaining test gap"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "829",
+    "status": "Survived",
+    "line": 450,
+    "replacement": "\"\"",
+    "original": "throw new ArgumentException(\"Scheduled value contains a foreign arithmetic binding.\",nameof(value));",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "847",
+    "status": "Survived",
+    "line": 458,
+    "replacement": "\"\"",
+    "original": "{ValidateValue(guard);if(guard.Width!=1)throw new ArgumentException(\"Guard must be one bit.\",nameof(guard));}",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "856",
+    "status": "Survived",
+    "line": 460,
+    "replacement": "\"\"",
+    "original": "{if(string.IsNullOrWhiteSpace(value)||!names.Add(value))throw new ArgumentException(\"Hardware names must be nonempty and unique.\");}",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL.HLS/ScheduledMachine.cs",
+    "id": "868",
+    "status": "Survived",
+    "line": 463,
+    "replacement": "\"\"",
+    "original": "private void EnsureMutable(){if(lowered)throw new InvalidOperationException(\"Scheduled machine already lowered.\");}",
+    "disposition": "Diagnostic or naming contract gap; source inspection, not equivalence proof"
+  }
+]

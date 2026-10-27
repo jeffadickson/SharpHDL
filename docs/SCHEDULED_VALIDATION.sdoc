@@ -83,7 +83,7 @@ one operation per instance per state. Oversubscription is rejected regardless of
 guard values. Chained bound operations require explicit register boundaries.
 Implementation: ScheduledArithmetic.cs; HlsScheduledFirCompiler now consumes it.
 Verification: ScheduledArithmeticTests and existing FIR simulation/RTL replays.
-Execution pending the final verification campaign for this continuation.
+Execution evidence: FOLLOWUP_2026-10-27.md and verification/followup-2026-10-27.json.
 <<<
 
 [REQUIREMENT]
@@ -97,7 +97,7 @@ oracle; retain seed, coverage/queue/crash evidence and reproducible commands.
 Stryker shall mutate both scheduled compiler sources and the table implementation.
 Equivalent mutations shall be distinguished from untested behavior.
 Implementation: ScheduledSemanticTests, ScheduledFuzz and run-scheduled-fuzz.sh.
-Execution and mutant disposition are recorded after the final campaign.
+Execution and mutant disposition: FOLLOWUP_2026-10-27.md and verification/followup-mutant-dispositions.json.
 <<<
 
 [REQUIREMENT]
@@ -113,7 +113,7 @@ method/IL-offset state provenance and reject unsupported opcodes without fallbac
 Implementation: ScheduledSequentialCil.cs; ScheduledValue integer operations.
 Verification: ScheduledCilTests compares host results and legacy outputs edge by
 edge, including repeat calls, bounds/watchdog and unsupported-opcode diagnostics.
-Execution pending final campaign; this does not replace the broader legacy API.
+Execution evidence: FOLLOWUP_2026-10-27.md; this does not replace the broader legacy API.
 <<<
 
 [REQUIREMENT]

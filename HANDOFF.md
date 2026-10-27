@@ -1,48 +1,65 @@
-# SharpHDL handoff
+# SharpHDL handoff — follow-up complete (2026-10-27 UTC)
 
-## Current status — 2026-10-26 continuation
+## Current implementation
 
-Baseline: clean main at 4e6d34c. Local implementation commits 04a7c7b and
-7ca5ed3 restore the standalone regression, make provenance tests work with isolated
-Linux outputs, harden scheduled expression ownership/freeze/recovery and add a
-non-FIR scheduled RAM table with independent protocol/array verification.
-Nothing was pushed. Five substantive iterations were completed, not twenty.
+Started from f34cad1. Five requested follow-up items have separate local commits:
+8852c88 arithmetic resources; 36e06fc semantic/fuzz tooling; 94fe404 stateful CIL;
+ee047ab expanded HDL parity; aa9dd53 memory banking/target metadata/baselines.
+Final correction b119041 fixes portable replay/fuzz orchestration, preserves old
+memory API signatures and adds conformance tests. The end-of-task evidence commit
+contains no further production semantic changes.
 
-The dependency direction remains Core <- HLS, Simulation and RTL. The scheduled
-FIR still uses one shared multiplier and explicit one-cycle synchronous RAM reads.
-The table uses the same ScheduledMachineBuilder and Core-native simulation/RTL,
-with conditional 16-bit updates, four-edge no-stall II and held responses. Reset
-aborts pending responses while retaining committed RAM updates. See
-[architecture](docs/MODULAR_ARCHITECTURE.md) for the precise contract.
+Core <- HLS, Simulation and RTL remains enforced. Typed combinational resources
+now build generic operand arbitration/result routing; FIR uses that binder.
+BuildScheduledSequential reuses production CIL decoding/stack/CFG helpers and
+lowers a documented runtime-loop/RAM subset directly through ScheduledMachineBuilder.
+Explicit banks, exact initialization and Core-native inference hints are supported.
 
 ## Fresh verification
 
-- Windows SDK 10.0.403 and isolated Linux SDK 10.0.402: 148/148 xUnit pass.
-- Standalone regression executable passes, including its full existing suites.
-- Icarus: existing FIR 2/4/8/16 and new table depth 2/16/256 replays pass.
-- Yosys table checks retain one memory and one adder; Verilator lint passes.
-- Coverlet: 56.71% line/40.22% branch across recorded scope; new table 100% both.
-- Stryker scheduled-builder scope: 66.28%, 50 surviving/37 uncovered mutants;
-  9 timeouts are not confirmed assertion kills.
-- StrictDoc, project layers and workflow YAML parse pass. Hosted CI not run.
+- Windows .NET SDK 10.0.403 and isolated Linux 10.0.402: 180/180 xUnit tests pass.
+- Full standalone regression passes from an isolated output directory.
+- Icarus and Verilator pass table 2/16/256-word, CIL-loop and two banked variants.
+  Refactored FIR Icarus 2/4/8/16-tap replays also pass.
+- Yosys xc7 mapping/check asserts exactly two RAMB18E1 cells for the banked example.
+  Post-map functional simulation is unverified: installed BRAM declaration lacks
+  a functional model. No physical timing, placement or board evidence.
+- Coverlet: 61.07% line / 47.81% branch across recorded managed scope.
+- Compiler mutation: 86.48% (44 survivors, 4 uncovered, 9 timeouts explicitly
+  retained); table mutation: 100% (38 killed, no survivors/timeouts).
+- SharpFuzz/AFL++: 60 seconds, seed 261026, 6157 executions, 82 corpus entries,
+  no saved crashes/hangs. Bounded campaign, not exhaustive qualification.
+- BenchmarkDotNet short baseline: construction + 256 edges, 3.350/3.892 ms at
+  address widths 1/8; broad intervals, no optimization/speedup claim.
+- StrictDoc, layer check and dormant workflow YAML parse pass.
 
-[Development log](docs/DEVELOPMENT_PROGRESS_2026-10-26.md) contains commands,
-failures/fixes, iteration acceptance, tool versions, raw artifact locations and
-limitations. [Evidence JSON](docs/verification/continuation-2026-10-26.json)
-records source hashes, metrics and project/workflow inventory. Requirements are
-in [StrictDoc](docs/SCHEDULED_VALIDATION.sdoc), with existing requirement IDs kept.
+[Full report](docs/FOLLOWUP_2026-10-27.md),
+[evidence JSON](docs/verification/followup-2026-10-27.json),
+[mutant dispositions](docs/verification/followup-mutant-dispositions.json),
+[library tradeoffs](docs/LIBRARY_FIT_2026-10-27.md), and
+[library-fit tasks](docs/NEXT_HLS_MILESTONE.md) contain exact scope and reproduction.
+Raw logs, reports, generated vectors and benchmark exports remain local/ignored.
 
-## Remaining boundaries and next work
+## CI and Git policy
 
-Arithmetic resources still reserve capacity without automatic typed binding or
-operand/result arbitration. Add that next, including capacity >1 and dependency
-validation, then connect supported stateful CIL control flow. Broaden mutation,
-coverage-guided fuzzing, reset-phase and Verilator parity; execute hosted CI when
-authorized to push. SCHED-011 remains partial. Multiport RAM, multiclock Core,
-physical FPGA mapping/timing and formal equivalence are not established.
+The user authorized a push after final tests, then explicitly turned GitHub CI off.
+Repository Actions permissions are confirmed enabled=false; no running jobs were
+present. Root AGENTS.md preserves this instruction. Do not enable or dispatch CI.
+Workflow definitions are dormant. Verify remote HEAD after the authorized push;
+never force-push or discard unknown local work.
 
-Existing compiler/analyzer warnings and stale older documentation remain. No
-performance optimization or controlled simulator speedup measurement was made.
-Generated replay outputs and raw verification artifacts are local/ignored; the
-standalone regression regenerates tracked artifacts, so preserve them or run it
-in an isolated output directory. Never discard unknown local work.
+## Remaining boundaries
+
+Stateful CIL supports static UInt32 returns, full-width scalar/Boolean values,
+unchecked integer operations, branches/switch, runtime loops and one uint[] RAM.
+Calls, checked arithmetic, division/shifts, packed/narrow ports, exception handlers
+and legacy vendor options reject explicitly. InitialMemory now works. IL state
+provenance exists; full source-line mapping remains future work.
+
+Automatic optimal scheduling/bank partitioning, iterative arithmetic latency,
+shared cross-kernel arbitration, true multiport RAM, multiclock Core, formal
+proof and physical FPGA qualification remain open. Independent-machine isolation
+is not a multi-kernel resource scheduler. Intel hints have emission tests, not
+Quartus mapping. Existing legacy analyzer/documentation limitations remain.
+Library candidates are assigned to matching future tasks; no new production
+NuGet dependency was added. Preserve existing APIs and independent oracles.

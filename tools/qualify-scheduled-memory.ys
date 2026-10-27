@@ -1,0 +1,9 @@
+# Run from a checkout after generating --suite into generated/scheduled-suite.
+# Mapping evidence only. Post-mapping functional replay requires a functional vendor BRAM model.
+read_verilog generated/scheduled-suite/ScheduledBanksXilinxBlock.v
+hierarchy -check -top h_ScheduledBanksXilinxBlock
+synth_xilinx -family xc7 -top h_ScheduledBanksXilinxBlock
+check -assert
+stat
+select -assert-count 2 t:RAMB18E1
+write_verilog -noattr generated/scheduled-suite/ScheduledBanksXilinxMapped.v
