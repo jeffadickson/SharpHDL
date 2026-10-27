@@ -398,3 +398,19 @@ the 16-word case. This is generic synthesis evidence, not vendor BRAM placement,
 physical timing closure or formal proof. No automatic CIL extraction or resource
 binding is introduced. SCHED-011 remains partially verified because explicit
 resource-capacity/latency assertions and broader qualification remain open.
+
+## Follow-up item 1 — typed arithmetic resources
+
+ScheduledMachineBuilder.ArithmeticResource declares combinational unsigned
+Add/Subtract/Multiply instances with exact operand/result width and capacity.
+ScheduledState.Compute binds an operation; generic lowering now owns both operand
+selection and result routing. A result is zero outside its state/guard. Register
+capture is required between bound operations, so binding cannot form a resource
+arbitration cycle. Declaration order deterministically assigns lanes. Guards do
+not permit capacity overbooking. No device timing or iterative operator latency
+is inferred. FIR now uses this generic binding instead of handwritten muxes.
+
+Acceptance tests cover two simultaneous instances reused in another state, all
+byte inputs, guard gating, modulo arithmetic and rejected foreign, incompatible,
+chained or oversubscribed bindings. Per user cadence, tests execute at the end;
+this item is implemented but not yet verified by execution.

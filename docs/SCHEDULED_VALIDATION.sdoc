@@ -71,3 +71,17 @@ its build-output directory, including native Linux artifacts outside the checkou
 Implementation and verification: HardwareSourceProvenanceTests,
 Generated_pipeline_emits_only_real_source_and_RTL_locations.
 <<<
+
+[REQUIREMENT]
+UID: SCHED-ARITH-001
+TITLE: Typed shared arithmetic binding
+STATEMENT: >>>
+The scheduler shall declare width/operation-compatible Add, Subtract or Multiply
+resources with positive physical capacity. Per-state bindings shall lower to
+reusable operand arbitration and state/guard-gated result routing, with at most
+one operation per instance per state. Oversubscription is rejected regardless of
+guard values. Chained bound operations require explicit register boundaries.
+Implementation: ScheduledArithmetic.cs; HlsScheduledFirCompiler now consumes it.
+Verification: ScheduledArithmeticTests and existing FIR simulation/RTL replays.
+Execution pending the final verification campaign for this continuation.
+<<<

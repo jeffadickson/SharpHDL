@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using SharpHDL.Core;
 
 namespace SharpHDL.HLS;
 
@@ -45,27 +46,14 @@ public static class HlsScheduledFirCompiler
         var user=machine.Register("fir_user",8);
         var readData=machine.Register("fir_read_data",16);
         var memory=machine.Memory("fir_history",16,depth);
-        var multiplier=machine.Resource("fir_multiplier");
+        var multiplier=machine.ArithmeticResource("fir_multiplier",HardwareOperation.Multiply,16);
         var states=schedule.Steps.Select(step=>machine.State("cycle_"+step.Cycle)).ToArray();
         var zero16=machine.Constant(16,0);
 
-        // Explicit operand arbitration maps every mutually exclusive FIR
-        // multiply onto one canonical Core IR operation.
-        ScheduledValue multiplicand=data,coefficient=coefficients[0];
-        foreach(var step in schedule.Steps.Where(s=>s.Action==HlsMemoryAction.Accumulate))
-        {
-            var active=machine.InState(states[step.Cycle]);
-            var tap=machine.Constant(countWidth,step.Tap);
-            var history=ScheduledValue.Select(count.Value.LessThan(tap).Not(),readData.Value,zero16);
-            multiplicand=ScheduledValue.Select(active,history,multiplicand);
-            coefficient=ScheduledValue.Select(active,captured[step.Tap].Value,coefficient);
-        }
-        var sharedProduct=multiplicand.Multiply(coefficient);
-
         var accept=states[0];
+        var initialProduct=accept.Compute(multiplier,data,coefficients[0],valid);
         accept.Write(memory,head.Value,data,valid)
-            .Use(multiplier)
-            .Assign(result,sharedProduct,valid)
+            .Assign(result,initialProduct,valid)
             .Assign(head,head.Value.Add(machine.Constant(addressWidth,1)),valid)
             .Assign(last,inputLast,valid).Assign(keep,inputKeep,valid).Assign(user,inputUser,valid)
             .Transition(states[1].Name,valid);
@@ -83,7 +71,10 @@ public static class HlsScheduledFirCompiler
             }
             else if(step.Action==HlsMemoryAction.Accumulate)
             {
-                state.Use(multiplier).Assign(result,result.Value.Add(sharedProduct))
+                var tap=machine.Constant(countWidth,step.Tap);
+                var history=ScheduledValue.Select(count.Value.LessThan(tap).Not(),readData.Value,zero16);
+                var product=state.Compute(multiplier,history,captured[step.Tap].Value);
+                state.Assign(result,result.Value.Add(product))
                     .Transition(states[index+1].Name);
             }
             else throw new InvalidOperationException("Unexpected operation in FIR body schedule.");

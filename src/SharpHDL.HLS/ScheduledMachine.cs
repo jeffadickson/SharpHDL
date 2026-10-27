@@ -12,10 +12,10 @@ public sealed class ScheduledValue
 {
     internal ScheduledValue(int width, HardwareOperation operation,
         IReadOnlyList<ScheduledValue>? operands = null, BigInteger? literal = null,
-        string? name = null)
+        string? name = null, object? bindingOwner = null)
     {
         Width=width;Operation=operation;Operands=operands??Array.Empty<ScheduledValue>();
-        Literal=literal;Name=name;
+        Literal=literal;Name=name;BindingOwner=bindingOwner;
     }
 
     /// <summary>Width of the value in bits.</summary>
@@ -24,6 +24,7 @@ public sealed class ScheduledValue
     internal IReadOnlyList<ScheduledValue> Operands { get; }
     internal BigInteger? Literal { get; }
     internal string? Name { get; }
+    internal object? BindingOwner { get; }
 
     /// <summary>Create an equality comparison.</summary>
     public ScheduledValue Equal(ScheduledValue other)=>Binary(HardwareOperation.Equal,other,1);
@@ -105,7 +106,7 @@ internal sealed record ScheduledMemoryAccess(ScheduledMemory Memory,bool Write,S
     ScheduledValue? Data,ScheduledRegister? ReadTarget,ScheduledValue Guard);
 
 /// <summary>Operations executed while one scheduled state is active.</summary>
-public sealed class ScheduledState
+public sealed partial class ScheduledState
 {
     private readonly ScheduledMachineBuilder owner;
     internal readonly List<ScheduledAssignment> Assignments=new();
@@ -203,7 +204,7 @@ public sealed class ScheduledHardwareDesign
 /// The representation is algorithm-neutral: clients declare values, registers,
 /// RAM accesses and transitions without depending on legacy Module or RTL.
 /// </summary>
-public sealed class ScheduledMachineBuilder
+public sealed partial class ScheduledMachineBuilder
 {
     private readonly string name;
     private readonly List<ScheduledValue> inputs=new();
@@ -321,6 +322,8 @@ public sealed class ScheduledMachineBuilder
                     throw new InvalidOperationException($"RAM '{access.Memory.Name}' address width must be {width} bits.");
             }
         }
+        ValidateArithmeticBindings();
+        var arithmeticValues=LowerArithmeticBindings();
         int stateWidth=StateWidth();
         var stateRegister=new ScheduledRegister("scheduler_state",stateWidth,0,StateValue());
         var allRegisters=registers.Concat(new[]{stateRegister}).ToArray();
@@ -333,6 +336,10 @@ public sealed class ScheduledMachineBuilder
         int Compile(ScheduledValue value)
         {
             if(ids.TryGetValue(value,out int existing))return existing;
+            if(arithmeticValues.TryGetValue(value,out var routed))
+            {
+                int routedId=Compile(routed);ids.Add(value,routedId);return routedId;
+            }
             int[] operands=value.Operands.Select(Compile).ToArray();int id=nodes.Count;
             nodes.Add(value.Operation==HardwareOperation.MemoryRead
                 ? new HardwareNode(id,value.Operation,new HardwareType(value.Width),operands,
@@ -416,6 +423,8 @@ public sealed class ScheduledMachineBuilder
         while(pending.TryPop(out var current))
         {
             if(!visited.Add(current))continue;
+            if(current.BindingOwner!=null && !ReferenceEquals(current.BindingOwner,this))
+                throw new ArgumentException("Scheduled value contains a foreign arithmetic binding.",nameof(value));
             if(current.Operation==HardwareOperation.Input && current!=stateValue &&
                 !inputs.Contains(current) && !registers.Any(r=>r.Value==current))
                 throw new ArgumentException("Scheduled value contains a foreign input or register.",nameof(value));
