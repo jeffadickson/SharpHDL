@@ -4,6 +4,8 @@ using SharpHDL.Simulation;
 using System.Buffers.Binary;
 using System.Text;
 using SharpHDL;
+using System.Reflection;
+using System.Reflection.Emit;
 
 // SharpFuzz/AFL++ owns generation, coverage feedback and crash retention.
 // This bounded harness translates bytes into protocol traffic and an independent array model.
@@ -15,7 +17,7 @@ Fuzzer.OutOfProcess.Run(stream =>
         // BCL endian decoding avoids a custom input parser; the count remains a signed CLR bit pattern.
         uint operand=BinaryPrimitives.ReadUInt32LittleEndian(bytes.AsSpan(0,4));
         int count=BinaryPrimitives.ReadInt32LittleEndian(bytes.AsSpan(4,4));
-        var shift=CilCompiler.BuildScheduledSequential(typeof(ShiftFuzzKernel).GetMethod(nameof(ShiftFuzzKernel.Evaluate))!,"FuzzShifts").Design;
+        var shift=CilCompiler.BuildScheduledSequential(ShiftFuzzKernel.RawMethod,"FuzzShifts").Design;
         var machine=new HardwareGraphMachine(shift.Graph,shift.Inputs,shift.Outputs,shift.NextState,shift.ResetValues,shift.Memories);
         machine.SetInput("arg0",operand);machine.SetInput("arg1",unchecked((uint)count));
         machine.SetInput("start",1);machine.Tick();machine.SetInput("start",0);
@@ -53,7 +55,24 @@ Fuzzer.OutOfProcess.Run(stream =>
 /// <summary>Real C# oracle and CIL input, kept outside the instrumented production assemblies.</summary>
 internal static class ShiftFuzzKernel
 {
+    // Raw instructions avoid a compiler-inserted count mask that would otherwise
+    // prevent the campaign from challenging the frontend's own masking policy.
+    internal static MethodInfo RawMethod { get; }=CreateRawMethod();
     /// <summary>Combine all three CLR shift operations with modular addition.</summary>
     public static uint Evaluate(uint value,int count)
         =>unchecked((value<<count)+(value>>count)+(uint)((int)value>>count));
+
+    private static MethodInfo CreateRawMethod()
+    {
+        var assembly=AssemblyBuilder.DefineDynamicAssembly(new AssemblyName("FuzzRawShift"),AssemblyBuilderAccess.RunAndCollect);
+        var type=assembly.DefineDynamicModule("main").DefineType("Kernel",TypeAttributes.Public);
+        var method=type.DefineMethod("Shift",MethodAttributes.Public|MethodAttributes.Static,typeof(uint),new[]{typeof(uint),typeof(int)});
+        var il=method.GetILGenerator();
+        foreach(var operation in new[]{OpCodes.Shl,OpCodes.Shr_Un,OpCodes.Shr})
+        {
+            il.Emit(OpCodes.Ldarg_0);il.Emit(OpCodes.Ldarg_1);il.Emit(operation);
+            if(operation!=OpCodes.Shl)il.Emit(OpCodes.Add);
+        }
+        il.Emit(OpCodes.Ret);return type.CreateType()!.GetMethod("Shift")!;
+    }
 }
