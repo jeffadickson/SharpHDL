@@ -15,6 +15,11 @@ using QuikGraph, with explicit validation and canonical reachable loop component
 [Executed results and limitations](docs/WORK_PACKAGES_COMPLETION_2026-10-27.md)
 cover the completed first three packages.
 
+[Packages 4–6](docs/WORK_PACKAGES_4_6.md) add a qualified continuous-program Z80
+oracle, deterministic bank/shared-operator scheduling, and reusable AXI protocol
+checkers with queue/register-model campaigns. The oracle is a pinned test-only
+dependency; scheduling reuses QuikGraph and the AXI checkers use the BCL.
+
 > **Development design:** [Feature parity and competitive coverage](docs/FEATURE_PARITY.md) · [Architecture and implementation record](docs/DESIGN.md) · [Product requirements](docs/PRODUCT_REQUIREMENTS.md) · [Testing strategy](docs/TEST_STRATEGY.md). Capability and performance claims require recorded execution evidence; dormant CI definitions do not constitute verification.
 
 A small, executable C# hardware-description library inspired by MyHDL.

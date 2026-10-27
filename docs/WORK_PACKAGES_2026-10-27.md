@@ -25,6 +25,11 @@ Primary sources: [QuikGraph](https://github.com/KeRNeLith/QuikGraph),
 [SharpFuzz](https://github.com/Metalnem/sharpfuzz).
 Candidate dependencies in packages 4–10 are evaluation tasks, not approved blanket additions.
 
+Continuation: packages 4–6 are implemented and their execution evidence and
+remaining qualification limits are recorded in [WORK_PACKAGES_4_6.md](WORK_PACKAGES_4_6.md).
+Z80dotNet 1.1.0 is now pinned only in the test project; packages 5–6 reuse existing
+dependencies. Packages 7–10 remain future work.
+
 ## Description and rationale for each library decision
 
 1. **Qualification infrastructure:** FsCheck generates and shrinks input cases;

@@ -17,4 +17,5 @@
   </ItemGroup>
   <ItemGroup><ProjectReference Include="../../examples/SharpHDL.ScheduledExamples.csproj" /></ItemGroup>
   <ItemGroup><Compile Include="../../tests/Shared/ScheduledTableCampaign.cs" Link="ScheduledTableCampaign.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../tests/Shared/AxiConformanceCampaign.cs" Link="AxiConformanceCampaign.cs" /></ItemGroup>
 </Project>

@@ -7,7 +7,6 @@ using System.Numerics;
 using SharpHDL.HLS;
 using SharpHDL.RTL;
 using SharpHDL.Simulation;
-using SharpHDL;
 using SharpHDL.Core;
 
 /// <summary>Compact file-driven cycle replay for either independent HDL simulator.</summary>
@@ -20,10 +19,12 @@ internal sealed class CoreReplay
     internal HardwareGraphMachine Machine { get; }
     internal CoreReplay(ScheduledHardwareDesign design):this(new ReplayDesign(design.Name,design.Graph,design.Inputs,
         design.Outputs,design.NextState,design.ResetValues,design.Memories)) { }
-    // The existing compatibility export lets protocol campaigns exercise the
-    // same replay/emitter path without inventing a second simulator or IR.
-    internal CoreReplay(CoreGraphExport design,string name):this(new ReplayDesign(name,design.Graph,design.Inputs,
-        design.Outputs,design.NextState,design.ResetValues,design.Memories)) { }
+    // Accept Core components rather than a legacy Module export type: this file
+    // is also linked by the Core-only Z80 demo, which must not acquire that dependency.
+    internal CoreReplay(string name,HardwareGraph graph,IReadOnlyDictionary<string,int> inputs,
+        IReadOnlyDictionary<string,int> outputs,IReadOnlyDictionary<string,int> nextState,
+        IReadOnlyDictionary<string,BigInteger> resetValues,IReadOnlyDictionary<string,HardwareMemoryPort> memories)
+        :this(new ReplayDesign(name,graph,inputs,outputs,nextState,resetValues,memories)) { }
     private CoreReplay(ReplayDesign design)
     {
         this.design=design;

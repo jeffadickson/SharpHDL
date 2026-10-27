@@ -1,0 +1,10 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.csproj",
+    "mutate": ["**/AxiConformance.cs"],
+    "test-case-filter": "FullyQualifiedName~AxiConformanceTests&FullyQualifiedName!~Generated_traffic&FullyQualifiedName!~Directed_lite_and_stream",
+    "concurrency": 1,
+    "reporters": ["json", "html", "progress"],
+    "additional-timeout": 10000
+  }
+}

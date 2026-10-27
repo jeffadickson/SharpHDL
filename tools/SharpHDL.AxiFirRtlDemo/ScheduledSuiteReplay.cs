@@ -90,6 +90,20 @@ internal static class ScheduledSuiteReplay
         planned.Save(directory);
         File.WriteAllText(Path.Combine(directory,"ScheduledPlannedBanks.schedule.json"),
             JsonSerializer.Serialize(ScheduledPlannedBanks.Plan().Cycles,new JsonSerializerOptions{WriteIndented=true}));
+        var liteModule=AxiConformanceCampaign.BuildLite();
+        var liteGraph=liteModule.ExportCoreGraph();
+        var lite=new CoreReplay(liteModule.Name,liteGraph.Graph,liteGraph.Inputs,liteGraph.Outputs,
+            liteGraph.NextState,liteGraph.ResetValues,liteGraph.Memories);
+        AxiConformanceCampaign.LiteTraffic(Enumerable.Range(0,256).Select(i=>(byte)i).ToArray(),lite.Drive,
+            name=>unchecked((int)(uint)lite.Read(name)),lite.Clock);lite.Save(directory);
+        var streamModule=AxiConformanceCampaign.BuildStream();
+        var streamGraph=streamModule.ExportCoreGraph();
+        var stream=new CoreReplay(streamModule.Name,streamGraph.Graph,streamGraph.Inputs,streamGraph.Outputs,
+            streamGraph.NextState,streamGraph.ResetValues,streamGraph.Memories);
+        var traffic=Enumerable.Repeat((byte)2,12).Concat(Enumerable.Repeat((byte)3,24))
+            .Concat(Enumerable.Range(0,220).Select(i=>(byte)i)).ToArray();
+        AxiConformanceCampaign.StreamTraffic(traffic,stream.Drive,name=>(int)stream.Read(name),stream.Clock);
+        stream.Save(directory);
     }
 
     private static void GenerateShifts(string directory)

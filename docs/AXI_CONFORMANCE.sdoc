@@ -1,0 +1,51 @@
+[DOCUMENT]
+TITLE: AXI conformance checker and campaign requirements
+
+[REQUIREMENT]
+UID: AXI-CHECK-STREAM-001
+TITLE: Strict stream offer stability and reset
+STATEMENT: >>>
+The checker shall validate byte-aligned 8..4096-bit data and 1..4096-bit user
+profiles, reject out-of-width payloads and any changed/dropped stalled offer,
+and count only VALID/READY transfers outside reset. Reset cancels held offers
+without erasing cumulative accepted counts. Null-byte beats are legal; this
+profile conservatively holds every payload bit, including unqualified bytes.
+Implementation: AxiStreamConformance and AxiStreamObservation in AxiConformance.cs.
+Verification: AxiConformanceTests malformed traces, width boundaries, counters,
+FsCheck queue campaigns and independent generated-RTL replay.
+This is not a complete AXI-Stream standard checker or liveness proof.
+<<<
+
+[REQUIREMENT]
+UID: AXI-CHECK-LITE-001
+TITLE: Independent channel stability and response credit
+STATEMENT: >>>
+The 32-bit Lite checker shall track AW, W and AR independently, require earlier
+accepted requests before B/R offers, and reject changed stalled channel fields,
+invalid widths, active EXOKAY responses and configured credit-budget overflow.
+Reset flushes credits/held channels while cumulative completed counts remain.
+Address profiles accept 2..32 bits and budgets accept 1..4096 pending requests
+per channel. Simultaneously retiring a prior response and accepting its replacement
+is legal within the post-edge credit budget. Inactive response fields may hold
+EXOKAY bit patterns without offering an unsupported response.
+Alignment and access permissions belong to the peripheral model, not this checker.
+Implementation: AxiLiteConformance and AxiLiteObservation in AxiConformance.cs.
+Verification: direct/negative channel tests and generated transaction campaigns.
+Boundary/review regressions include Lite_maximum_fields_and_replacement_credits_are_legal
+and Lite_reset_cancels_each_channel_and_pending_credits.
+Protocol basis: Arm IHI0022H A3.3 and B1.1; qualification is bounded, not certification.
+<<<
+
+[REQUIREMENT]
+UID: AXI-CAMPAIGN-001
+TITLE: Independent end-to-end peripheral models
+STATEMENT: >>>
+Campaigns shall compare real Lite register hardware against a byte-oriented model
+and real Stream FIFO hardware against an independent ordered queue. Exercise
+AW/W arrival order, all strobes, unaligned/unmapped/read-only errors, held B/R,
+read/write old-data collision, stream sidebands/null bytes and reset cancellation.
+Retain reproducible property/fuzz seeds and counterexamples. Reuse campaigns in
+actual Icarus/Verilator replay rather than treating managed tests alone as HDL proof.
+Implementation: tests/Shared/AxiConformanceCampaign.cs and ScheduledSuiteReplay.
+Verification: AxiConformanceTests and final WORK_PACKAGES_4_6.md execution evidence.
+<<<

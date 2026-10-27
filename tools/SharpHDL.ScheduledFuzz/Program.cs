@@ -14,6 +14,7 @@ Fuzzer.OutOfProcess.Run(stream =>
 {
     var bytes=new byte[256];int length=stream.ReadAtLeast(bytes,1,throwOnEndOfStream:false);
     if(length>0)FlowFuzzOracle.Check(bytes.AsSpan(0,length));
+    if(length>0)AxiProtocolFuzz.Run(bytes.AsSpan(0,length));
     if(length>=8)
     {
         // BCL endian decoding avoids a custom input parser; the count remains a signed CLR bit pattern.

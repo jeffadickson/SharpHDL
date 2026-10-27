@@ -1,6 +1,31 @@
 # SharpHDL handoff — continuation verified (2026-10-27)
 
-## Current continuation: work packages 1–3
+## Current continuation: work packages 4–6
+
+Baseline: clean main at 5179ddf. WP-04 is committed as 04689d3 and WP-05 as
+8fc8062. WP-04 adds a test-only Z80dotNet 1.1.0 continuous-program oracle with
+qualified flag/interrupt limitations. WP-05 adds a bounded deterministic static
+dependency/resource planner and a real two-bank/shared-multiplier example.
+WP-06 adds strict bounded AXI-Lite/Stream monitors and shared independent queue/
+byte-register campaigns reused by tests, HDL replay and SharpFuzz. See the
+[current execution report](docs/WORK_PACKAGES_4_6.md) for fresh results and limits.
+
+Final managed regressions pass 260/260 on Windows and Linux. Eleven designs pass
+Icarus/Verilator and five pass generic Yosys checks; the new AXI checkers have
+100% measured managed line/branch coverage. The original expensive Z80Tests
+suite is excluded from this fresh gate; its earlier qualification below remains
+historical. The shared replay helper accepts Core components so the Z80 demo
+keeps its Core-only dependency boundary. Current source hashes and exact scopes
+are retained in `docs/verification/work-packages-4-6-2026-10-27.json`.
+
+Packages 7–10 remain backlog. In particular, the planner requires declared alias
+dependencies and one-edge operations; protocol checks do not prove liveness;
+the CPU reference does not qualify arbitrary IM0 injection, WZ/Q or pin timing.
+Use `tools/run-workpackages-linux.sh wp456` to isolate current Linux test evidence.
+Keep CI disabled; this continuation authorizes a normal final push only after
+the package checks. Preserve unknown changes and keep Linux outputs native.
+
+## Previous continuation: work packages 1–3
 
 Baseline was clean main at 6b91749. Z80 indexed, ED/I/O and interrupt additions
 are committed as 5ec0c1c, 42d96a0 and 7a4c975; qualification is 6b6863c.
@@ -23,7 +48,8 @@ simulators. Diagnostic mutations kill 22/26 and graph mutations 41/42 testable
 mutants; survivors and bounded fuzz scope remain explicit in the
 [completion report](docs/WORK_PACKAGES_COMPLETION_2026-10-27.md).
 Never combine differing coverage scopes as if equivalent.
-Keep future packages 4–10 as backlog rather than claiming they were implemented.
+At that checkpoint packages 4–10 remained backlog; the newer continuation above
+supersedes the status of packages 4–6 only.
 
 Use .NET 10 (`global.json`), checked directories and separate native Linux outputs.
 To avoid local paging-file exhaustion, serialize builds, use processor count 2,

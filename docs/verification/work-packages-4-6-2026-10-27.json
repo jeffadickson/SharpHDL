@@ -1,0 +1,883 @@
+{
+  "generatedUtc": "2026-10-27T22:15:07.1991736Z",
+  "baseline": "5179ddf0f76e175d143b731560b72711a294cab0",
+  "sourceBasis": "8fc8062 plus staged source blobs below; working byte hashes include actual tested line endings",
+  "ciEnabled": false,
+  "tools": {
+    "windowsSdk": "10.0.403",
+    "linuxSdk": "10.0.402",
+    "icarus": "12.0",
+    "verilator": "5.020",
+    "yosys": "0.33",
+    "strictdoc": "0.30.4",
+    "stryker": "5.0.0",
+    "coverlet": "10.1.0",
+    "fscheck": "3.3.3",
+    "sharpfuzz": "2.2.0",
+    "afl": "4.09c"
+  },
+  "requirements": [
+    "Z80-DIFF-001",
+    "HLS-PLAN-001",
+    "HLS-PLAN-002",
+    "AXI-CHECK-STREAM-001",
+    "AXI-CHECK-LITE-001",
+    "AXI-CAMPAIGN-001"
+  ],
+  "tests": [
+    {
+      "platform": "windows",
+      "total": 260,
+      "passed": 260,
+      "failed": 0,
+      "notExecuted": 0,
+      "trx": "build\\verification\\wp456-final\\windows\\tests.trx",
+      "trxSha256": "E55275D27D1C7EFA728A4524A864DB8D4A7EB03DF677C6E9DEB262ACF09E67C1",
+      "coverageXml": "build/verification/wp456-final/windows/2751c660-585f-4109-95f0-c594e6e8fcb6/coverage.cobertura.xml",
+      "coverageSha256": "1E201E2B5F467F15C87EF7883C1FD6E2E5F43A0D597A5891D5267950AAC0644E",
+      "lineRate": 0.6541,
+      "branchRate": 0.519,
+      "assemblies": [
+        "SharpHDL.Core",
+        "SharpHDL",
+        "SharpHDL.HLS",
+        "SharpHDL.RTL",
+        "SharpHDL.ScheduledExamples",
+        "SharpHDL.Simulation",
+        "SharpHDL.SymbolFixtures"
+      ],
+      "classes": [
+        {
+          "name": "SharpHDL.Verification.AxiStreamConformance",
+          "lineRate": 1.0,
+          "branchRate": 1.0
+        },
+        {
+          "name": "SharpHDL.Verification.AxiLiteConformance",
+          "lineRate": 1.0,
+          "branchRate": 1.0
+        },
+        {
+          "name": "SharpHDL.Verification.AxiLiteConformance/Held`1",
+          "lineRate": 1.0,
+          "branchRate": 1.0
+        },
+        {
+          "name": "SharpHDL.HLS.ScheduledOperation",
+          "lineRate": 1.0,
+          "branchRate": 1.0
+        },
+        {
+          "name": "SharpHDL.HLS.ScheduledOperationPlan",
+          "lineRate": 1.0,
+          "branchRate": 0.9615
+        }
+      ]
+    },
+    {
+      "platform": "linux",
+      "total": 260,
+      "passed": 260,
+      "failed": 0,
+      "notExecuted": 0,
+      "trx": "build\\verification\\wp456-final\\linux\\tests.trx",
+      "trxSha256": "7992ED8E024218EF44675FD6BC357A20FDA35C30F4D5A81730729A7CA8113282",
+      "coverageXml": "build/verification/wp456-final/linux/d5075acd-fa5e-41a7-bf21-98500611506b/coverage.cobertura.xml",
+      "coverageSha256": "86DF0983181F690E7D60321BC08EC491C8A554D103623A334D1250CF5DE582CF",
+      "lineRate": 0.6541,
+      "branchRate": 0.519,
+      "assemblies": [
+        "SharpHDL.HLS",
+        "SharpHDL",
+        "SharpHDL.RTL",
+        "SharpHDL.SymbolFixtures",
+        "SharpHDL.Core",
+        "SharpHDL.ScheduledExamples",
+        "SharpHDL.Simulation"
+      ],
+      "classes": [
+        {
+          "name": "SharpHDL.HLS.ScheduledOperation",
+          "lineRate": 1.0,
+          "branchRate": 1.0
+        },
+        {
+          "name": "SharpHDL.HLS.ScheduledOperationPlan",
+          "lineRate": 1.0,
+          "branchRate": 0.9615
+        },
+        {
+          "name": "SharpHDL.Verification.AxiStreamConformance",
+          "lineRate": 1.0,
+          "branchRate": 1.0
+        },
+        {
+          "name": "SharpHDL.Verification.AxiLiteConformance",
+          "lineRate": 1.0,
+          "branchRate": 1.0
+        },
+        {
+          "name": "SharpHDL.Verification.AxiLiteConformance/Held`1",
+          "lineRate": 1.0,
+          "branchRate": 1.0
+        }
+      ]
+    }
+  ],
+  "filter": "FullyQualifiedName!~Z80Tests",
+  "newTests": {
+    "z80Oracle": 7,
+    "planner": 8,
+    "axi": 19
+  },
+  "fscheck": {
+    "seed": "1145655947,296144285",
+    "plannerCases": 100,
+    "axiCases": 60,
+    "failingCounterexamples": 0
+  },
+  "mutation": [
+    {
+      "scope": "Six ALU conditional mutants, four continuous programs only",
+      "report": "build/verification/wp04-mutation/reports/mutation-report.json",
+      "sha256": "1BBBDD3A157D91BA135BAA59FAC585B8F6E2054568EC9482D19B2A05D716FC09",
+      "counts": {
+        "CompileError": 4,
+        "Ignored": 661,
+        "Killed": 6
+      },
+      "retained": []
+    },
+    {
+      "scope": "Initial complete planner file before review tests; not a post-review whole-file score",
+      "report": "build/verification/wp05-mutation-bounded/reports/mutation-report.json",
+      "sha256": "67C01FE45CC54F37D6CA814B243041246FA79F286AA385B337AC01EA8B58ADB4",
+      "counts": {
+        "CompileError": 24,
+        "Ignored": 10,
+        "Killed": 109,
+        "NoCoverage": 2,
+        "Survived": 25
+      },
+      "retained": [
+        {
+          "id": "1015",
+          "status": "Survived",
+          "line": 12,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "1016",
+          "status": "Survived",
+          "line": 13,
+          "mutator": "Statement mutation",
+          "replacement": ";"
+        },
+        {
+          "id": "1020",
+          "status": "Survived",
+          "line": 14,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "1021",
+          "status": "Survived",
+          "line": 15,
+          "mutator": "Linq method mutation (Order() to OrderDescending())",
+          "replacement": "dependencies.Distinct(StringComparer.Ordinal).OrderDescending"
+        },
+        {
+          "id": "1031",
+          "status": "Survived",
+          "line": 56,
+          "mutator": "Statement mutation",
+          "replacement": ";"
+        },
+        {
+          "id": "1040",
+          "status": "Survived",
+          "line": 63,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "1043",
+          "status": "Survived",
+          "line": 67,
+          "mutator": "Equality mutation",
+          "replacement": "cycle<=items.Length"
+        },
+        {
+          "id": "1070",
+          "status": "NoCoverage",
+          "line": 80,
+          "mutator": "Statement mutation",
+          "replacement": ";"
+        },
+        {
+          "id": "1071",
+          "status": "NoCoverage",
+          "line": 80,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "1072",
+          "status": "Survived",
+          "line": 81,
+          "mutator": "Statement mutation",
+          "replacement": ";"
+        },
+        {
+          "id": "1090",
+          "status": "Survived",
+          "line": 93,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "1096",
+          "status": "Survived",
+          "line": 96,
+          "mutator": "String mutation",
+          "replacement": "$\"\""
+        },
+        {
+          "id": "1104",
+          "status": "Survived",
+          "line": 104,
+          "mutator": "Statement mutation",
+          "replacement": ";"
+        },
+        {
+          "id": "1115",
+          "status": "Survived",
+          "line": 106,
+          "mutator": "Linq method mutation (Any() to All())",
+          "replacement": "items.All"
+        },
+        {
+          "id": "1118",
+          "status": "Survived",
+          "line": 106,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "1120",
+          "status": "Survived",
+          "line": 107,
+          "mutator": "Linq method mutation (Any() to All())",
+          "replacement": "capacities.All"
+        },
+        {
+          "id": "1128",
+          "status": "Survived",
+          "line": 107,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "1129",
+          "status": "Survived",
+          "line": 108,
+          "mutator": "Linq method mutation (OrderBy() to OrderByDescending())",
+          "replacement": "items.OrderByDescending"
+        },
+        {
+          "id": "1132",
+          "status": "Survived",
+          "line": 110,
+          "mutator": "Statement mutation",
+          "replacement": ";"
+        },
+        {
+          "id": "1133",
+          "status": "Survived",
+          "line": 110,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "1135",
+          "status": "Survived",
+          "line": 111,
+          "mutator": "Equality mutation",
+          "replacement": "items.Sum(op=>(long)Math.Max(1,op.Dependencies.Count))>=InstructionControlFlow.MaxEdges"
+        },
+        {
+          "id": "1145",
+          "status": "Survived",
+          "line": 117,
+          "mutator": "String mutation",
+          "replacement": "$\"\""
+        },
+        {
+          "id": "1150",
+          "status": "Survived",
+          "line": 118,
+          "mutator": "String mutation",
+          "replacement": "$\"\""
+        },
+        {
+          "id": "1159",
+          "status": "Survived",
+          "line": 132,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "1161",
+          "status": "Survived",
+          "line": 133,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "1162",
+          "status": "Survived",
+          "line": 134,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "1174",
+          "status": "Survived",
+          "line": 137,
+          "mutator": "Statement mutation",
+          "replacement": ";"
+        }
+      ]
+    },
+    {
+      "scope": "Post-review declaration/order/budget ranges only",
+      "report": "build/verification/wp05-mutation-review/reports/mutation-report.json",
+      "sha256": "0B9D1038E1ED043F27C393B033ECA95B2E05BE7429A396D560F01BFF01884B43",
+      "counts": {
+        "CompileError": 24,
+        "Ignored": 117,
+        "Killed": 27,
+        "Survived": 2
+      },
+      "retained": [
+        {
+          "id": "1118",
+          "status": "Survived",
+          "line": 106,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "1128",
+          "status": "Survived",
+          "line": 107,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        }
+      ]
+    },
+    {
+      "scope": "Initial completed monitor test selection, before review tests",
+      "report": "build/verification/wp06-mutation-monitor/reports/mutation-report.json",
+      "sha256": "F702A40239787F8929FD6225FDA3E4A907E109355C4CB1A39CFD96133AB2BC1C",
+      "counts": {
+        "CompileError": 6,
+        "Ignored": 9,
+        "Killed": 154,
+        "Survived": 32
+      },
+      "retained": [
+        {
+          "id": "113",
+          "status": "Survived",
+          "line": 20,
+          "mutator": "Equality mutation",
+          "replacement": "dataWidth<=8"
+        },
+        {
+          "id": "122",
+          "status": "Survived",
+          "line": 21,
+          "mutator": "Equality mutation",
+          "replacement": "userWidth<=1"
+        },
+        {
+          "id": "141",
+          "status": "Survived",
+          "line": 34,
+          "mutator": "Equality mutation",
+          "replacement": "sample.Data<=0"
+        },
+        {
+          "id": "153",
+          "status": "Survived",
+          "line": 35,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "172",
+          "status": "Survived",
+          "line": 38,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "173",
+          "status": "Survived",
+          "line": 39,
+          "mutator": "Conditional (true) mutation",
+          "replacement": "(true?sample:null)"
+        },
+        {
+          "id": "175",
+          "status": "Survived",
+          "line": 39,
+          "mutator": "Logical mutation",
+          "replacement": "sample.Valid||!sample.Ready"
+        },
+        {
+          "id": "179",
+          "status": "Survived",
+          "line": 41,
+          "mutator": "Remove checked expression",
+          "replacement": "Accepted+1"
+        },
+        {
+          "id": "181",
+          "status": "Survived",
+          "line": 61,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "182",
+          "status": "Survived",
+          "line": 61,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "183",
+          "status": "Survived",
+          "line": 61,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "184",
+          "status": "Survived",
+          "line": 61,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "185",
+          "status": "Survived",
+          "line": 62,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "190",
+          "status": "Survived",
+          "line": 66,
+          "mutator": "Equality mutation",
+          "replacement": "addressWidth<=2"
+        },
+        {
+          "id": "218",
+          "status": "Survived",
+          "line": 77,
+          "mutator": "Equality mutation",
+          "replacement": "s.AwProtection>=7"
+        },
+        {
+          "id": "220",
+          "status": "Survived",
+          "line": 77,
+          "mutator": "Equality mutation",
+          "replacement": "s.ArProtection>=7"
+        },
+        {
+          "id": "222",
+          "status": "Survived",
+          "line": 77,
+          "mutator": "Equality mutation",
+          "replacement": "s.WriteStrobe>=15"
+        },
+        {
+          "id": "224",
+          "status": "Survived",
+          "line": 78,
+          "mutator": "Equality mutation",
+          "replacement": "s.WriteResponse>=3"
+        },
+        {
+          "id": "226",
+          "status": "Survived",
+          "line": 78,
+          "mutator": "Equality mutation",
+          "replacement": "s.ReadResponse>=3"
+        },
+        {
+          "id": "232",
+          "status": "Survived",
+          "line": 79,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "236",
+          "status": "Survived",
+          "line": 80,
+          "mutator": "Statement mutation",
+          "replacement": ";"
+        },
+        {
+          "id": "237",
+          "status": "Survived",
+          "line": 80,
+          "mutator": "Statement mutation",
+          "replacement": ";"
+        },
+        {
+          "id": "252",
+          "status": "Survived",
+          "line": 88,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "257",
+          "status": "Survived",
+          "line": 89,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "266",
+          "status": "Survived",
+          "line": 92,
+          "mutator": "Logical mutation",
+          "replacement": "s.ArValid||s.ArReady"
+        },
+        {
+          "id": "273",
+          "status": "Survived",
+          "line": 93,
+          "mutator": "Statement mutation",
+          "replacement": ";"
+        },
+        {
+          "id": "275",
+          "status": "Survived",
+          "line": 93,
+          "mutator": "Statement mutation",
+          "replacement": ";"
+        },
+        {
+          "id": "277",
+          "status": "Survived",
+          "line": 93,
+          "mutator": "Remove checked expression",
+          "replacement": "CompletedWrites+1"
+        },
+        {
+          "id": "282",
+          "status": "Survived",
+          "line": 94,
+          "mutator": "Statement mutation",
+          "replacement": ";"
+        },
+        {
+          "id": "284",
+          "status": "Survived",
+          "line": 94,
+          "mutator": "Remove checked expression",
+          "replacement": "CompletedReads+1"
+        },
+        {
+          "id": "296",
+          "status": "Survived",
+          "line": 96,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "304",
+          "status": "Survived",
+          "line": 105,
+          "mutator": "String mutation",
+          "replacement": "$\"\""
+        }
+      ]
+    },
+    {
+      "scope": "Final whole checker file selection, 17 dedicated tests; excludes independently passing whole-peripheral properties",
+      "report": "build/verification/wp06-mutation-reviewed/reports/mutation-report.json",
+      "sha256": "880EDDA1503F9F9DADDB9CCDF1E60C1617A8DF1A419CD61AB5172A967DFEA1C6",
+      "counts": {
+        "CompileError": 6,
+        "Ignored": 9,
+        "Killed": 177,
+        "Survived": 9
+      },
+      "retained": [
+        {
+          "id": "153",
+          "status": "Survived",
+          "line": 35,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "172",
+          "status": "Survived",
+          "line": 38,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "179",
+          "status": "Survived",
+          "line": 41,
+          "mutator": "Remove checked expression",
+          "replacement": "Accepted+1"
+        },
+        {
+          "id": "232",
+          "status": "Survived",
+          "line": 79,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "252",
+          "status": "Survived",
+          "line": 88,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "257",
+          "status": "Survived",
+          "line": 89,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        },
+        {
+          "id": "277",
+          "status": "Survived",
+          "line": 93,
+          "mutator": "Remove checked expression",
+          "replacement": "CompletedWrites+1"
+        },
+        {
+          "id": "284",
+          "status": "Survived",
+          "line": 94,
+          "mutator": "Remove checked expression",
+          "replacement": "CompletedReads+1"
+        },
+        {
+          "id": "296",
+          "status": "Survived",
+          "line": 96,
+          "mutator": "String mutation",
+          "replacement": "\"\""
+        }
+      ]
+    }
+  ],
+  "axiSurvivorDisposition": "Six generic diagnostic message changes; three unchecked lifetime-counter overflow variants. Overflow after 2^63 transfers unexecuted.",
+  "fuzz": [
+    {
+      "scope": "graph/planner/shift/table",
+      "seconds": 60,
+      "seed": 261026,
+      "executions": 15783,
+      "corpus": 138,
+      "bitmapPercent": 2.43,
+      "crashes": 0,
+      "hangs": 0,
+      "artifacts": "/tmp/sharphdl-fuzz-u1MsE9",
+      "log": "build/verification/wp05-fuzz.log"
+    },
+    {
+      "scope": "previous harness plus up to eight AXI commands",
+      "seconds": 60,
+      "seed": 261026,
+      "executions": 4671,
+      "corpus": 197,
+      "bitmapPercent": 2.81,
+      "crashes": 0,
+      "hangs": 0,
+      "artifacts": "/tmp/sharphdl-fuzz-oBgdyn",
+      "log": "build/verification/wp06-fuzz.log"
+    }
+  ],
+  "rtl": {
+    "designsPerSimulator": 11,
+    "simulators": [
+      "Icarus",
+      "Verilator"
+    ],
+    "genericYosysDesigns": 5,
+    "plannedEdges": 84,
+    "liteEdges": 4165,
+    "streamEdges": 321,
+    "artifacts": "/tmp/sharphdl-rtl-3IBrMz",
+    "log": "build/verification/wp06-rtl-final.log",
+    "physicalTimingVerified": false
+  },
+  "builds": {
+    "distinctManagedProjectsPassed": 24,
+    "initialSweepExit": 1,
+    "initialSuccessfulProjects": 23,
+    "resolvedSharedHelperConsumers": 2,
+    "logs": [
+      "build/verification/wp456-build-all.log",
+      "build/verification/wp456-replay-bridge-build.log"
+    ],
+    "legacyExit": 0,
+    "legacyLog": "build/verification/wp456-legacy.log"
+  },
+  "documentation": {
+    "strictdocExit": 0,
+    "log": "build/verification/wp456-strictdoc-final.log",
+    "layerCheckExit": 0
+  },
+  "limitations": [
+    "Original expensive Z80Tests not rerun; previous full qualification is historical.",
+    "Reference BIT/block-I/O flag and IM0 injection limits; no WZ/Q, CP/M or physical pin-timing claim.",
+    "Planner requires declared aliases/dependencies and one-edge operations; no dynamic or optimal scheduling.",
+    "AXI strict bounded profile; no liveness proof or full standard certification.",
+    "Coverage excludes native tools and HDL toggles; adapter test assembly measured separately.",
+    "Existing fixture analyzer warnings remain; no performance improvement claim."
+  ],
+  "sourceManifest": [
+    {
+      "path": "docs/AXI_CONFORMANCE.sdoc",
+      "gitBlob": "c14581b997e947ef1fe1342df8836c7c0d33d4b7",
+      "workingBytesSha256": "B9BD45ADC08EC6FC1C1F3EC67EC3B5B49ABA1BCEAE025E4DCEACD98563D5D5FF"
+    },
+    {
+      "path": "docs/CONTINUATION_4_6.sdoc",
+      "gitBlob": "a7c0b8b53c26dbd34948f6c9ece04b6f95ccb4cf",
+      "workingBytesSha256": "C1CA480DADF407345D60940552AEF3EC3D84699ABD5ADD70376BEE9CBF85AD9D"
+    },
+    {
+      "path": "examples/ScheduledPlannedBanks.cs",
+      "gitBlob": "e4d3981e290ca82aafa8d1f4f40d785e15688c24",
+      "workingBytesSha256": "624CAD2554C90246D4409206FDB33A6A51BC2740DD3F046AF676F104D6C61578"
+    },
+    {
+      "path": "examples/SharpHDL.ScheduledExamples.csproj",
+      "gitBlob": "2afda6e96620b9abb157a6bc375fdadf2bcdff06",
+      "workingBytesSha256": "F68BAD5A872E2416FD6C09772D9013D4F7982F23099BD7D969D7F39D94429FF1"
+    },
+    {
+      "path": "src/SharpHDL.HLS/ScheduledOperationPlan.cs",
+      "gitBlob": "fc67251c33fe81489fe1e2527b8b7a7d4aab865e",
+      "workingBytesSha256": "DA4B34F49D9E32AFF7FB2D13ACD610A711A5EFCC5FBBECBB2F3E42F94E5CEE25"
+    },
+    {
+      "path": "src/SharpHDL/AxiConformance.cs",
+      "gitBlob": "bdeae59141f0022af549c034ce3533b14bb428b3",
+      "workingBytesSha256": "60A8FCC94F3CC48FD0A27C23482CBB6CF19DA3D301F3C287B5EFA3FF06CA8CF2"
+    },
+    {
+      "path": "tests/Shared/AxiConformanceCampaign.cs",
+      "gitBlob": "4c765c34ec5df2dea01729d2434380740edbe569",
+      "workingBytesSha256": "D492AB98AB2B0F750E4DFBD0A74311DB518AFF26A6390AB6C619FE685982B62B"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/AxiConformanceTests.cs",
+      "gitBlob": "5ee570d24e9305f38474823a7ca5a47c9de0dc40",
+      "workingBytesSha256": "E217BBAEFA89E742CCD98C6C80046A7CC289B1FDEC96ADCAA595B6E5416AA18A"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/ScheduledOperationPlanTests.cs",
+      "gitBlob": "063b002b4fa4d58d594cbc8aea2d883fd90b99fa",
+      "workingBytesSha256": "06DF47FC996C3ED92F99ADEF2C8B478B1B9F6B3F5D7CE7C88B1B70420E1D524F"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj",
+      "gitBlob": "1c745367c152493c75af2c861edbb155dd5fab12",
+      "workingBytesSha256": "0751490D27D621D9291094836A0AED8FE252AB0DB11A5C4E64A0D1FCD8448EA4"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/Z80ProgramOracleTests.cs",
+      "gitBlob": "d315bbf7bbbe92f4c2f511488fd7fa429886ebe9",
+      "workingBytesSha256": "9424D11CDFCE8AAC0E2514F80E577BE83618A23C9556C5AAA101A9C899D0F57C"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/stryker-axi-conformance.json",
+      "gitBlob": "55ddd8f489875fee4f400203be031f5df9f4aef3",
+      "workingBytesSha256": "5AE812351D324DCB50DDDD76629E5CE4539577D5987D8E55E4B67F16EED86EA3"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/stryker-operation-plan-review.json",
+      "gitBlob": "5f6cfa62573f31e2f53b01cc681b5db26c914e52",
+      "workingBytesSha256": "2812A20E5C45C5903848CF89F3C67E579E3C967C3F7FC337B8025C89D7AF3432"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/stryker-operation-plan.json",
+      "gitBlob": "d8a3431ec4656142000d2b0ccafe9b6c05d43a0d",
+      "workingBytesSha256": "F89E9F317AE9526B8AEEDF0A10A78ED59BDABDDF14EA2EBC507BA615D3FAB916"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/stryker-z80-program.json",
+      "gitBlob": "db8b7c544f9f1d22e92792c2a297d9990a7d8b12",
+      "workingBytesSha256": "A1CB3E6D23919BF3D6023A19787E9466681E22E9D5DE832BCFE948581F9ABD98"
+    },
+    {
+      "path": "tools/SharpHDL.AxiFirRtlDemo/CoreReplay.cs",
+      "gitBlob": "f3d3716d39dbafadee1725aff777219a23b9c27c",
+      "workingBytesSha256": "7F2C13BB38FB041A3CAC79D70CFE9E76CFAD6343F52F29EBC55C578470898AC0"
+    },
+    {
+      "path": "tools/SharpHDL.AxiFirRtlDemo/ScheduledSuiteReplay.cs",
+      "gitBlob": "7e5795dff56249ecb1e9ee98cee96b93b2d45dc4",
+      "workingBytesSha256": "A76EAE23E9940A751E3CF8F7C2C97375D077099B3656941C60B2D0B29A7034BE"
+    },
+    {
+      "path": "tools/SharpHDL.AxiFirRtlDemo/SharpHDL.AxiFirRtlDemo.csproj",
+      "gitBlob": "ede1c68c73caf914cd99e60973c4fc176aa2a655",
+      "workingBytesSha256": "3152AE37D0953CBDB538EDCEB9232EEABECDABF904C2D9263E3E3DEEE97846D2"
+    },
+    {
+      "path": "tools/SharpHDL.ScheduledFuzz/AxiProtocolFuzz.cs",
+      "gitBlob": "e795529f40418c081fb4c9ea2f93e0570550852a",
+      "workingBytesSha256": "DDBE3E70DFA38863A7B47FFE305A00B3621E49408E5FF2818A0A78BB2CBF33CC"
+    },
+    {
+      "path": "tools/SharpHDL.ScheduledFuzz/Program.cs",
+      "gitBlob": "a7721fc965cfea7bf7e86ce70873094b30c036f2",
+      "workingBytesSha256": "E2D6A5361D6BC7A578983E824246637E08E620F224E417FA80D9ED11E2C9D746"
+    },
+    {
+      "path": "tools/SharpHDL.ScheduledFuzz/SharpHDL.ScheduledFuzz.csproj",
+      "gitBlob": "266d9a3c1479fc7cc245a22253e9978ac3a02e2a",
+      "workingBytesSha256": "69E8E7F9B8AB74C700D691643E73F10BB901EEC1B9741F8EA3A21827A08E1A1F"
+    },
+    {
+      "path": "tools/SharpHDL.ScheduledFuzz/corpus/plan-chain",
+      "gitBlob": "7f43d2af9914d0bd4f7cf9aa32b1d7207f022987",
+      "workingBytesSha256": "9463926D4640A53A0CF1AC00657361F5A6D64FBC554DF30721CDACF503AEBC2B"
+    },
+    {
+      "path": "tools/run-scheduled-rtl.sh",
+      "gitBlob": "d3d00ecd5690b602ff7d6da0d1b3fa47f2d7d29b",
+      "workingBytesSha256": "5DFEED0EDB97382BF2E01E58AA6A6441EC73D7ADF8BB41EF6285456003D7CE72"
+    },
+    {
+      "path": "tools/run-workpackages-linux.sh",
+      "gitBlob": "5421e58cb1746a6e73b7b4a667991530bac0df46",
+      "workingBytesSha256": "2B5A2D9DF6B873581798219974854F5D317EE41054E50B44F48C37FAB5D040EC"
+    }
+  ]
+}
