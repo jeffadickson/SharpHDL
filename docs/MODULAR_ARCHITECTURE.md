@@ -432,3 +432,19 @@ handlers, nonzero initial RAM and vendor options are rejected with method/IL
 diagnostics. These remain on the explicit legacy path, with no silent fallback.
 This is a verified-subset extension pending final execution, not arbitrary CLR
 compilation. Tests compare real runtime-loop/RAM C# with host and legacy behavior.
+
+## Follow-up item 5 — explicit banks, initialization and qualification
+
+BankedMemory declares 1..16 power-of-two physical banks with independent ports and
+cyclic linear initialization. Total logical words are bounded at 65536. Names,
+shape, hint and contents validate before allocation. Same-bank scheduling conflicts
+remain conservative. Single memories now accept exact immutable initial words;
+the scheduled CIL subset can therefore accept InitialMemory too.
+
+Core memory metadata retains validated Xilinx block/distributed and Intel M10K/
+M20K requests, emitted by the native RTL backend. These hints do not prove mapped
+resource type. The two-bank example is used for independent array replay and
+Yosys target qualification. BenchmarkDotNet measures construction plus 256 table
+edges at two RAM sizes, with final result 64 checked; no optimization is performed.
+The library-fit review in LIBRARY_FIT_2026-10-27.md assigns each adoption/defer
+rationale to the corresponding follow-up task and reviews already-written code.

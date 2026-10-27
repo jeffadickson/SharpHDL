@@ -39,8 +39,10 @@ namespace SharpHDL
                 throw Error(method,0,"Scheduled sequential methods require a static CIL body, UInt32 return and no exception handlers.");
             if(o.MaxCycles<1||o.MaxCycles>1000000||o.MaxInstructions<1||o.MaxInstructions>4096)
                 throw new ArgumentException("Invalid scheduled sequential instruction/clock limits.",nameof(options));
-            if(o.InitialMemory!=null||o.MemoryOptions!=null)
-                throw Error(method,0,"Scheduled sequential RAM currently requires zero initialization and generic memory options.");
+            if(o.MemoryOptions!=null)
+                throw Error(method,0,"Scheduled sequential vendor memory options require an explicit Core inference policy.");
+            if(!ps.Any(p=>p.ParameterType==typeof(uint[]))&&o.InitialMemory!=null)
+                throw Error(method,0,"Initial memory requires a uint[] RAM argument.");
             if(body.LocalVariables.Any(v=>!Scalar(v.LocalType))||!body.InitLocals&&body.LocalVariables.Count>0||
                 ps.Any(p=>p.ParameterType!=typeof(uint[])&&!Scalar(p.ParameterType))||ps.Count(p=>p.ParameterType==typeof(uint[]))>1)
                 throw Error(method,0,"Scheduled locals/arguments must be Int32, UInt32 or Boolean with at most one uint[] argument.");
@@ -94,7 +96,7 @@ namespace SharpHDL
             var one=b.Constant(1,1);var zero=b.Constant(1,0);
             ScheduledValue K32(int value)=>b.Constant(32,unchecked((uint)value));
             var zero32=K32(0);int aw=1;while((1<<aw)<o.MemoryDepth)aw++;
-            var ram=hasRam?b.Memory("data",32,o.MemoryDepth):null;
+            var ram=hasRam?b.Memory("data",32,o.MemoryDepth,o.InitialMemory):null;
             var readData=hasRam?b.Register("ram_read_data",32):null;
             var multiplier=b.ArithmeticResource("cil_multiplier",HardwareOperation.Multiply,32);
             var live=cycles.Value.LessThan(b.Constant(cw,o.MaxCycles));var expired=live.Not();

@@ -129,3 +129,18 @@ Implementation: ScheduledResetTests, CoreReplay, ScheduledSuiteReplay and xunit.
 Execution results, including hosted workflow outcomes, are recorded at final push.
 This does not implement shared-resource arbitration among concurrent kernels.
 <<<
+
+[REQUIREMENT]
+UID: SCHED-MEM-001
+TITLE: Explicit bank ports and inference policy
+STATEMENT: >>>
+Scheduled hardware shall declare independent cyclic single-port banks, exact
+immutable initialization and validated vendor inference hints. Distinct banks may
+be accessed concurrently; same-bank conflicts remain rejected. Reset retains
+committed words. Mapping shall preserve bank/row identity and diagnose bounds.
+RTL shall preserve requested hints without claiming physical implementation.
+Verification includes independent array checks, generic and Xilinx synthesis
+resource evidence and a reproducible BenchmarkDotNet baseline before optimizing.
+Implementation: ScheduledMemoryBanks, HardwareMemoryPort, CoreVerilogEmitter and
+ScheduledBankedTable. Tests: ScheduledBankedMemoryTests; final campaign evidence.
+<<<

@@ -124,6 +124,15 @@ public static class CoreVerilogEmitter
         foreach(var (name,port) in memories)
         {
             sb.AppendLine("// "+name+": initialized synchronous read-before-write RAM.");
+            string attribute=port.Implementation switch
+            {
+                HardwareMemoryImplementation.XilinxBlock=>"(* ram_style = \"block\" *)",
+                HardwareMemoryImplementation.XilinxDistributed=>"(* ram_style = \"distributed\" *)",
+                HardwareMemoryImplementation.IntelM10K=>"(* ramstyle = \"M10K\" *)",
+                HardwareMemoryImplementation.IntelM20K=>"(* ramstyle = \"M20K\" *)",
+                _=>""
+            };
+            if(attribute.Length!=0)sb.AppendLine(attribute);
             sb.AppendLine("reg "+Range(port.Width)+" mem_"+name+
                 " [0:"+(port.Initial.Count-1)+"];");
             sb.AppendLine("initial begin");

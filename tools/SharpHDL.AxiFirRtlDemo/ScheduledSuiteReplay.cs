@@ -5,6 +5,7 @@ using System.Text.Json;
 using SharpHDL;
 using SharpHDL.Examples;
 using SharpHDL.Verification;
+using SharpHDL.Core;
 
 /// <summary>Multiple independently specified kernels through compact Core/HDL replay.</summary>
 internal static class ScheduledSuiteReplay
@@ -24,6 +25,19 @@ internal static class ScheduledSuiteReplay
             var replay=new CoreReplay(ScheduledTable.Build(width));
             int count=ScheduledTableCampaign.Run(width,replay.Drive,name=>(int)replay.Machine.ReadOutput(name),replay.Clock);
             replay.Save(directory);Console.WriteLine($"Table {width}: {count} independent-oracle responses.");
+        }
+        foreach(var implementation in new[]{HardwareMemoryImplementation.Auto,HardwareMemoryImplementation.XilinxBlock})
+        {
+            var replay=new CoreReplay(ScheduledBankedTable.Build(256,implementation));
+            replay.Clock(true);
+            for(int address=0;address<256;address++)
+            {
+                replay.Drive("address",address);replay.Drive("left",65535-address);replay.Drive("right",address+7);
+                replay.Clock(false);replay.Clock(false);
+                if(replay.Machine.ReadOutput("out_left")!=65535-address||replay.Machine.ReadOutput("out_right")!=address+7)
+                    throw new InvalidOperationException("Banked array oracle mismatch.");
+            }
+            replay.Save(directory);
         }
         var method=typeof(ScheduledSuiteReplay).GetMethod(nameof(Update))!;
         var options=new SequentialOptions{MemoryDepth=8,MaxCycles=1000};

@@ -38,13 +38,13 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
-      - run: sudo apt-get update && sudo apt-get install -y iverilog verilator
+      - run: sudo apt-get update && sudo apt-get install -y iverilog verilator yosys
       - run: dotnet run --project tools/SharpHDL.AxiFirRtlDemo -c Release -- --suite generated/scheduled-suite
       - name: Independent Icarus and Verilator cycle replay
         run: |
           root="$PWD"
           mkdir -p build/scheduled-suite
-          for design in ScheduledTable1 ScheduledTable4 ScheduledTable8 ScheduledCilLoop; do
+          for design in ScheduledTable1 ScheduledTable4 ScheduledTable8 ScheduledCilLoop ScheduledBanksAuto ScheduledBanksXilinxBlock; do
             iverilog -g2012 -s tb -o "build/scheduled-suite/$design" "generated/scheduled-suite/$design.v" "generated/scheduled-suite/${design}_tb.sv"
             (cd generated/scheduled-suite && "$root/build/scheduled-suite/$design")
             verilator --binary --timing -Wno-fatal --top-module tb --Mdir "$root/build/scheduled-suite/$design-obj" "generated/scheduled-suite/$design.v" "generated/scheduled-suite/${design}_tb.sv"

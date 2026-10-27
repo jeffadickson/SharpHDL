@@ -90,14 +90,18 @@ public sealed class ScheduledRegister
 /// <summary>A synchronous, read-before-write, single-port scheduled RAM.</summary>
 public sealed class ScheduledMemory
 {
-    internal ScheduledMemory(string name,int width,int depth)
-        {Name=name;Width=width;Depth=depth;}
+    internal ScheduledMemory(string name,int width,IReadOnlyList<BigInteger> initial,HardwareMemoryImplementation implementation)
+        {Name=name;Width=width;Depth=initial.Count;Initial=initial;Implementation=implementation;}
     /// <summary>Canonical memory name.</summary>
     public string Name { get; }
     /// <summary>RAM word width.</summary>
     public int Width { get; }
     /// <summary>RAM depth in words.</summary>
     public int Depth { get; }
+    /// <summary>Exact immutable initial words, retained across synchronous reset.</summary>
+    public IReadOnlyList<BigInteger> Initial { get; }
+    /// <summary>Requested target storage inference policy.</summary>
+    public HardwareMemoryImplementation Implementation { get; }
 }
 
 /// <summary>A named finite-capacity resource used for schedule arbitration.</summary>
@@ -263,12 +267,17 @@ public sealed partial class ScheduledMachineBuilder
     }
 
     /// <summary>Declare a zero-initialized synchronous single-port RAM.</summary>
-    public ScheduledMemory Memory(string memoryName,int width,int depth)
+    public ScheduledMemory Memory(string memoryName,int width,int depth,IEnumerable<BigInteger>? initial=null,
+        HardwareMemoryImplementation implementation=HardwareMemoryImplementation.Auto)
     {
         EnsureMutable();ValidateWidth(width);
         if(depth is <1 or >65536)throw new ArgumentOutOfRangeException(nameof(depth));
+        if(!Enum.IsDefined(implementation))throw new ArgumentOutOfRangeException(nameof(implementation));
+        var words=initial==null?new BigInteger[depth]:initial.Take(depth+1).ToArray();
+        if(words.Length!=depth||words.Any(v=>v<0||v>=(BigInteger.One<<width)))
+            throw new ArgumentException("Initial RAM contents must contain exactly depth fitting words.",nameof(initial));
         AddName(memoryName);
-        var memory=new ScheduledMemory(memoryName,width,depth);memories.Add(memory);return memory;
+        var memory=new ScheduledMemory(memoryName,width,Array.AsReadOnly(words),implementation);memories.Add(memory);return memory;
     }
 
     /// <summary>Declare a finite-capacity scheduled operator or shared service.</summary>
@@ -407,7 +416,7 @@ public sealed partial class ScheduledMachineBuilder
                     enable=active.Or(enable);
                 }
             memoryMap.Add(memory.Name,new HardwareMemoryPort(memory.Name,memory.Width,
-                Compile(address),Compile(enable),Compile(data),Enumerable.Repeat(BigInteger.Zero,memory.Depth)));
+                Compile(address),Compile(enable),Compile(data),memory.Initial,memory.Implementation));
         }
         var design=new ScheduledHardwareDesign(name,new HardwareGraph(nodes,inputMap.Values.Where(id=>
             resetMap.ContainsKey(inputMap.Single(p=>p.Value==id).Key))),inputMap,outputMap,nextMap,resetMap,memoryMap);
