@@ -1,0 +1,10 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.HLS.csproj",
+    "mutate": ["**/ScheduledMachine.cs"],
+    "test-case-filter": "FullyQualifiedName~ScheduledMachineValidationTests|FullyQualifiedName~HlsScheduledFirTests",
+    "concurrency": 4,
+    "reporters": ["html", "json", "progress"],
+    "additional-timeout": 10000
+  }
+}

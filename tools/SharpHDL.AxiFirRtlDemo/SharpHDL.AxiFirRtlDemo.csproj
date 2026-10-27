@@ -15,4 +15,6 @@
     <Compile Include="../../examples/AxiFirRam.cs" Link="AxiFirRam.cs" />
     <Compile Include="../../examples/HlsScheduledFir.cs" Link="HlsScheduledFir.cs" />
   </ItemGroup>
+  <ItemGroup><Compile Include="../../examples/ScheduledTable.cs" Link="ScheduledTable.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../tests/Shared/ScheduledTableCampaign.cs" Link="ScheduledTableCampaign.cs" /></ItemGroup>
 </Project>

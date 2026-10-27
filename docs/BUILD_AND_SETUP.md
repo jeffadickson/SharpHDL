@@ -75,7 +75,7 @@ The VS Code extension is still a prototype; `just vscode` prints the setup instr
 
 ## Reproducibility and version caveats
 
-The root SDK policy is 8.0.100 with `latestFeature`, allowing newer .NET 8 SDK feature bands. Realized SDK version should be recorded by CI. NuGet versions are in existing project files, and `Testcontainers` currently bootstraps Icarus from Ubuntu at runtime; that integration image/package setup is not fully reproducible until digest-pinned. Full vendor FPGA synthesis and timing are not included in ordinary developer verification. A future `mise` manifest/devcontainer may pin language runtimes and HDL tools more comprehensively.
+The root SDK policy is 10.0.100 with `latestFeature`, allowing newer .NET 10 SDK feature bands. Realized SDK version should be recorded by CI. NuGet versions are in existing project files, and `Testcontainers` currently bootstraps Icarus from Ubuntu at runtime; that integration image/package setup is not fully reproducible until digest-pinned. Full vendor FPGA synthesis and timing are not included in ordinary developer verification. A future `mise` manifest/devcontainer may pin language runtimes and HDL tools more comprehensively.
 
 Do not call these scripts passing until they have been executed with recorded output.
 

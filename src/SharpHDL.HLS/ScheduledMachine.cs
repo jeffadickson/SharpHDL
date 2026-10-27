@@ -212,7 +212,7 @@ public sealed class ScheduledMachineBuilder
     private readonly List<ScheduledResource> resources=new();
     private readonly List<ScheduledState> states=new();
     private readonly Dictionary<string,ScheduledValue> outputs=new(StringComparer.Ordinal);
-    private readonly HashSet<string> names=new(StringComparer.Ordinal);
+    private readonly HashSet<string> names=new(StringComparer.Ordinal) { "scheduler_state" };
     private bool lowered;
 
     /// <summary>Create an empty scheduled machine.</summary>
@@ -235,7 +235,7 @@ public sealed class ScheduledMachineBuilder
     /// <summary>Declare an external input.</summary>
     public ScheduledValue Input(string inputName,int width)
     {
-        EnsureMutable();AddName(inputName);ValidateWidth(width);
+        EnsureMutable();ValidateWidth(width);AddName(inputName);
         var value=new ScheduledValue(width,HardwareOperation.Input,name:inputName);
         inputs.Add(value);return value;
     }
@@ -243,8 +243,9 @@ public sealed class ScheduledMachineBuilder
     /// <summary>Declare a synchronously reset register.</summary>
     public ScheduledRegister Register(string registerName,int width,BigInteger resetValue=default)
     {
-        EnsureMutable();AddName(registerName);ValidateWidth(width);
+        EnsureMutable();ValidateWidth(width);
         if(resetValue<0||resetValue>=(BigInteger.One<<width))throw new ArgumentOutOfRangeException(nameof(resetValue));
+        AddName(registerName);
         var value=new ScheduledValue(width,HardwareOperation.Input,name:registerName);
         var register=new ScheduledRegister(registerName,width,resetValue,value);
         registers.Add(register);return register;
@@ -253,16 +254,18 @@ public sealed class ScheduledMachineBuilder
     /// <summary>Declare a zero-initialized synchronous single-port RAM.</summary>
     public ScheduledMemory Memory(string memoryName,int width,int depth)
     {
-        EnsureMutable();AddName(memoryName);ValidateWidth(width);
+        EnsureMutable();ValidateWidth(width);
         if(depth is <1 or >65536)throw new ArgumentOutOfRangeException(nameof(depth));
+        AddName(memoryName);
         var memory=new ScheduledMemory(memoryName,width,depth);memories.Add(memory);return memory;
     }
 
     /// <summary>Declare a finite-capacity scheduled operator or shared service.</summary>
     public ScheduledResource Resource(string resourceName,int capacity=1)
     {
-        EnsureMutable();AddName(resourceName);
+        EnsureMutable();
         if(capacity<1)throw new ArgumentOutOfRangeException(nameof(capacity));
+        AddName(resourceName);
         var resource=new ScheduledResource(resourceName,capacity);resources.Add(resource);return resource;
     }
 
@@ -279,7 +282,7 @@ public sealed class ScheduledMachineBuilder
     /// <summary>Declare an observable combinational output.</summary>
     public void Output(string outputName,ScheduledValue value)
     {
-        EnsureMutable();AddName(outputName);ValidateValue(value);outputs.Add(outputName,value);
+        EnsureMutable();ValidateValue(value);AddName(outputName);outputs.Add(outputName,value);
     }
 
     /// <summary>Return a one-bit expression true while the given state is active.</summary>
@@ -294,12 +297,12 @@ public sealed class ScheduledMachineBuilder
     private ScheduledValue StateValue()=>stateValue??=new ScheduledValue(StateWidth(),HardwareOperation.Input,name:"scheduler_state");
     private int StateWidth(){int width=1;while((1<<width)<Math.Max(1,states.Count))width++;return width;}
 
-    /// <summary>Validate resource use and lower the machine into canonical Core IR.</summary>
+    /// <summary>Validate resource use and lower the machine into canonical Core IR. Successful lowering freezes all mutation; validation failure leaves the builder editable.</summary>
     public ScheduledHardwareDesign Lower()
     {
         EnsureMutable();
         if(states.Count==0)throw new InvalidOperationException("A scheduled machine requires at least one state.");
-        lowered=true;
+
         foreach(var state in states)
         {
             foreach(var transition in state.Transitions)
@@ -389,18 +392,36 @@ public sealed class ScheduledMachineBuilder
             memoryMap.Add(memory.Name,new HardwareMemoryPort(memory.Name,memory.Width,
                 Compile(address),Compile(enable),Compile(data),Enumerable.Repeat(BigInteger.Zero,memory.Depth)));
         }
-        return new ScheduledHardwareDesign(name,new HardwareGraph(nodes,inputMap.Values.Where(id=>
+        var design=new ScheduledHardwareDesign(name,new HardwareGraph(nodes,inputMap.Values.Where(id=>
             resetMap.ContainsKey(inputMap.Single(p=>p.Value==id).Key))),inputMap,outputMap,nextMap,resetMap,memoryMap);
+        lowered=true;
+        return design;
     }
 
     internal void ValidateOwned(ScheduledRegister register)
-    {if(!registers.Contains(register))throw new ArgumentException("Foreign register.",nameof(register));}
+    {EnsureMutable();if(!registers.Contains(register))throw new ArgumentException("Foreign register.",nameof(register));}
     internal void ValidateOwned(ScheduledMemory memory)
-    {if(!memories.Contains(memory))throw new ArgumentException("Foreign memory.",nameof(memory));}
+    {EnsureMutable();if(!memories.Contains(memory))throw new ArgumentException("Foreign memory.",nameof(memory));}
     internal void ValidateOwned(ScheduledResource resource)
-    {if(!resources.Contains(resource))throw new ArgumentException("Foreign resource.",nameof(resource));}
+    {EnsureMutable();if(!resources.Contains(resource))throw new ArgumentException("Foreign resource.",nameof(resource));}
     internal void ValidateValue(ScheduledValue value)
-    {ArgumentNullException.ThrowIfNull(value);}
+    {
+        EnsureMutable();
+        ArgumentNullException.ThrowIfNull(value);
+        // Constants are portable, but every input leaf must belong to this machine.
+        // Walk iteratively so deep expression DAGs cannot exhaust the call stack here.
+        var pending=new Stack<ScheduledValue>();
+        var visited=new HashSet<ScheduledValue>(ReferenceEqualityComparer.Instance);
+        pending.Push(value);
+        while(pending.TryPop(out var current))
+        {
+            if(!visited.Add(current))continue;
+            if(current.Operation==HardwareOperation.Input && current!=stateValue &&
+                !inputs.Contains(current) && !registers.Any(r=>r.Value==current))
+                throw new ArgumentException("Scheduled value contains a foreign input or register.",nameof(value));
+            foreach(var operand in current.Operands)pending.Push(operand);
+        }
+    }
     internal void ValidateGuard(ScheduledValue guard)
     {ValidateValue(guard);if(guard.Width!=1)throw new ArgumentException("Guard must be one bit.",nameof(guard));}
     private void AddName(string value)

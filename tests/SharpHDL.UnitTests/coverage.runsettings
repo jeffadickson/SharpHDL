@@ -1,0 +1,14 @@
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+          <!-- Examples are linked into the test assembly; include them but exclude test/oracle code. -->
+          <IncludeTestAssembly>true</IncludeTestAssembly>
+          <Exclude>[SharpHDL.UnitTests]SharpHDL.UnitTests.*,[SharpHDL.UnitTests]SharpHDL.Verification.*</Exclude>
+          <Format>cobertura</Format>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

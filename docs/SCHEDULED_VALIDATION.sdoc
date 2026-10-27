@@ -1,0 +1,73 @@
+[DOCUMENT]
+TITLE: Scheduled machine compiler boundary requirements
+
+[REQUIREMENT]
+UID: SCHED-VAL-001
+TITLE: Expression ownership
+STATEMENT: >>>
+The scheduled builder shall reject any expression containing an input or register
+leaf owned by another builder at every public expression sink. Constants may be
+shared. Validation shall inspect nested operands and shared DAGs.
+Implementation: src/SharpHDL.HLS/ScheduledMachine.cs, ValidateValue.
+Verification: ScheduledMachineValidationTests.Foreign_expression_leaves_are_rejected,
+Nested_foreign_expression_fuzz, Local_shared_dag_matches_exhaustive_byte_reference.
+<<<
+
+[REQUIREMENT]
+UID: SCHED-VAL-002
+TITLE: Successful lowering freezes state handles
+STATEMENT: >>>
+Successful lowering shall prohibit further assignments, transitions, memory
+accesses and resource reservations through retained state handles. Failed
+validation shall leave the model editable to repair an unknown transition.
+Implementation: ScheduledMachine.cs, Lower, ValidateOwned and ValidateValue.
+Verification: Lowering_freezes_every_state_mutation and
+Unknown_transition_can_be_repaired_after_failed_lowering.
+<<<
+
+[REQUIREMENT]
+UID: SCHED-VAL-003
+TITLE: Transactional declarations and reserved names
+STATEMENT: >>>
+A rejected declaration shall not consume its name. The compiler-generated
+scheduler_state name shall be reserved against all user hardware declarations.
+Implementation: ScheduledMachine.cs, declaration methods and names registry.
+Verification: Invalid_declarations_are_transactional,
+Invalid_width_fuzz_preserves_builder and Scheduler_state_name_is_reserved.
+<<<
+
+[REQUIREMENT]
+UID: SCHED-TABLE-001
+TITLE: Non-FIR synchronous table example
+STATEMENT: >>>
+An explicit scheduled table shall accept a key, unsigned 16-bit delta and update
+flag; return the original or modulo-65536 updated value after three edges; hold
+response data while stalled; and admit a new request only after the prior response.
+A synchronous reset shall abort pending responses, suppress the reset-edge write
+and retain committed RAM contents. Support power-of-two depths from 2 to 256.
+Implementation: examples/ScheduledTable.cs.
+Verification: ScheduledTableTests.Table_matches_independent_array_and_protocol_model;
+ScheduledTableCampaign; ScheduledTableReplay generated RTL, Icarus and Yosys.
+This is an explicit schedule, not automatic scheduling of arbitrary CIL.
+<<<
+
+[REQUIREMENT]
+UID: BUILD-REG-001
+TITLE: Regression project isolation
+STATEMENT: >>>
+The standalone tests/Tests.csproj executable shall compile its root regression
+sources without including nested test projects or generated intermediates. It
+shall retain the internal API access required by existing structural checks.
+Implementation: tests/Tests.csproj and src/SharpHDL/SharpHDL.csproj.
+Verification: dotnet run --project tests/Tests.csproj -c Release.
+<<<
+
+[REQUIREMENT]
+UID: TEST-PROV-001
+TITLE: Isolated output portability
+STATEMENT: >>>
+The source-provenance regression shall locate checkout sources independently of
+its build-output directory, including native Linux artifacts outside the checkout.
+Implementation and verification: HardwareSourceProvenanceTests,
+Generated_pipeline_emits_only_real_source_and_RTL_locations.
+<<<

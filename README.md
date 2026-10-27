@@ -152,7 +152,7 @@ reserved Verilog words are safe as C# design names. The example emits module
 
 ## Run
 
-With .NET 8 SDK:
+With .NET 10 SDK:
 
 ```sh
 cd SharpHDL
@@ -160,7 +160,9 @@ dotnet run --project tests/Tests.csproj
 ```
 
 This compiles the library, runs C# assertions, and creates Verilog and
-self-checking HDL testbenches in `generated/`. No NuGet dependencies.
+self-checking HDL testbenches in `generated/`. The standalone runner references the local libraries; the separate xUnit suite uses NuGet test packages.
+
+The [scheduled table example](docs/MODULAR_ARCHITECTURE.md#scheduled-table-example-2026-10-26) demonstrates a non-FIR RAM read/update controller with independent Core/RTL checks. Compiler-boundary requirements are in [StrictDoc](docs/SCHEDULED_VALIDATION.sdoc).
 
 For the full C#/Verilog differential regression on Linux/macOS, install Icarus
 Verilog and either .NET 8 or Mono, then run:

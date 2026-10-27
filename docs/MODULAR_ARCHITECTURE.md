@@ -362,3 +362,39 @@ The C# xUnit suite additionally checks real CIL arithmetic and
 conditional-branch pipelines across 900 simulated clock cycles.
 The CI results for these new tests must pass before this milestone
 is declared verified.
+
+## Scheduled table example (2026-10-26)
+
+`examples/ScheduledTable.cs` exercises the same scheduled Core IR builder without
+FIR policy. It accepts a key, 16-bit delta and update flag; it reads a synchronous
+RAM word, optionally adds modulo 65536 and writes it, then holds the response
+until accepted. Address widths 1 through 8 are supported. The no-stall initiation
+interval is four edges; response valid appears three edges after acceptance.
+Reset aborts in-flight responses, suppresses writes on the reset edge and retains
+previously committed RAM words. A reset after commit may therefore suppress the
+response while retaining the update; callers must account for reset epochs.
+
+The independently specified array/protocol oracle lives in
+`tests/Shared/ScheduledTableCampaign.cs`. Tests and the RTL generator share this
+oracle, not DUT implementation logic. Seeds are 261026 + address width. Each run
+contains 3201 edges, reset every 151 traffic cycles, repeated/boundary addresses,
+read-only requests, overflow and response stalls. Generation fails on mismatch.
+The replay additionally checks every RTL output after every edge against Core.
+
+From a checkout on Linux with .NET 10 and Icarus:
+
+```sh
+test -d tests/SharpHDL.UnitTests && dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --filter FullyQualifiedName~ScheduledTableTests
+test -d tools/SharpHDL.AxiFirRtlDemo && dotnet run --project tools/SharpHDL.AxiFirRtlDemo -c Release -- --table generated/scheduled-table
+for width in 1 4 8; do
+  iverilog -g2012 -s tb -o "/tmp/table-$width" "generated/scheduled-table/ScheduledTable$width.v" "generated/scheduled-table/ScheduledTable${width}_tb.sv" && vvp "/tmp/table-$width" || exit 1
+done
+yosys -p 'read_verilog generated/scheduled-table/ScheduledTable4.v; hierarchy -check; proc; opt; memory_collect; check -assert; stat'
+```
+
+Local Icarus 12.0 passed all three replays (421, 418 and 414 completed responses).
+Yosys 0.33 retained one `$mem_v2` cell and one `$add` after `memory_collect` for
+the 16-word case. This is generic synthesis evidence, not vendor BRAM placement,
+physical timing closure or formal proof. No automatic CIL extraction or resource
+binding is introduced. SCHED-011 remains partially verified because explicit
+resource-capacity/latency assertions and broader qualification remain open.
