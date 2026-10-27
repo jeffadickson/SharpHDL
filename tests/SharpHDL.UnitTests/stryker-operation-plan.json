@@ -1,0 +1,10 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.HLS.csproj",
+    "mutate": ["**/ScheduledOperationPlan.cs"],
+    "test-case-filter": "FullyQualifiedName~ScheduledOperationPlanTests",
+    "concurrency": 1,
+    "reporters": ["json", "html", "progress"],
+    "additional-timeout": 10000
+  }
+}

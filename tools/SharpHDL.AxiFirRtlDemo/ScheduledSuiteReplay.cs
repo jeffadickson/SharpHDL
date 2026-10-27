@@ -73,6 +73,23 @@ internal static class ScheduledSuiteReplay
         WriteSourceMap(directory,compiled);
         Console.WriteLine("CIL loop: native/legacy/Core agree, including partial writes on bounds fault.");
         GenerateShifts(directory);
+        var planned=new CoreReplay(ScheduledPlannedBanks.Build());
+        for(int phase=0;phase<=6;phase++)
+        {
+            planned.Drive("left",7);planned.Drive("right",11);planned.Clock(true);
+            for(int edge=0;edge<phase;edge++)planned.Clock(false);
+            int left=phase*29,right=255-phase*18;
+            planned.Drive("left",left);planned.Drive("right",right);planned.Clock(true);
+            for(int edge=0;edge<6;edge++)planned.Clock(false);
+            int expected=(left*right+left*3)&255;
+            if(planned.Read("done")!=1||planned.Read("result")!=expected)
+                throw new InvalidOperationException("Planned-bank independent arithmetic/reset oracle mismatch.");
+            planned.Clock(false);
+            if(planned.Read("result")!=expected)throw new InvalidOperationException("Completion must park.");
+        }
+        planned.Save(directory);
+        File.WriteAllText(Path.Combine(directory,"ScheduledPlannedBanks.schedule.json"),
+            JsonSerializer.Serialize(ScheduledPlannedBanks.Plan().Cycles,new JsonSerializerOptions{WriteIndented=true}));
     }
 
     private static void GenerateShifts(string directory)

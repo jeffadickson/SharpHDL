@@ -14,3 +14,35 @@ and retain independent published vectors; do not infer T-state or full-ISA proof
 Implementation and tests: Z80ProgramOracleTests; Z80dotNet 1.1.0, test-only.
 Verification evidence: WORK_PACKAGES_4_6.md and build/verification/wp04*.
 <<<
+
+[REQUIREMENT]
+UID: HLS-PLAN-001
+TITLE: Deterministic dependency and capacity scheduling
+STATEMENT: >>>
+For the declared one-edge operation profile, planning shall reject missing,
+duplicate or cyclic dependencies and unknown/nonpositive resources. Resource
+and operation keys use exact ordinal identity independent of caller comparers.
+At most 4095 operations and 65536 dependency/root edges are accepted. Ready
+contenders use ordinal operation-name priority and each resource's declared
+capacity. Dependencies execute strictly earlier than their consumers.
+Implementation: ScheduledOperationPlan.cs; QuikGraph-backed component analysis.
+Verification: ScheduledOperationPlanTests, fixed-seed FsCheck capacity bounds,
+malformed declarations, budget boundaries and conflicting proposed assignments.
+This is legal greedy scheduling, not optimal or dynamic runtime arbitration.
+<<<
+
+[REQUIREMENT]
+UID: HLS-PLAN-002
+TITLE: Executable bank and shared-arithmetic schedules
+STATEMENT: >>>
+Emission shall create one state per planned edge and a parked completion state.
+Real single-port banks may run in parallel; shared arithmetic contenders shall
+serialize according to capacity. The ordinary lowerer independently rejects
+misdeclared physical conflicts. Reset restarts control while retaining committed
+RAM, and a restarted run shall produce the new inputs' exact-width result.
+Implementation: ScheduledPlannedBanks.cs and ScheduledOperationPlan.EmitStates.
+Verification: managed execution, seven reset-phase replays, Icarus/Verilator
+cycle comparisons and Yosys checks; execution evidence in WORK_PACKAGES_4_6.md.
+Caller dependencies must include memory alias/order hazards. Multi-cycle operators
+and automatic memory-dependency extraction remain outside this profile.
+<<<

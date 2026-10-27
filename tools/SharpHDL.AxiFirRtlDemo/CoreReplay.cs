@@ -7,21 +7,32 @@ using System.Numerics;
 using SharpHDL.HLS;
 using SharpHDL.RTL;
 using SharpHDL.Simulation;
+using SharpHDL;
+using SharpHDL.Core;
 
 /// <summary>Compact file-driven cycle replay for either independent HDL simulator.</summary>
 internal sealed class CoreReplay
 {
-    private readonly ScheduledHardwareDesign design;
+    private readonly ReplayDesign design;
     private readonly Dictionary<string,int> values;
     private readonly StringBuilder vectors=new();
     private IReadOnlyDictionary<string,BigInteger>? snapshot;
     internal HardwareGraphMachine Machine { get; }
-    internal CoreReplay(ScheduledHardwareDesign design)
+    internal CoreReplay(ScheduledHardwareDesign design):this(new ReplayDesign(design.Name,design.Graph,design.Inputs,
+        design.Outputs,design.NextState,design.ResetValues,design.Memories)) { }
+    // The existing compatibility export lets protocol campaigns exercise the
+    // same replay/emitter path without inventing a second simulator or IR.
+    internal CoreReplay(CoreGraphExport design,string name):this(new ReplayDesign(name,design.Graph,design.Inputs,
+        design.Outputs,design.NextState,design.ResetValues,design.Memories)) { }
+    private CoreReplay(ReplayDesign design)
     {
         this.design=design;
         Machine=new(design.Graph,design.Inputs,design.Outputs,design.NextState,design.ResetValues,design.Memories);
         values=design.Inputs.Where(p=>!design.ResetValues.ContainsKey(p.Key)).ToDictionary(p=>p.Key,p=>0);
     }
+    private sealed record ReplayDesign(string Name,HardwareGraph Graph,IReadOnlyDictionary<string,int> Inputs,
+        IReadOnlyDictionary<string,int> Outputs,IReadOnlyDictionary<string,int> NextState,
+        IReadOnlyDictionary<string,BigInteger> ResetValues,IReadOnlyDictionary<string,HardwareMemoryPort> Memories);
     internal void Drive(string name,int value){Machine.SetInput(name,unchecked((uint)value));values[name]=value;snapshot=null;}
     internal BigInteger Read(string name)=>(snapshot??=Machine.ReadOutputs())[name];
     internal void Clock(bool reset)

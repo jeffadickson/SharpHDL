@@ -88,6 +88,23 @@ internal static class FlowFuzzOracle
         }
         if(!expected.SequenceEqual(flow.StrongComponents.Select(c=>string.Join(",",c))))
             throw new InvalidOperationException("Instruction graph component mismatch.");
+        // Reuse the independently computed closure to classify all dependency
+        // cycles, including those disconnected from the graph entry.
+        bool cyclic=Enumerable.Range(0,count).Any(i=>lists[i].Contains(i)||
+            Enumerable.Range(0,count).Any(j=>i!=j&&closure[i,j]&&closure[j,i]));
+        var operations=Enumerable.Range(0,count).Select(i=>new ScheduledOperation("op"+i,"bank"+(i%2),
+            lists[i].Select(j=>"op"+j).ToArray())).ToArray();
+        var capacity=new Dictionary<string,int>{{"bank0",1},{"bank1",1}};
+        ScheduledOperationPlan plan;
+        try { plan=ScheduledOperationPlan.Create(operations,capacity); }
+        catch(ArgumentException) when(cyclic) { return; }
+        if(cyclic)throw new InvalidOperationException("Cyclic dependency graph was accepted.");
+        foreach(var operation in operations)
+            foreach(string dependency in operation.Dependencies)
+                if(plan.Cycles[dependency]>=plan.Cycles[operation.Name])
+                    throw new InvalidOperationException("Dependency schedule violated.");
+        if(operations.GroupBy(op=>(plan.Cycles[op.Name],op.Resource)).Any(g=>g.Count()>1))
+            throw new InvalidOperationException("Bank capacity exceeded.");
     }
 }
 
