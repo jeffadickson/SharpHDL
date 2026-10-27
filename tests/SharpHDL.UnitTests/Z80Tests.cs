@@ -34,6 +34,16 @@ public sealed class Z80Tests
         Assert.True(count >= 900);
     }
 
+    /// <summary>All ED corpus files plus immediate I/O check independent state/RAM/port results.</summary>
+    [Fact]
+    public void Ed_and_io_vectors_match_independent_results()
+        => Assert.Equal(672, Z80Campaign.Run(Path.Combine(AppContext.BaseDirectory, "Z80EdVectors.json"), Machine()));
+
+    /// <summary>Repeat-path flags and restart PCs deserve a separately replayable regression.</summary>
+    [Fact]
+    public void Ed_repeat_vectors_match_independent_results()
+        => Assert.Equal(64, Z80Campaign.Run(Path.Combine(AppContext.BaseDirectory, "Z80EdVectors.json"), Machine(), "ED B"));
+
     /// <summary>Actual machine-code loop composes instructions, stack operations and memory writes.</summary>
     [Fact]
     public void Machine_code_program_composes_loop_call_ram_and_halt()
@@ -126,19 +136,19 @@ public sealed class Z80Tests
         Assert.Equal(0, memory[0]); Assert.Equal(2, memory[65535]);
     }
 
-    /// <summary>Unsupported prefix/control instructions stop without performing writes.</summary>
+    /// <summary>Undefined ED encodings behave as Z80 two-byte NOPs.</summary>
     [Theory]
-    [InlineData(0xED)]
-    [InlineData(0xD3)] [InlineData(0xDB)] [InlineData(0xF3)] [InlineData(0xFB)]
-    public void Unsupported_opcodes_trap_until_reset(int opcode)
+    [InlineData(0x00)] [InlineData(0xFF)] [InlineData(0xED)]
+    public void Undefined_ed_encodings_are_two_byte_nops(int opcode)
     {
         var m = Machine(); m.SetInput("step", 1); m.Tick(); m.SetInput("step", 0);
-        m.SetInput("bus_ready", 1); m.SetInput("bus_rdata", opcode);
-        for (int edge = 0; edge < 12; edge++) m.Tick();
-        Assert.Equal(1, (int)m.ReadOutput("fault"));
-        Assert.Equal(opcode, (int)m.ReadOutput("opcode_out"));
+        m.SetInput("bus_ready", 1); m.SetInput("bus_rdata", 0xED); m.Tick(); m.Tick();
+        m.SetInput("bus_rdata", opcode);
+        for (int edge = 0; edge < 12 && m.ReadOutput("instruction_done") == 0; edge++) m.Tick();
+        Assert.Equal(0, (int)m.ReadOutput("fault"));
         Assert.Equal(0, (int)m.ReadOutput("bus_valid"));
-        Assert.Equal(0, (int)m.ReadOutput("instruction_done"));
+        Assert.Equal(1, (int)m.ReadOutput("instruction_done"));
+        Assert.Equal(2, (int)m.ReadOutput("pc_out")); Assert.Equal(2, (int)m.ReadOutput("r_out"));
         m.Reset(); Assert.Equal(0, (int)m.ReadOutput("fault"));
         Assert.Equal(0, (int)m.ReadOutput("pc_out")); Assert.Equal(65535, (int)m.ReadOutput("sp_out"));
     }

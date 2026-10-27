@@ -8,7 +8,7 @@ namespace SharpHDL.Examples;
 /// Instruction-stepped Z80 test hardware with a stalled byte bus. Implements the
 /// documented unprefixed data/ALU/control instructions and CB register/memory group.
 /// DD/FD indexing and indexed CB operations share the base datapath.
-/// ED, interrupts and I/O are implemented in subsequent extension stages.
+/// ED and port I/O share the byte bus; external interrupt service is the next stage.
 /// This is an architectural test design, not a T-state/pin-compatible replacement.
 /// </summary>
 public static class Z80TestCore
@@ -35,6 +35,9 @@ public static class Z80TestCore
         var ix = b.Register("ix", 16); var iy = b.Register("iy", 16);
         var indexMode = b.Register("index_mode", 2);
         var displaced = b.Register("displaced", 1);
+        var interruptPage = b.Register("i", 8); var refresh = b.Register("refresh", 8);
+        var iff1 = b.Register("iff1", 1); var iff2 = b.Register("iff2", 1);
+        var interruptMode = b.Register("interrupt_mode", 2); var eiDelay = b.Register("ei_delay", 2);
         var alternate = new ScheduledRegister[4];
         for (int i = 0; i < 4; i++) alternate[i] = b.Register("alt" + i, 16);
         var op = b.Register("opcode", 8);
@@ -60,6 +63,14 @@ public static class Z80TestCore
         var indexDisplacement = b.State("index_displacement");
         var exchangeLow = b.State("exchange_low"); var exchangeHigh = b.State("exchange_high");
         var exchangeWriteHigh = b.State("exchange_write_high"); var exchangeWriteLow = b.State("exchange_write_low");
+        var edFetch = b.State("ed_fetch"); var edDecode = b.State("ed_decode");
+        var edLow = b.State("ed_low"); var edHigh = b.State("ed_high"); var edExecute = b.State("ed_execute");
+        var edStoreLow = b.State("ed_store_low"); var edStoreHigh = b.State("ed_store_high");
+        var edLoadLow = b.State("ed_load_low"); var edLoadHigh = b.State("ed_load_high");
+        var portRead = b.State("port_read"); var portWrite = b.State("port_write");
+        var edIn = b.State("ed_in"); var edOut = b.State("ed_out");
+        var edRead = b.State("ed_read"); var edProcess = b.State("ed_process"); var edWrite = b.State("ed_write");
+        var blockIn = b.State("block_in"); var blockOut = b.State("block_out"); var blockFinish = b.State("block_finish");
         var retire = b.State("retire"); var trap = b.State("trap");
 
         ScheduledValue C(int width, int value) => b.Constant(width, value);
@@ -167,7 +178,12 @@ public static class Z80TestCore
             .Assign(indexMode, C(2, 0)).Assign(displaced, C(1, 0))
             .Assign(halted, C(1, 0), load)
             .Transition("fetch", step.And(load.Not()).And(halted.Value.Not()));
+        idle.Assign(interruptPage, b.Input("init_i", 8), load).Assign(refresh, b.Input("init_r", 8), load)
+            .Assign(iff1, b.Input("init_iff1", 1), load).Assign(iff2, b.Input("init_iff2", 1), load)
+            .Assign(interruptMode, b.Input("init_im", 2), load).Assign(eiDelay, b.Input("init_ei_delay", 2), load);
+        var incrementRefresh = refresh.Value.And(C(8, 128)).Or(refresh.Value.Add(C(8, 1)).And(C(8, 127)));
         fetch.Assign(op, data, ready).Assign(pc, pc.Value.Add(C(16, 1)), ready).Transition("decode", ready);
+        fetch.Assign(refresh, incrementRefresh, ready);
         immediate.Assign(operand, data, ready).Assign(pc, pc.Value.Add(C(16, 1)), ready).Transition("execute", ready);
         low.Assign(lo, data, ready).Assign(pc, pc.Value.Add(C(16, 1)), ready).Transition("imm_high", ready);
         high.Assign(nn, Pair(data, lo.Value), ready).Assign(pc, pc.Value.Add(C(16, 1)), ready).Transition("execute", ready);
@@ -190,7 +206,8 @@ public static class Z80TestCore
             .Transition("index_displacement", indexed.And(displaced.Value.Not()).And(needsDisplacement))
             .Transition("cb_fetch", Eq(op.Value, 0xCB))
             .Transition("imm_low", imm16.Or(jpcc).Or(callcc))
-            .Transition("imm8", ldn.Or(alun).Or(relative))
+            .Assign(indexMode, C(2, 0), Eq(op.Value, 0xED)).Transition("ed_fetch", Eq(op.Value, 0xED))
+            .Transition("imm8", ldn.Or(alun).Or(relative).Or(Any(0xD3, 0xDB)))
             .Transition("read_hl", ld.Or(alu).And(Eq(z, 6)).Or(inc.Or(dec).And(Eq(y, 6))))
             .Assign(operand, Choose(ScheduledValue.Select(inc.Or(dec), y, z), regValues))
             .Transition("execute");
@@ -248,6 +265,12 @@ public static class Z80TestCore
         }
         Instruction(0x00, _ => { });
         Instruction(0x76, g => execute.Assign(halted, C(1, 1), g));
+        Instruction(0xF3, g => execute.Assign(iff1, C(1, 0), g).Assign(iff2, C(1, 0), g).Assign(eiDelay, C(2, 0), g));
+        Instruction(0xFB, g => execute.Assign(iff1, C(1, 1), g).Assign(iff2, C(1, 1), g).Assign(eiDelay, C(2, 2), g));
+        Instruction(0xD3, g => execute.Assign(address, Pair(a, rhs), g).Assign(wd, a, g).Transition("port_write", g));
+        Instruction(0xDB, g => execute.Assign(address, Pair(a, rhs), g).Transition("port_read", g));
+        portWrite.Transition("retire", ready);
+        portRead.Assign(r[7], data, ready).Transition("retire", ready);
         Instruction(0x08, g => { execute.Assign(alternate[3], af, g); PutPair(execute, 3, alternate[3].Value, g, true); });
         Instruction(0xD9, g => { for (int i = 0; i < 3; i++) { execute.Assign(alternate[i], i == 2 ? rawHl : pairs[i], g); PutPair(execute, i, alternate[i].Value, g, raw: true); } });
         Instruction(0xEB, g => { PutPair(execute, 1, rawHl, g); PutPair(execute, 2, pairs[1], g, raw: true); });
@@ -343,6 +366,7 @@ public static class Z80TestCore
         // CB decode uses a separate opcode latch so memory writes cannot alias
         // base instruction 22's second-byte store behavior.
         cbFetch.Assign(cb, data, ready).Assign(pc, pc.Value.Add(C(16, 1)), ready).Transition("cb_decode", ready);
+        cbFetch.Assign(refresh, incrementRefresh, ready.And(indexed.Not()));
         var cy = cb.Value.ShiftRight(3).Resize(3); var cz = cb.Value.Resize(3);
         var cx = cb.Value.ShiftRight(6).Resize(2);
         cbDecode.Transition("cb_read", Eq(cz, 6).Or(indexed))
@@ -369,7 +393,119 @@ public static class Z80TestCore
         var cbWrite = Eq(cx, 1).Not().And(Eq(cz, 6).Or(indexed));
         cbExecute.Assign(address, effectiveHl, cbWrite).Assign(wd, cbResult, cbWrite)
             .Transition("store", cbWrite).Transition("retire");
-        retire.Transition("idle");
+        retire.Assign(eiDelay, eiDelay.Value.Subtract(C(2, 1)), Eq(eiDelay.Value, 0).Not()).Transition("idle");
+
+        // ED opcodes use raw HL and ordinary register bytes; preceding DD/FD is
+        // ignored. Repeat instructions retire one iteration and rewind PC so an
+        // interrupt can be recognized at the architectural iteration boundary.
+        edFetch.Assign(cb, data, ready).Assign(pc, pc.Value.Add(C(16, 1)), ready)
+            .Assign(refresh, incrementRefresh, ready).Transition("ed_decode", ready);
+        var ex = cb.Value.ShiftRight(6).Resize(2); var ey = cb.Value.ShiftRight(3).Resize(3);
+        var ez = cb.Value.Resize(3); var ep = cb.Value.ShiftRight(4).Resize(2);
+        var group1 = Eq(ex, 1); var block = Eq(ex, 2).And(Bit(cb.Value, 5)).And(Bit(cb.Value, 2).Not());
+        var direction = ScheduledValue.Select(Bit(cb.Value, 3), C(16, 65535), C(16, 1));
+        var repeat = Bit(cb.Value, 4);
+        edDecode.Transition("ed_low", group1.And(Eq(ez, 3))).Transition("ed_execute");
+        edLow.Assign(lo, data, ready).Assign(pc, pc.Value.Add(C(16, 1)), ready).Transition("ed_high", ready);
+        edHigh.Assign(nn, Pair(data, lo.Value), ready).Assign(pc, pc.Value.Add(C(16, 1)), ready).Transition("ed_execute", ready);
+        var edPair = Choose(ep, pairs);
+        edExecute.Assign(address, nn.Value, group1.And(Eq(ez, 3)))
+            .Assign(word, edPair, group1.And(Eq(ez, 3)).And(Bit(cb.Value, 3).Not()))
+            .Transition("ed_store_low", group1.And(Eq(ez, 3)).And(Bit(cb.Value, 3).Not()))
+            .Transition("ed_load_low", group1.And(Eq(ez, 3)));
+        edStoreLow.Assign(address, address.Value.Add(C(16, 1)), ready).Transition("ed_store_high", ready);
+        edStoreHigh.Transition("retire", ready);
+        edLoadLow.Assign(lo, data, ready).Assign(address, address.Value.Add(C(16, 1)), ready).Transition("ed_load_high", ready);
+        for (int i = 0; i < 4; i++) PutPair(edLoadHigh, i, Pair(data, lo.Value), ready.And(Eq(ep, i)), raw: true);
+        edLoadHigh.Transition("retire", ready);
+        var edAdd = group1.And(Eq(ez, 2)); var subtract16 = Bit(cb.Value, 3).Not();
+        var wide16 = ScheduledValue.Select(subtract16,
+            rawHl.Resize(17).Subtract(edPair.Resize(17)).Subtract(carry.Resize(17)),
+            rawHl.Resize(17).Add(edPair.Resize(17)).Add(carry.Resize(17)));
+        var result16 = wide16.Resize(16);
+        var overflow16 = ScheduledValue.Select(subtract16, rawHl.Xor(edPair), rawHl.Xor(edPair).Not()).And(rawHl.Xor(result16));
+        PutPair(edExecute, 2, result16, edAdd, raw: true);
+        edExecute.Assign(f, result16.ShiftRight(8).Resize(8).And(C(8, 0xA8))
+            .Or(Eq(result16, 0).Resize(8).ShiftLeft(6))
+            .Or(rawHl.Xor(edPair).Xor(result16).ShiftRight(8).Resize(8).And(C(8, 16)))
+            .Or(overflow16.ShiftRight(13).Resize(8).And(C(8, 4)))
+            .Or(subtract16.Resize(8).ShiftLeft(1)).Or(wide16.ShiftRight(16).Resize(8)), edAdd);
+        var negate = group1.And(Eq(ez, 4));
+        edExecute.Assign(r[7], C(8, 0).Subtract(a), negate).Assign(f, AluFlags(C(8, 0), a, C(1, 0), true), negate);
+        var returnInterrupt = group1.And(Eq(ez, 5));
+        edExecute.Assign(iff1, iff2.Value, returnInterrupt).Transition("pop_low", returnInterrupt);
+        edExecute.Assign(interruptMode, Choose(ey, new[] { C(2, 0), C(2, 0), C(2, 1), C(2, 2), C(2, 0), C(2, 0), C(2, 1), C(2, 2) }), group1.And(Eq(ez, 6)));
+        var special = group1.And(Eq(ez, 7));
+        edExecute.Assign(interruptPage, a, special.And(Eq(ey, 0))).Assign(refresh, a, special.And(Eq(ey, 1)));
+        var fromSpecial = special.And(Eq(ey, 2).Or(Eq(ey, 3)));
+        var specialValue = ScheduledValue.Select(Eq(ey, 2), interruptPage.Value, refresh.Value);
+        edExecute.Assign(r[7], specialValue, fromSpecial).Assign(f, SZ(specialValue).Or(iff2.Value.Resize(8).ShiftLeft(2)).Or(flags.And(C(8, 1))), fromSpecial);
+        edExecute.Transition("ed_in", group1.And(Eq(ez, 0))).Transition("ed_out", group1.And(Eq(ez, 1)));
+        Put(edIn, ey, data, ready.And(Eq(ey, 6).Not()), raw: true);
+        edIn.Assign(f, SZ(data).Or(Parity(data)).Or(flags.And(C(8, 1))), ready).Transition("retire", ready);
+        edOut.Transition("retire", ready);
+        var nibble = special.And(Eq(ey, 4).Or(Eq(ey, 5)));
+        edExecute.Transition("block_in", block.And(Eq(ez, 2)))
+            .Transition("ed_read", block.Or(nibble)).Transition("retire");
+        // Undefined ED encodings are real Z80 two-byte NOPs, not successful
+        // placeholder translations. Their only architectural effect here is R.
+        edRead.Assign(operand, data, ready).Transition("ed_process", ready);
+        blockIn.Assign(operand, data, ready).Transition("ed_process", ready);
+        var isCompare = block.And(Eq(ez, 1)); var isTransfer = block.And(Eq(ez, 0));
+        var isInput = block.And(Eq(ez, 2)); var isOutput = block.And(Eq(ez, 3));
+        var nextBc = pairs[0].Subtract(C(16, 1)); var nextHl = rawHl.Add(direction);
+        var compareResult = a.Subtract(rhs); var compareHalf = Bit(a.Xor(rhs).Xor(compareResult), 4);
+        var adjusted = compareResult.Subtract(compareHalf.Resize(8));
+        var compareFlags = AluFlags(a, rhs, C(1, 0), true).And(C(8, 0xD2)).Or(flags.And(C(8, 1)))
+            .Or(Eq(nextBc, 0).Not().Resize(8).ShiftLeft(2)).Or(adjusted.And(C(8, 8))).Or(adjusted.And(C(8, 2)).ShiftLeft(4));
+        var repeatPcFlags = pc.Value.Subtract(C(16, 2)).ShiftRight(8).Resize(8).And(C(8, 0x28));
+        var compareRepeats = repeat.And(Eq(nextBc, 0).Not()).And(Eq(compareResult, 0).Not());
+        compareFlags = ScheduledValue.Select(compareRepeats, compareFlags.And(C(8, 0xD7)).Or(repeatPcFlags), compareFlags);
+        PutPair(edProcess, 0, nextBc, isCompare, raw: true); PutPair(edProcess, 2, nextHl, isCompare, raw: true);
+        edProcess.Assign(f, compareFlags, isCompare)
+            .Assign(pc, pc.Value.Subtract(C(16, 2)), isCompare.And(repeat).And(Eq(nextBc, 0).Not()).And(Eq(compareResult, 0).Not()))
+            .Transition("retire", isCompare);
+        var rld = Eq(ey, 5);
+        var nibbleA = a.And(C(8, 0xF0)).Or(ScheduledValue.Select(rld, rhs.ShiftRight(4), rhs.And(C(8, 15))));
+        var nibbleMemory = ScheduledValue.Select(rld, rhs.ShiftLeft(4).Or(a.And(C(8, 15))), a.ShiftLeft(4).Or(rhs.ShiftRight(4)));
+        edProcess.Assign(r[7], nibbleA, nibble).Assign(f, SZ(nibbleA).Or(Parity(nibbleA)).Or(flags.And(C(8, 1))), nibble);
+        edProcess.Assign(address, ScheduledValue.Select(isTransfer, pairs[1], rawHl), nibble.Or(isTransfer).Or(isInput))
+            .Assign(wd, ScheduledValue.Select(nibble, nibbleMemory, rhs), nibble.Or(isTransfer).Or(isInput))
+            .Transition("ed_write", nibble.Or(isTransfer).Or(isInput));
+        // OUTI/OUTD use decremented B in the port address; INI/IND use original B.
+        edProcess.Assign(r[0], r[0].Value.Subtract(C(8, 1)), isOutput)
+            .Assign(address, Pair(r[0].Value.Subtract(C(8, 1)), r[1].Value), isOutput)
+            .Assign(wd, rhs, isOutput).Transition("block_out", isOutput);
+        edWrite.Transition("retire", ready.And(nibble)).Transition("block_finish", ready);
+        blockOut.Transition("block_finish", ready);
+        PutPair(blockFinish, 2, nextHl, C(1, 1), raw: true);
+        PutPair(blockFinish, 1, pairs[1].Add(direction), isTransfer, raw: true);
+        PutPair(blockFinish, 0, nextBc, isTransfer, raw: true);
+        var sum8 = a.Add(rhs);
+        var transferFlags = flags.And(C(8, 0xC1)).Or(Eq(nextBc, 0).Not().Resize(8).ShiftLeft(2))
+            .Or(sum8.And(C(8, 8))).Or(sum8.And(C(8, 2)).ShiftLeft(4));
+        transferFlags = ScheduledValue.Select(repeat.And(Eq(nextBc, 0).Not()), transferFlags.And(C(8, 0xD7)).Or(repeatPcFlags), transferFlags);
+        blockFinish.Assign(f, transferFlags, isTransfer);
+        var ioB = ScheduledValue.Select(isOutput, r[0].Value, r[0].Value.Subtract(C(8, 1)));
+        blockFinish.Assign(r[0], ioB, isInput);
+        var ioTerm = ScheduledValue.Select(isOutput, nextHl.Resize(8), r[1].Value.Add(direction.Resize(8)));
+        var ioSum = rhs.Resize(9).Add(ioTerm.Resize(9)); var ioCarry = Bit(ioSum, 8);
+        var ioFlags = SZ(ioB).Or(Bit(rhs, 7).Resize(8).ShiftLeft(1))
+            .Or(ioCarry.Resize(8)).Or(ioCarry.Resize(8).ShiftLeft(4))
+            .Or(Parity(ioSum.Resize(8).And(C(8, 7)).Xor(ioB)));
+        // Continuing block-I/O iterations fold the internal B adjustment into
+        // parity/half-carry and expose restart-PC bits, unlike terminating INI/OUTI.
+        // Qualified against the pinned SingleStepTests post_IN_O_R reference.
+        var parityB = ScheduledValue.Select(ioCarry,
+            ScheduledValue.Select(Bit(rhs, 7), ioB.Subtract(C(8, 1)), ioB.Add(C(8, 1))), ioB).And(C(8, 7));
+        var repeatParity = Bit(ioFlags, 2).Xor(Bit(Parity(parityB), 2)).Not();
+        var repeatHalf = ioCarry.And(ScheduledValue.Select(Bit(rhs, 7), Eq(ioB.And(C(8, 15)), 0), Eq(ioB.And(C(8, 15)), 15)));
+        var repeatIoFlags = ioFlags.And(C(8, 0xC3)).Or(repeatPcFlags)
+            .Or(repeatParity.Resize(8).ShiftLeft(2)).Or(repeatHalf.Resize(8).ShiftLeft(4));
+        ioFlags = ScheduledValue.Select(repeat.And(Eq(ioB, 0).Not()), repeatIoFlags, ioFlags);
+        blockFinish.Assign(f, ioFlags, isInput.Or(isOutput));
+        var continueBlock = ScheduledValue.Select(isTransfer, Eq(nextBc, 0).Not(), Eq(ioB, 0).Not()).And(repeat);
+        blockFinish.Assign(pc, pc.Value.Subtract(C(16, 2)), continueBlock).Transition("retire");
 
         // Exactly one request is outstanding. All request fields are functions
         // of stable registers/state; no ready-dependent combinational requests.
@@ -392,6 +528,13 @@ public static class Z80TestCore
         Bus(exchangeLow, sp.Value); Bus(exchangeHigh, sp.Value.Add(C(16, 1)));
         Bus(exchangeWriteHigh, sp.Value.Add(C(16, 1)), true, word.Value.ShiftRight(8).Resize(8));
         Bus(exchangeWriteLow, sp.Value, true, word.Value.Resize(8));
+        foreach (var state in new[] { edFetch, edLow, edHigh }) Bus(state, pc.Value);
+        Bus(edStoreLow, address.Value, true, word.Value.Resize(8)); Bus(edStoreHigh, address.Value, true, word.Value.ShiftRight(8).Resize(8));
+        Bus(edLoadLow, address.Value); Bus(edLoadHigh, address.Value); Bus(edRead, rawHl); Bus(edWrite, address.Value, true, wd.Value);
+        Bus(portRead, address.Value); Bus(portWrite, address.Value, true, wd.Value);
+        Bus(edIn, pairs[0]); Bus(edOut, pairs[0], true, ScheduledValue.Select(Eq(ey, 6), C(8, 0), Choose(ey, Array.ConvertAll(r, item => item.Value))));
+        Bus(blockIn, pairs[0]); Bus(blockOut, address.Value, true, wd.Value);
+        b.Output("bus_io", b.InState(portRead).Or(b.InState(portWrite)).Or(b.InState(edIn)).Or(b.InState(edOut)).Or(b.InState(blockIn)).Or(b.InState(blockOut)));
         b.Output("bus_valid", busValid); b.Output("bus_write", busWrite);
         b.Output("bus_address", busAddress); b.Output("bus_wdata", busData);
         b.Output("instruction_done", b.InState(retire)); b.Output("idle", b.InState(idle));
@@ -399,6 +542,9 @@ public static class Z80TestCore
         b.Output("pc_out", pc.Value); b.Output("sp_out", sp.Value); b.Output("af_out", af);
         for (int i = 0; i < 3; i++) b.Output(new[] { "bc_out", "de_out", "hl_out" }[i], i == 2 ? rawHl : pairs[i]);
         b.Output("ix_out", ix.Value); b.Output("iy_out", iy.Value);
+        b.Output("i_out", interruptPage.Value); b.Output("r_out", refresh.Value);
+        b.Output("iff1_out", iff1.Value); b.Output("iff2_out", iff2.Value); b.Output("im_out", interruptMode.Value);
+        b.Output("ei_delay_out", eiDelay.Value);
         for (int i = 0; i < 4; i++) b.Output("alt_out" + i, alternate[i].Value);
         b.Output("opcode_out", op.Value);
         return b.Lower();

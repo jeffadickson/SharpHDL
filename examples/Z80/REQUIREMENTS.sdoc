@@ -64,3 +64,27 @@ prefixes shall use the last selection; ignored prefixes shall preserve base beha
 Implementation: Z80TestCore index_mode, index_displacement, Put/PutPair and exchange states.
 Verification: Indexed_instruction_vectors_match_independent_results, pinned indexed-vectors.json.
 <<<
+
+[REQUIREMENT]
+UID: Z80-ED-001
+TITLE: ED instructions and repeat boundaries
+STATEMENT: >>>
+ED shall implement 16-bit ADC/SBC, pair memory transfers, NEG, IM, RETN/RETI,
+I/R transfers, nibble rotates and block transfer/compare/I/O. Undefined ED
+encodings shall perform the Z80 two-byte NOP behavior. Repeat instructions shall
+retire individual iterations and rewind PC when continuation is required.
+Implementation: Z80TestCore ED states.
+Verification: Ed_and_io_vectors_match_independent_results, Ed_repeat_vectors_match_independent_results,
+Undefined_ed_encodings_are_two_byte_nops; pinned ed-vectors.json and provenance.
+<<<
+
+[REQUIREMENT]
+UID: Z80-IO-001
+TITLE: Ordered stalled 16-bit port transactions
+STATEMENT: >>>
+IN/OUT and block I/O shall qualify the byte bus with bus_io, use the full Z80
+port address and commit exactly once per valid/ready edge. The testbench shall
+compare address, direction and data against independently published port records.
+Implementation: Z80TestCore port and block I/O states, Z80Campaign.Run.
+Verification: Ed_and_io_vectors_match_independent_results and stalled port replay.
+<<<

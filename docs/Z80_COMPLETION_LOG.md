@@ -19,3 +19,18 @@ vector harness/replay to avoid repeated evaluations. This is not a measured
 performance claim. Full coverage, mutation and RTL refresh follow after the
 remaining instruction additions; checked-in RTL currently represents the prior
 base/CB implementation and must be regenerated before final delivery.
+
+## Item 2 — ED and port I/O
+
+Implemented documented ED families, aliases/undefined ED NOPs, 16-bit ADC/SBC,
+I/R and IM state, RETN/RETI, RRD/RLD, block transfer/compare and ordered 16-bit
+port I/O. DI/EI state and delay countdown prepare interrupt service. Added 672
+published state/RAM/port vectors from all 80 ED corpus files plus four base files.
+The full ED/port vector test passes (45s); separate repeat/undefined checks pass
+4/4 (11s). Logs: build/verification/z80-ed-final.log and z80-ed-repeat-final.log.
+
+Independent vectors exposed continuing block transfer and block-I/O flag details;
+fixed restart-PC bits and repeat-path parity/half-carry folding. All comparisons
+retain full flags for these ED cases. Base/indexed fixture records were compacted
+without changing data. Indexed/base/refresh regression and full RTL qualification
+will run against the final combined core. External interrupt inputs are not yet added.

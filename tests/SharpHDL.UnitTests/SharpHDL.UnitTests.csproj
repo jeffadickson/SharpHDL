@@ -24,4 +24,5 @@
   <ItemGroup><Compile Include="../../tests/Shared/ScheduledTableCampaign.cs" Link="ScheduledTableCampaign.cs" /></ItemGroup>
   <ItemGroup><Compile Include="../Shared/Z80Campaign.cs" Link="Z80Campaign.cs" /><None Include="../../examples/Z80/vectors.json" Link="Z80Vectors.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
   <ItemGroup><None Include="../../examples/Z80/indexed-vectors.json" Link="Z80IndexedVectors.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
+  <ItemGroup><None Include="../../examples/Z80/ed-vectors.json" Link="Z80EdVectors.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
 </Project>

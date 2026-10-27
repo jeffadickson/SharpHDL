@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Numerics;
+using System.Linq;
 using SharpHDL.Simulation;
 
 namespace SharpHDL.Verification;
@@ -11,12 +12,12 @@ namespace SharpHDL.Verification;
 public static class Z80Campaign
 {
     /// <summary>Use batched immutable output snapshots for managed execution.</summary>
-    public static int Run(string vectorFile, HardwareGraphMachine machine)
+    public static int Run(string vectorFile, HardwareGraphMachine machine, string? prefix = null)
     {
         IReadOnlyDictionary<string, BigInteger>? snapshot = null;
         return Run(vectorFile, (n, v) => { machine.SetInput(n, v); snapshot = null; },
             n => (int)(snapshot ??= machine.ReadOutputs())[n],
-            reset => { if (reset) machine.Reset(); else machine.Tick(); snapshot = null; });
+            reset => { if (reset) machine.Reset(); else machine.Tick(); snapshot = null; }, prefix: prefix);
     }
     /// <summary>Run a real multi-instruction loop, subroutine, RAM stores and HALT.</summary>
     public static int RunProgram(Action<string, int> drive, Func<string, int> read, Action<bool> clock)
@@ -61,7 +62,7 @@ public static class Z80Campaign
     /// Return the number of instructions checked; throw with the vector name on failure.
     /// </summary>
     public static int Run(string vectorFile, Action<string, int> drive, Func<string, int> read,
-        Action<bool> clock, int maximum = int.MaxValue)
+        Action<bool> clock, int maximum = int.MaxValue, string? prefix = null)
     {
         using var vectors = JsonDocument.Parse(File.ReadAllText(vectorFile));
         int count = 0;
@@ -69,6 +70,7 @@ public static class Z80Campaign
         {
             if (count == maximum) break;
             string name = vector.GetProperty("name").GetString()!;
+            if (prefix != null && !name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) continue;
             var initial = vector.GetProperty("initial"); var final = vector.GetProperty("final");
             int I(string key) => initial.GetProperty(key).GetInt32();
             int F(string key) => final.GetProperty(key).GetInt32();
@@ -79,6 +81,11 @@ public static class Z80Campaign
                 drive("init_" + pair, (I(pair[..1]) << 8) | I(pair[1..]));
             drive("init_pc", I("pc")); drive("init_sp", I("sp"));
             drive("init_ix", I("ix")); drive("init_iy", I("iy"));
+            drive("init_i", I("i")); drive("init_r", I("r"));
+            drive("init_iff1", I("iff1")); drive("init_iff2", I("iff2"));
+            drive("init_im", I("im")); drive("init_ei_delay", I("ei"));
+            var portAccesses = vector.TryGetProperty("ports", out var portList) ? portList.EnumerateArray().ToArray() : Array.Empty<JsonElement>();
+            int portIndex = 0;
             foreach (var (pair, index) in new[] { ("bc_", 0), ("de_", 1), ("hl_", 2), ("af_", 3) })
                 drive("init_alt" + index, I(pair));
             clock(false); drive("load_state", 0); drive("step", 1); clock(false); drive("step", 0);
@@ -95,7 +102,17 @@ public static class Z80Campaign
                 drive("bus_ready", accept ? 1 : 0);
                 if (valid != 0)
                 {
-                    if (write == 0)
+                    if (read("bus_io") != 0)
+                    {
+                        if (portIndex >= portAccesses.Length) throw new InvalidOperationException(name + ": unexpected port access");
+                        var port = portAccesses[portIndex];
+                        if (addr != port[0].GetInt32() || (write == 0 ? "r" : "w") != port[2].GetString())
+                            throw new InvalidOperationException($"{name}: wrong port address/direction {addr:X4}");
+                        if (write == 0) drive("bus_rdata", port[1].GetInt32());
+                        else if (value != port[1].GetInt32()) throw new InvalidOperationException(name + ": wrong port write byte");
+                        if (accept) portIndex++;
+                    }
+                    else if (write == 0)
                     {
                         if (!memory.TryGetValue(addr, out int datum))
                             throw new InvalidOperationException($"{name}: unexpected read {addr:X4}");
@@ -109,6 +126,7 @@ public static class Z80Campaign
                     throw new InvalidOperationException(name + ": stalled bus request changed");
             }
             if (!done) throw new InvalidOperationException(name + ": instruction watchdog expired");
+            if (portIndex != portAccesses.Length) throw new InvalidOperationException(name + ": missing port transaction");
             void Check(string port, int expected, int mask = 65535)
             {
                 int actual = read(port);
@@ -117,6 +135,8 @@ public static class Z80Campaign
             }
             Check("pc_out", F("pc")); Check("sp_out", F("sp"));
             Check("ix_out", F("ix")); Check("iy_out", F("iy"));
+            Check("i_out", F("i")); Check("r_out", F("r"));
+            Check("iff1_out", F("iff1")); Check("iff2_out", F("iff2")); Check("im_out", F("im"));
             foreach (string pair in new[] { "bc", "de", "hl" }) Check(pair + "_out", (F(pair[..1]) << 8) | F(pair[1..]));
             int flagMask = name.StartsWith("CB ", StringComparison.OrdinalIgnoreCase) &&
                 (memory[I("pc")] == 0xCB && (memory[(I("pc") + 1) & 65535] & 0xC7) == 0x46)

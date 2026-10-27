@@ -13,9 +13,13 @@ IX/IY pairs, index bytes, signed displacements, indexed CB register copies,
 EX (SP),HL/IX/IY and common NMOS SLL are supported. Repeated index prefixes use
 the final prefix; memory forms retain the Z80's ordinary H/L transfer exceptions.
 
-Currently unsupported instructions trap: ED instructions, IN/OUT and DI/EI.
-Interrupts/NMI, bus ownership, refresh/I/R, WZ/Q, physical pin signals and Z80
-T-state timing are absent. ED/I/O/interrupt extensions are the next active items.
+ED arithmetic, pair memory transfers, NEG aliases, IM selection, RETN/RETI,
+I/R transfers, RRD/RLD, block transfer/compare and block I/O are implemented.
+Immediate and register-indirect IN/OUT use a separate bus_io qualifier and preserve
+the Z80's full 16-bit port address. Repeat instructions retire one iteration and
+rewind PC when continuation is required. Undefined ED encodings are two-byte NOPs.
+DI/EI and their IFF state are present; external interrupt service is the next item.
+Bus ownership, WZ/Q, physical pin signals and Z80 T-state timing remain absent.
 BIT (HL), SCF and CCF only promise documented flags; Q/WZ-dependent flag bits 3/5
 are excluded from those upstream comparisons. Other supported flag results include
 bits 3/5 in the checked scope. No claim of ZEXALL, CP/M or complete ISA conformance.
@@ -31,10 +35,13 @@ registers and sets SP=FFFF; it cannot undo a previously accepted external write.
 | step, load_state | While idle, load overrides step; step starts one instruction. Hold step high to run. |
 | init_af/bc/de/hl, init_pc/sp, init_alt0..3 | Debug initialization accepted only on load_state while idle; alternate order BC, DE, HL, AF. |
 | init_ix/iy, ix/iy_out | Index-register initialization and architectural observation. |
+| init_i/r/iff1/iff2/im/ei_delay | Interrupt/refresh debug state; ei_delay uses the internal 0..2 countdown. |
+| bus_io | Qualifies a port transaction instead of a memory transaction. |
 | bus_valid, bus_write, bus_address, bus_wdata | One outstanding byte request; stable until accepted. bus_write=0 means read. |
 | bus_ready, bus_rdata | Acceptance and read byte, sampled only on a valid/ready edge. |
 | instruction_done, idle, fault, halted_out | Retirement pulse, idle state, sticky illegal-instruction stop, HALT latch. |
 | af/bc/de/hl_out, pc/sp_out, alt_out0..3, opcode_out | Observable architectural state and last base/prefix opcode. |
+| i/r/iff1/iff2/im_out, ei_delay_out | Refresh and interrupt state. R increments its low seven bits per opcode fetch, preserving bit 7. |
 
 HALT retires once and then suppresses fetches until reset or an idle debug load.
 Fault recovers only on reset. A faulting fetch has advanced PC; use opcode_out to
