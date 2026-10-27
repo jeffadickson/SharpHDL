@@ -1,0 +1,16 @@
+[DOCUMENT]
+TITLE: Work packages 4–6 requirements
+
+[REQUIREMENT]
+UID: Z80-DIFF-001
+TITLE: Continuous instruction-boundary differential verification
+STATEMENT: >>>
+A pinned independent CPU reference shall execute continuous programs without
+re-seeding state between instructions. Compare visible registers, refresh,
+interrupt enable state, memory contents and ordered RAM/16-bit port writes at
+each retirement while hardware memory/port traffic is stalled. Deliberate RAM
+and port corruption shall fail the comparison. Characterize reference limitations
+and retain independent published vectors; do not infer T-state or full-ISA proof.
+Implementation and tests: Z80ProgramOracleTests; Z80dotNet 1.1.0, test-only.
+Verification evidence: WORK_PACKAGES_4_6.md and build/verification/wp04*.
+<<<

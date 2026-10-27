@@ -1,0 +1,10 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.ScheduledExamples.csproj",
+    "mutate": ["**/Z80TestCore.cs{9434..10072}"],
+    "test-case-filter": "FullyQualifiedName~Z80ProgramOracleTests.Programs_match_after_every_retirement",
+    "concurrency": 1,
+    "reporters": ["json", "html", "progress"],
+    "additional-timeout": 10000
+  }
+}
