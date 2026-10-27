@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Reflection;
+using System.Reflection.Emit;
 using SharpHDL;
 using SharpHDL.Examples;
 using SharpHDL.Verification;
@@ -75,8 +77,25 @@ internal static class ScheduledSuiteReplay
 
     private static void GenerateShifts(string directory)
     {
-        var method=typeof(ScheduledSuiteReplay).GetMethod(nameof(ShiftMix))!;
-        var compilation=CilCompiler.BuildScheduledSequential(method,"ScheduledCilShifts",new SequentialOptions{MaxCycles=128});
+        GenerateShifts(directory,typeof(ScheduledSuiteReplay).GetMethod(nameof(ShiftMix))!,"ScheduledCilShifts");
+        // C# inserts its own count mask. This separate raw-CIL kernel deliberately
+        // omits it, exercising the frontend policy and unavailable-symbol path in RTL.
+        var assembly=AssemblyBuilder.DefineDynamicAssembly(new AssemblyName("RawShiftReplay"),AssemblyBuilderAccess.RunAndCollect);
+        var type=assembly.DefineDynamicModule("main").DefineType("RawShiftKernel",TypeAttributes.Public);
+        var method=type.DefineMethod("ShiftMix",MethodAttributes.Public|MethodAttributes.Static,typeof(uint),new[]{typeof(uint),typeof(int)});
+        var il=method.GetILGenerator();
+        foreach(var operation in new[]{OpCodes.Shl,OpCodes.Shr_Un,OpCodes.Shr})
+        {
+            il.Emit(OpCodes.Ldarg_0);il.Emit(OpCodes.Ldarg_1);il.Emit(operation);
+            if(operation!=OpCodes.Shl)il.Emit(OpCodes.Add);
+        }
+        il.Emit(OpCodes.Ret);
+        GenerateShifts(directory,type.CreateType()!.GetMethod("ShiftMix")!,"ScheduledRawCilShifts");
+    }
+
+    private static void GenerateShifts(string directory,MethodInfo method,string moduleName)
+    {
+        var compilation=CilCompiler.BuildScheduledSequential(method,moduleName,new SequentialOptions{MaxCycles=128});
         var replay=new CoreReplay(compilation.Design);
         var module=CilCompiler.BuildSequential(method,"LegacyShifts",new SequentialOptions{MaxCycles=128});
         var legacy=module.Simulate();var ports=module.Ports.ToDictionary(p=>p.Name);
@@ -98,9 +117,9 @@ internal static class ScheduledSuiteReplay
             transactions++;
         }
         replay.Save(directory);
-        File.WriteAllText(Path.Combine(directory,"ScheduledCilShifts.il-map.json"),JsonSerializer.Serialize(compilation.StateOffsets));
+        File.WriteAllText(Path.Combine(directory,moduleName+".il-map.json"),JsonSerializer.Serialize(compilation.StateOffsets));
         WriteSourceMap(directory,compilation);
-        Console.WriteLine($"CIL shifts: {transactions} native/legacy/Core transactions agree.");
+        Console.WriteLine($"CIL shifts {moduleName}: {transactions} native/legacy/Core transactions agree.");
     }
 
     private static void WriteSourceMap(string directory,ScheduledCilCompilation compilation)
