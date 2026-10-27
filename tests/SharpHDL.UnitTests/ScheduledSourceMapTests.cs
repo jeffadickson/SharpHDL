@@ -33,7 +33,7 @@ public sealed class ScheduledSourceMapTests
         var method=typeof(ScheduledSourceMapTests).GetMethod(nameof(Natural))!;
         var map=PortablePdbSourceMap.Read(method);
         Assert.Equal(PortablePdbMapStatus.Available,map.Status);
-        var point=Assert.Single(map.Points.Where(p=>p.Source!=null));var source=point.Source!;
+        var point=Assert.Single(map.Points,p=>p.Source!=null);var source=point.Source!;
         Assert.EndsWith(nameof(ScheduledSourceMapTests)+".cs",source.File);
         Assert.True(File.Exists(source.File));Assert.True(source.StartLine>0);
         Assert.Equal(new Guid("8829d00f-11b8-4213-878b-770e8597ac16"),source.DocumentHashAlgorithm);
@@ -52,7 +52,7 @@ public sealed class ScheduledSourceMapTests
         Assert.Equal(PortablePdbMapStatus.Available,compiled.Symbols.Status);
         Assert.Contains(compiled.Symbols.Points,p=>p.Source?.StartLine==400);
         Assert.Contains(compiled.Symbols.Points,p=>p.Source?.StartLine==450);
-        var hidden=Assert.Single(compiled.Symbols.Points.Where(p=>p.IsHidden));
+        var hidden=Assert.Single(compiled.Symbols.Points,p=>p.IsHidden);
         Assert.Null(compiled.Symbols.FindSource(hidden.IlOffset));
         Assert.Equal(0,compiled.StateEncodings["idle"]);Assert.Null(compiled.StateSources["idle"]);
         Assert.Equal(compiled.StateEncodings.Count,compiled.StateSources.Count);

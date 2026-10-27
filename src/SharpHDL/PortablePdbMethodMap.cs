@@ -90,6 +90,7 @@ public static partial class PortablePdbSourceMap
         static SymbolStream? OpenSidecar(string candidate)=>File.Exists(candidate)?File.OpenRead(candidate):null;
         if(!pe.TryOpenAssociatedPortablePdb(path,pdbStreamProvider??OpenSidecar,out var provider,out _))
             return new(PortablePdbMapStatus.UnavailableSymbols,bodySize,Array.Empty<PortablePdbPoint>());
+        if(provider==null)throw new InvalidOperationException("The PE reader reported matching symbols without a metadata provider.");
         using(provider)
         {
             var reader=provider.GetMetadataReader();

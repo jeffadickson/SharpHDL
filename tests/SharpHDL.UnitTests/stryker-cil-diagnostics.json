@@ -1,0 +1,10 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.csproj",
+    "mutate": ["**/ScheduledCilShiftLowering.cs", "**/PortablePdbMethodMap.cs", "**/PortablePdbSourceMap.cs"],
+    "test-case-filter": "FullyQualifiedName~ScheduledSourceMapTests|FullyQualifiedName~ScheduledShiftTests|FullyQualifiedName~PortablePdbSourceMapTests|FullyQualifiedName~HardwareSourceProvenanceTests",
+    "concurrency": 4,
+    "reporters": ["html", "json", "progress"],
+    "additional-timeout": 10000
+  }
+}
