@@ -164,6 +164,8 @@ self-checking HDL testbenches in `generated/`. The standalone runner references 
 
 The [scheduled table example](docs/MODULAR_ARCHITECTURE.md#scheduled-table-example-2026-10-26) demonstrates a non-FIR RAM read/update controller with independent Core/RTL checks. Compiler-boundary requirements are in [StrictDoc](docs/SCHEDULED_VALIDATION.sdoc).
 
+The scheduled CIL path now supports CLR-exact 32-bit shifts and exports matched source spans for encoded control states. See [the continuation record](docs/CONTINUATION_SHIFTS_AND_SYMBOLS.md) for scope and verification.
+
 For the full C#/Verilog differential regression on Linux/macOS, install Icarus
 Verilog and either .NET 8 or Mono, then run:
 

@@ -1,0 +1,23 @@
+[
+  {
+    "module": "ScheduledCilLoop",
+    "states": 32,
+    "visible": 30,
+    "unmapped": 2,
+    "status": "Available"
+  },
+  {
+    "module": "ScheduledCilShifts",
+    "states": 19,
+    "visible": 18,
+    "unmapped": 1,
+    "status": "Available"
+  },
+  {
+    "module": "ScheduledRawCilShifts",
+    "states": 13,
+    "visible": 0,
+    "unmapped": 13,
+    "status": "UnavailableImage"
+  }
+]

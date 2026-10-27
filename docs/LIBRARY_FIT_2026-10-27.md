@@ -42,3 +42,26 @@ Primary sources:
 Adopted packages are test/benchmark tooling only. HLS, Core, Simulation and RTL
 retain their existing dependency direction and no new production NuGet dependency.
 Execution status belongs in the final verification report, not in this fit review.
+
+## Applied continuation decisions: shifts and scheduled source maps
+
+- **System.Reflection.Metadata / PEReader:** now used for matched scheduled-state
+  source provenance, including embedded Portable PDB fallback and loaded/on-disk
+  module identity checks. This uses the existing BCL facility rather than adding
+  Mono.Cecil or implementing PDB identity/byte parsing. Offline assembly compilation
+  remains a separate task; this adoption does not claim that task is complete.
+- **NSubstitute:** reused only for an invalid external symbol-stream capability
+  seam (readable but non-seekable). The hardware, CLR shift oracle and PDB reader
+  itself are not mocked. Existing test dependency; no new package.
+- **BinaryPrimitives:** the expanded SharpFuzz harness uses BCL little-endian
+  UInt32/Int32 decoding for operand/count bytes instead of custom packing code.
+  The native C# expression is an independent oracle for scheduled shift execution.
+- **Custom glue retained:** active sequence-point lookup needs the rightmost
+  boundary not exceeding an IL offset, including hidden boundaries. Its bounded
+  binary-search glue implements that domain rule; no graph/parser package is
+  warranted for it. The fixed barrel network encodes CLR semantics as Core IR,
+  which ordinary host shift helpers cannot substitute for hardware construction.
+
+Sources: the .NET 10 PEReader.TryOpenAssociatedPortablePdb API and C# shift-count
+reference linked in the continuation report. No production NuGet dependency was
+added for these changes.

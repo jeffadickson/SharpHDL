@@ -1,0 +1,119 @@
+[
+  {
+    "source": "src/SharpHDL/PortablePdbMethodMap.cs",
+    "id": "6971",
+    "status": "Timeout",
+    "line": 65,
+    "original": "if(Points[middle].IlOffset<=ilOffset){index=middle;low=middle+1;}else high=middle-1;",
+    "replacement": "middle-1",
+    "disposition": "Timed out; not a confirmed assertion kill"
+  },
+  {
+    "source": "src/SharpHDL/PortablePdbMethodMap.cs",
+    "id": "6972",
+    "status": "Timeout",
+    "line": 65,
+    "original": "if(Points[middle].IlOffset<=ilOffset){index=middle;low=middle+1;}else high=middle-1;",
+    "replacement": "middle+1",
+    "disposition": "Timed out; not a confirmed assertion kill"
+  },
+  {
+    "source": "src/SharpHDL/PortablePdbMethodMap.cs",
+    "id": "6982",
+    "status": "Survived",
+    "line": 90,
+    "original": "static SymbolStream? OpenSidecar(string candidate)=>File.Exists(candidate)?File.OpenRead(candidate):null;",
+    "replacement": "(true?File.OpenRead(candidate):null)",
+    "disposition": "Default missing-sidecar file branch not isolated by provider-seam tests"
+  },
+  {
+    "source": "src/SharpHDL/PortablePdbMethodMap.cs",
+    "id": "6987",
+    "status": "NoCoverage",
+    "line": 93,
+    "original": "if(provider==null)throw new InvalidOperationException(\"The PE reader reported matching symbols without a metadata provider.\");",
+    "replacement": ";",
+    "disposition": "Defensive BCL success-contract invariant, not exercised"
+  },
+  {
+    "source": "src/SharpHDL/PortablePdbMethodMap.cs",
+    "id": "6988",
+    "status": "NoCoverage",
+    "line": 93,
+    "original": "if(provider==null)throw new InvalidOperationException(\"The PE reader reported matching symbols without a metadata provider.\");",
+    "replacement": "\"\"",
+    "disposition": "Defensive BCL success-contract invariant, not exercised"
+  },
+  {
+    "source": "src/SharpHDL/PortablePdbMethodMap.cs",
+    "id": "7001",
+    "status": "Survived",
+    "line": 106,
+    "original": "var documentHandle=point.Document.IsNil?info.Document:point.Document;",
+    "replacement": "(false?info.Document:point.Document)",
+    "disposition": "Fallback branch not exercised; BCL resolved the tested document handles"
+  },
+  {
+    "source": "src/SharpHDL/PortablePdbSourceMap.cs",
+    "id": "7021",
+    "status": "Survived",
+    "line": 16,
+    "original": "var match = OffsetPattern.Match(operationName ?? \"\");",
+    "replacement": "\"Stryker was here!\"",
+    "disposition": "Null-hint fallback strings both fail the fixed IL regex; output-equivalence candidate by source inspection, not formal proof"
+  },
+  {
+    "source": "src/SharpHDL/PortablePdbSourceMap.cs",
+    "id": "7030",
+    "status": "Survived",
+    "line": 24,
+    "original": "if (method == null) throw new ArgumentNullException(nameof(method));",
+    "replacement": ";",
+    "disposition": "Read also rejects a null method; duplicate guard/invalid-argument precedence candidate, not formal proof"
+  },
+  {
+    "source": "src/SharpHDL/ScheduledCilShiftLowering.cs",
+    "id": "7659",
+    "status": "Survived",
+    "line": 14,
+    "original": "if(value.Width!=32||count.Width!=32)",
+    "replacement": "value.Width!=32&&count.Width!=32",
+    "disposition": "Internal defensive guard not reached through validated public frontend; not a formal equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL/ScheduledCilShiftLowering.cs",
+    "id": "7663",
+    "status": "NoCoverage",
+    "line": 15,
+    "original": "throw new ArgumentException(\"Scheduled CLR shifts require 32-bit stack values.\");",
+    "replacement": ";",
+    "disposition": "Remaining test gap or equivalence candidate; source inspection only"
+  },
+  {
+    "source": "src/SharpHDL/ScheduledCilShiftLowering.cs",
+    "id": "7664",
+    "status": "NoCoverage",
+    "line": 15,
+    "original": "throw new ArgumentException(\"Scheduled CLR shifts require 32-bit stack values.\");",
+    "replacement": "\"\"",
+    "disposition": "Remaining test gap or equivalence candidate; source inspection only"
+  },
+  {
+    "source": "src/SharpHDL/ScheduledCilShiftLowering.cs",
+    "id": "7671",
+    "status": "NoCoverage",
+    "line": 17,
+    "original": "throw new ArgumentException(\"Unsupported scheduled shift opcode.\",nameof(opcode));",
+    "replacement": ";",
+    "disposition": "Internal defensive guard not reached through validated public frontend; not a formal equivalence proof"
+  },
+  {
+    "source": "src/SharpHDL/ScheduledCilShiftLowering.cs",
+    "id": "7672",
+    "status": "NoCoverage",
+    "line": 17,
+    "original": "throw new ArgumentException(\"Unsupported scheduled shift opcode.\",nameof(opcode));",
+    "replacement": "\"\"",
+    "disposition": "Internal defensive guard not reached through validated public frontend; not a formal equivalence proof"
+  }
+]

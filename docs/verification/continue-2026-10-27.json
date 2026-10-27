@@ -1,0 +1,123 @@
+{
+  "baseline": "f11669763eb4ffa3472af2f50da4598823107109",
+  "implementationAtRecording": "08b8a00a2de1bbd092d846924e8a55470ce8c438",
+  "managedTestsRevision": "cf7916d",
+  "rtlRevision": "b72423f",
+  "fuzzRevision": "f337221",
+  "sourceHashes": {
+    "tools/SharpHDL.AxiFirRtlDemo/ScheduledSuiteReplay.cs": {
+      "gitBlob": "bb38c2378200bb3104f944d2c5108318e0cb24c3",
+      "sha256": "DC4F6D801B02AE8F71858E5D08EFB502D326944AE7641E3F0E6DA3CBFA503355"
+    },
+    "tools/SharpHDL.ScheduledFuzz/Program.cs": {
+      "gitBlob": "fc8a51f295846ec821f543e5558e4e70a51c945d",
+      "sha256": "EA98CEAB93C56CCB4798CC67FF770A190FC3BFD2E5EF49F400D3CE51DED223CE"
+    },
+    "src/SharpHDL/PortablePdbSourceMap.cs": {
+      "gitBlob": "cb06f80610a16b177788d902f51978de9838d030",
+      "sha256": "37AD0E88F1E86CA91FB949D153AFED82C5BC3F80DC3F88DC6EF26DFEAD2CEB94"
+    },
+    "src/SharpHDL/PortablePdbMethodMap.cs": {
+      "gitBlob": "7b6c9849839b67475925a5aaf9337633f6dc4c83",
+      "sha256": "31C788BC40B8E8124EEA3EF40746B281338232AA878E1C63B062E36FFE442AA3"
+    },
+    "src/SharpHDL.HLS/ScheduledMachine.cs": {
+      "gitBlob": "83774af8c05ff5715195d148034b46373ef267ad",
+      "sha256": "636CB47A5B6C43885B706795FFBB5CFDDBFECE4C2BE68C68A8F83E3DAFB88C68"
+    },
+    "src/SharpHDL/ScheduledCilShiftLowering.cs": {
+      "gitBlob": "06fff43e37c878e636bbf37556b20c8e7aa12d0d",
+      "sha256": "A1CD302224C3AFEC9B48A35A8AA1CED17B21928188831BFE816A9935D3512393"
+    },
+    "src/SharpHDL/ScheduledSequentialCil.cs": {
+      "gitBlob": "7febbcd14689f98882771b8e5be98b67e0f4417b",
+      "sha256": "367C15A1A88407D34A555831EA6F3043168E38DDA2EA10AB9A53263B73D68C8B"
+    }
+  },
+  "requirements": [
+    "CIL-SCHED-SHIFT-001",
+    "CIL-SCHED-SOURCE-001"
+  ],
+  "tests": {
+    "windowsPassed": 207,
+    "failed": 0,
+    "newPropertyCases": 200,
+    "legacyRegression": "passed in isolated working directory",
+    "propertyReplay": "1145655947,296144285",
+    "newCases": 27,
+    "linuxPassed": 207,
+    "skipped": 0
+  },
+  "coverage": {
+    "branchRate": "0.4886",
+    "branchesCovered": "2509",
+    "linesCovered": "3028",
+    "scope": "Managed assemblies/examples plus embedded-symbol fixture; test/oracle classes excluded. CLI/fuzz/HDL coverage unmeasured.",
+    "linesValid": "4921",
+    "branchesValid": "5135",
+    "lineRate": "0.6153",
+    "artifactSha256": "A6BDB32ABB790E122F042ED1423BD13C7A1D0763FF2BA9B7A6AA02CAB810CD72"
+  },
+  "mutation": {
+    "dispositions": "continue-mutant-dispositions.json",
+    "scope": [
+      "ScheduledCilShiftLowering.cs",
+      "PortablePdbMethodMap.cs",
+      "PortablePdbSourceMap.cs"
+    ],
+    "survived": 5,
+    "killed": 86,
+    "selectedIgnored": 13,
+    "uncovered": 6,
+    "timeout": 2,
+    "scorePercent": 88.89,
+    "caveat": "Tool score counts timeouts as detected; they are not confirmed assertion kills. Outside-scope whole-project analysis mutants excluded from these counts.",
+    "tool": "Stryker.NET 5.0.0",
+    "selectedCompileErrors": 6
+  },
+  "rtl": {
+    "synthesis": "Yosys 0.33 hierarchy/proc/opt/check/stat passed for ScheduledCilShifts and ScheduledRawCilShifts; no physical timing proof",
+    "designEdges": {
+      "ScheduledCilLoop": 764,
+      "ScheduledBanksXilinxBlock": 513,
+      "ScheduledCilShifts": 1996,
+      "ScheduledRawCilShifts": 1366,
+      "ScheduledBanksAuto": 513,
+      "ScheduledTable8": 3201,
+      "ScheduledTable4": 3201,
+      "ScheduledTable1": 3201
+    },
+    "simulators": [
+      "Icarus 12.0",
+      "Verilator 5.020"
+    ],
+    "artifact": "/tmp/sharphdl-rtl-OeaZAW"
+  },
+  "fuzz": {
+    "seconds": 60,
+    "framework": "SharpFuzz 2.2.0 / AFL++ 4.09c",
+    "scope": "Raw CIL shifts versus native C#, table traffic oracle, IL-name nonnegative parsing",
+    "corpus": 121,
+    "edges": 1254,
+    "artifact": "/tmp/sharphdl-fuzz-LxfYzr",
+    "seed": 261026,
+    "executions": 4486,
+    "savedHangs": 0,
+    "savedCrashes": 0,
+    "bitmapOccupancyPercent": 1.91
+  },
+  "sourceMaps": "continue-source-map-checks.json",
+  "strictdoc": "0.30.4 parse/export passed",
+  "layers": "passed",
+  "performance": "No optimization or new performance claim",
+  "ci": {
+    "hostedRuns": "not dispatched, user disabled Actions",
+    "enabled": false
+  },
+  "tools": {
+    "windowsSdk": "10.0.403",
+    "fscheck": "3.3.3",
+    "coverlet": "10.1.0",
+    "linuxSdk": "10.0.402"
+  }
+}
