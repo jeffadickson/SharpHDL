@@ -12,10 +12,10 @@ public sealed class ScheduledValue
 {
     internal ScheduledValue(int width, HardwareOperation operation,
         IReadOnlyList<ScheduledValue>? operands = null, BigInteger? literal = null,
-        string? name = null, object? bindingOwner = null)
+        string? name = null, object? bindingOwner = null, int offset = 0)
     {
         Width=width;Operation=operation;Operands=operands??Array.Empty<ScheduledValue>();
-        Literal=literal;Name=name;BindingOwner=bindingOwner;
+        Literal=literal;Name=name;BindingOwner=bindingOwner;Offset=offset;
     }
 
     /// <summary>Width of the value in bits.</summary>
@@ -25,6 +25,22 @@ public sealed class ScheduledValue
     internal BigInteger? Literal { get; }
     internal string? Name { get; }
     internal object? BindingOwner { get; }
+    internal int Offset { get; }
+
+    /// <summary>Shift left by a nonnegative constant, retaining this value's width.</summary>
+    public ScheduledValue ShiftLeft(int amount)=>Shift(HardwareOperation.ShiftLeft,amount);
+    /// <summary>Shift right logically by a nonnegative constant, inserting zeros.</summary>
+    public ScheduledValue ShiftRight(int amount)=>Shift(HardwareOperation.ShiftRight,amount);
+    /// <summary>Shift right as a two's-complement value, replicating its sign bit.</summary>
+    public ScheduledValue ArithmeticShiftRight(int amount)=>Shift(HardwareOperation.ArithmeticShiftRight,amount);
+
+    private ScheduledValue Shift(HardwareOperation operation,int amount)
+    {
+        if(amount<0)throw new ArgumentOutOfRangeException(nameof(amount));
+        // Offsets beyond the width have the same bit-vector result as Width.
+        // Bound the evaluator's host shift, including for int.MaxValue inputs.
+        return new ScheduledValue(Width,operation,new[]{this},offset:Math.Min(amount,Width));
+    }
 
     /// <summary>Create an equality comparison.</summary>
     public ScheduledValue Equal(ScheduledValue other)=>Binary(HardwareOperation.Equal,other,1);
@@ -38,9 +54,9 @@ public sealed class ScheduledValue
     public ScheduledValue Subtract(ScheduledValue other)=>Binary(HardwareOperation.Subtract,other,Width);
     /// <summary>Create a width-preserving multiplication.</summary>
     public ScheduledValue Multiply(ScheduledValue other)=>Binary(HardwareOperation.Multiply,other,Width);
-    /// <summary>Create a one-bit logical AND.</summary>
+    /// <summary>Create a width-preserving bitwise AND.</summary>
     public ScheduledValue And(ScheduledValue other)=>Binary(HardwareOperation.And,other,Width);
-    /// <summary>Create a one-bit logical OR.</summary>
+    /// <summary>Create a width-preserving bitwise OR.</summary>
     public ScheduledValue Or(ScheduledValue other)=>Binary(HardwareOperation.Or,other,Width);
     /// <summary>Create a width-preserving bitwise exclusive OR.</summary>
     public ScheduledValue Xor(ScheduledValue other)=>Binary(HardwareOperation.Xor,other,Width);
@@ -368,7 +384,7 @@ public sealed partial class ScheduledMachineBuilder
                 ? new HardwareNode(id,value.Operation,new HardwareType(value.Width),operands,
                     MemoryName:value.Name)
                 : new HardwareNode(id,value.Operation,new HardwareType(value.Width),operands,
-                    value.Literal,value.Name));
+                    value.Literal,value.Name,Offset:value.Offset));
             ids.Add(value,id);return id;
         }
         foreach(var input in inputs)inputMap.Add(input.Name!,Compile(input));

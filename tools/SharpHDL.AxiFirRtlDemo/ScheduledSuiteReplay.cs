@@ -17,6 +17,9 @@ internal static class ScheduledSuiteReplay
         for(uint i=0;i<count;i++){uint value=words[i]*factor+1;words[i]=value;sum+=value;}
         return sum;
     }
+    /// <summary>Actual C# shift-count masking and signed/unsigned right-shift workload.</summary>
+    public static uint ShiftMix(uint value,int count)
+        =>unchecked((value<<count)+(value>>count)+(uint)((int)value>>count));
     internal static void Generate(string directory)
     {
         if(!Directory.Exists(directory))Directory.CreateDirectory(directory);
@@ -66,5 +69,35 @@ internal static class ScheduledSuiteReplay
         cil.Save(directory);
         File.WriteAllText(Path.Combine(directory,"ScheduledCilLoop.il-map.json"),JsonSerializer.Serialize(compiled.StateOffsets));
         Console.WriteLine("CIL loop: native/legacy/Core agree, including partial writes on bounds fault.");
+        GenerateShifts(directory);
+    }
+
+    private static void GenerateShifts(string directory)
+    {
+        var method=typeof(ScheduledSuiteReplay).GetMethod(nameof(ShiftMix))!;
+        var compilation=CilCompiler.BuildScheduledSequential(method,"ScheduledCilShifts",new SequentialOptions{MaxCycles=128});
+        var replay=new CoreReplay(compilation.Design);
+        var module=CilCompiler.BuildSequential(method,"LegacyShifts",new SequentialOptions{MaxCycles=128});
+        var legacy=module.Simulate();var ports=module.Ports.ToDictionary(p=>p.Name);
+        void Drive(string name,int value){replay.Drive(name,value);legacy.Set(ports[name],unchecked((uint)value));}
+        void Clock(bool reset)
+        {
+            replay.Clock(reset);legacy.Tick(reset);
+            foreach(string output in new[]{"busy","done","fault","timeout","result","accept"})
+                if(replay.Machine.ReadOutput(output)!=legacy.Read(ports[output]))throw new InvalidOperationException("Shift legacy/Core mismatch: "+output);
+        }
+        Clock(true);int transactions=0;
+        foreach(uint value in new uint[]{0,1,127,0x7fffffffu,0x80000000u,0xffffffffu,0xdeadbeefu})
+        foreach(int count in new[]{int.MinValue,-65,-33,-32,-31,-1,0,1,7,31,32,33,63,64,int.MaxValue})
+        {
+            Drive("start",1);Drive("arg0",unchecked((int)value));Drive("arg1",count);Clock(false);Drive("start",0);
+            int edges=0;while(replay.Machine.ReadOutput("done")==0&&edges++<129)Clock(false);
+            if(replay.Machine.ReadOutput("done")!=1||replay.Machine.ReadOutput("fault")!=0||
+                (uint)replay.Machine.ReadOutput("result")!=ShiftMix(value,count))throw new InvalidOperationException("Native shift oracle mismatch.");
+            transactions++;
+        }
+        replay.Save(directory);
+        File.WriteAllText(Path.Combine(directory,"ScheduledCilShifts.il-map.json"),JsonSerializer.Serialize(compilation.StateOffsets));
+        Console.WriteLine($"CIL shifts: {transactions} native/legacy/Core transactions agree.");
     }
 }

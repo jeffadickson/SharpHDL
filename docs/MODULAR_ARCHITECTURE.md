@@ -448,3 +448,18 @@ Yosys target qualification. BenchmarkDotNet measures construction plus 256 table
 edges at two RAM sizes, with final result 64 checked; no optimization is performed.
 The library-fit review in LIBRARY_FIT_2026-10-27.md assigns each adoption/defer
 rationale to the corresponding follow-up task and reviews already-written code.
+
+## Scheduled CIL shifts (2026-10-27 continuation)
+
+The scheduled frontend now lowers shl, shr and shr.un via existing Core shift and
+mux nodes. A fixed five-stage barrel network uses exactly the low five count bits,
+as required for CLR Int32/UInt32 values; negative counts are bit patterns rather
+than illegal host shifts. Each original CIL instruction still consumes one edge.
+Static ScheduledValue shifts keep their operand width and clamp nonnegative
+offsets at that width to avoid huge host BigInteger allocations; negative offsets
+reject. Signed right shift and logical right shift remain distinct.
+
+This is hardware-specific lowering with BCL/existing IR, not a new dependency.
+Native C#, legacy simulation, exhaustive bit-vector tests and the compact dual-HDL
+replay are independent acceptance gates. No timing/area optimization is claimed.
+Primary semantic reference: https://learn.microsoft.com/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators .

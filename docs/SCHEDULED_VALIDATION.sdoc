@@ -144,3 +144,19 @@ resource evidence and a reproducible BenchmarkDotNet baseline before optimizing.
 Implementation: ScheduledMemoryBanks, HardwareMemoryPort, CoreVerilogEmitter and
 ScheduledBankedTable. Tests: ScheduledBankedMemoryTests; final campaign evidence.
 <<<
+
+[REQUIREMENT]
+UID: CIL-SCHED-SHIFT-001
+TITLE: Exact Int32 shift semantics
+STATEMENT: >>>
+The scheduled CIL frontend shall lower shl, shr and shr.un using only the five low
+count bits for 32-bit operands, including negative and oversized count patterns.
+Signed right shift replicates the sign; unsigned right shift inserts zeros; left
+shift wraps at 32 bits. Static scheduled shifts preserve exact-width semantics
+and reject negative offsets. Oversized static offsets must not cause unbounded
+host allocations. Existing instruction-per-edge timing and watchdog/reset apply.
+Implementation: ScheduledCilShiftLowering.cs and ScheduledValue shift operations.
+Verification: ScheduledShiftTests native/legacy comparisons, generated properties,
+exhaustive byte references and ScheduledCilShifts Icarus/Verilator replay.
+Execution is recorded in the end-of-slice verification report.
+<<<

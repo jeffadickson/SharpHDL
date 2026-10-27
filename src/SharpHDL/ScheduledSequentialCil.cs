@@ -54,7 +54,7 @@ namespace SharpHDL
             if(list.Count>o.MaxInstructions)throw Error(method,0,"Scheduled sequential instruction limit exceeded.");
             bool SupportedInstruction(string op)=>op=="nop"||op=="ret"||op=="dup"||op=="pop"||op=="not"||op=="neg"||
                 op=="add"||op=="sub"||op=="mul"||op=="and"||op=="or"||op=="xor"||op=="ceq"||op=="clt"||op=="clt.un"||op=="cgt"||op=="cgt.un"||
-                op=="conv.i4"||op=="conv.u4"||op=="br"||op=="br.s"||op=="switch"||Conditional(op)||
+                op=="conv.i4"||op=="conv.u4"||op=="shl"||op=="shr"||op=="shr.un"||op=="br"||op=="br.s"||op=="switch"||Conditional(op)||
                 op=="ldlen"||op=="ldelem.u4"||op=="ldelem.i4"||op=="stelem.i4"||
                 op.StartsWith("ldc.i4")||op=="ldarg"||op=="ldarg.s"||op.StartsWith("ldarg.")||
                 op=="starg"||op=="starg.s"||op=="ldloc"||op=="ldloc.s"||op.StartsWith("ldloc.")||
@@ -162,6 +162,7 @@ namespace SharpHDL
                 else if(op=="dup")Push(h,Top(0));
                 else if(op=="not")Push(h-1,Top(0).Not());
                 else if(op=="neg")Push(h-1,zero32.Subtract(Top(0)));
+                else if(op=="shl"||op=="shr"||op=="shr.un")Push(h-2,ScheduledClrShift(b,Top(1),Top(0),op));
                 else if(op=="ldlen"){if(ram==null)throw Error(method,ins.Offset,"ldlen requires RAM.");Push(h-1,b.Constant(32,o.MemoryDepth));}
                 else if(op=="ceq"||op.StartsWith("clt")||op.StartsWith("cgt"))Push(h-2,Compare(op.Substring(1,2),Top(1),Top(0),op.EndsWith(".un")).Resize(32));
                 else if(op=="mul")Push(h-2,state.Compute(multiplier,Top(1),Top(0),live));
