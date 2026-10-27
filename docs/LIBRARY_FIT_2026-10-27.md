@@ -7,7 +7,7 @@ A useful library does not itself establish hardware semantics or correctness.
 | Task / code area | Library or facility | Description and rationale | Decision / tradeoff |
 |---|---|---|---|
 | 1. Arithmetic binding, ScheduledArithmetic | .NET Dictionary, HashSet, Queue and ReferenceEqualityComparer | Existing BCL structures give deterministic declaration-order allocation and identity-based DAG tracking with no runtime dependency. The small fixed-state lane allocator needs domain-specific semantics rather than a general graph framework. | Keep BCL. No replacement needed for this explicit-state allocator; validate widths, capacity and register dependencies in SharpHDL. |
-| 1. Future automatic binding | QuikGraph | Maintained graph structures and topological algorithms could replace custom dependency/SCC traversals when extracting arbitrary operation graphs. | Add to the automatic scheduling investigation, not the current explicit-state implementation. Its topological order does not solve resource binding; require stable tie-breaking and cycle diagnostics before adoption. |
+| 1. Future automatic binding | QuikGraph | Established graph structures and algorithms can replace custom dependency/SCC traversals when extracting arbitrary operation graphs. | Original explicit-state allocator retains BCL. WP-03 below adopts QuikGraph for instruction analysis; automatic resource binding remains future work. Topological order does not solve binding. |
 | 1. Future optimal scheduling | Microsoft Z3 | Constraint solving could express resource capacities/dependencies and generate checkable schedules or counterexamples. | Defer to automatic scheduling with a precise encoding and real solver integration. Native deployment cost and incomplete encodings must not be presented as proofs. |
 | 2. Existing randomized tests | FsCheck.Xunit 3.3.3 | Generates and shrinks inputs, retains replay seeds, integrates with xUnit. Replaces ad hoc generation for property campaigns while directed tests express boundary contracts. | Already adopted; retain reproducible seeds. It is bounded property testing, not coverage-guided fuzzing. |
 | 2. Existing manual mutation opportunities | Stryker.NET 5.0.0 | Established .NET mutation engine supplies instrumentation, test selection and reports. Separate example assembly permits table mutation rather than custom mutation code. | Already adopted and expanded. Report equivalent/uncovered/surviving/timeout dispositions honestly; avoid asserting a score proves correctness. |
@@ -39,9 +39,28 @@ Primary sources:
 - [BenchmarkDotNet overview](https://benchmarkdotnet.org/articles/overview)
 - [Yosys documentation](https://yosyshq.readthedocs.io/projects/yosys/en/latest/)
 
-Adopted packages are test/benchmark tooling only. HLS, Core, Simulation and RTL
-retain their existing dependency direction and no new production NuGet dependency.
+At the initial review, adopted packages were test/benchmark tooling only. The
+later WP-03 adoption below adds a production HLS dependency while preserving
+Core, Simulation and RTL project dependency direction.
 Execution status belongs in the final verification report, not in this fit review.
+
+## WP-02/03 adoption
+
+The ten-package continuation reuses the BCL matched Portable PDB reader for
+structured diagnostics, avoiding a second parser. QuikGraph 2.5.0 is now pinned
+in HLS for BFS/SCC instruction analysis. This supersedes the earlier provisional
+deferral for that concrete use; explicit-state resource allocation still uses
+BCL collections and automatic scheduling is not claimed. SharpHDL owns graph
+budgets, validation, deep snapshots and deterministic ordering, and exposes no
+QuikGraph types in result APIs or Core.
+
+Tradeoffs include transitive compiler deployment, MS-PL rather than MIT, and an
+older latest package release from 2022. .NET Standard 2.0 assets are selected on
+.NET 10; selected Windows/Linux algorithm execution is qualified separately.
+Native AOT/trimming of the graph dependency is unmeasured. See
+[design](INSTRUCTION_CONTROL_FLOW.md), [package metadata](THIRD_PARTY.md),
+[all ten rationales](WORK_PACKAGES_2026-10-27.md) and
+[executed results](WORK_PACKAGES_COMPLETION_2026-10-27.md).
 
 ## Applied continuation decisions: shifts and scheduled source maps
 

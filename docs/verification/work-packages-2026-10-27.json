@@ -1,0 +1,166 @@
+{
+  "workPackages": [
+    "WP-01",
+    "WP-02",
+    "WP-03"
+  ],
+  "baseline": "6b91749aaf0a74554b6114dfc5201595f8ba0d36",
+  "implementationRevision": "5937579e2a11a737c4253b3a39a4e6cdf75af36c",
+  "implementationCommits": [
+    "5ec0c1c",
+    "42d96a0",
+    "7a4c975",
+    "6b6863c",
+    "1aee8b3",
+    "5937579"
+  ],
+  "sourceSha256": {
+    "src/SharpHDL.HLS/InstructionControlFlow.cs": "86A0E93E08C70B568CE5F8204C6010632B2A92D8781E2107EE9C3FB27D928E60",
+    "src/SharpHDL.HLS/SharpHDL.HLS.csproj": "24F7819D50ACB99406ED41067536CC7C1DD72A282EF1F0CE93A988AD5B13C549",
+    "src/SharpHDL/CilDiagnostic.cs": "8FFDFDD7BF2187C631B40D9449AD5EEED48DDC6354A3A44422EDCCA7FF03FCB6",
+    "src/SharpHDL/CilCompiler.cs": "5D2204796A3BD6BB628DE807F2FB02656DC6A066E916814C94958A651CDB07E2",
+    "src/SharpHDL/ScheduledSequentialCil.cs": "4A8561D15DD4D8D208139C14B1AB83850688C0109E9FD8B1B2A05C2B936D3560",
+    "tests/SharpHDL.UnitTests/CilDiagnosticTests.cs": "D232538AB654E05349DDCDDFF12769EF1177CACCA6922EA7D09C17CEFC08D815",
+    "tests/SharpHDL.UnitTests/InstructionControlFlowTests.cs": "61A7C17196D25F77D2415DF9437D0099E131193895A508FD531B8CB47066A50F",
+    "tools/SharpHDL.AxiFirRtlDemo/ScheduledSuiteReplay.cs": "EE3722CA038B373741A83F65F5C41906B52F37ADF9CEB157D49A8795B88B97D9",
+    "tools/SharpHDL.ScheduledFuzz/Program.cs": "B0A3F84036818C665CBFA54BDEE7F62F431FCF1DBC1A46F4BCDC9C0892B99428"
+  },
+  "z80QualifiedHashesUnchanged": true,
+  "z80Evidence": "z80-completion-2026-10-27.json",
+  "builds": {
+    "windowsCSharp": 23,
+    "windowsFSharp": 1,
+    "framework": "net10.0",
+    "windowsSdk": "10.0.403",
+    "linuxSdk": "10.0.402",
+    "integrationProject": "Built; Docker/Testcontainers tests not run"
+  },
+  "regressions": {
+    "windows-final": {
+      "passed": 226,
+      "failed": 0,
+      "total": 226,
+      "scope": "Non-Z80 regression",
+      "trx": "build/verification/wp03/windows-final/tests.trx"
+    },
+    "linux": {
+      "passed": 226,
+      "failed": 0,
+      "total": 226,
+      "scope": "Non-Z80 regression",
+      "trx": "build/verification/wp03/linux/tests.trx"
+    }
+  },
+  "coverage": {
+    "scope": "Windows final non-Z80 regression, Coverlet 10.1.0",
+    "linesCovered": 2887,
+    "linesValid": 5217,
+    "branchesCovered": 2504,
+    "branchesValid": 5193,
+    "classes": [
+      {
+        "name": "SharpHDL.CilDiagnostic",
+        "lineRate": 1.0,
+        "branchRate": 1.0
+      },
+      {
+        "name": "SharpHDL.HLS.InstructionControlFlow",
+        "lineRate": 1.0,
+        "branchRate": 1.0
+      }
+    ],
+    "unmeasured": [
+      "Third-party library internals",
+      "Standalone fuzz runner",
+      "HDL toggles"
+    ]
+  },
+  "mutation": {
+    "diagnostics": {
+      "tool": "Stryker.NET 5.0.0",
+      "selectedFile": "CilDiagnostic.cs",
+      "counts": {
+        "CompileError": 10,
+        "Ignored": 3,
+        "Killed": 22,
+        "Survived": 4
+      },
+      "report": "build/verification/wp02/mutation-boundaries/reports/mutation-report.json"
+    },
+    "controlFlow": {
+      "tool": "Stryker.NET 5.0.0",
+      "selectedFile": "InstructionControlFlow.cs",
+      "counts": {
+        "CompileError": 12,
+        "Ignored": 1,
+        "Killed": 41,
+        "Survived": 1
+      },
+      "report": "build/verification/wp03/mutation-reviewed/reports/mutation-report.json"
+    }
+  },
+  "property": {
+    "library": "FsCheck.Xunit 3.3.3",
+    "cases": 200,
+    "seed": "1145655947,296144285",
+    "oracle": "Independent Floyd-Warshall closure",
+    "counterexamples": []
+  },
+  "rtl": {
+    "icarus": "12.0",
+    "verilator": "5.020",
+    "yosys": "0.33",
+    "designsPassedPerSimulator": 8,
+    "genericShiftSynthesisPassed": 2,
+    "artifactRoot": "/tmp/sharphdl-rtl-VvFRy9",
+    "log": "build/verification/wp03-rtl.log"
+  },
+  "fuzz": {
+    "engine": "SharpFuzz 2.2.0 / AFL++ 4.09c",
+    "seed": 261026,
+    "seconds": 60,
+    "executions": 2798,
+    "corpusEntries": 96,
+    "savedCrashes": 0,
+    "savedHangs": 0,
+    "hostBitmapPercent": 2.14,
+    "artifactRoot": "/tmp/sharphdl-fuzz-V1uLbW",
+    "scope": "Valid/malformed graphs, raw-CIL shifts and table traffic",
+    "log": "build/verification/wp03-fuzz.log"
+  },
+  "library": {
+    "name": "QuikGraph",
+    "version": "2.5.0",
+    "license": "MS-PL",
+    "asset": "netstandard2.0",
+    "upstreamCommit": "9cd6b49292e09041258708a37bed99c56177b0ef",
+    "nativeAot": "Unmeasured for graph dependency"
+  },
+  "requirements": {
+    "tool": "StrictDoc 0.30.4",
+    "ids": [
+      "CIL-DIAG-001",
+      "CIL-CFG-001",
+      "CIL-CFG-002",
+      "CIL-CFG-003"
+    ],
+    "exportLog": "build/verification/workpackages-strictdoc-final2.log",
+    "layering": "Passed"
+  },
+  "legacy": {
+    "outcome": "Passed",
+    "log": "build/verification/wp03-legacy.log",
+    "additionalRtlBenches": "Generated only; not executed by the managed invocation"
+  },
+  "githubActionsEnabled": false,
+  "performance": "No new benchmark or speedup claim",
+  "remainingPackages": [
+    "WP-04",
+    "WP-05",
+    "WP-06",
+    "WP-07",
+    "WP-08",
+    "WP-09",
+    "WP-10"
+  ]
+}

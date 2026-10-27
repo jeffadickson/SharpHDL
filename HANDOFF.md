@@ -1,6 +1,40 @@
 # SharpHDL handoff — continuation verified (2026-10-27)
 
-## Latest addition: Z80 architectural test design
+## Current continuation: work packages 1–3
+
+Baseline was clean main at 6b91749. Z80 indexed, ED/I/O and interrupt additions
+are committed as 5ec0c1c, 42d96a0 and 7a4c975; qualification is 6b6863c.
+The existing instruction-level core now includes base/CB/DD/FD/ED, IM0/1/2,
+edge-pending NMI, EI/HALT behavior, RETN/RETI and 16-bit port transactions.
+Windows/Linux full suites pass 233/233, with Icarus/Verilator and mapped iCE40
+replay passing 56,514 edges. Six stalled-request assertions pass two-state
+temporal induction with a failing negative control. See
+[scope and exact evidence](docs/Z80_COMPLETION_2026-10-27.md).
+T-state/pin timing, internal WZ/Q flag effects, exhaustive ISA/ZEXALL/CP-M and
+physical FPGA timing remain unqualified; do not infer them from the results.
+
+The [ten work packages](docs/WORK_PACKAGES_2026-10-27.md) include library rationales;
+1–3 are completed within their stated scopes. WP-02 (`1aee8b3`) adds source-aware structured compiler
+rejections using the existing BCL PDB reader. WP-03 adds deterministic instruction
+graphs via QuikGraph 2.5.0 (MS-PL), isolated behind HLS result types (`5937579`). All
+24 managed projects build. The integrated
+Windows/Linux non-Z80 suites pass 226/226. Eight scheduled designs pass both HDL
+simulators. Diagnostic mutations kill 22/26 and graph mutations 41/42 testable
+mutants; survivors and bounded fuzz scope remain explicit in the
+[completion report](docs/WORK_PACKAGES_COMPLETION_2026-10-27.md).
+Never combine differing coverage scopes as if equivalent.
+Keep future packages 4–10 as backlog rather than claiming they were implemented.
+
+Use .NET 10 (`global.json`), checked directories and separate native Linux outputs.
+To avoid local paging-file exhaustion, serialize builds, use processor count 2,
+disable MSBuild node reuse/shared compilation, and run mutation concurrency 1.
+Run StrictDoc export with `--no-parallelization` on this Windows installation.
+GitHub Actions remains disabled. This task authorizes a normal final push;
+never enable/dispatch workflows or force-push.
+
+## Historical initial Z80 test design
+
+The following records the earlier 87dcd71 scope, superseded above.
 
 Implementation 87dcd71 adds examples/Z80: a synthesizable scheduled base/CB subset,
 generated Verilog, 840 pinned independent vectors and a multi-instruction program.
@@ -9,8 +43,10 @@ Fresh full suites pass 223/223 on Windows and Linux. Both HDL simulators pass
 Coverage is 61.57% line / 49.01% branch across the recorded managed scope; the Z80
 elaborator is fully covered but that does not establish ISA/toggle coverage.
 [Report and limitations](docs/Z80_TEST_DESIGN_2026-10-27.md) and
-[reproduction/interface](examples/Z80/README.md) are the current evidence.
-DD/FD/ED, interrupts, I/O, DI/EI, EX(SP),HL, SLL and physical timing remain absent.
+[reproduction/interface](examples/Z80/README.md) describe that initial evidence;
+the interface documentation now reflects the completed additions.
+DD/FD/ED, interrupts, I/O, DI/EI, EX(SP),HL and SLL were absent at 87dcd71 and
+have since been added. Physical timing remains outside scope.
 No complete Z80/CP-M/FPGA compatibility claim. The earlier continuation below is
 historical evidence, preserved for source-map/compiler work.
 

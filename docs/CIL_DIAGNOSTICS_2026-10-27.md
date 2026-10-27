@@ -43,7 +43,14 @@ including the WP-03 graph cases (`build/verification/wp03-windows.log`). Separat
 class coverage and final mutation counts are retained in the completion evidence.
 
 Mutation evidence and subsequent Windows/Linux integration results are recorded
-in the work-package completion report. The first mutation attempt exhausted the
+in the work-package completion report. Final Stryker.NET 5.0.0 diagnostic scope:
+**22 killed / 4 survived / 0 uncovered / 0 timed out**, **84.62%** (26 testable).
+Ten compile-invalid and three ignored selected-file mutations are excluded.
+The four survivors remove formatting punctuation (source opener, symbol-warning
+closer and diagnostic-code brackets); they do not change typed diagnostic fields.
+They are retained as a display-format test limitation rather than reported as
+killed. Raw report: `build/verification/wp02/mutation-boundaries/reports/mutation-report.json`.
+The first mutation attempt exhausted the
 machine's paging-file capacity before testing; idle build servers were stopped
 and subsequent jobs serialized with bounded processor counts. An intermediate
 attempt also observed incomplete WP-03 source before its dependency was added;

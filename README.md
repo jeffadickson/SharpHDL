@@ -5,9 +5,17 @@ IR and generated RTL with pinned independent instruction vectors, machine-code
 programs and stalled traffic. Base/CB, indexed/ED instructions, INT/NMI modes and
 16-bit port I/O are implemented. Physical Z80 pin timing remains outside its scope.
 
-**Developer setup:** [Build and toolchain guide](docs/BUILD_AND_SETUP.md). Run `just setup`, `just container-build`, and `just container-test` with Docker, Python 3 and just installed. The container provisions .NET 8 and the open-source HDL tools automatically. 
+**Developer setup:** [Build and toolchain guide](docs/BUILD_AND_SETUP.md). Managed projects use .NET 10; `global.json` pins the SDK feature-band policy. The development container also selects .NET 10 and open-source HDL tools. Current verification is local; GitHub Actions remains disabled by request.
 
-> **Development design:** [Feature parity and competitive coverage](docs/FEATURE_PARITY.md) · [Architecture and implementation record](docs/DESIGN.md) · [Product requirements](docs/PRODUCT_REQUIREMENTS.md) · [Testing strategy](docs/TEST_STRATEGY.md). The new debugger, compiled combinational backend, xUnit and container integration fixtures are under development; passing builds and throughput results must be confirmed by CI.
+[Ten work packages and library rationales](docs/WORK_PACKAGES_2026-10-27.md) track
+the current continuation. [Structured CIL diagnostics](docs/CIL_DIAGNOSTICS_2026-10-27.md)
+preserve exception compatibility and matched source locations. Scheduled CIL also
+exposes [deterministic instruction-flow analysis](docs/INSTRUCTION_CONTROL_FLOW.md)
+using QuikGraph, with explicit validation and canonical reachable loop components.
+[Executed results and limitations](docs/WORK_PACKAGES_COMPLETION_2026-10-27.md)
+cover the completed first three packages.
+
+> **Development design:** [Feature parity and competitive coverage](docs/FEATURE_PARITY.md) · [Architecture and implementation record](docs/DESIGN.md) · [Product requirements](docs/PRODUCT_REQUIREMENTS.md) · [Testing strategy](docs/TEST_STRATEGY.md). Capability and performance claims require recorded execution evidence; dormant CI definitions do not constitute verification.
 
 A small, executable C# hardware-description library inspired by MyHDL.
 

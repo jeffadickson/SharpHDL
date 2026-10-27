@@ -11,7 +11,7 @@ make tinyrisc-hello
 make setup-and-hello
 ```
 
-`make setup` invokes `python3 tools/dev.py setup`: it builds the development image from `tools/Dockerfile.dev`, downloading the .NET 8 SDK base image and installing Icarus Verilog, Verilator, Yosys, nextpnr-ice40, IceStorm, Python, and related utilities inside Docker. It restores all six managed projects and checks HDL executables. No host administrator privileges are silently requested by the Makefile. It will fail explicitly if Docker is absent/unavailable.
+`make setup` invokes `python3 tools/dev.py setup`: it builds the development image from `tools/Dockerfile.dev`, downloading the .NET 10 SDK base image and installing Icarus Verilog, Verilator, Yosys, nextpnr-ice40, IceStorm, Python, and related utilities inside Docker. It restores all six managed projects and checks HDL executables. No host administrator privileges are silently requested by the Makefile. It will fail explicitly if Docker is absent/unavailable.
 
 `make tinyrisc-hello` uses the provisioned image to execute `tests/run-tinyrisc.sh` and a Yosys top-level structural check via `tools/run-tinyrisc-container.sh`. This includes ROM assembly, independent CPU model and RTL edge comparison, the Hello World UART byte stream, and a separate serial 8N1 decoder testbench. Exit code is nonzero on any failed command. A committed command/test is **not proof of a passing execution**; inspect the invocation logs.
 
@@ -22,7 +22,7 @@ make setup-and-hello
 
 ## Automatic toolchain provisioning (current workflow)
 
-**Yes: `just setup` now builds a development container that installs the .NET 8 SDK, Python, Node.js, Icarus Verilog, Verilator, Yosys, nextpnr-ice40 and IceStorm.** It also restores the core and xUnit .NET dependencies inside the container. You do not need to install those compilers/simulators separately on the host.
+**Yes: `just setup` now builds a development container that installs the .NET 10 SDK, Python, Node.js, Icarus Verilog, Verilator, Yosys, nextpnr-ice40 and IceStorm.** It also restores the core and xUnit .NET dependencies inside the container. You do not need to install those compilers/simulators separately on the host.
 
 Docker Engine or Docker Desktop must already be installed, started, and accessible to your user. It is the one bootstrap prerequisite for this container-first path, in addition to Python 3 and `just` for the command interface. The setup returns a failure when Docker is unavailable; it does not silently modify the host OS or request administrator privileges.
 
@@ -41,11 +41,11 @@ The provisioning recipe is [tools/Dockerfile.dev](../tools/Dockerfile.dev). Imag
 - **.NET CLI/MSBuild** builds .NET projects; `global.json` pins the selected major SDK feature band.
 - **just** provides developer command names in the root `justfile`. The root `Makefile` delegates compatible targets to just, so Make is optional.
 - **Testcontainers** runs real HDL toolchain integration tests inside Docker, separately from fast xUnit tests.
-- **GitHub Actions** runs the published CI workflow. Shell/Python scripts remain specialized HDL/board verification entry points.
+- **GitHub Actions** is disabled by user request; do not enable or dispatch the retained workflow definitions. Shell/Python scripts remain specialized HDL/board verification entry points.
 
 ## Quick start
 
-For automatic provisioning install Python 3, just, and Docker. The .NET 8 SDK and open-source HDL tools are installed in the container; native SDK installations are optional. From the repo root:
+For automatic provisioning install Python 3, just, and Docker. The .NET 10 SDK and open-source HDL tools are installed in the container; native SDK installations are optional. From the repo root:
 
 ```sh
 just doctor
