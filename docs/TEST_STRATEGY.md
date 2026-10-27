@@ -25,3 +25,22 @@ Current limitation: this initial slice adds xUnit and NSubstitute executable tes
 - Browser debug service: run the same client protocol tests locally and with a containerized host, verifying shutdown and reconnect.
 
 Capture image digest, SDK version, tool version, design hash, seed, expected trace hash and output artifacts in CI.
+
+## Follow-up item 2 — semantic verification campaigns
+
+ScheduledSemanticTests adds independent checks for priority/hold/simultaneous
+commit and malformed boundaries identified by the previous mutation report. The
+new SharpFuzz/AFL++ harness fuzzes table traffic against host array arithmetic;
+`bash tools/run-scheduled-fuzz.sh 60` retains native Linux publish/instrumentation,
+coverage queue and crashes with seed 261026. Input length is bounded to 256 bytes;
+this is a bounded campaign, not a universal correctness proof. No exceptions are
+silently ignored. SharpFuzz 2.2.0 follows its upstream out-of-process API.
+
+The table example is now a separate .NET 10 example assembly so Stryker can mutate
+its implementation independently of the xUnit/oracle assembly. Existing namespace
+and Build API are preserved. Run saved stryker-config.json for compiler sources
+and stryker-table.json for the table. Mutants reversing order across mutually
+exclusive states, Single-to-SingleOrDefault after validation, and removing a DAG
+visited-set optimization can be behaviorally equivalent; do not weaken tests or
+invent kills to obtain 100%. Final results/dispositions follow execution at the
+end of the requested item sequence.

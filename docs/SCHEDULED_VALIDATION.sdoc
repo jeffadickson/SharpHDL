@@ -85,3 +85,17 @@ Implementation: ScheduledArithmetic.cs; HlsScheduledFirCompiler now consumes it.
 Verification: ScheduledArithmeticTests and existing FIR simulation/RTL replays.
 Execution pending the final verification campaign for this continuation.
 <<<
+
+[REQUIREMENT]
+UID: SCHED-VERIFY-002
+TITLE: Semantic mutation and coverage-guided fuzzing
+STATEMENT: >>>
+Verification shall challenge assignment/transition priority, simultaneous register
+commit, hold/reset, numeric/declaration boundaries and ownership. A bounded
+SharpFuzz/AFL++ campaign shall compare table execution with an independent array
+oracle; retain seed, coverage/queue/crash evidence and reproducible commands.
+Stryker shall mutate both scheduled compiler sources and the table implementation.
+Equivalent mutations shall be distinguished from untested behavior.
+Implementation: ScheduledSemanticTests, ScheduledFuzz and run-scheduled-fuzz.sh.
+Execution and mutant disposition are recorded after the final campaign.
+<<<

@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net10.0</TargetFramework><Nullable>enable</Nullable><EnableDefaultCompileItems>false</EnableDefaultCompileItems></PropertyGroup>
+  <ItemGroup><Compile Include="ScheduledTable.cs" /><ProjectReference Include="../src/SharpHDL.HLS/SharpHDL.HLS.csproj" /></ItemGroup>
+</Project>

@@ -1,0 +1,9 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.ScheduledExamples.csproj",
+    "mutate": ["**/ScheduledTable.cs"],
+    "test-case-filter": "FullyQualifiedName~ScheduledTableTests",
+    "concurrency": 4,
+    "reporters": ["html", "json", "progress"]
+  }
+}
