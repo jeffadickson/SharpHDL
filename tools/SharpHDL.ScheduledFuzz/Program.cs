@@ -1,12 +1,31 @@
 using SharpFuzz;
 using SharpHDL.Examples;
 using SharpHDL.Simulation;
+using System.Buffers.Binary;
+using System.Text;
+using SharpHDL;
 
 // SharpFuzz/AFL++ owns generation, coverage feedback and crash retention.
 // This bounded harness translates bytes into protocol traffic and an independent array model.
 Fuzzer.OutOfProcess.Run(stream =>
 {
     var bytes=new byte[256];int length=stream.ReadAtLeast(bytes,1,throwOnEndOfStream:false);
+    if(length>=8)
+    {
+        // BCL endian decoding avoids a custom input parser; the count remains a signed CLR bit pattern.
+        uint operand=BinaryPrimitives.ReadUInt32LittleEndian(bytes.AsSpan(0,4));
+        int count=BinaryPrimitives.ReadInt32LittleEndian(bytes.AsSpan(4,4));
+        var shift=CilCompiler.BuildScheduledSequential(typeof(ShiftFuzzKernel).GetMethod(nameof(ShiftFuzzKernel.Evaluate))!,"FuzzShifts").Design;
+        var machine=new HardwareGraphMachine(shift.Graph,shift.Inputs,shift.Outputs,shift.NextState,shift.ResetValues,shift.Memories);
+        machine.SetInput("arg0",operand);machine.SetInput("arg1",unchecked((uint)count));
+        machine.SetInput("start",1);machine.Tick();machine.SetInput("start",0);
+        for(int edge=0;edge<128&&machine.ReadOutput("done")==0;edge++)machine.Tick();
+        if(machine.ReadOutput("done")!=1||machine.ReadOutput("fault")!=0||
+            (uint)machine.ReadOutput("result")!=ShiftFuzzKernel.Evaluate(operand,count))
+            throw new InvalidOperationException("Native/scheduled shift mismatch.");
+    }
+    var offset=PortablePdbSourceMap.ParseIlOffset(Encoding.ASCII.GetString(bytes,0,length));
+    if(offset<0)throw new InvalidOperationException("A parsed IL offset must never be negative.");
     var d=ScheduledTable.Build(2);
     var sim=new HardwareGraphMachine(d.Graph,d.Inputs,d.Outputs,d.NextState,d.ResetValues,d.Memories);
     int[] table=new int[4];int phase=0,key=0,delta=0,result=0;bool update=false;
@@ -30,3 +49,11 @@ Fuzzer.OutOfProcess.Run(stream =>
         sim.Tick();
     }
 });
+
+/// <summary>Real C# oracle and CIL input, kept outside the instrumented production assemblies.</summary>
+internal static class ShiftFuzzKernel
+{
+    /// <summary>Combine all three CLR shift operations with modular addition.</summary>
+    public static uint Evaluate(uint value,int count)
+        =>unchecked((value<<count)+(value>>count)+(uint)((int)value>>count));
+}

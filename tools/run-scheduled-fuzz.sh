@@ -12,7 +12,7 @@ test -d "$DOTNET_ROOT"
 export DOTNET_ROOT DOTNET_ROLL_FORWARD=Major
 dotnet publish "$repo/tools/SharpHDL.ScheduledFuzz" -c Release --artifacts-path "$output/artifacts" -o "$output/publish"
 dotnet tool install SharpFuzz.CommandLine --version 2.2.0 --tool-path "$output/tools"
-for assembly in SharpHDL.HLS SharpHDL.Core SharpHDL.Simulation SharpHDL.ScheduledExamples; do
+for assembly in SharpHDL SharpHDL.HLS SharpHDL.Core SharpHDL.Simulation SharpHDL.ScheduledExamples; do
   "$output/tools/sharpfuzz" "$output/publish/$assembly.dll"
 done
 AFL_SKIP_BIN_CHECK=1 AFL_NO_UI=1 AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 
