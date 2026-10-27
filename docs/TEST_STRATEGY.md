@@ -44,3 +44,14 @@ exclusive states, Single-to-SingleOrDefault after validation, and removing a DAG
 visited-set optimization can be behaviorally equivalent; do not weaken tests or
 invent kills to obtain 100%. Final results/dispositions follow execution at the
 end of the requested item sequence.
+
+## Follow-up item 4 — broader parity and hosted verification
+
+Compact file-driven testbenches now replay table depths 2/16/256 and actual CIL
+RAM-loop output in both Icarus and Verilator. CIL generation first compares native
+array arithmetic and legacy/Core outputs edge by edge, including partial writes
+on a bounds fault. A method/IL map accompanies generated hardware. Directed unit
+tests reset at every table phase and test independent-kernel state isolation;
+shared multi-kernel resource arbitration is still a separate scheduler feature.
+The Windows/Linux xUnit job collects coverage; scheduled-core-suite is a new RTL
+gate. Hosted workflow outcomes are pending the final authorized push.

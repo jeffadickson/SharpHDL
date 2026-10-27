@@ -8,3 +8,4 @@ __pycache__/
 docs/tinyrisc/verisim/
 generated/hls-scheduled-fir/
 generated/scheduled-table/
+generated/scheduled-suite/

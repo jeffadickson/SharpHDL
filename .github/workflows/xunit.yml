@@ -4,9 +4,9 @@ concurrency:
   cancel-in-progress: true
 on:
   push:
-    paths: ['examples/ScheduledTable.cs', 'tests/Shared/**', 'src/**', 'tests/SharpHDL.UnitTests/**', 'tests/check-project-layers.py', 'tests/rtl/tb_core_hls_elastic.sv', 'tests/rtl/tb_cil_core.sv', 'tools/SharpHDL.CilCoreDemo/**', 'tools/SharpHDL.CoreHlsDemo/**', 'tools/SharpHDL.AxiFirRtlDemo/**', 'src/SharpHDL.RTL/**', 'src/SharpHDL.LegacyRtl/**', 'Makefile', 'global.json', '.github/workflows/xunit.yml']
+    paths: ['examples/**', 'tests/Shared/**', 'src/**', 'tests/SharpHDL.UnitTests/**', 'tests/check-project-layers.py', 'tests/rtl/tb_core_hls_elastic.sv', 'tests/rtl/tb_cil_core.sv', 'tools/SharpHDL.CilCoreDemo/**', 'tools/SharpHDL.CoreHlsDemo/**', 'tools/SharpHDL.AxiFirRtlDemo/**', 'src/SharpHDL.RTL/**', 'src/SharpHDL.LegacyRtl/**', 'Makefile', 'global.json', '.github/workflows/xunit.yml']
   pull_request:
-    paths: ['examples/ScheduledTable.cs', 'tests/Shared/**', 'src/**', 'tests/SharpHDL.UnitTests/**', '.github/workflows/xunit.yml']
+    paths: ['examples/**', 'tests/Shared/**', 'src/**', 'tests/SharpHDL.UnitTests/**', '.github/workflows/xunit.yml']
   workflow_dispatch:
 jobs:
   unit:
@@ -21,7 +21,7 @@ jobs:
         with:
           dotnet-version: '10.0.x'
       - run: dotnet restore tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj
-      - run: dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --no-restore --logger 'trx;LogFileName=unit-results.trx'
+      - run: dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --no-restore --settings tests/SharpHDL.UnitTests/coverage.runsettings --collect:'XPlat Code Coverage' --logger 'trx;LogFileName=unit-results.trx'
       - name: Explicit AXI FIR regression gate
         run: dotnet test tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj -c Release --no-restore --filter "FullyQualifiedName~AxiFir"
       - uses: actions/upload-artifact@v4
@@ -30,6 +30,31 @@ jobs:
           name: unit-results-${{ matrix.os }}
           path: '**/TestResults/*.trx'
           if-no-files-found: warn
+  scheduled-core-suite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - run: sudo apt-get update && sudo apt-get install -y iverilog verilator
+      - run: dotnet run --project tools/SharpHDL.AxiFirRtlDemo -c Release -- --suite generated/scheduled-suite
+      - name: Independent Icarus and Verilator cycle replay
+        run: |
+          root="$PWD"
+          mkdir -p build/scheduled-suite
+          for design in ScheduledTable1 ScheduledTable4 ScheduledTable8 ScheduledCilLoop; do
+            iverilog -g2012 -s tb -o "build/scheduled-suite/$design" "generated/scheduled-suite/$design.v" "generated/scheduled-suite/${design}_tb.sv"
+            (cd generated/scheduled-suite && "$root/build/scheduled-suite/$design")
+            verilator --binary --timing -Wno-fatal --top-module tb --Mdir "$root/build/scheduled-suite/$design-obj" "generated/scheduled-suite/$design.v" "generated/scheduled-suite/${design}_tb.sv"
+            (cd generated/scheduled-suite && "$root/build/scheduled-suite/$design-obj/Vtb")
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scheduled-core-suite
+          path: generated/scheduled-suite/
   scheduled-table-rtl:
     runs-on: ubuntu-latest
     timeout-minutes: 15

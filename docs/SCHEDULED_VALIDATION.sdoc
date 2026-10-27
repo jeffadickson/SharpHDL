@@ -115,3 +115,17 @@ Verification: ScheduledCilTests compares host results and legacy outputs edge by
 edge, including repeat calls, bounds/watchdog and unsupported-opcode diagnostics.
 Execution pending final campaign; this does not replace the broader legacy API.
 <<<
+
+[REQUIREMENT]
+UID: SCHED-PARITY-001
+TITLE: Reset phase and independent HDL parity
+STATEMENT: >>>
+Directed tests shall reset at every table control phase and distinguish suppressed
+writes from already committed updates. Independently scheduled machines shall not
+share runtime state. Compact vector replays shall check table and stateful CIL
+outputs after every edge in Icarus and Verilator, after independent host/legacy
+checks during generation. Windows/Linux hosted xUnit and RTL jobs gate changes.
+Implementation: ScheduledResetTests, CoreReplay, ScheduledSuiteReplay and xunit.yml.
+Execution results, including hosted workflow outcomes, are recorded at final push.
+This does not implement shared-resource arbitration among concurrent kernels.
+<<<
