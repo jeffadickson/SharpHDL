@@ -1,5 +1,21 @@
 # SharpHDL handoff — continuation verified (2026-10-27)
 
+## Latest addition: Z80 architectural test design
+
+Implementation 87dcd71 adds examples/Z80: a synthesizable scheduled base/CB subset,
+generated Verilog, 840 pinned independent vectors and a multi-instruction program.
+Fresh full suites pass 223/223 on Windows and Linux. Both HDL simulators pass
+11,548 replay edges; generic Yosys checks pass. Six focused ALU mutations are killed.
+Coverage is 61.57% line / 49.01% branch across the recorded managed scope; the Z80
+elaborator is fully covered but that does not establish ISA/toggle coverage.
+[Report and limitations](docs/Z80_TEST_DESIGN_2026-10-27.md) and
+[reproduction/interface](examples/Z80/README.md) are the current evidence.
+DD/FD/ED, interrupts, I/O, DI/EI, EX(SP),HL, SLL and physical timing remain absent.
+No complete Z80/CP-M/FPGA compatibility claim. The earlier continuation below is
+historical evidence, preserved for source-map/compiler work.
+
+## Previous compiler continuation
+
 Latest continuation began at f116697. Scheduled CIL supports 32-bit shl/shr/shr.un
 with CLR-compatible count masking and explicit arithmetic/logical right shifts.
 Matched sidecar/embedded Portable PDBs map actual scheduler encodings to source

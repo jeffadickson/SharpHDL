@@ -152,4 +152,3 @@ public sealed class Z80Tests
         Assert.Equal(1, (int)m.ReadOutput("pc_out"));
     }
 }
-

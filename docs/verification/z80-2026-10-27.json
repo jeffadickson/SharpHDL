@@ -1,0 +1,256 @@
+{
+  "baseline": "bf173ea522ae4e986dff7281e6cd9964fef5300f",
+  "implementation": "87dcd71bd4554c0719f1c21288069db1302d5fb5",
+  "initialState": "clean main tracking origin/main",
+  "sourceHashes": {
+    "tests/Shared/Z80Campaign.cs": {
+      "workingSha256": "4ED909999E1DC67F0BEB8B22BFA13D856D81026705B510819350C2E171E7F340",
+      "gitBlob": "2c5b55f2d63f45aa5014106fd4eeccf72bd4dba4"
+    },
+    "tools/ImportZ80Vectors.cs": {
+      "workingSha256": "53A42F26251129F8E1B3BF4C4DDBF072C87012F79869A2017BE74B2FCCAE0599",
+      "gitBlob": "1bd2c954daae729f1c70b03457e0081828fffa8a"
+    },
+    "examples/Z80/Z80TestCore.cs": {
+      "workingSha256": "3A5020A0FA43571227297E08D9C2F36D58F3565E82C51205BAC8518AB1211F88",
+      "gitBlob": "d93f715d8df156d8b124f47ffb5ee12f29ee8db2"
+    },
+    "examples/Z80/vectors.json": {
+      "workingSha256": "17C1F7171D5631C4D51950AE8E7FCA476D71DDC02CA3555A2AC0C9DBFF4210F3",
+      "gitBlob": "02f7d4113ee996e21649af3e29d55066a2e4ec16"
+    },
+    "examples/Z80/generated/Z80TestCore.v": {
+      "workingSha256": "8F1BA4B9C60D49CC45064ECFA54E4942723C106305650DA87A817E2FCA96A211",
+      "gitBlob": "e25c6bff8cc08e61b8c383664f0493f924b12391"
+    }
+  },
+  "tests": {
+    "linux": 223,
+    "independentVectors": 840,
+    "windows": 223,
+    "replay": "1145655947,296144285",
+    "propertyCases": 64,
+    "failed": 0,
+    "linuxArtifacts": "/tmp/sharphdl-z80-tests-6oWsUs",
+    "upstreamRevision": "ebe1875d48f374bcfd4b505d8eb8ee751568b5f7",
+    "skipped": 0,
+    "upstreamFiles": 105,
+    "operationsPerCase": 8
+  },
+  "coverage": {
+    "totalLines": "4921",
+    "totalBranches": "5139",
+    "tool": "Coverlet 10.1.0",
+    "coveredLines": "3030",
+    "coveredBranches": "2519",
+    "z80ElaboratorLines": "235/235",
+    "limitations": "C# elaboration coverage is not instruction, hardware-toggle or ISA coverage. CLI/importer and generated HDL toggle coverage unmeasured.",
+    "z80ElaboratorBranches": "68/68",
+    "branchRate": "0.4901",
+    "lineRate": "0.6157"
+  },
+  "mutation": {
+    "scorePercent": 100,
+    "selectedMutants": [
+      {
+        "id": "161",
+        "mutatorName": "Block removal mutation",
+        "replacement": "{}",
+        "location": {
+          "start": {
+            "line": 111,
+            "column": 9
+          },
+          "end": {
+            "line": 119,
+            "column": 10
+          }
+        },
+        "status": "Ignored",
+        "statusReason": "Removed by block already covered filter",
+        "static": false,
+        "coveredBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ],
+        "killedBy": []
+      },
+      {
+        "id": "162",
+        "mutatorName": "Conditional (true) mutation",
+        "replacement": "(true?left.Resize(9).Subtract(right.Resize(9)).Subtract(cin.Resize(9))\n:left.Resize(9).Add(right.Resize(9)).Add(cin.Resize(9)))",
+        "location": {
+          "start": {
+            "line": 112,
+            "column": 24
+          },
+          "end": {
+            "line": 113,
+            "column": 73
+          }
+        },
+        "status": "Killed",
+        "static": false,
+        "coveredBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ],
+        "killedBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ]
+      },
+      {
+        "id": "163",
+        "mutatorName": "Conditional (false) mutation",
+        "replacement": "(false?left.Resize(9).Subtract(right.Resize(9)).Subtract(cin.Resize(9))\n:left.Resize(9).Add(right.Resize(9)).Add(cin.Resize(9)))",
+        "location": {
+          "start": {
+            "line": 112,
+            "column": 24
+          },
+          "end": {
+            "line": 113,
+            "column": 73
+          }
+        },
+        "status": "Killed",
+        "static": false,
+        "coveredBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ],
+        "killedBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ]
+      },
+      {
+        "id": "164",
+        "mutatorName": "Conditional (true) mutation",
+        "replacement": "(true?left.Xor(right) :left.Xor(right).Not())",
+        "location": {
+          "start": {
+            "line": 115,
+            "column": 29
+          },
+          "end": {
+            "line": 115,
+            "column": 74
+          }
+        },
+        "status": "Killed",
+        "static": false,
+        "coveredBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ],
+        "killedBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ]
+      },
+      {
+        "id": "165",
+        "mutatorName": "Conditional (false) mutation",
+        "replacement": "(false?left.Xor(right) :left.Xor(right).Not())",
+        "location": {
+          "start": {
+            "line": 115,
+            "column": 29
+          },
+          "end": {
+            "line": 115,
+            "column": 74
+          }
+        },
+        "status": "Killed",
+        "static": false,
+        "coveredBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ],
+        "killedBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ]
+      },
+      {
+        "id": "166",
+        "mutatorName": "Conditional (true) mutation",
+        "replacement": "(true?2 :0)",
+        "location": {
+          "start": {
+            "line": 118,
+            "column": 59
+          },
+          "end": {
+            "line": 118,
+            "column": 70
+          }
+        },
+        "status": "Killed",
+        "static": false,
+        "coveredBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ],
+        "killedBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ]
+      },
+      {
+        "id": "167",
+        "mutatorName": "Conditional (false) mutation",
+        "replacement": "(false?2 :0)",
+        "location": {
+          "start": {
+            "line": 118,
+            "column": 59
+          },
+          "end": {
+            "line": 118,
+            "column": 70
+          }
+        },
+        "status": "Killed",
+        "static": false,
+        "coveredBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ],
+        "killedBy": [
+          "47fe0cb1-c947-9566-08c9-358fd67335a1"
+        ]
+      }
+    ],
+    "tool": "Stryker.NET 5.0.0",
+    "killed": 6,
+    "scope": "AluFlags character span 5564..6202",
+    "limitations": "Six conditional mutations only; not whole-core qualification. Initial line-number filter selected no mutants and produced no score.",
+    "uncovered": 0,
+    "survived": 0,
+    "timeout": 0
+  },
+  "rtl": {
+    "programInstructions": 30,
+    "coreNodes": 2957,
+    "yosys": "0.33: hierarchy/proc/opt/check/stat pass",
+    "icarus": "12.0: pass 11548 edges",
+    "artifacts": "/tmp/sharphdl-z80-YrgO7W",
+    "genericCells": 1130,
+    "verilator": "5.020: pass 11548 edges",
+    "limitations": "No target mapping, place/route, physical timing or formal proof.",
+    "programEdges": 267
+  },
+  "strictdoc": "0.30.4 export passed",
+  "importer": "Native AOT publish succeeded; compiled executable imported 840 records and reproduced prior vector working-file SHA256. Git LF normalization may differ from Windows JSON whitespace.",
+  "fuzzing": "FsCheck randomized arithmetic plus upstream random-state samples and unsupported-input negative tests ran. No new coverage-guided Z80 campaign.",
+  "performance": "No benchmark/speedup claim",
+  "sdk": {
+    "linux": "10.0.402",
+    "windows": "10.0.403"
+  },
+  "ci": "Actions disabled; not dispatched",
+  "limitations": [
+    "DD/FD/ED, interrupts, I/O, DI/EI, EX (SP),HL and SLL unsupported.",
+    "I/R, IX/IY, WZ/Q and physical bus timing absent.",
+    "BIT(HL), SCF/CCF undocumented bits 3/5 excluded from oracle comparisons.",
+    "Upstream software-model samples are not silicon evidence or exhaustive ISA qualification."
+  ],
+  "requirements": [
+    "Z80-CORE-001",
+    "Z80-BUS-001",
+    "Z80-VERIFY-001",
+    "Z80-FAULT-001"
+  ]
+}
