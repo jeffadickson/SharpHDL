@@ -8,7 +8,7 @@ namespace SharpHDL.Examples;
 /// Instruction-stepped Z80 test hardware with a stalled byte bus. Implements the
 /// documented unprefixed data/ALU/control instructions and CB register/memory group.
 /// DD/FD indexing and indexed CB operations share the base datapath.
-/// ED and port I/O share the byte bus; external interrupt service is the next stage.
+/// ED and port I/O share the byte bus; INT/NMI are recognized at retirement boundaries.
 /// This is an architectural test design, not a T-state/pin-compatible replacement.
 /// </summary>
 public static class Z80TestCore
@@ -26,6 +26,7 @@ public static class Z80TestCore
         var load = b.Input("load_state", 1);
         var ready = b.Input("bus_ready", 1);
         var data = b.Input("bus_rdata", 8);
+        var irq = b.Input("int_request", 1); var nmi = b.Input("nmi", 1);
         var r = new ScheduledRegister[8];
         string[] names = { "b", "c", "d", "e", "h", "l", "unused", "a" };
         for (int i = 0; i < 8; i++) r[i] = b.Register(names[i], 8);
@@ -49,29 +50,35 @@ public static class Z80TestCore
         var wd = b.Register("write_data", 8);
         var word = b.Register("word", 16);
         var halted = b.Register("halted", 1);
+        var nmiPrevious = b.Register("nmi_previous", 1); var nmiPending = b.Register("nmi_pending", 1);
+        var servicing = b.Register("servicing_interrupt", 1);
+        var clockedStates = new List<ScheduledState>();
+        ScheduledState State(string name) { var s = b.State(name); clockedStates.Add(s); return s; }
         // All states precede InState calls: scheduler encoding is then fixed.
-        var idle = b.State("idle"); var fetch = b.State("fetch");
-        var decode = b.State("decode"); var immediate = b.State("imm8");
-        var low = b.State("imm_low"); var high = b.State("imm_high");
-        var readHl = b.State("read_hl"); var execute = b.State("execute");
-        var store = b.State("store"); var storeHigh = b.State("store_high");
-        var readAbs = b.State("read_abs"); var readAbsHigh = b.State("read_abs_high");
-        var pushHigh = b.State("push_high"); var pushLow = b.State("push_low");
-        var popLow = b.State("pop_low"); var popHigh = b.State("pop_high");
-        var cbFetch = b.State("cb_fetch"); var cbDecode = b.State("cb_decode");
-        var cbRead = b.State("cb_read"); var cbExecute = b.State("cb_execute");
-        var indexDisplacement = b.State("index_displacement");
-        var exchangeLow = b.State("exchange_low"); var exchangeHigh = b.State("exchange_high");
-        var exchangeWriteHigh = b.State("exchange_write_high"); var exchangeWriteLow = b.State("exchange_write_low");
-        var edFetch = b.State("ed_fetch"); var edDecode = b.State("ed_decode");
-        var edLow = b.State("ed_low"); var edHigh = b.State("ed_high"); var edExecute = b.State("ed_execute");
-        var edStoreLow = b.State("ed_store_low"); var edStoreHigh = b.State("ed_store_high");
-        var edLoadLow = b.State("ed_load_low"); var edLoadHigh = b.State("ed_load_high");
-        var portRead = b.State("port_read"); var portWrite = b.State("port_write");
-        var edIn = b.State("ed_in"); var edOut = b.State("ed_out");
-        var edRead = b.State("ed_read"); var edProcess = b.State("ed_process"); var edWrite = b.State("ed_write");
-        var blockIn = b.State("block_in"); var blockOut = b.State("block_out"); var blockFinish = b.State("block_finish");
-        var retire = b.State("retire"); var trap = b.State("trap");
+        var idle = State("idle"); var fetch = State("fetch");
+        var decode = State("decode"); var immediate = State("imm8");
+        var low = State("imm_low"); var high = State("imm_high");
+        var readHl = State("read_hl"); var execute = State("execute");
+        var store = State("store"); var storeHigh = State("store_high");
+        var readAbs = State("read_abs"); var readAbsHigh = State("read_abs_high");
+        var pushHigh = State("push_high"); var pushLow = State("push_low");
+        var popLow = State("pop_low"); var popHigh = State("pop_high");
+        var cbFetch = State("cb_fetch"); var cbDecode = State("cb_decode");
+        var cbRead = State("cb_read"); var cbExecute = State("cb_execute");
+        var indexDisplacement = State("index_displacement");
+        var exchangeLow = State("exchange_low"); var exchangeHigh = State("exchange_high");
+        var exchangeWriteHigh = State("exchange_write_high"); var exchangeWriteLow = State("exchange_write_low");
+        var edFetch = State("ed_fetch"); var edDecode = State("ed_decode");
+        var edLow = State("ed_low"); var edHigh = State("ed_high"); var edExecute = State("ed_execute");
+        var edStoreLow = State("ed_store_low"); var edStoreHigh = State("ed_store_high");
+        var edLoadLow = State("ed_load_low"); var edLoadHigh = State("ed_load_high");
+        var portRead = State("port_read"); var portWrite = State("port_write");
+        var edIn = State("ed_in"); var edOut = State("ed_out");
+        var edRead = State("ed_read"); var edProcess = State("ed_process"); var edWrite = State("ed_write");
+        var blockIn = State("block_in"); var blockOut = State("block_out"); var blockFinish = State("block_finish");
+        var irqAck = State("irq_ack"); var vectorLow = State("vector_low"); var vectorHigh = State("vector_high");
+        var interruptRetire = State("interrupt_retire");
+        var retire = State("retire"); var trap = State("trap");
 
         ScheduledValue C(int width, int value) => b.Constant(width, value);
         ScheduledValue Eq(ScheduledValue value, int n) => value.Equal(C(value.Width, n));
@@ -176,11 +183,12 @@ public static class Z80TestCore
         idle.Assign(pc, b.Input("init_pc", 16), load).Assign(sp, b.Input("init_sp", 16), load)
             .Assign(ix, b.Input("init_ix", 16), load).Assign(iy, b.Input("init_iy", 16), load)
             .Assign(indexMode, C(2, 0)).Assign(displaced, C(1, 0))
-            .Assign(halted, C(1, 0), load)
-            .Transition("fetch", step.And(load.Not()).And(halted.Value.Not()));
+            .Assign(halted, C(1, 0), load);
+        var initialMode = b.Input("init_im", 2);
         idle.Assign(interruptPage, b.Input("init_i", 8), load).Assign(refresh, b.Input("init_r", 8), load)
             .Assign(iff1, b.Input("init_iff1", 1), load).Assign(iff2, b.Input("init_iff2", 1), load)
-            .Assign(interruptMode, b.Input("init_im", 2), load).Assign(eiDelay, b.Input("init_ei_delay", 2), load);
+            .Assign(interruptMode, initialMode, load).Assign(eiDelay, b.Input("init_ei_delay", 2), load);
+        idle.Transition("trap", load.And(Eq(initialMode, 3)));
         var incrementRefresh = refresh.Value.And(C(8, 128)).Or(refresh.Value.Add(C(8, 1)).And(C(8, 127)));
         fetch.Assign(op, data, ready).Assign(pc, pc.Value.Add(C(16, 1)), ready).Transition("decode", ready);
         fetch.Assign(refresh, incrementRefresh, ready);
@@ -327,7 +335,8 @@ public static class Z80TestCore
             PutPair(popHigh, i, Pair(data, lo.Value), ready.And(Eq(op.Value, 0xC1 + 16 * i)), true);
         }
         pushHigh.Assign(sp, sp.Value.Subtract(C(16, 1)), ready).Transition("push_low", ready);
-        pushLow.Assign(sp, sp.Value.Subtract(C(16, 1)), ready).Transition("retire", ready);
+        pushLow.Assign(sp, sp.Value.Subtract(C(16, 1)), ready)
+            .Transition("interrupt_retire", ready.And(servicing.Value)).Transition("retire", ready);
         popLow.Assign(lo, data, ready).Assign(sp, sp.Value.Add(C(16, 1)), ready).Transition("pop_high", ready);
         var popPair = Eq(op.Value.And(C(8, 0xCF)), 0xC1);
         popHigh.Assign(pc, Pair(data, lo.Value), ready.And(popPair.Not()))
@@ -507,6 +516,39 @@ public static class Z80TestCore
         var continueBlock = ScheduledValue.Select(isTransfer, Eq(nextBc, 0).Not(), Eq(ioB, 0).Not()).And(repeat);
         blockFinish.Assign(pc, pc.Value.Subtract(C(16, 2)), continueBlock).Transition("retire");
 
+        // NMI edges are captured throughout the microsequence, including WAIT
+        // stalls. Acceptance only occurs at idle, after any instruction/repeat
+        // iteration has committed. NMI wins simultaneous INT and does not clear IFF2.
+        var nmiEdge = nmi.And(nmiPrevious.Value.Not());
+        var acceptNmi = b.InState(idle).And(load.Not()).And(nmiPending.Value.Or(nmiEdge));
+        var acceptIrq = b.InState(idle).And(load.Not()).And(acceptNmi.Not())
+            .And(irq).And(iff1.Value).And(Eq(eiDelay.Value, 0));
+        foreach (var state in clockedStates)
+        {
+            state.Assign(nmiPrevious, nmi);
+            state.Assign(nmiPending, nmiPending.Value.Or(nmiEdge).And(acceptNmi.Not()));
+        }
+        idle.Assign(halted, C(1, 0), acceptNmi.Or(acceptIrq)).Assign(servicing, C(1, 1), acceptNmi.Or(acceptIrq))
+            .Assign(iff1, C(1, 0), acceptNmi.Or(acceptIrq)).Assign(iff2, C(1, 0), acceptIrq)
+            .Assign(word, pc.Value, acceptNmi).Assign(pc, C(16, 0x66), acceptNmi)
+            .Assign(refresh, incrementRefresh, acceptNmi)
+            .Transition("push_high", acceptNmi).Transition("irq_ack", acceptIrq)
+            .Transition("fetch", step.And(load.Not()).And(halted.Value.Not()));
+        // Acknowledge is a distinct stalled bus transaction. IM0 executes the
+        // supplied opcode without advancing PC; later operand bytes come from RAM.
+        irqAck.Assign(refresh, incrementRefresh, ready)
+            .Assign(op, data, ready.And(Eq(interruptMode.Value, 0)))
+            .Assign(servicing, C(1, 0), ready.And(Eq(interruptMode.Value, 0)))
+            .Assign(word, pc.Value, ready.And(Eq(interruptMode.Value, 1)))
+            .Assign(pc, C(16, 0x38), ready.And(Eq(interruptMode.Value, 1)))
+            .Assign(address, Pair(interruptPage.Value, data), ready.And(Eq(interruptMode.Value, 2)))
+            .Transition("decode", ready.And(Eq(interruptMode.Value, 0)))
+            .Transition("push_high", ready.And(Eq(interruptMode.Value, 1)))
+            .Transition("vector_low", ready.And(Eq(interruptMode.Value, 2)));
+        vectorLow.Assign(lo, data, ready).Assign(address, address.Value.Add(C(16, 1)), ready).Transition("vector_high", ready);
+        vectorHigh.Assign(word, pc.Value, ready).Assign(pc, Pair(data, lo.Value), ready).Transition("push_high", ready);
+        interruptRetire.Assign(servicing, C(1, 0)).Transition("idle");
+
         // Exactly one request is outstanding. All request fields are functions
         // of stable registers/state; no ready-dependent combinational requests.
         var busValid = C(1, 0); var busWrite = C(1, 0);
@@ -534,7 +576,10 @@ public static class Z80TestCore
         Bus(portRead, address.Value); Bus(portWrite, address.Value, true, wd.Value);
         Bus(edIn, pairs[0]); Bus(edOut, pairs[0], true, ScheduledValue.Select(Eq(ey, 6), C(8, 0), Choose(ey, Array.ConvertAll(r, item => item.Value))));
         Bus(blockIn, pairs[0]); Bus(blockOut, address.Value, true, wd.Value);
-        b.Output("bus_io", b.InState(portRead).Or(b.InState(portWrite)).Or(b.InState(edIn)).Or(b.InState(edOut)).Or(b.InState(blockIn)).Or(b.InState(blockOut)));
+        Bus(irqAck, C(16, 0)); Bus(vectorLow, address.Value); Bus(vectorHigh, address.Value);
+        b.Output("bus_io", b.InState(portRead).Or(b.InState(portWrite)).Or(b.InState(edIn)).Or(b.InState(edOut)).Or(b.InState(blockIn)).Or(b.InState(blockOut)).Or(b.InState(irqAck)));
+        b.Output("bus_irq_ack", b.InState(irqAck)); b.Output("interrupt_done", b.InState(interruptRetire));
+        b.Output("reti", b.InState(popHigh).And(ready).And(Eq(op.Value, 0xED)).And(Eq(cb.Value, 0x4D)));
         b.Output("bus_valid", busValid); b.Output("bus_write", busWrite);
         b.Output("bus_address", busAddress); b.Output("bus_wdata", busData);
         b.Output("instruction_done", b.InState(retire)); b.Output("idle", b.InState(idle));

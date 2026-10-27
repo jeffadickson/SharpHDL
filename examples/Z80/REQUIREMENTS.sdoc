@@ -11,8 +11,8 @@ architectural state without executing a host software emulator as hardware.
 Implementation: examples/Z80/Z80TestCore.cs, Build.
 Verification: Z80Tests.Published_instruction_vectors_match_architectural_results;
 tools/SharpHDL.Z80Demo and tools/run-z80-rtl.sh.
-The unsupported list in README.md is normative. This requirement does not demand
-full Z80 compatibility, pin timing, interrupts, indexed/ED opcodes or undocumented flags.
+The implementation scope in README.md is normative. This requirement does not
+demand physical pin timing or undocumented Q/WZ conformance.
 <<<
 
 [REQUIREMENT]
@@ -48,8 +48,8 @@ Unsupported instructions shall enter a sticky fault state without issuing writes
 or reporting instruction completion. Reset shall recover. Encodings whose defined
 Z80 behavior is an ignored prefix or ED NOP shall follow that behavior when supported.
 Implementation: Z80TestCore decode, execute and trap states.
-Verification: Z80Tests.Unsupported_opcodes_trap_until_reset,
-Cb_sll_shifts_in_one.
+Verification: Z80Tests.Reserved_interrupt_mode_faults_and_reset_recovers,
+Undefined_ed_encodings_are_two_byte_nops and Cb_sll_shifts_in_one.
 <<<
 
 [REQUIREMENT]
@@ -87,4 +87,20 @@ port address and commit exactly once per valid/ready edge. The testbench shall
 compare address, direction and data against independently published port records.
 Implementation: Z80TestCore port and block I/O states, Z80Campaign.Run.
 Verification: Ed_and_io_vectors_match_independent_results and stalled port replay.
+<<<
+
+[REQUIREMENT]
+UID: Z80-INT-001
+TITLE: Boundary-safe interrupt modes and NMI
+STATEMENT: >>>
+INT shall be recognized at instruction/repeat boundaries when IFF1 is enabled
+and EI delay has expired. NMI edges shall remain pending during stalled transfers
+and take priority over INT. IM0 shall execute the acknowledge opcode without PC
+increment; IM1 shall call 0038; IM2 shall read the wrapping I/vector pointer.
+Accepted service shall preserve the correct stack return PC and wake HALT.
+NMI shall preserve IFF2; RETN shall restore IFF1; RETI shall identify daisy-chain
+completion. Reset shall clear pending service. Invalid debug IM=3 shall fault.
+Implementation: Z80TestCore interrupt states and pending-edge registers.
+Verification: Z80InterruptCampaign scenarios 0..6, Interrupts_follow_architectural_boundaries,
+Reserved_interrupt_mode_faults_and_reset_recovers.
 <<<

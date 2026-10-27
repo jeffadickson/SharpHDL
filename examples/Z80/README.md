@@ -18,7 +18,12 @@ I/R transfers, RRD/RLD, block transfer/compare and block I/O are implemented.
 Immediate and register-indirect IN/OUT use a separate bus_io qualifier and preserve
 the Z80's full 16-bit port address. Repeat instructions retire one iteration and
 rewind PC when continuation is required. Undefined ED encodings are two-byte NOPs.
-DI/EI and their IFF state are present; external interrupt service is the next item.
+DI/EI, IM0/1/2, maskable INT and edge-latched NMI are implemented. INT/NMI are
+accepted at instruction/repeat boundaries even when step is low. NMI has priority;
+EI defers INT through the next instruction. HALT resumes on an accepted interrupt.
+IM0 executes the acknowledge opcode without incrementing PC; its operands come
+from memory. IM2 wraps the two-byte vector read modulo 65536. RETN restores IFF1
+from IFF2, while ED 4D also emits the RETI daisy-chain indication.
 Bus ownership, WZ/Q, physical pin signals and Z80 T-state timing remain absent.
 BIT (HL), SCF and CCF only promise documented flags; Q/WZ-dependent flag bits 3/5
 are excluded from those upstream comparisons. Other supported flag results include
@@ -37,15 +42,19 @@ registers and sets SP=FFFF; it cannot undo a previously accepted external write.
 | init_ix/iy, ix/iy_out | Index-register initialization and architectural observation. |
 | init_i/r/iff1/iff2/im/ei_delay | Interrupt/refresh debug state; ei_delay uses the internal 0..2 countdown. |
 | bus_io | Qualifies a port transaction instead of a memory transaction. |
+| int_request, nmi | Active-high synchronous INT level and NMI edge input; synchronize external asynchronous pins before use. |
+| bus_irq_ack | Qualifies a stalled interrupt acknowledge; provide the IM0 opcode or IM2 vector in bus_rdata. |
+| interrupt_done, reti | Service completion for NMI/IM1/IM2, and accepted RETI return pulse. IM0 completes as an injected instruction. |
 | bus_valid, bus_write, bus_address, bus_wdata | One outstanding byte request; stable until accepted. bus_write=0 means read. |
 | bus_ready, bus_rdata | Acceptance and read byte, sampled only on a valid/ready edge. |
 | instruction_done, idle, fault, halted_out | Retirement pulse, idle state, sticky illegal-instruction stop, HALT latch. |
 | af/bc/de/hl_out, pc/sp_out, alt_out0..3, opcode_out | Observable architectural state and last base/prefix opcode. |
 | i/r/iff1/iff2/im_out, ei_delay_out | Refresh and interrupt state. R increments its low seven bits per opcode fetch, preserving bit 7. |
 
-HALT retires once and then suppresses fetches until reset or an idle debug load.
-Fault recovers only on reset. A faulting fetch has advanced PC; use opcode_out to
-identify the rejected base/prefix byte. Interrupt wake-up is unsupported.
+HALT retires once and suppresses fetches until interrupt acceptance, reset or an
+idle debug load. Debug IM=3 faults and recovers on reset; valid instruction
+encodings include ignored prefixes and undefined ED NOPs. Physical refresh cycles,
+BUSREQ/BUSACK and T-state timing are outside this architectural bus model.
 
 ## Run locally
 

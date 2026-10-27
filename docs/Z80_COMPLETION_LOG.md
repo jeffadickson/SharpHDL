@@ -34,3 +34,17 @@ fixed restart-PC bits and repeat-path parity/half-carry folding. All comparisons
 retain full flags for these ED cases. Base/indexed fixture records were compacted
 without changing data. Indexed/base/refresh regression and full RTL qualification
 will run against the final combined core. External interrupt inputs are not yet added.
+
+## Item 3 — interrupt service
+
+Implemented synchronous INT and edge-pending NMI, IM0 opcode injection (including
+operand-fetching CALL), IM1, wrapping IM2 vectors, IFF state, EI delay, HALT wake-up,
+RETN restoration and RETI daisy indication. NMI is retained during WAIT and wins
+simultaneous INT. Service completion is distinct from instruction retirement.
+Reserved debug IM=3 faults instead of deadlocking in acknowledge.
+
+Nine focused tests pass (13s): seven independent interrupt scenarios, reserved-mode
+negative/reset and immutable batch snapshots. Corrected the IM2 test stimulus to
+supply vector FF rather than the IM0 RST opcode CF; the core had correctly read
+the vector actually provided. Log: build/verification/z80-interrupts-final.log.
+Full managed/HDL regressions and generated RTL refresh are still pending.

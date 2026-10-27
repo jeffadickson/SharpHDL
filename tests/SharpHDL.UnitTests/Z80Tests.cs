@@ -44,6 +44,37 @@ public sealed class Z80Tests
     public void Ed_repeat_vectors_match_independent_results()
         => Assert.Equal(64, Z80Campaign.Run(Path.Combine(AppContext.BaseDirectory, "Z80EdVectors.json"), Machine(), "ED B"));
 
+    /// <summary>Interrupt mode, priority, EI/HALT and stalled-write scenarios have independent expectations.</summary>
+    [Theory]
+    [InlineData(0)] [InlineData(1)] [InlineData(2)] [InlineData(3)] [InlineData(4)] [InlineData(5)] [InlineData(6)]
+    public void Interrupts_follow_architectural_boundaries(int scenario)
+    {
+        var m = Machine(); IReadOnlyDictionary<string, System.Numerics.BigInteger>? snapshot = null;
+        Z80InterruptCampaign.Run(scenario, (n, v) => { m.SetInput(n, v); snapshot = null; },
+            n => (int)(snapshot ??= m.ReadOutputs())[n],
+            reset => { if (reset) m.Reset(); else m.Tick(); snapshot = null; });
+    }
+
+    /// <summary>Reserved debug IM state rejects rather than entering an unserviceable acknowledge.</summary>
+    [Fact]
+    public void Reserved_interrupt_mode_faults_and_reset_recovers()
+    {
+        var m = Machine(); m.SetInput("init_im", 3); m.SetInput("load_state", 1); m.Tick();
+        Assert.Equal(1, (int)m.ReadOutput("fault")); Assert.Equal(0, (int)m.ReadOutput("bus_valid"));
+        m.SetInput("load_state", 0); m.Reset(); Assert.Equal(0, (int)m.ReadOutput("fault"));
+    }
+
+    /// <summary>Batched observations equal individual reads and remain immutable across ticks/reset.</summary>
+    [Fact]
+    public void Batched_outputs_are_consistent_immutable_snapshots()
+    {
+        var m = Machine(); var before = m.ReadOutputs();
+        foreach (var pair in before) Assert.Equal(pair.Value, m.ReadOutput(pair.Key));
+        m.SetInput("step", 1); m.Tick(); var after = m.ReadOutputs();
+        Assert.Equal(0, (int)before["bus_valid"]); Assert.Equal(1, (int)after["bus_valid"]);
+        m.Reset(); Assert.Equal(1, (int)after["bus_valid"]); Assert.Equal(0, (int)m.ReadOutput("bus_valid"));
+    }
+
     /// <summary>Actual machine-code loop composes instructions, stack operations and memory writes.</summary>
     [Fact]
     public void Machine_code_program_composes_loop_call_ram_and_halt()
