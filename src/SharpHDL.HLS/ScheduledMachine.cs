@@ -266,7 +266,11 @@ public sealed partial class ScheduledMachineBuilder
         registers.Add(register);return register;
     }
 
-    /// <summary>Declare a zero-initialized synchronous single-port RAM.</summary>
+    /// <summary>Declare zero-initialized generic RAM, retaining the original public method signature.</summary>
+    public ScheduledMemory Memory(string memoryName,int width,int depth)
+        =>Memory(memoryName,width,depth,null,HardwareMemoryImplementation.Auto);
+
+    /// <summary>Declare synchronous single-port RAM with exact initial contents, defaulting to zero.</summary>
     public ScheduledMemory Memory(string memoryName,int width,int depth,IEnumerable<BigInteger>? initial=null,
         HardwareMemoryImplementation implementation=HardwareMemoryImplementation.Auto)
     {

@@ -93,6 +93,7 @@ public sealed class ScheduledSemanticTests
         Assert.Throws<ArgumentException>(()=>s.Write(f.Memory("write",8,2),one,x,one));
         Assert.Throws<ArgumentException>(()=>s.Write(ram,one,one,one));
         Assert.Throws<ArgumentException>(()=>s.Write(ram,one,x,two));
+        Assert.Throws<ArgumentException>(()=>s.Write(ram,f.Input("address",1),x,one));
         Assert.Throws<ArgumentException>(()=>s.Use(f.Resource("foreign")));
         Assert.Throws<ArgumentException>(()=>s.Transition(" "));
         Assert.Throws<ArgumentException>(()=>b.InState(foreign));

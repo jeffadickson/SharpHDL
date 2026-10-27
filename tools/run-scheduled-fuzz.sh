@@ -6,6 +6,10 @@ seconds=${1:-60}
 [[ "$seconds" =~ ^[0-9]+$ ]] && ((seconds >= 1 && seconds <= 3600)) || { echo 'Budget must be 1..3600 seconds' >&2; exit 2; }
 test -d "$repo/tools/SharpHDL.ScheduledFuzz" && test -d /tmp
 output=$(mktemp -d /tmp/sharphdl-fuzz-XXXXXX)
+# Local SDK installations may be outside the apphost's default runtime search path.
+DOTNET_ROOT=$(dirname -- "$(readlink -f -- "$(command -v dotnet)")")
+test -d "$DOTNET_ROOT"
+export DOTNET_ROOT DOTNET_ROLL_FORWARD=Major
 dotnet publish "$repo/tools/SharpHDL.ScheduledFuzz" -c Release --artifacts-path "$output/artifacts" -o "$output/publish"
 dotnet tool install SharpFuzz.CommandLine --version 2.2.0 --tool-path "$output/tools"
 for assembly in SharpHDL.HLS SharpHDL.Core SharpHDL.Simulation SharpHDL.ScheduledExamples; do

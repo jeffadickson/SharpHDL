@@ -11,6 +11,13 @@ namespace SharpHDL.UnitTests;
 /// <summary>Explicit bank concurrency, contents, bounds and inference-policy checks.</summary>
 public sealed class ScheduledBankedMemoryTests
 {
+    /// <summary>Existing compiled callers retain their original memory declaration signatures.</summary>
+    [Fact]
+    public void Original_memory_api_signatures_remain_available()
+    {
+        Assert.NotNull(typeof(ScheduledMachineBuilder).GetMethod(nameof(ScheduledMachineBuilder.Memory),new[]{typeof(string),typeof(int),typeof(int)}));
+        Assert.NotNull(typeof(HardwareMemoryPort).GetConstructor(new[]{typeof(string),typeof(int),typeof(int),typeof(int),typeof(int),typeof(IEnumerable<BigInteger>)}));
+    }
     /// <summary>Distinct banks permit simultaneous accesses without aliasing or extra state.</summary>
     [Fact]
     public void Independent_banks_roundtrip_boundary_addresses()

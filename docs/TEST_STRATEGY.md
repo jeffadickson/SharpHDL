@@ -55,3 +55,9 @@ tests reset at every table phase and test independent-kernel state isolation;
 shared multi-kernel resource arbitration is still a separate scheduler feature.
 The Windows/Linux xUnit job collects coverage; scheduled-core-suite is a new RTL
 gate. Hosted workflow outcomes are pending the final authorized push.
+
+CI policy update: the user explicitly disabled GitHub Actions during this task.
+Repository Actions permissions were changed to enabled=false and read back to
+confirm. No running Actions jobs were present. Retained workflow definitions are
+dormant; final verification is local and the authorized push must not enable CI.
+See root AGENTS.md. This supersedes the earlier hosted-run plan above.

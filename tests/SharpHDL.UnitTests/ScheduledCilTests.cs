@@ -24,6 +24,47 @@ public sealed class ScheduledCilTests
     /// <summary>Host-only division is intentionally outside the scheduled subset.</summary>
     public static uint Unsupported(uint x)=>x/3;
 
+    /// <summary>Exercise signed branches, switch lowering, bitwise operations and unchecked arithmetic.</summary>
+    public static uint Branch(uint x,int signed)
+    {
+        if(signed<0)return x^0x80000000u;
+        switch(x&3)
+        {
+            case 0:return ~x;
+            case 1:return unchecked(0u-x);
+            case 2:return unchecked(x*3);
+            default:return unchecked(x-7);
+        }
+    }
+
+    /// <summary>Compare real C# branch/switch behavior over generated scalar inputs.</summary>
+    [FsCheck.Xunit.Property(MaxTest=100,Replay="1145655947,296144285")]
+    public void Scalar_control_flow_matches_native(uint x,int signed)
+    {
+        var d=CilCompiler.BuildScheduledSequential(typeof(ScheduledCilTests).GetMethod(nameof(Branch))!,"Branches",
+            new SequentialOptions {MaxCycles=200}).Design;
+        var sim=new HardwareGraphMachine(d.Graph,d.Inputs,d.Outputs,d.NextState,d.ResetValues,d.Memories);
+        sim.SetInput("arg0",x);sim.SetInput("arg1",unchecked((uint)signed));sim.SetInput("start",1);
+        sim.Tick();sim.SetInput("start",0);
+        for(int edge=0;edge<201&&sim.ReadOutput("done")==0;edge++)sim.Tick();
+        Assert.Equal(1,(int)sim.ReadOutput("done"));Assert.Equal(0,(int)sim.ReadOutput("fault"));
+        Assert.Equal(Branch(x,signed),(uint)sim.ReadOutput("result"));
+    }
+
+    /// <summary>Initialized words reach the CIL load path and are not aliased with caller arrays.</summary>
+    [Fact]
+    public void Initial_memory_is_used_by_scheduled_cil()
+    {
+        System.Numerics.BigInteger[] initial={2,7};
+        var d=CilCompiler.BuildScheduledSequential(typeof(ScheduledCilTests).GetMethod(nameof(Update))!,"Initial",
+            new SequentialOptions {MemoryDepth=2,InitialMemory=initial,MaxCycles=200}).Design;
+        initial[0]=100;
+        var sim=new HardwareGraphMachine(d.Graph,d.Inputs,d.Outputs,d.NextState,d.ResetValues,d.Memories);
+        sim.SetInput("arg1",2);sim.SetInput("arg2",3);sim.SetInput("start",1);sim.Tick();sim.SetInput("start",0);
+        for(int edge=0;edge<201&&sim.ReadOutput("done")==0;edge++)sim.Tick();
+        Assert.Equal(29,(int)sim.ReadOutput("result"));Assert.Equal(0,(int)sim.ReadOutput("fault"));
+    }
+
     /// <summary>Compare native C#, legacy RTL semantics and scheduled Core edge by edge.</summary>
     [Fact]
     public void Stateful_loop_matches_host_and_legacy_across_repeated_calls()

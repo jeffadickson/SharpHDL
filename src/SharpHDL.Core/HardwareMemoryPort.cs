@@ -36,8 +36,14 @@ public sealed class HardwareMemoryPort
     /// <summary>Explicit target inference policy, independent of simulation behavior.</summary>
     public HardwareMemoryImplementation Implementation { get; }
 
+    /// <summary>Create generic RAM metadata, retaining the original public constructor signature.</summary>
     public HardwareMemoryPort(string name,int width,int addressNode,int writeEnableNode,
-        int writeDataNode,IEnumerable<BigInteger> initial,HardwareMemoryImplementation implementation=HardwareMemoryImplementation.Auto)
+        int writeDataNode,IEnumerable<BigInteger> initial)
+        :this(name,width,addressNode,writeEnableNode,writeDataNode,initial,HardwareMemoryImplementation.Auto) { }
+
+    /// <summary>Create RAM metadata with an explicit validated inference request.</summary>
+    public HardwareMemoryPort(string name,int width,int addressNode,int writeEnableNode,
+        int writeDataNode,IEnumerable<BigInteger> initial,HardwareMemoryImplementation implementation)
     {
         if(string.IsNullOrWhiteSpace(name))throw new ArgumentException("Memory name required.",nameof(name));
         if(width is < 1 or > 4096)throw new ArgumentOutOfRangeException(nameof(width));

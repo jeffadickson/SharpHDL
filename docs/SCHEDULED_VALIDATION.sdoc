@@ -124,9 +124,9 @@ Directed tests shall reset at every table control phase and distinguish suppress
 writes from already committed updates. Independently scheduled machines shall not
 share runtime state. Compact vector replays shall check table and stateful CIL
 outputs after every edge in Icarus and Verilator, after independent host/legacy
-checks during generation. Windows/Linux hosted xUnit and RTL jobs gate changes.
+checks during generation. Local Windows/Linux xUnit and RTL runs gate changes; GitHub Actions remains disabled per the user instruction of 2026-10-27.
 Implementation: ScheduledResetTests, CoreReplay, ScheduledSuiteReplay and xunit.yml.
-Execution results, including hosted workflow outcomes, are recorded at final push.
+Execution results and confirmation of disabled Actions are recorded at final push.
 This does not implement shared-resource arbitration among concurrent kernels.
 <<<
 

@@ -16,6 +16,8 @@ public sealed class ScheduledTableTests
     public void Table_matches_independent_array_and_protocol_model(int addressWidth)
     {
         var d = ScheduledTable.Build(addressWidth);
+        // The replay command and documented HDL artifact names are public tooling contracts.
+        Assert.Equal("ScheduledTable"+addressWidth,d.Name);
         var machine = new HardwareGraphMachine(d.Graph, d.Inputs, d.Outputs,
             d.NextState, d.ResetValues, d.Memories);
         int count = ScheduledTableCampaign.Run(addressWidth,

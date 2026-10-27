@@ -62,6 +62,8 @@ public sealed class ScheduledArithmeticTests
         Assert.Throws<ArgumentException>(()=>b.ArithmeticResource("bad",HardwareOperation.Equal,8));
         Assert.Throws<ArgumentOutOfRangeException>(()=>b.ArithmeticResource("bad",HardwareOperation.Add,8,0));
         Assert.Throws<ArgumentException>(()=>s.Compute(foreignResource,x,y));
+        Assert.Contains("foreign",Assert.Throws<ArgumentException>(()=>s.Compute(resource,foreign.Input("left",8),y)).Message,StringComparison.OrdinalIgnoreCase);
+        Assert.Contains("foreign",Assert.Throws<ArgumentException>(()=>s.Compute(resource,x,foreign.Input("right",8))).Message,StringComparison.OrdinalIgnoreCase);
         Assert.Throws<ArgumentException>(()=>s.Compute(resource,b.Constant(7,3),y));
         Assert.Throws<ArgumentException>(()=>s.Compute(resource,x,y,b.Constant(2,1)));
         var bound=s.Compute(resource,x,y);
@@ -70,6 +72,21 @@ public sealed class ScheduledArithmeticTests
         Assert.Throws<ArgumentException>(()=>b.Output("foreign",foreignBound));
         b.Output("result",bound);b.Lower();
         Assert.Throws<InvalidOperationException>(()=>s.Compute(resource,x,y));
+    }
+
+    /// <summary>Resource names, widths and post-lowering declaration lifetime remain checked.</summary>
+    [Fact]
+    public void Arithmetic_declarations_validate_before_allocating()
+    {
+        var b=new ScheduledMachineBuilder("Declarations");
+        Assert.Throws<ArgumentOutOfRangeException>(()=>b.ArithmeticResource("alu",HardwareOperation.Add,0));
+        var alu=b.ArithmeticResource("alu",HardwareOperation.Add,8);
+        Assert.Throws<ArgumentException>(()=>b.ArithmeticResource("alu",HardwareOperation.Add,8));
+        var s=b.State("only");var local=b.Input("local",8);var shared=local.Add(local);
+        b.Output("result",s.Compute(alu,shared,local));var d=b.Lower();
+        var sim=new HardwareGraphMachine(d.Graph,d.Inputs,d.Outputs,d.NextState,d.ResetValues,d.Memories);
+        sim.SetInput("local",11);Assert.Equal(33,(int)sim.ReadOutput("result"));
+        Assert.Throws<InvalidOperationException>(()=>b.ArithmeticResource("late",HardwareOperation.Add,8));
     }
 
     private static int Reference(HardwareOperation operation,int x,int y)
