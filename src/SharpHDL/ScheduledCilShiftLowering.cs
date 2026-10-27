@@ -6,7 +6,7 @@ namespace SharpHDL;
 
 public static partial class CilCompiler
 {
-    // ECMA/CLR Int32 shifts inspect only the five low count bits. Build a fixed
+    // SharpHDL's CLR-compatible Int32 policy uses only the five low count bits. Build a fixed
     // five-stage barrel shifter: negative and oversized counts are masked rather
     // than interpreted as hardware widths or host-time shift amounts.
     private static ScheduledValue ScheduledClrShift(ScheduledMachineBuilder builder,ScheduledValue value,ScheduledValue count,string opcode)

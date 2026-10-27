@@ -1,5 +1,9 @@
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Reflection.Metadata;
+using System.Reflection.Metadata.Ecma335;
+using System.Reflection.PortableExecutable;
+using System.Collections.Immutable;
 using System.Security.Cryptography;
 using NSubstitute;
 using SharpHDL.HLS;
@@ -99,6 +103,9 @@ public sealed class ScheduledSourceMapTests
         var stream=Substitute.For<System.IO.Stream>();stream.CanRead.Returns(true);stream.CanSeek.Returns(false);
         Assert.Throws<InvalidOperationException>(()=>PortablePdbSourceMap.Read(method,_=>stream));
         Assert.Throws<ArgumentNullException>(()=>PortablePdbSourceMap.Read(null!));
+        Assert.Throws<ArgumentNullException>(()=>PortablePdbSourceMap.Annotate(null!,null!));
+        Assert.Throws<ArgumentNullException>(()=>PortablePdbSourceMap.Annotate(method,null!));
+        Assert.Null(PortablePdbSourceMap.ParseIlOffset(null!));
     }
 
     /// <summary>In-memory methods still compile without inventing a file-backed symbol identity.</summary>
@@ -120,4 +127,53 @@ public sealed class ScheduledSourceMapTests
     [InlineData("IL_ffffffff")] [InlineData("IL_80000000")] [InlineData("IL_100000000")]
     public void Invalid_offset_names_do_not_become_negative_locations(string name)
         =>Assert.Null(PortablePdbSourceMap.ParseIlOffset(name));
+
+    /// <summary>A matching symbol ID is insufficient when a point is beyond its actual CIL body.</summary>
+    [Theory]
+    [InlineData(0)] [InlineData(1)]
+    public void Matched_pdb_points_outside_method_body_are_rejected(int delta)
+    {
+        var method=typeof(ScheduledSourceMapTests).GetMethod(nameof(Natural))!;
+        var bytes=FixtureSymbols(method,method.GetMethodBody()!.GetILAsByteArray()!.Length+delta,1);
+        var error=Assert.Throws<BadImageFormatException>(()=>PortablePdbSourceMap.Read(method,_=>new MemoryStream(bytes)));
+        Assert.Contains("outside",error.Message);
+    }
+
+    /// <summary>Missing checksum metadata and zero source lines remain unknown rather than invented.</summary>
+    [Theory]
+    [InlineData(1)] [InlineData(0)]
+    public void Matched_pdb_absent_metadata_is_explicit(int line)
+    {
+        var method=typeof(ScheduledSourceMapTests).GetMethod(nameof(Natural))!;
+        var bytes=FixtureSymbols(method,0,line);
+        var map=PortablePdbSourceMap.Read(method,_=>new MemoryStream(bytes));
+        Assert.Equal(PortablePdbMapStatus.Available,map.Status);
+        if(line==0)Assert.Null(map.FindSource(0));
+        else
+        {
+            var source=Assert.IsType<CilSourceSpan>(map.FindSource(0));
+            Assert.Equal("SymbolFixture.cs",source.File);Assert.Null(source.DocumentHashAlgorithm);Assert.Null(source.DocumentHash);
+        }
+    }
+
+    // The BCL writer creates matched, structurally valid symbols with deliberately
+    // controlled semantic fields. No production parser or real PDB file is patched.
+    private static byte[] FixtureSymbols(MethodInfo method,int offset,int line)
+    {
+        using var original=File.OpenRead(Path.ChangeExtension(method.Module.FullyQualifiedName,".pdb"));
+        using var originalProvider=MetadataReaderProvider.FromPortablePdbStream(original);
+        var identity=new BlobContentId(originalProvider.GetMetadataReader().DebugMetadataHeader!.Id);
+        using var image=File.OpenRead(method.Module.FullyQualifiedName);using var pe=new PEReader(image);
+        int methods=pe.GetMetadataReader().GetTableRowCount(TableIndex.MethodDef);
+        int row=MetadataTokens.GetRowNumber(MetadataTokens.EntityHandle(method.MetadataToken));
+        var metadata=new MetadataBuilder();
+        var document=metadata.AddDocument(metadata.GetOrAddDocumentName("SymbolFixture.cs"),default,default,default);
+        var points=new BlobBuilder();points.WriteCompressedInteger(0);points.WriteCompressedInteger(offset);
+        points.WriteCompressedInteger(0);points.WriteCompressedInteger(1);points.WriteCompressedInteger(line);points.WriteCompressedInteger(1);
+        var pointBlob=metadata.GetOrAddBlob(points);
+        for(int i=1;i<=methods;i++)metadata.AddMethodDebugInformation(i==row?document:default,i==row?pointBlob:default);
+        var rows=new int[MetadataTokens.TableCount];rows[(int)TableIndex.MethodDef]=methods;
+        var builder=new PortablePdbBuilder(metadata,ImmutableArray.CreateRange(rows),default,_=>identity);
+        var result=new BlobBuilder();builder.Serialize(result);return result.ToArray();
+    }
 }

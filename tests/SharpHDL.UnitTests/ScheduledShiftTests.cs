@@ -1,4 +1,6 @@
 using System.Numerics;
+using System.Reflection;
+using System.Reflection.Emit;
 using SharpHDL.Core;
 using SharpHDL.HLS;
 using SharpHDL.Simulation;
@@ -79,6 +81,32 @@ public sealed class ScheduledShiftTests
             for(int edge=0;edge<64&&sim.ReadOutput("done")==0;edge++)sim.Tick();
             Assert.Equal(1,(int)sim.ReadOutput("done"));Assert.Equal(0,(int)sim.ReadOutput("fault"));
             Assert.Equal(method.CreateDelegate<Func<uint,int,uint>>()(value,count),(uint)sim.ReadOutput("result"));
+        }
+    }
+
+    /// <summary>Direct CIL has no C# compiler-supplied count mask, independently testing the lowering policy.</summary>
+    [Theory]
+    [InlineData("shl")] [InlineData("shr.un")] [InlineData("shr")]
+    public void Direct_cil_counts_are_masked_by_the_scheduled_frontend(string opcode)
+    {
+        var assembly=AssemblyBuilder.DefineDynamicAssembly(new AssemblyName("RawShift"+Guid.NewGuid().ToString("N")),AssemblyBuilderAccess.RunAndCollect);
+        var type=assembly.DefineDynamicModule("main").DefineType("Kernel",TypeAttributes.Public);
+        var method=type.DefineMethod("Shift",MethodAttributes.Public|MethodAttributes.Static,typeof(uint),new[]{typeof(uint),typeof(int)});
+        var il=method.GetILGenerator();il.Emit(OpCodes.Ldarg_0);il.Emit(OpCodes.Ldarg_1);
+        il.Emit(opcode=="shl"?OpCodes.Shl:opcode=="shr"?OpCodes.Shr:OpCodes.Shr_Un);il.Emit(OpCodes.Ret);
+        var info=type.CreateType()!.GetMethod("Shift")!;
+        var native=info.CreateDelegate<Func<uint,int,uint>>();
+        var d=CilCompiler.BuildScheduledSequential(info,"RawShift").Design;
+        var sim=Machine(d);
+        foreach(int count in new[]{int.MinValue,-33,-32,-1,0,1,31,32,33,63,64,int.MaxValue})
+        {
+            const uint value=0x80000001u;
+            uint expected=opcode=="shl"?Left(value,count):opcode=="shr"?Arithmetic(value,count):Logical(value,count);
+            Assert.Equal(expected,native(value,count));
+            sim.SetInput("arg0",value);sim.SetInput("arg1",unchecked((uint)count));sim.SetInput("start",1);
+            sim.Tick();sim.SetInput("start",0);
+            for(int edge=0;edge<32&&sim.ReadOutput("done")==0;edge++)sim.Tick();
+            Assert.Equal(1,(int)sim.ReadOutput("done"));Assert.Equal(expected,(uint)sim.ReadOutput("result"));
         }
     }
 
