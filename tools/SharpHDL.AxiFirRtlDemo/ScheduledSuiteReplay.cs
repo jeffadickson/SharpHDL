@@ -68,6 +68,7 @@ internal static class ScheduledSuiteReplay
         }
         cil.Save(directory);
         File.WriteAllText(Path.Combine(directory,"ScheduledCilLoop.il-map.json"),JsonSerializer.Serialize(compiled.StateOffsets));
+        WriteSourceMap(directory,compiled);
         Console.WriteLine("CIL loop: native/legacy/Core agree, including partial writes on bounds fault.");
         GenerateShifts(directory);
     }
@@ -98,6 +99,26 @@ internal static class ScheduledSuiteReplay
         }
         replay.Save(directory);
         File.WriteAllText(Path.Combine(directory,"ScheduledCilShifts.il-map.json"),JsonSerializer.Serialize(compilation.StateOffsets));
+        WriteSourceMap(directory,compilation);
         Console.WriteLine($"CIL shifts: {transactions} native/legacy/Core transactions agree.");
+    }
+
+    private static void WriteSourceMap(string directory,ScheduledCilCompilation compilation)
+    {
+        var map=new
+        {
+            Module=compilation.Design.Name,
+            Method=compilation.Method.DeclaringType?.FullName+"."+compilation.Method.Name,
+            StateSignal="s_scheduler_state",
+            SymbolStatus=compilation.Symbols.Status.ToString(),
+            States=compilation.StateEncodings.Select(pair=>new
+            {
+                State=pair.Key,Encoding=pair.Value,
+                IlOffset=compilation.StateOffsets.TryGetValue(pair.Key,out int offset)?(int?)offset:null,
+                Source=compilation.StateSources[pair.Key]
+            }).ToArray()
+        };
+        File.WriteAllText(Path.Combine(directory,compilation.Design.Name+".source-map.json"),
+            JsonSerializer.Serialize(map,new JsonSerializerOptions{WriteIndented=true}));
     }
 }

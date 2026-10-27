@@ -1,59 +1,36 @@
 using System;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Reflection.Metadata;
-using System.Reflection.Metadata.Ecma335;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace SharpHDL
 {
     /// <summary>Best-effort Portable PDB sequence point mapping; no inferred source locations.</summary>
-    public static class PortablePdbSourceMap
+    public static partial class PortablePdbSourceMap
     {
         static readonly Regex OffsetPattern = new Regex(@"(?:^|_)IL_([0-9a-fA-F]{4,8})(?:_|$)", RegexOptions.Compiled);
 
+        /// <summary>Parse a nonnegative IL offset from an operation name; invalid/overflowing hints return null.</summary>
         public static int? ParseIlOffset(string operationName)
         {
             var match = OffsetPattern.Match(operationName ?? "");
-            return match.Success ? Convert.ToInt32(match.Groups[1].Value, 16) : (int?)null;
+            return match.Success && int.TryParse(match.Groups[1].Value,NumberStyles.AllowHexSpecifier,
+                CultureInfo.InvariantCulture,out int offset) && offset>=0 ? offset : (int?)null;
         }
 
+        /// <summary>Replace node annotations with matched visible sequence points, clearing stale or hidden locations.</summary>
         public static void Annotate(MethodInfo method, PipelineDataflowGraph graph)
         {
             if (method == null) throw new ArgumentNullException(nameof(method));
             if (graph == null) throw new ArgumentNullException(nameof(graph));
-            var pdbPath = Path.ChangeExtension(method.Module.FullyQualifiedName, ".pdb");
-            if (!File.Exists(pdbPath)) return;
-            using (var stream = File.OpenRead(pdbPath))
-            using (var provider = MetadataReaderProvider.FromPortablePdbStream(stream))
+            var symbols=Read(method);
+            foreach(var node in graph.Nodes)
             {
-                var reader = provider.GetMetadataReader();
-                // GetRowNumber accepts a metadata table entity, not the general
-                // Handle returned by MetadataTokens.Handle(int), which can name a heap.
-                var methodEntity = MetadataTokens.EntityHandle(method.MetadataToken);
-                if (methodEntity.Kind != HandleKind.MethodDefinition) return;
-                var methodRow = MetadataTokens.GetRowNumber(methodEntity);
-                var handle = MetadataTokens.MethodDebugInformationHandle(methodRow);
-                if (handle.IsNil) return;
-                var info = reader.GetMethodDebugInformation(handle);
-                var points = info.GetSequencePoints()
-                    .Where(p => !p.IsHidden && p.StartLine > 0)
-                    .OrderBy(p => p.Offset).ToArray();
-                if (points.Length == 0) return;
-                foreach (var node in graph.Nodes)
-                {
-                    var offset = ParseIlOffset(node.Name);
-                    if (!offset.HasValue) continue;
-                    var match = points.LastOrDefault(p => p.Offset <= offset.Value);
-                    if (match.StartLine == 0) continue;
-                    var documentHandle = match.Document.IsNil ? info.Document : match.Document;
-                    if (documentHandle.IsNil) continue;
-                    node.SourceFile = reader.GetString(reader.GetDocument(documentHandle).Name);
-                    node.SourceLine = match.StartLine;
-                    node.SourceColumn = match.StartColumn;
-                    node.IlOffset = offset;
-                }
+                var offset=ParseIlOffset(node.Name);
+                var source=offset.HasValue?symbols.FindSource(offset.Value):null;
+                // Annotation may be repeated: clear stale locations in newly hidden/unmapped regions.
+                node.SourceFile=source?.File;node.SourceLine=source?.StartLine;
+                node.SourceColumn=source?.StartColumn;node.IlOffset=offset;
             }
         }
     }

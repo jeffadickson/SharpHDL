@@ -160,3 +160,19 @@ Verification: ScheduledShiftTests native/legacy comparisons, generated propertie
 exhaustive byte references and ScheduledCilShifts Icarus/Verilator replay.
 Execution is recorded in the end-of-slice verification report.
 <<<
+
+[REQUIREMENT]
+UID: CIL-SCHED-SOURCE-001
+TITLE: Matched source provenance for encoded control states
+STATEMENT: >>>
+Scheduled CIL compilation shall expose actual scheduler-state encodings, original
+IL offsets and matched Portable PDB source spans. Idle/hidden/unmapped states
+have null source locations. Sidecar and embedded symbols shall be matched to the
+PE identity; mismatched/missing symbols may not fabricate locations. Malformed
+symbol data and unexpected IO errors remain visible. Document checksum metadata
+is reported without implying that the local document was verified automatically.
+Existing pipeline annotation shall not extend visible spans across hidden points.
+Implementation: PortablePdbMethodMap, PortablePdbSourceMap, ScheduledCilCompilation.
+Verification: ScheduledSourceMapTests including embedded fixture, real checksums,
+hidden regions, missing/mismatched/malformed providers, and source-map JSON export.
+<<<

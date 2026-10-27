@@ -148,6 +148,8 @@ public sealed partial class ScheduledState
     /// <summary>State name.</summary>
     public string Name { get; }
     internal int Index { get; }
+    /// <summary>Stable encoded control-state value in the lowered scheduler register.</summary>
+    public int Encoding=>Index;
 
     /// <summary>Assign a register on the active edge when guard is true.</summary>
     public ScheduledState Assign(ScheduledRegister target,ScheduledValue value,ScheduledValue guard)

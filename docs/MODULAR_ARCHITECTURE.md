@@ -463,3 +463,25 @@ This is hardware-specific lowering with BCL/existing IR, not a new dependency.
 Native C#, legacy simulation, exhaustive bit-vector tests and the compact dual-HDL
 replay are independent acceptance gates. No timing/area optimization is claimed.
 Primary semantic reference: https://learn.microsoft.com/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators .
+
+## Matched scheduled source provenance (2026-10-27 continuation)
+
+ScheduledCilCompilation now retains StateEncodings, StateOffsets, StateSources
+and Symbols. The scheduler signal s_scheduler_state can be decoded through the
+exported *.source-map.json to an IL offset and a real PDB source span. This is
+control-state provenance, not a fabricated one-to-one mapping of every optimized
+RTL wire to a C# expression. Idle and hidden/unmapped regions explicitly use null.
+
+The reader uses System.Reflection.Metadata/PEReader.TryOpenAssociatedPortablePdb
+for matching sidecar/embedded Portable PDB identity. It checks the on-disk module
+MVID against the loaded module. Missing/mismatched symbols report availability;
+malformed files and unexpected IO are not silently swallowed. Sequence-point
+boundaries retain hidden intervals, fixing the old pipeline helper's tendency to
+carry an earlier visible location into compiler-hidden code. Existing public IL
+offset maps remain available. File paths and checksum metadata are original PDB
+values; local file existence or content matching is not implied. Tests explicitly
+verify the checksum for their natural source fixture.
+
+Library choice: reuse the BCL reader and existing xUnit/NSubstitute test seam.
+No Mono.Cecil or custom PDB parser is needed for loaded MethodInfo inputs. The
+embedded-PDB fixture exercises the BCL fallback rather than merely documenting it.

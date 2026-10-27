@@ -8,19 +8,32 @@ using SharpHDL.HLS;
 
 namespace SharpHDL
 {
+#nullable enable
     /// <summary>Scheduled Core hardware and its original method/IL control-state map.</summary>
     public sealed class ScheduledCilCompilation
     {
-        internal ScheduledCilCompilation(ScheduledHardwareDesign design,MethodInfo method,Dictionary<string,int> offsets)
-            {Design=design;Method=method;StateOffsets=new ReadOnlyDictionary<string,int>(offsets);}
+        internal ScheduledCilCompilation(ScheduledHardwareDesign design,MethodInfo method,Dictionary<string,int> offsets,
+            Dictionary<string,int> encodings)
+        {
+            Design=design;Method=method;StateOffsets=new ReadOnlyDictionary<string,int>(offsets);
+            StateEncodings=new ReadOnlyDictionary<string,int>(encodings);Symbols=PortablePdbSourceMap.Read(method);
+            StateSources=new ReadOnlyDictionary<string,CilSourceSpan?>(encodings.Keys.ToDictionary(key=>key,
+                key=>offsets.TryGetValue(key,out int offset)?Symbols.FindSource(offset):null));
+        }
         /// <summary>Executable, backend-neutral scheduled hardware.</summary>
         public ScheduledHardwareDesign Design { get; }
         /// <summary>Original CIL method; never executed by the compiler.</summary>
         public MethodInfo Method { get; }
         /// <summary>Control-state names to original IL offsets, including load wait states.</summary>
         public IReadOnlyDictionary<string,int> StateOffsets { get; }
+        /// <summary>All control-state names and actual scheduler register encodings, including idle.</summary>
+        public IReadOnlyDictionary<string,int> StateEncodings { get; }
+        /// <summary>Matched symbol availability and original sequence-point boundaries.</summary>
+        public PortablePdbMethodMap Symbols { get; }
+        /// <summary>Visible source spans for states, with null for idle/hidden/unmapped states.</summary>
+        public IReadOnlyDictionary<string,CilSourceSpan?> StateSources { get; }
     }
-
+#nullable restore
     public static partial class CilCompiler
     {
         /// <summary>
@@ -179,7 +192,8 @@ namespace SharpHDL
             b.Output("accept",b.InState(idle).And(start));
             var offsets=states.ToDictionary(p=>p.Value.Name,p=>p.Key);
             foreach(var pair in waits)offsets.Add(pair.Value.Name,pair.Key);
-            return new ScheduledCilCompilation(b.Lower(),method,offsets);
+            var encodings=new[]{idle}.Concat(states.Values).Concat(waits.Values).ToDictionary(s=>s.Name,s=>s.Encoding);
+            return new ScheduledCilCompilation(b.Lower(),method,offsets,encodings);
         }
     }
 }
