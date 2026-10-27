@@ -99,3 +99,19 @@ Equivalent mutations shall be distinguished from untested behavior.
 Implementation: ScheduledSemanticTests, ScheduledFuzz and run-scheduled-fuzz.sh.
 Execution and mutant disposition are recorded after the final campaign.
 <<<
+
+[REQUIREMENT]
+UID: CIL-SCHED-001
+TITLE: Stateful CIL through scheduled Core lowering
+STATEMENT: >>>
+An opt-in frontend shall reuse existing CIL decoding and stack/control-flow
+analysis to lower static integer/Boolean control flow, runtime loops and one
+uint[] RAM through ScheduledMachineBuilder. Instructions execute one per edge;
+loads add one wait edge; arguments latch only on start while idle. Bounds/watchdog
+faults complete explicitly. Register reset retains committed RAM writes. Preserve
+method/IL-offset state provenance and reject unsupported opcodes without fallback.
+Implementation: ScheduledSequentialCil.cs; ScheduledValue integer operations.
+Verification: ScheduledCilTests compares host results and legacy outputs edge by
+edge, including repeat calls, bounds/watchdog and unsupported-opcode diagnostics.
+Execution pending final campaign; this does not replace the broader legacy API.
+<<<

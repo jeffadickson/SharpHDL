@@ -414,3 +414,21 @@ Acceptance tests cover two simultaneous instances reused in another state, all
 byte inputs, guard gating, modulo arithmetic and rejected foreign, incompatible,
 chained or oversubscribed bindings. Per user cadence, tests execute at the end;
 this item is implemented but not yet verified by execution.
+
+## Follow-up item 3 — stateful CIL to scheduled Core
+
+CilCompiler.BuildScheduledSequential is an explicit opt-in path reusing Decode,
+PopCount, PushCount and Successors from the production CIL frontend. It emits
+ScheduledMachineBuilder states rather than lowering a legacy Module graph.
+Supported: static UInt32 return, Int32/UInt32/Boolean arguments/locals, one uint[]
+RAM, initialized locals, unchecked 32-bit arithmetic/bitwise/comparisons, branches,
+switch and runtime loops. Multiplications use generic shared resource binding.
+Arguments latch on start while idle; done/fault are sticky until reset/new start.
+Each instruction takes one edge, loads take two, and watchdog/bounds faults abort
+with committed memory retained. The result includes method and IL state offsets.
+
+Checked arithmetic, division, shifts, calls, packed/narrow ports, exception
+handlers, nonzero initial RAM and vendor options are rejected with method/IL
+diagnostics. These remain on the explicit legacy path, with no silent fallback.
+This is a verified-subset extension pending final execution, not arbitrary CLR
+compilation. Tests compare real runtime-loop/RAM C# with host and legacy behavior.

@@ -30,6 +30,8 @@ public sealed class ScheduledValue
     public ScheduledValue Equal(ScheduledValue other)=>Binary(HardwareOperation.Equal,other,1);
     /// <summary>Create an unsigned less-than comparison.</summary>
     public ScheduledValue LessThan(ScheduledValue other)=>Binary(HardwareOperation.LessThan,other,1);
+    /// <summary>Compare two's-complement signed operands.</summary>
+    public ScheduledValue SignedLessThan(ScheduledValue other)=>Binary(HardwareOperation.SignedLessThan,other,1);
     /// <summary>Create a width-preserving addition.</summary>
     public ScheduledValue Add(ScheduledValue other)=>Binary(HardwareOperation.Add,other,Width);
     /// <summary>Create a width-preserving subtraction.</summary>
@@ -40,6 +42,14 @@ public sealed class ScheduledValue
     public ScheduledValue And(ScheduledValue other)=>Binary(HardwareOperation.And,other,Width);
     /// <summary>Create a one-bit logical OR.</summary>
     public ScheduledValue Or(ScheduledValue other)=>Binary(HardwareOperation.Or,other,Width);
+    /// <summary>Create a width-preserving bitwise exclusive OR.</summary>
+    public ScheduledValue Xor(ScheduledValue other)=>Binary(HardwareOperation.Xor,other,Width);
+    /// <summary>Zero-extend or truncate to an explicit width.</summary>
+    public ScheduledValue Resize(int width)
+    {
+        if(width is <1 or >4096)throw new ArgumentOutOfRangeException(nameof(width));
+        return width==Width?this:new ScheduledValue(width,HardwareOperation.Resize,new[]{this});
+    }
     /// <summary>Create a one-bit logical negation or a bitwise complement.</summary>
     public ScheduledValue Not()=>new(Width,HardwareOperation.Not,new[]{this});
 
