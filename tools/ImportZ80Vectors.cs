@@ -15,6 +15,14 @@ string[] baseCodes = "00 01 02 03 04 05 06 07 08 09 0a 0b 0f 10 17 18 1f 20 22 2
 string[] cbCodes = "00 06 08 0e 10 16 18 1e 20 26 28 2e 38 3e 40 46 78 7e 80 86 b8 be c0 c6 f8 fe".Split(' ');
 var paths = baseCodes.Select(code => "v1/" + code + ".json")
     .Concat(cbCodes.Select(code => "v1/cb " + code + ".json")).ToArray();
+string group = args.Length == 0 ? "base" : args[0];
+if (group == "indexed")
+{
+    string[] codes = "09 19 21 22 23 24 25 26 29 2a 2b 2c 2d 2e 34 35 36 39 44 45 46 60 64 65 66 68 6c 6d 6e 70 74 75 7c 7d 7e 84 85 86 8e 96 9e a6 ae b6 be e1 e3 e5 e9 eb f9".Split(' ');
+    paths = new[] { "dd", "fd" }.SelectMany(prefix => codes.Select(code => $"v1/{prefix} {code}.json")
+        .Concat(new[] { "00", "06", "16", "2e", "30", "46", "7e", "80", "c6", "ff" }.Select(code => $"v1/{prefix} cb __ {code}.json"))).ToArray();
+}
+else if (group != "base") throw new ArgumentException("Expected base or indexed group.");
 var collected = new JsonArray(); var manifest = new JsonArray();
 // Bounded parallel downloads, deterministic output order regardless of completion.
 using var budget = new SemaphoreSlim(4);
@@ -34,9 +42,10 @@ foreach (var result in await Task.WhenAll(tasks))
     foreach (var item in result.selected) collected.Add(item);
     manifest.Add((JsonNode)new JsonObject { ["path"] = result.path, ["sha256"] = Convert.ToHexString(SHA256.HashData(result.bytes)), ["selected"] = result.selected.Length });
 }
-var options = new JsonSerializerOptions { WriteIndented = true };
-await File.WriteAllTextAsync(Path.Combine(destination, "vectors.json"), collected.ToJsonString(options));
-await File.WriteAllTextAsync(Path.Combine(destination, "vectors-provenance.json"), new JsonObject
+var options = new JsonSerializerOptions { WriteIndented = true, NewLine = "\n" };
+string stem = group == "base" ? "vectors" : group + "-vectors";
+await File.WriteAllTextAsync(Path.Combine(destination, stem + ".json"), collected.ToJsonString(options));
+await File.WriteAllTextAsync(Path.Combine(destination, stem + "-provenance.json"), new JsonObject
 {
     ["repository"] = "https://github.com/SingleStepTests/z80", ["revision"] = revision,
     ["selection"] = "First eight records per listed file; upstream state/RAM oracle, not T-state replay.", ["files"] = manifest

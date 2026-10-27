@@ -21,10 +21,17 @@ public sealed class Z80Tests
     public void Published_instruction_vectors_match_architectural_results()
     {
         var machine = Machine();
-        int count = Z80Campaign.Run(Path.Combine(AppContext.BaseDirectory, "Z80Vectors.json"),
-            (name, value) => machine.SetInput(name, value), name => (int)machine.ReadOutput(name),
-            reset => { if (reset) machine.Reset(); else machine.Tick(); });
+        int count = Z80Campaign.Run(Path.Combine(AppContext.BaseDirectory, "Z80Vectors.json"), machine);
         Assert.Equal(840, count);
+    }
+
+    /// <summary>DD/FD forms include signed displacements, H/L exceptions and indexed CB copies.</summary>
+    [Fact]
+    public void Indexed_instruction_vectors_match_independent_results()
+    {
+        var m = Machine();
+        int count = Z80Campaign.Run(Path.Combine(AppContext.BaseDirectory, "Z80IndexedVectors.json"), m);
+        Assert.True(count >= 900);
     }
 
     /// <summary>Actual machine-code loop composes instructions, stack operations and memory writes.</summary>
@@ -81,15 +88,16 @@ public sealed class Z80Tests
         }
     }
 
-    /// <summary>Undocumented CB SLL is rejected even when its target would be RAM.</summary>
+    /// <summary>Common NMOS SLL behavior shifts in one, for registers and memory.</summary>
     [Theory]
     [InlineData(0x30)] [InlineData(0x36)] [InlineData(0x37)]
-    public void Undocumented_cb_sll_traps_without_memory_access(int opcode)
+    public void Cb_sll_shifts_in_one(int opcode)
     {
         var m = Machine(); m.SetInput("step", 1); m.Tick(); m.SetInput("step", 0);
         m.SetInput("bus_ready", 1); m.SetInput("bus_rdata", 0xCB); m.Tick(); m.Tick();
         m.SetInput("bus_rdata", opcode); m.Tick(); m.Tick();
-        Assert.Equal(1, (int)m.ReadOutput("fault")); Assert.Equal(0, (int)m.ReadOutput("bus_valid"));
+        for (int edge = 0; edge < 5 && m.ReadOutput("instruction_done") == 0; edge++) m.Tick();
+        Assert.Equal(0, (int)m.ReadOutput("fault")); Assert.Equal(1, (int)m.ReadOutput("instruction_done"));
     }
 
     /// <summary>CALL straddles FFFF/0000 and pushes a return address across SP zero.</summary>
@@ -120,8 +128,8 @@ public sealed class Z80Tests
 
     /// <summary>Unsupported prefix/control instructions stop without performing writes.</summary>
     [Theory]
-    [InlineData(0xDD)] [InlineData(0xFD)] [InlineData(0xED)]
-    [InlineData(0xD3)] [InlineData(0xDB)] [InlineData(0xE3)] [InlineData(0xF3)] [InlineData(0xFB)]
+    [InlineData(0xED)]
+    [InlineData(0xD3)] [InlineData(0xDB)] [InlineData(0xF3)] [InlineData(0xFB)]
     public void Unsupported_opcodes_trap_until_reset(int opcode)
     {
         var m = Machine(); m.SetInput("step", 1); m.Tick(); m.SetInput("step", 0);

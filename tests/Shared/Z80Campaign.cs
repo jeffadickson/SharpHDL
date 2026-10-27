@@ -2,12 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Numerics;
+using SharpHDL.Simulation;
 
 namespace SharpHDL.Verification;
 
 /// <summary>Independent published instruction-state oracle and hostile bus stalls.</summary>
 public static class Z80Campaign
 {
+    /// <summary>Use batched immutable output snapshots for managed execution.</summary>
+    public static int Run(string vectorFile, HardwareGraphMachine machine)
+    {
+        IReadOnlyDictionary<string, BigInteger>? snapshot = null;
+        return Run(vectorFile, (n, v) => { machine.SetInput(n, v); snapshot = null; },
+            n => (int)(snapshot ??= machine.ReadOutputs())[n],
+            reset => { if (reset) machine.Reset(); else machine.Tick(); snapshot = null; });
+    }
     /// <summary>Run a real multi-instruction loop, subroutine, RAM stores and HALT.</summary>
     public static int RunProgram(Action<string, int> drive, Func<string, int> read, Action<bool> clock)
     {
@@ -68,6 +78,7 @@ public static class Z80Campaign
             foreach (string pair in new[] { "af", "bc", "de", "hl" })
                 drive("init_" + pair, (I(pair[..1]) << 8) | I(pair[1..]));
             drive("init_pc", I("pc")); drive("init_sp", I("sp"));
+            drive("init_ix", I("ix")); drive("init_iy", I("iy"));
             foreach (var (pair, index) in new[] { ("bc_", 0), ("de_", 1), ("hl_", 2), ("af_", 3) })
                 drive("init_alt" + index, I(pair));
             clock(false); drive("load_state", 0); drive("step", 1); clock(false); drive("step", 0);
@@ -105,6 +116,7 @@ public static class Z80Campaign
                     throw new InvalidOperationException($"{name}: {port}={actual:X4}, expected {expected:X4}, mask={mask:X4}");
             }
             Check("pc_out", F("pc")); Check("sp_out", F("sp"));
+            Check("ix_out", F("ix")); Check("iy_out", F("iy"));
             foreach (string pair in new[] { "bc", "de", "hl" }) Check(pair + "_out", (F(pair[..1]) << 8) | F(pair[1..]));
             int flagMask = name.StartsWith("CB ", StringComparison.OrdinalIgnoreCase) &&
                 (memory[I("pc")] == 0xCB && (memory[(I("pc") + 1) & 65535] & 0xC7) == 0x46)

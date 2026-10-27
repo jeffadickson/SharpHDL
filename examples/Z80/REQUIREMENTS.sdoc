@@ -45,9 +45,22 @@ UID: Z80-FAULT-001
 TITLE: Explicit unsupported-instruction fault
 STATEMENT: >>>
 Unsupported instructions shall enter a sticky fault state without issuing writes
-or reporting instruction completion. Reset shall recover. Undocumented CB SLL shall
-trap before accessing its register/memory target.
+or reporting instruction completion. Reset shall recover. Encodings whose defined
+Z80 behavior is an ignored prefix or ED NOP shall follow that behavior when supported.
 Implementation: Z80TestCore decode, execute and trap states.
 Verification: Z80Tests.Unsupported_opcodes_trap_until_reset,
-Undocumented_cb_sll_traps_without_memory_access.
+Cb_sll_shifts_in_one.
+<<<
+
+[REQUIREMENT]
+UID: Z80-INDEX-001
+TITLE: Indexed addressing and prefix semantics
+STATEMENT: >>>
+DD/FD shall select IX/IY pair and byte operations. Indexed memory operands shall
+add a signed displacement modulo 65536, preserve ordinary H/L for memory-transfer
+exceptions, and support indexed CB memory operations with optional register copies.
+EX (SP),HL/IX/IY shall exchange both bytes without changing SP. Repeated index
+prefixes shall use the last selection; ignored prefixes shall preserve base behavior.
+Implementation: Z80TestCore index_mode, index_displacement, Put/PutPair and exchange states.
+Verification: Indexed_instruction_vectors_match_independent_results, pinned indexed-vectors.json.
 <<<

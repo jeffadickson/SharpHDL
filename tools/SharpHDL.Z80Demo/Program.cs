@@ -12,7 +12,7 @@ if (!Directory.Exists(output))
 var design = Z80TestCore.Build();
 var replay = new CoreReplay(design);
 int vectors = Z80Campaign.Run(Path.Combine(AppContext.BaseDirectory, "Z80Vectors.json"), replay.Drive,
-    name => (int)replay.Machine.ReadOutput(name), replay.Clock);
-int programEdges = Z80Campaign.RunProgram(replay.Drive, name => (int)replay.Machine.ReadOutput(name), replay.Clock);
+    name => (int)replay.Read(name), replay.Clock);
+int programEdges = Z80Campaign.RunProgram(replay.Drive, name => (int)replay.Read(name), replay.Clock);
 replay.Save(output);
 Console.WriteLine($"Z80: {vectors} independent vectors; program {programEdges} edges; {design.Graph.Nodes.Count} Core nodes.");

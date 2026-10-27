@@ -97,6 +97,17 @@ public sealed class HardwareGraphMachine
         return Evaluate()[id];
     }
 
+    /// <summary>
+    /// Evaluate all observable outputs against one current pre-edge snapshot.
+    /// The returned dictionary is independent of later input changes and ticks.
+    /// This avoids repeating graph evaluation when a testbench observes many ports.
+    /// </summary>
+    public IReadOnlyDictionary<string,BigInteger> ReadOutputs()
+    {
+        var values=Evaluate();
+        return new ReadOnlyDictionary<string,BigInteger>(outputNodes.ToDictionary(p=>p.Key,p=>values[p.Value],StringComparer.Ordinal));
+    }
+
     /// <summary>Evaluate and atomically commit one rising clock edge.</summary>
     public void Tick()
     {

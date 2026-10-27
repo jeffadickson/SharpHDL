@@ -7,7 +7,8 @@ namespace SharpHDL.Examples;
 /// <summary>
 /// Instruction-stepped Z80 test hardware with a stalled byte bus. Implements the
 /// documented unprefixed data/ALU/control instructions and CB register/memory group.
-/// DD/FD/ED, interrupts, I/O, EX (SP),HL and undocumented SLL trap explicitly.
+/// DD/FD indexing and indexed CB operations share the base datapath.
+/// ED, interrupts and I/O are implemented in subsequent extension stages.
 /// This is an architectural test design, not a T-state/pin-compatible replacement.
 /// </summary>
 public static class Z80TestCore
@@ -31,6 +32,9 @@ public static class Z80TestCore
         var f = b.Register("f", 8);
         var pc = b.Register("pc", 16);
         var sp = b.Register("sp", 16, 65535);
+        var ix = b.Register("ix", 16); var iy = b.Register("iy", 16);
+        var indexMode = b.Register("index_mode", 2);
+        var displaced = b.Register("displaced", 1);
         var alternate = new ScheduledRegister[4];
         for (int i = 0; i < 4; i++) alternate[i] = b.Register("alt" + i, 16);
         var op = b.Register("opcode", 8);
@@ -53,14 +57,21 @@ public static class Z80TestCore
         var popLow = b.State("pop_low"); var popHigh = b.State("pop_high");
         var cbFetch = b.State("cb_fetch"); var cbDecode = b.State("cb_decode");
         var cbRead = b.State("cb_read"); var cbExecute = b.State("cb_execute");
+        var indexDisplacement = b.State("index_displacement");
+        var exchangeLow = b.State("exchange_low"); var exchangeHigh = b.State("exchange_high");
+        var exchangeWriteHigh = b.State("exchange_write_high"); var exchangeWriteLow = b.State("exchange_write_low");
         var retire = b.State("retire"); var trap = b.State("trap");
 
         ScheduledValue C(int width, int value) => b.Constant(width, value);
         ScheduledValue Eq(ScheduledValue value, int n) => value.Equal(C(value.Width, n));
         ScheduledValue Bit(ScheduledValue value, int n) => value.ShiftRight(n).Resize(1);
         ScheduledValue Pair(ScheduledValue h, ScheduledValue l) => h.Resize(16).ShiftLeft(8).Or(l.Resize(16));
+        var rawHl = Pair(r[4].Value, r[5].Value);
+        var indexed = Eq(indexMode.Value, 0).Not();
+        var selectedIndex = ScheduledValue.Select(Eq(indexMode.Value, 1), ix.Value, iy.Value);
         var pairs = new[] { Pair(r[0].Value, r[1].Value), Pair(r[2].Value, r[3].Value),
-            Pair(r[4].Value, r[5].Value), sp.Value };
+            ScheduledValue.Select(indexed, selectedIndex, rawHl), sp.Value };
+        var effectiveHl = ScheduledValue.Select(indexed, address.Value, rawHl);
         var af = Pair(r[7].Value, f.Value);
         var y = op.Value.ShiftRight(3).Resize(3);
         var z = op.Value.Resize(3);
@@ -72,12 +83,30 @@ public static class Z80TestCore
             return result;
         }
         var regValues = Array.ConvertAll(r, item => item.Value);
-        void Put(ScheduledState state, ScheduledValue index, ScheduledValue value, ScheduledValue guard)
+        // Indexed memory transfers use ordinary H/L, whereas pure register forms
+        // use IXH/IXL or IYH/IYL. This exception is essential for DD 66/74 etc.
+        var memoryLoad = Eq(op.Value.ShiftRight(6), 1).And(Eq(y, 6).Or(Eq(z, 6)));
+        var indexBytes = indexed.And(memoryLoad.Not());
+        regValues[4] = ScheduledValue.Select(indexBytes, selectedIndex.ShiftRight(8).Resize(8), r[4].Value);
+        regValues[5] = ScheduledValue.Select(indexBytes, selectedIndex.Resize(8), r[5].Value);
+        void Put(ScheduledState state, ScheduledValue index, ScheduledValue value, ScheduledValue guard, bool raw = false)
         {
             for (int i = 0; i < 8; i++)
-                if (i != 6) state.Assign(r[i], value, guard.And(Eq(index, i)));
+                if (i != 6)
+                {
+                    var selected = guard.And(Eq(index, i));
+                    if (i is 4 or 5 && !raw)
+                    {
+                        state.Assign(r[i], value, selected.And(indexBytes.Not()));
+                        var replacement = i == 4 ? Pair(value, selectedIndex.Resize(8))
+                            : Pair(selectedIndex.ShiftRight(8).Resize(8), value);
+                        state.Assign(ix, replacement, selected.And(indexBytes).And(Eq(indexMode.Value, 1)));
+                        state.Assign(iy, replacement, selected.And(indexBytes).And(Eq(indexMode.Value, 2)));
+                    }
+                    else state.Assign(r[i], value, selected);
+                }
         }
-        void PutPair(ScheduledState state, int index, ScheduledValue value, ScheduledValue guard, bool stack = false)
+        void PutPair(ScheduledState state, int index, ScheduledValue value, ScheduledValue guard, bool stack = false, bool raw = false)
         {
             if (index == 3)
             {
@@ -86,8 +115,14 @@ public static class Z80TestCore
             }
             else
             {
-                state.Assign(r[index * 2], value.ShiftRight(8).Resize(8), guard);
-                state.Assign(r[index * 2 + 1], value.Resize(8), guard);
+                var normal = index == 2 && !raw ? guard.And(indexed.Not()) : guard;
+                state.Assign(r[index * 2], value.ShiftRight(8).Resize(8), normal);
+                state.Assign(r[index * 2 + 1], value.Resize(8), normal);
+                if (index == 2 && !raw)
+                {
+                    state.Assign(ix, value, guard.And(Eq(indexMode.Value, 1)));
+                    state.Assign(iy, value, guard.And(Eq(indexMode.Value, 2)));
+                }
             }
         }
         ScheduledValue Any(params int[] codes)
@@ -124,10 +159,12 @@ public static class Z80TestCore
         for (int i = 0; i < 4; i++)
         {
             var seed = b.Input("init_" + new[] { "bc", "de", "hl", "af" }[i], 16);
-            PutPair(idle, i, seed, load, stack: true);
+            PutPair(idle, i, seed, load, stack: true, raw: true);
             idle.Assign(alternate[i], b.Input("init_alt" + i, 16), load);
         }
         idle.Assign(pc, b.Input("init_pc", 16), load).Assign(sp, b.Input("init_sp", 16), load)
+            .Assign(ix, b.Input("init_ix", 16), load).Assign(iy, b.Input("init_iy", 16), load)
+            .Assign(indexMode, C(2, 0)).Assign(displaced, C(1, 0))
             .Assign(halted, C(1, 0), load)
             .Transition("fetch", step.And(load.Not()).And(halted.Value.Not()));
         fetch.Assign(op, data, ready).Assign(pc, pc.Value.Add(C(16, 1)), ready).Transition("decode", ready);
@@ -146,17 +183,25 @@ public static class Z80TestCore
         var jpcc = Eq(op.Value.And(C(8, 0xC7)), 0xC2);
         var callcc = Eq(op.Value.And(C(8, 0xC7)), 0xC4);
         var relative = Any(0x10, 0x18, 0x20, 0x28, 0x30, 0x38);
-        decode.Transition("cb_fetch", Eq(op.Value, 0xCB))
+        var needsDisplacement = ld.And(Eq(y, 6).Or(Eq(z, 6))).Or(alu.And(Eq(z, 6)))
+            .Or(inc.Or(dec).Or(ldn).And(Eq(y, 6))).Or(Eq(op.Value, 0xCB));
+        decode.Assign(indexMode, C(2, 1), Eq(op.Value, 0xDD)).Assign(indexMode, C(2, 2), Eq(op.Value, 0xFD))
+            .Transition("fetch", Any(0xDD, 0xFD))
+            .Transition("index_displacement", indexed.And(displaced.Value.Not()).And(needsDisplacement))
+            .Transition("cb_fetch", Eq(op.Value, 0xCB))
             .Transition("imm_low", imm16.Or(jpcc).Or(callcc))
             .Transition("imm8", ldn.Or(alun).Or(relative))
             .Transition("read_hl", ld.Or(alu).And(Eq(z, 6)).Or(inc.Or(dec).And(Eq(y, 6))))
             .Assign(operand, Choose(ScheduledValue.Select(inc.Or(dec), y, z), regValues))
             .Transition("execute");
+        var signedDisp = ScheduledValue.Select(Bit(data, 7), data.Resize(16).Or(C(16, 0xFF00)), data.Resize(16));
+        indexDisplacement.Assign(address, selectedIndex.Add(signedDisp), ready).Assign(displaced, C(1, 1), ready)
+            .Assign(pc, pc.Value.Add(C(16, 1)), ready).Transition("decode", ready);
 
         // Register/memory load and ALU families share a single operand latch.
         Put(execute, y, operand.Value, ld.Or(ldn).And(Eq(y, 6).Not()));
         var storeReg = ld.Or(ldn).And(Eq(y, 6));
-        execute.Assign(address, pairs[2], storeReg).Assign(wd, operand.Value, storeReg).Transition("store", storeReg);
+        execute.Assign(address, effectiveHl, storeReg).Assign(wd, operand.Value, storeReg).Transition("store", storeReg);
         var arithmetic = alu.Or(alun);
         var rhs = operand.Value;
         var results = new ScheduledValue[8]; var resultFlags = new ScheduledValue[8];
@@ -180,7 +225,7 @@ public static class Z80TestCore
         Put(execute, y, incResult, inc.Or(dec).And(Eq(y, 6).Not()));
         execute.Assign(f, incFlags, inc.Or(dec));
         var modifyMem = inc.Or(dec).And(Eq(y, 6));
-        execute.Assign(address, pairs[2], modifyMem).Assign(wd, incResult, modifyMem).Transition("store", modifyMem);
+        execute.Assign(address, effectiveHl, modifyMem).Assign(wd, incResult, modifyMem).Transition("store", modifyMem);
 
         var supported = ld.Or(ldn).Or(arithmetic).Or(inc).Or(dec);
         // Exact-opcode elaboration only builds hardware; no instruction executes in C#.
@@ -204,8 +249,12 @@ public static class Z80TestCore
         Instruction(0x00, _ => { });
         Instruction(0x76, g => execute.Assign(halted, C(1, 1), g));
         Instruction(0x08, g => { execute.Assign(alternate[3], af, g); PutPair(execute, 3, alternate[3].Value, g, true); });
-        Instruction(0xD9, g => { for (int i = 0; i < 3; i++) { execute.Assign(alternate[i], pairs[i], g); PutPair(execute, i, alternate[i].Value, g); } });
-        Instruction(0xEB, g => { PutPair(execute, 1, pairs[2], g); PutPair(execute, 2, pairs[1], g); });
+        Instruction(0xD9, g => { for (int i = 0; i < 3; i++) { execute.Assign(alternate[i], i == 2 ? rawHl : pairs[i], g); PutPair(execute, i, alternate[i].Value, g, raw: true); } });
+        Instruction(0xEB, g => { PutPair(execute, 1, rawHl, g); PutPair(execute, 2, pairs[1], g, raw: true); });
+        Instruction(0xE3, g => execute.Assign(word, pairs[2], g).Transition("exchange_low", g));
+        exchangeLow.Assign(lo, data, ready).Transition("exchange_high", ready);
+        PutPair(exchangeHigh, 2, Pair(data, lo.Value), ready); exchangeHigh.Transition("exchange_write_high", ready);
+        exchangeWriteHigh.Transition("exchange_write_low", ready); exchangeWriteLow.Transition("retire", ready);
         Instruction(0xF9, g => execute.Assign(sp, pairs[2], g));
         Instruction(0xE9, g => execute.Assign(pc, pairs[2], g));
         for (int i = 0; i < 2; i++)
@@ -215,7 +264,7 @@ public static class Z80TestCore
             Instruction(0x0A + 16 * i, g => execute.Assign(address, pairs[index], g).Transition("read_abs", g));
         }
         Instruction(0x32, g => execute.Assign(address, nn.Value, g).Assign(wd, a, g).Transition("store", g));
-        Instruction(0x22, g => execute.Assign(address, nn.Value, g).Assign(wd, r[5].Value, g).Transition("store", g));
+        Instruction(0x22, g => execute.Assign(address, nn.Value, g).Assign(wd, pairs[2].Resize(8), g).Transition("store", g));
         Instruction(0x3A, g => execute.Assign(address, nn.Value, g).Transition("read_abs", g));
         Instruction(0x2A, g => execute.Assign(address, nn.Value, g).Transition("read_abs", g));
         store.Assign(address, address.Value.Add(C(16, 1)), ready.And(Eq(op.Value, 0x22)))
@@ -296,13 +345,13 @@ public static class Z80TestCore
         cbFetch.Assign(cb, data, ready).Assign(pc, pc.Value.Add(C(16, 1)), ready).Transition("cb_decode", ready);
         var cy = cb.Value.ShiftRight(3).Resize(3); var cz = cb.Value.Resize(3);
         var cx = cb.Value.ShiftRight(6).Resize(2);
-        cbDecode.Transition("trap", Eq(cx, 0).And(Eq(cy, 6)))
-            .Transition("cb_read", Eq(cz, 6)).Assign(operand, Choose(cz, regValues)).Transition("cb_execute");
+        cbDecode.Transition("cb_read", Eq(cz, 6).Or(indexed))
+            .Assign(operand, Choose(cz, Array.ConvertAll(r, item => item.Value))).Transition("cb_execute");
         cbRead.Assign(operand, data, ready).Transition("cb_execute", ready);
         var v = operand.Value;
         var rotate = new[] { v.ShiftLeft(1).Or(Bit(v, 7).Resize(8)), v.ShiftRight(1).Or(Bit(v, 0).Resize(8).ShiftLeft(7)),
             v.ShiftLeft(1).Or(carry.Resize(8)), v.ShiftRight(1).Or(carry.Resize(8).ShiftLeft(7)),
-            v.ShiftLeft(1), v.ArithmeticShiftRight(1), v, v.ShiftRight(1) };
+            v.ShiftLeft(1), v.ArithmeticShiftRight(1), v.ShiftLeft(1).Or(C(8, 1)), v.ShiftRight(1) };
         var masks = new ScheduledValue[8];
         for (int i = 0; i < 8; i++) masks[i] = C(8, 1 << i);
         var mask = Choose(cy, masks);
@@ -311,13 +360,14 @@ public static class Z80TestCore
         var cbFlags = SZ(cbResult).Or(Parity(cbResult))
             .Or(ScheduledValue.Select(Bit(cy, 0), Bit(v, 0), Bit(v, 7)).Resize(8));
         var zero = Eq(v.And(mask), 0);
-        var bitFlags = flags.And(C(8, 1)).Or(C(8, 16)).Or(v.And(C(8, 0x28)))
+        var bitFlagSource = ScheduledValue.Select(indexed, address.Value.ShiftRight(8).Resize(8), v);
+        var bitFlags = flags.And(C(8, 1)).Or(C(8, 16)).Or(bitFlagSource.And(C(8, 0x28)))
             .Or(zero.Resize(8).ShiftLeft(6)).Or(zero.Resize(8).ShiftLeft(2))
             .Or(v.And(mask).And(C(8, 128)));
         cbExecute.Assign(f, cbFlags, Eq(cx, 0)).Assign(f, bitFlags, Eq(cx, 1));
-        Put(cbExecute, cz, cbResult, Eq(cx, 1).Not().And(Eq(cz, 6).Not()));
-        var cbWrite = Eq(cx, 1).Not().And(Eq(cz, 6));
-        cbExecute.Assign(address, pairs[2], cbWrite).Assign(wd, cbResult, cbWrite)
+        Put(cbExecute, cz, cbResult, Eq(cx, 1).Not().And(Eq(cz, 6).Not()), raw: true);
+        var cbWrite = Eq(cx, 1).Not().And(Eq(cz, 6).Or(indexed));
+        cbExecute.Assign(address, effectiveHl, cbWrite).Assign(wd, cbResult, cbWrite)
             .Transition("store", cbWrite).Transition("retire");
         retire.Transition("idle");
 
@@ -332,19 +382,23 @@ public static class Z80TestCore
             busAddress = ScheduledValue.Select(active, addr, busAddress);
             busData = ScheduledValue.Select(active, value ?? C(8, 0), busData);
         }
-        foreach (var state in new[] { fetch, immediate, low, high, cbFetch }) Bus(state, pc.Value);
-        Bus(readHl, pairs[2]); Bus(cbRead, pairs[2]);
-        Bus(store, address.Value, true, wd.Value); Bus(storeHigh, address.Value, true, r[4].Value);
+        foreach (var state in new[] { fetch, immediate, low, high, cbFetch, indexDisplacement }) Bus(state, pc.Value);
+        Bus(readHl, effectiveHl); Bus(cbRead, effectiveHl);
+        Bus(store, address.Value, true, wd.Value); Bus(storeHigh, address.Value, true, pairs[2].ShiftRight(8).Resize(8));
         Bus(readAbs, address.Value); Bus(readAbsHigh, address.Value);
         Bus(pushHigh, sp.Value.Subtract(C(16, 1)), true, word.Value.ShiftRight(8).Resize(8));
         Bus(pushLow, sp.Value.Subtract(C(16, 1)), true, word.Value.Resize(8));
         Bus(popLow, sp.Value); Bus(popHigh, sp.Value);
+        Bus(exchangeLow, sp.Value); Bus(exchangeHigh, sp.Value.Add(C(16, 1)));
+        Bus(exchangeWriteHigh, sp.Value.Add(C(16, 1)), true, word.Value.ShiftRight(8).Resize(8));
+        Bus(exchangeWriteLow, sp.Value, true, word.Value.Resize(8));
         b.Output("bus_valid", busValid); b.Output("bus_write", busWrite);
         b.Output("bus_address", busAddress); b.Output("bus_wdata", busData);
         b.Output("instruction_done", b.InState(retire)); b.Output("idle", b.InState(idle));
         b.Output("fault", b.InState(trap)); b.Output("halted_out", halted.Value);
         b.Output("pc_out", pc.Value); b.Output("sp_out", sp.Value); b.Output("af_out", af);
-        for (int i = 0; i < 3; i++) b.Output(new[] { "bc_out", "de_out", "hl_out" }[i], pairs[i]);
+        for (int i = 0; i < 3; i++) b.Output(new[] { "bc_out", "de_out", "hl_out" }[i], i == 2 ? rawHl : pairs[i]);
+        b.Output("ix_out", ix.Value); b.Output("iy_out", iy.Value);
         for (int i = 0; i < 4; i++) b.Output("alt_out" + i, alternate[i].Value);
         b.Output("opcode_out", op.Value);
         return b.Lower();

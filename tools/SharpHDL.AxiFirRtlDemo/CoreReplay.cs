@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Numerics;
 using SharpHDL.HLS;
 using SharpHDL.RTL;
 using SharpHDL.Simulation;
@@ -13,6 +14,7 @@ internal sealed class CoreReplay
     private readonly ScheduledHardwareDesign design;
     private readonly Dictionary<string,int> values;
     private readonly StringBuilder vectors=new();
+    private IReadOnlyDictionary<string,BigInteger>? snapshot;
     internal HardwareGraphMachine Machine { get; }
     internal CoreReplay(ScheduledHardwareDesign design)
     {
@@ -20,13 +22,15 @@ internal sealed class CoreReplay
         Machine=new(design.Graph,design.Inputs,design.Outputs,design.NextState,design.ResetValues,design.Memories);
         values=design.Inputs.Where(p=>!design.ResetValues.ContainsKey(p.Key)).ToDictionary(p=>p.Key,p=>0);
     }
-    internal void Drive(string name,int value){Machine.SetInput(name,unchecked((uint)value));values[name]=value;}
+    internal void Drive(string name,int value){Machine.SetInput(name,unchecked((uint)value));values[name]=value;snapshot=null;}
+    internal BigInteger Read(string name)=>(snapshot??=Machine.ReadOutputs())[name];
     internal void Clock(bool reset)
     {
         if(reset)Machine.Reset();else Machine.Tick();
+        snapshot=Machine.ReadOutputs();
         vectors.Append(reset?"1":"0");
         foreach(var value in values.Values)vectors.Append(' ').Append(unchecked((uint)value).ToString("X"));
-        foreach(var name in design.Outputs.Keys)vectors.Append(' ').Append(Machine.ReadOutput(name).ToString("X"));
+        foreach(var name in design.Outputs.Keys)vectors.Append(' ').Append(snapshot[name].ToString("X"));
         vectors.AppendLine();
     }
     internal void Save(string directory)

@@ -4,15 +4,18 @@
 using SharpHDL's scheduled API. The same typed Core IR runs in the simulator and
 emits Verilog. No host Z80 emulator executes the hardware implementation.
 
-This is an instruction-level Z80 subset for testing SharpHDL, **not a complete or
+This is an instruction-level Z80 design for testing SharpHDL, **not a
 pin-compatible Z80**. It supports the documented unprefixed register/memory loads,
 8-bit ALU, INC/DEC, 16-bit INC/DEC and ADD HL, accumulator rotates, DAA/CPL/SCF/CCF,
 exchanges, relative/absolute/conditional jumps, DJNZ, stack PUSH/POP, CALL/RET/RST,
-NOP and HALT, plus the documented CB rotate/shift/BIT/RES/SET group including (HL).
+NOP and HALT, CB rotate/shift/BIT/RES/SET including (HL), and DD/FD indexed forms.
+IX/IY pairs, index bytes, signed displacements, indexed CB register copies,
+EX (SP),HL/IX/IY and common NMOS SLL are supported. Repeated index prefixes use
+the final prefix; memory forms retain the Z80's ordinary H/L transfer exceptions.
 
-Unsupported instructions trap: DD/FD indexed prefixes, all ED instructions,
-IN/OUT, DI/EI, EX (SP),HL and undocumented CB SLL. Interrupts/NMI, bus ownership,
-refresh/I/R, IX/IY, WZ/Q, physical pin signals and Z80 T-state timing are absent.
+Currently unsupported instructions trap: ED instructions, IN/OUT and DI/EI.
+Interrupts/NMI, bus ownership, refresh/I/R, WZ/Q, physical pin signals and Z80
+T-state timing are absent. ED/I/O/interrupt extensions are the next active items.
 BIT (HL), SCF and CCF only promise documented flags; Q/WZ-dependent flag bits 3/5
 are excluded from those upstream comparisons. Other supported flag results include
 bits 3/5 in the checked scope. No claim of ZEXALL, CP/M or complete ISA conformance.
@@ -27,6 +30,7 @@ registers and sets SP=FFFF; it cannot undo a previously accepted external write.
 |---|---|
 | step, load_state | While idle, load overrides step; step starts one instruction. Hold step high to run. |
 | init_af/bc/de/hl, init_pc/sp, init_alt0..3 | Debug initialization accepted only on load_state while idle; alternate order BC, DE, HL, AF. |
+| init_ix/iy, ix/iy_out | Index-register initialization and architectural observation. |
 | bus_valid, bus_write, bus_address, bus_wdata | One outstanding byte request; stable until accepted. bus_write=0 means read. |
 | bus_ready, bus_rdata | Acceptance and read byte, sampled only on a valid/ready edge. |
 | instruction_done, idle, fault, halted_out | Retirement pulse, idle state, sticky illegal-instruction stop, HALT latch. |
