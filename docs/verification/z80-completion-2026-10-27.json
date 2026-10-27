@@ -1,0 +1,115 @@
+{
+  "workPackage": "WP-01",
+  "baseline": "6b91749aaf0a74554b6114dfc5201595f8ba0d36",
+  "implementationCommits": [
+    "5ec0c1c",
+    "42d96a0",
+    "7a4c975"
+  ],
+  "sourceHashes": {
+    "src/SharpHDL.Simulation/HardwareGraphMachine.cs": "27EB3DA31C6C2304D0687CAF74236F9AA265BA63B452E0D74B2FEF06D84914AC",
+    "tests/Shared/Z80InterruptCampaign.cs": "B62C288F5D8D039C9B2EA6931622E4CDDD4E2BE2D048763A55034F61BC7CC738",
+    "examples/Z80/generated/Z80BusFormal.v": "98C0DEFEF1C4D7D62543FA87761884BD38B6DD5B81BCC59F1BCCAF27E89FFEAE",
+    "tests/Shared/Z80Campaign.cs": "F1D6106791C4442AE431EAF085EAB29ABA9A75C0DF79F2577B4785C8AA8FE1B8",
+    "examples/Z80/generated/Z80TestCore.v": "FA2E319C77CB542F0E2EB34ABA37A08399AC04F70C50100A16D9F8D24BED7F6A",
+    "examples/Z80/Z80TestCore.cs": "1E191A615084F1FF10840C0B6713DE30691D040DE503CF4A38082C3E17FBEB03",
+    "tools/SharpHDL.Z80Fuzz/Program.cs": "B72B61A3E7BD6B418B645770554667A159AF2EC7474814444D6CB5DF31A9AB9A"
+  },
+  "managed": {
+    "failed": 0,
+    "note": "Concurrent local runs; timings are not benchmark results. Later WP-02/WP-03 changes have separate test scope.",
+    "windowsDuration": "26m23s",
+    "skipped": 0,
+    "windowsPassed": 233,
+    "linuxPassed": 233,
+    "linuxDuration": "21m02s"
+  },
+  "oracle": {
+    "groups": {
+      "complete": 1016,
+      "base": 840,
+      "ed": 672,
+      "indexed": 976
+    },
+    "distinctUpstreamFiles": 710,
+    "operationsPerPropertyCase": 8,
+    "overlap": "Some base records overlap between groups.",
+    "fixtureRecords": 3504,
+    "interruptScenarios": 7,
+    "propertyCases": 64,
+    "propertySeed": "1145655947,296144285",
+    "upstreamRevision": "ebe1875d48f374bcfd4b505d8eb8ee751568b5f7"
+  },
+  "coverage": {
+    "z80CoveredBranches": 78,
+    "validLines": "5128",
+    "branchRate": "0.4911",
+    "lineRate": "0.6312",
+    "z80ValidLines": 440,
+    "coveredLines": "3237",
+    "z80CoveredLines": 440,
+    "validBranches": "5149",
+    "limits": "Elaboration coverage is not ISA/toggle coverage; CLI/fuzz and HDL toggles unmeasured.",
+    "coveredBranches": "2529",
+    "z80ValidBranches": 78
+  },
+  "rtl": {
+    "rtlArtifacts": "/tmp/sharphdl-z80-q5pPX8",
+    "edgesPerSimulator": 56514,
+    "mapped": {
+      "limits": "No place/route, pin assignment or physical timing. nextpnr-ice40 unavailable.",
+      "lut4": 4070,
+      "carry": 453,
+      "flipFlops": 316,
+      "totalCells": 4839,
+      "target": "iCE40 cells",
+      "edges": 56514,
+      "artifacts": "/tmp/sharphdl-z80-mapped-WF5TLO"
+    },
+    "verilator": "5.020 pass",
+    "icarus": "12.0 pass",
+    "yosys": "0.33 generic check pass",
+    "coreNodes": 5600
+  },
+  "formal": {
+    "artifacts": "/tmp/sharphdl-z80-protocol-3RAzhQ",
+    "result": "SAT temporal induction proved request stability",
+    "limits": "Six protocol assertions only; not ISA equivalence or physical X/Z proof.",
+    "attempts": "Undefined-value model failed base case; initial-definition variant timed out. Final proof explicitly uses the Core two-state semantics.",
+    "negativeControl": "Inverted valid assertion fails within six reset-started steps; counterexample retained",
+    "model": "Yosys default two-state bit-valued model; no input assumptions for positive proof"
+  },
+  "mutation": {
+    "scope": "Six AluFlags conditional mutants",
+    "tool": "Stryker.NET 5.0.0",
+    "killed": 6,
+    "timeouts": 0,
+    "scorePercent": 100,
+    "survived": 0
+  },
+  "fuzz": {
+    "artifacts": "/tmp/sharphdl-z80-fuzz-8PF88v",
+    "savedHangs": 0,
+    "seed": 261027,
+    "corpus": 12,
+    "savedCrashes": 0,
+    "tool": "SharpFuzz 2.2.0 / AFL++ 4.09c",
+    "limits": "Managed host feedback, not HDL toggles or full ISA fuzzing. Initial pre-input initialization failure fixed by lazy construction inside callback.",
+    "runSeconds": 61,
+    "executions": 273,
+    "scope": "Base/IX/IY ALU, flags, address wrapping and WAIT checks",
+    "bitmapPercent": 0.33
+  },
+  "requirements": "StrictDoc 0.30.4 export passed",
+  "nativeHelper": "Current Native AOT importer published and executed verify: 3504 fixture records validated",
+  "ci": "Actions disabled; no hosted runs dispatched",
+  "sdk": {
+    "windows": "10.0.403",
+    "linux": "10.0.402"
+  },
+  "limits": [
+    "Instruction-level bus, not T-state/pin compatible.",
+    "Internal WZ/Q and associated BIT(HL)/SCF/CCF undocumented flag comparisons excluded.",
+    "No claim of ZEXALL, CP/M, exhaustive ISA equivalence or board readiness."
+  ]
+}

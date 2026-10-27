@@ -13,6 +13,11 @@ var design = Z80TestCore.Build();
 var replay = new CoreReplay(design);
 int vectors = Z80Campaign.Run(Path.Combine(AppContext.BaseDirectory, "Z80Vectors.json"), replay.Drive,
     name => (int)replay.Read(name), replay.Clock);
+foreach (string file in new[] { "Z80IndexedVectors.json", "Z80EdVectors.json", "Z80CompleteVectors.json" })
+    vectors += Z80Campaign.Run(Path.Combine(AppContext.BaseDirectory, file), replay.Drive, name => (int)replay.Read(name), replay.Clock);
+for (int scenario = 0; scenario < 7; scenario++)
+    Z80InterruptCampaign.Run(scenario, replay.Drive, name => (int)replay.Read(name), replay.Clock);
 int programEdges = Z80Campaign.RunProgram(replay.Drive, name => (int)replay.Read(name), replay.Clock);
 replay.Save(output);
+ProtocolProof.Write(design, output);
 Console.WriteLine($"Z80: {vectors} independent vectors; program {programEdges} edges; {design.Graph.Nodes.Count} Core nodes.");

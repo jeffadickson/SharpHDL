@@ -44,6 +44,32 @@ public sealed class Z80Tests
     public void Ed_repeat_vectors_match_independent_results()
         => Assert.Equal(64, Z80Campaign.Run(Path.Combine(AppContext.BaseDirectory, "Z80EdVectors.json"), Machine(), "ED B"));
 
+    /// <summary>Every base opcode and every CB opcode has independent sampled state/RAM expectations.</summary>
+    [Fact]
+    public void Every_base_and_cb_opcode_has_independent_vectors()
+        => Assert.Equal(1016, Z80Campaign.Run(Path.Combine(AppContext.BaseDirectory, "Z80CompleteVectors.json"), Machine()));
+
+    /// <summary>The last repeated prefix selects the index and every prefix increments low-seven-bit R.</summary>
+    [Theory]
+    [InlineData(false)] [InlineData(true)]
+    public void Repeated_index_prefixes_select_the_last_register(bool inverse)
+    {
+        var m = Machine(); m.SetInput("init_ix", 65535); m.SetInput("init_iy", 1);
+        m.SetInput("init_r", 254); m.SetInput("load_state", 1); m.Tick(); m.SetInput("load_state", 0);
+        m.SetInput("step", 1); m.Tick(); m.SetInput("step", 0);
+        byte[] bytes = { inverse ? (byte)0xFD : (byte)0xDD, inverse ? (byte)0xDD : (byte)0xFD, 0x21, 0x34, 0x12 };
+        for (int edge = 0; edge < 32 && m.ReadOutput("instruction_done") == 0; edge++)
+        {
+            m.SetInput("bus_ready", 1);
+            if (m.ReadOutput("bus_valid") != 0) m.SetInput("bus_rdata", bytes[(int)m.ReadOutput("bus_address")]);
+            m.Tick();
+        }
+        Assert.Equal(1, (int)m.ReadOutput("instruction_done")); Assert.Equal(5, (int)m.ReadOutput("pc_out"));
+        Assert.Equal(129, (int)m.ReadOutput("r_out"));
+        Assert.Equal(inverse ? 0x1234 : 65535, (int)m.ReadOutput("ix_out"));
+        Assert.Equal(inverse ? 1 : 0x1234, (int)m.ReadOutput("iy_out"));
+    }
+
     /// <summary>Interrupt mode, priority, EI/HALT and stalled-write scenarios have independent expectations.</summary>
     [Theory]
     [InlineData(0)] [InlineData(1)] [InlineData(2)] [InlineData(3)] [InlineData(4)] [InlineData(5)] [InlineData(6)]

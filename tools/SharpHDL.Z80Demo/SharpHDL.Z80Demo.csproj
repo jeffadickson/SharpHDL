@@ -6,6 +6,10 @@
     <ProjectReference Include="../../src/SharpHDL.RTL/SharpHDL.RTL.csproj" />
     <Compile Include="../SharpHDL.AxiFirRtlDemo/CoreReplay.cs" Link="CoreReplay.cs" />
     <Compile Include="../../tests/Shared/Z80Campaign.cs" Link="Z80Campaign.cs" />
+    <Compile Include="../../tests/Shared/Z80InterruptCampaign.cs" Link="Z80InterruptCampaign.cs" />
     <None Include="../../examples/Z80/vectors.json" Link="Z80Vectors.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../examples/Z80/indexed-vectors.json" Link="Z80IndexedVectors.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../examples/Z80/ed-vectors.json" Link="Z80EdVectors.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../../examples/Z80/complete-vectors.json" Link="Z80CompleteVectors.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

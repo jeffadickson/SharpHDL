@@ -48,3 +48,14 @@ negative/reset and immutable batch snapshots. Corrected the IM2 test stimulus to
 supply vector FF rather than the IM0 RST opcode CF; the core had correctly read
 the vector actually provided. Log: build/verification/z80-interrupts-final.log.
 Full managed/HDL regressions and generated RTL refresh are still pending.
+
+## WP-01 — combined qualification completed
+
+Full Windows/Linux suites pass 233/233. Icarus, Verilator and iCE40 mapped replay
+each pass 56,514 edges over 3,504 published fixture records plus interrupt/program
+campaigns. Request-stability temporal induction passes in the declared two-state
+model; a negative assertion control produces a reset-started counterexample.
+Six scoped ALU mutants are killed. Bounded fuzzing: 273 executions, no saved
+crashes/hangs. Current generated core and formal harness are checked in.
+See Z80_COMPLETION_2026-10-27.md and verification/z80-completion-2026-10-27.json
+for metrics, artifact paths, unsuccessful preliminary checks and limitations.

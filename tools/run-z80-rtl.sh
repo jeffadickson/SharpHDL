@@ -13,4 +13,5 @@ iverilog -g2012 -s tb -o "$output/z80" "$output/vectors/Z80TestCore.v" "$output/
 verilator --binary --timing -j 4 -Wno-fatal --top-module tb --Mdir "$output/obj" "$output/vectors/Z80TestCore.v" "$output/vectors/Z80TestCore_tb.sv" > "$output/verilator-build.log" 2>&1
 (cd "$output/vectors" && "$output/obj/Vtb")
 yosys -Q -T -p "read_verilog $output/vectors/Z80TestCore.v; hierarchy -check -top h_Z80TestCore; proc; opt; check -assert; stat" > "$output/yosys.log" 2>&1
+bash "$repo/tools/run-z80-protocol.sh" "$output/vectors"
 printf 'PASS Z80 generic synthesis; artifacts retained at %s\n' "$output"

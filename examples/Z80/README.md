@@ -68,8 +68,9 @@ dotnet run --project tools/SharpHDL.Z80Demo -c Release -- build/z80
 ```
 
 The demo emits Z80TestCore.v, a file-driven SystemVerilog testbench and replay
-vectors after checking 840 independent instruction cases and a 30-instruction
-program. The program sums 1..10, calls a RAM-writing subroutine, returns and halts.
+vectors after checking 3,504 published fixture records, seven interrupt scenarios
+and a 30-instruction program. Fixture groups overlap in some base cases. The
+program sums 1..10, calls a RAM-writing subroutine, returns and halts.
 The reusable campaign supplies stalls during fetch, operands, stack and writes.
 `generated/Z80TestCore.v` is the checked-in generated module from the verified run.
 
@@ -81,17 +82,21 @@ GitHub CI remains disabled; this command never enables or dispatches it.
 ## Oracle and library tradeoffs
 
 Instruction semantics follow the [Zilog CPU manual](https://www.zilog.com/docs/z80/um0080.pdf).
-840 records (first eight from each of 105 files) are pinned from the MIT-licensed
+Four fixture groups are pinned from the MIT-licensed
 [SingleStepTests/z80](https://github.com/SingleStepTests/z80/tree/ebe1875d48f374bcfd4b505d8eb8ee751568b5f7)
-corpus. `vectors-provenance.json` records upstream revision and complete input-file
-SHA256 hashes; `SingleStepTests.LICENSE` retains attribution. `vectors.json` is an
-unaltered record subset. Refresh reproducibly using the checked-in C# file app:
-`dotnet run tools/ImportZ80Vectors.cs`. Normal builds/tests require no network.
+corpus: 840 base records, 976 indexed records, 672 ED/port records and 1,016
+records covering every unprefixed and CB opcode. These select 710 distinct upstream
+files with some record overlap. Each *-provenance.json records upstream revision
+and full input-file SHA256 hashes; `SingleStepTests.LICENSE` retains attribution.
+Records are serialized compactly without changing their contents. Refresh using
+the checked-in C# file app, selecting base, indexed, ed or complete:
+`dotnet run tools/ImportZ80Vectors.cs -- indexed`. Normal builds/tests require no network.
 The importer uses BCL HttpClient/System.Text.Json/SHA256 and bounded parallelism.
 
 The corpus models additional CPU state and physical cycles. This core compares
-AF/BC/DE/HL, alternate pairs, PC/SP and RAM, with the explicit flag exclusions
-above. Cycle traces, refresh, WZ/Q and interrupt state are not compared. Upstream
+AF/BC/DE/HL, alternate pairs, IX/IY, PC/SP, I/R, IFF1/IFF2, IM, RAM and port
+transactions, with the explicit flag exclusions above. Physical cycle traces
+and internal WZ/Q state are not compared. Upstream
 is a software-model oracle, not captured silicon evidence; finite samples can
 miss defects. FsCheck adds fixed-seed arithmetic cases and an independently written
 integer/overflow reference. No additional production dependency is required.
@@ -112,6 +117,14 @@ inferred from the presence of these commands.
 
 Focused mutation configuration: tests/SharpHDL.UnitTests/stryker-z80.json. Run
 Stryker.NET from examples/, supplying that config and the unit-test project.
-The filter selects character offsets 5564..6202 (AluFlags); update it if source
-changes. It qualifies six conditional flag mutations, not the whole processor.
+The filter selects AluFlags by character offsets; update it if source changes.
+It qualifies six conditional flag mutations, not the whole processor.
 The Z80-local .gitattributes preserves LF so offsets are stable across platforms.
+
+Additional local campaigns: `bash tools/run-z80-fuzz.sh 60` uses SharpFuzz/AFL++
+for bounded base/indexed ALU/reference and WAIT checks; the bitmap measures managed
+host coverage, not RTL toggle coverage. The RTL runner also generates a temporal
+contract for request stability and runs Yosys induction. `bash tools/run-z80-mapped.sh`
+takes an existing generated vector directory and checks iCE40 cell-mapped functional
+replay. See the progress log for actual outcomes; configured commands are not evidence
+of successful execution. Place/route and physical board timing remain separate tasks.
