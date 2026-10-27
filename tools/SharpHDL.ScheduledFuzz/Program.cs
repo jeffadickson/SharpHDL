@@ -6,12 +6,14 @@ using System.Text;
 using SharpHDL;
 using System.Reflection;
 using System.Reflection.Emit;
+using SharpHDL.HLS;
 
 // SharpFuzz/AFL++ owns generation, coverage feedback and crash retention.
 // This bounded harness translates bytes into protocol traffic and an independent array model.
 Fuzzer.OutOfProcess.Run(stream =>
 {
     var bytes=new byte[256];int length=stream.ReadAtLeast(bytes,1,throwOnEndOfStream:false);
+    if(length>0)FlowFuzzOracle.Check(bytes.AsSpan(0,length));
     if(length>=8)
     {
         // BCL endian decoding avoids a custom input parser; the count remains a signed CLR bit pattern.
@@ -51,6 +53,43 @@ Fuzzer.OutOfProcess.Run(stream =>
         sim.Tick();
     }
 });
+
+/// <summary>Fuzz adapter for valid/malformed graphs with an independent closure oracle.</summary>
+internal static class FlowFuzzOracle
+{
+    internal static void Check(ReadOnlySpan<byte> bytes)
+    {
+        int count=1+bytes[0]%8;
+        var lists=Enumerable.Range(0,count).Select(_=>new List<int>()).ToArray();
+        bool invalid=false;
+        for(int i=1;i<bytes.Length;i++)
+        {
+            // count is deliberately a possible target, exercising absent-vertex
+            // validation without asking the fuzzer to manufacture CLR collections.
+            int target=bytes[i]%(count+1);lists[i%count].Add(target);invalid|=target==count;
+        }
+        var graph=Enumerable.Range(0,count).ToDictionary(i=>i,i=>(IReadOnlyList<int>)lists[i]);
+        InstructionControlFlow flow;
+        try { flow=InstructionControlFlow.Analyze(graph); }
+        catch(ArgumentException) when(invalid) { return; }
+        if(invalid)throw new InvalidOperationException("Malformed instruction graph was accepted.");
+        var closure=new bool[count,count];
+        for(int i=0;i<count;i++)
+        {closure[i,i]=true;foreach(int target in lists[i])closure[i,target]=true;}
+        for(int k=0;k<count;k++)for(int i=0;i<count;i++)for(int j=0;j<count;j++)
+            closure[i,j]|=closure[i,k]&&closure[k,j];
+        if(!flow.ReachableOffsets.SequenceEqual(Enumerable.Range(0,count).Where(i=>closure[0,i])))
+            throw new InvalidOperationException("Instruction graph reachability mismatch.");
+        var expected=new List<string>();var assigned=new HashSet<int>();
+        for(int i=0;i<count;i++)if(!assigned.Contains(i))
+        {
+            int[] members=Enumerable.Range(0,count).Where(j=>closure[i,j]&&closure[j,i]).ToArray();
+            assigned.UnionWith(members);expected.Add(string.Join(",",members));
+        }
+        if(!expected.SequenceEqual(flow.StrongComponents.Select(c=>string.Join(",",c))))
+            throw new InvalidOperationException("Instruction graph component mismatch.");
+    }
+}
 
 /// <summary>Real C# oracle and CIL input, kept outside the instrumented production assemblies.</summary>
 internal static class ShiftFuzzKernel

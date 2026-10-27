@@ -1,0 +1,43 @@
+[DOCUMENT]
+TITLE: Instruction control-flow analysis requirements
+
+[REQUIREMENT]
+UID: CIL-CFG-001
+TITLE: Validated immutable instruction graph
+STATEMENT: >>>
+Analysis shall reject empty graphs, absent entry/targets, negative vertices and
+null successor lists. Accept at most 4096 vertices and 65536 input edge entries,
+including duplicates before normalization. Return deeply read-only snapshots
+unaffected by later input mutation, with sorted vertices and distinct successors.
+Implementation: SharpHDL.HLS/InstructionControlFlow.cs.
+Verification: InstructionControlFlowTests malformed-input, resource-boundary,
+canonical-order and snapshot tests. Runtime evidence: work-package report.
+<<<
+
+[REQUIREMENT]
+UID: CIL-CFG-002
+TITLE: Deterministic reachability and cyclic components
+STATEMENT: >>>
+Analysis shall expose sorted reachable offsets including entry and canonical
+strongly connected components for all vertices. Report only reachable cyclic
+components as loops, counting singleton self edges. Library enumeration and
+component numbering shall not become observable ordering contracts.
+Implementation: InstructionControlFlow adapter to QuikGraph BFS and SCC.
+Verification: directed diamond/cycle/unreachable/nonzero-entry tests and 200
+FsCheck cases against independent Floyd-Warshall closure, fixed reproducible seed.
+Cycles do not imply feasible execution paths, nontermination or optimal schedules.
+<<<
+
+[REQUIREMENT]
+UID: CIL-CFG-003
+TITLE: Scheduled frontend integration without encoding drift
+STATEMENT: >>>
+Scheduled CIL shall validate successor instruction boundaries at the originating
+instruction and expose the analyzed graph. Retain stack-height validation,
+decoded instruction declaration order, explicit RAM waits and existing timing.
+Wait and idle states shall not be represented as original instructions.
+Implementation: ScheduledSequentialCil.cs and ScheduledCilCompilation.ControlFlow.
+Verification: compiled-loop/acyclic graph tests, existing edge-by-edge scheduled
+compiler tests and independent Icarus/Verilator replay suite. Source-aware
+rejection remains governed by CIL-DIAG-001 in SCHEDULED_VALIDATION.sdoc.
+<<<

@@ -12,7 +12,7 @@ or unreadable optional symbols shall not replace the primary rejection; their
 failure shall be retained and identified in the diagnostic and exception.
 Implementation: CilDiagnostic.cs and CilCompiler.Error.
 Verification: CilDiagnosticTests covers visible, hidden, dynamic-image, malformed
-symbol and unrelated-exception cases.
+symbol, zero/negative-offset, global-method and unrelated-exception cases.
 <<<
 
 [REQUIREMENT]

@@ -13,9 +13,9 @@ namespace SharpHDL
     public sealed class ScheduledCilCompilation
     {
         internal ScheduledCilCompilation(ScheduledHardwareDesign design,MethodInfo method,Dictionary<string,int> offsets,
-            Dictionary<string,int> encodings)
+            Dictionary<string,int> encodings,InstructionControlFlow controlFlow)
         {
-            Design=design;Method=method;StateOffsets=new ReadOnlyDictionary<string,int>(offsets);
+            Design=design;Method=method;ControlFlow=controlFlow;StateOffsets=new ReadOnlyDictionary<string,int>(offsets);
             StateEncodings=new ReadOnlyDictionary<string,int>(encodings);Symbols=PortablePdbSourceMap.Read(method);
             StateSources=new ReadOnlyDictionary<string,CilSourceSpan?>(encodings.Keys.ToDictionary(key=>key,
                 key=>offsets.TryGetValue(key,out int offset)?Symbols.FindSource(offset):null));
@@ -24,6 +24,8 @@ namespace SharpHDL
         public ScheduledHardwareDesign Design { get; }
         /// <summary>Original CIL method; never executed by the compiler.</summary>
         public MethodInfo Method { get; }
+        /// <summary>Validated original instruction graph, including canonical reachable cycles.</summary>
+        public InstructionControlFlow ControlFlow { get; }
         /// <summary>Control-state names to original IL offsets, including load wait states.</summary>
         public IReadOnlyDictionary<string,int> StateOffsets { get; }
         /// <summary>All control-state names and actual scheduler register encodings, including idle.</summary>
@@ -75,6 +77,17 @@ namespace SharpHDL
             foreach(var ins in list)if(!SupportedInstruction(ins.Name))
                 throw Error(method,ins.Offset,"Unsupported scheduled sequential opcode "+ins.Name+"; use the documented subset or the explicit legacy backend.");
             var code=list.ToDictionary(i=>i.Offset);var heights=new Dictionary<int,int>();
+            var successors=new Dictionary<int,IReadOnlyList<int>>();
+            foreach(var ins in list)
+            {
+                var targets=Successors(ins).ToArray();
+                foreach(int target in targets)if(!code.ContainsKey(target))
+                    throw Error(method,ins.Offset,"Invalid branch target "+target+"; target must be an instruction boundary.");
+                successors.Add(ins.Offset,targets);
+            }
+            InstructionControlFlow flow;
+            try { flow=InstructionControlFlow.Analyze(successors); }
+            catch(ArgumentException error) { throw Error(method,0,error.Message); }
             var pending=new Queue<(int Offset,int Height)>();pending.Enqueue((0,0));int maxStack=0;
             while(pending.Count!=0)
             {
@@ -86,7 +99,7 @@ namespace SharpHDL
                 if(item.Height<PopCount(ins)||after>32||ins.Name=="ret"&&after!=0)
                     throw Error(method,ins.Offset,"Invalid/excessive evaluation stack.");
                 heights.Add(item.Offset,item.Height);maxStack=Math.Max(maxStack,Math.Max(item.Height,after));
-                foreach(int target in Successors(ins))pending.Enqueue((target,after));
+                foreach(int target in flow.Successors[ins.Offset])pending.Enqueue((target,after));
             }
             var b=new ScheduledMachineBuilder(name);var start=b.Input("start",1);
             var busy=b.Register("busy_state",1);var done=b.Register("done_state",1);
@@ -193,7 +206,7 @@ namespace SharpHDL
             var offsets=states.ToDictionary(p=>p.Value.Name,p=>p.Key);
             foreach(var pair in waits)offsets.Add(pair.Value.Name,pair.Key);
             var encodings=new[]{idle}.Concat(states.Values).Concat(waits.Values).ToDictionary(s=>s.Name,s=>s.Encoding);
-            return new ScheduledCilCompilation(b.Lower(),method,offsets,encodings);
+            return new ScheduledCilCompilation(b.Lower(),method,offsets,encodings,flow);
         }
     }
 }

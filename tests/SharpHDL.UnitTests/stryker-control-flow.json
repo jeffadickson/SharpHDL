@@ -1,0 +1,10 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.HLS.csproj",
+    "mutate": ["**/InstructionControlFlow.cs"],
+    "test-case-filter": "FullyQualifiedName~InstructionControlFlowTests",
+    "concurrency": 1,
+    "reporters": ["html", "json", "progress"],
+    "additional-timeout": 10000
+  }
+}

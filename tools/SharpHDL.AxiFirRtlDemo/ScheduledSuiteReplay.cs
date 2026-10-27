@@ -124,6 +124,7 @@ internal static class ScheduledSuiteReplay
 
     private static void WriteSourceMap(string directory,ScheduledCilCompilation compilation)
     {
+        if(!Directory.Exists(directory))throw new DirectoryNotFoundException(directory);
         var map=new
         {
             Module=compilation.Design.Name,
@@ -139,5 +140,9 @@ internal static class ScheduledSuiteReplay
         };
         File.WriteAllText(Path.Combine(directory,compilation.Design.Name+".source-map.json"),
             JsonSerializer.Serialize(map,new JsonSerializerOptions{WriteIndented=true}));
+        // Canonical analysis contains original instructions, while the state map
+        // above also represents idle and the additional synchronous RAM waits.
+        File.WriteAllText(Path.Combine(directory,compilation.Design.Name+".control-flow.json"),
+            JsonSerializer.Serialize(compilation.ControlFlow,new JsonSerializerOptions{WriteIndented=true}));
     }
 }
