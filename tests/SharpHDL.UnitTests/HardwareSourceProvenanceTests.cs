@@ -26,7 +26,8 @@ public sealed class HardwareSourceProvenanceTests
         var output=HwStream<ushort>.Output(m,"out");
         var method=typeof(HardwareSourceProvenanceTests).GetMethod(nameof(DoubleIt))!;
         var pipeline=CilCompiler.AttachPipeline(m,"doubler",method,input,output);
-        var root=Directory.GetCurrentDirectory();
+        // Resolve from the compiled source location so isolated Linux build outputs work too.
+        var root=SourceDirectory();
         while(!File.Exists(Path.Combine(root,"Makefile")) && Directory.GetParent(root)!=null)
             root=Directory.GetParent(root)!.FullName;
         Assert.True(File.Exists(Path.Combine(root,"Makefile")));
@@ -248,4 +249,6 @@ public sealed class HardwareSourceProvenanceTests
         }
     }
 
+    private static string SourceDirectory([System.Runtime.CompilerServices.CallerFilePath] string sourceFile = "")
+        => Path.GetDirectoryName(sourceFile) ?? throw new InvalidOperationException("Test source directory unavailable.");
 }
