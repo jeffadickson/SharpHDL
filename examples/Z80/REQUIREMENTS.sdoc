@@ -1,0 +1,53 @@
+[DOCUMENT]
+TITLE: Z80 architectural hardware test design
+
+[REQUIREMENT]
+UID: Z80-CORE-001
+TITLE: Synthesizable instruction test core
+STATEMENT: >>>
+The Z80 example shall elaborate through ScheduledMachineBuilder into Core IR and
+Verilog, execute the documented supported base/CB instruction subset, and expose
+architectural state without executing a host software emulator as hardware.
+Implementation: examples/Z80/Z80TestCore.cs, Build.
+Verification: Z80Tests.Published_instruction_vectors_match_architectural_results;
+tools/SharpHDL.Z80Demo and tools/run-z80-rtl.sh.
+The unsupported list in README.md is normative. This requirement does not demand
+full Z80 compatibility, pin timing, interrupts, indexed/ED opcodes or undocumented flags.
+<<<
+
+[REQUIREMENT]
+UID: Z80-BUS-001
+TITLE: Deterministic stalled byte bus
+STATEMENT: >>>
+Only a valid/ready edge shall accept a byte transfer. Request address, direction,
+data and valid shall remain stable during stalls. Reset shall abort the pending
+request. Addresses and stack pointers shall wrap modulo 65536.
+Implementation: Z80TestCore bus states and fixed-width registers.
+Verification: Z80Campaign.Run, Z80Tests.Reset_aborts_stalled_store_and_halt_stops_fetch,
+Z80Tests.Stack_and_immediate_addresses_wrap_at_16_bits.
+<<<
+
+[REQUIREMENT]
+UID: Z80-VERIFY-001
+TITLE: Independent architecture and compositional verification
+STATEMENT: >>>
+The design shall match selected pinned upstream register/RAM vectors, an independent
+integer ALU oracle with reproducible randomized inputs, and a multi-instruction
+machine-code program with loops, calls, memory writes and HALT. Tests shall record
+excluded state/flags and shall not infer full ISA conformance from finite vectors.
+Implementation: tests/Shared/Z80Campaign.cs and tools/ImportZ80Vectors.cs.
+Verification: Z80Tests.Published_instruction_vectors_match_architectural_results,
+Arithmetic_flags_match_integer_reference, Machine_code_program_composes_loop_call_ram_and_halt.
+<<<
+
+[REQUIREMENT]
+UID: Z80-FAULT-001
+TITLE: Explicit unsupported-instruction fault
+STATEMENT: >>>
+Unsupported instructions shall enter a sticky fault state without issuing writes
+or reporting instruction completion. Reset shall recover. Undocumented CB SLL shall
+trap before accessing its register/memory target.
+Implementation: Z80TestCore decode, execute and trap states.
+Verification: Z80Tests.Unsupported_opcodes_trap_until_reset,
+Undocumented_cb_sll_traps_without_memory_access.
+<<<

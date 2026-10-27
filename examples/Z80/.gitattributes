@@ -1,0 +1,4 @@
+# Preserve deterministic oracle hashes and character-based Stryker selection.
+Z80TestCore.cs text eol=lf
+*.json text eol=lf
+generated/*.v text eol=lf

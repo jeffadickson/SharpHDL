@@ -22,4 +22,5 @@
   <ItemGroup><ProjectReference Include="../../examples/SharpHDL.ScheduledExamples.csproj" /></ItemGroup>
   <ItemGroup><ProjectReference Include="../SharpHDL.SymbolFixtures/SharpHDL.SymbolFixtures.csproj" /></ItemGroup>
   <ItemGroup><Compile Include="../../tests/Shared/ScheduledTableCampaign.cs" Link="ScheduledTableCampaign.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../Shared/Z80Campaign.cs" Link="Z80Campaign.cs" /><None Include="../../examples/Z80/vectors.json" Link="Z80Vectors.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
 </Project>

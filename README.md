@@ -1,5 +1,10 @@
 # SharpHDL 0.14
 
+The [Z80 architectural test core](examples/Z80/README.md) exercises scheduled Core
+IR and generated RTL with pinned independent instruction vectors, a machine-code
+program and stalled memory traffic. It implements a documented base/CB subset;
+indexed/ED instructions, interrupts and physical Z80 timing remain unsupported.
+
 **Developer setup:** [Build and toolchain guide](docs/BUILD_AND_SETUP.md). Run `just setup`, `just container-build`, and `just container-test` with Docker, Python 3 and just installed. The container provisions .NET 8 and the open-source HDL tools automatically. 
 
 > **Development design:** [Feature parity and competitive coverage](docs/FEATURE_PARITY.md) · [Architecture and implementation record](docs/DESIGN.md) · [Product requirements](docs/PRODUCT_REQUIREMENTS.md) · [Testing strategy](docs/TEST_STRATEGY.md). The new debugger, compiled combinational backend, xUnit and container integration fixtures are under development; passing builds and throughput results must be confirmed by CI.

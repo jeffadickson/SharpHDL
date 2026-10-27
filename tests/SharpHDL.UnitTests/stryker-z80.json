@@ -1,0 +1,16 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.ScheduledExamples.csproj",
+    "mutate": [
+      "**/Z80TestCore.cs{5564..6202}"
+    ],
+    "test-case-filter": "FullyQualifiedName~Z80Tests.Arithmetic_flags_match_integer_reference",
+    "concurrency": 4,
+    "reporters": [
+      "html",
+      "json",
+      "progress"
+    ],
+    "additional-timeout": 10000
+  }
+}

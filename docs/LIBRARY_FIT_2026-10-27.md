@@ -65,3 +65,22 @@ Execution status belongs in the final verification report, not in this fit revie
 Sources: the .NET 10 PEReader.TryOpenAssociatedPortablePdb API and C# shift-count
 reference linked in the continuation report. No production NuGet dependency was
 added for these changes.
+
+## Z80 test-design decisions
+
+The [Z80 example](../examples/Z80/README.md#oracle-and-library-tradeoffs) records
+current primary-source research and the complete tradeoffs. Adopted: pinned
+MIT-licensed SingleStepTests instruction vectors as a build-offline independent
+oracle; BCL JSON/HTTP/SHA256 for reproducible import; existing FsCheck for arithmetic
+properties and Stryker.NET for focused flag-construction mutation checks. Custom
+code describes exact-width hardware and adapts the byte bus; it does not duplicate
+a general parser, serialization library or fuzzing framework.
+
+Deferred to **Z80-ORACLE-NEXT**: evaluate Z80dotNet (.NET Standard 2.0) as a
+continuous-program differential oracle after adding indexed/ED/interrupt support.
+Its managed integration fits .NET 10, but its documented flag limitations must be
+qualified and its runtime emulator is not a synthesizable frontend input.
+floooh/chips offers a zlib-licensed native cycle oracle with C-toolchain/timing
+adaptation costs; redcode/Z80 offers another independent native implementation
+with LGPL integration considerations. Neither is a new production dependency.
+Execute adapter/conformance tests before adopting any deferred candidate.
