@@ -1,0 +1,110 @@
+{
+  "baseline": "4e6d34c8a48a5c7f4ecc72dfae825c938f661eb6",
+  "implementation": "7ca5ed3df45bc763b6b236152e10d5470012c4b2",
+  "sourceByteSha256": {
+    "src/SharpHDL.HLS/ScheduledMachine.cs": "3E6FC2D6847016CFA94F412340560DF097044902B06ECEAA1AF551FBC62CC1F3",
+    "examples/ScheduledTable.cs": "608AB0A12C8C9CF544C8FB6C3A8A6EAD74810F81CFE7455CFC0357900E74A98F",
+    "tests/Shared/ScheduledTableCampaign.cs": "38C6D7DF9B937F2957B99D489BB3BB1CED640C10A29B843900F9B9EA907C1264"
+  },
+  "tools": {
+    "yosys": "0.33",
+    "strictdoc": "0.30.4",
+    "stryker": "5.0.0",
+    "coverlet": "10.1.0",
+    "linuxSdk": "10.0.402",
+    "fscheck": "3.3.3",
+    "icarus": "12.0",
+    "windowsSdk": "10.0.403",
+    "verilator": "5.020"
+  },
+  "tests": {
+    "baselinePassed": 134,
+    "fscheckCasesPerProperty": 500,
+    "tableEdgesPerCase": 3201,
+    "failed": 0,
+    "fscheckReplay": "1145655947,296144285",
+    "skipped": 0,
+    "linuxPassed": 148,
+    "tableSeeds": [
+      261027,
+      261030,
+      261034
+    ],
+    "windowsPassed": 148,
+    "tableCompleted": [
+      421,
+      418,
+      414
+    ]
+  },
+  "coverage": {
+    "branchesValid": "4646",
+    "builderLineRate": "0.9682",
+    "branchRate": "0.4022",
+    "tableBranchRate": "1",
+    "branchesCovered": "1869",
+    "scope": "Five production assemblies plus linked examples; test and oracle classes excluded. Legacy executable run and external HDL are not included.",
+    "linesValid": "4611",
+    "linesCovered": "2615",
+    "builderBranchRate": "0.8387",
+    "tableLineRate": "1",
+    "lineRate": "0.5671"
+  },
+  "mutation": {
+    "timeout": 9,
+    "ignored": 470,
+    "compileError": 34,
+    "noCoverage": 37,
+    "scorePercent": 66.28,
+    "scope": "ScheduledMachine.cs with validation and FIR tests only; table example is not mutated",
+    "killed": 162,
+    "survived": 50
+  },
+  "external": {
+    "icarusFirTaps": [
+      2,
+      4,
+      8,
+      16
+    ],
+    "formalProof": "not performed",
+    "verilator": "lint-only passed for table width 4; no Verilator replay performed",
+    "hostedCi": "not dispatched",
+    "icarusTableAddressWidths": [
+      1,
+      4,
+      8
+    ],
+    "physicalFpga": "not performed",
+    "yosys": "hierarchy/proc/opt/memory_collect/check passed; assert one mem_v2 and one add for table width 4"
+  },
+  "projects": [
+    "tools\\SharpHDL.SimulatorBench\\SharpHDL.SimulatorBench.csproj",
+    "tools\\SharpHDL.Provenance\\SharpHDL.Provenance.csproj",
+    "tools\\SharpHDL.NativeTinyRisc\\SharpHDL.NativeTinyRisc.csproj",
+    "tools\\SharpHDL.MultiplierBench\\SharpHDL.MultiplierBench.csproj",
+    "src\\SharpHDL.Simulation\\SharpHDL.Simulation.csproj",
+    "tools\\SharpHDL.Live\\SharpHDL.Live.csproj",
+    "src\\SharpHDL.RTL\\SharpHDL.RTL.csproj",
+    "tools\\SharpHDL.CoreHlsDemo\\SharpHDL.CoreHlsDemo.csproj",
+    "tools\\SharpHDL.CilCoreDemo\\SharpHDL.CilCoreDemo.csproj",
+    "src\\SharpHDL.HLS\\SharpHDL.HLS.csproj",
+    "tools\\SharpHDL.AxiFirRtlDemo\\SharpHDL.AxiFirRtlDemo.csproj",
+    "src\\SharpHDL.Core\\SharpHDL.Core.csproj",
+    "src\\SharpHDL\\SharpHDL.csproj",
+    "tests\\Tests.csproj",
+    "tests\\SharpHDL.Benchmarks\\SharpHDL.Benchmarks.csproj",
+    "tests\\SharpHDL.UnitTests\\SharpHDL.UnitTests.csproj",
+    "tests\\SharpHDL.IntegrationTests\\SharpHDL.IntegrationTests.csproj"
+  ],
+  "workflows": [
+    "compiled-simulator.yml",
+    "hdl-integration.yml",
+    "learner-browser.yml",
+    "live-rewind.yml",
+    "provisioning.yml",
+    "tinyrisc-hello.yml",
+    "vscode-sharphdl.yml",
+    "xunit.yml"
+  ]
+}
