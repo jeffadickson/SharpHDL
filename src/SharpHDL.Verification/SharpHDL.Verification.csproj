@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+ <PropertyGroup><TargetFramework>net10.0</TargetFramework><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings><GenerateDocumentationFile>true</GenerateDocumentationFile></PropertyGroup>
+ <ItemGroup><ProjectReference Include="../SharpHDL.Core/SharpHDL.Core.csproj" /><ProjectReference Include="../SharpHDL.Simulation/SharpHDL.Simulation.csproj" /><PackageReference Include="Microsoft.Z3" Version="4.12.2" /></ItemGroup>
+</Project>

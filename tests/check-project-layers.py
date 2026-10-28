@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 PROJECTS = {
     "SharpHDL.Tooling": ROOT / "src/SharpHDL.Tooling/SharpHDL.Tooling.csproj",
+    "SharpHDL.Verification": ROOT / "src/SharpHDL.Verification/SharpHDL.Verification.csproj",
     "SharpHDL.Core": ROOT / "src/SharpHDL.Core/SharpHDL.Core.csproj",
     "SharpHDL.HLS": ROOT / "src/SharpHDL.HLS/SharpHDL.HLS.csproj",
     "SharpHDL.Simulation": ROOT / "src/SharpHDL.Simulation/SharpHDL.Simulation.csproj",
@@ -13,6 +14,7 @@ PROJECTS = {
 }
 ALLOWED = {
     "SharpHDL.Tooling": set(),
+    "SharpHDL.Verification": {"SharpHDL.Core", "SharpHDL.Simulation"},
     "SharpHDL.Core": set(),
     "SharpHDL.HLS": {"SharpHDL.Core"},
     "SharpHDL.Simulation": {"SharpHDL.Core"},
@@ -46,4 +48,4 @@ def visit(name, active, visited):
 visited = set()
 for n in graph:
     visit(n, [], visited)
-print("PASS: Core <- HLS, Simulation and RTL; no project dependency cycles")
+print("PASS: subsystem references obey allowed layering; no project dependency cycles")

@@ -1,0 +1,16 @@
+{
+  "stryker-config": {
+    "concurrency": 1,
+    "test-case-filter": "FullyQualifiedName~Supported_operations|FullyQualifiedName~Native_resource",
+    "mutate": [
+      "**/BitVectorEquivalence.cs{5405..5664}",
+      "**/BitVectorEquivalence.cs{9339..11316}"
+    ],
+    "additional-timeout": 10000,
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "project": "SharpHDL.Verification.csproj"
+  }
+}

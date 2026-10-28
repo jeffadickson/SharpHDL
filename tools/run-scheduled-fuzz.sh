@@ -2,6 +2,7 @@
 # Bounded coverage-guided campaign; keep native Linux output and all crash/queue evidence.
 set -euo pipefail
 repo=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+source "$repo/tools/setup-z3-linux.sh"
 seconds=${1:-60}
 [[ "$seconds" =~ ^[0-9]+$ ]] && ((seconds >= 1 && seconds <= 3600)) || { echo 'Budget must be 1..3600 seconds' >&2; exit 2; }
 test -d "$repo/tools/SharpHDL.ScheduledFuzz" && test -d /tmp
@@ -12,7 +13,7 @@ test -d "$DOTNET_ROOT"
 export DOTNET_ROOT DOTNET_ROLL_FORWARD=Major
 dotnet publish "$repo/tools/SharpHDL.ScheduledFuzz" -c Release --artifacts-path "$output/artifacts" -o "$output/publish"
 dotnet tool install SharpFuzz.CommandLine --version 2.2.0 --tool-path "$output/tools"
-for assembly in SharpHDL SharpHDL.HLS SharpHDL.Core SharpHDL.Simulation SharpHDL.ScheduledExamples; do
+for assembly in SharpHDL SharpHDL.HLS SharpHDL.Core SharpHDL.Simulation SharpHDL.ScheduledExamples SharpHDL.Verification; do
   "$output/tools/sharpfuzz" "$output/publish/$assembly.dll"
 done
 AFL_SKIP_BIN_CHECK=1 AFL_NO_UI=1 AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 

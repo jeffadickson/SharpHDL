@@ -23,3 +23,34 @@ errors shall propagate. Detached/reparented daemon containment is unsupported;
 the runner is not a sandbox. Evidence directories shall never be overwritten.
 Verification: Cancellation_terminates_an_ordinary_process_tree and timeout/limit tests.
 <<<
+
+[REQUIREMENT]
+UID: BV-EQUIV-001
+TITLE: Bounded combinational equivalence with no silent omissions
+STATEMENT: >>>
+The verifier shall compare two outputs over all matching ordinal input valuations
+using real Z3 4.12.2 bit vectors. Support only 1..256-node combinational graphs,
+1..32-bit values and at most 128 total input bits with unique bounded ASCII input
+identifiers. Reject every state boundary, RAM, ROM and DSP primitive, including
+unused unsupported nodes. Explicit signed operations, modular arithmetic, shifts,
+slices, zero/sign extension and concatenation shall preserve Core semantics.
+Implementation: SharpHDL.Verification.BitVectorEquivalence.
+Verification: complete small truth tables, CLR arithmetic properties and independent
+Yosys checks in SharpHDL.EquivalenceCli. This is not sequential equivalence.
+<<<
+
+[REQUIREMENT]
+UID: BV-EQUIV-002
+TITLE: Retained counterexamples and nonproof outcomes
+STATEMENT: >>>
+Only a completed UNSAT result shall denote Equivalent. SAT valuations shall
+reproduce differing outputs in the independent Core evaluator before Different
+is returned. Retain SMT-LIB, native version and concrete decimal input values.
+Resource exhaustion/timeout, cancellation, unsupported inputs and unavailable or
+mismatched native assets shall never be classified as equivalent. Retain actual
+Yosys counterexamples in the independent qualification campaign.
+Counterexample evaluation shall bound constant shifts by the hardware result
+width before host arithmetic, avoiding unbounded intermediate BigInteger allocation.
+Verification: Native_resource_exhaustion_and_precancellation_do_not_prove_equivalence,
+profile rejection tests, deliberately corrupted truth tables and retained native runs.
+<<<

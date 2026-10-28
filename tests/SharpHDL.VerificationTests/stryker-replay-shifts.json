@@ -1,0 +1,15 @@
+{
+  "stryker-config": {
+    "concurrency": 1,
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "additional-timeout": 10000,
+    "test-case-filter": "FullyQualifiedName~Oversized_shift_replay|FullyQualifiedName~Edge_widths",
+    "project": "SharpHDL.Simulation.csproj",
+    "mutate": [
+      "**/HardwareGraphEvaluator.cs{3459..3581}"
+    ]
+  }
+}

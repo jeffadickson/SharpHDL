@@ -63,11 +63,14 @@ public static class HardwareGraphEvaluator
                 case HardwareOperation.Xor:v=A(0)^A(1);break;
                 case HardwareOperation.Not:v=~A(0);break;
                 case HardwareOperation.Select:v=A(0)!=0?A(1):A(2);break;
-                case HardwareOperation.ShiftLeft:v=A(0)<<node.Offset;break;
-                case HardwareOperation.ShiftRight:
+                // Fixed-width shifts saturate before host arithmetic. Forming
+                // a huge BigInteger and masking afterward can exhaust memory
+                // while replaying an otherwise tiny solver counterexample.
+                case HardwareOperation.ShiftLeft:v=node.Offset>=node.Type.Width?BigInteger.Zero:A(0)<<node.Offset;break;
+                case HardwareOperation.ShiftRight:v=node.Offset>=node.Type.Width?BigInteger.Zero:A(0)>>node.Offset;break;
                 case HardwareOperation.Slice:v=A(0)>>node.Offset;break;
                 case HardwareOperation.ArithmeticShiftRight:
-                    v=Signed(A(0),byId[node.Operands[0]].Type.Width)>>node.Offset;break;
+                    v=Signed(A(0),byId[node.Operands[0]].Type.Width)>>Math.Min(node.Offset,node.Type.Width-1);break;
                 case HardwareOperation.Resize:v=A(0);break;
                 case HardwareOperation.SignExtend:
                     v=Signed(A(0),byId[node.Operands[0]].Type.Width);break;
