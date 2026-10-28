@@ -1,0 +1,14 @@
+[DOCUMENT]
+TITLE: Controlled simulator baseline qualification
+
+[REQUIREMENT]
+UID: PERF-BASE-001
+TITLE: Controlled simulator observations before optimization
+STATEMENT: >>>
+BenchmarkDotNet shall measure identical 256-edge stimuli at RAM address widths
+one and eight with an independently calculated protocol checksum. Report JIT and
+Native AOT separately, tool/runtime versions, allocations and host limitations.
+Compilation is outside timing; construction and observation are inside timing.
+No optimization or speedup claim follows solely from configured concurrency.
+Verification: SimulatorBaselineTests and retained BenchmarkDotNet JSON/reports.
+<<<

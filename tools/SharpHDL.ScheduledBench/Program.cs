@@ -1,33 +1,25 @@
-using System.Numerics;
-using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
-using SharpHDL.Examples;
-using SharpHDL.HLS;
-using SharpHDL.Simulation;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Environments;
+using BenchmarkDotNet.Exporters.Json;
+using BenchmarkDotNet.Toolchains.NativeAot;
 
-BenchmarkSwitcher.FromAssembly(typeof(ScheduledSimulationBenchmarks).Assembly).Run(args);
-
-/// <summary>Reproducible simulator baseline; no optimization/speedup claim.</summary>
-[MemoryDiagnoser]
-public class ScheduledSimulationBenchmarks
+bool qualified=args.Contains("--qualified-baseline",StringComparer.Ordinal);
+if(qualified)
 {
-    private ScheduledHardwareDesign design=null!;
-    /// <summary>Same transaction stream over small and larger RAM arrays.</summary>
-    [Params(1,8)]
-    public int AddressWidth { get; set; }
-    /// <summary>Compile hardware outside the measured runtime operation.</summary>
-    [GlobalSetup]
-    public void Setup()=>design=ScheduledTable.Build(AddressWidth);
-    /// <summary>Include machine construction, 256 clock edges and final independent result check.</summary>
-    [Benchmark]
-    public BigInteger ConstructAndSimulate256Edges()
-    {
-        var sim=new HardwareGraphMachine(design.Graph,design.Inputs,design.Outputs,design.NextState,design.ResetValues,design.Memories);
-        sim.SetInput("request_valid",1);sim.SetInput("request_update",1);
-        sim.SetInput("request_delta",1);sim.SetInput("response_ready",1);
-        for(int i=0;i<256;i++)sim.Tick();
-        var value=sim.ReadOutput("response_data");
-        if(value!=64)throw new InvalidOperationException("Benchmark transaction checksum mismatch.");
-        return value;
-    }
+    args=args.Where(a=>a!="--qualified-baseline").ToArray();
+    var aot=new NativeAotToolchainBuilder();aot.UseNuGet("10.0.13");aot.TargetFrameworkMoniker("net10.0");aot.RuntimeFrameworkVersion("10.0.13");
+    var job=Job.ShortRun.WithLaunchCount(1).WithWarmupCount(2).WithIterationCount(3).WithGcServer(false);
+    var config=ManualConfig.Create(DefaultConfig.Instance).AddExporter(JsonExporter.Full)
+        .AddJob(job.WithRuntime(CoreRuntime.Core10_0).WithId("JIT10"))
+        .AddJob(job.WithRuntime(NativeAotRuntime.Net10_0).WithToolchain(aot.ToToolchain()).WithId("AOT10-ILC10.0.13"));
+    // Serialize generated builds on shared hosts; keep build failures visible in retained logs.
+    config.Options|=ConfigOptions.DisableParallelBuild|ConfigOptions.LogBuildOutput;
+    config.BuildTimeout=TimeSpan.FromMinutes(10);
+    var summaries=BenchmarkSwitcher.FromAssembly(typeof(ScheduledSimulationBenchmarks).Assembly).Run(args,config);
+    var reports=summaries.SelectMany(s=>s.Reports).ToArray();
+    if(reports.Length!=8||reports.Any(r=>!r.Success))throw new InvalidOperationException("Qualified baseline requires eight successful JIT/AOT measurements; inspect retained reports.");
 }
+else BenchmarkSwitcher.FromAssembly(typeof(ScheduledSimulationBenchmarks).Assembly).Run(args);
+
