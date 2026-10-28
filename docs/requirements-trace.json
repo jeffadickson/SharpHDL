@@ -530,6 +530,69 @@
           "method": "Invalid_controls_fail_closed"
         }
       ]
+    },
+    {
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/ScheduledNarrowConversionTests.cs",
+          "method": "Boundary_conversions_match_CLR_arithmetic_and_legacy_edges"
+        },
+        {
+          "file": "tests/SharpHDL.VerificationTests/NarrowConversionProofTests.cs",
+          "method": "Conversion_cones_match_independent_arithmetic_for_every_32_bit_input"
+        }
+      ],
+      "limitations": "Explicit unchecked 32-bit stack profile only; narrow locals/ports and checked/wide/native/floating conversions remain unsupported. CLR/legacy/Core/HDL, local native proofs and finite campaigns executed; no sequential proof or FPGA timing closure.",
+      "implementation": [
+        "src/SharpHDL/ScheduledCilConversionLowering.cs"
+      ],
+      "evidence": [
+        "docs/CONTINUATION_JIT_NARROW_2026-10-27.md"
+      ],
+      "status": "verified_bounded",
+      "uid": "CIL-NARROW-001"
+    },
+    {
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/ScheduledNarrowConversionTests.cs",
+          "method": "Unsupported_conversions_and_malformed_stacks_have_actionable_diagnostics"
+        },
+        {
+          "file": "tests/SharpHDL.VerificationTests/NarrowConversionProofTests.cs",
+          "method": "Conversion_cones_match_independent_arithmetic_for_every_32_bit_input"
+        }
+      ],
+      "limitations": "Explicit unchecked 32-bit stack profile only; narrow locals/ports and checked/wide/native/floating conversions remain unsupported. CLR/legacy/Core/HDL, local native proofs and finite campaigns executed; no sequential proof or FPGA timing closure.",
+      "implementation": [
+        "src/SharpHDL/ScheduledSequentialCil.cs"
+      ],
+      "evidence": [
+        "docs/CONTINUATION_JIT_NARROW_2026-10-27.md"
+      ],
+      "status": "verified_bounded",
+      "uid": "CIL-NARROW-002"
+    },
+    {
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/ScheduledNarrowConversionTests.cs",
+          "method": "Sign_extension_width_and_identity_contracts_are_explicit"
+        },
+        {
+          "file": "tests/SharpHDL.VerificationTests/NarrowConversionProofTests.cs",
+          "method": "Conversion_cones_match_independent_arithmetic_for_every_32_bit_input"
+        }
+      ],
+      "limitations": "Explicit unchecked 32-bit stack profile only; narrow locals/ports and checked/wide/native/floating conversions remain unsupported. CLR/legacy/Core/HDL, local native proofs and finite campaigns executed; no sequential proof or FPGA timing closure.",
+      "implementation": [
+        "src/SharpHDL.HLS/ScheduledMachine.cs"
+      ],
+      "evidence": [
+        "docs/CONTINUATION_JIT_NARROW_2026-10-27.md"
+      ],
+      "status": "verified_bounded",
+      "uid": "HLS-SIGN-001"
     }
   ],
   "schema": 1

@@ -398,3 +398,8 @@ closure and further simulator optimization remain separate work.
 Use the opt-in [engineering/API build guide](docs/ENGINEERING_BUILD.md) to render
 Sphinx, compiler XML and real StrictDoc requirements. Output must be outside the
 checkout so packaged raw projects do not interfere with benchmark discovery.
+
+Current compiler work and the JIT-default policy are recorded in
+[the narrow CIL continuation](docs/CONTINUATION_JIT_NARROW_2026-10-27.md).
+Unchecked byte/short stack conversions are supported with explicit sign/zero
+extension; checked conversions and narrow locals/ports remain unsupported.

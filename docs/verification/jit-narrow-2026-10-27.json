@@ -1,0 +1,112 @@
+{
+  "fuzz": {
+    "savedHangs": 0,
+    "engine": "SharpFuzz 2.2.0 / AFL++ 4.09c",
+    "executions": 1104,
+    "savedCrashes": 0,
+    "seed": 261026,
+    "corpus": 123,
+    "seconds": 60,
+    "artifacts": "/tmp/sharphdl-fuzz-CmNZII"
+  },
+  "defaultJitRun": {
+    "artifacts": "/tmp/sharphdl-baseline-yPpMFk",
+    "completed": 4,
+    "scope": "Job-selection acceptance, not a performance improvement claim."
+  },
+  "hdl": {
+    "scope": "Only five added designs rerun in this slice; no physical FPGA/timing qualification.",
+    "edgeCounts": [
+      81,
+      81,
+      81,
+      81,
+      305
+    ],
+    "genericYosys": "0.33",
+    "simulators": [
+      "Icarus 12.0",
+      "Verilator 5.020"
+    ],
+    "newDesigns": 5,
+    "artifacts": "/tmp/sharphdl-rtl-6EPeQw",
+    "manifests": 25
+  },
+  "tests": {
+    "nativeZ3EachOs": 60,
+    "retainedProofRecords": 16,
+    "benchmarkWindows": 8,
+    "excluded": "Historical expensive Z80Tests; seven program oracles remain included.",
+    "newCompilerCases": 8,
+    "skips": 0,
+    "fastEachOs": 296,
+    "newProofCases": 8,
+    "failures": 0
+  },
+  "propertyReplay": "1145655947,296144285",
+  "policy": {
+    "jitDefault": true,
+    "ciEnabled": false,
+    "additionalNativeAotBuilds": 0
+  },
+  "coverage": {
+    "profile": {
+      "line": 100,
+      "branch": 100
+    },
+    "limitations": "Method scopes only; defensive branches, orchestration and external tools are not whole-product coverage.",
+    "conversionMethod": {
+      "line": 88.88,
+      "branch": 90
+    },
+    "signExtensionMethod": {
+      "line": 100,
+      "branch": 100
+    }
+  },
+  "documentation": {
+    "status": "Passed actual StrictDoc/compiler-XML/Sphinx -W -n build",
+    "summary": {
+      "createdUtc": "2026-10-28T03:24:31.9493157Z",
+      "requirements": 45,
+      "mapped": 29,
+      "unmapped": 16,
+      "apiAssemblies": 7,
+      "engineeringPages": 10,
+      "statusPolicy": "Manual bounded statuses preserved; link validation is not requirement closure."
+    },
+    "limitations": "Legacy undocumented APIs, CDN-dependent diagrams and text-only test-name admission remain limited; partial/historical/draft/unmapped statuses preserved.",
+    "site": "Workspace sibling sharphdl-engineering-jit-narrow-20261027/site"
+  },
+  "baseline": "c5f8b4aec38649be0e4a78b3b193f9914b1678e9",
+  "aotDeferralCommit": "6b99f7f",
+  "sourceHashesSha256": {
+    "src/SharpHDL.HLS/ScheduledMachine.cs": "d082008f1c65b737f4dab0a22d50fc00fa096abd3ce621ad3e947f2ab26782de",
+    "src/SharpHDL/ScheduledCilConversionLowering.cs": "d8b3b060d50980fb9e5bf6c3acc67b19e8d54ce4dd34962973e0a785f21f1cbd",
+    "src/SharpHDL/ScheduledSequentialCil.cs": "4b6506c3471f418398f9a49917780c06fcf867d948e233367d763ebd53921749",
+    "examples/ScheduledNarrowCil.cs": "26bb8ffae089e0879d80ec27f4b9fcfdcb6bb2a986f22e2ee050b349749a1c90",
+    "tools/SharpHDL.ScheduledBench/BaselineRunOptions.cs": "1d8315303c97d1e219b9b15efae20cb24b988fbc8161b8ec22c18c65fa0fbca1",
+    "tools/SharpHDL.ScheduledBench/Program.cs": "b18c4788e2343ed0c878c251cd753bda61e5c970d18d0f91d18b517a19227c88"
+  },
+  "schema": 1,
+  "mutation": {
+    "profile": {
+      "Killed": 29,
+      "CompileError": 2,
+      "Ignored": 26,
+      "Survived": 4
+    },
+    "compiler": {
+      "Killed": 11,
+      "CompileError": 1924,
+      "Ignored": 7982,
+      "NoCoverage": 3
+    },
+    "signExtension": {
+      "Killed": 10,
+      "CompileError": 131,
+      "Ignored": 1408
+    },
+    "limitations": "Safe Mode excludes existing compiler-method instrumentation failures. Helper 11 killed/3 uncovered; API 10 killed. No adjusted or whole-frontend score."
+  }
+}

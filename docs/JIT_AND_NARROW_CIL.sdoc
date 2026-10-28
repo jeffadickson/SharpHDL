@@ -13,3 +13,39 @@ missing, duplicated and null profile controls before starting tool work. Preserv
 BenchmarkDotNet argument order and retain historical native evidence separately.
 Verification: LauncherProfileTests and an actual four-case default JIT invocation.
 <<<
+
+[REQUIREMENT]
+UID: CIL-NARROW-001
+TITLE: Explicit unchecked small-integer evaluation-stack conversions
+STATEMENT: >>>
+The scheduled UInt32/Int32/Boolean frontend shall accept conv.i1, conv.u1, conv.i2
+and conv.u2 on its 32-bit evaluation stack. Truncate to eight or sixteen low bits
+first, then sign-extend signed opcodes or zero-extend unsigned opcodes to 32 bits.
+Keep one-instruction-per-edge scheduling, start-time argument capture and original
+IL provenance. Compare all four raw-IL operations and a composed C# example with
+actual CLR execution, an independent modular arithmetic oracle and generated HDL.
+Verification: ScheduledNarrowConversionTests and narrow HDL replay.
+<<<
+
+[REQUIREMENT]
+UID: CIL-NARROW-002
+TITLE: Maintain conversion-profile rejection and local-proof boundaries
+STATEMENT: >>>
+Checked, 64-bit, floating and native-sized conversions, narrow locals/ports and
+malformed stacks remain unsupported and shall report original method/IL context.
+Native bit-vector checks of conversion cones shall retain real UNSAT/SAT results
+and independently replay counterexamples, without describing local combinational
+checks as a sequential-design proof. Retain finite campaign and coverage limits.
+Verification: negative/malformed tests and NarrowConversionProofTests.
+<<<
+
+[REQUIREMENT]
+UID: HLS-SIGN-001
+TITLE: Bounded explicit sign-extension values
+STATEMENT: >>>
+ScheduledValue.SignExtend shall preserve the source two's-complement bit pattern
+by replicating its sign bit into a result at least as wide and at most 4096 bits.
+Identity extension shall preserve the value object; narrowing and excessive widths
+shall reject before lowering. Emit the existing typed Core SignExtend operation.
+Verification: width/identity/boundary tests and independent native arithmetic miters.
+<<<

@@ -1,0 +1,17 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.csproj",
+    "additional-timeout": 5000,
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "test-case-filter": "FullyQualifiedName~ScheduledNarrowConversionTests&FullyQualifiedName!~Generated_conversions",
+    "concurrency": 1,
+    "mutate": [
+      "**/ScheduledCilConversionLowering.cs",
+      "**/ScheduledSequentialCil.cs{5393..5606}",
+      "**/ScheduledSequentialCil.cs{14606..14730}"
+    ]
+  }
+}

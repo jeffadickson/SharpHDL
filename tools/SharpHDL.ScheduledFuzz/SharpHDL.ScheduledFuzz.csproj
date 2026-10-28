@@ -3,4 +3,5 @@
   <ItemGroup><PackageReference Include="SharpFuzz" Version="2.2.0" /><ProjectReference Include="../../examples/SharpHDL.ScheduledExamples.csproj" /><ProjectReference Include="../../src/SharpHDL.Simulation/SharpHDL.Simulation.csproj" /><ProjectReference Include="../../src/SharpHDL/SharpHDL.csproj" /></ItemGroup>
   <ItemGroup><Compile Include="../../tests/Shared/AxiConformanceCampaign.cs" Link="AxiConformanceCampaign.cs" /></ItemGroup>
   <ItemGroup><ProjectReference Include="../../src/SharpHDL.Verification/SharpHDL.Verification.csproj" /></ItemGroup>
+ <ItemGroup><Compile Include="../../tests/Shared/NarrowCilFixture.cs" Link="NarrowCilFixture.cs" /></ItemGroup>
 </Project>

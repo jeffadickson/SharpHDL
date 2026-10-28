@@ -73,6 +73,7 @@ internal static class ScheduledSuiteReplay
         WriteSourceMap(directory,compiled);
         Console.WriteLine("CIL loop: native/legacy/Core agree, including partial writes on bounds fault.");
         GenerateShifts(directory);
+        GenerateNarrowConversions(directory);
         var planned=new CoreReplay(ScheduledPlannedBanks.Build());
         for(int phase=0;phase<=6;phase++)
         {
@@ -172,6 +173,29 @@ internal static class ScheduledSuiteReplay
         File.WriteAllText(Path.Combine(directory,moduleName+".il-map.json"),JsonSerializer.Serialize(compilation.StateOffsets));
         WriteSourceMap(directory,compilation);
         Console.WriteLine($"CIL shifts {moduleName}: {transactions} native/legacy/Core transactions agree.");
+    }
+
+    private static void GenerateNarrowConversions(string directory)
+    {
+        var cases=new[]{("conv.i1","ScheduledNarrowI1"),("conv.u1","ScheduledNarrowU1"),
+            ("conv.i2","ScheduledNarrowI2"),("conv.u2","ScheduledNarrowU2"),("mix","ScheduledCilNarrow")};
+        foreach(var (opcode,name) in cases)
+        {
+            var method=opcode=="mix"?typeof(ScheduledNarrowCil).GetMethod(nameof(ScheduledNarrowCil.Evaluate))!:NarrowCilFixture.Method(opcode);
+            var compiled=CilCompiler.BuildScheduledSequential(method,name);var replay=new CoreReplay(compiled.Design);
+            var native=method.CreateDelegate<Func<uint,uint>>();replay.Clock(true);
+            foreach(uint value in new uint[]{0,1,0x7f,0x80,0xff,0x100,0x17f,0x180,0x7fff,0x8000,0xffff,0x10000,0x123480ff,0x7fffffff,0x80000000,0xffffffff})
+            {
+                replay.Drive("arg0",unchecked((int)value));replay.Drive("start",1);replay.Clock(false);
+                replay.Drive("start",0);replay.Drive("arg0",unchecked((int)~value));
+                int edges=0;while(replay.Read("done")==0&&edges++<128)replay.Clock(false);
+                if(replay.Read("done")!=1||replay.Read("fault")!=0||(uint)replay.Read("result")!=native(value)||
+                    opcode!="mix"&&native(value)!=NarrowCilFixture.Expected(value,opcode))
+                    throw new InvalidOperationException("Narrow conversion CLR/arithmetic/Core mismatch: "+opcode);
+            }
+            replay.Save(directory);WriteSourceMap(directory,compiled);
+            Console.WriteLine($"CIL conversions {name}: 16 independent boundary/capture transactions agree.");
+        }
     }
 
     private static void WriteSourceMap(string directory,ScheduledCilCompilation compilation)

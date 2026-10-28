@@ -138,3 +138,11 @@ Current policy: Native AOT is deferred. Use ordinary .NET 10/JIT for development
 The controlled benchmark script now defaults to four JIT cases; native comparison
 requires an explicit --include-native-aot opt-in. Historical results remain valid
 for their recorded scope. Continue compiler correctness and HDL verification first.
+
+Current continuation adds unchecked conv.i1/u1/i2/u2 on the scheduled 32-bit CIL
+stack and an explicit HLS SignExtend value. Narrow locals/ports and checked/wide/
+floating/native conversions still reject. Read docs/CONTINUATION_JIT_NARROW_2026-10-27.md
+and docs/JIT_AND_NARROW_CIL.sdoc for acceptance, actual results and limitations.
+Fresh scope: 296 fast and 60 native Z3 tests per OS, five added HDL designs,
+retained conversion witnesses, focused mutation and a finite fuzz campaign.
+Native AOT stays deferred; preserve CI-off policy and existing history.

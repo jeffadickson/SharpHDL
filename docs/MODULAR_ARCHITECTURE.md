@@ -534,3 +534,14 @@ stays an opt-in tool and keeps Python dependencies outside ordinary managed buil
 [Continuation evidence and library trades](WORK_PACKAGES_7_10.md) and the
 [engineering/API build guide](ENGINEERING_BUILD.md) state exact verification
 scopes, partial/historical requirements and current limitations. CI remains off.
+
+## JIT-first and narrow conversion increment
+
+Native AOT is deferred. Controlled benchmarking defaults to four JIT cases;
+historical native evidence does not impose a native build prerequisite.
+The compatibility scheduled-CIL frontend accepts unchecked conv.i1/u1/i2/u2,
+using explicit truncation followed by 32-bit sign/zero extension. HLS now exposes
+SignExtend for explicit bit-pattern semantics. Narrow locals/ports and checked,
+wide, floating/native conversions still reject. The converter cone's native
+all-input proof is combinational only; it does not establish controller or
+sequential equivalence. See CONTINUATION_JIT_NARROW_2026-10-27.md for current evidence.

@@ -31,4 +31,5 @@
   <ItemGroup><None Include="../../examples/Z80/ed-vectors.json" Link="Z80EdVectors.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
   <ItemGroup><Compile Include="../Shared/Z80InterruptCampaign.cs" Link="Z80InterruptCampaign.cs" /></ItemGroup>
   <ItemGroup><None Include="../../examples/Z80/complete-vectors.json" Link="Z80CompleteVectors.json" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
+  <ItemGroup><Compile Include="../../examples/ScheduledNarrowCil.cs" Link="ScheduledNarrowCil.cs" /><Compile Include="../../tests/Shared/NarrowCilFixture.cs" Link="NarrowCilFixture.cs" /></ItemGroup>
 </Project>

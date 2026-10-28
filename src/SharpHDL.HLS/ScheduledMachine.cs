@@ -66,6 +66,12 @@ public sealed class ScheduledValue
         if(width is <1 or >4096)throw new ArgumentOutOfRangeException(nameof(width));
         return width==Width?this:new ScheduledValue(width,HardwareOperation.Resize,new[]{this});
     }
+    /// <summary>Extend the current two's-complement bit pattern by replicating its sign bit; narrowing is rejected.</summary>
+    public ScheduledValue SignExtend(int width)
+    {
+        if(width<Width||width>4096)throw new ArgumentOutOfRangeException(nameof(width));
+        return width==Width?this:new ScheduledValue(width,HardwareOperation.SignExtend,new[]{this});
+    }
     /// <summary>Create a one-bit logical negation or a bitwise complement.</summary>
     public ScheduledValue Not()=>new(Width,HardwareOperation.Not,new[]{this});
 

@@ -41,6 +41,8 @@ namespace SharpHDL
         /// <summary>
         /// Lower static Int32/UInt32/Boolean control flow and at most one uint[] RAM
         /// through the existing decoder/stack analysis into ScheduledMachineBuilder.
+        /// Unchecked 8/16-bit stack conversions truncate then sign/zero-extend to Int32;
+        /// narrow locals/ports and checked/wide conversions remain unsupported.
         /// UInt32 return and full-width ports are required. One instruction executes
         /// per edge; RAM loads add a capture/wait edge. Unsupported constructs are
         /// rejected with method and IL-offset diagnostics; no legacy fallback occurs.
@@ -69,7 +71,8 @@ namespace SharpHDL
             if(list.Count>o.MaxInstructions)throw Error(method,0,"Scheduled sequential instruction limit exceeded.");
             bool SupportedInstruction(string op)=>op=="nop"||op=="ret"||op=="dup"||op=="pop"||op=="not"||op=="neg"||
                 op=="add"||op=="sub"||op=="mul"||op=="and"||op=="or"||op=="xor"||op=="ceq"||op=="clt"||op=="clt.un"||op=="cgt"||op=="cgt.un"||
-                op=="conv.i4"||op=="conv.u4"||op=="shl"||op=="shr"||op=="shr.un"||op=="br"||op=="br.s"||op=="switch"||Conditional(op)||
+                op=="conv.i4"||op=="conv.u4"||op=="conv.i1"||op=="conv.u1"||op=="conv.i2"||op=="conv.u2"||
+                op=="shl"||op=="shr"||op=="shr.un"||op=="br"||op=="br.s"||op=="switch"||Conditional(op)||
                 op=="ldlen"||op=="ldelem.u4"||op=="ldelem.i4"||op=="stelem.i4"||
                 op.StartsWith("ldc.i4")||op=="ldarg"||op=="ldarg.s"||op.StartsWith("ldarg.")||
                 op=="starg"||op=="starg.s"||op=="ldloc"||op=="ldloc.s"||op.StartsWith("ldloc.")||
@@ -188,6 +191,7 @@ namespace SharpHDL
                 else if(op=="dup")Push(h,Top(0));
                 else if(op=="not")Push(h-1,Top(0).Not());
                 else if(op=="neg")Push(h-1,zero32.Subtract(Top(0)));
+                else if(op=="conv.i1"||op=="conv.u1"||op=="conv.i2"||op=="conv.u2")Push(h-1,ScheduledClrNarrow(Top(0),op));
                 else if(op=="shl"||op=="shr"||op=="shr.un")Push(h-2,ScheduledClrShift(b,Top(1),Top(0),op));
                 else if(op=="ldlen"){if(ram==null)throw Error(method,ins.Offset,"ldlen requires RAM.");Push(h-1,b.Constant(32,o.MemoryDepth));}
                 else if(op=="ceq"||op.StartsWith("clt")||op.StartsWith("cgt"))Push(h-2,Compare(op.Substring(1,2),Top(1),Top(0),op.EndsWith(".un")).Resize(32));
