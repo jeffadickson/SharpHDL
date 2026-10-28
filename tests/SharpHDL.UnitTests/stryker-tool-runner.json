@@ -1,0 +1,16 @@
+{
+  "stryker-config": {
+    "test-case-filter": "FullyQualifiedName~HdlToolRunnerTests&FullyQualifiedName!~Generated_arguments",
+    "concurrency": 1,
+    "additional-timeout": 10000,
+    "mutate": [
+      "**/HdlToolRunner.cs{2546..3403}",
+      "**/HdlToolRunner.cs{7515..7782}"
+    ],
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "project": "SharpHDL.Tooling.csproj"
+  }
+}

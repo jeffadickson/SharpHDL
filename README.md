@@ -20,6 +20,10 @@ oracle, deterministic bank/shared-operator scheduling, and reusable AXI protocol
 checkers with queue/register-model campaigns. The oracle is a pinned test-only
 dependency; scheduling reuses QuikGraph and the AXI checkers use the BCL.
 
+[Tooling and verification continuation](docs/WORK_PACKAGES_7_10.md) records the
+shared cancellable HDL runner, retained execution manifests and subsequent
+equivalence/scheduling/performance/documentation qualification.
+
 > **Development design:** [Feature parity and competitive coverage](docs/FEATURE_PARITY.md) · [Architecture and implementation record](docs/DESIGN.md) · [Product requirements](docs/PRODUCT_REQUIREMENTS.md) · [Testing strategy](docs/TEST_STRATEGY.md). Capability and performance claims require recorded execution evidence; dormant CI definitions do not constitute verification.
 
 A small, executable C# hardware-description library inspired by MyHDL.

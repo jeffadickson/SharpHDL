@@ -1,0 +1,25 @@
+[DOCUMENT]
+TITLE: Tool execution, equivalence, latency scheduling, performance and documentation
+
+[REQUIREMENT]
+UID: TOOL-RUN-001
+TITLE: Literal subprocess arguments and retained evidence
+STATEMENT: >>>
+The HDL runner shall execute absolute programs without a shell, preserve separate
+arguments, drain stdout/stderr concurrently with finite per-stream byte limits,
+close stdin and retain raw logs and JSON provenance in a new artifact directory.
+Nonzero exit, absent/unstartable executable and truncated output shall not succeed.
+Implementation: SharpHDL.Tooling.HdlToolRunner and SharpHDL.ToolCli.
+Verification: HdlToolRunnerTests, generated argv properties and run-scheduled-rtl.sh.
+<<<
+
+[REQUIREMENT]
+UID: TOOL-RUN-002
+TITLE: Cancellable ordinary process trees
+STATEMENT: >>>
+The runner shall distinguish caller cancellation from deadline expiry, terminate
+the ordinary process tree and observe pipe tasks before returning. Cleanup/IO
+errors shall propagate. Detached/reparented daemon containment is unsupported;
+the runner is not a sandbox. Evidence directories shall never be overwritten.
+Verification: Cancellation_terminates_an_ordinary_process_tree and timeout/limit tests.
+<<<

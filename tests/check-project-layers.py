@@ -5,12 +5,14 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 PROJECTS = {
+    "SharpHDL.Tooling": ROOT / "src/SharpHDL.Tooling/SharpHDL.Tooling.csproj",
     "SharpHDL.Core": ROOT / "src/SharpHDL.Core/SharpHDL.Core.csproj",
     "SharpHDL.HLS": ROOT / "src/SharpHDL.HLS/SharpHDL.HLS.csproj",
     "SharpHDL.Simulation": ROOT / "src/SharpHDL.Simulation/SharpHDL.Simulation.csproj",
     "SharpHDL.RTL": ROOT / "src/SharpHDL.RTL/SharpHDL.RTL.csproj",
 }
 ALLOWED = {
+    "SharpHDL.Tooling": set(),
     "SharpHDL.Core": set(),
     "SharpHDL.HLS": {"SharpHDL.Core"},
     "SharpHDL.Simulation": {"SharpHDL.Core"},
