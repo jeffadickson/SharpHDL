@@ -13,7 +13,7 @@ public static class NarrowCilFixture
     };
     /// <summary>Read a stable raw-IL method with one UInt32 input and result.</summary>
     public static MethodInfo Method(string opcode)=>methods[opcode];
-    /// <summary>Create negative fixtures as well as valid methods; narrow locals remain outside the profile.</summary>
+    /// <summary>Create negative fixtures as well as valid explicit conversion methods.</summary>
     public static MethodInfo Create(OpCode opcode,bool narrowLocal=false,bool omitOperand=false)
     {
         var assembly=AssemblyBuilder.DefineDynamicAssembly(new AssemblyName("Narrow"+Guid.NewGuid().ToString("N")),AssemblyBuilderAccess.RunAndCollect);
@@ -27,6 +27,19 @@ public static class NarrowCilFixture
         il.Emit(OpCodes.Conv_U4);il.Emit(OpCodes.Ret);
         return type.CreateType()!.GetMethod("Convert")!;
     }
+    /// <summary>Create raw narrow-local, argument-write and return fixtures.</summary>
+    public static MethodInfo Storage(Type storage,bool argument=false,bool result=false,bool readOnly=false)
+    {
+        var a=AssemblyBuilder.DefineDynamicAssembly(new AssemblyName("Storage"+Guid.NewGuid().ToString("N")),AssemblyBuilderAccess.RunAndCollect);
+        var t=a.DefineDynamicModule("main").DefineType("Kernel",TypeAttributes.Public);
+        var m=t.DefineMethod("Evaluate",MethodAttributes.Public|MethodAttributes.Static,result?storage:typeof(uint),argument?[storage,typeof(uint)]:[typeof(uint)]);
+        var il=m.GetILGenerator();
+        if(argument){if(!readOnly){il.Emit(OpCodes.Ldarg_1);il.Emit(OpCodes.Starg_S,(byte)0);}il.Emit(OpCodes.Ldarg_0);}
+        else {il.DeclareLocal(storage);il.Emit(OpCodes.Ldarg_0);il.Emit(OpCodes.Stloc_0);il.Emit(OpCodes.Ldloc_0);}
+        il.Emit(OpCodes.Ret);
+        return t.CreateType()!.GetMethod("Evaluate")!;
+    }
+
     /// <summary>Independent modular arithmetic model, not a call into either hardware evaluator.</summary>
     public static uint Expected(uint value,string opcode)
     {

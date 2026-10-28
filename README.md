@@ -401,5 +401,10 @@ checkout so packaged raw projects do not interfere with benchmark discovery.
 
 Current compiler work and the JIT-default policy are recorded in
 [the narrow CIL continuation](docs/CONTINUATION_JIT_NARROW_2026-10-27.md).
+
+Scheduled CIL also supports declared byte/sbyte/short/ushort/char locals, arguments
+and returns. Storage truncates on writes and extends on loads to the 32-bit stack;
+ports use declared widths. See [storage and checked-conversion progress](docs/CONTINUATION_STORAGE_CHECKED_2026-10-27.md)
+for executed verification and remaining limits. CI stays off; Native AOT is deferred.
 Unchecked byte/short stack conversions are supported with explicit sign/zero
 extension; checked conversions and narrow locals/ports remain unsupported.

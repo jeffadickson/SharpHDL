@@ -39,11 +39,12 @@ namespace SharpHDL
     public static partial class CilCompiler
     {
         /// <summary>
-        /// Lower static Int32/UInt32/Boolean control flow and at most one uint[] RAM
+        /// Lower static integer/Boolean control flow and at most one uint[] RAM
         /// through the existing decoder/stack analysis into ScheduledMachineBuilder.
         /// Unchecked 8/16-bit stack conversions truncate then sign/zero-extend to Int32;
-        /// narrow locals/ports and checked/wide conversions remain unsupported.
-        /// UInt32 return and full-width ports are required. One instruction executes
+        /// byte/sbyte/short/ushort/char storage uses declared widths and extends on load.
+        /// Checked/wide conversions remain unsupported. Ports use CLR scalar widths.
+        /// One instruction executes
         /// per edge; RAM loads add a capture/wait edge. Unsupported constructs are
         /// rejected with method and IL-offset diagnostics; no legacy fallback occurs.
         /// </summary>
@@ -51,9 +52,9 @@ namespace SharpHDL
         {
             if(method==null)throw new ArgumentNullException(nameof(method));
             var o=options??new SequentialOptions();var body=method.GetMethodBody();var ps=method.GetParameters();
-            bool Scalar(Type t)=>t==typeof(uint)||t==typeof(int)||t==typeof(bool);
-            if(!method.IsStatic||method.ContainsGenericParameters||body==null||body.ExceptionHandlingClauses.Count!=0||method.ReturnType!=typeof(uint))
-                throw Error(method,0,"Scheduled sequential methods require a static CIL body, UInt32 return and no exception handlers.");
+            bool Scalar(Type t)=>TryScheduledScalar(t,out _);
+            if(!method.IsStatic||method.ContainsGenericParameters||body==null||body.ExceptionHandlingClauses.Count!=0||!TryScheduledScalar(method.ReturnType,out var returnType))
+                throw Error(method,0,"Scheduled sequential methods require a static CIL body, supported integer/Boolean return and no exception handlers.");
             if(o.MaxCycles<1||o.MaxCycles>1000000||o.MaxInstructions<1||o.MaxInstructions>4096)
                 throw new ArgumentException("Invalid scheduled sequential instruction/clock limits.",nameof(options));
             if(o.MemoryOptions!=null)
@@ -62,7 +63,7 @@ namespace SharpHDL
                 throw Error(method,0,"Initial memory requires a uint[] RAM argument.");
             if(body.LocalVariables.Any(v=>!Scalar(v.LocalType))||!body.InitLocals&&body.LocalVariables.Count>0||
                 ps.Any(p=>p.ParameterType!=typeof(uint[])&&!Scalar(p.ParameterType))||ps.Count(p=>p.ParameterType==typeof(uint[]))>1)
-                throw Error(method,0,"Scheduled locals/arguments must be Int32, UInt32 or Boolean with at most one uint[] argument.");
+                throw Error(method,0,"Scheduled locals/arguments must be byte, sbyte, short, ushort, char, Int32, UInt32 or Boolean with at most one uint[] argument.");
             if(Attribute.IsDefined(method.ReturnParameter,typeof(PortWidthAttribute))||ps.Any(p=>Attribute.IsDefined(p,typeof(PortWidthAttribute))))
                 throw Error(method,0,"Scheduled sequential ports use CLR widths; PortWidth overrides are unsupported.");
             bool hasRam=ps.Any(p=>p.ParameterType==typeof(uint[]));
@@ -107,16 +108,20 @@ namespace SharpHDL
             var b=new ScheduledMachineBuilder(name);var start=b.Input("start",1);
             var busy=b.Register("busy_state",1);var done=b.Register("done_state",1);
             var fault=b.Register("fault_state",1);var timeout=b.Register("timeout_state",1);
-            var result=b.Register("result_state",32);
+            var result=b.Register("result_state",returnType.PortWidth);
             int cw=1;while((1<<cw)<=o.MaxCycles)cw++;
             var cycles=b.Register("cycles",cw);
             var args=new ScheduledRegister[ps.Length];var captured=new List<(ScheduledRegister Register,ScheduledValue Input)>();
+            var argumentTypes=new ScheduledScalarType[ps.Length];
             for(int i=0;i<ps.Length;i++)if(ps[i].ParameterType!=typeof(uint[]))
             {
-                var input=b.Input("arg"+i,ps[i].ParameterType==typeof(bool)?1:32);
-                args[i]=b.Register("saved_arg"+i,32);captured.Add((args[i],input.Resize(32)));
+                TryScheduledScalar(ps[i].ParameterType,out argumentTypes[i]);
+                var input=b.Input("arg"+i,argumentTypes[i].PortWidth);
+                args[i]=b.Register("saved_arg"+i,argumentTypes[i].StorageWidth);
+                captured.Add((args[i],input.Resize(argumentTypes[i].StorageWidth)));
             }
-            var locals=body.LocalVariables.Select((v,i)=>b.Register("local"+i,32)).ToArray();
+            var localTypes=body.LocalVariables.Select(v=>{TryScheduledScalar(v.LocalType,out var type);return type;}).ToArray();
+            var locals=localTypes.Select((type,i)=>b.Register("local"+i,type.StorageWidth)).ToArray();
             var stack=Enumerable.Range(0,maxStack).Select(i=>b.Register("stack"+i,32)).ToArray();
             var idle=b.State("idle");var reachable=list.Where(i=>heights.ContainsKey(i.Offset)).ToArray();
             var states=reachable.ToDictionary(i=>i.Offset,i=>b.State("IL_"+i.Offset.ToString("x4")));
@@ -151,7 +156,7 @@ namespace SharpHDL
                 void Push(int slot,ScheduledValue value)=>state.Assign(stack[slot],value,live);
                 Stop(state,expired,true,true);state.Assign(cycles,cycles.Value.Add(b.Constant(cw,1)),live);
                 string next=op=="ret"||op=="br"||op=="br.s"?"idle":states[ins.Next].Name;
-                if(op=="ret"){state.Assign(result,Top(0),live);Stop(state,live,false);continue;}
+                if(op=="ret"){state.Assign(result,Top(0).Resize(returnType.PortWidth),live);Stop(state,live,false);continue;}
                 if(op=="br"||op=="br.s"){state.Transition(states[(int)ins.Operand].Name,live);continue;}
                 if(Conditional(op))
                 {
@@ -183,11 +188,14 @@ namespace SharpHDL
                     continue;
                 }
                 if(op.StartsWith("ldc.i4"))Push(h,K32(op=="ldc.i4.m1"?-1:op=="ldc.i4"||op=="ldc.i4.s"?(int)ins.Operand:int.Parse(op.Substring(7))));
-                else if(op=="ldarg"||op=="ldarg.s"||op.StartsWith("ldarg."))Push(h,args[VarIndex(ins,"ldarg")]?.Value??zero32);
+                else if(op=="ldarg"||op=="ldarg.s"||op.StartsWith("ldarg."))
+                {int index=VarIndex(ins,"ldarg");Push(h,args[index] is null?zero32:argumentTypes[index].Load(args[index].Value));}
                 else if(op=="starg"||op=="starg.s")
-                {if(args[(int)ins.Operand]==null)throw Error(method,ins.Offset,"Cannot reassign RAM reference.");state.Assign(args[(int)ins.Operand],Top(0),live);}
-                else if(op=="ldloc"||op=="ldloc.s"||op.StartsWith("ldloc."))Push(h,locals[VarIndex(ins,"ldloc")].Value);
-                else if(op=="stloc"||op=="stloc.s"||op.StartsWith("stloc."))state.Assign(locals[VarIndex(ins,"stloc")],Top(0),live);
+                {int index=(int)ins.Operand;if(args[index]==null)throw Error(method,ins.Offset,"Cannot reassign RAM reference.");state.Assign(args[index],argumentTypes[index].Store(Top(0)),live);}
+                else if(op=="ldloc"||op=="ldloc.s"||op.StartsWith("ldloc."))
+                {int index=VarIndex(ins,"ldloc");Push(h,localTypes[index].Load(locals[index].Value));}
+                else if(op=="stloc"||op=="stloc.s"||op.StartsWith("stloc."))
+                {int index=VarIndex(ins,"stloc");state.Assign(locals[index],localTypes[index].Store(Top(0)),live);}
                 else if(op=="dup")Push(h,Top(0));
                 else if(op=="not")Push(h-1,Top(0).Not());
                 else if(op=="neg")Push(h-1,zero32.Subtract(Top(0)));

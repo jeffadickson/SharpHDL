@@ -593,6 +593,24 @@
       ],
       "status": "verified_bounded",
       "uid": "HLS-SIGN-001"
+    },
+    {
+      "uid": "CIL-STORAGE-001",
+      "status": "partial",
+      "implementation": [
+        "src/SharpHDL/ScheduledSequentialCil.cs",
+        "src/SharpHDL/ScheduledCilScalarTypes.cs"
+      ],
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/ScheduledScalarStorageTests.cs",
+          "method": "Storage_matches_actual_CLR_and_independent_modular_arithmetic"
+        }
+      ],
+      "evidence": [
+        "docs/CONTINUATION_STORAGE_CHECKED_2026-10-27.md"
+      ],
+      "limitations": "Bounded scalar profile. No sequential proof or wide/native/floating support."
     }
   ],
   "schema": 1

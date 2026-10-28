@@ -79,7 +79,7 @@ public sealed class ScheduledNarrowConversionTests
         Assert.Equal((BigInteger.One<<4096)-128,sim.ReadOutput("wide"));sim.SetInput("x",127);Assert.Equal(127,sim.ReadOutput("wide"));
     }
 
-    /// <summary>Adjacent checked/wide/floating instructions, narrow locals and malformed stacks still reject.</summary>
+    /// <summary>Adjacent checked/wide/floating instructions and malformed stacks still reject.</summary>
     [Fact]
     public void Unsupported_conversions_and_malformed_stacks_have_actionable_diagnostics()
     {
@@ -90,8 +90,6 @@ public sealed class ScheduledNarrowConversionTests
             var error=Assert.Throws<NotSupportedException>(()=>CilCompiler.BuildScheduledSequential(NarrowCilFixture.Create(opcode),"Rejected"));
             Assert.Contains(opcode.Name!,error.Message);Assert.Contains("IL_",error.Message);Assert.Contains("Convert",error.Message);
         }
-        var locals=Assert.Throws<NotSupportedException>(()=>CilCompiler.BuildScheduledSequential(NarrowCilFixture.Create(OpCodes.Conv_U1,narrowLocal:true),"NarrowLocal"));
-        Assert.Contains("locals",locals.Message);
         var stack=Assert.Throws<NotSupportedException>(()=>CilCompiler.BuildScheduledSequential(NarrowCilFixture.Create(OpCodes.Conv_I1,omitOperand:true),"BadStack"));
         Assert.Contains("stack",stack.Message);Assert.Contains("IL_",stack.Message);
     }

@@ -146,3 +146,5 @@ and docs/JIT_AND_NARROW_CIL.sdoc for acceptance, actual results and limitations.
 Fresh scope: 296 fast and 60 native Z3 tests per OS, five added HDL designs,
 retained conversion witnesses, focused mutation and a finite fuzz campaign.
 Native AOT stays deferred; preserve CI-off policy and existing history.
+
+Active continuation: narrow storage/ports and checked conversions. See docs/CONTINUATION_STORAGE_CHECKED_2026-10-27.md and docs/NARROW_STORAGE_CHECKED.sdoc. Native AOT deferred; CI disabled.

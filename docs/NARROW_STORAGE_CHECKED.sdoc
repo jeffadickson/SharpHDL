@@ -1,0 +1,15 @@
+[DOCUMENT]
+TITLE: Narrow scalar storage and checked conversion continuation
+
+[REQUIREMENT]
+UID: CIL-STORAGE-001
+TITLE: Declared scalar storage and interface widths
+STATEMENT: >>>
+The scheduled frontend shall accept byte, sbyte, short, ushort and char locals,
+arguments and results. Writes truncate to declared storage width; loads extend
+to the 32-bit evaluation stack according to declared signedness. Ports use the
+declared scalar width. Capture inputs only on accepted start, clear locals and
+results on start/reset, preserve original IL provenance and reject unsupported
+wide, native and floating storage. Preserve the existing canonical Boolean profile.
+Verification: ScheduledScalarStorageTests and independent native HDL replay.
+<<<

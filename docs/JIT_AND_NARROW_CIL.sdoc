@@ -37,6 +37,8 @@ Native bit-vector checks of conversion cones shall retain real UNSAT/SAT results
 and independently replay counterexamples, without describing local combinational
 checks as a sequential-design proof. Retain finite campaign and coverage limits.
 Verification: negative/malformed tests and NarrowConversionProofTests.
+The narrow locals/ports restriction is superseded by CIL-STORAGE-001. Historical
+evidence in the original continuation report remains scoped to that revision.
 <<<
 
 [REQUIREMENT]

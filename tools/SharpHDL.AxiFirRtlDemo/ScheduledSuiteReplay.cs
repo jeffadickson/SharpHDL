@@ -74,6 +74,7 @@ internal static class ScheduledSuiteReplay
         Console.WriteLine("CIL loop: native/legacy/Core agree, including partial writes on bounds fault.");
         GenerateShifts(directory);
         GenerateNarrowConversions(directory);
+        GenerateScalarStorage(directory);
         var planned=new CoreReplay(ScheduledPlannedBanks.Build());
         for(int phase=0;phase<=6;phase++)
         {
@@ -173,6 +174,28 @@ internal static class ScheduledSuiteReplay
         File.WriteAllText(Path.Combine(directory,moduleName+".il-map.json"),JsonSerializer.Serialize(compilation.StateOffsets));
         WriteSourceMap(directory,compilation);
         Console.WriteLine($"CIL shifts {moduleName}: {transactions} native/legacy/Core transactions agree.");
+    }
+
+    private static void GenerateScalarStorage(string directory)
+    {
+        foreach(var type in new[]{typeof(sbyte),typeof(byte),typeof(short),typeof(ushort),typeof(char)})
+        foreach(bool argument in new[]{false,true})
+        {
+            var method=NarrowCilFixture.Storage(type,argument);
+            var compiled=CilCompiler.BuildScheduledSequential(method,"Storage"+type.Name+(argument?"Argument":"Local"));
+            var replay=new CoreReplay(compiled.Design);replay.Clock(true);
+            foreach(uint value in new uint[]{0,127,128,255,256,32767,32768,65535,65536,0x80000000,uint.MaxValue})
+            {
+                replay.Drive("arg0",argument?0:unchecked((int)value));if(argument)replay.Drive("arg1",unchecked((int)value));
+                replay.Drive("start",1);replay.Clock(false);replay.Drive("start",0);
+                replay.Drive("arg0",0);if(argument)replay.Drive("arg1",unchecked((int)~value));
+                int edges=0;while(replay.Read("done")==0&&edges++<32)replay.Clock(false);
+                object?[] args=argument?[Activator.CreateInstance(type),value]:[value];
+                if(replay.Read("done")!=1||replay.Read("fault")!=0||(uint)replay.Read("result")!=(uint)method.Invoke(null,args)!)
+                    throw new InvalidOperationException("Narrow storage CLR/Core mismatch.");
+            }
+            replay.Save(directory);WriteSourceMap(directory,compiled);
+        }
     }
 
     private static void GenerateNarrowConversions(string directory)
