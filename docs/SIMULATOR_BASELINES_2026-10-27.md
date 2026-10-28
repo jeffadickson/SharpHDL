@@ -86,3 +86,7 @@ WarmupCount=2
 |                     |                  |                |              |           |           |           |       |         |           |         |           |             |
 | RepeatedOutputReads | JIT10            | .NET 10.0      | 8            |  7.092 ms |  7.249 ms | 0.3974 ms |  1.00 |    0.07 | 1812.5000 | 78.1250 |  10.85 MB |        1.00 |
 | SnapshotOutputReads | JIT10            | .NET 10.0      | 8            |  7.644 ms | 20.602 ms | 1.1293 ms |  1.08 |    0.15 | 1062.5000 | 54.6875 |    6.4 MB |        0.59 |
+
+> Current policy: Native AOT is deferred. The command below now defaults to four
+> JIT cases. The historical eight-case profile requires explicit
+> `--include-native-aot`; these archived results do not make AOT a product requirement.

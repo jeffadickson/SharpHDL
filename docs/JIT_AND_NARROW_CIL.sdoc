@@ -1,0 +1,15 @@
+[DOCUMENT]
+TITLE: Managed execution defaults and narrow CIL continuation
+
+[REQUIREMENT]
+UID: AOT-DEFER-001
+TITLE: JIT default with explicit deferred native qualification
+STATEMENT: >>>
+Ordinary and qualified simulator benchmark invocations shall not select a Native
+AOT job by default. Qualified managed execution expects four successful API/RAM
+measurements. Preserve the previous eight-case native profile only behind an
+explicit --include-native-aot opt-in combined with --qualified-baseline. Reject
+missing, duplicated and null profile controls before starting tool work. Preserve
+BenchmarkDotNet argument order and retain historical native evidence separately.
+Verification: LauncherProfileTests and an actual four-case default JIT invocation.
+<<<

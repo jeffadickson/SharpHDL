@@ -507,6 +507,29 @@
           "method": "Every_base_and_cb_opcode_has_independent_vectors"
         }
       ]
+    },
+    {
+      "implementation": [
+        "tools/SharpHDL.ScheduledBench/BaselineRunOptions.cs",
+        "tools/SharpHDL.ScheduledBench/Program.cs",
+        "tools/run-simulator-baselines-linux.sh"
+      ],
+      "limitations": "Default four-case JIT invocation executed. Optional native selection tested as metadata only; no additional Native AOT compilation or qualification.",
+      "uid": "AOT-DEFER-001",
+      "evidence": [
+        "docs/CONTINUATION_JIT_NARROW_2026-10-27.md"
+      ],
+      "status": "verified_bounded",
+      "tests": [
+        {
+          "file": "tests/SharpHDL.BenchmarkTests/LauncherProfileTests.cs",
+          "method": "Native_compilation_requires_an_explicit_switch"
+        },
+        {
+          "file": "tests/SharpHDL.BenchmarkTests/LauncherProfileTests.cs",
+          "method": "Invalid_controls_fail_closed"
+        }
+      ]
     }
   ],
   "schema": 1

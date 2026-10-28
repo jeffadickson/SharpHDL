@@ -133,3 +133,8 @@ tools/run-equivalence-linux.sh, tools/run-scheduled-rtl.sh and, after local jobs
 finish, tools/run-simulator-baselines-linux.sh. Documentation commands and private
 Python dependencies are in docs/ENGINEERING_BUILD.md. No FPGA timing, full-ISA,
 sequential-proof, full API-comment or general Native AOT launcher claim is implied.
+
+Current policy: Native AOT is deferred. Use ordinary .NET 10/JIT for development.
+The controlled benchmark script now defaults to four JIT cases; native comparison
+requires an explicit --include-native-aot opt-in. Historical results remain valid
+for their recorded scope. Continue compiler correctness and HDL verification first.
