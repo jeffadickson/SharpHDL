@@ -7,6 +7,7 @@ namespace SharpHDL.UnitTests;
 
 public sealed class PortablePdbSourceMapTests
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("xUnit", "xUnit1013", Justification = "Public synthesis fixture accessed by reflection; this is not a test entry point.")]
     public static void Increment(HwStream<ushort> input, HwStream<ushort> output)
     {
         while (true) {

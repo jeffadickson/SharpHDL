@@ -7,8 +7,8 @@ Intel Core i5-10505 CPU 3.20GHz (Max: 3.19GHz), 1 CPU, 12 logical and 6 physical
   AOT10-ILC10.0.13 : .NET 10.0.13, X64 NativeAOT x86-64-v3
   JIT10            : .NET 10.0.13 (10.0.13, 10.0.1326.50504), X64 RyuJIT x86-64-v3
 
-Server=False  IterationCount=3  LaunchCount=1  
-WarmupCount=2  
+Server=False  IterationCount=3  LaunchCount=1
+WarmupCount=2
 
 ```
 | Method              | Job              | Runtime        | AddressWidth | Mean      | Error     | StdDev    | Ratio | RatioSD | Gen0      | Gen1    | Allocated | Alloc Ratio |

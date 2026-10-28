@@ -1,0 +1,513 @@
+{
+  "entries": [
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_2026-10-27.md"
+      ],
+      "implementation": [
+        "tests/Shared/AxiConformanceCampaign.cs"
+      ],
+      "tests": [
+        {
+          "method": "Directed_lite_and_stream_transactions_match_independent_models",
+          "file": "tests/SharpHDL.UnitTests/AxiConformanceTests.cs"
+        }
+      ],
+      "limitations": "Finite local stream/lite campaigns. Full AXI4 burst semantics, CDC and physical implementation are unqualified.",
+      "status": "partial",
+      "uid": "AXI-CAMPAIGN-001"
+    },
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_2026-10-27.md"
+      ],
+      "implementation": [
+        "tests/Shared/AxiConformanceCampaign.cs"
+      ],
+      "tests": [
+        {
+          "method": "Directed_lite_and_stream_transactions_match_independent_models",
+          "file": "tests/SharpHDL.UnitTests/AxiConformanceTests.cs"
+        }
+      ],
+      "limitations": "Finite local stream/lite campaigns. Full AXI4 burst semantics, CDC and physical implementation are unqualified.",
+      "status": "partial",
+      "uid": "AXI-CHECK-LITE-001"
+    },
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_2026-10-27.md"
+      ],
+      "implementation": [
+        "tests/Shared/AxiConformanceCampaign.cs"
+      ],
+      "tests": [
+        {
+          "method": "Directed_lite_and_stream_transactions_match_independent_models",
+          "file": "tests/SharpHDL.UnitTests/AxiConformanceTests.cs"
+        }
+      ],
+      "limitations": "Finite local stream/lite campaigns. Full AXI4 burst semantics, CDC and physical implementation are unqualified.",
+      "status": "partial",
+      "uid": "AXI-CHECK-STREAM-001"
+    },
+    {
+      "limitations": "Draft inferred requirement. Warning-sensitive restore/build and one local Docker/Icarus 40-cycle fixture passed on Linux. Remote Docker and SCP compatibility remain unmeasured; container image/bootstrap are not hermetic.",
+      "implementation": [
+        "tests/SharpHDL.IntegrationTests/SharpHDL.IntegrationTests.csproj"
+      ],
+      "uid": "BUILD-DEPS-001",
+      "evidence": [
+        "docs/WORK_PACKAGES_7_10.md"
+      ],
+      "status": "draft",
+      "tests": [
+        {
+          "method": "Generated_counter_matches_rtl_reference_trace",
+          "file": "tests/SharpHDL.IntegrationTests/IcarusIntegrationTests.cs"
+        }
+      ]
+    },
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_7_10.md"
+      ],
+      "implementation": [
+        "src/SharpHDL.Verification/BitVectorEquivalence.cs"
+      ],
+      "tests": [
+        {
+          "method": "Supported_operations_match_complete_independent_truth_tables",
+          "file": "tests/SharpHDL.VerificationTests/BitVectorEquivalenceTests.cs"
+        }
+      ],
+      "limitations": "Combinational whitelist, widths 1..32, 256 nodes, 128 input bits. No sequential equivalence or proof certificate checker.",
+      "status": "verified_bounded",
+      "uid": "BV-EQUIV-001"
+    },
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_7_10.md"
+      ],
+      "implementation": [
+        "src/SharpHDL.Verification/BitVectorEquivalence.cs"
+      ],
+      "tests": [
+        {
+          "method": "Native_resource_exhaustion_and_precancellation_do_not_prove_equivalence",
+          "file": "tests/SharpHDL.VerificationTests/BitVectorEquivalenceTests.cs"
+        },
+        {
+          "method": "Unsupported_state_and_memory_are_not_silently_omitted",
+          "file": "tests/SharpHDL.VerificationTests/BitVectorEquivalenceTests.cs"
+        },
+        {
+          "method": "Oversized_shift_replay_has_a_bounded_host_allocation",
+          "file": "tests/SharpHDL.VerificationTests/BitVectorEquivalenceTests.cs"
+        }
+      ],
+      "limitations": "Combinational whitelist, widths 1..32, 256 nodes, 128 input bits. No sequential equivalence or proof certificate checker.",
+      "status": "verified_bounded",
+      "uid": "BV-EQUIV-002"
+    },
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_2026-10-27.md"
+      ],
+      "implementation": [
+        "src/SharpHDL/ScheduledSequentialCil.cs"
+      ],
+      "tests": [
+        {
+          "method": "Scalar_control_flow_matches_native",
+          "file": "tests/SharpHDL.UnitTests/ScheduledCilTests.cs"
+        },
+        {
+          "method": "Stateful_loop_matches_host_and_legacy_across_repeated_calls",
+          "file": "tests/SharpHDL.UnitTests/ScheduledCilTests.cs"
+        },
+        {
+          "method": "Bounds_and_watchdog_faults_are_explicit",
+          "file": "tests/SharpHDL.UnitTests/ScheduledCilTests.cs"
+        },
+        {
+          "method": "Unsupported_opcodes_report_original_method_and_il",
+          "file": "tests/SharpHDL.UnitTests/ScheduledCilTests.cs"
+        }
+      ],
+      "limitations": "Bounded supported CIL profile only; arbitrary C# and complete source-to-hardware compilation remain unsupported.",
+      "status": "partial",
+      "uid": "CIL-SCHED-001"
+    },
+    {
+      "tests": [
+        {
+          "method": "Xml_documentation_is_rendered_without_external_resolution",
+          "file": "tests/SharpHDL.DocumentationTests/DocumentationCatalogTests.cs"
+        },
+        {
+          "method": "Authoritative_requirements_and_unmapped_status_are_preserved",
+          "file": "tests/SharpHDL.DocumentationTests/DocumentationCatalogTests.cs"
+        },
+        {
+          "method": "Trace_references_and_statuses_fail_closed",
+          "file": "tests/SharpHDL.DocumentationTests/DocumentationCatalogTests.cs"
+        }
+      ],
+      "implementation": [
+        "tools/SharpHDL.DocBuilder/DocumentationCatalog.cs"
+      ],
+      "evidence": [
+        "docs/WORK_PACKAGES_7_10.md"
+      ],
+      "status": "partial",
+      "limitations": "Build qualification recorded separately. Test names are text-checked only; legacy API comments and unmapped requirements remain incomplete.",
+      "uid": "DOC-BUILD-001"
+    },
+    {
+      "tests": [
+        {
+          "method": "Xml_documentation_is_rendered_without_external_resolution",
+          "file": "tests/SharpHDL.DocumentationTests/DocumentationCatalogTests.cs"
+        },
+        {
+          "method": "Authoritative_requirements_and_unmapped_status_are_preserved",
+          "file": "tests/SharpHDL.DocumentationTests/DocumentationCatalogTests.cs"
+        },
+        {
+          "method": "Trace_references_and_statuses_fail_closed",
+          "file": "tests/SharpHDL.DocumentationTests/DocumentationCatalogTests.cs"
+        }
+      ],
+      "implementation": [
+        "tools/SharpHDL.DocBuilder/DocumentationCatalog.cs"
+      ],
+      "evidence": [
+        "docs/WORK_PACKAGES_7_10.md"
+      ],
+      "status": "partial",
+      "limitations": "Build qualification recorded separately. Test names are text-checked only; legacy API comments and unmapped requirements remain incomplete.",
+      "uid": "DOC-TRACE-001"
+    },
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_4_6.md"
+      ],
+      "implementation": [
+        "src/SharpHDL.HLS/ScheduledOperationPlan.cs"
+      ],
+      "tests": [
+        {
+          "method": "Plan_executes_banked_memory_and_shared_arithmetic",
+          "file": "tests/SharpHDL.UnitTests/ScheduledOperationPlanTests.cs"
+        },
+        {
+          "method": "Ready_contenders_use_exact_ordinal_priority",
+          "file": "tests/SharpHDL.UnitTests/ScheduledOperationPlanTests.cs"
+        }
+      ],
+      "limitations": "Historical directed and randomized finite schedules; no global optimality proof or loop scheduler.",
+      "status": "partial",
+      "uid": "HLS-PLAN-001"
+    },
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_4_6.md"
+      ],
+      "implementation": [
+        "src/SharpHDL.HLS/ScheduledOperationPlan.cs"
+      ],
+      "tests": [
+        {
+          "method": "Lowering_rejects_misdeclared_physical_resources",
+          "file": "tests/SharpHDL.UnitTests/ScheduledOperationPlanTests.cs"
+        },
+        {
+          "method": "Malformed_graphs_and_capacity_conflicts_are_rejected",
+          "file": "tests/SharpHDL.UnitTests/ScheduledOperationPlanTests.cs"
+        }
+      ],
+      "limitations": "Historical directed and randomized finite schedules; no global optimality proof or loop scheduler.",
+      "status": "partial",
+      "uid": "HLS-PLAN-002"
+    },
+    {
+      "evidence": [
+        "docs/SIMULATOR_BASELINES_2026-10-27.md",
+        "docs/verification/simulator-baseline-full.json"
+      ],
+      "implementation": [
+        "tools/SharpHDL.ScheduledBench/Program.cs",
+        "tools/SharpHDL.SimulatorBenchmarks/SimulationBenchmarks.cs",
+        "tests/Shared/SimulatorObservationWorkload.cs"
+      ],
+      "tests": [
+        {
+          "method": "Both_paths_match_independent_protocol_and_repeat",
+          "file": "tests/SharpHDL.UnitTests/SimulatorBaselineTests.cs"
+        }
+      ],
+      "limitations": "Fixed 256-edge workload, two RAM sizes and two existing observation APIs; eight actual JIT/AOT measurements. Shared host, three measured iterations, large error bars; no simulator optimization or speedup claim.",
+      "status": "verified_bounded",
+      "uid": "PERF-BASE-001"
+    },
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_7_10.md"
+      ],
+      "implementation": [
+        "src/SharpHDL.HLS/ScheduledRegions.cs"
+      ],
+      "tests": [
+        {
+          "method": "Generated_register_programs_preserve_source_order",
+          "file": "tests/SharpHDL.UnitTests/ScheduledRegionTests.cs"
+        },
+        {
+          "method": "Register_hazards_are_extracted_from_actual_bodies",
+          "file": "tests/SharpHDL.UnitTests/ScheduledRegionTests.cs"
+        },
+        {
+          "method": "Memory_aliasing_uses_physical_identity_and_address_information",
+          "file": "tests/SharpHDL.UnitTests/ScheduledRegionTests.cs"
+        },
+        {
+          "method": "Assignment_validation_checks_all_entries_and_exact_budget",
+          "file": "tests/SharpHDL.UnitTests/ScheduledRegionTests.cs"
+        }
+      ],
+      "limitations": "Bounded straight-line regions and nonpipelined shift-add units. No loop scheduling or physical timing closure.",
+      "status": "verified_bounded",
+      "uid": "REGION-SCHED-001"
+    },
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_7_10.md"
+      ],
+      "implementation": [
+        "src/SharpHDL.HLS/ScheduledRegions.cs"
+      ],
+      "tests": [
+        {
+          "method": "Iterative_width_bounds_and_operand_capture_are_real",
+          "file": "tests/SharpHDL.UnitTests/ScheduledRegionTests.cs"
+        },
+        {
+          "method": "Real_iterative_banks_have_automatic_dependencies_and_twenty_edge_latency",
+          "file": "tests/SharpHDL.UnitTests/ScheduledRegionTests.cs"
+        },
+        {
+          "method": "Reset_and_random_operands_preserve_iterative_results",
+          "file": "tests/SharpHDL.UnitTests/ScheduledRegionTests.cs"
+        },
+        {
+          "method": "Lower_rechecks_iterative_interval_reservations",
+          "file": "tests/SharpHDL.UnitTests/ScheduledRegionTests.cs"
+        }
+      ],
+      "limitations": "Bounded straight-line regions and nonpipelined shift-add units. No loop scheduling or physical timing closure.",
+      "status": "verified_bounded",
+      "uid": "REGION-SCHED-002"
+    },
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_7_10.md"
+      ],
+      "implementation": [
+        "src/SharpHDL.Tooling/HdlToolRunner.cs"
+      ],
+      "tests": [
+        {
+          "method": "Arguments_and_both_streams_are_retained_without_shell_interpretation",
+          "file": "tests/SharpHDL.UnitTests/HdlToolRunnerTests.cs"
+        },
+        {
+          "method": "Cancellation_and_timeout_are_distinct",
+          "file": "tests/SharpHDL.UnitTests/HdlToolRunnerTests.cs"
+        },
+        {
+          "method": "Missing_and_invalid_requests_fail_closed",
+          "file": "tests/SharpHDL.UnitTests/HdlToolRunnerTests.cs"
+        }
+      ],
+      "limitations": "Ordinary child trees only; not daemon containment or a security sandbox. Windows and Linux local evidence.",
+      "status": "verified_bounded",
+      "uid": "TOOL-RUN-001"
+    },
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_7_10.md"
+      ],
+      "implementation": [
+        "src/SharpHDL.Tooling/HdlToolRunner.cs"
+      ],
+      "tests": [
+        {
+          "method": "Cancellation_terminates_an_ordinary_process_tree",
+          "file": "tests/SharpHDL.UnitTests/HdlToolRunnerTests.cs"
+        },
+        {
+          "method": "Failures_and_output_limits_are_explicit",
+          "file": "tests/SharpHDL.UnitTests/HdlToolRunnerTests.cs"
+        }
+      ],
+      "limitations": "Ordinary child trees only; not daemon containment or a security sandbox. Windows and Linux local evidence.",
+      "status": "verified_bounded",
+      "uid": "TOOL-RUN-002"
+    },
+    {
+      "evidence": [
+        "docs/Z80_COMPLETION_LOG.md"
+      ],
+      "implementation": [
+        "examples/Z80/Z80TestCore.cs"
+      ],
+      "status": "historical",
+      "uid": "Z80-BUS-001",
+      "limitations": "Historical qualification references only. The costly Z80Tests vector suite was not rerun in this continuation; current seven finite program-oracle cases do not close full ISA, timing or bus requirements.",
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/Z80Tests.cs",
+          "method": "Reset_aborts_stalled_store_and_halt_stops_fetch"
+        }
+      ]
+    },
+    {
+      "evidence": [
+        "docs/Z80_COMPLETION_LOG.md"
+      ],
+      "implementation": [
+        "examples/Z80/Z80TestCore.cs"
+      ],
+      "status": "historical",
+      "uid": "Z80-CORE-001",
+      "limitations": "Historical qualification references only. The costly Z80Tests vector suite was not rerun in this continuation; current seven finite program-oracle cases do not close full ISA, timing or bus requirements.",
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/Z80Tests.cs",
+          "method": "Published_instruction_vectors_match_architectural_results"
+        }
+      ]
+    },
+    {
+      "evidence": [
+        "docs/WORK_PACKAGES_4_6.md"
+      ],
+      "implementation": [
+        "examples/Z80/Z80TestCore.cs"
+      ],
+      "tests": [
+        {
+          "method": "Programs_match_after_every_retirement",
+          "file": "tests/SharpHDL.UnitTests/Z80ProgramOracleTests.cs"
+        }
+      ],
+      "limitations": "Finite instruction streams and reference-library limitations, including block I/O flags; not exhaustive full-ISA conformance.",
+      "status": "partial",
+      "uid": "Z80-DIFF-001"
+    },
+    {
+      "evidence": [
+        "docs/Z80_COMPLETION_LOG.md"
+      ],
+      "implementation": [
+        "examples/Z80/Z80TestCore.cs"
+      ],
+      "status": "historical",
+      "uid": "Z80-ED-001",
+      "limitations": "Historical qualification references only. The costly Z80Tests vector suite was not rerun in this continuation; current seven finite program-oracle cases do not close full ISA, timing or bus requirements.",
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/Z80Tests.cs",
+          "method": "Ed_and_io_vectors_match_independent_results"
+        }
+      ]
+    },
+    {
+      "evidence": [
+        "docs/Z80_COMPLETION_LOG.md"
+      ],
+      "implementation": [
+        "examples/Z80/Z80TestCore.cs"
+      ],
+      "status": "historical",
+      "uid": "Z80-FAULT-001",
+      "limitations": "Historical qualification references only. The costly Z80Tests vector suite was not rerun in this continuation; current seven finite program-oracle cases do not close full ISA, timing or bus requirements.",
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/Z80Tests.cs",
+          "method": "Reserved_interrupt_mode_faults_and_reset_recovers"
+        }
+      ]
+    },
+    {
+      "evidence": [
+        "docs/Z80_COMPLETION_LOG.md"
+      ],
+      "implementation": [
+        "examples/Z80/Z80TestCore.cs"
+      ],
+      "status": "historical",
+      "uid": "Z80-INDEX-001",
+      "limitations": "Historical qualification references only. The costly Z80Tests vector suite was not rerun in this continuation; current seven finite program-oracle cases do not close full ISA, timing or bus requirements.",
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/Z80Tests.cs",
+          "method": "Indexed_instruction_vectors_match_independent_results"
+        }
+      ]
+    },
+    {
+      "evidence": [
+        "docs/Z80_COMPLETION_LOG.md"
+      ],
+      "implementation": [
+        "examples/Z80/Z80TestCore.cs"
+      ],
+      "status": "historical",
+      "uid": "Z80-INT-001",
+      "limitations": "Historical qualification references only. The costly Z80Tests vector suite was not rerun in this continuation; current seven finite program-oracle cases do not close full ISA, timing or bus requirements.",
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/Z80Tests.cs",
+          "method": "Interrupts_follow_architectural_boundaries"
+        }
+      ]
+    },
+    {
+      "evidence": [
+        "docs/Z80_COMPLETION_LOG.md"
+      ],
+      "implementation": [
+        "examples/Z80/Z80TestCore.cs"
+      ],
+      "status": "historical",
+      "uid": "Z80-IO-001",
+      "limitations": "Historical qualification references only. The costly Z80Tests vector suite was not rerun in this continuation; current seven finite program-oracle cases do not close full ISA, timing or bus requirements.",
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/Z80Tests.cs",
+          "method": "Ed_and_io_vectors_match_independent_results"
+        }
+      ]
+    },
+    {
+      "evidence": [
+        "docs/Z80_COMPLETION_LOG.md"
+      ],
+      "implementation": [
+        "examples/Z80/Z80TestCore.cs"
+      ],
+      "status": "historical",
+      "uid": "Z80-VERIFY-001",
+      "limitations": "Historical qualification references only. The costly Z80Tests vector suite was not rerun in this continuation; current seven finite program-oracle cases do not close full ISA, timing or bus requirements.",
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/Z80Tests.cs",
+          "method": "Every_base_and_cb_opcode_has_independent_vectors"
+        }
+      ]
+    }
+  ],
+  "schema": 1
+}

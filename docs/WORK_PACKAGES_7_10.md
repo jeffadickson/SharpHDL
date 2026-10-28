@@ -161,3 +161,127 @@ crashes/hangs (/tmp/sharphdl-fuzz-Z6dtyv). Earlier focused coverage measured
 ScheduledRegionPlan 100% line / 92.85% branch and ScheduledOperationBlock 91.66%
 line / 100% branch; partial builder classes and unexecuted diagnostics remain
 outside those class-specific figures. No FPGA timing or full ISA claim follows.
+
+## WP-10 engineering/API and traceability implementation
+
+The opt-in .NET documentation driver consumes the real StrictDoc 0.30.4 HTML/JSON
+export, validates stable IDs and repository-contained source/test/evidence files,
+and renders compiler XML through BCL XmlReader/XDocument (DTD resolution disabled).
+Sphinx/MyST builds existing Markdown without migrating its source format; the
+compiler XML renderer avoids a second DocFX/Doxygen toolchain. Documentation-only
+Python stays in a private Python 3.13 environment: Sphinx 9.2.0, MyST 5.1.0 and
+sphinxcontrib-mermaid 2.1.1. See [the build guide](ENGINEERING_BUILD.md).
+[Primary Sphinx Markdown guidance](https://www.sphinx-doc.org/en/master/usage/markdown.html)
+supports reusing these sources. Mermaid uses a pinned browser CDN; offline diagrams
+are unqualified. Compiler-emitted documented members are included, not complete
+legacy public-API coverage. Only missing-comment warning 1591 is suppressed for
+XML export. Ordinary managed builds do not install Python documentation tools.
+
+Trace status is manually reviewed and remains distinct from link checking or test
+execution. File and test-name text admission does not resolve C# symbols. All
+requirements appear, including unmapped entries. Older AXI/CIL/HLS entries stay
+partial; eight Z80 requirements retain historical status because the expensive
+full vector suite was not rerun. Seven current program-oracle cases are finite
+new evidence, not exhaustive ISA closure. New raw project copies must be outside
+the checkout: the initial in-checkout documentation build interfered with native
+BenchmarkDotNet project discovery. The driver now rejects that layout before
+creating output. Negative CLI invocations verify this guard and missing benchmark
+selection produce nonzero exits with the expected diagnostics.
+
+Four documentation tests pass on Windows and Linux, including FsCheck 100 cases
+(seed 1145655947,296144285), malformed JSON/XML, exact 10,000-entry limits,
+unknown/duplicate IDs and statuses, missing evidence, actual outside files,
+Windows junctions/case folding and Linux symbolic links/case-distinct siblings.
+Catalog coverage: 98.82% line / 79.51% branch on Windows (driver orchestration is
+outside that class scope). Focused admission/path Stryker: 55 killed, 11 survivors,
+two uncovered, zero timeouts/errors: 80.88% of 68 selected variants. Forty-four
+compile-invalid and 350 filtered variants are excluded. Survivors are eight
+nonessential diagnostic strings, default-equivalent JSON MaxDepth=64 initialization,
+and two Windows-equivalent case-comparison substitutions; Linux functional tests
+separately challenge case-sensitive admission. No adjusted mutation score is claimed.
+
+SharpFuzz 2.2.0 / AFL++ 4.09c ran the revised parser harness for 60 seconds, seed
+261026: 309,041 executions, 12 corpus entries, 0.14% bitmap occupancy, zero saved
+crashes/hangs at /tmp/sharphdl-doc-fuzz-dcQ5np. The initial campaign also completed
+but exposed a final shell line-ending error; the revised script passes that final
+check. Native publisher/driver AOT compatibility beyond the measured benchmark
+worker and previously executed tool CLI is not newly qualified.
+
+The warning-sensitive all-project review found transitive SSH.NET 2024.2.0 in
+Testcontainers 4.8.1. Pin SSH.NET 2026.0.0 in the optional integration test project:
+[upstream advisory one](https://github.com/advisories/GHSA-mggc-4xg6-vcxf) and
+[advisory two](https://github.com/advisories/GHSA-q939-rpr3-3284) identify it as patched.
+This preserves the existing builder API and minimizes this repair's scope.
+[Testcontainers 4.16.0](https://github.com/testcontainers/testcontainers-dotnet/releases/tag/4.16.0)
+is a future upgrade candidate requiring a broader container qualification.
+The patched local Docker/Icarus fixture passes one actual forty-cycle test on
+Linux Docker 29.1.3. Remote Docker and SCP APIs are not exercised. The integration
+NuGet audit reports no known vulnerable packages from current sources; no audit
+suppression was added. Ubuntu tag/apt bootstrap remain nonhermetic.
+
+The same review fixes TinyRisc's nullable optional memory policy and uses the xUnit
+predicate overload. Per-method xUnit1013 suppression explains public synthesis
+fixtures accessed by reflection; their visibility and hardware bodies stay intact.
+All 35 managed projects build on Windows with analyzers/latest analysis and
+warnings as errors. The fast suite passes 288/288 on both OSes, native Z3 tests
+52/52 on both, and root regression reports 6,698 numeric, 56,479 multiplier,
+388,851 divider and 15,212 C# assertions. It generates 16 multiplier, 120 stream
+divider and five general differential benches; generation alone does not mean
+those extra benches ran in HDL simulators. Eight tracked schedules refresh 31
+existing multiplier advisory lines; no normalized generated RTL change.
+
+## WP-09 baseline slice and final scope
+
+[WP-09 evidence](SIMULATOR_BASELINES_2026-10-27.md) records eight successful
+measurements on the same Linux host/runtime (10.0.13), separately for JIT and Native
+AOT. Fixed 256-edge stimuli and two RAM sizes use a pinned independent checksum.
+Workload-library coverage is 100% line/branch; focused mutation is 95.56% with
+41 killed, two detected loop timeouts and two survivors. Baselines have large
+three-iteration shared-host errors; no optimization or speedup is claimed. The
+final library worker excludes the reflective launcher; raw failed/interrupted
+monolithic attempts and their third-party warnings remain local evidence.
+
+Current final managed count is 35 projects after isolating the workload library.
+Current commits: fe904fb (WP-07), f0b5aa5 (WP-08), da2689b (automatic regions),
+47f66ed (WP-09); this report's final documentation commit completes WP-10.
+The initial checkout was clean main b2341dded78de9b75db849357621e5ea52f2ff40,
+with origin https://github.com/jeffadickson/SharpHDL.git. The existing typed Core,
+HLS, simulation and RTL paths were real implementations, alongside substantial
+legacy compatibility code; arbitrary C# synthesis and multiclock Core were not
+implemented by assumption. Build/test gaps found during this continuation are
+recorded above, including the bounded-shift host-allocation defect and dependency
+advisories. Existing source/history were preserved; generated RTL remains unchanged
+apart from platform line endings, with eight actual schedule-advisory refreshes.
+
+The documentation build and verification summary are retained in
+[the machine-readable session record](verification/continuation-7-10.json).
+Raw large process/coverage/mutation/fuzz artifacts remain under build/verification
+or the named native /tmp directories. Repository Actions is disabled (API checked
+false); no workflow was enabled or dispatched. Dormant workflow definitions are
+unchanged. Local Windows/Linux commands are fresh evidence, not a claim of a
+GitHub CI run. Expensive historical Z80Tests remain excluded, while the seven
+program-oracle cases are included in the fast suite. General Native AOT CLI,
+offline diagrams, full API comments, sequential proofs and physical FPGA timing
+remain unqualified. Requirement status stays bounded, partial, historical,
+draft or explicitly unmapped rather than being promoted by page generation.
+
+## Five highest-value next tasks
+
+1. Extend equivalence only with explicit state/reset/memory contracts and independently
+   replayed sequential counterexamples; qualify newer native Z3 assets separately.
+2. Extract typed operation regions from supported CIL with source-aware diagnostics;
+   retain conservative aliases and independently checked schedules.
+3. Add pipelined operators/initiation intervals, loop schedules and genuine multiport
+   memory support with simulator/HDL/target checks before claiming physical timing.
+4. Run longer dedicated-host BenchmarkDotNet campaigns and profile allocations before
+   changing graph evaluation or memory snapshots; preserve equal-output/AOT regressions.
+5. Complete remaining requirements/API/example traceability and offline documentation;
+   refresh exhaustive Z80/interrupt conformance and hermetic container images separately.
+
+Final documentation gate passes real StrictDoc export, compiler XML and Sphinx
+with warnings fatal: 41 requirements, 25 explicitly mapped, 16 unmapped; seven
+API assemblies and nine engineering pages. Seven mappings are verified only
+within their declared bounds, nine remain partial, eight historical and one
+inferred/draft. Missing legacy XML comments and offline diagram qualification
+remain open. The earlier moved-requirement separator error was caught by the
+real StrictDoc parser and corrected; no substitute parser or success bypass.

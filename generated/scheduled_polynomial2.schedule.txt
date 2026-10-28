@@ -4,9 +4,14 @@ Initiation interval: 1 with a continuously ready sink; capacity: 2 tokens.
 Logic levels per stage: 2; abstract operation count, not device timing.
 Payload register bits: 80; valid register bits: 2.
 No resource sharing; multiply is a whole combinational operator in one logic level.
+MULTIPLIER ADVISORY: 2 multiplication node(s) in the expression graph. These are combinational operators; no DSP primitive, multiplier pipeline latency, or target frequency is guaranteed by SharpHDL.
+  multiply stage 1: 32 x 32 -> 32 bits (constant operand; downstream synthesis may simplify); implementation, DSP use and timing require target synthesis/STA.
+  multiply stage 1: 32 x 32 -> 32 bits; implementation, DSP use and timing require target synthesis/STA.
+  TIMING WARNING: wide multiplication may exceed a single clock period despite being assigned one abstract scheduling level. Inspect mapped DSP/LUT resources and post-place-and-route slack.
 Ready propagates combinationally backward; no automatic skid-buffer insertion.
 stage 1 | level 1 | 32 bits | + | Polynomial_IL_0009_add
 stage 1 | level 1 | 32 bits | * | Polynomial_IL_000d_mul
 stage 1 | level 2 | 32 bits | * | Polynomial_IL_0012_mul
 stage 2 | level 3 | 32 bits | ^ | Polynomial_IL_0014_xor
+Multiplier implementation: Auto (ordinary Verilog multiplication).
 Predicated control: 0 path-expanded branches, 1 terminal paths, 20 visited instructions.

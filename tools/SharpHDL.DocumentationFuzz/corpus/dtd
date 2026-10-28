@@ -1,0 +1,1 @@
+<!DOCTYPE doc [<!ENTITY x SYSTEM "file:///unavailable">]><doc>&x;</doc>

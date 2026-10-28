@@ -1,0 +1,253 @@
+{
+  "schema": 1,
+  "date": "2026-10-27",
+  "baselineCommit": "b2341dded78de9b75db849357621e5ea52f2ff40",
+  "commits": {
+    "equivalence": "f0b5aa5",
+    "baselines": "47f66ed",
+    "documentation": "This record belongs to the final documentation commit; use git log.",
+    "tooling": "fe904fb",
+    "regions": "da2689b"
+  },
+  "ci": {
+    "enabled": false,
+    "remoteCheck": "build/verification/actions-before-push.txt",
+    "workflowsDispatched": 0
+  },
+  "managedBuild": {
+    "warningsAsErrors": true,
+    "analyzers": "enabled, latest",
+    "results": "build/verification/final-build-results.json",
+    "platform": "Windows",
+    "projects": 35
+  },
+  "tests": {
+    "windowsFast": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 288
+    },
+    "windowsNativeZ3": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 52
+    },
+    "linuxNativeZ3": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 52
+    },
+    "excluded": "Historical expensive Z80Tests; seven Z80ProgramOracleTests remain in fast scope.",
+    "workloadWindows": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 4
+    },
+    "documentationEachOs": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 4
+    },
+    "linuxFast": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 288
+    },
+    "linuxDockerIcarus": {
+      "failed": 0,
+      "skipped": 0,
+      "referenceCycles": 40,
+      "passed": 1
+    }
+  },
+  "externalVerification": {
+    "limitations": "Bounded combinational proof profile and generic synthesis; no sequential proof, certificate checker, vendor timing or FPGA closure.",
+    "genericYosysDesigns": 6,
+    "equivalenceCasesEachNativeSolver": 44,
+    "yosysVersion": "0.33",
+    "scheduledArtifacts": "/tmp/sharphdl-rtl-vPyatv",
+    "z3Version": "4.12.2",
+    "simulators": [
+      "Icarus 12.0",
+      "Verilator 5.020"
+    ],
+    "scheduledDesigns": 12,
+    "equivalenceArtifacts": "/tmp/sharphdl-equivalence-7lUenZ"
+  },
+  "coverage": {
+    "verifier": {
+      "branchPercent": 89.65,
+      "linePercent": 94.38,
+      "class": "SharpHDL.Verification.BitVectorEquivalence"
+    },
+    "regionBlock": {
+      "branchPercent": 100.0,
+      "linePercent": 100.0,
+      "class": "SharpHDL.HLS.ScheduledOperationBlock"
+    },
+    "workload": {
+      "branchPercent": 100.0,
+      "linePercent": 100.0,
+      "class": "SharpHDL.Verification.SimulatorObservationWorkload"
+    },
+    "limitations": "Class/scope-specific managed metrics; standalone driver orchestration, native workers, external libraries and unexecuted branches are not whole-product coverage.",
+    "toolRunnerAsync": {
+      "linePercent": 92.72,
+      "branchPercent": 93.18
+    },
+    "documentationCatalog": {
+      "branchPercent": 79.51,
+      "linePercent": 98.82,
+      "class": "SharpHDL.Documentation.DocumentationCatalog"
+    },
+    "regionPlan": {
+      "branchPercent": 100.0,
+      "linePercent": 100.0,
+      "class": "SharpHDL.HLS.ScheduledRegionPlan"
+    }
+  },
+  "mutation": {
+    "limitations": "Focused configs only; raw scores retain equivalent/diagnostic survivors and reported timeouts; no combined product score.",
+    "equivalence": {
+      "CompileError": 12,
+      "Ignored": 138,
+      "Killed": 21,
+      "NoCoverage": 1,
+      "Survived": 8
+    },
+    "replayShift": {
+      "CompileError": 85,
+      "Ignored": 149,
+      "Killed": 5,
+      "Survived": 1
+    },
+    "regions": {
+      "CompileError": 131,
+      "Ignored": 1363,
+      "Killed": 41,
+      "Survived": 3
+    },
+    "workload": {
+      "CompileError": 6,
+      "Ignored": 27,
+      "Killed": 41,
+      "Survived": 2,
+      "Timeout": 2
+    },
+    "documentation": {
+      "CompileError": 44,
+      "Ignored": 350,
+      "Killed": 55,
+      "NoCoverage": 2,
+      "Survived": 11
+    },
+    "tooling": {
+      "CompileError": 1,
+      "Ignored": 97,
+      "Killed": 32,
+      "NoCoverage": 2,
+      "Survived": 3
+    }
+  },
+  "fuzz": {
+    "seed": 261026,
+    "equivalence": {
+      "corpus": 182,
+      "artifacts": "/tmp/sharphdl-fuzz-cptl4b",
+      "executions": 2947,
+      "crashes": 0,
+      "hangs": 0
+    },
+    "engine": "SharpFuzz 2.2.0 / AFL++ 4.09c",
+    "propertyReplay": "1145655947,296144285",
+    "limitations": "Finite sampled campaigns; no exhaustive conformance claim.",
+    "documentation": {
+      "corpus": 12,
+      "artifacts": "/tmp/sharphdl-doc-fuzz-dcQ5np",
+      "executions": 309041,
+      "crashes": 0,
+      "hangs": 0
+    },
+    "regions": {
+      "corpus": 154,
+      "artifacts": "/tmp/sharphdl-fuzz-Z6dtyv",
+      "executions": 2461,
+      "crashes": 0,
+      "hangs": 0
+    },
+    "secondsEach": 60
+  },
+  "performance": {
+    "sdk": "10.0.402",
+    "edgesPerOperation": 256,
+    "artifacts": "/tmp/sharphdl-baseline-OPyHjp",
+    "completed": 8,
+    "expectedChecksum": "8969665363863638565",
+    "iterations": 3,
+    "launches": 1,
+    "limitations": "Shared host, large short-run errors, AOT warnings; no simulator optimization or speedup claim.",
+    "jitRuntime": "10.0.13",
+    "warmups": 2,
+    "addressWidths": [
+      1,
+      8
+    ],
+    "report": "docs/verification/simulator-baseline-full.json",
+    "benchmarkDotNet": "0.15.8",
+    "ilCompiler": "10.0.13",
+    "nativeRuntime": "10.0.13"
+  },
+  "documentation": {
+    "limitations": "Legacy undocumented API members, CDN-dependent diagrams, text-only test-name admission, partial/historical/draft/unmapped requirements remain open.",
+    "mermaidExtension": "2.1.1",
+    "myst": "5.1.0",
+    "python": "3.13",
+    "firstBuildRequirements": 40,
+    "sphinx": "9.2.0",
+    "firstBuildEngineeringPages": 7,
+    "firstBuildMapped": 16,
+    "firstBuildApiAssemblies": 7,
+    "strictdoc": "0.30.4",
+    "status": "Passed actual StrictDoc/compiler-XML/Sphinx -W -n build",
+    "final": {
+      "createdUtc": "2026-10-28T02:47:43.1992517Z",
+      "requirements": 41,
+      "mapped": 25,
+      "unmapped": 16,
+      "apiAssemblies": 7,
+      "engineeringPages": 9,
+      "statusPolicy": "Manual bounded statuses preserved; link validation is not requirement closure."
+    },
+    "site": "Workspace sibling sharphdl-engineering-final-reviewed-20261027/site",
+    "requirementStatusCounts": {
+      "historical": 8,
+      "draft": 1,
+      "verified_bounded": 7,
+      "partial": 9
+    }
+  },
+  "dependencyAudit": {
+    "currentNugetAudit": "No vulnerable packages in integration project",
+    "runtimeScope": "One local Docker fixture, not SCP or remote Docker.",
+    "sshNet": "2026.0.0",
+    "testcontainers": "4.8.1"
+  },
+  "rootRegression": {
+    "csharpAssertions": 15212,
+    "multiplierAssertions": 56479,
+    "numericAssertions": 6698,
+    "dividerAssertions": 388851,
+    "limitations": "Generated extra HDL benches are not claimed executed by this root command."
+  },
+  "sourceHashesSha256": {
+    "src/SharpHDL.Tooling/HdlToolRunner.cs": "fb510ea99e7828f547f6bdcf85faf23832277c3af257322cb86093c1efaa44eb",
+    "src/SharpHDL.Verification/BitVectorEquivalence.cs": "edadb6c48980b570dab6682ee93316561b2f1acd8d524091a3e84f51a1f43570",
+    "src/SharpHDL.Simulation/HardwareGraphEvaluator.cs": "148c941b4668bbc828f911a08d66c178de017003d1eddbc732a39cff2f4fc64d",
+    "src/SharpHDL.HLS/ScheduledRegions.cs": "399472b2349066bbac65a3e59587656ed37a8b341aa2f74124ef8bfcb836ab17",
+    "src/SharpHDL.HLS/ScheduledArithmetic.cs": "1de640f056a53fa9acd07d9893075de81206d528389d6df62bc0d41c3ae9c1e6",
+    "tests/Shared/SimulatorObservationWorkload.cs": "b02a0fa5365e2d237cf6e38c9f6de5d83bbab464d7b7c8cf20c3c5c1c605472a",
+    "tools/SharpHDL.SimulatorBenchmarks/SimulationBenchmarks.cs": "2ac06060f0cd2a514155254da96f056d45f9972e0170143d2d82af0c73d1aee6",
+    "tools/SharpHDL.DocBuilder/DocumentationCatalog.cs": "09633046c57a20bd153eff98cd3fdc6018cc79bf630833f0c6cbb6943e2aa6ed",
+    "tools/SharpHDL.DocBuilder/Program.cs": "b394bbc42dd64d1e7931929c04787723e327996a880e3c605473051f19abd4da"
+  }
+}

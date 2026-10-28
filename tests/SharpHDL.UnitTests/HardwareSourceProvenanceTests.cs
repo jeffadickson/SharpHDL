@@ -9,6 +9,7 @@ namespace SharpHDL.UnitTests;
 
 public sealed class HardwareSourceProvenanceTests
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("xUnit", "xUnit1013", Justification = "Public synthesis fixture accessed by reflection; this is not a test entry point.")]
     public static void DoubleIt(HwStream<ushort> input,HwStream<ushort> output)
     {
         while(true)
@@ -63,6 +64,7 @@ public sealed class HardwareSourceProvenanceTests
         }
     }
     [HardwareProcess]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("xUnit", "xUnit1013", Justification = "Public synthesis fixture accessed by reflection; this is not a test entry point.")]
     public static void MultiplyTwoPaths(HwStream<uint> input,HwStream<uint> output)
     {
         while(true)
@@ -91,6 +93,7 @@ public sealed class HardwareSourceProvenanceTests
     }
 
     [HardwareProcess]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("xUnit", "xUnit1013", Justification = "Public synthesis fixture accessed by reflection; this is not a test entry point.")]
     public static void CheckedMultiply(HwStream<uint> input,HwStream<uint> output)
     {
         while(true)
@@ -114,6 +117,7 @@ public sealed class HardwareSourceProvenanceTests
 
     [HardwareProcess]
     [HlsMultiplier(MultiplierImplementation.ShiftAdd)]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("xUnit", "xUnit1013", Justification = "Public synthesis fixture accessed by reflection; this is not a test entry point.")]
     public static void MultiplyShiftAdd(HwStream<uint> input,HwStream<uint> output)
     {
         while(true)
@@ -125,6 +129,7 @@ public sealed class HardwareSourceProvenanceTests
 
     [HardwareProcess]
     [HlsMultiplier(MultiplierImplementation.DspPreferred)]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("xUnit", "xUnit1013", Justification = "Public synthesis fixture accessed by reflection; this is not a test entry point.")]
     public static void MultiplyDspPreferred(HwStream<uint> input,HwStream<uint> output)
     {
         while(true)
@@ -193,6 +198,7 @@ public sealed class HardwareSourceProvenanceTests
 
     [HardwareProcess]
     [HlsMultiplier(MultiplierImplementation.BoothRadix4)]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("xUnit", "xUnit1013", Justification = "Public synthesis fixture accessed by reflection; this is not a test entry point.")]
     public static void MultiplyBooth(HwStream<uint> input,HwStream<uint> output)
     {
         while(true)
@@ -204,6 +210,7 @@ public sealed class HardwareSourceProvenanceTests
 
     [HardwareProcess]
     [HlsMultiplier(MultiplierImplementation.WallaceTree)]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("xUnit", "xUnit1013", Justification = "Public synthesis fixture accessed by reflection; this is not a test entry point.")]
     public static void MultiplyWallace(HwStream<uint> input,HwStream<uint> output)
     {
         while(true)

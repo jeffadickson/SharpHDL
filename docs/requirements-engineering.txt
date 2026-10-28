@@ -1,0 +1,4 @@
+# Optional documentation environment; ordinary managed builds do not install Python packages.
+Sphinx==9.2.0
+myst-parser==5.1.0
+sphinxcontrib-mermaid==2.1.1

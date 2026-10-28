@@ -8,6 +8,7 @@ namespace SharpHDL.UnitTests;
 
 public sealed class CilDataflowTraceTests
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("xUnit", "xUnit1013", Justification = "Public synthesis fixture accessed by reflection; this is not a test entry point.")]
     public static void Pipeline(HwStream<ushort> source, HwStream<ushort> sink)
     {
         while (true) { ushort x = source.Read(); sink.Write((ushort)(x + 3)); }

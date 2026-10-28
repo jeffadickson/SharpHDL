@@ -388,3 +388,13 @@ implemented local transfers from the remaining full AXI burst DMA work.
 
 
 **Pipeline debugging preview:** [Browser inspector](docs/pipeline/index.html) · [Build and usage instructions](docs/pipeline/README.md). The initial inspector replays a versioned trace from the .NET simulator rather than running a live DUT in JavaScript; see limitations in its README.
+
+The [packages 7–10 continuation](docs/WORK_PACKAGES_7_10.md) records the safe HDL
+tool runner, bounded native Z3 equivalence profile, automatic typed-effect regions
+and real iterative arithmetic, simulator baseline harness, and documentation
+qualification. Unsupported sequential proofs, general C# synthesis, physical FPGA
+closure and further simulator optimization remain separate work.
+
+Use the opt-in [engineering/API build guide](docs/ENGINEERING_BUILD.md) to render
+Sphinx, compiler XML and real StrictDoc requirements. Output must be outside the
+checkout so packaged raw projects do not interfere with benchmark discovery.

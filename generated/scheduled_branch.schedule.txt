@@ -8,4 +8,5 @@ Ready propagates combinationally backward; no automatic skid-buffer insertion.
 stage 1 | level 1 | 1 bits | < | expression
 stage 2 | level 2 | 1 bits | ~ | expression
 stage 3 | level 3 | 32 bits | mux | Branch_IL_0009_select
+Multiplier implementation: Auto (ordinary Verilog multiplication).
 Predicated control: 1 path-expanded branches, 2 terminal paths, 14 visited instructions.

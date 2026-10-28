@@ -1,0 +1,15 @@
+{
+  "stryker-config": {
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "additional-timeout": 10000,
+    "test-case-filter": "FullyQualifiedName!~Arbitrary_trace",
+    "concurrency": 1,
+    "project": "SharpHDL.DocBuilder.csproj",
+    "mutate": [
+      "**/DocumentationCatalog.cs{978..4174}"
+    ]
+  }
+}

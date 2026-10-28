@@ -9,6 +9,10 @@
     <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
     <PackageReference Include="Testcontainers" Version="4.8.1" />
+    <!-- Testcontainers' transitive 2024.2.0 has two SCP advisories. Pin the patched
+         SSH asset without changing the existing container builder API in this slice.
+         This local-container fixture does not use SCP; remote Docker stays unqualified. -->
+    <PackageReference Include="SSH.NET" Version="2026.0.0" />
   </ItemGroup>
   <ItemGroup><ProjectReference Include="../../src/SharpHDL/SharpHDL.csproj" /></ItemGroup>
 </Project>

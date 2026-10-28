@@ -39,7 +39,7 @@ not a reliable performance bound or evidence of an optimization. Allocations are
 managed bytes per 256-edge operation. AOT and JIT results stay separate.
 
 [Full BenchmarkDotNet JSON](verification/simulator-baseline-full.json) retains
-statistics, environment and all measurements; [generated table](verification/simulator-baseline-table.md)
+statistics, environment and all measurements (publication copies normalize only trailing whitespace; raw reports remain in the retained run); [generated table](verification/simulator-baseline-table.md)
 includes errors/standard deviations. Raw working-byte [source hashes](verification/simulator-baseline-source-hashes.txt)
 are accompanied locally by base commit da2689b, relevant source patch and complete
 untracked workload/library source copies. Checkout line-ending conventions can
@@ -69,8 +69,8 @@ Intel Core i5-10505 CPU 3.20GHz (Max: 3.19GHz), 1 CPU, 12 logical and 6 physical
   AOT10-ILC10.0.13 : .NET 10.0.13, X64 NativeAOT x86-64-v3
   JIT10            : .NET 10.0.13 (10.0.13, 10.0.1326.50504), X64 RyuJIT x86-64-v3
 
-Server=False  IterationCount=3  LaunchCount=1  
-WarmupCount=2  
+Server=False  IterationCount=3  LaunchCount=1
+WarmupCount=2
 
 ```
 | Method              | Job              | Runtime        | AddressWidth | Mean      | Error     | StdDev    | Ratio | RatioSD | Gen0      | Gen1    | Allocated | Alloc Ratio |
@@ -86,4 +86,3 @@ WarmupCount=2
 |                     |                  |                |              |           |           |           |       |         |           |         |           |             |
 | RepeatedOutputReads | JIT10            | .NET 10.0      | 8            |  7.092 ms |  7.249 ms | 0.3974 ms |  1.00 |    0.07 | 1812.5000 | 78.1250 |  10.85 MB |        1.00 |
 | SnapshotOutputReads | JIT10            | .NET 10.0      | 8            |  7.644 ms | 20.602 ms | 1.1293 ms |  1.08 |    0.15 | 1062.5000 | 54.6875 |    6.4 MB |        0.59 |
-

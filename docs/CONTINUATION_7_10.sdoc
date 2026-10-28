@@ -83,3 +83,41 @@ No multiply primitive or latency-only placeholder shall replace the iterative un
 Verification: width/capture/reset tests, independent modular properties, twelve-design
 Icarus/Verilator replay and generic Yosys checks. Physical timing is unqualified.
 <<<
+
+[REQUIREMENT]
+UID: DOC-BUILD-001
+TITLE: Reproducible engineering and compiler XML documentation
+STATEMENT: >>>
+Build curated existing engineering Markdown with Sphinx/MyST and compiler-emitted
+XML documentation for seven managed framework assemblies. Fail on Sphinx warnings
+and nonzero tool results; retain tool manifests. Keep documentation-only Python
+dependencies opt-in, separate from ordinary managed builds. Explicitly disclose
+legacy missing XML comments and browser-CDN Mermaid rendering limitations.
+Verification: DocumentationCatalogTests, actual site build and retained summary.
+<<<
+
+[REQUIREMENT]
+UID: DOC-TRACE-001
+TITLE: Preserve bounded and incomplete requirement evidence
+STATEMENT: >>>
+Read requirements from the real StrictDoc JSON exporter. Validate manually
+reviewed trace rows against known stable UIDs and existing repository-contained
+source, test and evidence files. Reject unknown statuses, missing references and
+path escapes. Preserve partial, historical and unmapped requirements; do not
+promote requirement status by building documentation. Test-name text admission
+is not semantic symbol resolution, test execution or automatic requirement closure.
+Verification: DocumentationCatalogTests and generated authoritative trace ledger.
+<<<
+
+[REQUIREMENT]
+UID: BUILD-DEPS-001
+TITLE: Draft inferred container-fixture dependency audit
+STATEMENT: >>>
+Inferred from the required warning-sensitive build review: do not suppress known
+high-severity dependency advisories in the optional container test project.
+Constrain its transitive SSH.NET dependency to patched 2026.0.0 and retain a
+successful restore/build and transitive vulnerability-audit result. Preserve the
+existing Testcontainers builder API in this slice. Local/remote Docker and SCP
+behavior require separate runtime qualification; compilation is not conformance.
+Verification: integration project warning-as-error build and NuGet audit evidence.
+<<<

@@ -15,6 +15,7 @@ namespace SharpHDL.UnitTests;
 public sealed class CoreCilPipelineTests
 {
     [HardwareProcess]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("xUnit", "xUnit1013", Justification = "Public synthesis fixture accessed by reflection; this is not a test entry point.")]
     public static void Arithmetic(HwStream<uint> input,HwStream<uint> output)
     {
         while(true)
@@ -25,6 +26,7 @@ public sealed class CoreCilPipelineTests
     }
 
     [HardwareProcess]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("xUnit", "xUnit1013", Justification = "Public synthesis fixture accessed by reflection; this is not a test entry point.")]
     public static void Branch(HwStream<uint> input,HwStream<uint> output)
     {
         while(true)

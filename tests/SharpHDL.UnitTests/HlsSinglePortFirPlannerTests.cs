@@ -50,7 +50,7 @@ public sealed class HlsSinglePortFirPlannerTests
         Assert.Equal(2*taps-1,schedule.OutputValidOffset);
         Assert.Equal(Enumerable.Range(0,2*taps),
             schedule.Steps.Select(s=>s.Cycle));
-        Assert.Single(schedule.Steps.Where(s=>s.Action==HlsMemoryAction.AcceptAndWrite));
+        Assert.Single(schedule.Steps,s=>s.Action==HlsMemoryAction.AcceptAndWrite);
         Assert.Equal(taps-1,schedule.Steps.Count(s=>s.Action==HlsMemoryAction.IssueRead));
         for(int tap=1;tap<taps;tap++)
         {

@@ -1,5 +1,8 @@
 # SharpHDL modular architecture and migration
 
+> Current status is summarized in the 2026-10-27 continuation at the end of this
+> document. Earlier dated migration statements are historical, not current closure.
+
 ## Decision (2026-10-14)
 
 One repository, three primary assemblies:
@@ -485,3 +488,49 @@ verify the checksum for their natural source fixture.
 Library choice: reuse the BCL reader and existing xUnit/NSubstitute test seam.
 No Mono.Cecil or custom PDB parser is needed for loaded MethodInfo inputs. The
 embedded-PDB fixture exercises the BCL fallback rather than merely documenting it.
+
+## 2026-10-27 — current bounded continuation
+
+Core, Simulation, HLS and RTL contain working typed graph, two-state clocked
+simulation, explicit finite-controller/memory lowering and Verilog paths. The
+compatibility assembly still owns substantial CIL/front-end and legacy APIs;
+this is not a completed migration or general C# synthesis compiler.
+
+```mermaid
+flowchart LR
+    Legacy["Supported compatibility CIL / structural frontend"] --> Core["Typed Core graph + explicit state boundaries"]
+    Regions["Typed HLS operation regions / controller lowering"] --> Core
+    Core --> Sim["Two-state single-clock reference simulation"]
+    Core --> RTL["Verilog emission"]
+    Core --> BV["Bounded combinational Z3 check"]
+    RTL --> Runner["Retained HDL tool execution"]
+    Runner --> Tools["Icarus / Verilator / generic Yosys"]
+    Workloads["Isolated benchmark workload library"] --> Sim
+```
+
+`SharpHDL.Tooling` has no framework-project dependency. It owns safe ordinary
+process-tree execution, bounded raw streams, cancellation and retained manifests.
+The generic ToolCli frontend is used by the HDL qualification scripts.
+`SharpHDL.Verification` references only Core/Simulation and pins native Z3 outside
+normal HLS/RTL dependencies. It rejects marked state inputs and unsupported
+primitives; Equivalent denotes an actual bounded-profile UNSAT result, not a
+sequential design proof. SAT valuations replay through the independent evaluator.
+
+HLS automatic regions extract source-order register hazards and conservative
+memory aliases from typed bodies. Ordinal interval scheduling supports actual
+nonpipelined shift-add multiplication. Independent assignment/lowerer checks
+remain separate from the allocation algorithm. CIL automatic region extraction,
+loop scheduling, pipelined initiation intervals, true multiport RAM and multiclock
+Core are not qualified by this slice. Abstract scheduling levels do not establish
+physical timing or FPGA closure.
+
+`SharpHDL.SimulatorBenchmarks` contains workload/observation code and the existing
+BenchmarkDotNet attributes. The ScheduledBench executable owns job configuration
+and discovery. Keeping the launcher out of the AOT worker reference avoids pulling
+its reflective launcher path into the workload. No simulator optimization is
+claimed merely by introducing that boundary. The documentation driver similarly
+stays an opt-in tool and keeps Python dependencies outside ordinary managed builds.
+
+[Continuation evidence and library trades](WORK_PACKAGES_7_10.md) and the
+[engineering/API build guide](ENGINEERING_BUILD.md) state exact verification
+scopes, partial/historical requirements and current limitations. CI remains off.

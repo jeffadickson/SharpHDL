@@ -28,7 +28,8 @@ Candidate dependencies in packages 4–10 are evaluation tasks, not approved bla
 Continuation: packages 4–6 are implemented and their execution evidence and
 remaining qualification limits are recorded in [WORK_PACKAGES_4_6.md](WORK_PACKAGES_4_6.md).
 Z80dotNet 1.1.0 is now pinned only in the test project; packages 5–6 reuse existing
-dependencies. Packages 7–10 remain future work.
+dependencies. Current progress and bounded qualification for packages 7–10 is recorded in
+[WORK_PACKAGES_7_10.md](WORK_PACKAGES_7_10.md). Simulator optimization remains future work after the measured baseline slice.
 
 ## Description and rationale for each library decision
 

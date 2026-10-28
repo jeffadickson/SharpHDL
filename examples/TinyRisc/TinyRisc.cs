@@ -1,3 +1,4 @@
+#nullable enable
 using System;
 using System.Linq;
 using System.Numerics;
@@ -9,7 +10,7 @@ public static class TinyRisc
     static Expr K(int w,int v){return Expr.Const(w,v);}
     static Expr M(Expr c,Expr a,Expr b){return Expr.Mux(c,a,b);}
     static Expr Shift(Expr a,Expr n,bool left){for(int i=0;i<4;i++)a=M(n.Slice(i,i),left?a<<(1<<i):a>>(1<<i),a);return a;}
-    public static Module Build(ushort[] program,string name="TinyRisc16",MemoryOptions memoryOptions=null)
+    public static Module Build(ushort[] program,string name="TinyRisc16",MemoryOptions? memoryOptions=null)
     {
         if(program==null||program.Length<1||program.Length>256)throw new ArgumentException("ROM needs 1..256 words.");
         var m=new Module(name,memoryOptions);

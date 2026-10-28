@@ -105,3 +105,31 @@ not describe every optimized wire. No formal or physical FPGA readiness claim.
 GitHub Actions is explicitly disabled by the user: do not enable or dispatch it.
 The current task authorizes local commits and a push after final tests. Preserve
 unknown changes; never force-push. Keep native Linux outputs separate from Windows.
+
+## Packages 7–10 continuation (2026-10-27)
+
+Start from the current checkout and read docs/WORK_PACKAGES_7_10.md, the baseline
+report docs/SIMULATOR_BASELINES_2026-10-27.md and the real StrictDoc specifications.
+Do not restart old iteration quotas. Actions remains disabled; no automatic CI.
+This task authorizes one normal push after the final verified documentation commit.
+
+Implemented: retained cancellable HDL execution (BCL), bounded native Z3 QF_BV
+checks with independent replay, typed-effect hazard regions and actual iterative
+multipliers. WP-09 establishes eight JIT/AOT measurements and an isolated workload
+library; no simulator algorithm optimization is claimed. WP-10 is an opt-in
+managed Sphinx/compiler-XML/StrictDoc driver; output must be outside the repository.
+
+Fresh gates: 35 managed projects compile on Windows with warning-sensitive
+analyzers; 288 fast tests and 52 native Z3 tests pass on each OS; four documentation
+tests pass per OS; four workload tests pass on Windows; the patched local Docker/
+Icarus forty-cycle fixture passes on Linux. Twelve scheduled designs pass Icarus/
+Verilator, six generic Yosys checks pass, and 44 native Z3/Yosys equivalence cases
+retain counterexamples. Root regression assertions and focused coverage/mutation/
+fuzz scopes are in the report. Full historical Z80 vector tests were not rerun.
+
+Reproduce with checked directories using tools/run-workpackages-linux.sh,
+tools/run-verification-linux.sh (matching pinned Z3 native assets),
+tools/run-equivalence-linux.sh, tools/run-scheduled-rtl.sh and, after local jobs
+finish, tools/run-simulator-baselines-linux.sh. Documentation commands and private
+Python dependencies are in docs/ENGINEERING_BUILD.md. No FPGA timing, full-ISA,
+sequential-proof, full API-comment or general Native AOT launcher claim is implied.
