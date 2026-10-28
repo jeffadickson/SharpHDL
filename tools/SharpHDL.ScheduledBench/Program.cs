@@ -22,4 +22,3 @@ if(qualified)
     if(reports.Length!=8||reports.Any(r=>!r.Success))throw new InvalidOperationException("Qualified baseline requires eight successful JIT/AOT measurements; inspect retained reports.");
 }
 else BenchmarkSwitcher.FromAssembly(typeof(ScheduledSimulationBenchmarks).Assembly).Run(args);
-
