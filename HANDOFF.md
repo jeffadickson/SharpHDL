@@ -139,12 +139,14 @@ The controlled benchmark script now defaults to four JIT cases; native compariso
 requires an explicit --include-native-aot opt-in. Historical results remain valid
 for their recorded scope. Continue compiler correctness and HDL verification first.
 
-Current continuation adds unchecked conv.i1/u1/i2/u2 on the scheduled 32-bit CIL
-stack and an explicit HLS SignExtend value. Narrow locals/ports and checked/wide/
-floating/native conversions still reject. Read docs/CONTINUATION_JIT_NARROW_2026-10-27.md
+Previous continuation (2659a0b) added unchecked conv.i1/u1/i2/u2 on the scheduled 32-bit CIL
+stack and an explicit HLS SignExtend value. At that revision narrow locals/ports and checked/wide/
+floating/native conversions rejected. Read docs/CONTINUATION_JIT_NARROW_2026-10-27.md
 and docs/JIT_AND_NARROW_CIL.sdoc for acceptance, actual results and limitations.
 Fresh scope: 296 fast and 60 native Z3 tests per OS, five added HDL designs,
 retained conversion witnesses, focused mutation and a finite fuzz campaign.
 Native AOT stays deferred; preserve CI-off policy and existing history.
 
 Active continuation: narrow storage/ports and checked conversions. See docs/CONTINUATION_STORAGE_CHECKED_2026-10-27.md and docs/NARROW_STORAGE_CHECKED.sdoc. Native AOT deferred; CI disabled.
+
+Implementation now supports declared narrow scalar locals/ports and twelve checked 8/16/32-bit conversions. Overflow diagnostics park done/fault/conversion_overflow/fault_il and suppress later effects while retaining earlier RAM writes. Current evidence: 319 fast + 62 native tests per OS, 31 strengthened focused cases per OS, 12 HDL designs and finite fuzzing. Read the storage/checked report for exact coverage, mutation scope, native witnesses and outstanding requirements. CI off; Native AOT deferred.

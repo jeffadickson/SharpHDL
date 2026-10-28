@@ -1,0 +1,1 @@
+{"opcode":"conv.ovf.i1","corrupt":false,"status":"Equivalent","Reason":"UNSAT: no differing input valuation.","SolverVersion":"Z3 4.12.2.0","Counterexample":{}}

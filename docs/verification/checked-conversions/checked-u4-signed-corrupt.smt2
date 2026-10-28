@@ -1,0 +1,10 @@
+(set-logic QF_BV)
+(set-option :produce-models true)
+(set-option :timeout 5000)
+(declare-fun input_0 () (_ BitVec 32))
+(assert (let ((a!1 (bvnot (bvor (ite (bvslt input_0 #x00000000) #b1 #b0) #b0))))
+(let ((a!2 (= (bvnot (ite (bvslt input_0 #x00000000) #b1 #b0)) (bvnot a!1))))
+  (not a!2))))
+
+(check-sat)
+(get-model)

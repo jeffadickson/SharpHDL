@@ -31,14 +31,15 @@ Verification: ScheduledNarrowConversionTests and narrow HDL replay.
 UID: CIL-NARROW-002
 TITLE: Maintain conversion-profile rejection and local-proof boundaries
 STATEMENT: >>>
-Checked, 64-bit, floating and native-sized conversions, narrow locals/ports and
-malformed stacks remain unsupported and shall report original method/IL context.
+64-bit, floating and native-sized conversions and malformed stacks remain
+unsupported and shall report original method/IL context.
 Native bit-vector checks of conversion cones shall retain real UNSAT/SAT results
 and independently replay counterexamples, without describing local combinational
 checks as a sequential-design proof. Retain finite campaign and coverage limits.
 Verification: negative/malformed tests and NarrowConversionProofTests.
-The narrow locals/ports restriction is superseded by CIL-STORAGE-001. Historical
+The original narrow locals/ports restriction is superseded by CIL-STORAGE-001. Historical
 evidence in the original continuation report remains scoped to that revision.
+The bounded checked conversion restriction is superseded by CIL-CHECKED-001/002.
 <<<
 
 [REQUIREMENT]

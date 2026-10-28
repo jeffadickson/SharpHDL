@@ -3,14 +3,17 @@
 set -euo pipefail
 repo=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 test -d "$repo/tools/SharpHDL.AxiFirRtlDemo" && test -d /tmp
-(($#<=1)) || { echo "Usage: $0 [all|narrow|storage|checked]" >&2; exit 2; }
+(($#<=1)) || { echo "Usage: $0 [all|narrow|storage|checked|checked-memory]" >&2; exit 2; }
 case ${1:-all} in
   all) designs=(ScheduledTable1 ScheduledTable4 ScheduledTable8 ScheduledCilLoop ScheduledCilShifts ScheduledRawCilShifts ScheduledBanksAuto ScheduledBanksXilinxBlock ScheduledPlannedBanks ScheduledIterativeBanks AxiConformanceLite AxiConformanceStream ScheduledNarrowI1 ScheduledNarrowU1 ScheduledNarrowI2 ScheduledNarrowU2 ScheduledCilNarrow); synthesis=(ScheduledCilShifts ScheduledRawCilShifts ScheduledPlannedBanks ScheduledIterativeBanks AxiConformanceLite AxiConformanceStream ScheduledNarrowI1 ScheduledNarrowU1 ScheduledNarrowI2 ScheduledNarrowU2 ScheduledCilNarrow);;
   narrow) designs=(ScheduledNarrowI1 ScheduledNarrowU1 ScheduledNarrowI2 ScheduledNarrowU2 ScheduledCilNarrow); synthesis=(ScheduledNarrowI1 ScheduledNarrowU1 ScheduledNarrowI2 ScheduledNarrowU2 ScheduledCilNarrow);;
   storage) designs=(); for type in SByte Byte Int16 UInt16 Char; do for mode in Argument Local; do designs+=("Storage$type$mode"); done; done; synthesis=("${designs[@]}");;
+  checked) designs=(ScheduledChecked ScheduledCheckedMemory); synthesis=("${designs[@]}");;
+  checked-memory) designs=(ScheduledCheckedMemory); synthesis=(ScheduledCheckedMemory);;
   *) echo "Unknown HDL profile" >&2; exit 2;;
 esac
 if [[ ${1:-all} == all ]]; then
+  designs+=(ScheduledChecked ScheduledCheckedMemory); synthesis+=(ScheduledChecked ScheduledCheckedMemory)
   for type in SByte Byte Int16 UInt16 Char; do
     for mode in Argument Local; do designs+=("Storage$type$mode"); synthesis+=("Storage$type$mode"); done
   done

@@ -1,0 +1,10 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.csproj",
+    "additional-timeout": 5000,
+    "reporters": ["json", "progress"],
+    "test-case-filter": "(FullyQualifiedName~ScheduledScalarStorageTests|FullyQualifiedName~ScheduledCheckedConversionTests)&FullyQualifiedName!~Local_storage_is_modular&FullyQualifiedName!~Generated_checked_values",
+    "concurrency": 1,
+    "mutate": ["**/ScheduledCilScalarTypes.cs", "**/ScheduledCilCheckedConversions.cs"]
+  }
+}

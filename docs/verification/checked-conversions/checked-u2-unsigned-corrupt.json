@@ -1,0 +1,1 @@
+{"opcode":"conv.ovf.u2.un","corrupt":true,"status":"Different","Reason":"SAT: differing valuation independently replayed.","SolverVersion":"Z3 4.12.2.0","Counterexample":{"value":"0"}}

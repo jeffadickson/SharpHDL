@@ -75,6 +75,7 @@ internal static class ScheduledSuiteReplay
         GenerateShifts(directory);
         GenerateNarrowConversions(directory);
         GenerateScalarStorage(directory);
+        GenerateCheckedConversions(directory);
         var planned=new CoreReplay(ScheduledPlannedBanks.Build());
         for(int phase=0;phase<=6;phase++)
         {
@@ -174,6 +175,46 @@ internal static class ScheduledSuiteReplay
         File.WriteAllText(Path.Combine(directory,moduleName+".il-map.json"),JsonSerializer.Serialize(compilation.StateOffsets));
         WriteSourceMap(directory,compilation);
         Console.WriteLine($"CIL shifts {moduleName}: {transactions} native/legacy/Core transactions agree.");
+    }
+
+    private static void GenerateCheckedConversions(string directory)
+    {
+        var method=NarrowCilFixture.CheckedDispatch(out var offsets);
+        var compiled=CilCompiler.BuildScheduledSequential(method,"ScheduledChecked");var replay=new CoreReplay(compiled.Design);replay.Clock(true);
+        for(int index=0;index<NarrowCilFixture.CheckedOpcodes.Count;index++)
+        foreach(uint value in new uint[]{0,127,128,255,256,32767,32768,65535,65536,0x7fffffff,0x80000000,0xffff7fff,0xffff8000,0xffffff7f,0xffffff80,uint.MaxValue})
+        {
+            uint expected=0;bool overflow=false;
+            try { expected=(uint)method.Invoke(null,[value,(uint)index])!; }
+            catch(TargetInvocationException error) when(error.InnerException is OverflowException){overflow=true;}
+            replay.Drive("arg0",unchecked((int)value));replay.Drive("arg1",index);replay.Drive("start",1);replay.Clock(false);
+            replay.Drive("start",0);replay.Drive("arg0",unchecked((int)~value));replay.Drive("arg1",99);
+            int edges=0;while(replay.Read("done")==0&&edges++<64)replay.Clock(false);
+            if(replay.Read("done")!=1||replay.Read("fault")!=(overflow?1:0)||replay.Read("timeout")!=0||
+                replay.Read("conversion_overflow")!=(overflow?1:0)||replay.Read("fault_il")!=(overflow?offsets[index]:0)||replay.Read("result")!=expected)
+                throw new InvalidOperationException("Checked CLR/Core diagnostic mismatch: "+NarrowCilFixture.CheckedOpcodes[index].Name);
+            replay.Clock(false);
+        }
+        replay.Save(directory);WriteSourceMap(directory,compiled);
+        Console.WriteLine("Checked dispatch: 192 CLR/Core boundary, overflow and capture transactions agree.");
+        var memoryMethod=typeof(ScheduledNarrowCil).GetMethod(nameof(ScheduledNarrowCil.CheckedStore))!;
+        var memoryCompiled=CilCompiler.BuildScheduledSequential(memoryMethod,"ScheduledCheckedMemory",
+            new SequentialOptions{MemoryDepth=2,InitialMemory=[0,5],MaxCycles=128});
+        var memoryReplay=new CoreReplay(memoryCompiled.Design);memoryReplay.Clock(true);uint[] memory=[0,5];
+        foreach(uint value in new uint[]{256,0,255,0,uint.MaxValue,0,1,0})
+        {
+            uint expected=0;bool failed=false;
+            try { expected=ScheduledNarrowCil.CheckedStore(memory,value); }
+            catch(OverflowException){failed=true;}
+            memoryReplay.Drive("arg1",unchecked((int)value));memoryReplay.Drive("start",1);memoryReplay.Clock(false);
+            memoryReplay.Drive("start",0);memoryReplay.Drive("arg1",unchecked((int)~value));
+            int edges=0;while(memoryReplay.Read("done")==0&&edges++<130)memoryReplay.Clock(false);
+            if(memoryReplay.Read("done")!=1||memoryReplay.Read("fault")!=(failed?1:0)||
+                memoryReplay.Read("conversion_overflow")!=(failed?1:0)||memoryReplay.Read("result")!=expected)
+                throw new InvalidOperationException("Checked C# RAM side-effect/recovery mismatch.");
+        }
+        memoryReplay.Save(directory);WriteSourceMap(directory,memoryCompiled);
+        Console.WriteLine("Checked memory: 8 CLR/Core partial-write and recovery transactions agree.");
     }
 
     private static void GenerateScalarStorage(string directory)

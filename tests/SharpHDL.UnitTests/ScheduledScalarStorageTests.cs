@@ -52,10 +52,13 @@ public sealed class ScheduledScalarStorageTests
     public void Narrow_returns_have_exact_port_widths()
     {
         foreach(var type in Types)
+        foreach(bool direct in new[]{false,true})
         {
-            var d=CilCompiler.BuildScheduledSequential(NarrowCilFixture.Storage(type,result:true),"Return").Design;
+            var method=NarrowCilFixture.Storage(type,result:true,readOnly:direct);
+            var d=CilCompiler.BuildScheduledSequential(method,"Return").Design;
             int width=type==typeof(byte)||type==typeof(sbyte)?8:16;
             Assert.Equal(width,d.Graph.Nodes.Single(n=>n.Id==d.Outputs["result"]).Type.Width);
+            Assert.Equal((1u<<width)-1,unchecked((uint)Convert.ToInt32(method.Invoke(null,[uint.MaxValue])))&((1u<<width)-1));
             Assert.Equal((1u<<width)-1,Run(d,uint.MaxValue,false));
         }
     }
@@ -91,5 +94,22 @@ public sealed class ScheduledScalarStorageTests
     {
         foreach(var type in new[]{typeof(long),typeof(double),typeof(IntPtr)})
             Assert.Contains("locals",Assert.Throws<NotSupportedException>(()=>CilCompiler.BuildScheduledSequential(NarrowCilFixture.Storage(type),"Rejected")).Message);
+    }
+
+    /// <summary>Canonical Boolean and existing full-width storage remain supported alongside the new types.</summary>
+    [Fact]
+    public void Existing_scalar_profiles_remain_compatible()
+    {
+        foreach(var type in new[]{typeof(bool),typeof(int),typeof(uint)})
+        foreach(bool argument in new[]{false,true})
+        {
+            var method=NarrowCilFixture.Storage(type,argument);var d=CilCompiler.BuildScheduledSequential(method,"ExistingScalar").Design;
+            foreach(uint value in new uint[]{0,1})
+            {
+                object?[] args=argument?[Activator.CreateInstance(type),value]:[value];
+                Assert.Equal(value,(uint)method.Invoke(null,args)!);Assert.Equal(value,Run(d,value,argument));
+            }
+            if(argument)Assert.Equal(type==typeof(bool)?1:32,d.Graph.Nodes.Single(n=>n.Id==d.Inputs["arg0"]).Type.Width);
+        }
     }
 }

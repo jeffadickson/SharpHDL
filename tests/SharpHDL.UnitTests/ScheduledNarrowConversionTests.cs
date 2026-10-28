@@ -83,8 +83,8 @@ public sealed class ScheduledNarrowConversionTests
     [Fact]
     public void Unsupported_conversions_and_malformed_stacks_have_actionable_diagnostics()
     {
-        foreach(var opcode in new[]{OpCodes.Conv_Ovf_I1,OpCodes.Conv_Ovf_U1,OpCodes.Conv_Ovf_I2,OpCodes.Conv_Ovf_U2,
-            OpCodes.Conv_Ovf_I1_Un,OpCodes.Conv_Ovf_U1_Un,OpCodes.Conv_Ovf_I2_Un,OpCodes.Conv_Ovf_U2_Un,
+        foreach(var opcode in new[]{OpCodes.Conv_Ovf_I8,OpCodes.Conv_Ovf_U8,OpCodes.Conv_Ovf_I,OpCodes.Conv_Ovf_U,
+            OpCodes.Conv_Ovf_I8_Un,OpCodes.Conv_Ovf_U8_Un,OpCodes.Conv_Ovf_I_Un,OpCodes.Conv_Ovf_U_Un,
             OpCodes.Conv_I8,OpCodes.Conv_U8,OpCodes.Conv_R4,OpCodes.Conv_I})
         {
             var error=Assert.Throws<NotSupportedException>(()=>CilCompiler.BuildScheduledSequential(NarrowCilFixture.Create(opcode),"Rejected"));

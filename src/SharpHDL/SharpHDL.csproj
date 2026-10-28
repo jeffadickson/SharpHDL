@@ -9,4 +9,5 @@
   </ItemGroup>
   <!-- The standalone regression executable checks structural invariants without making internals public. -->
   <ItemGroup><InternalsVisibleTo Include="Tests" /></ItemGroup>
+  <ItemGroup><InternalsVisibleTo Include="SharpHDL.UnitTests" /><InternalsVisibleTo Include="SharpHDL.VerificationTests" /></ItemGroup>
 </Project>

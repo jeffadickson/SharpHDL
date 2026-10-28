@@ -8,7 +8,8 @@ public static partial class CilCompiler
 {
     // CLI small-integer conversions truncate first, then extend back to the
     // Int32 evaluation stack. Signedness belongs to the opcode, not the source
-    // port's C# type. Checked/wide/native/floating conversions are not admitted.
+    // port's C# type. Checked conversions use a separate range-checked helper;
+    // wide/native/floating conversions remain outside this frontend profile.
     private static ScheduledValue ScheduledClrNarrow(ScheduledValue value,string opcode)
     {
         if(value.Width!=32)throw new ArgumentException("Narrow CIL conversion requires a 32-bit stack value.",nameof(value));

@@ -43,7 +43,8 @@ namespace SharpHDL
         /// through the existing decoder/stack analysis into ScheduledMachineBuilder.
         /// Unchecked 8/16-bit stack conversions truncate then sign/zero-extend to Int32;
         /// byte/sbyte/short/ushort/char storage uses declared widths and extends on load.
-        /// Checked/wide conversions remain unsupported. Ports use CLR scalar widths.
+        /// Checked 8/16/32-bit conversions terminate on overflow with fault, conversion_overflow
+        /// and fault_il diagnostics. Wide conversions remain unsupported. Ports use CLR scalar widths.
         /// One instruction executes
         /// per edge; RAM loads add a capture/wait edge. Unsupported constructs are
         /// rejected with method and IL-offset diagnostics; no legacy fallback occurs.
@@ -53,7 +54,11 @@ namespace SharpHDL
             if(method==null)throw new ArgumentNullException(nameof(method));
             var o=options??new SequentialOptions();var body=method.GetMethodBody();var ps=method.GetParameters();
             bool Scalar(Type t)=>TryScheduledScalar(t,out _);
-            if(!method.IsStatic||method.ContainsGenericParameters||body==null||body.ExceptionHandlingClauses.Count!=0||!TryScheduledScalar(method.ReturnType,out var returnType))
+            // Initialize separately so instrumentation cannot introduce a
+            // definite-assignment hole through the short-circuit validation.
+            ScheduledScalarType returnType=default;
+            bool validReturn=TryScheduledScalar(method.ReturnType,out returnType);
+            if(!method.IsStatic||method.ContainsGenericParameters||body==null||body.ExceptionHandlingClauses.Count!=0||!validReturn)
                 throw Error(method,0,"Scheduled sequential methods require a static CIL body, supported integer/Boolean return and no exception handlers.");
             if(o.MaxCycles<1||o.MaxCycles>1000000||o.MaxInstructions<1||o.MaxInstructions>4096)
                 throw new ArgumentException("Invalid scheduled sequential instruction/clock limits.",nameof(options));
@@ -72,7 +77,7 @@ namespace SharpHDL
             if(list.Count>o.MaxInstructions)throw Error(method,0,"Scheduled sequential instruction limit exceeded.");
             bool SupportedInstruction(string op)=>op=="nop"||op=="ret"||op=="dup"||op=="pop"||op=="not"||op=="neg"||
                 op=="add"||op=="sub"||op=="mul"||op=="and"||op=="or"||op=="xor"||op=="ceq"||op=="clt"||op=="clt.un"||op=="cgt"||op=="cgt.un"||
-                op=="conv.i4"||op=="conv.u4"||op=="conv.i1"||op=="conv.u1"||op=="conv.i2"||op=="conv.u2"||
+                IsScheduledChecked(op)||op=="conv.i4"||op=="conv.u4"||op=="conv.i1"||op=="conv.u1"||op=="conv.i2"||op=="conv.u2"||
                 op=="shl"||op=="shr"||op=="shr.un"||op=="br"||op=="br.s"||op=="switch"||Conditional(op)||
                 op=="ldlen"||op=="ldelem.u4"||op=="ldelem.i4"||op=="stelem.i4"||
                 op.StartsWith("ldc.i4")||op=="ldarg"||op=="ldarg.s"||op.StartsWith("ldarg.")||
@@ -108,6 +113,10 @@ namespace SharpHDL
             var b=new ScheduledMachineBuilder(name);var start=b.Input("start",1);
             var busy=b.Register("busy_state",1);var done=b.Register("done_state",1);
             var fault=b.Register("fault_state",1);var timeout=b.Register("timeout_state",1);
+            // Constant-zero diagnostic outputs cost no registers in unchecked kernels.
+            bool hasChecked=list.Any(i=>IsScheduledChecked(i.Name));
+            var overflow=hasChecked?b.Register("conversion_overflow_state",1):null;
+            var faultIl=hasChecked?b.Register("fault_il_state",32):null;
             var result=b.Register("result_state",returnType.PortWidth);
             int cw=1;while((1<<cw)<=o.MaxCycles)cw++;
             var cycles=b.Register("cycles",cw);
@@ -142,6 +151,7 @@ namespace SharpHDL
             }
             var clear=new[]{done,fault,timeout,result,cycles}.Concat(locals).Concat(stack);
             foreach(var register in clear)idle.Assign(register,b.Constant(register.Width,0),start);
+            if(hasChecked){idle.Assign(overflow,zero,start);idle.Assign(faultIl,zero32,start);}
             // busy is separate because earlier guarded assignments have priority.
             idle.Assign(busy,one,start);
             foreach(var pair in captured)idle.Assign(pair.Register,pair.Input,start);
@@ -157,6 +167,15 @@ namespace SharpHDL
                 Stop(state,expired,true,true);state.Assign(cycles,cycles.Value.Add(b.Constant(cw,1)),live);
                 string next=op=="ret"||op=="br"||op=="br.s"?"idle":states[ins.Next].Name;
                 if(op=="ret"){state.Assign(result,Top(0).Resize(returnType.PortWidth),live);Stop(state,live,false);continue;}
+                if(IsScheduledChecked(op))
+                {
+                    var conversion=ScheduledClrChecked(b,Top(0),op);
+                    var failed=live.And(conversion.Fits.Not());var valid=live.And(conversion.Fits);
+                    Stop(state,failed,true);
+                    state.Assign(overflow,one,failed).Assign(faultIl,K32(ins.Offset),failed)
+                        .Assign(stack[h-1],conversion.Value,valid).Transition(next,valid);
+                    continue;
+                }
                 if(op=="br"||op=="br.s"){state.Transition(states[(int)ins.Operand].Name,live);continue;}
                 if(Conditional(op))
                 {
@@ -214,6 +233,7 @@ namespace SharpHDL
             }
             b.Output("busy",busy.Value);b.Output("done",done.Value);b.Output("fault",fault.Value);
             b.Output("timeout",timeout.Value);b.Output("assertion_failed",zero);b.Output("result",result.Value);
+            b.Output("conversion_overflow",hasChecked?overflow.Value:zero);b.Output("fault_il",hasChecked?faultIl.Value:zero32);
             b.Output("accept",b.InState(idle).And(start));
             var offsets=states.ToDictionary(p=>p.Value.Name,p=>p.Key);
             foreach(var pair in waits)offsets.Add(pair.Value.Name,pair.Key);

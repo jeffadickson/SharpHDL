@@ -406,5 +406,8 @@ Scheduled CIL also supports declared byte/sbyte/short/ushort/char locals, argume
 and returns. Storage truncates on writes and extends on loads to the 32-bit stack;
 ports use declared widths. See [storage and checked-conversion progress](docs/CONTINUATION_STORAGE_CHECKED_2026-10-27.md)
 for executed verification and remaining limits. CI stays off; Native AOT is deferred.
+Checked 8/16/32-bit conversions and their unsigned-source forms report overflow
+through done/fault, conversion_overflow and the original fault_il offset; later
+instructions are suppressed while earlier RAM writes remain committed.
 Unchecked byte/short stack conversions are supported with explicit sign/zero
 extension; checked conversions and narrow locals/ports remain unsupported.

@@ -6,6 +6,26 @@ namespace SharpHDL.Verification;
 /// <summary>Direct IL fixtures avoid C# optimizer removal or folding of individual conversions.</summary>
 public static class NarrowCilFixture
 {
+    /// <summary>The bounded checked opcode family; native-sized and 64-bit conversions are excluded.</summary>
+    public static IReadOnlyList<OpCode> CheckedOpcodes { get; }=Array.AsReadOnly(new[]{
+        OpCodes.Conv_Ovf_I1,OpCodes.Conv_Ovf_U1,OpCodes.Conv_Ovf_I2,OpCodes.Conv_Ovf_U2,OpCodes.Conv_Ovf_I4,OpCodes.Conv_Ovf_U4,
+        OpCodes.Conv_Ovf_I1_Un,OpCodes.Conv_Ovf_U1_Un,OpCodes.Conv_Ovf_I2_Un,OpCodes.Conv_Ovf_U2_Un,OpCodes.Conv_Ovf_I4_Un,OpCodes.Conv_Ovf_U4_Un});
+
+    /// <summary>A single RTL fixture selects all checked operations, retaining exact faulting IL offsets.</summary>
+    public static MethodInfo CheckedDispatch(out int[] offsets)
+    {
+        var assembly=AssemblyBuilder.DefineDynamicAssembly(new AssemblyName("CheckedDispatch"+Guid.NewGuid().ToString("N")),AssemblyBuilderAccess.RunAndCollect);
+        var type=assembly.DefineDynamicModule("main").DefineType("Kernel",TypeAttributes.Public);
+        var method=type.DefineMethod("Convert",MethodAttributes.Public|MethodAttributes.Static,typeof(uint),[typeof(uint),typeof(uint)]);
+        var il=method.GetILGenerator();var labels=CheckedOpcodes.Select(_=>il.DefineLabel()).ToArray();offsets=new int[labels.Length];
+        il.Emit(OpCodes.Ldarg_1);il.Emit(OpCodes.Switch,labels);il.Emit(OpCodes.Ldc_I4_0);il.Emit(OpCodes.Ret);
+        for(int i=0;i<labels.Length;i++)
+        {
+            il.MarkLabel(labels[i]);il.Emit(OpCodes.Ldarg_0);offsets[i]=il.ILOffset;
+            il.Emit(CheckedOpcodes[i]);il.Emit(OpCodes.Conv_U4);il.Emit(OpCodes.Ret);
+        }
+        return type.CreateType()!.GetMethod("Convert")!;
+    }
     private static readonly IReadOnlyDictionary<string,MethodInfo> methods=new Dictionary<string,MethodInfo>
     {
         ["conv.i1"]=Create(OpCodes.Conv_I1),["conv.u1"]=Create(OpCodes.Conv_U1),
@@ -34,7 +54,8 @@ public static class NarrowCilFixture
         var t=a.DefineDynamicModule("main").DefineType("Kernel",TypeAttributes.Public);
         var m=t.DefineMethod("Evaluate",MethodAttributes.Public|MethodAttributes.Static,result?storage:typeof(uint),argument?[storage,typeof(uint)]:[typeof(uint)]);
         var il=m.GetILGenerator();
-        if(argument){if(!readOnly){il.Emit(OpCodes.Ldarg_1);il.Emit(OpCodes.Starg_S,(byte)0);}il.Emit(OpCodes.Ldarg_0);}
+        if(!argument&&readOnly)il.Emit(OpCodes.Ldarg_0);
+        else if(argument){if(!readOnly){il.Emit(OpCodes.Ldarg_1);il.Emit(OpCodes.Starg_S,(byte)0);}il.Emit(OpCodes.Ldarg_0);}
         else {il.DeclareLocal(storage);il.Emit(OpCodes.Ldarg_0);il.Emit(OpCodes.Stloc_0);il.Emit(OpCodes.Ldloc_0);}
         il.Emit(OpCodes.Ret);
         return t.CreateType()!.GetMethod("Evaluate")!;

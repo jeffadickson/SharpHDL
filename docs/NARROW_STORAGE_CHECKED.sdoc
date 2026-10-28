@@ -13,3 +13,32 @@ results on start/reset, preserve original IL provenance and reject unsupported
 wide, native and floating storage. Preserve the existing canonical Boolean profile.
 Verification: ScheduledScalarStorageTests and independent native HDL replay.
 <<<
+
+[REQUIREMENT]
+UID: CIL-CHECKED-001
+TITLE: Bounded checked scalar conversion semantics
+STATEMENT: >>>
+The scheduled 32-bit evaluation stack shall support conv.ovf.i1/u1/i2/u2/i4/u4
+and their .un forms. Interpret ordinary sources as signed Int32 and .un sources
+as UInt32. A representable result shall have the same Int32 stack bit pattern
+as actual CLR execution; otherwise terminate with an explicit overflow fault.
+Keep 64-bit, native-sized and floating conversions unsupported. Check boundaries,
+generated full-width values, real CLR exceptions and generated HDL independently.
+Verification: ScheduledCheckedConversionTests and checked HDL dispatch replay.
+<<<
+
+[REQUIREMENT]
+UID: CIL-CHECKED-002
+TITLE: Overflow termination, provenance and recovery
+STATEMENT: >>>
+On an executed checked-conversion overflow, set done, fault and conversion_overflow,
+clear busy, keep timeout clear and report the original instruction offset in
+fault_il. Commit neither a wrapped result nor later instruction/RAM effects;
+preserve earlier committed RAM writes. Diagnostics shall park until reset or a
+new accepted start. Watchdog expiry shall take priority over an unexecuted
+conversion and shall not report overflow. Unchecked designs expose constant-zero
+diagnostics without additional diagnostic state. Local native range-predicate
+proofs and replayed corrupt-reference counterexamples shall remain distinct from
+whole sequential-design equivalence and finite execution tests.
+Verification: RAM recovery/watchdog tests and CheckedConversionProofTests.
+<<<

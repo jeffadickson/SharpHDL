@@ -1,0 +1,68 @@
+{
+  "tool": "Stryker.NET 5.0.0",
+  "eligible": 100,
+  "killed": 95,
+  "survived": 5,
+  "timeouts": 0,
+  "runtimeErrors": 0,
+  "scorePercent": 95,
+  "projectCompileInvalidExcluded": 2042,
+  "projectMutateFilterIgnored": 8297,
+  "blockFilterIgnored": 2,
+  "rawReportSha256": "bf2cd1317d1c76b537675819822ed1e56a25643e8f590eb26a949c2bfcd37a6c",
+  "rawReport": "build/verification/scalar-checked-mutation-final/reports/mutation-report.json",
+  "scope": "Two helpers only. BuildScheduledSequential and other legacy methods excluded by instrumenter Safe Mode; no full frontend mutation qualification.",
+  "files": [
+    {
+      "killed": 54,
+      "ignored": 1,
+      "compileInvalid": 4,
+      "file": "src/SharpHDL/ScheduledCilCheckedConversions.cs",
+      "survivors": [
+        {
+          "replacement": "(false?value:signedTarget?value.Resize(width).SignExtend(32):value.Resize(width).Resize(32))",
+          "line": 23,
+          "disposition": "reviewed_equivalent_under_bounded_contract",
+          "reason": "The removed width-32 shortcut is redundant: resizing or sign-extending a 32-bit value to 32 bits preserves the same value.",
+          "id": "7925"
+        },
+        {
+          "replacement": "(false?yes:converted.Equal(value))",
+          "line": 34,
+          "disposition": "reviewed_equivalent_under_bounded_contract",
+          "reason": "The width-32 converted value is the original input, so converted.Equal(value) is true, matching the removed constant-true shortcut.",
+          "id": "7944"
+        }
+      ]
+    },
+    {
+      "killed": 41,
+      "ignored": 1,
+      "compileInvalid": 0,
+      "file": "src/SharpHDL/ScheduledCilScalarTypes.cs",
+      "survivors": [
+        {
+          "replacement": "false",
+          "line": 22,
+          "disposition": "reviewed_equivalent_under_bounded_contract",
+          "reason": "This changes signedness only for an Int32, UInt32 or canonical Boolean slot whose storage width is 32. SignExtend(32) and Resize(32) both preserve the original 32-bit value.",
+          "id": "7991"
+        },
+        {
+          "replacement": "true",
+          "line": 22,
+          "disposition": "reviewed_equivalent_under_bounded_contract",
+          "reason": "This changes signedness only for an Int32, UInt32 or canonical Boolean slot whose storage width is 32. SignExtend(32) and Resize(32) both preserve the original 32-bit value.",
+          "id": "7995"
+        },
+        {
+          "replacement": "true",
+          "line": 22,
+          "disposition": "reviewed_equivalent_under_bounded_contract",
+          "reason": "This changes signedness only for an Int32, UInt32 or canonical Boolean slot whose storage width is 32. SignExtend(32) and Resize(32) both preserve the original 32-bit value.",
+          "id": "7996"
+        }
+      ]
+    }
+  ]
+}

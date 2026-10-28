@@ -423,16 +423,23 @@ final execution results are in FOLLOWUP_2026-10-27.md.
 CilCompiler.BuildScheduledSequential is an explicit opt-in path reusing Decode,
 PopCount, PushCount and Successors from the production CIL frontend. It emits
 ScheduledMachineBuilder states rather than lowering a legacy Module graph.
-Supported: static UInt32 return, Int32/UInt32/Boolean arguments/locals, one uint[]
-RAM, initialized locals, unchecked 32-bit arithmetic/bitwise/comparisons, branches,
-switch and runtime loops. Multiplications use generic shared resource binding.
+Supported: static Int32/UInt32/Boolean and byte/sbyte/short/ushort/char scalar
+returns, arguments and initialized locals, one uint[] RAM, unchecked 32-bit
+arithmetic/bitwise/comparisons/shifts, branches, switch and runtime loops.
+Small storage truncates on writes and extends to the 32-bit stack on loads.
+Unchecked small conversions and twelve checked 8/16/32-bit conversions are
+supported. Multiplications use generic shared resource binding.
 Arguments latch on start while idle; done/fault are sticky until reset/new start.
 Each instruction takes one edge, loads take two, and watchdog/bounds faults abort
 with committed memory retained. The result includes method and IL state offsets.
 
-Checked arithmetic, division, shifts, calls, packed/narrow ports, exception
-handlers and legacy vendor options are rejected with method/IL
-diagnostics. These remain on the explicit legacy path, with no silent fallback.
+Checked arithmetic (add.ovf/sub.ovf/mul.ovf), wide/native/floating conversions,
+division, calls, packed ports, exception handlers and legacy vendor options are
+rejected with method/IL diagnostics; there is no silent fallback.
+Conversion overflow terminates with fault/conversion_overflow and original
+fault_il, retaining earlier RAM writes and suppressing later effects. See
+[the storage/checked continuation](CONTINUATION_STORAGE_CHECKED_2026-10-27.md)
+for current verification scope and API compatibility details.
 Final evidence is recorded in FOLLOWUP_2026-10-27.md; this is not arbitrary CLR
 compilation. Tests compare real runtime-loop/RAM C# with host and legacy behavior.
 

@@ -1,0 +1,105 @@
+{
+  "baseline": "2659a0be7c543cd7759ae6b66c8128dedb9ca3ca",
+  "storageCommit": "db3b7fe",
+  "ci": "disabled",
+  "nativeAot": "deferred",
+  "scope": "Bounded 32-bit CLI stack with narrow scalar storage and twelve checked conversions",
+  "windows": {
+    "fastTests": 319,
+    "nativeTests": 62,
+    "finalGate": "passed 319 cases after fresh-IR mutation-test correction",
+    "documentationTests": 4
+  },
+  "linux": {
+    "fastTests": 319,
+    "nativeGate": "passed 62 native and 319 fast cases; fast suite rerun after fresh-IR mutation-test correction"
+  },
+  "formal": {
+    "evidence": "checked-conversions/",
+    "equivalent": 12,
+    "kind": "local combinational range predicates",
+    "solver": "Z3 4.12.2",
+    "differentWithReplay": 12
+  },
+  "coverage": {
+    "scalarBranchPercent": 100,
+    "checkedLinePercent": 100,
+    "scalarLinePercent": 100,
+    "checkedBranchPercent": 100,
+    "scope": "Production helper files; reflection fixture assembly uninstrumented",
+    "frontendPartialClassLinePercent": 96.68,
+    "frontendPartialClassBranchPercent": 84.91
+  },
+  "storageFuzz": {
+    "engine": "SharpFuzz 2.2.0 / AFL++ 4.09c",
+    "savedHangs": 0,
+    "seed": 261026,
+    "executions": 1126,
+    "seconds": 60,
+    "artifacts": "/tmp/sharphdl-fuzz-GT2fHC",
+    "savedCrashes": 0
+  },
+  "hdl": {
+    "storageArtifacts": "/tmp/sharphdl-rtl-75bMrU",
+    "checkedMemory": "passed: eight transactions, 107 edges, five manifests, /tmp/sharphdl-rtl-GwmgOm",
+    "storageEdges": 560,
+    "checkedDispatchEdges": 1349,
+    "storageDesigns": 10,
+    "checkedDispatchArtifacts": "/tmp/sharphdl-rtl-sOs2ju",
+    "storageManifests": 50
+  },
+  "mutation": {
+    "survived": 5,
+    "runtimeErrors": 0,
+    "timeouts": 0,
+    "largeFrontend": "Excluded by instrumenter; not qualified",
+    "killed": 95,
+    "survivorDisposition": "Five reviewed equivalent under bounded width contracts; no score adjustment",
+    "evidence": "storage-checked-mutation.json",
+    "scorePercent": 95
+  },
+  "documentation": "passed real StrictDoc/Sphinx/compiler XML: 48 requirements, 32 mapped, 16 unmapped, 7 API assemblies, 11 engineering pages",
+  "sources": [
+    {
+      "sha256": "04438a352ee0b497e1f0f8691962fa3a2a0420612f40c99719631cf071edb5fd",
+      "file": "src/SharpHDL/ScheduledCilScalarTypes.cs"
+    },
+    {
+      "sha256": "f98d293b6f0229ff4a02cba9553ef9d1fe3e02a5835a7874595ca40d945f3bff",
+      "file": "src/SharpHDL/ScheduledCilCheckedConversions.cs"
+    },
+    {
+      "sha256": "dfb2fec407c71592fce07114a5faf1e0b8e6b339c962bbf12368655befa8a815",
+      "file": "src/SharpHDL/ScheduledSequentialCil.cs"
+    },
+    {
+      "sha256": "60e75b6adec3f583cff1776ef020ffdb314a5f093ca35085b7e667c031de0987",
+      "file": "tests/SharpHDL.UnitTests/ScheduledCheckedConversionTests.cs"
+    },
+    {
+      "sha256": "2196d09f180ddc08c15fa29a891b2534b9ade796f5b02d0861167c6aa7f34e79",
+      "file": "tests/SharpHDL.UnitTests/ScheduledScalarStorageTests.cs"
+    },
+    {
+      "sha256": "3ed98c97797046d416d0f90276c88c5b744c7cbc5e25dcafefa215084ded4294",
+      "file": "tests/Shared/NarrowCilFixture.cs"
+    }
+  ],
+  "checkedFuzz": {
+    "savedHangs": 0,
+    "engine": "SharpFuzz 2.2.0 / AFL++ 4.09c",
+    "seconds": 60,
+    "corpusEntries": 175,
+    "savedCrashes": 0,
+    "seed": 261026,
+    "artifacts": "/tmp/sharphdl-fuzz-V2U05u",
+    "executions": 2045
+  },
+  "toolVersions": {
+    "windowsSdk": "10.0.403",
+    "linuxSdk": "10.0.402",
+    "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)",
+    "yosys": "Yosys 0.33 (git sha1 2584903a060)",
+    "icarus": "Icarus Verilog version 12.0 (stable) ()"
+  }
+}

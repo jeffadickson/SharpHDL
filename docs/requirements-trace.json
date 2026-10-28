@@ -542,7 +542,7 @@
           "method": "Conversion_cones_match_independent_arithmetic_for_every_32_bit_input"
         }
       ],
-      "limitations": "Explicit unchecked 32-bit stack profile only; narrow locals/ports and checked/wide/native/floating conversions remain unsupported. CLR/legacy/Core/HDL, local native proofs and finite campaigns executed; no sequential proof or FPGA timing closure.",
+      "limitations": "Original evidence is scoped to unchecked 32-bit stack conversion cones at 2659a0b. Narrow storage and bounded checked conversions are now covered by CIL-STORAGE-001 and CIL-CHECKED-001/002. Wide/native/floating conversions remain unsupported. No whole sequential proof or FPGA timing closure.",
       "implementation": [
         "src/SharpHDL/ScheduledCilConversionLowering.cs"
       ],
@@ -563,7 +563,7 @@
           "method": "Conversion_cones_match_independent_arithmetic_for_every_32_bit_input"
         }
       ],
-      "limitations": "Explicit unchecked 32-bit stack profile only; narrow locals/ports and checked/wide/native/floating conversions remain unsupported. CLR/legacy/Core/HDL, local native proofs and finite campaigns executed; no sequential proof or FPGA timing closure.",
+      "limitations": "Original evidence is scoped to unchecked 32-bit stack conversion cones at 2659a0b. Narrow storage and bounded checked conversions are now covered by CIL-STORAGE-001 and CIL-CHECKED-001/002. Wide/native/floating conversions remain unsupported. No whole sequential proof or FPGA timing closure.",
       "implementation": [
         "src/SharpHDL/ScheduledSequentialCil.cs"
       ],
@@ -584,7 +584,7 @@
           "method": "Conversion_cones_match_independent_arithmetic_for_every_32_bit_input"
         }
       ],
-      "limitations": "Explicit unchecked 32-bit stack profile only; narrow locals/ports and checked/wide/native/floating conversions remain unsupported. CLR/legacy/Core/HDL, local native proofs and finite campaigns executed; no sequential proof or FPGA timing closure.",
+      "limitations": "Original evidence is scoped to unchecked 32-bit stack conversion cones at 2659a0b. Narrow storage and bounded checked conversions are now covered by CIL-STORAGE-001 and CIL-CHECKED-001/002. Wide/native/floating conversions remain unsupported. No whole sequential proof or FPGA timing closure.",
       "implementation": [
         "src/SharpHDL.HLS/ScheduledMachine.cs"
       ],
@@ -611,6 +611,50 @@
         "docs/CONTINUATION_STORAGE_CHECKED_2026-10-27.md"
       ],
       "limitations": "Bounded scalar profile. No sequential proof or wide/native/floating support."
+    },
+    {
+      "uid": "CIL-CHECKED-001",
+      "status": "partial",
+      "implementation": [
+        "src/SharpHDL/ScheduledCilCheckedConversions.cs",
+        "src/SharpHDL/ScheduledSequentialCil.cs"
+      ],
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/ScheduledCheckedConversionTests.cs",
+          "method": "Checked_boundaries_and_diagnostics_match_CLR"
+        },
+        {
+          "file": "tests/SharpHDL.VerificationTests/CheckedConversionProofTests.cs",
+          "method": "Checked_predicates_match_independent_ranges_and_replay_corruptions"
+        }
+      ],
+      "evidence": [
+        "docs/CONTINUATION_STORAGE_CHECKED_2026-10-27.md"
+      ],
+      "limitations": "Bounded Int32-stack subset only. Native predicates are local proofs; no whole sequential proof or FPGA qualification."
+    },
+    {
+      "uid": "CIL-CHECKED-002",
+      "status": "partial",
+      "implementation": [
+        "src/SharpHDL/ScheduledCilCheckedConversions.cs",
+        "src/SharpHDL/ScheduledSequentialCil.cs"
+      ],
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/ScheduledCheckedConversionTests.cs",
+          "method": "Checked_boundaries_and_diagnostics_match_CLR"
+        },
+        {
+          "file": "tests/SharpHDL.VerificationTests/CheckedConversionProofTests.cs",
+          "method": "Checked_predicates_match_independent_ranges_and_replay_corruptions"
+        }
+      ],
+      "evidence": [
+        "docs/CONTINUATION_STORAGE_CHECKED_2026-10-27.md"
+      ],
+      "limitations": "Bounded Int32-stack subset only. Native predicates are local proofs; no whole sequential proof or FPGA qualification."
     }
   ],
   "schema": 1
