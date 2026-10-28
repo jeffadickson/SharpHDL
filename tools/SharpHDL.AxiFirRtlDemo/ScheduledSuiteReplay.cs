@@ -88,6 +88,27 @@ internal static class ScheduledSuiteReplay
             if(planned.Read("result")!=expected)throw new InvalidOperationException("Completion must park.");
         }
         planned.Save(directory);
+        var iterativeCompilation=ScheduledIterativeBanks.BuildWithPlan();
+        var iterative=new CoreReplay(iterativeCompilation.Design);
+        for(int resetPhase=0;resetPhase<=20;resetPhase++)
+        {
+            iterative.Drive("left",17);iterative.Drive("right",23);iterative.Clock(true);
+            for(int edge=0;edge<resetPhase;edge++)iterative.Clock(false);
+            iterative.Clock(true);
+            int left=(resetPhase*19+7)&255,right=(resetPhase*31+11)&255;
+            iterative.Drive("left",left);iterative.Drive("right",right);
+            for(int edge=0;edge<20;edge++)
+            {
+                iterative.Clock(false);
+                if(edge==0){iterative.Drive("left",255);iterative.Drive("right",0);}
+                if((int)iterative.Read("done")!=(edge==19?1:0))throw new InvalidOperationException("Iterative completion latency mismatch.");
+            }
+            if((int)iterative.Read("result")!=((left*right+left*3)&255))throw new InvalidOperationException("Iterative numeric oracle mismatch.");
+            iterative.Clock(false);iterative.Clock(false);
+        }
+        iterative.Save(directory);
+        File.WriteAllText(Path.Combine(directory,"ScheduledIterativeBanks.schedule.json"),JsonSerializer.Serialize(new{
+            iterativeCompilation.Plan.Starts,iterativeCompilation.Plan.Latencies,iterativeCompilation.Plan.Dependencies}));
         File.WriteAllText(Path.Combine(directory,"ScheduledPlannedBanks.schedule.json"),
             JsonSerializer.Serialize(ScheduledPlannedBanks.Plan().Cycles,new JsonSerializerOptions{WriteIndented=true}));
         var liteModule=AxiConformanceCampaign.BuildLite();

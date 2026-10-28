@@ -54,3 +54,32 @@ width before host arithmetic, avoiding unbounded intermediate BigInteger allocat
 Verification: Native_resource_exhaustion_and_precancellation_do_not_prove_equivalence,
 profile rejection tests, deliberately corrupted truth tables and retained native runs.
 <<<
+
+[REQUIREMENT]
+UID: REGION-SCHED-001
+TITLE: Source-order typed-effect hazards and deterministic intervals
+STATEMENT: >>>
+Automatic straight-line regions shall infer register RAW/WAR/WAW hazards and
+potential memory aliases from actual typed operation bodies in semantic source
+order. Shared memory objects alias; distinct literal addresses can be disjoint;
+unknown addresses may alias. Ready independent work shall use ordinal-name
+priority and reserve every required physical resource throughout its latency.
+Reject missing/foreign/duplicate/unscheduled bodies, malformed intervals and
+overbooking. Validate proposed assignments independently and retain canonical maps.
+Implementation: ScheduledRegions.cs. Verification: ScheduledRegionTests including
+generated register programs, address aliases, mixed latencies and exact budgets.
+The bounded profile supports 128 operations, 4095 edges and no control-flow loops.
+<<<
+
+[REQUIREMENT]
+UID: REGION-SCHED-002
+TITLE: Actual registered iterative arithmetic and lowerer checks
+STATEMENT: >>>
+A 2..32-bit shift-add multiplier shall sample operands once, consume one operand
+bit per active edge and commit the modular result after Width edges. Shared
+instances shall have initiation interval Width and reserve all phases. Lower
+shall independently check emitted reservation gates and real memory ports.
+No multiply primitive or latency-only placeholder shall replace the iterative unit.
+Verification: width/capture/reset tests, independent modular properties, twelve-design
+Icarus/Verilator replay and generic Yosys checks. Physical timing is unqualified.
+<<<

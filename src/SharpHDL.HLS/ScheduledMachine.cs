@@ -343,6 +343,7 @@ public sealed partial class ScheduledMachineBuilder
     public ScheduledHardwareDesign Lower()
     {
         EnsureMutable();
+        ValidateOperationRegions();
         if(states.Count==0)throw new InvalidOperationException("A scheduled machine requires at least one state.");
 
         foreach(var state in states)

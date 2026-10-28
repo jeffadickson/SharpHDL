@@ -121,3 +121,43 @@ Reproduce on Linux with a checked repository directory: source
 selected through SHARPHDL_Z3_NATIVE_DIR; mismatching files fail checksum checks.
 On Windows use `dotnet test tests/SharpHDL.VerificationTests -c Release`; the
 matching native package asset is restored by NuGet.
+
+## Automatic regions and iterative arithmetic (completed bounded slice)
+
+Source-order register RAW/WAR/WAW and conservative physical-memory alias analysis
+now build deterministic operation regions. Distinct constant addresses may be
+disjoint; unknown addresses alias. Ordinal ready-operation selection reserves all
+latency phases. An independent assignment validator and the lowerer's real port
+and reservation checks reject conflicting schedules. A registered 2..32-bit
+shift-add multiplier samples operands once and completes after Width edges with
+initiation interval Width. It emits no multiply node. ScheduledIterativeBanks
+exercises two banks and a shared eight-edge unit in a twenty-edge transaction.
+
+Library choice: reuse BCL collections and the existing typed HLS representation.
+Source-order hazards are a bounded forward DAG, so a graph library or Z3 dependency
+would add deployment and abstraction cost without solving an unmet requirement.
+This greedy scheduler is deterministic, not an optimality solver. Regions are
+straight-line and bounded to 128 operations / 4095 edges; CIL extraction, dynamic
+alias proofs, pipelined initiation intervals and loop scheduling remain future work.
+
+Verification: fifteen new region cases include FsCheck generated register programs
+(100 cases) and independent arithmetic/reset checks (50 cases), replay seed
+1145655947,296144285. The current fast suite passes 286/286 on both Windows and
+Linux, zero failures/skips; this count also includes two baseline-observation tests.
+Historical expensive Z80Tests are excluded; Z80ProgramOracleTests remain included.
+Logs: build/verification/region-windows-accepted.log and region-linux-final.log.
+The twelve-design Icarus/Verilator campaign and six generic Yosys checks pass;
+retained artifacts /tmp/sharphdl-rtl-vPyatv include 54 process manifests. The new
+example checks 714 edges across reset phases and changing sampled inputs.
+
+Focused Stryker hazard/independent-validation scope finishes at 41 killed, three
+generic-diagnostic survivors, zero uncovered/timeouts/errors: 93.18% of 44 selected
+variants. Initial runs exposed bounds and mixed-latency gaps and one timeout;
+the final bounded implementation and tests resolve those behavioral gaps. This
+is not whole-planner mutation coverage. Config: stryker-regions.json; final report
+build/verification/region-mutation-final. SharpFuzz/AFL++ ran 60 seconds, seed
+261026: 2,461 executions, 154 corpus entries, 3.08% bitmap occupancy, no saved
+crashes/hangs (/tmp/sharphdl-fuzz-Z6dtyv). Earlier focused coverage measured
+ScheduledRegionPlan 100% line / 92.85% branch and ScheduledOperationBlock 91.66%
+line / 100% branch; partial builder classes and unexecuted diagnostics remain
+outside those class-specific figures. No FPGA timing or full ISA claim follows.

@@ -1,0 +1,16 @@
+{
+  "stryker-config": {
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "test-case-filter": "FullyQualifiedName~ScheduledRegionTests&FullyQualifiedName!~Generated_register&FullyQualifiedName!~Reset_and_random",
+    "concurrency": 1,
+    "mutate": [
+      "**/ScheduledRegions.cs{5042..6341}",
+      "**/ScheduledRegions.cs{12325..13100}"
+    ],
+    "additional-timeout": 10000,
+    "project": "SharpHDL.HLS.csproj"
+  }
+}

@@ -5,11 +5,11 @@ using SharpHDL.Core;
 
 namespace SharpHDL.HLS;
 
-/// <summary>A bank of identical, combinational, exact-width unsigned arithmetic instances.</summary>
+/// <summary>Identical exact-width unsigned arithmetic instances with explicit implementation latency.</summary>
 public sealed class ScheduledArithmeticResource
 {
-    internal ScheduledArithmeticResource(string name, HardwareOperation operation, int width, int capacity)
-        { Name=name; Operation=operation; Width=width; Capacity=capacity; }
+    internal ScheduledArithmeticResource(string name, HardwareOperation operation, int width, int capacity,bool iterative=false)
+        { Name=name; Operation=operation; Width=width; Capacity=capacity;IsIterative=iterative; }
     /// <summary>Unique hardware resource name.</summary>
     public string Name { get; }
     /// <summary>Compatible operation: addition, subtraction or multiplication.</summary>
@@ -18,6 +18,10 @@ public sealed class ScheduledArithmeticResource
     public int Width { get; }
     /// <summary>Number of operations admitted simultaneously in a control state.</summary>
     public int Capacity { get; }
+    /// <summary>True for a real registered shift-add multiplier, admitted only in automatic regions.</summary>
+    public bool IsIterative { get; }
+    /// <summary>Edges from operand sampling through result commit: Width for shift-add, otherwise one.</summary>
+    public int Latency=>IsIterative?Width:1;
 }
 
 internal sealed record ScheduledArithmeticBinding(ScheduledArithmeticResource Resource,
@@ -37,6 +41,7 @@ public sealed partial class ScheduledState
         ScheduledValue right, ScheduledValue guard)
     {
         owner.ValidateArithmeticResource(resource);
+        if(resource.IsIterative&&Index>=0)throw new InvalidOperationException("Iterative arithmetic requires an automatically scheduled operation block.");
         owner.ValidateValue(left); owner.ValidateValue(right); owner.ValidateGuard(guard);
         if(left.Width!=resource.Width || right.Width!=resource.Width)
             throw new ArgumentException($"Resource '{resource.Name}' requires {resource.Width}-bit operands.");
@@ -94,6 +99,8 @@ public sealed partial class ScheduledMachineBuilder
 
     private void ValidateArithmeticBindings()
     {
+        if(states.SelectMany(s=>s.ArithmeticBindings).Any(b=>b.Resource.IsIterative))
+            throw new InvalidOperationException("Iterative bindings must be expanded into registered phases before lowering.");
         foreach(var state in states)
             foreach(var group in state.ArithmeticBindings.GroupBy(b=>b.Resource))
                 if(group.Count()>group.Key.Capacity)

@@ -15,13 +15,13 @@ run_tool() {
   cat "$output/runs/$sequence/stdout.bin"
 }
 dotnet run --project "$repo/tools/SharpHDL.AxiFirRtlDemo" -c Release --artifacts-path "$output/artifacts" -- --suite "$output/vectors"
-for design in ScheduledTable1 ScheduledTable4 ScheduledTable8 ScheduledCilLoop ScheduledCilShifts ScheduledRawCilShifts ScheduledBanksAuto ScheduledBanksXilinxBlock ScheduledPlannedBanks AxiConformanceLite AxiConformanceStream; do
+for design in ScheduledTable1 ScheduledTable4 ScheduledTable8 ScheduledCilLoop ScheduledCilShifts ScheduledRawCilShifts ScheduledBanksAuto ScheduledBanksXilinxBlock ScheduledPlannedBanks ScheduledIterativeBanks AxiConformanceLite AxiConformanceStream; do
   run_tool iverilog -g2012 -s tb -o "$output/$design" "$output/vectors/$design.v" "$output/vectors/${design}_tb.sv"
   run_tool vvp "$output/$design"
   run_tool verilator --binary --timing -j 2 -Wno-fatal --top-module tb --Mdir "$output/$design-obj" "$output/vectors/$design.v" "$output/vectors/${design}_tb.sv"
   run_tool "$output/$design-obj/Vtb"
 done
-for design in ScheduledCilShifts ScheduledRawCilShifts ScheduledPlannedBanks AxiConformanceLite AxiConformanceStream; do
+for design in ScheduledCilShifts ScheduledRawCilShifts ScheduledPlannedBanks ScheduledIterativeBanks AxiConformanceLite AxiConformanceStream; do
   run_tool yosys -Q -T -p "read_verilog $output/vectors/$design.v; hierarchy -check -top h_$design; proc; opt; check -assert; stat"
   printf 'PASS generic synthesis %s\n' "$design"
 done
