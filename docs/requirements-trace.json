@@ -695,6 +695,27 @@
         "docs/CONTINUATION_TYPED_ALIASES_2026-10-28.md"
       ],
       "limitations": "Bounded opcode profile and one immutable RAM origin only. No branch path refinement or general CLI/pointer proof. Mutation gaps and legacy instrumenter exclusions remain recorded in the continuation report."
+    },
+    {
+      "uid": "CIL-GAPS-001",
+      "status": "partial",
+      "implementation": [
+        "src/SharpHDL/ScheduledCilStackValidation.cs"
+      ],
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/ScheduledAliasGapTests.cs",
+          "method": "Positive_variants_match_CLR"
+        },
+        {
+          "file": "tests/SharpHDL.UnitTests/ScheduledAliasGapTests.cs",
+          "method": "Diagnostics_preserve_actionable_reasons"
+        }
+      ],
+      "evidence": [
+        "docs/CONTINUATION_REFINED_RAM_2026-10-28.md"
+      ],
+      "limitations": "Focused mutation and runtime profile only; not a general CLI or sequential proof."
     }
   ],
   "schema": 1

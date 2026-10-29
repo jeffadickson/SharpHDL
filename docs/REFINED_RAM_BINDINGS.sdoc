@@ -1,0 +1,13 @@
+[DOCUMENT]
+TITLE: Gap closure and refined RAM bindings
+
+[REQUIREMENT]
+UID: CIL-GAPS-001
+TITLE: Close retained opcode and diagnostic test gaps
+STATEMENT: >>>
+Exercise reference pop, signed element loads and native conv.i4 length
+normalization against CLR and Core behavior. Require actionable reasons for
+height, stack-shape, native-branch and mixed-comparison diagnostics. Replay the
+seven retained mutations without treating earlier equivalent survivors as defects.
+Verification: ScheduledAliasGapTests and focused Stryker evidence.
+<<<

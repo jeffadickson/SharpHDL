@@ -1,0 +1,22 @@
+{
+  "stryker-config": {
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "coverage-analysis": "off",
+    "mutate": [
+      "**/ScheduledCilStackValidation.cs{3014..3042}",
+      "**/ScheduledCilStackValidation.cs{4044..4081}",
+      "**/ScheduledCilStackValidation.cs{4871..4876}",
+      "**/ScheduledCilStackValidation.cs{6046..6125}",
+      "**/ScheduledCilStackValidation.cs{6671..6794}",
+      "**/ScheduledCilStackValidation.cs{7038..7049}",
+      "**/ScheduledCilStackValidation.cs{7395..7404}"
+    ],
+    "project": "SharpHDL.csproj",
+    "test-case-filter": "FullyQualifiedName~ScheduledAliasGapTests",
+    "additional-timeout": 5000,
+    "concurrency": 1
+  }
+}
