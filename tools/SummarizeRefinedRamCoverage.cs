@@ -13,7 +13,7 @@ var path = Path.GetFullPath(args[0]);
 var root = XDocument.Load(path).Root ?? throw new InvalidDataException("Missing coverage root.");
 var files = root.Descendants("class")
     .Where(c => Regex.IsMatch((string?)c.Attribute("filename") ?? "",
-        @"ScheduledCil(RefinedValidation|ReferenceFacts|RamBindings|StackValidation)\.cs$|ScheduledSequentialCil\.cs$"))
+        @"ScheduledCil(RefinedValidation|ReferenceFacts|RamBindings|StackValidation|Relations|SharedBindings)\.cs$|ScheduledSequentialCil\.cs$|MemoryTransitionEquivalence\.cs$"))
     .GroupBy(c => (string)c.Attribute("filename")!);
 var results = files.Select(file =>
 {

@@ -47,3 +47,26 @@ nextpnr-ice40/nextpnr-xilinx/Vivado/Quartus are absent. No target timing readine
 claim is made. Raw tool manifests and source vectors are under the retained
 /tmp/sharphdl-rtl-hugkNM campaign. The profile tests reset-time write suppression,
 RAM retention, non-power-of-two bounds, read-before-write and physical identity.
+
+Further verification strengthens the formal cone checks: a last-cell-only write
+defect, an unread second RAM, unaddressable cells, excess state/missing binding,
+maximum admitted 64-bit RAM state and two outputs with only one difference. The
+solver wrapper compares all post-cells, including cells not reachable by a narrow
+address port. Proof concerns Core snapshots; physical port scheduling/inference
+qualification remains a separate lowerer/HDL responsibility.
+
+The shared-origin SharpFuzz harness compares actual shared/distinct CLR arrays to
+Core for arbitrary uint words and valid/invalid addresses. AFL++ 4.09c, seed 261026,
+60 seconds, 518 executions: zero saved crashes or hangs. Existing FsCheck regression
+properties run with the repository's retained replay seed; no second property
+framework was needed for this bounded slice. The tiny independent memory sweep
+covers all 512 state/address/data/enable combinations. No speedup is claimed.
+
+Fresh regression before the last boundary additions: 416 fast and 72 native tests
+pass on each platform; documentation parser tests pass 4/4 per OS. Reusing a proof
+directory caused ten expected CreateNew IO failures in an intermediate Windows
+native run; the fresh-directory rerun passes 72/72. Existing evidence is retained.
+Final regression with all strengthened cases follows in separate artifact roots.
+The engineering/API build passes real StrictDoc/Sphinx: 58 requirements, 42 mapped,
+16 unmapped, seven API assemblies, fourteen engineering pages. Mapping is not
+closure; legacy undocumented APIs and offline Mermaid rendering remain limitations.

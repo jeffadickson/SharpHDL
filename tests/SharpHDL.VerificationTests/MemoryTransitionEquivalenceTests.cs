@@ -47,6 +47,51 @@ public sealed class MemoryTransitionEquivalenceTests
         Assert.Equal(EquivalenceStatus.Unknown,r.Status);Retain("resource-unknown",r);
     }
 
+    [Fact]
+    public void Last_cell_only_difference_cannot_be_omitted()
+    {
+        var a=Design();var b=Design();
+        var graph=new HardwareGraph(b.Graph.Nodes.Concat(new HardwareNode[]{new(6,HardwareOperation.Constant,new(2),[],2),
+            new(7,HardwareOperation.Equal,new(1),[0,6]),new(8,HardwareOperation.Not,new(1),[7]),new(9,HardwareOperation.And,new(1),[2,8])}));
+        b.Ports["ram"]=new("ram",2,0,9,1,[0,0,0]);
+        var r=MemoryTransitionEquivalence.Check(a.Graph,a.Ports,a.Outputs,graph,b.Ports,b.Outputs);
+        Assert.Equal(EquivalenceStatus.Different,r.Status);Assert.Equal("2",r.Counterexample["address"]);Retain("last-cell-defect",r);
+    }
+
+    [Fact]
+    public void Unaddressable_cells_are_preserved_and_an_unread_second_RAM_is_compared()
+    {
+        var a=Design();var narrow=new HardwareGraph(a.Graph.Nodes.Select(n=>n.Id==0?n with{Type=new(1)}:n));
+        Assert.Equal(EquivalenceStatus.Equivalent,MemoryTransitionEquivalence.Check(narrow,a.Ports,a.Outputs,narrow,a.Ports,a.Outputs).Status);
+        var b=Design();a.Ports.Add("other",new("other",2,0,2,1,[0,0]));b.Ports.Add("other",new("other",2,0,2,4,[0,0]));
+        var r=MemoryTransitionEquivalence.Check(a.Graph,a.Ports,a.Outputs,b.Graph,b.Ports,b.Outputs);
+        Assert.Equal(EquivalenceStatus.Different,r.Status);Retain("unread-second-memory-defect",r);
+    }
+
+    [Fact]
+    public void Excess_state_and_missing_read_binding_are_explicitly_unsupported()
+    {
+        var a=Design();var wide=new HardwareGraph(a.Graph.Nodes.Select(n=>n.Id==1||n.Id>=3?n with{Type=new(8)}:n));
+        var ports=new Dictionary<string,HardwareMemoryPort>{{"ram",new("ram",8,0,2,1,new BigInteger[8])},{"other",new("other",8,0,2,1,new BigInteger[8])}};
+        var r=MemoryTransitionEquivalence.Check(wide,ports,a.Outputs,wide,ports,a.Outputs);
+        Assert.Equal(EquivalenceStatus.Unsupported,r.Status);Assert.Contains("64-bit",r.Reason);
+        var absent=new Dictionary<string,HardwareMemoryPort>{{"other",new("other",2,0,2,1,[0,0,0])}};
+        Assert.Equal(EquivalenceStatus.Unsupported,MemoryTransitionEquivalence.Check(a.Graph,absent,a.Outputs,a.Graph,absent,a.Outputs).Status);
+    }
+
+    [Fact]
+    public void Maximum_state_budget_is_admitted_and_one_differing_output_is_sufficient()
+    {
+        var maximum=Design(depth:8);
+        var wide=new HardwareGraph(maximum.Graph.Nodes.Select(n=>n.Id==0?n with{Type=new(3)}:n.Id==1||n.Id>=3?n with{Type=new(8)}:n));
+        var ports=new Dictionary<string,HardwareMemoryPort>{{"ram",new("ram",8,0,2,1,new BigInteger[8])}};
+        Assert.Equal(EquivalenceStatus.Equivalent,MemoryTransitionEquivalence.Check(wide,ports,maximum.Outputs,wide,ports,maximum.Outputs).Status);
+        var a=Design();var b=Design(bypass:true);
+        HardwareGraph Extra(HardwareGraph graph)=>new(graph.Nodes.Concat(new[]{new HardwareNode(6,HardwareOperation.Constant,new(2),[],0)}));
+        a.Outputs.Add("same",6);b.Outputs.Add("same",6);
+        Assert.Equal(EquivalenceStatus.Different,MemoryTransitionEquivalence.Check(Extra(a.Graph),a.Ports,a.Outputs,Extra(b.Graph),b.Ports,b.Outputs).Status);
+    }
+
     [Theory][InlineData(true,false)][InlineData(false,true)]
     public void Write_or_collision_defect_produces_an_original_Core_witness(bool invert,bool bypass)
     {

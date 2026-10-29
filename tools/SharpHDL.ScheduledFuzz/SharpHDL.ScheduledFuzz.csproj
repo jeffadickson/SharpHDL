@@ -7,4 +7,5 @@
   <ItemGroup><Compile Include="../../tests/Shared/TypedCilFixture.cs" Link="TypedCilFixture.cs" /></ItemGroup>
   <ItemGroup><Compile Include="../../examples/ScheduledArrayAliases.cs" Link="ScheduledArrayAliases.cs" /></ItemGroup>
   <ItemGroup><Compile Include="../../examples/ScheduledMultiRam.cs" Link="ScheduledMultiRam.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../examples/ScheduledSharedRam.cs" Link="ScheduledSharedRam.cs" /></ItemGroup>
 </Project>

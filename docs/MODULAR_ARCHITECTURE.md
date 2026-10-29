@@ -569,3 +569,13 @@ is outside this hardware contract. See
 [the refined RAM report](CONTINUATION_REFINED_RAM_2026-10-28.md) and
 [the runnable example](../examples/ScheduledMultiRam.cs). CI remains off; Native AOT
 is deferred. Earlier single-origin limitations describe historical revisions.
+
+Five-package continuation: copied-local guards now use intersected equality
+relations, and `SequentialOptions.RamAliases` explicitly binds parameters to a
+canonical RAM (chains allowed, cycles/conflicting metadata rejected). The new
+`MemoryTransitionEquivalence` API proves only its bounded one-edge RAM/output
+profile, with original-Core-replayed witnesses. Reset/collision qualification
+includes independent HDL replay, a three-step Yosys SAT reference/counterexample
+and xc7 resource mapping. Device placement/routing/timing remain unverified.
+See docs/FIVE_PACKAGE_COMPLETION_2026-10-28.md for exact gates, scopes and remaining
+limits. CI remains disabled; Native AOT is deferred.

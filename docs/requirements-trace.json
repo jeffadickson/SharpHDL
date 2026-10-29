@@ -764,6 +764,91 @@
         "docs/CONTINUATION_REFINED_RAM_2026-10-28.md"
       ],
       "limitations": "Eight static distinct physical bindings; no dynamic inter-parameter heap aliasing, general pointers or full sequential proof."
+    },
+    {
+      "uid": "RAM-QUAL-001",
+      "status": "partial",
+      "implementation": [
+        "src/SharpHDL/ScheduledCilReferenceFacts.cs"
+      ],
+      "tests": [
+        {
+          "method": "Safe_asymmetric_predicate_join_compiles_and_preserves_CLR_results",
+          "file": "tests/SharpHDL.UnitTests/PredicateMutationRegressionTests.cs"
+        }
+      ],
+      "evidence": [
+        "docs/FIVE_PACKAGE_COMPLETION_2026-10-28.md"
+      ],
+      "limitations": "Mutation checks are scope-specific; final replay evidence retained separately."
+    },
+    {
+      "uid": "RAM-REL-001",
+      "status": "verified_bounded",
+      "implementation": [
+        "src/SharpHDL/ScheduledCilRelations.cs"
+      ],
+      "tests": [
+        {
+          "method": "Copied_nullable_guard_refines_only_current_equal_locals",
+          "file": "tests/SharpHDL.UnitTests/RelationalAliasTests.cs"
+        }
+      ],
+      "evidence": [
+        "docs/FIVE_PACKAGE_COMPLETION_2026-10-28.md"
+      ],
+      "limitations": "Equality partitions for current copied reference locals only; not general heap alias analysis."
+    },
+    {
+      "uid": "RAM-SHARE-001",
+      "status": "verified_bounded",
+      "implementation": [
+        "src/SharpHDL/ScheduledCilSharedBindings.cs"
+      ],
+      "tests": [
+        {
+          "method": "Shared_or_distinct_binding_agrees_with_actual_CLR_objects",
+          "file": "tests/SharpHDL.UnitTests/SharedRamBindingTests.cs"
+        }
+      ],
+      "evidence": [
+        "docs/FIVE_PACKAGE_COMPLETION_2026-10-28.md"
+      ],
+      "limitations": "Explicit static bindings; runtime caller object identity is not inferred."
+    },
+    {
+      "uid": "RAM-STEP-001",
+      "status": "verified_bounded",
+      "implementation": [
+        "src/SharpHDL.Verification/MemoryTransitionEquivalence.cs"
+      ],
+      "tests": [
+        {
+          "method": "Write_or_collision_defect_produces_an_original_Core_witness",
+          "file": "tests/SharpHDL.VerificationTests/MemoryTransitionEquivalenceTests.cs"
+        }
+      ],
+      "evidence": [
+        "docs/FIVE_PACKAGE_COMPLETION_2026-10-28.md"
+      ],
+      "limitations": "Only declared bounded one-edge profile; no general sequential or induction proof."
+    },
+    {
+      "uid": "RAM-HDL-001",
+      "status": "verified_bounded",
+      "implementation": [
+        "examples/MemoryCollisionExample.cs"
+      ],
+      "tests": [
+        {
+          "method": "Two_memories_match_the_independent_array_reference",
+          "file": "tests/SharpHDL.UnitTests/MemoryCollisionQualificationTests.cs"
+        }
+      ],
+      "evidence": [
+        "docs/FIVE_PACKAGE_COMPLETION_2026-10-28.md"
+      ],
+      "limitations": "Finite replay, three-step initialized SAT reference and xc7 mapping; no placement/routing/device timing."
     }
   ],
   "schema": 1

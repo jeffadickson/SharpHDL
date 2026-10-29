@@ -173,3 +173,13 @@ new helper campaign: 37 killed, nine timeout, 16 survived (reviewed/open in
  docs/verification/refined-ram-mutation.json). See the refined RAM report for exact
 coverage, remaining test gaps, bounded static binding contract and reproduction.
 Do not mistake source-reviewed redundant survivors for formal equivalence proof.
+
+Five-package continuation: copied-local guards now use intersected equality
+relations, and `SequentialOptions.RamAliases` explicitly binds parameters to a
+canonical RAM (chains allowed, cycles/conflicting metadata rejected). The new
+`MemoryTransitionEquivalence` API proves only its bounded one-edge RAM/output
+profile, with original-Core-replayed witnesses. Reset/collision qualification
+includes independent HDL replay, a three-step Yosys SAT reference/counterexample
+and xc7 resource mapping. Device placement/routing/timing remain unverified.
+See docs/FIVE_PACKAGE_COMPLETION_2026-10-28.md for exact gates, scopes and remaining
+limits. CI remains disabled; Native AOT is deferred.
