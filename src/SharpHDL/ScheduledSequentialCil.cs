@@ -100,7 +100,7 @@ namespace SharpHDL
             InstructionControlFlow flow;
             try { flow=InstructionControlFlow.Analyze(successors); }
             catch(ArgumentException error) { throw Error(method,0,error.Message); }
-            var typedStacks=ValidateScheduledStack(method,list,flow);
+            var typedStacks=ValidateRefinedScheduledStack(method,list,flow);
             var heights=typedStacks.ToDictionary(p=>p.Key,p=>p.Value.Length);
             int maxStack=heights.Values.Max();
             var b=new ScheduledMachineBuilder(name);var start=b.Input("start",1);
@@ -130,6 +130,8 @@ namespace SharpHDL
             var states=reachable.ToDictionary(i=>i.Offset,i=>b.State("IL_"+i.Offset.ToString("x4")));
             var waits=reachable.Where(i=>i.Name=="ldelem.u4"||i.Name=="ldelem.i4")
                 .ToDictionary(i=>i.Offset,i=>b.State("wait_IL_"+i.Offset.ToString("x4")));
+            var rejected=b.State("invalid_control");
+            string Target(int offset)=>states.ContainsKey(offset)?states[offset].Name:rejected.Name;
             var one=b.Constant(1,1);var zero=b.Constant(1,0);
             ScheduledValue K32(int value)=>b.Constant(32,unchecked((uint)value));
             var zero32=K32(0);int aw=1;while((1<<aw)<o.MemoryDepth)aw++;
@@ -143,6 +145,7 @@ namespace SharpHDL
                     .Assign(fault,failed?one:zero,condition).Assign(timeout,timedOut?one:zero,condition)
                     .Transition("idle",condition);
             }
+            Stop(rejected,one,true);
             var clear=new[]{done,fault,timeout,result,cycles}.Concat(locals).Concat(stack);
             foreach(var register in clear)idle.Assign(register,b.Constant(register.Width,0),start);
             if(hasChecked){idle.Assign(overflow,zero,start);idle.Assign(faultIl,zero32,start);}
@@ -159,7 +162,7 @@ namespace SharpHDL
                 ScheduledValue Top(int n)=>stack[h-1-n].Value;
                 void Push(int slot,ScheduledValue value)=>state.Assign(stack[slot],value,live);
                 Stop(state,expired,true,true);state.Assign(cycles,cycles.Value.Add(b.Constant(cw,1)),live);
-                string next=op=="ret"||op=="br"||op=="br.s"?"idle":states[ins.Next].Name;
+                string next=op=="ret"||op=="br"||op=="br.s"?"idle":Target(ins.Next);
                 if(op=="ret"){state.Assign(result,Top(0).Resize(returnType.PortWidth),live);Stop(state,live,false);continue;}
                 if(IsScheduledChecked(op))
                 {
@@ -170,7 +173,7 @@ namespace SharpHDL
                         .Assign(stack[h-1],conversion.Value,valid).Transition(next,valid);
                     continue;
                 }
-                if(op=="br"||op=="br.s"){state.Transition(states[(int)ins.Operand].Name,live);continue;}
+                if(op=="br"||op=="br.s"){state.Transition(Target((int)ins.Operand),live);continue;}
                 if(Conditional(op))
                 {
                     ScheduledValue condition;
@@ -182,10 +185,10 @@ namespace SharpHDL
                         condition=Compare(test=="beq"||test=="bne"?"eq":test=="blt"||test=="bge"?"lt":"gt",Top(1),Top(0),op.Contains(".un"));
                         if(test=="bne"||test=="ble"||test=="bge")condition=condition.Not();
                     }
-                    state.Transition(states[(int)ins.Operand].Name,live.And(condition)).Transition(next,live);continue;
+                    state.Transition(Target((int)ins.Operand),live.And(condition)).Transition(next,live);continue;
                 }
                 if(op=="switch")
-                {int[] targets=(int[])ins.Operand;for(int i=0;i<targets.Length;i++)state.Transition(states[targets[i]].Name,live.And(Top(0).Equal(K32(i))));state.Transition(next,live);continue;}
+                {int[] targets=(int[])ins.Operand;for(int i=0;i<targets.Length;i++)state.Transition(Target(targets[i]),live.And(Top(0).Equal(K32(i))));state.Transition(next,live);continue;}
                 if(op=="ldelem.u4"||op=="ldelem.i4"||op=="stelem.i4")
                 {
                     if(ram==null)throw Error(method,ins.Offset,"RAM access requires uint[] argument.");
@@ -232,7 +235,7 @@ namespace SharpHDL
             b.Output("accept",b.InState(idle).And(start));
             var offsets=states.ToDictionary(p=>p.Value.Name,p=>p.Key);
             foreach(var pair in waits)offsets.Add(pair.Value.Name,pair.Key);
-            var encodings=new[]{idle}.Concat(states.Values).Concat(waits.Values).ToDictionary(s=>s.Name,s=>s.Encoding);
+            var encodings=new[]{idle}.Concat(states.Values).Concat(waits.Values).Concat(new[]{rejected}).ToDictionary(s=>s.Name,s=>s.Encoding);
             return new ScheduledCilCompilation(b.Lower(),method,offsets,encodings,flow);
         }
     }

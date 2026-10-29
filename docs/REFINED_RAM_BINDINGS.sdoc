@@ -11,3 +11,16 @@ height, stack-shape, native-branch and mixed-comparison diagnostics. Replay the
 seven retained mutations without treating earlier equivalent survivors as defects.
 Verification: ScheduledAliasGapTests and focused Stryker evidence.
 <<<
+
+[REQUIREMENT]
+UID: CIL-NULL-001
+TITLE: Branch-sensitive null refinement with invalidation
+STATEMENT: >>>
+Refine tested reference locals separately on taken and fallthrough edges for
+reference truth, null equality/inequality and supported null predicates stored
+in Boolean locals. Invalidate dependent predicates and older stack provenance
+on writes to the tested local. Preserve fixed-point joins over loops and reject
+stale or unguarded nullable dereferences. Identical target/fallthrough edges must
+not lose reachability. Impossible runtime control targets terminate with fault.
+Verification: ScheduledNullRefinementTests and guarded CLR/HDL replay.
+<<<

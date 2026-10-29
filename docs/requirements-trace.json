@@ -716,6 +716,29 @@
         "docs/CONTINUATION_REFINED_RAM_2026-10-28.md"
       ],
       "limitations": "Focused mutation and runtime profile only; not a general CLI or sequential proof."
+    },
+    {
+      "uid": "CIL-NULL-001",
+      "status": "partial",
+      "implementation": [
+        "src/SharpHDL/ScheduledCilRefinedValidation.cs",
+        "src/SharpHDL/ScheduledCilReferenceFacts.cs",
+        "src/SharpHDL/ScheduledSequentialCil.cs"
+      ],
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/ScheduledNullRefinementTests.cs",
+          "method": "Guarded_nullable_load_matches_CLR"
+        },
+        {
+          "file": "tests/SharpHDL.UnitTests/ScheduledNullRefinementTests.cs",
+          "method": "Reassigned_local_cannot_reuse_a_stale_guard"
+        }
+      ],
+      "evidence": [
+        "docs/CONTINUATION_REFINED_RAM_2026-10-28.md"
+      ],
+      "limitations": "Bounded supported guard patterns and directly tested locals; no general relational/heap proof."
     }
   ],
   "schema": 1

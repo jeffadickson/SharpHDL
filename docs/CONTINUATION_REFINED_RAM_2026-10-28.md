@@ -25,3 +25,5 @@ diagnostics. General heap pointers, arbitrary CLR verification and whole sequent
 proof remain separate requirements.
 
 Item 1 local gate: all seven focused gap tests pass on Windows with warnings as errors and Coverlet collected under build/verification/alias-gaps. No production validator change is included in this item. The scoped Stryker replay is still running at this commit; no kill result is claimed yet.
+
+Gap replay finished: all seven selected retained mutations killed, zero survivors/timeouts/runtime errors, Stryker.NET 5.0.0. Branch-refinement local gate: 18 focused CLR/Core tests pass with Coverlet collection after fixing predicate joins that initially lost widened candidate sets. This local commit covers direct/equality/Boolean/negated guards, stale Boolean/stack predicates, and identical successors. Broad Windows/Linux, HDL and fuzz gates remain pending for the combined implementation.
