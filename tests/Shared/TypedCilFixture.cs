@@ -8,10 +8,14 @@ public static class TypedCilFixture
 {
     /// <summary>Create a two-argument RAM/scalar kernel, optionally with declared local storage.</summary>
     public static MethodInfo Create(Action<ILGenerator> emit,params Type[] locals)
+        =>CreateWithParameters([typeof(uint[]),typeof(uint)],emit,locals);
+
+    /// <summary>Create kernels with explicit scalar and physical RAM parameter ordering.</summary>
+    public static MethodInfo CreateWithParameters(Type[] parameters,Action<ILGenerator> emit,params Type[] locals)
     {
         var a=AssemblyBuilder.DefineDynamicAssembly(new AssemblyName("Typed"+Guid.NewGuid().ToString("N")),AssemblyBuilderAccess.RunAndCollect);
         var type=a.DefineDynamicModule("main").DefineType("Kernel",TypeAttributes.Public);
-        var m=type.DefineMethod("Evaluate",MethodAttributes.Public|MethodAttributes.Static,typeof(uint),[typeof(uint[]),typeof(uint)]);
+        var m=type.DefineMethod("Evaluate",MethodAttributes.Public|MethodAttributes.Static,typeof(uint),parameters);
         var il=m.GetILGenerator();foreach(var local in locals)il.DeclareLocal(local);emit(il);
         return type.CreateType()!.GetMethod("Evaluate")!;
     }

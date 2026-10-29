@@ -559,3 +559,13 @@ SignExtend for explicit bit-pattern semantics. Narrow locals/ports and checked,
 wide, floating/native conversions still reject. The converter cone's native
 all-input proof is combinational only; it does not establish controller or
 sequential equivalence. See CONTINUATION_JIT_NARROW_2026-10-27.md for current evidence.
+
+Scheduled RAM continuation (2026-10-28): null guards refine directly tested
+reference locals, with dependent facts invalidated on assignment. Up to eight
+immutable uint[] parameters bind distinct physical RAMs; local aliases carry
+origin tags through joins. `SequentialOptions.MemoryDepths` and `InitialMemories`
+use original parameter indexes. Caller object identity across parameter bindings
+is outside this hardware contract. See
+[the refined RAM report](CONTINUATION_REFINED_RAM_2026-10-28.md) and
+[the runnable example](../examples/ScheduledMultiRam.cs). CI remains off; Native AOT
+is deferred. Earlier single-origin limitations describe historical revisions.

@@ -43,7 +43,7 @@ foreach(string relative in tracked.Where(p=>p.StartsWith("docs/",StringCompariso
     if(new[]{".png",".svg",".jpg",".jpeg",".gif"}.Contains(Path.GetExtension(relative),StringComparer.OrdinalIgnoreCase))
     {string image=Path.Combine(source,relative);Ensure(Path.GetDirectoryName(image)!);File.Copy(original,image);}
 }
-string[] pages=["MODULAR_ARCHITECTURE.md","DESIGN.md","BUILD_AND_SETUP.md","INSTRUCTION_CONTROL_FLOW.md","WORK_PACKAGES_2026-10-27.md","WORK_PACKAGES_4_6.md","WORK_PACKAGES_7_10.md","ENGINEERING_BUILD.md","SIMULATOR_BASELINES_2026-10-27.md","CONTINUATION_JIT_NARROW_2026-10-27.md","CONTINUATION_STORAGE_CHECKED_2026-10-27.md","CONTINUATION_TYPED_ALIASES_2026-10-28.md"];
+string[] pages=["MODULAR_ARCHITECTURE.md","DESIGN.md","BUILD_AND_SETUP.md","INSTRUCTION_CONTROL_FLOW.md","WORK_PACKAGES_2026-10-27.md","WORK_PACKAGES_4_6.md","WORK_PACKAGES_7_10.md","ENGINEERING_BUILD.md","SIMULATOR_BASELINES_2026-10-27.md","CONTINUATION_JIT_NARROW_2026-10-27.md","CONTINUATION_STORAGE_CHECKED_2026-10-27.md","CONTINUATION_TYPED_ALIASES_2026-10-28.md","CONTINUATION_REFINED_RAM_2026-10-28.md"];
 foreach(string page in pages)File.Copy(DocumentationCatalog.RepositoryFile(repo,"docs/"+page),Path.Combine(source,"docs",page));
 string[] assemblies=["SharpHDL.Core","SharpHDL.Simulation","SharpHDL.HLS","SharpHDL.RTL","SharpHDL","SharpHDL.Tooling","SharpHDL.Verification"];
 foreach(string assembly in assemblies)

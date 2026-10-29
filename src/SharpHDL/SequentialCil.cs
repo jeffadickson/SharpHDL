@@ -13,6 +13,10 @@ namespace SharpHDL
         public int MemoryDepth=16;
         public MemoryOptions MemoryOptions;
         public BigInteger[] InitialMemory;
+        /// <summary>Optional depths keyed by the original uint[] parameter index. Other RAMs use MemoryDepth.</summary>
+        public IReadOnlyDictionary<int,int> MemoryDepths;
+        /// <summary>Optional initial words keyed by uint[] parameter index; incompatible with legacy InitialMemory.</summary>
+        public IReadOnlyDictionary<int,BigInteger[]> InitialMemories;
         public int MaxInstructions=512;
     }
     public static partial class CilCompiler
@@ -44,6 +48,7 @@ namespace SharpHDL
         public static Module BuildSequential(MethodInfo method,string name,SequentialOptions options=null)
         {
             var o=options??new SequentialOptions();var ps=method.GetParameters();var body=method.GetMethodBody();
+            if(o.MemoryDepths?.Count>0||o.InitialMemories?.Count>0)throw Error(method,0,"Per-RAM binding options require the scheduled backend.");
             if(o.MaxCycles<1||o.MaxCycles>1000000||o.MaxInstructions<1||o.MaxInstructions>4096)throw new ArgumentException("Invalid sequential limits.");
             if(!method.IsStatic||method.ContainsGenericParameters||body==null||body.ExceptionHandlingClauses.Count!=0||!Supported(method.ReturnType)||PackedLayout.IsRecord(method.ReturnType))throw Error(method,0,"Sequential methods require a scalar result, a static CIL body and no exception handlers.");
             if(body.LocalVariables.Any(v=>!Supported(v.LocalType)||PackedLayout.IsRecord(v.LocalType))||!body.InitLocals&&body.LocalVariables.Count>0)throw Error(method,0,"Sequential locals must be initialized scalar values.");

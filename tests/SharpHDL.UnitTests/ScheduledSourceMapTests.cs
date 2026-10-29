@@ -60,7 +60,9 @@ public sealed class ScheduledSourceMapTests
         Assert.Null(compiled.Symbols.FindSource(hidden.IlOffset));
         Assert.Equal(0,compiled.StateEncodings["idle"]);Assert.Null(compiled.StateSources["idle"]);
         Assert.Equal(compiled.StateEncodings.Count,compiled.StateSources.Count);
-        Assert.Equal(compiled.StateOffsets.Count+1,compiled.StateEncodings.Count);
+        Assert.Null(compiled.StateSources["invalid_control"]);
+        Assert.False(compiled.StateOffsets.ContainsKey("invalid_control"));
+        Assert.Equal(compiled.StateOffsets.Count+2,compiled.StateEncodings.Count);
         foreach(var pair in compiled.StateOffsets)
         {
             Assert.Equal(compiled.Symbols.FindSource(pair.Value),compiled.StateSources[pair.Key]);

@@ -739,6 +739,30 @@
         "docs/CONTINUATION_REFINED_RAM_2026-10-28.md"
       ],
       "limitations": "Bounded supported guard patterns and directly tested locals; no general relational/heap proof."
+    },
+    {
+      "uid": "CIL-RAMS-001",
+      "status": "partial",
+      "implementation": [
+        "src/SharpHDL/ScheduledCilRamBindings.cs",
+        "src/SharpHDL/ScheduledCilRefinedValidation.cs",
+        "src/SharpHDL/ScheduledSequentialCil.cs",
+        "src/SharpHDL/SequentialCil.cs"
+      ],
+      "tests": [
+        {
+          "method": "Selected_alias_observes_separate_contents_and_lengths",
+          "file": "tests/SharpHDL.UnitTests/ScheduledMultipleRamTests.cs"
+        },
+        {
+          "method": "Eighth_origin_is_representable_in_a_local",
+          "file": "tests/SharpHDL.UnitTests/ScheduledMultipleRamTests.cs"
+        }
+      ],
+      "evidence": [
+        "docs/CONTINUATION_REFINED_RAM_2026-10-28.md"
+      ],
+      "limitations": "Eight static distinct physical bindings; no dynamic inter-parameter heap aliasing, general pointers or full sequential proof."
     }
   ],
   "schema": 1

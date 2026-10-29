@@ -154,3 +154,13 @@ Implementation now supports declared narrow scalar locals/ports and twelve check
 Typed-stack/array-alias continuation (2026-10-28): first local commit 1776884 validates categories and variable indexes. Current work adds flow-sensitive null/bound local aliases for one immutable RAM and explicit one-bit tags. Native lengths require conv.i4/u4 before integer use. See docs/CONTINUATION_TYPED_ALIASES_2026-10-28.md and docs/TYPED_STACK_ALIASES.sdoc. Preserve conservative branch-refinement limitations, CI off, Native AOT deferred. Full evidence will be finalized after local gates.
 
 Final typed/alias implementation: 373 fast + 62 native verifier regression tests per OS; two HDL designs (527 replay edges) through Icarus/Verilator/Yosys; 574 AFL++ executions, no saved crashes/hangs. Typed validator coverage 100% line / 97.97% branch. Mutation scopes and remaining seven test gaps are explicit in docs/verification/typed-alias-mutation.json; no combined full rerun score claimed. Preserve all raw local artifacts and the bounded/null-refinement limitations. See current continuation report for commands and library rationale.
+
+Scheduled RAM continuation (2026-10-28): null guards refine directly tested
+reference locals, with dependent facts invalidated on assignment. Up to eight
+immutable uint[] parameters bind distinct physical RAMs; local aliases carry
+origin tags through joins. `SequentialOptions.MemoryDepths` and `InitialMemories`
+use original parameter indexes. Caller object identity across parameter bindings
+is outside this hardware contract. See
+[the refined RAM report](docs/CONTINUATION_REFINED_RAM_2026-10-28.md) and
+[the runnable example](examples/ScheduledMultiRam.cs). CI remains off; Native AOT
+is deferred. Earlier single-origin limitations describe historical revisions.

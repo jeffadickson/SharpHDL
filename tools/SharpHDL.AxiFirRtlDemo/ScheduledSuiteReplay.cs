@@ -77,6 +77,7 @@ internal static class ScheduledSuiteReplay
         GenerateScalarStorage(directory);
         GenerateCheckedConversions(directory);
         GenerateArrayAliases(directory);
+        GenerateMultipleRams(directory);
         var planned=new CoreReplay(ScheduledPlannedBanks.Build());
         for(int phase=0;phase<=6;phase++)
         {
@@ -176,6 +177,27 @@ internal static class ScheduledSuiteReplay
         File.WriteAllText(Path.Combine(directory,moduleName+".il-map.json"),JsonSerializer.Serialize(compilation.StateOffsets));
         WriteSourceMap(directory,compilation);
         Console.WriteLine($"CIL shifts {moduleName}: {transactions} native/legacy/Core transactions agree.");
+    }
+
+    private static void GenerateMultipleRams(string directory)
+    {
+        var method=typeof(ScheduledMultiRam).GetMethod(nameof(ScheduledMultiRam.Update))!;
+        var options=new SequentialOptions{MaxCycles=400,MemoryDepths=new System.Collections.Generic.Dictionary<int,int>{{0,2},{1,3}},
+            InitialMemories=new System.Collections.Generic.Dictionary<int,System.Numerics.BigInteger[]>{{0,[7,9]},{1,[21,22,23]}}};
+        var compiled=CilCompiler.BuildScheduledSequential(method,"ScheduledGuardedRams",options);
+        var replay=new CoreReplay(compiled.Design);replay.Clock(true);uint[] left=[7,9],right=[21,22,23];
+        foreach(var (select,index,word) in new[]{(0u,0u,5u),(1u,1u,9u),(2u,2u,17u),(1u,2u,31u),(0u,0u,0u),(2u,2u,3u),(3u,0u,0u)})
+        {
+            uint expected=0;bool failed=false;
+            try {expected=ScheduledMultiRam.Update(left,right,select,index,word);}catch(IndexOutOfRangeException){failed=true;}
+            replay.Drive("arg2",(int)select);replay.Drive("arg3",(int)index);replay.Drive("arg4",(int)word);replay.Drive("start",1);replay.Clock(false);
+            replay.Drive("start",0);replay.Drive("arg2",99);replay.Drive("arg3",99);replay.Drive("arg4",99);
+            int edges=0;while(replay.Read("done")==0&&edges++<402)replay.Clock(false);
+            if(replay.Read("done")!=1||replay.Read("fault")!=(failed?1:0)||replay.Read("result")!=expected)
+                throw new InvalidOperationException("Guarded multiple-RAM CLR/Core mismatch.");
+        }
+        replay.Save(directory);WriteSourceMap(directory,compiled);
+        Console.WriteLine("Guarded RAMs: seven CLR/Core capture, null, per-origin bounds and partial-write transactions agree.");
     }
 
     private static void GenerateArrayAliases(string directory)

@@ -1,0 +1,11 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.csproj",
+    "additional-timeout": 5000,
+    "reporters": ["json", "progress"],
+    "coverage-analysis": "off",
+    "test-case-filter": "FullyQualifiedName~ScheduledNullRefinementTests|FullyQualifiedName~ScheduledMultipleRamTests",
+    "concurrency": 1,
+    "mutate": ["**/ScheduledCilReferenceFacts.cs", "**/ScheduledCilRamBindings.cs"]
+  }
+}

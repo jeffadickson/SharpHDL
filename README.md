@@ -414,3 +414,13 @@ refer to the sole immutable bound RAM; null or uncertain dereferences reject.
 Reference truth/equality use identity tags, with no numeric pointer conversion.
 See [typed-stack and alias verification](docs/CONTINUATION_TYPED_ALIASES_2026-10-28.md)
 for the bounded profile, independently exercised behavior and remaining gaps.
+
+Scheduled RAM continuation (2026-10-28): null guards refine directly tested
+reference locals, with dependent facts invalidated on assignment. Up to eight
+immutable uint[] parameters bind distinct physical RAMs; local aliases carry
+origin tags through joins. `SequentialOptions.MemoryDepths` and `InitialMemories`
+use original parameter indexes. Caller object identity across parameter bindings
+is outside this hardware contract. See
+[the refined RAM report](docs/CONTINUATION_REFINED_RAM_2026-10-28.md) and
+[the runnable example](examples/ScheduledMultiRam.cs). CI remains off; Native AOT
+is deferred. Earlier single-origin limitations describe historical revisions.

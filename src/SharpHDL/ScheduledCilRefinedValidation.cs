@@ -15,6 +15,7 @@ public static partial class CilCompiler
         IReadOnlyList<Instruction> instructions,InstructionControlFlow flow)
     {
         var parameters=method.GetParameters();var locals=method.GetMethodBody()!.LocalVariables;
+        var origins=parameters.Select((p,i)=>(p,i)).Where(x=>x.p.ParameterType==typeof(uint[])).Select((x,n)=>(x.i,kind:(ScheduledStackKind)(16<<n))).ToDictionary(x=>x.i,x=>x.kind);
         if(parameters.Length+locals.Count>1024)throw Error(method,0,"Typed analysis supports at most 1024 arguments and locals combined.");
         foreach(var ins in instructions)
         {
@@ -64,7 +65,8 @@ public static partial class CilCompiler
             void Require(ScheduledStackKind expected)
             {
                 var actual=Pop().Kind;
-                if(actual!=expected)throw Error(method,offset,$"{op} requires {expected} on the typed stack (RAM must be definitely bound); found {actual}.");
+                bool bound=expected==ScheduledStackKind.RamReference&&IsScheduledReference(actual)&&(actual&ScheduledStackKind.NullReference)==0;
+                if(actual!=expected&&!bound)throw Error(method,offset,$"{op} requires {expected} on the typed stack (RAM must be definitely bound); found {actual}.");
             }
             void Invalidate(int index)
             {
@@ -75,7 +77,9 @@ public static partial class CilCompiler
             if(op=="dup")stack.Add(stack[^1]);
             else if(op=="pop")Pop();
             else if(op=="ldarg"||op=="ldarg.s"||op.StartsWith("ldarg."))
-                stack.Add(new(parameters[VarIndex(ins,"ldarg")].ParameterType==typeof(uint[])?ScheduledStackKind.RamReference:ScheduledStackKind.Integer32));
+            {
+                int i=VarIndex(ins,"ldarg");stack.Add(new(origins.ContainsKey(i)?origins[i]:ScheduledStackKind.Integer32));
+            }
             else if(op=="ldnull")stack.Add(new(ScheduledStackKind.NullReference));
             else if(op=="ldloc"||op=="ldloc.s"||op.StartsWith("ldloc."))
             {

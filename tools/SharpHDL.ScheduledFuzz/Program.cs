@@ -18,6 +18,7 @@ Fuzzer.OutOfProcess.Run(stream =>
     if(length>0)RegionFuzz.Check(bytes.AsSpan(0,length));
     NarrowCilFuzz.Check(bytes.AsSpan(0,length));
     TypedAliasFuzz.Check(bytes.AsSpan(0,length));
+    GuardedRamFuzz.Check(bytes.AsSpan(0,length));
     if(length>0)AxiProtocolFuzz.Run(bytes.AsSpan(0,length));
     if(length>=8)
     {

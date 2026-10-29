@@ -24,3 +24,17 @@ stale or unguarded nullable dereferences. Identical target/fallthrough edges mus
 not lose reachability. Impossible runtime control targets terminate with fault.
 Verification: ScheduledNullRefinementTests and guarded CLR/HDL replay.
 <<<
+
+[REQUIREMENT]
+UID: CIL-RAMS-001
+TITLE: Bounded distinct physical RAM origins
+STATEMENT: >>>
+Support up to eight immutable uint[] parameter bindings as distinct physical
+RAMs. Carry sets of possible origins through aliases and joins; dispatch loads,
+stores and lengths using the actual origin tag. Null and invalid tags must not
+access memory. Apply depth and initial contents per original parameter index;
+reject invalid configuration and ambiguous legacy initialization. Preserve
+capture, reset, bounds faults and earlier committed writes. Distinct physical
+bindings do not model runtime aliasing between caller-supplied parameter objects.
+Verification: ScheduledMultipleRamTests, guarded RAM CLR/HDL replay and fuzzing.
+<<<

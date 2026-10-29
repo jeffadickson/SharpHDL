@@ -21,4 +21,5 @@
   <ItemGroup><Compile Include="../../examples/ScheduledNarrowCil.cs" Link="ScheduledNarrowCil.cs" /><Compile Include="../../tests/Shared/NarrowCilFixture.cs" Link="NarrowCilFixture.cs" /></ItemGroup>
   <ItemGroup><Compile Include="../../tests/Shared/TypedCilFixture.cs" Link="TypedCilFixture.cs" /></ItemGroup>
   <ItemGroup><Compile Include="../../examples/ScheduledArrayAliases.cs" Link="ScheduledArrayAliases.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../examples/ScheduledMultiRam.cs" Link="ScheduledMultiRam.cs" /></ItemGroup>
 </Project>

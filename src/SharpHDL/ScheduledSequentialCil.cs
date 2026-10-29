@@ -39,15 +39,15 @@ namespace SharpHDL
     public static partial class CilCompiler
     {
         /// <summary>
-        /// Lower static integer/Boolean control flow and at most one uint[] RAM
+        /// Lower static integer/Boolean control flow and at most eight distinct uint[] RAMs
         /// through the existing decoder/stack analysis into ScheduledMachineBuilder.
         /// Unchecked 8/16-bit stack conversions truncate then sign/zero-extend to Int32;
         /// byte/sbyte/short/ushort/char storage uses declared widths and extends on load.
         /// Checked 8/16/32-bit conversions terminate on overflow with fault, conversion_overflow
         /// and fault_il diagnostics. Wide conversions remain unsupported. Ports use CLR scalar widths.
         /// Typed stack and local alias analysis reject unsafe operand roles and uncertain/null
-        /// array dereferences before lowering. Local uint[] aliases share the single immutable
-        /// RAM binding; reference tags support equality and truth tests, not pointer arithmetic.
+        /// array dereferences before lowering. Local uint[] aliases track the immutable
+        /// RAM bindings; reference tags support equality and truth tests, not pointer arithmetic.
         /// One instruction executes
         /// per edge; RAM loads add a capture/wait edge. Unsupported constructs are
         /// rejected with method and IL-offset diagnostics; no legacy fallback occurs.
@@ -70,12 +70,12 @@ namespace SharpHDL
             if(!ps.Any(p=>p.ParameterType==typeof(uint[]))&&o.InitialMemory!=null)
                 throw Error(method,0,"Initial memory requires a uint[] RAM argument.");
             if(body.LocalVariables.Any(v=>v.LocalType!=typeof(uint[])&&!Scalar(v.LocalType))||!body.InitLocals&&body.LocalVariables.Count>0||
-                ps.Any(p=>p.ParameterType!=typeof(uint[])&&!Scalar(p.ParameterType))||ps.Count(p=>p.ParameterType==typeof(uint[]))>1)
-                throw Error(method,0,"Scheduled locals/arguments must be supported scalars or uint[] aliases with at most one uint[] argument.");
+                ps.Any(p=>p.ParameterType!=typeof(uint[])&&!Scalar(p.ParameterType))||ps.Count(p=>p.ParameterType==typeof(uint[]))>8)
+                throw Error(method,0,"Scheduled locals/arguments must be supported scalars or uint[] aliases with at most eight distinct uint[] bindings.");
             if(Attribute.IsDefined(method.ReturnParameter,typeof(PortWidthAttribute))||ps.Any(p=>Attribute.IsDefined(p,typeof(PortWidthAttribute))))
                 throw Error(method,0,"Scheduled sequential ports use CLR widths; PortWidth overrides are unsupported.");
-            bool hasRam=ps.Any(p=>p.ParameterType==typeof(uint[]));
-            if(hasRam&&(o.MemoryDepth<1||o.MemoryDepth>65536))throw new ArgumentOutOfRangeException(nameof(options));
+            var ramPlans=PlanScheduledRams(method,o);
+            bool hasRam=ramPlans.Length!=0;
             var list=Decode(method);
             if(list.Count>o.MaxInstructions)throw Error(method,0,"Scheduled sequential instruction limit exceeded.");
             bool SupportedInstruction(string op)=>op=="nop"||op=="ldnull"||op=="ret"||op=="dup"||op=="pop"||op=="not"||op=="neg"||
@@ -122,8 +122,9 @@ namespace SharpHDL
                 args[i]=b.Register("saved_arg"+i,argumentTypes[i].StorageWidth);
                 captured.Add((args[i],input.Resize(argumentTypes[i].StorageWidth)));
             }
-            // References are null/bound tags for the sole physical RAM, never addresses.
-            var localTypes=body.LocalVariables.Select(v=>{if(v.LocalType==typeof(uint[]))return new ScheduledScalarType(1,1,false);TryScheduledScalar(v.LocalType,out var type);return type;}).ToArray();
+            // References are null/origin tags, never runtime heap addresses.
+            int tagWidth=1;while((1<<tagWidth)<=ramPlans.Length)tagWidth++;
+            var localTypes=body.LocalVariables.Select(v=>{if(v.LocalType==typeof(uint[]))return new ScheduledScalarType(tagWidth,tagWidth,false);TryScheduledScalar(v.LocalType,out var type);return type;}).ToArray();
             var locals=localTypes.Select((type,i)=>b.Register("local"+i,type.StorageWidth)).ToArray();
             var stack=Enumerable.Range(0,maxStack).Select(i=>b.Register("stack"+i,32)).ToArray();
             var idle=b.State("idle");var reachable=list.Where(i=>heights.ContainsKey(i.Offset)).ToArray();
@@ -134,8 +135,8 @@ namespace SharpHDL
             string Target(int offset)=>states.ContainsKey(offset)?states[offset].Name:rejected.Name;
             var one=b.Constant(1,1);var zero=b.Constant(1,0);
             ScheduledValue K32(int value)=>b.Constant(32,unchecked((uint)value));
-            var zero32=K32(0);int aw=1;while((1<<aw)<o.MemoryDepth)aw++;
-            var ram=hasRam?b.Memory("data",32,o.MemoryDepth,o.InitialMemory):null;
+            var zero32=K32(0);
+            var rams=ramPlans.Select(r=>(Plan:r,Memory:b.Memory(r.Tag==1?"data":"data_arg"+r.Parameter,32,r.Depth,r.Initial))).ToArray();
             var readData=hasRam?b.Register("ram_read_data",32):null;
             var multiplier=b.ArithmeticResource("cil_multiplier",HardwareOperation.Multiply,32);
             var live=cycles.Value.LessThan(b.Constant(cw,o.MaxCycles));var expired=live.Not();
@@ -191,13 +192,22 @@ namespace SharpHDL
                 {int[] targets=(int[])ins.Operand;for(int i=0;i<targets.Length;i++)state.Transition(Target(targets[i]),live.And(Top(0).Equal(K32(i))));state.Transition(next,live);continue;}
                 if(op=="ldelem.u4"||op=="ldelem.i4"||op=="stelem.i4")
                 {
-                    if(ram==null)throw Error(method,ins.Offset,"RAM access requires uint[] argument.");
-                    bool write=op=="stelem.i4";var address=Top(write?1:0);var valid=address.LessThan(b.Constant(32,o.MemoryDepth));
+                    if(!hasRam)throw Error(method,ins.Offset,"RAM access requires uint[] argument.");
+                    bool write=op=="stelem.i4";var address=Top(write?1:0);var reference=Top(write?2:1);var valid=zero;
+                    foreach(var r in rams)
+                    {
+                        var access=reference.Equal(K32(r.Plan.Tag)).And(address.LessThan(K32(r.Plan.Depth)));
+                        valid=valid.Or(access);var enabled=live.And(access);
+                        if(write)state.Write(r.Memory,address.Resize(r.Plan.AddressWidth),Top(0),enabled);
+                        else state.Read(r.Memory,address.Resize(r.Plan.AddressWidth),readData,enabled);
+                    }
+                    // Independent lowerer guard: invalid tags and per-origin bounds
+                    // never issue a memory operation or silently produce a value.
                     Stop(state,live.And(valid.Not()),true);
-                    if(write){state.Write(ram,address.Resize(aw),Top(0),live.And(valid));state.Transition(next,live.And(valid));}
+                    if(write)state.Transition(next,live.And(valid));
                     else
                     {
-                        state.Read(ram,address.Resize(aw),readData,live.And(valid)).Transition(waits[ins.Offset].Name,live.And(valid));
+                        state.Transition(waits[ins.Offset].Name,live.And(valid));
                         var wait=waits[ins.Offset];Stop(wait,expired,true,true);
                         wait.Assign(cycles,cycles.Value.Add(b.Constant(cw,1)),live).Assign(stack[h-2],readData.Value,live).Transition(next,live);
                     }
@@ -205,7 +215,7 @@ namespace SharpHDL
                 }
                 if(op.StartsWith("ldc.i4"))Push(h,K32(op=="ldc.i4.m1"?-1:op=="ldc.i4"||op=="ldc.i4.s"?(int)ins.Operand:int.Parse(op.Substring(7))));
                 else if(op=="ldarg"||op=="ldarg.s"||op.StartsWith("ldarg."))
-                {int index=VarIndex(ins,"ldarg");Push(h,args[index] is null?K32(1):argumentTypes[index].Load(args[index].Value));}
+                {int index=VarIndex(ins,"ldarg");Push(h,args[index] is null?K32(ramPlans.Single(r=>r.Parameter==index).Tag):argumentTypes[index].Load(args[index].Value));}
                 else if(op=="ldnull")Push(h,zero32);
                 else if(op=="starg"||op=="starg.s")
                 {int index=(int)ins.Operand;if(args[index]==null)throw Error(method,ins.Offset,"Cannot reassign RAM reference.");state.Assign(args[index],argumentTypes[index].Store(Top(0)),live);}
@@ -218,7 +228,12 @@ namespace SharpHDL
                 else if(op=="neg")Push(h-1,zero32.Subtract(Top(0)));
                 else if(op=="conv.i1"||op=="conv.u1"||op=="conv.i2"||op=="conv.u2")Push(h-1,ScheduledClrNarrow(Top(0),op));
                 else if(op=="shl"||op=="shr"||op=="shr.un")Push(h-2,ScheduledClrShift(b,Top(1),Top(0),op));
-                else if(op=="ldlen"){if(ram==null)throw Error(method,ins.Offset,"ldlen requires RAM.");Push(h-1,b.Constant(32,o.MemoryDepth));}
+                                else if(op=="ldlen")
+                {
+                    if(!hasRam)throw Error(method,ins.Offset,"ldlen requires RAM.");var length=zero32;var valid=zero;
+                    foreach(var r in rams){var match=Top(0).Equal(K32(r.Plan.Tag));valid=valid.Or(match);length=ScheduledValue.Select(match,K32(r.Plan.Depth),length);}
+                    Stop(state,live.And(valid.Not()),true);Push(h-1,length);
+                }
                 else if(op=="ceq"||op.StartsWith("clt")||op.StartsWith("cgt"))Push(h-2,Compare(op.Substring(1,2),Top(1),Top(0),op.EndsWith(".un")).Resize(32));
                 else if(op=="mul")Push(h-2,state.Compute(multiplier,Top(1),Top(0),live));
                 else if(op=="add")Push(h-2,Top(1).Add(Top(0)));
