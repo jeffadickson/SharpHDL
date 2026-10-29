@@ -19,4 +19,5 @@
   <ItemGroup><Compile Include="../../tests/Shared/ScheduledTableCampaign.cs" Link="ScheduledTableCampaign.cs" /></ItemGroup>
   <ItemGroup><Compile Include="../../tests/Shared/AxiConformanceCampaign.cs" Link="AxiConformanceCampaign.cs" /></ItemGroup>
   <ItemGroup><Compile Include="../../examples/ScheduledNarrowCil.cs" Link="ScheduledNarrowCil.cs" /><Compile Include="../../tests/Shared/NarrowCilFixture.cs" Link="NarrowCilFixture.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../tests/Shared/TypedCilFixture.cs" Link="TypedCilFixture.cs" /></ItemGroup>
 </Project>

@@ -1,0 +1,10 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.csproj",
+    "additional-timeout": 5000,
+    "reporters": ["json", "progress"],
+    "test-case-filter": "FullyQualifiedName~ScheduledTypedStackTests&FullyQualifiedName!~Generated_out_of_range",
+    "concurrency": 1,
+    "mutate": ["**/ScheduledCilStackValidation.cs"]
+  }
+}

@@ -1,0 +1,15 @@
+[DOCUMENT]
+TITLE: Scheduled typed stack and bound RAM aliases
+
+[REQUIREMENT]
+UID: CIL-TYPE-001
+TITLE: Validate intermediate stack categories before lowering
+STATEMENT: >>>
+Validate reachable evaluation-stack categories and every declared argument/local
+index before allocating hardware. Reject integer/reference confusion in numeric,
+return, conversion, storage and memory operands, including same-height incompatible
+control-flow merges. Preserve bounded native array-length category until explicit
+conv.i4/u4 normalization. Include original method and IL-offset diagnostics.
+Do not claim general CLI verification or native-integer arithmetic support.
+Verification: ScheduledTypedStackTests and existing scheduled compiler regression.
+<<<

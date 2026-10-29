@@ -85,7 +85,7 @@ namespace SharpHDL
                 op=="stloc"||op=="stloc.s"||op.StartsWith("stloc.");
             foreach(var ins in list)if(!SupportedInstruction(ins.Name))
                 throw Error(method,ins.Offset,"Unsupported scheduled sequential opcode "+ins.Name+"; use the documented subset or the explicit legacy backend.");
-            var code=list.ToDictionary(i=>i.Offset);var heights=new Dictionary<int,int>();
+            var code=list.ToDictionary(i=>i.Offset);
             var successors=new Dictionary<int,IReadOnlyList<int>>();
             foreach(var ins in list)
             {
@@ -97,19 +97,9 @@ namespace SharpHDL
             InstructionControlFlow flow;
             try { flow=InstructionControlFlow.Analyze(successors); }
             catch(ArgumentException error) { throw Error(method,0,error.Message); }
-            var pending=new Queue<(int Offset,int Height)>();pending.Enqueue((0,0));int maxStack=0;
-            while(pending.Count!=0)
-            {
-                var item=pending.Dequeue();
-                if(heights.TryGetValue(item.Offset,out var previous))
-                {if(previous!=item.Height)throw Error(method,item.Offset,"Inconsistent stack height.");continue;}
-                if(!code.TryGetValue(item.Offset,out var ins))throw Error(method,item.Offset,"Invalid branch target.");
-                int after=item.Height-PopCount(ins)+PushCount(ins);
-                if(item.Height<PopCount(ins)||after>32||ins.Name=="ret"&&after!=0)
-                    throw Error(method,ins.Offset,"Invalid/excessive evaluation stack.");
-                heights.Add(item.Offset,item.Height);maxStack=Math.Max(maxStack,Math.Max(item.Height,after));
-                foreach(int target in flow.Successors[ins.Offset])pending.Enqueue((target,after));
-            }
+            var typedStacks=ValidateScheduledStack(method,list,flow);
+            var heights=typedStacks.ToDictionary(p=>p.Key,p=>p.Value.Length);
+            int maxStack=heights.Values.Max();
             var b=new ScheduledMachineBuilder(name);var start=b.Input("start",1);
             var busy=b.Register("busy_state",1);var done=b.Register("done_state",1);
             var fault=b.Register("fault_state",1);var timeout=b.Register("timeout_state",1);

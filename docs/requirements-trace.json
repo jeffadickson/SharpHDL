@@ -655,6 +655,24 @@
         "docs/CONTINUATION_STORAGE_CHECKED_2026-10-27.md"
       ],
       "limitations": "Bounded Int32-stack subset only. Native predicates are local proofs; no whole sequential proof or FPGA qualification."
+    },
+    {
+      "uid": "CIL-TYPE-001",
+      "status": "partial",
+      "implementation": [
+        "src/SharpHDL/ScheduledCilStackValidation.cs",
+        "src/SharpHDL/ScheduledSequentialCil.cs"
+      ],
+      "tests": [
+        {
+          "file": "tests/SharpHDL.UnitTests/ScheduledTypedStackTests.cs",
+          "method": "Incompatible_operands_reject_with_context"
+        }
+      ],
+      "evidence": [
+        "docs/CONTINUATION_TYPED_ALIASES_2026-10-28.md"
+      ],
+      "limitations": "Bounded admitted opcode profile only; no general CLI verification or native integer arithmetic. Extended gates pending."
     }
   ],
   "schema": 1
