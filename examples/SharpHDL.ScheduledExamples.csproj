@@ -2,4 +2,5 @@
   <PropertyGroup><TargetFramework>net10.0</TargetFramework><Nullable>enable</Nullable><EnableDefaultCompileItems>false</EnableDefaultCompileItems></PropertyGroup>
   <ItemGroup><Compile Include="ScheduledTable.cs" /><Compile Include="ScheduledBankedTable.cs" /><Compile Include="ScheduledPlannedBanks.cs" /><Compile Include="Z80/Z80TestCore.cs" /><ProjectReference Include="../src/SharpHDL.HLS/SharpHDL.HLS.csproj" /></ItemGroup>
   <ItemGroup><Compile Include="ScheduledIterativeBanks.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="MemoryCollisionExample.cs" /></ItemGroup>
 </Project>

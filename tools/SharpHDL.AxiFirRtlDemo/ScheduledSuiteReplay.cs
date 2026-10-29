@@ -78,6 +78,7 @@ internal static class ScheduledSuiteReplay
         GenerateCheckedConversions(directory);
         GenerateArrayAliases(directory);
         GenerateMultipleRams(directory);
+        GenerateMemoryQualification(directory);
         var planned=new CoreReplay(ScheduledPlannedBanks.Build());
         for(int phase=0;phase<=6;phase++)
         {
@@ -177,6 +178,35 @@ internal static class ScheduledSuiteReplay
         File.WriteAllText(Path.Combine(directory,moduleName+".il-map.json"),JsonSerializer.Serialize(compilation.StateOffsets));
         WriteSourceMap(directory,compilation);
         Console.WriteLine($"CIL shifts {moduleName}: {transactions} native/legacy/Core transactions agree.");
+    }
+
+    private static void GenerateMemoryQualification(string directory)
+    {
+        foreach(var implementation in new[]{HardwareMemoryImplementation.Auto,HardwareMemoryImplementation.XilinxBlock})
+        {
+            var d=new MemoryCollisionExample(implementation);
+            var r=new CoreReplay(d.Name,d.Graph,d.Inputs,d.Outputs,d.NextState,d.ResetValues,d.Memories);
+            int edges=MemoryCollisionCampaign.Run(r.Drive,r.Clock,n=>(int)r.Read(n));
+            r.Save(directory);Console.WriteLine(d.Name+": "+edges+" independent array-oracle edges.");
+        }
+        foreach(bool shared in new[]{false,true})
+        {
+            string name=shared?"ScheduledSharedRam":"ScheduledDistinctRam";
+            var c=CilCompiler.BuildScheduledSequential(typeof(ScheduledSharedRam).GetMethod(nameof(ScheduledSharedRam.Update))!,name,
+                new SequentialOptions{MemoryDepth=3,RamAliases=shared?new System.Collections.Generic.Dictionary<int,int>{{1,0}}:null});
+            var r=new CoreReplay(c.Design);uint[] left=new uint[3],right=shared?left:new uint[3];r.Clock(true);
+            foreach(var (index,word) in new[]{(0u,5u),(1u,uint.MaxValue),(2u,17u),(3u,4u),(0u,9u)})
+            {
+                uint expected=0;bool failed=false;
+                try{expected=ScheduledSharedRam.Update(left,right,index,word);}catch(IndexOutOfRangeException){failed=true;}
+                r.Drive("arg2",(int)index);r.Drive("arg3",unchecked((int)word));r.Drive("start",1);r.Clock(false);
+                r.Drive("start",0);r.Drive("arg2",99);r.Drive("arg3",99);
+                int edges=0;while(r.Read("done")==0&&edges++<1002)r.Clock(false);
+                if(r.Read("done")!=1||r.Read("fault")!=(failed?1:0)||r.Read("result")!=expected)throw new InvalidOperationException("Shared RAM CLR/Core replay mismatch.");
+                r.Clock(true);
+            }
+            r.Save(directory);WriteSourceMap(directory,c);
+        }
     }
 
     private static void GenerateMultipleRams(string directory)

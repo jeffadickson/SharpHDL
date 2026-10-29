@@ -33,3 +33,17 @@ that duplicate guard was removed. Six predicate survivors prompted five addition
 positive/negative cases, including a safe asymmetric join that reaches the join
 rather than rejecting earlier. All 31 focused cases pass. Final fact/relation
 mutation replay is separate; scores from different source scopes are not combined.
+
+Package 5 local gate: six collision/shared binding tests pass. Independent RTL
+profile passes five designs in Icarus and Verilator: collision Auto 99 edges,
+collision XilinxBlock 99, shared RAM 71, distinct RAM 75, guarded multi-RAM 183
+(527 edges per simulator). Five generic Yosys checks pass. Independent procedural
+array RTL proves equal over the three-step reset sequence in Yosys SAT; an explicit
+write-first defect yields a retained WaveJSON counterexample. This bounded check
+uses initialized cells and reset, not the arbitrary-prestate Z3 contract.
+Yosys synth_xilinx -family xc7 passes for Auto and XilinxBlock; the latter maps to
+two RAMB18E1 cells. Placement, routing and device timing remain unverified:
+nextpnr-ice40/nextpnr-xilinx/Vivado/Quartus are absent. No target timing readiness
+claim is made. Raw tool manifests and source vectors are under the retained
+/tmp/sharphdl-rtl-hugkNM campaign. The profile tests reset-time write suppression,
+RAM retention, non-power-of-two bounds, read-before-write and physical identity.

@@ -12,12 +12,14 @@ case ${1:-all} in
   checked-memory) designs=(ScheduledCheckedMemory); synthesis=(ScheduledCheckedMemory);;
   aliases) designs=(ScheduledAliasUpdate ScheduledAliasNull); synthesis=("${designs[@]}");;
   guarded-rams) designs=(ScheduledGuardedRams); synthesis=(ScheduledGuardedRams);;
+  memory-qualification) designs=(MemoryCollisionAuto MemoryCollisionXilinxBlock ScheduledSharedRam ScheduledDistinctRam ScheduledGuardedRams); synthesis=("${designs[@]}");;
   *) echo "Unknown HDL profile" >&2; exit 2;;
 esac
 if [[ ${1:-all} == all ]]; then
   designs+=(ScheduledChecked ScheduledCheckedMemory); synthesis+=(ScheduledChecked ScheduledCheckedMemory)
   designs+=(ScheduledAliasUpdate ScheduledAliasNull); synthesis+=(ScheduledAliasUpdate ScheduledAliasNull)
   designs+=(ScheduledGuardedRams); synthesis+=(ScheduledGuardedRams)
+  designs+=(MemoryCollisionAuto MemoryCollisionXilinxBlock ScheduledSharedRam ScheduledDistinctRam); synthesis+=(MemoryCollisionAuto MemoryCollisionXilinxBlock ScheduledSharedRam ScheduledDistinctRam)
   for type in SByte Byte Int16 UInt16 Char; do
     for mode in Argument Local; do designs+=("Storage$type$mode"); synthesis+=("Storage$type$mode"); done
   done
