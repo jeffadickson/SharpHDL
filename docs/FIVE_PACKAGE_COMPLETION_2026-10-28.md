@@ -18,3 +18,5 @@ Timeout is not treated as an adjudicated kill. Finite HDL replay is not formal p
 Package 1 local gate: five new qualification cases pass (20 combined qualification/refinement/relational tests). Initial fixture mistakes (memory metadata property and depth/initializer mismatch) were corrected before this gate. Mutation replay follows with a larger timeout budget; no new score is claimed yet.
 
 Package 2 local gate: four new relational cases plus eleven existing guard cases pass within the combined 20-test gate. Relations use bounded BigInteger sets, intersect at joins, detach writes and refine current equal locals only. Positive copy guards execute against CLR/Core on repeated starts; overwritten/one-path relations reject.
+
+Package 3 local gate: 18 combined shared-binding, distinct-memory, relation and qualification cases pass with warnings as errors/Coverlet. Explicit RamAliases resolves canonical chains; cycles/scalar targets and conflicting depths/initial contents reject. Shared and distinct CLR objects agree with Core outputs, reference equality and cross-parameter writes. Canonical metadata is inherited unless an alias explicitly supplies matching values.

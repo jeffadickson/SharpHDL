@@ -19,7 +19,7 @@ public static partial class CilCompiler
             throw Error(method,0,"Legacy InitialMemory requires exactly one RAM and cannot be combined with InitialMemories.");
         foreach(int key in (options.MemoryDepths?.Keys??Array.Empty<int>()).Concat(options.InitialMemories?.Keys??Array.Empty<int>()))
             if(!indexes.Contains(key))throw new ArgumentException("Per-RAM options must name a uint[] parameter index.",nameof(options));
-        return indexes.Select((parameter,ordinal)=>
+        var plans=indexes.Select((parameter,ordinal)=>
         {
             int depth=options.MemoryDepths?.ContainsKey(parameter)==true?options.MemoryDepths[parameter]:options.MemoryDepth;
             if(depth<1||depth>65536)throw new ArgumentOutOfRangeException(nameof(options),"RAM depth must be in 1..65536.");
@@ -29,5 +29,6 @@ public static partial class CilCompiler
             int width=1;while((1<<width)<depth)width++;
             return new ScheduledRamPlan(parameter,ordinal+1,depth,width,initial);
         }).ToArray();
+        return ShareScheduledRams(method,options,plans);
     }
 }

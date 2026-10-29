@@ -13,10 +13,10 @@ public static partial class CilCompiler
     private sealed record ScheduledRefinedFrame(ScheduledStackValue[] Stack,ScheduledStackKind[] Locals,ScheduledNullTest?[] Tests,BigInteger[] Relations);
 
     private static Dictionary<int,ScheduledStackKind[]> ValidateRefinedScheduledStack(MethodInfo method,
-        IReadOnlyList<Instruction> instructions,InstructionControlFlow flow)
+        IReadOnlyList<Instruction> instructions,InstructionControlFlow flow,ScheduledRamPlan[] ramPlans)
     {
         var parameters=method.GetParameters();var locals=method.GetMethodBody()!.LocalVariables;
-        var origins=parameters.Select((p,i)=>(p,i)).Where(x=>x.p.ParameterType==typeof(uint[])).Select((x,n)=>(x.i,kind:(ScheduledStackKind)(16<<n))).ToDictionary(x=>x.i,x=>x.kind);
+        var origins=ramPlans.ToDictionary(p=>p.Parameter,p=>(ScheduledStackKind)(16<<(p.Tag-1)));
         if(parameters.Length+locals.Count>1024)throw Error(method,0,"Typed analysis supports at most 1024 arguments and locals combined.");
         foreach(var ins in instructions)
         {

@@ -100,7 +100,7 @@ namespace SharpHDL
             InstructionControlFlow flow;
             try { flow=InstructionControlFlow.Analyze(successors); }
             catch(ArgumentException error) { throw Error(method,0,error.Message); }
-            var typedStacks=ValidateRefinedScheduledStack(method,list,flow);
+            var typedStacks=ValidateRefinedScheduledStack(method,list,flow,ramPlans);
             var heights=typedStacks.ToDictionary(p=>p.Key,p=>p.Value.Length);
             int maxStack=heights.Values.Max();
             var b=new ScheduledMachineBuilder(name);var start=b.Input("start",1);
@@ -136,7 +136,7 @@ namespace SharpHDL
             var one=b.Constant(1,1);var zero=b.Constant(1,0);
             ScheduledValue K32(int value)=>b.Constant(32,unchecked((uint)value));
             var zero32=K32(0);
-            var rams=ramPlans.Select(r=>(Plan:r,Memory:b.Memory(r.Tag==1?"data":"data_arg"+r.Parameter,32,r.Depth,r.Initial))).ToArray();
+            var rams=ramPlans.GroupBy(r=>r.Tag).Select(g=>g.First()).Select(r=>(Plan:r,Memory:b.Memory(r.Tag==1?"data":"data_arg"+r.Parameter,32,r.Depth,r.Initial))).ToArray();
             var readData=hasRam?b.Register("ram_read_data",32):null;
             var multiplier=b.ArithmeticResource("cil_multiplier",HardwareOperation.Multiply,32);
             var live=cycles.Value.LessThan(b.Constant(cw,o.MaxCycles));var expired=live.Not();
