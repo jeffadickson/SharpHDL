@@ -21,4 +21,15 @@ Package 2 local gate: four new relational cases plus eleven existing guard cases
 
 Package 3 local gate: 18 combined shared-binding, distinct-memory, relation and qualification cases pass with warnings as errors/Coverlet. Explicit RamAliases resolves canonical chains; cycles/scalar targets and conflicting depths/initial contents reject. Shared and distinct CLR objects agree with Core outputs, reference equality and cross-parameter writes. Canonical metadata is inherited unless an alias explicitly supplies matching values.
 
-Package 4 local gate: seven native Z3 tests pass. Identity and structurally different NOT/XOR write transitions prove equivalent; changed writes and write-first outputs yield original-Core-replayed SAT witnesses; resource budget one returns real Unknown. Exhaustive independent array reference: 1,024 tiny transition cases including disabled and out-of-range writes. Retained SMT streams separate checks with reset. Admission is one/two RAMs, widths/depths 1..8, at most 64 RAM-state bits; expanded graph/input budgets also apply. Matching initialization is required, but every admitted pre-edge cell is universally symbolic. Registers and whole-machine/multi-edge equivalence remain unsupported.
+Package 4 local gate: seven native Z3 tests pass. Identity and structurally different NOT/XOR write transitions prove equivalent; changed writes and write-first outputs yield original-Core-replayed SAT witnesses; resource budget one returns real Unknown. Exhaustive independent array reference: 512 tiny transition cases including disabled and out-of-range writes. Retained SMT streams separate checks with reset. Admission is one/two RAMs, widths/depths 1..8, at most 64 RAM-state bits; expanded graph/input budgets also apply. Matching initialization is required, but every admitted pre-edge cell is universally symbolic. Registers and whole-machine/multi-edge equivalence remain unsupported.
+
+Qualification follow-up: first larger-budget replay tested 62 helper mutants:
+51 killed, three timed out, eight survived. All three timeouts are address-width
+loop mutations: signed/unsigned right shift cannot reach depth 65536 from 1, and
+removing width++ leaves 2<65536 forever. The timeout behavior is expected from
+these nonterminating mutated loops; it is not counted as an ordinary killed test.
+Two survivors were the private count guard already enforced by public admission;
+that duplicate guard was removed. Six predicate survivors prompted five additional
+positive/negative cases, including a safe asymmetric join that reaches the join
+rather than rejecting earlier. All 31 focused cases pass. Final fact/relation
+mutation replay is separate; scores from different source scopes are not combined.

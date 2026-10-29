@@ -14,7 +14,7 @@ public static partial class CilCompiler
     private static ScheduledRamPlan[] PlanScheduledRams(MethodInfo method,SequentialOptions options)
     {
         var indexes=method.GetParameters().Select((p,i)=>(p,i)).Where(x=>x.p.ParameterType==typeof(uint[])).Select(x=>x.i).ToArray();
-        if(indexes.Length>8)throw Error(method,0,"Scheduled methods support at most eight distinct physical RAM origins.");
+        // Public scheduled admission already limits the immutable binding count.
         if(options.InitialMemory is not null&&(indexes.Length!=1||options.InitialMemories?.Count>0))
             throw Error(method,0,"Legacy InitialMemory requires exactly one RAM and cannot be combined with InitialMemories.");
         foreach(int key in (options.MemoryDepths?.Keys??Array.Empty<int>()).Concat(options.InitialMemories?.Keys??Array.Empty<int>()))
