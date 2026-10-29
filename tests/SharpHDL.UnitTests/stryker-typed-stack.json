@@ -2,9 +2,14 @@
   "stryker-config": {
     "project": "SharpHDL.csproj",
     "additional-timeout": 5000,
-    "reporters": ["json", "progress"],
-    "test-case-filter": "FullyQualifiedName~ScheduledTypedStackTests&FullyQualifiedName!~Generated_out_of_range",
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "test-case-filter": "(FullyQualifiedName~ScheduledTypedStackTests|FullyQualifiedName~ScheduledArrayAliasTests|FullyQualifiedName~ScheduledTypedBoundaryTests)&FullyQualifiedName!~Generated_out_of_range&FullyQualifiedName!~Copied_aliases_share_RAM",
     "concurrency": 1,
-    "mutate": ["**/ScheduledCilStackValidation.cs"]
+    "mutate": [
+      "**/ScheduledCilStackValidation.cs"
+    ]
   }
 }

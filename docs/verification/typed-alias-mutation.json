@@ -1,0 +1,1739 @@
+{
+  "tool": "Stryker.NET 5.0.0",
+  "note": "Separate executions, not an averaged or final whole-profile mutation score. The current full configuration includes strengthened boundary tests but was not rerun in full after the focused replays.",
+  "campaigns": [
+    {
+      "rawPath": "build/verification/typed-alias-mutation/reports/mutation-report.json",
+      "scope": "ScheduledCilStackValidation.cs only; large frontend excluded by instrumenter",
+      "counts": {
+        "Killed": 179,
+        "CompileError": 8,
+        "Survived": 49,
+        "Ignored": 18,
+        "NoCoverage": 9,
+        "Timeout": 3
+      },
+      "name": "initial",
+      "rawSha256": "f5c612d7a5a8b9e864356fe3e45ba6431db1a6d82ae1850447c40d95adec2fdd"
+    },
+    {
+      "rawPath": "build/verification/typed-alias-mutation-replay/reports/mutation-report.json",
+      "scope": "ScheduledCilStackValidation.cs only; large frontend excluded by instrumenter",
+      "counts": {
+        "Survived": 21,
+        "Killed": 65,
+        "CompileError": 8,
+        "Ignored": 172
+      },
+      "name": "boundary-replay",
+      "rawSha256": "aeffc761d3610c9691d26f97c6ecb61e2bd511f8173ae5e65cf869add2dbe1a4"
+    },
+    {
+      "rawPath": "build/verification/typed-alias-mutation-diagnostics/reports/mutation-report.json",
+      "scope": "ScheduledCilStackValidation.cs only; large frontend excluded by instrumenter",
+      "counts": {
+        "Killed": 12,
+        "CompileError": 8,
+        "Ignored": 246
+      },
+      "name": "exact-diagnostics",
+      "rawSha256": "e8115cb4d63e3180506dfccdb725e660fac266858742724543bf247146be27a5"
+    }
+  ],
+  "observations": [
+    {
+      "status": "Killed",
+      "line": 19,
+      "lastCampaign": "initial",
+      "id": "8041",
+      "replacement": "kind!=0||(kind&~(ScheduledStackKind.RamReference|ScheduledStackKind.NullReference))==0"
+    },
+    {
+      "status": "Killed",
+      "line": 19,
+      "lastCampaign": "initial",
+      "id": "8042",
+      "replacement": "kind==0"
+    },
+    {
+      "status": "Killed",
+      "line": 19,
+      "lastCampaign": "initial",
+      "id": "8043",
+      "replacement": "(kind&~(ScheduledStackKind.RamReference|ScheduledStackKind.NullReference))!=0"
+    },
+    {
+      "status": "Killed",
+      "line": 19,
+      "lastCampaign": "initial",
+      "id": "8044",
+      "replacement": "kind|~(ScheduledStackKind.RamReference|ScheduledStackKind.NullReference)"
+    },
+    {
+      "status": "Killed",
+      "line": 19,
+      "lastCampaign": "initial",
+      "id": "8045",
+      "replacement": "(ScheduledStackKind.RamReference|ScheduledStackKind.NullReference)"
+    },
+    {
+      "status": "Killed",
+      "line": 19,
+      "lastCampaign": "initial",
+      "id": "8046",
+      "replacement": "ScheduledStackKind.RamReference&ScheduledStackKind.NullReference"
+    },
+    {
+      "status": "Killed",
+      "line": 26,
+      "lastCampaign": "boundary-replay",
+      "id": "8048",
+      "replacement": "parameters.Length+locals.Count<1024"
+    },
+    {
+      "status": "Killed",
+      "line": 26,
+      "lastCampaign": "boundary-replay",
+      "id": "8049",
+      "replacement": "parameters.Length+locals.Count>=1024"
+    },
+    {
+      "status": "Killed",
+      "line": 26,
+      "lastCampaign": "boundary-replay",
+      "id": "8050",
+      "replacement": "!(parameters.Length+locals.Count>1024)"
+    },
+    {
+      "status": "Killed",
+      "line": 26,
+      "lastCampaign": "initial",
+      "id": "8053",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 26,
+      "lastCampaign": "initial",
+      "id": "8054",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "initial",
+      "id": "8056",
+      "replacement": "op==\"ldarg\"||op==\"ldarg.s\"||op.StartsWith(\"ldarg.\")||op==\"starg\"&&op==\"starg.s\""
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "initial",
+      "id": "8057",
+      "replacement": "!(op==\"ldarg\"||op==\"ldarg.s\"||op.StartsWith(\"ldarg.\")||op==\"starg\"||op==\"starg.s\")"
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "initial",
+      "id": "8058",
+      "replacement": "op==\"ldarg\"||op==\"ldarg.s\"||op.StartsWith(\"ldarg.\")&&op==\"starg\""
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "boundary-replay",
+      "id": "8059",
+      "replacement": "op==\"ldarg\"||op==\"ldarg.s\"&&op.StartsWith(\"ldarg.\")"
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "boundary-replay",
+      "id": "8060",
+      "replacement": "op==\"ldarg\"&&op==\"ldarg.s\""
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "boundary-replay",
+      "id": "8061",
+      "replacement": "op!=\"ldarg\""
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "boundary-replay",
+      "id": "8062",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "boundary-replay",
+      "id": "8063",
+      "replacement": "op!=\"ldarg.s\""
+    },
+    {
+      "review": "Reviewed equivalent selector: StartsWith already recognizes the short opcode form.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8064",
+      "line": 30,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "boundary-replay",
+      "id": "8065",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "initial",
+      "id": "8066",
+      "replacement": "op!=\"starg\""
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "boundary-replay",
+      "id": "8067",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "initial",
+      "id": "8068",
+      "replacement": "op!=\"starg.s\""
+    },
+    {
+      "status": "Killed",
+      "line": 30,
+      "lastCampaign": "boundary-replay",
+      "id": "8069",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 32,
+      "lastCampaign": "initial",
+      "id": "8071",
+      "replacement": "(true?\"ldarg\":\"starg\")"
+    },
+    {
+      "status": "Killed",
+      "line": 32,
+      "lastCampaign": "initial",
+      "id": "8072",
+      "replacement": "(false?\"ldarg\":\"starg\")"
+    },
+    {
+      "status": "Killed",
+      "line": 32,
+      "lastCampaign": "initial",
+      "id": "8073",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 32,
+      "lastCampaign": "initial",
+      "id": "8074",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 32,
+      "lastCampaign": "initial",
+      "id": "8075",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 33,
+      "lastCampaign": "initial",
+      "id": "8076",
+      "replacement": "index<0&&index>=parameters.Length"
+    },
+    {
+      "status": "Killed",
+      "line": 33,
+      "lastCampaign": "initial",
+      "id": "8077",
+      "replacement": "!(index<0||index>=parameters.Length)"
+    },
+    {
+      "status": "Killed",
+      "line": 33,
+      "lastCampaign": "initial",
+      "id": "8078",
+      "replacement": "index>0"
+    },
+    {
+      "status": "Killed",
+      "line": 33,
+      "lastCampaign": "initial",
+      "id": "8079",
+      "replacement": "index<=0"
+    },
+    {
+      "status": "Killed",
+      "line": 33,
+      "lastCampaign": "boundary-replay",
+      "id": "8080",
+      "replacement": "index<parameters.Length"
+    },
+    {
+      "status": "Killed",
+      "line": 33,
+      "lastCampaign": "boundary-replay",
+      "id": "8081",
+      "replacement": "index>parameters.Length"
+    },
+    {
+      "status": "Killed",
+      "line": 33,
+      "lastCampaign": "initial",
+      "id": "8082",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 33,
+      "lastCampaign": "initial",
+      "id": "8083",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 34,
+      "lastCampaign": "initial",
+      "id": "8084",
+      "replacement": "op.StartsWith(\"starg\")||parameters[index].ParameterType==typeof(uint[])"
+    },
+    {
+      "status": "Killed",
+      "line": 34,
+      "lastCampaign": "initial",
+      "id": "8085",
+      "replacement": "!(op.StartsWith(\"starg\")&&parameters[index].ParameterType==typeof(uint[]))"
+    },
+    {
+      "status": "Killed",
+      "line": 34,
+      "lastCampaign": "initial",
+      "id": "8086",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 34,
+      "lastCampaign": "initial",
+      "id": "8087",
+      "replacement": "parameters[index].ParameterType!=typeof(uint[])"
+    },
+    {
+      "status": "Killed",
+      "line": 35,
+      "lastCampaign": "exact-diagnostics",
+      "id": "8088",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 35,
+      "lastCampaign": "exact-diagnostics",
+      "id": "8089",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "initial",
+      "id": "8090",
+      "replacement": "op==\"ldloc\"||op==\"ldloc.s\"||op.StartsWith(\"ldloc.\")||op==\"stloc\"||op==\"stloc.s\"&&op.StartsWith(\"stloc.\")"
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "initial",
+      "id": "8091",
+      "replacement": "!(op==\"ldloc\"||op==\"ldloc.s\"||op.StartsWith(\"ldloc.\")||op==\"stloc\"||op==\"stloc.s\"||op.StartsWith(\"stloc.\"))"
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "initial",
+      "id": "8092",
+      "replacement": "op==\"ldloc\"||op==\"ldloc.s\"||op.StartsWith(\"ldloc.\")||op==\"stloc\"&&op==\"stloc.s\""
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "initial",
+      "id": "8093",
+      "replacement": "op==\"ldloc\"||op==\"ldloc.s\"||op.StartsWith(\"ldloc.\")&&op==\"stloc\""
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "boundary-replay",
+      "id": "8094",
+      "replacement": "op==\"ldloc\"||op==\"ldloc.s\"&&op.StartsWith(\"ldloc.\")"
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "boundary-replay",
+      "id": "8095",
+      "replacement": "op==\"ldloc\"&&op==\"ldloc.s\""
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "boundary-replay",
+      "id": "8096",
+      "replacement": "op!=\"ldloc\""
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "boundary-replay",
+      "id": "8097",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "boundary-replay",
+      "id": "8098",
+      "replacement": "op!=\"ldloc.s\""
+    },
+    {
+      "review": "Reviewed equivalent selector: StartsWith already recognizes the short opcode form.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8099",
+      "line": 37,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "boundary-replay",
+      "id": "8100",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "initial",
+      "id": "8101",
+      "replacement": "op!=\"stloc\""
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "boundary-replay",
+      "id": "8102",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "initial",
+      "id": "8103",
+      "replacement": "op!=\"stloc.s\""
+    },
+    {
+      "review": "Reviewed equivalent selector: StartsWith already recognizes the short opcode form.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8104",
+      "line": 37,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 37,
+      "lastCampaign": "initial",
+      "id": "8105",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 39,
+      "lastCampaign": "boundary-replay",
+      "id": "8107",
+      "replacement": "(true?\"ldloc\":\"stloc\")"
+    },
+    {
+      "status": "Killed",
+      "line": 39,
+      "lastCampaign": "boundary-replay",
+      "id": "8108",
+      "replacement": "(false?\"ldloc\":\"stloc\")"
+    },
+    {
+      "status": "Killed",
+      "line": 39,
+      "lastCampaign": "boundary-replay",
+      "id": "8109",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 39,
+      "lastCampaign": "boundary-replay",
+      "id": "8110",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 39,
+      "lastCampaign": "boundary-replay",
+      "id": "8111",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 40,
+      "lastCampaign": "initial",
+      "id": "8112",
+      "replacement": "index<0&&index>=locals.Count"
+    },
+    {
+      "status": "Killed",
+      "line": 40,
+      "lastCampaign": "initial",
+      "id": "8113",
+      "replacement": "!(index<0||index>=locals.Count)"
+    },
+    {
+      "status": "Killed",
+      "line": 40,
+      "lastCampaign": "boundary-replay",
+      "id": "8114",
+      "replacement": "index>0"
+    },
+    {
+      "status": "Killed",
+      "line": 40,
+      "lastCampaign": "boundary-replay",
+      "id": "8115",
+      "replacement": "index<=0"
+    },
+    {
+      "status": "Killed",
+      "line": 40,
+      "lastCampaign": "boundary-replay",
+      "id": "8117",
+      "replacement": "index>locals.Count"
+    },
+    {
+      "status": "Killed",
+      "line": 40,
+      "lastCampaign": "initial",
+      "id": "8119",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 40,
+      "lastCampaign": "initial",
+      "id": "8120",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 46,
+      "lastCampaign": "initial",
+      "id": "8121",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 46,
+      "lastCampaign": "boundary-replay",
+      "id": "8122",
+      "replacement": "(true?ScheduledStackKind.NullReference:ScheduledStackKind.Integer32)"
+    },
+    {
+      "status": "Killed",
+      "line": 46,
+      "lastCampaign": "boundary-replay",
+      "id": "8123",
+      "replacement": "(false?ScheduledStackKind.NullReference:ScheduledStackKind.Integer32)"
+    },
+    {
+      "status": "Killed",
+      "line": 46,
+      "lastCampaign": "boundary-replay",
+      "id": "8124",
+      "replacement": "l.LocalType!=typeof(uint[])"
+    },
+    {
+      "status": "Killed",
+      "line": 51,
+      "lastCampaign": "initial",
+      "id": "8128",
+      "replacement": "!(entries.ContainsKey(offset))"
+    },
+    {
+      "status": "Killed",
+      "line": 54,
+      "lastCampaign": "initial",
+      "id": "8130",
+      "replacement": "previous.Stack.Length==incoming.Length"
+    },
+    {
+      "status": "Killed",
+      "line": 54,
+      "lastCampaign": "boundary-replay",
+      "id": "8131",
+      "replacement": ";"
+    },
+    {
+      "review": "Remaining diagnostic-text assertion gap; not classified as equivalent.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8132",
+      "line": 54,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "review": "Reviewed equivalent: initializer value overwritten before use.",
+      "replacement": "true",
+      "status": "Survived",
+      "id": "8133",
+      "line": 55,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 58,
+      "lastCampaign": "initial",
+      "id": "8135",
+      "replacement": "left!=right"
+    },
+    {
+      "status": "Killed",
+      "line": 59,
+      "lastCampaign": "initial",
+      "id": "8136",
+      "replacement": "!IsScheduledReference(left)&&!IsScheduledReference(right)"
+    },
+    {
+      "status": "Killed",
+      "line": 59,
+      "lastCampaign": "initial",
+      "id": "8137",
+      "replacement": "!(!IsScheduledReference(left)||!IsScheduledReference(right))"
+    },
+    {
+      "status": "Killed",
+      "line": 59,
+      "lastCampaign": "initial",
+      "id": "8138",
+      "replacement": "IsScheduledReference(left)"
+    },
+    {
+      "status": "Killed",
+      "line": 59,
+      "lastCampaign": "initial",
+      "id": "8139",
+      "replacement": "IsScheduledReference(right)"
+    },
+    {
+      "status": "Killed",
+      "line": 59,
+      "lastCampaign": "initial",
+      "id": "8140",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 59,
+      "lastCampaign": "initial",
+      "id": "8141",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 60,
+      "lastCampaign": "initial",
+      "id": "8142",
+      "replacement": "left&right"
+    },
+    {
+      "status": "Killed",
+      "line": 64,
+      "lastCampaign": "initial",
+      "id": "8143",
+      "replacement": "!previous.Stack.SequenceEqual(incoming)&&!previous.Locals.SequenceEqual(incomingLocals)"
+    },
+    {
+      "status": "Timeout",
+      "line": 64,
+      "lastCampaign": "initial",
+      "id": "8144",
+      "replacement": "previous.Stack.SequenceEqual(incoming)"
+    },
+    {
+      "status": "Killed",
+      "line": 64,
+      "lastCampaign": "initial",
+      "id": "8145",
+      "replacement": "previous.Locals.SequenceEqual(incomingLocals)"
+    },
+    {
+      "status": "Killed",
+      "line": 65,
+      "lastCampaign": "initial",
+      "id": "8146",
+      "replacement": "changed"
+    },
+    {
+      "status": "Timeout",
+      "line": 65,
+      "lastCampaign": "initial",
+      "id": "8147",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "boundary-replay",
+      "id": "8148",
+      "replacement": "incoming.Length<count||incoming.Length-count+PushCount(ins)>32&&op==\"ret\"&&incoming.Length!=1"
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "boundary-replay",
+      "id": "8149",
+      "replacement": "!(incoming.Length<count||incoming.Length-count+PushCount(ins)>32||op==\"ret\"&&incoming.Length!=1)"
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "boundary-replay",
+      "id": "8150",
+      "replacement": "incoming.Length<count&&incoming.Length-count+PushCount(ins)>32"
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "boundary-replay",
+      "id": "8151",
+      "replacement": "incoming.Length>count"
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "boundary-replay",
+      "id": "8152",
+      "replacement": "incoming.Length<=count"
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "exact-diagnostics",
+      "id": "8153",
+      "replacement": "incoming.Length-count+PushCount(ins)<32"
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "exact-diagnostics",
+      "id": "8154",
+      "replacement": "incoming.Length-count+PushCount(ins)>=32"
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "exact-diagnostics",
+      "id": "8155",
+      "replacement": "incoming.Length-count-PushCount(ins)"
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "exact-diagnostics",
+      "id": "8156",
+      "replacement": "incoming.Length+count"
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "boundary-replay",
+      "id": "8157",
+      "replacement": "op==\"ret\"||incoming.Length!=1"
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "boundary-replay",
+      "id": "8158",
+      "replacement": "op!=\"ret\""
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "boundary-replay",
+      "id": "8159",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 68,
+      "lastCampaign": "boundary-replay",
+      "id": "8160",
+      "replacement": "incoming.Length==1"
+    },
+    {
+      "status": "Killed",
+      "line": 69,
+      "lastCampaign": "boundary-replay",
+      "id": "8161",
+      "replacement": ";"
+    },
+    {
+      "review": "Remaining diagnostic-text assertion gap; not classified as equivalent.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8162",
+      "line": 69,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 75,
+      "lastCampaign": "initial",
+      "id": "8164",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 79,
+      "lastCampaign": "initial",
+      "id": "8168",
+      "replacement": "actual==expected"
+    },
+    {
+      "status": "Killed",
+      "line": 79,
+      "lastCampaign": "initial",
+      "id": "8169",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 79,
+      "lastCampaign": "initial",
+      "id": "8170",
+      "replacement": "$\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 81,
+      "lastCampaign": "initial",
+      "id": "8171",
+      "replacement": "op!=\"dup\""
+    },
+    {
+      "status": "Killed",
+      "line": 81,
+      "lastCampaign": "initial",
+      "id": "8172",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 81,
+      "lastCampaign": "initial",
+      "id": "8173",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 82,
+      "lastCampaign": "initial",
+      "id": "8174",
+      "replacement": "op!=\"pop\""
+    },
+    {
+      "review": "Remaining positive-variant test gap: reference pop, signed element-load alias, or native conv.i4 normalization. Production implementation retained; no mutant kill claimed.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8175",
+      "line": 82,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 82,
+      "lastCampaign": "initial",
+      "id": "8176",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 83,
+      "lastCampaign": "initial",
+      "id": "8177",
+      "replacement": "op==\"ldarg\"||op==\"ldarg.s\"&&op.StartsWith(\"ldarg.\")"
+    },
+    {
+      "status": "Killed",
+      "line": 83,
+      "lastCampaign": "initial",
+      "id": "8178",
+      "replacement": "!(op==\"ldarg\"||op==\"ldarg.s\"||op.StartsWith(\"ldarg.\"))"
+    },
+    {
+      "status": "Killed",
+      "line": 83,
+      "lastCampaign": "boundary-replay",
+      "id": "8179",
+      "replacement": "op==\"ldarg\"&&op==\"ldarg.s\""
+    },
+    {
+      "status": "Killed",
+      "line": 83,
+      "lastCampaign": "boundary-replay",
+      "id": "8180",
+      "replacement": "op!=\"ldarg\""
+    },
+    {
+      "status": "Killed",
+      "line": 83,
+      "lastCampaign": "boundary-replay",
+      "id": "8181",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 83,
+      "lastCampaign": "boundary-replay",
+      "id": "8182",
+      "replacement": "op!=\"ldarg.s\""
+    },
+    {
+      "review": "Reviewed equivalent selector: StartsWith already recognizes the short opcode form.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8183",
+      "line": 83,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 83,
+      "lastCampaign": "initial",
+      "id": "8184",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 84,
+      "lastCampaign": "initial",
+      "id": "8185",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 84,
+      "lastCampaign": "initial",
+      "id": "8186",
+      "replacement": "(true?ScheduledStackKind.RamReference:ScheduledStackKind.Integer32)"
+    },
+    {
+      "status": "Killed",
+      "line": 84,
+      "lastCampaign": "initial",
+      "id": "8187",
+      "replacement": "(false?ScheduledStackKind.RamReference:ScheduledStackKind.Integer32)"
+    },
+    {
+      "status": "Killed",
+      "line": 84,
+      "lastCampaign": "initial",
+      "id": "8188",
+      "replacement": "parameters[VarIndex(ins,\"ldarg\")].ParameterType!=typeof(uint[])"
+    },
+    {
+      "status": "Killed",
+      "line": 84,
+      "lastCampaign": "initial",
+      "id": "8189",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 85,
+      "lastCampaign": "initial",
+      "id": "8190",
+      "replacement": "op!=\"ldnull\""
+    },
+    {
+      "status": "Killed",
+      "line": 85,
+      "lastCampaign": "initial",
+      "id": "8191",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 85,
+      "lastCampaign": "initial",
+      "id": "8192",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 86,
+      "lastCampaign": "initial",
+      "id": "8193",
+      "replacement": "op==\"ldloc\"||op==\"ldloc.s\"&&op.StartsWith(\"ldloc.\")"
+    },
+    {
+      "status": "Killed",
+      "line": 86,
+      "lastCampaign": "initial",
+      "id": "8194",
+      "replacement": "!(op==\"ldloc\"||op==\"ldloc.s\"||op.StartsWith(\"ldloc.\"))"
+    },
+    {
+      "status": "Killed",
+      "line": 86,
+      "lastCampaign": "boundary-replay",
+      "id": "8195",
+      "replacement": "op==\"ldloc\"&&op==\"ldloc.s\""
+    },
+    {
+      "status": "Killed",
+      "line": 86,
+      "lastCampaign": "boundary-replay",
+      "id": "8196",
+      "replacement": "op!=\"ldloc\""
+    },
+    {
+      "status": "Killed",
+      "line": 86,
+      "lastCampaign": "boundary-replay",
+      "id": "8197",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 86,
+      "lastCampaign": "boundary-replay",
+      "id": "8198",
+      "replacement": "op!=\"ldloc.s\""
+    },
+    {
+      "review": "Reviewed equivalent selector: StartsWith already recognizes the short opcode form.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8199",
+      "line": 86,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 86,
+      "lastCampaign": "initial",
+      "id": "8200",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 86,
+      "lastCampaign": "initial",
+      "id": "8201",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 86,
+      "lastCampaign": "initial",
+      "id": "8202",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 87,
+      "lastCampaign": "initial",
+      "id": "8203",
+      "replacement": "op==\"stloc\"||op==\"stloc.s\"&&op.StartsWith(\"stloc.\")"
+    },
+    {
+      "status": "Killed",
+      "line": 87,
+      "lastCampaign": "initial",
+      "id": "8204",
+      "replacement": "!(op==\"stloc\"||op==\"stloc.s\"||op.StartsWith(\"stloc.\"))"
+    },
+    {
+      "status": "Killed",
+      "line": 87,
+      "lastCampaign": "boundary-replay",
+      "id": "8205",
+      "replacement": "op==\"stloc\"&&op==\"stloc.s\""
+    },
+    {
+      "status": "Killed",
+      "line": 87,
+      "lastCampaign": "boundary-replay",
+      "id": "8206",
+      "replacement": "op!=\"stloc\""
+    },
+    {
+      "status": "Killed",
+      "line": 87,
+      "lastCampaign": "boundary-replay",
+      "id": "8207",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 87,
+      "lastCampaign": "boundary-replay",
+      "id": "8208",
+      "replacement": "op!=\"stloc.s\""
+    },
+    {
+      "review": "Reviewed equivalent selector: StartsWith already recognizes the short opcode form.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8209",
+      "line": 87,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 87,
+      "lastCampaign": "initial",
+      "id": "8210",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 89,
+      "lastCampaign": "initial",
+      "id": "8212",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 90,
+      "lastCampaign": "initial",
+      "id": "8213",
+      "replacement": "locals[index].LocalType!=typeof(uint[])"
+    },
+    {
+      "status": "Killed",
+      "line": 92,
+      "lastCampaign": "initial",
+      "id": "8215",
+      "replacement": "IsScheduledReference(value)"
+    },
+    {
+      "status": "Killed",
+      "line": 92,
+      "lastCampaign": "exact-diagnostics",
+      "id": "8216",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 92,
+      "lastCampaign": "exact-diagnostics",
+      "id": "8217",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 95,
+      "lastCampaign": "exact-diagnostics",
+      "id": "8218",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 97,
+      "lastCampaign": "initial",
+      "id": "8219",
+      "replacement": "op.StartsWith(\"brtrue\")&&op.StartsWith(\"brfalse\")"
+    },
+    {
+      "status": "Killed",
+      "line": 97,
+      "lastCampaign": "initial",
+      "id": "8220",
+      "replacement": "!(op.StartsWith(\"brtrue\")||op.StartsWith(\"brfalse\"))"
+    },
+    {
+      "status": "Killed",
+      "line": 97,
+      "lastCampaign": "initial",
+      "id": "8221",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 97,
+      "lastCampaign": "initial",
+      "id": "8222",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 99,
+      "lastCampaign": "initial",
+      "id": "8224",
+      "replacement": "value!=ScheduledStackKind.Integer32||!IsScheduledReference(value)"
+    },
+    {
+      "status": "Killed",
+      "line": 99,
+      "lastCampaign": "initial",
+      "id": "8225",
+      "replacement": "!(value!=ScheduledStackKind.Integer32&&!IsScheduledReference(value))"
+    },
+    {
+      "status": "Killed",
+      "line": 99,
+      "lastCampaign": "initial",
+      "id": "8226",
+      "replacement": "value==ScheduledStackKind.Integer32"
+    },
+    {
+      "status": "Killed",
+      "line": 99,
+      "lastCampaign": "initial",
+      "id": "8227",
+      "replacement": "IsScheduledReference(value)"
+    },
+    {
+      "status": "Killed",
+      "line": 100,
+      "lastCampaign": "boundary-replay",
+      "id": "8228",
+      "replacement": ";"
+    },
+    {
+      "review": "Remaining diagnostic-text assertion gap; not classified as equivalent.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8229",
+      "line": 100,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 102,
+      "lastCampaign": "initial",
+      "id": "8230",
+      "replacement": "op==\"ceq\"||op.StartsWith(\"beq\")||op.StartsWith(\"bne\")&&op==\"cgt.un\""
+    },
+    {
+      "status": "Killed",
+      "line": 102,
+      "lastCampaign": "initial",
+      "id": "8231",
+      "replacement": "!(op==\"ceq\"||op.StartsWith(\"beq\")||op.StartsWith(\"bne\")||op==\"cgt.un\")"
+    },
+    {
+      "status": "Killed",
+      "line": 102,
+      "lastCampaign": "initial",
+      "id": "8232",
+      "replacement": "op==\"ceq\"||op.StartsWith(\"beq\")&&op.StartsWith(\"bne\")"
+    },
+    {
+      "status": "Killed",
+      "line": 102,
+      "lastCampaign": "initial",
+      "id": "8233",
+      "replacement": "op==\"ceq\"&&op.StartsWith(\"beq\")"
+    },
+    {
+      "status": "Killed",
+      "line": 102,
+      "lastCampaign": "initial",
+      "id": "8234",
+      "replacement": "op!=\"ceq\""
+    },
+    {
+      "status": "Killed",
+      "line": 102,
+      "lastCampaign": "initial",
+      "id": "8235",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 102,
+      "lastCampaign": "initial",
+      "id": "8236",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 102,
+      "lastCampaign": "initial",
+      "id": "8237",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 102,
+      "lastCampaign": "initial",
+      "id": "8238",
+      "replacement": "op!=\"cgt.un\""
+    },
+    {
+      "status": "Killed",
+      "line": 102,
+      "lastCampaign": "initial",
+      "id": "8239",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 105,
+      "lastCampaign": "boundary-replay",
+      "id": "8241",
+      "replacement": "left==ScheduledStackKind.Integer32||right==ScheduledStackKind.Integer32"
+    },
+    {
+      "status": "Killed",
+      "line": 105,
+      "lastCampaign": "boundary-replay",
+      "id": "8242",
+      "replacement": "left!=ScheduledStackKind.Integer32"
+    },
+    {
+      "status": "Killed",
+      "line": 105,
+      "lastCampaign": "boundary-replay",
+      "id": "8243",
+      "replacement": "right!=ScheduledStackKind.Integer32"
+    },
+    {
+      "status": "Killed",
+      "line": 106,
+      "lastCampaign": "boundary-replay",
+      "id": "8244",
+      "replacement": "IsScheduledReference(left)||IsScheduledReference(right)"
+    },
+    {
+      "status": "Killed",
+      "line": 107,
+      "lastCampaign": "initial",
+      "id": "8245",
+      "replacement": "!integers||(!references||op==\"cgt.un\"&&left!=ScheduledStackKind.NullReference&&right!=ScheduledStackKind.NullReference)"
+    },
+    {
+      "status": "Killed",
+      "line": 107,
+      "lastCampaign": "initial",
+      "id": "8246",
+      "replacement": "!(!integers&&(!references||op==\"cgt.un\"&&left!=ScheduledStackKind.NullReference&&right!=ScheduledStackKind.NullReference))"
+    },
+    {
+      "status": "Killed",
+      "line": 107,
+      "lastCampaign": "initial",
+      "id": "8247",
+      "replacement": "integers"
+    },
+    {
+      "status": "Killed",
+      "line": 107,
+      "lastCampaign": "initial",
+      "id": "8248",
+      "replacement": "!references&&op==\"cgt.un\"&&left!=ScheduledStackKind.NullReference&&right!=ScheduledStackKind.NullReference"
+    },
+    {
+      "status": "Killed",
+      "line": 107,
+      "lastCampaign": "initial",
+      "id": "8249",
+      "replacement": "references"
+    },
+    {
+      "status": "Killed",
+      "line": 107,
+      "lastCampaign": "initial",
+      "id": "8250",
+      "replacement": "op==\"cgt.un\"&&left!=ScheduledStackKind.NullReference||right!=ScheduledStackKind.NullReference"
+    },
+    {
+      "status": "Killed",
+      "line": 107,
+      "lastCampaign": "initial",
+      "id": "8251",
+      "replacement": "op==\"cgt.un\"||left!=ScheduledStackKind.NullReference"
+    },
+    {
+      "status": "Killed",
+      "line": 107,
+      "lastCampaign": "initial",
+      "id": "8252",
+      "replacement": "op!=\"cgt.un\""
+    },
+    {
+      "status": "Killed",
+      "line": 107,
+      "lastCampaign": "initial",
+      "id": "8253",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 107,
+      "lastCampaign": "initial",
+      "id": "8254",
+      "replacement": "left==ScheduledStackKind.NullReference"
+    },
+    {
+      "status": "Killed",
+      "line": 107,
+      "lastCampaign": "initial",
+      "id": "8255",
+      "replacement": "right==ScheduledStackKind.NullReference"
+    },
+    {
+      "status": "Killed",
+      "line": 108,
+      "lastCampaign": "initial",
+      "id": "8256",
+      "replacement": ";"
+    },
+    {
+      "review": "Remaining diagnostic-text assertion gap; not classified as equivalent.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8257",
+      "line": 108,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 109,
+      "lastCampaign": "initial",
+      "id": "8258",
+      "replacement": "op==\"ceq\"&&op==\"cgt.un\""
+    },
+    {
+      "status": "Killed",
+      "line": 109,
+      "lastCampaign": "initial",
+      "id": "8259",
+      "replacement": "!(op==\"ceq\"||op==\"cgt.un\")"
+    },
+    {
+      "status": "Killed",
+      "line": 109,
+      "lastCampaign": "initial",
+      "id": "8260",
+      "replacement": "op!=\"ceq\""
+    },
+    {
+      "status": "Killed",
+      "line": 109,
+      "lastCampaign": "initial",
+      "id": "8261",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 109,
+      "lastCampaign": "initial",
+      "id": "8262",
+      "replacement": "op!=\"cgt.un\""
+    },
+    {
+      "status": "Killed",
+      "line": 109,
+      "lastCampaign": "initial",
+      "id": "8263",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 109,
+      "lastCampaign": "initial",
+      "id": "8264",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 111,
+      "lastCampaign": "initial",
+      "id": "8265",
+      "replacement": "op!=\"ldlen\""
+    },
+    {
+      "status": "Killed",
+      "line": 111,
+      "lastCampaign": "initial",
+      "id": "8266",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 111,
+      "lastCampaign": "initial",
+      "id": "8268",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 111,
+      "lastCampaign": "initial",
+      "id": "8269",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 112,
+      "lastCampaign": "initial",
+      "id": "8270",
+      "replacement": "op==\"ldelem.i4\"&&op==\"ldelem.u4\""
+    },
+    {
+      "status": "Killed",
+      "line": 112,
+      "lastCampaign": "initial",
+      "id": "8271",
+      "replacement": "!(op==\"ldelem.i4\"||op==\"ldelem.u4\")"
+    },
+    {
+      "status": "Killed",
+      "line": 112,
+      "lastCampaign": "initial",
+      "id": "8272",
+      "replacement": "op!=\"ldelem.i4\""
+    },
+    {
+      "review": "Remaining positive-variant test gap: reference pop, signed element-load alias, or native conv.i4 normalization. Production implementation retained; no mutant kill claimed.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8273",
+      "line": 112,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 112,
+      "lastCampaign": "initial",
+      "id": "8274",
+      "replacement": "op!=\"ldelem.u4\""
+    },
+    {
+      "status": "Killed",
+      "line": 112,
+      "lastCampaign": "initial",
+      "id": "8275",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 113,
+      "lastCampaign": "initial",
+      "id": "8277",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 113,
+      "lastCampaign": "initial",
+      "id": "8278",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 113,
+      "lastCampaign": "initial",
+      "id": "8279",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 114,
+      "lastCampaign": "initial",
+      "id": "8280",
+      "replacement": "op!=\"stelem.i4\""
+    },
+    {
+      "status": "Killed",
+      "line": 114,
+      "lastCampaign": "boundary-replay",
+      "id": "8281",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 115,
+      "lastCampaign": "exact-diagnostics",
+      "id": "8283",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 115,
+      "lastCampaign": "exact-diagnostics",
+      "id": "8284",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 115,
+      "lastCampaign": "exact-diagnostics",
+      "id": "8285",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 116,
+      "lastCampaign": "initial",
+      "id": "8286",
+      "replacement": "op==\"conv.i4\"&&op==\"conv.u4\""
+    },
+    {
+      "status": "Killed",
+      "line": 116,
+      "lastCampaign": "initial",
+      "id": "8287",
+      "replacement": "!(op==\"conv.i4\"||op==\"conv.u4\")"
+    },
+    {
+      "status": "Killed",
+      "line": 116,
+      "lastCampaign": "initial",
+      "id": "8288",
+      "replacement": "op!=\"conv.i4\""
+    },
+    {
+      "review": "Remaining positive-variant test gap: reference pop, signed element-load alias, or native conv.i4 normalization. Production implementation retained; no mutant kill claimed.",
+      "replacement": "\"\"",
+      "status": "Survived",
+      "id": "8289",
+      "line": 116,
+      "lastCampaign": "boundary-replay"
+    },
+    {
+      "status": "Killed",
+      "line": 116,
+      "lastCampaign": "initial",
+      "id": "8290",
+      "replacement": "op!=\"conv.u4\""
+    },
+    {
+      "status": "Killed",
+      "line": 116,
+      "lastCampaign": "initial",
+      "id": "8291",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 118,
+      "lastCampaign": "initial",
+      "id": "8293",
+      "replacement": "!(IsScheduledReference(Pop()))"
+    },
+    {
+      "status": "Killed",
+      "line": 118,
+      "lastCampaign": "initial",
+      "id": "8294",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 118,
+      "lastCampaign": "initial",
+      "id": "8295",
+      "replacement": "\"\""
+    },
+    {
+      "status": "Killed",
+      "line": 119,
+      "lastCampaign": "initial",
+      "id": "8296",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 123,
+      "lastCampaign": "initial",
+      "id": "8298",
+      "replacement": "i>count"
+    },
+    {
+      "status": "Killed",
+      "line": 123,
+      "lastCampaign": "initial",
+      "id": "8299",
+      "replacement": "i<=count"
+    },
+    {
+      "status": "Killed",
+      "line": 123,
+      "lastCampaign": "initial",
+      "id": "8300",
+      "replacement": "i--"
+    },
+    {
+      "status": "Killed",
+      "line": 123,
+      "lastCampaign": "initial",
+      "id": "8301",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 124,
+      "lastCampaign": "initial",
+      "id": "8302",
+      "replacement": "i>PushCount(ins)"
+    },
+    {
+      "status": "Killed",
+      "line": 124,
+      "lastCampaign": "initial",
+      "id": "8303",
+      "replacement": "i<=PushCount(ins)"
+    },
+    {
+      "status": "Timeout",
+      "line": 124,
+      "lastCampaign": "initial",
+      "id": "8304",
+      "replacement": "i--"
+    },
+    {
+      "status": "Killed",
+      "line": 124,
+      "lastCampaign": "initial",
+      "id": "8305",
+      "replacement": ";"
+    },
+    {
+      "status": "Killed",
+      "line": 126,
+      "lastCampaign": "initial",
+      "id": "8306",
+      "replacement": ";"
+    }
+  ]
+}

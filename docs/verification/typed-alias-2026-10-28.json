@@ -1,0 +1,149 @@
+{
+  "baseline": "4fcde8f06c72f0954ed064eb3fcdef8d93f73ad4",
+  "typedStackCommit": "1776884",
+  "date": "2026-10-28",
+  "ci": "disabled",
+  "nativeAot": "deferred",
+  "windows": {
+    "fast": 373,
+    "native": 62,
+    "documentationTests": 4
+  },
+  "linux": {
+    "fast": 373,
+    "native": 62,
+    "nativeLaunchCorrection": "Corrected default-cache command passed 62 tests with exit code 0. Artifacts: /tmp/sharphdl-verification-tests-84823F. Initial stale temporary-path launch exited 1 before testing."
+  },
+  "coverage": [
+    {
+      "type": "SharpHDL.CilCompiler",
+      "file": "src/SharpHDL/ScheduledCilStackValidation.cs",
+      "lineRate": "1",
+      "branchRate": "0.9797"
+    },
+    {
+      "type": "SharpHDL.CilCompiler/ScheduledStackFrame",
+      "file": "src/SharpHDL/ScheduledCilStackValidation.cs",
+      "lineRate": "1",
+      "branchRate": "1"
+    },
+    {
+      "type": "SharpHDL.CilCompiler/<>c__DisplayClass46_1",
+      "file": "src/SharpHDL/ScheduledCilStackValidation.cs",
+      "lineRate": "1",
+      "branchRate": "1"
+    },
+    {
+      "type": "SharpHDL.CilCompiler",
+      "file": "src/SharpHDL/ScheduledSequentialCil.cs",
+      "lineRate": "0.9652",
+      "branchRate": "0.9085"
+    },
+    {
+      "type": "SharpHDL.CilCompiler/<>c__DisplayClass47_0",
+      "file": "src/SharpHDL/ScheduledSequentialCil.cs",
+      "lineRate": "1",
+      "branchRate": "1"
+    },
+    {
+      "type": "SharpHDL.ScheduledCilCompilation",
+      "file": "src/SharpHDL/ScheduledSequentialCil.cs",
+      "lineRate": "1",
+      "branchRate": "1"
+    }
+  ],
+  "randomized": {
+    "aliasCopySamples": 60,
+    "replay": "1145655947,296144285",
+    "framework": "FsCheck 3.3.3",
+    "invalidIndexSamples": 100
+  },
+  "fuzz": {
+    "savedCrashes": 0,
+    "executions": 574,
+    "seconds": 60,
+    "savedHangs": 0,
+    "artifacts": "/tmp/sharphdl-fuzz-9qXbmV",
+    "seed": 261026,
+    "engine": "SharpFuzz 2.2.0 / AFL++ 4.09c",
+    "corpusEntries": 72
+  },
+  "hdl": {
+    "edges": {
+      "ScheduledAliasNull": 73,
+      "ScheduledAliasUpdate": 454
+    },
+    "tools": [
+      "Icarus 12.0",
+      "Verilator 5.020",
+      "Yosys 0.33"
+    ],
+    "manifests": 10,
+    "artifacts": "/tmp/sharphdl-rtl-yRDqm1",
+    "designs": 2
+  },
+  "mutation": {
+    "evidence": "typed-alias-mutation.json",
+    "initial": {
+      "score": 75.83,
+      "timeout": 3,
+      "uncovered": 9,
+      "killed": 179,
+      "survived": 49
+    },
+    "diagnosticReplay": {
+      "score": 100,
+      "killed": 12,
+      "survived": 0
+    },
+    "boundaryReplay": {
+      "score": 75.58,
+      "timeout": 0,
+      "killed": 65,
+      "survived": 21
+    },
+    "note": "Separate scopes, no combined score. Per-ID observations: 223 killed, 3 timed out, 14 survived; seven reviewed equivalent, seven remaining test gaps. Full strengthened profile configured for future rerun."
+  },
+  "documentation": "Passed final full StrictDoc/Sphinx/compiler-XML build: 50 requirements, 34 mapped, 16 unmapped, 7 API assemblies, 12 engineering pages; workspace sibling typed-alias-docs-final-20261028.",
+  "sources": [
+    {
+      "sha256": "5b89fa800cc58f0bccec9e712f9a47dbd55a553c597e7b53ba17257aebe4ebeb",
+      "file": "src/SharpHDL/ScheduledCilStackValidation.cs"
+    },
+    {
+      "sha256": "ca906db0e7503b9f46debd6cb8c8d9257e1ffd088c1f2fd013e20e3db1eff52f",
+      "file": "src/SharpHDL/ScheduledSequentialCil.cs"
+    },
+    {
+      "sha256": "cae2e0369270b760cf47e3d718d448fe7de64c6368fe0d745f27f30e39d8f058",
+      "file": "tests/Shared/TypedCilFixture.cs"
+    },
+    {
+      "sha256": "a48be4b3cf5763876bf7ce7cd7b8f21a9946f779386e918b783d26dcb472af8b",
+      "file": "tests/SharpHDL.UnitTests/ScheduledTypedStackTests.cs"
+    },
+    {
+      "sha256": "927f9d19ef2a09636eb3f3975eec72823c64f66e70bc56a46af05114393a86ab",
+      "file": "tests/SharpHDL.UnitTests/ScheduledArrayAliasTests.cs"
+    },
+    {
+      "sha256": "5f419afc5c90ff03e665c49766cbeaffcd24974401205d05da63f96e8ca9380b",
+      "file": "examples/ScheduledArrayAliases.cs"
+    },
+    {
+      "sha256": "10daef61364d15e7bbc627554c65300d52c77ba3aaaeb7731855ca1b316d46a5",
+      "file": "tools/SharpHDL.ScheduledFuzz/TypedAliasFuzz.cs"
+    },
+    {
+      "file": "tests/SharpHDL.UnitTests/ScheduledTypedBoundaryTests.cs",
+      "sha256": "d5b3cec56f7d65d934f70d7429b952b0f4f225227c59fbfb4792cf371a9761d6"
+    }
+  ],
+  "toolVersions": {
+    "windowsSdk": "10.0.403",
+    "yosys": "Yosys 0.33 (git sha1 2584903a060)",
+    "icarus": "Icarus Verilog version 12.0 (stable) ()",
+    "linuxSdk": "10.0.402",
+    "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)"
+  }
+}

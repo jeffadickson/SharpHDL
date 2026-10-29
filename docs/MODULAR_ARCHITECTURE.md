@@ -427,6 +427,13 @@ Supported: static Int32/UInt32/Boolean and byte/sbyte/short/ushort/char scalar
 returns, arguments and initialized locals, one uint[] RAM, unchecked 32-bit
 arithmetic/bitwise/comparisons/shifts, branches, switch and runtime loops.
 Small storage truncates on writes and extends to the 32-bit stack on loads.
+Typed stack analysis distinguishes scalar values, array references and native
+array lengths before lowering. Local uint[] aliases share the sole immutable
+RAM binding. Nullness/provenance joins reach a fixed point over loops; only
+definitely bound references may dereference RAM. Reference truth/equality use
+one-bit local tags, and native lengths require explicit conv.i4/u4 normalization.
+See [typed stack and aliases](CONTINUATION_TYPED_ALIASES_2026-10-28.md) for
+conservative rejection boundaries and verification evidence.
 Unchecked small conversions and twelve checked 8/16/32-bit conversions are
 supported. Multiplications use generic shared resource binding.
 Arguments latch on start while idle; done/fault are sticky until reset/new start.

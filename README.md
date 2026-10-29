@@ -409,5 +409,8 @@ for executed verification and remaining limits. CI stays off; Native AOT is defe
 Checked 8/16/32-bit conversions and their unsigned-source forms report overflow
 through done/fault, conversion_overflow and the original fault_il offset; later
 instructions are suppressed while earlier RAM writes remain committed.
-Unchecked byte/short stack conversions are supported with explicit sign/zero
-extension; checked conversions and narrow locals/ports remain unsupported.
+Scheduled CIL validates stack categories before lowering. Local uint[] aliases
+refer to the sole immutable bound RAM; null or uncertain dereferences reject.
+Reference truth/equality use identity tags, with no numeric pointer conversion.
+See [typed-stack and alias verification](docs/CONTINUATION_TYPED_ALIASES_2026-10-28.md)
+for the bounded profile, independently exercised behavior and remaining gaps.

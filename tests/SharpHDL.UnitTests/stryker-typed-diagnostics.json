@@ -1,0 +1,22 @@
+{
+  "stryker-config": {
+    "test-case-filter": "FullyQualifiedName~ScheduledTypedBoundaryTests",
+    "concurrency": 1,
+    "mutate": [
+      "**/ScheduledCilStackValidation.cs{1834..1908}",
+      "**/ScheduledCilStackValidation.cs{3930..3969}",
+      "**/ScheduledCilStackValidation.cs{5588..5675}",
+      "**/ScheduledCilStackValidation.cs{5760..5798}",
+      "**/ScheduledCilStackValidation.cs{7252..7290}",
+      "**/ScheduledCilStackValidation.cs{7290..7328}",
+      "**/ScheduledCilStackValidation.cs{7328..7369}"
+    ],
+    "additional-timeout": 5000,
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "coverage-analysis": "off",
+    "project": "SharpHDL.csproj"
+  }
+}

@@ -672,7 +672,29 @@
       "evidence": [
         "docs/CONTINUATION_TYPED_ALIASES_2026-10-28.md"
       ],
-      "limitations": "Bounded admitted opcode profile only; no general CLI verification or native integer arithmetic. Extended gates pending."
+      "limitations": "Bounded opcode profile and one immutable RAM origin only. No branch path refinement or general CLI/pointer proof. Mutation gaps and legacy instrumenter exclusions remain recorded in the continuation report."
+    },
+    {
+      "uid": "CIL-ALIAS-001",
+      "status": "partial",
+      "implementation": [
+        "src/SharpHDL/ScheduledCilStackValidation.cs",
+        "src/SharpHDL/ScheduledSequentialCil.cs"
+      ],
+      "tests": [
+        {
+          "method": "Copied_aliases_share_RAM_and_match_CLR",
+          "file": "tests/SharpHDL.UnitTests/ScheduledArrayAliasTests.cs"
+        },
+        {
+          "method": "Backedge_null_assignment_invalidates_prior_dereference",
+          "file": "tests/SharpHDL.UnitTests/ScheduledArrayAliasTests.cs"
+        }
+      ],
+      "evidence": [
+        "docs/CONTINUATION_TYPED_ALIASES_2026-10-28.md"
+      ],
+      "limitations": "Bounded opcode profile and one immutable RAM origin only. No branch path refinement or general CLI/pointer proof. Mutation gaps and legacy instrumenter exclusions remain recorded in the continuation report."
     }
   ],
   "schema": 1

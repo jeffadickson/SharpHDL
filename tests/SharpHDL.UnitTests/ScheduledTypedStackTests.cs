@@ -10,7 +10,7 @@ public sealed class ScheduledTypedStackTests
 {
     /// <summary>Reject reference/integer confusion at every numeric and memory operand role.</summary>
     [Theory][InlineData("array")][InlineData("index")][InlineData("value")][InlineData("add")]
-    [InlineData("convert")][InlineData("return")][InlineData("store")][InlineData("branch")][InlineData("length")]
+    [InlineData("convert")][InlineData("return")][InlineData("store")][InlineData("ordered")][InlineData("length")]
     public void Incompatible_operands_reject_with_context(string kind)
     {
         var method=TypedCilFixture.Create(il=>
@@ -25,7 +25,7 @@ public sealed class ScheduledTypedStackTests
                 if(kind=="add"){il.Emit(OpCodes.Ldc_I4_1);il.Emit(OpCodes.Add);}
                 if(kind=="convert")il.Emit(OpCodes.Conv_U4);
                 if(kind=="store"){il.Emit(OpCodes.Stloc_0);il.Emit(OpCodes.Ldc_I4_0);}
-                if(kind=="branch"){var label=il.DefineLabel();il.Emit(OpCodes.Brtrue,label);il.MarkLabel(label);il.Emit(OpCodes.Ldc_I4_0);}
+                if(kind=="ordered"){il.Emit(OpCodes.Ldarg_0);il.Emit(OpCodes.Clt);}
             }
             il.Emit(OpCodes.Ret);
         },typeof(uint));

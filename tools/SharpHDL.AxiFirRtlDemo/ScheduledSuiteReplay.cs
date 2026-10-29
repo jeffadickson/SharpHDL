@@ -76,6 +76,7 @@ internal static class ScheduledSuiteReplay
         GenerateNarrowConversions(directory);
         GenerateScalarStorage(directory);
         GenerateCheckedConversions(directory);
+        GenerateArrayAliases(directory);
         var planned=new CoreReplay(ScheduledPlannedBanks.Build());
         for(int phase=0;phase<=6;phase++)
         {
@@ -175,6 +176,44 @@ internal static class ScheduledSuiteReplay
         File.WriteAllText(Path.Combine(directory,moduleName+".il-map.json"),JsonSerializer.Serialize(compilation.StateOffsets));
         WriteSourceMap(directory,compilation);
         Console.WriteLine($"CIL shifts {moduleName}: {transactions} native/legacy/Core transactions agree.");
+    }
+
+    private static void GenerateArrayAliases(string directory)
+    {
+        var method=typeof(ScheduledArrayAliases).GetMethod(nameof(ScheduledArrayAliases.Update))!;
+        var compiled=CilCompiler.BuildScheduledSequential(method,"ScheduledAliasUpdate",
+            new SequentialOptions{MemoryDepth=4,InitialMemory=[2,3,4,5],MaxCycles=1000});
+        var replay=new CoreReplay(compiled.Design);replay.Clock(true);uint[] memory=[2,3,4,5];
+        foreach(uint count in new uint[]{0,1,4,5,0,4,2})
+        {
+            uint expected=0;bool failed=false;
+            try { expected=ScheduledArrayAliases.Update(memory,count,3); }
+            catch(IndexOutOfRangeException){failed=true;}
+            replay.Drive("arg1",(int)count);replay.Drive("arg2",3);replay.Drive("start",1);replay.Clock(false);
+            replay.Drive("start",0);replay.Drive("arg1",0);replay.Drive("arg2",99);
+            int edges=0;while(replay.Read("done")==0&&edges++<1002)replay.Clock(false);
+            if(replay.Read("done")!=1||replay.Read("fault")!=(failed?1:0)||replay.Read("result")!=expected)
+                throw new InvalidOperationException("Alias C#/Core RAM capture/partial-write mismatch.");
+        }
+        replay.Save(directory);WriteSourceMap(directory,compiled);
+        var nullable=TypedCilFixture.Create(il=>
+        {
+            var join=il.DefineLabel();il.Emit(OpCodes.Ldarg_1);il.Emit(OpCodes.Brfalse,join);
+            il.Emit(OpCodes.Ldarg_0);il.Emit(OpCodes.Stloc_0);il.MarkLabel(join);
+            il.Emit(OpCodes.Ldloc_0);il.Emit(OpCodes.Ldnull);il.Emit(OpCodes.Cgt_Un);
+            il.Emit(OpCodes.Ldloc_0);il.Emit(OpCodes.Ldarg_0);il.Emit(OpCodes.Ceq);il.Emit(OpCodes.Add);il.Emit(OpCodes.Ret);
+        },typeof(uint[]));
+        var nc=CilCompiler.BuildScheduledSequential(nullable,"ScheduledAliasNull");var nr=new CoreReplay(nc.Design);nr.Clock(true);
+        foreach(uint bound in new uint[]{0,1,0,1,1,0})
+        {
+            nr.Drive("arg1",(int)bound);nr.Drive("start",1);nr.Clock(false);nr.Drive("start",0);
+            int edges=0;while(nr.Read("done")==0&&edges++<64)nr.Clock(false);
+            uint expected=(uint)nullable.Invoke(null,[new uint[16],bound])!;
+            if(nr.Read("done")!=1||nr.Read("fault")!=0||nr.Read("result")!=expected||expected!=2*bound)
+                throw new InvalidOperationException("Nullable alias CLR/tag mismatch.");
+        }
+        nr.Save(directory);WriteSourceMap(directory,nc);
+        Console.WriteLine("Aliases: seven persistent RAM and six nullable/reset-per-start CLR transactions agree.");
     }
 
     private static void GenerateCheckedConversions(string directory)
