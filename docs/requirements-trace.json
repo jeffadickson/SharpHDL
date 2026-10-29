@@ -698,9 +698,10 @@
     },
     {
       "uid": "CIL-GAPS-001",
-      "status": "partial",
+      "status": "verified_bounded",
       "implementation": [
-        "src/SharpHDL/ScheduledCilStackValidation.cs"
+        "src/SharpHDL/ScheduledCilStackValidation.cs",
+        "src/SharpHDL/ScheduledCilRefinedValidation.cs"
       ],
       "tests": [
         {

@@ -228,7 +228,7 @@ namespace SharpHDL
                 else if(op=="neg")Push(h-1,zero32.Subtract(Top(0)));
                 else if(op=="conv.i1"||op=="conv.u1"||op=="conv.i2"||op=="conv.u2")Push(h-1,ScheduledClrNarrow(Top(0),op));
                 else if(op=="shl"||op=="shr"||op=="shr.un")Push(h-2,ScheduledClrShift(b,Top(1),Top(0),op));
-                                else if(op=="ldlen")
+                else if(op=="ldlen")
                 {
                     if(!hasRam)throw Error(method,ins.Offset,"ldlen requires RAM.");var length=zero32;var valid=zero;
                     foreach(var r in rams){var match=Top(0).Equal(K32(r.Plan.Tag));valid=valid.Or(match);length=ScheduledValue.Select(match,K32(r.Plan.Depth),length);}

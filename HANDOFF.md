@@ -164,3 +164,12 @@ is outside this hardware contract. See
 [the refined RAM report](docs/CONTINUATION_REFINED_RAM_2026-10-28.md) and
 [the runnable example](examples/ScheduledMultiRam.cs). CI remains off; Native AOT
 is deferred. Earlier single-origin limitations describe historical revisions.
+
+Final refined-RAM continuation: 396 fast + 62 native verifier + four documentation
+parser tests pass on each OS. Guarded multi-RAM replay: 183 edges per Icarus and
+Verilator, Yosys generic synthesis pass. Fuzz: 1,474 executions / 60 seconds, fixed
+seed 261026, no saved crashes/hangs. Original seven mutations all killed. Separate
+new helper campaign: 37 killed, nine timeout, 16 survived (reviewed/open in
+ docs/verification/refined-ram-mutation.json). See the refined RAM report for exact
+coverage, remaining test gaps, bounded static binding contract and reproduction.
+Do not mistake source-reviewed redundant survivors for formal equivalence proof.

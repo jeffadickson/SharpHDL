@@ -1,0 +1,134 @@
+{
+  "tool": "Stryker.NET 5.0.0",
+  "sourceRevision": "ca3d326",
+  "rawPath": "build/verification/refined-ram-mutation/reports/mutation-report.json",
+  "rawSha256": "BC8C83510197678268FDEACF1E392AC63D18EFF845AC320DE41BB3CD1C6F8D46",
+  "scope": "Reference fact and RAM-plan helpers only; 16 null-refinement/multiple-origin tests; coverage analysis off; one worker.",
+  "tested": 62,
+  "killed": 37,
+  "timeout": 9,
+  "survived": 16,
+  "reportedScore": 74.19,
+  "interpretation": "Tool score counts timeout as detected. Timeouts are reported separately and have not been individually adjudicated. Not a full validator/frontend mutation result. Redundant guard classifications are source-review conclusions, not equivalence proofs.",
+  "instrumentation": "Existing frontend CS0165 Safe Mode exclusions remain outside this selected executable scope; one RAM helper mutant was CompileError.",
+  "files": [
+    {
+      "file": "ScheduledCilRamBindings.cs",
+      "counts": {
+        "CompileError": 1,
+        "Ignored": 2,
+        "Killed": 27,
+        "Survived": 14,
+        "Timeout": 3
+      },
+      "survivors": [
+        {
+          "id": "7972",
+          "line": 17,
+          "replacement": ";",
+          "review": "Redundant admission check: caller rejects more than eight origins before planning."
+        },
+        {
+          "id": "7973",
+          "line": 17,
+          "replacement": "\"\"",
+          "review": "Diagnostic on redundant private admission guard; public guard supplies the diagnostic."
+        },
+        {
+          "id": "7979",
+          "line": 18,
+          "replacement": "options.InitialMemories?.Count<0",
+          "review": "Gap: legacy InitialMemory combined with nonempty InitialMemories lacks a direct negative case."
+        },
+        {
+          "id": "7980",
+          "line": 18,
+          "replacement": "options.InitialMemories?.Count>=0",
+          "review": "Gap: empty InitialMemories plus single-RAM legacy initialization lacks a positive case."
+        },
+        {
+          "id": "7983",
+          "line": 19,
+          "replacement": "\"\"",
+          "review": "Gap: actionable ambiguous-initialization diagnostic text is not asserted."
+        },
+        {
+          "id": "7984",
+          "line": 20,
+          "replacement": "(options.MemoryDepths?.Keys??Array.Empty<int>()).Except",
+          "review": "Gap: overlapping/initialization-only invalid dictionary keys need explicit tests."
+        },
+        {
+          "id": "7986",
+          "line": 20,
+          "replacement": "Array.Empty<int>()",
+          "review": "Gap: invalid initialization dictionary key not directly exercised."
+        },
+        {
+          "id": "7989",
+          "line": 21,
+          "replacement": "\"\"",
+          "review": "Gap: actionable parameter-index diagnostic text is not asserted."
+        },
+        {
+          "id": "7995",
+          "line": 25,
+          "replacement": "depth<1&&depth>65536",
+          "review": "Downstream HLS Memory validation rejects invalid depths; no removal of public bounds contract observed."
+        },
+        {
+          "id": "7998",
+          "line": 25,
+          "replacement": "depth<=1",
+          "review": "Gap: depth-one acceptance boundary not directly exercised."
+        },
+        {
+          "id": "8000",
+          "line": 25,
+          "replacement": "depth>=65536",
+          "review": "Gap: depth-65536 acceptance boundary not directly exercised."
+        },
+        {
+          "id": "8001",
+          "line": 25,
+          "replacement": ";",
+          "review": "Downstream HLS Memory validation rejects invalid depths; private early check is redundant for admission."
+        },
+        {
+          "id": "8002",
+          "line": 25,
+          "replacement": "\"\"",
+          "review": "Gap: actionable early depth diagnostic text not asserted."
+        },
+        {
+          "id": "8005",
+          "line": 28,
+          "replacement": "\"\"",
+          "review": "Gap: null initialization words and actionable diagnostic lack a direct case."
+        }
+      ]
+    },
+    {
+      "file": "ScheduledCilReferenceFacts.cs",
+      "counts": {
+        "Killed": 10,
+        "Survived": 2,
+        "Timeout": 6
+      },
+      "survivors": [
+        {
+          "id": "8014",
+          "line": 15,
+          "replacement": "(true?-1:value.Local)",
+          "review": "Precision gap: unconditional loss of older stack local provenance not distinguished; stale-provenance rejection still tested."
+        },
+        {
+          "id": "8028",
+          "line": 21,
+          "replacement": "left.HasValue||right.HasValue",
+          "review": "Gap: asymmetric optional-predicate joins need a direct malformed/negative fixture; nullable Value may otherwise fail incidentally."
+        }
+      ]
+    }
+  ]
+}

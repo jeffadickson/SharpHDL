@@ -107,3 +107,47 @@ Follow-up priorities:
 3. Specify explicit shared-resource alias groups before supporting parameter aliasing.
 4. Extend bounded bit-vector equivalence to selected memory transitions with honest unknown results.
 5. Qualify multi-memory reset/collision behavior across further HDL profiles and FPGA tools.
+
+Measured coverage on the final 396-test regression (Windows and Linux agree for
+these source scopes; compiler-generated method branches included):
+
+| File | Covered lines | Covered branches |
+| --- | ---: | ---: |
+| ScheduledCilRefinedValidation | 102/102 | 215/228 (94.30%) |
+| ScheduledCilReferenceFacts | 6/6 | 12/18 (66.67%) |
+| ScheduledCilRamBindings | 17/17 | 35/38 (92.11%) |
+| ScheduledCilStackValidation categories | 1/1 | 1/2 (50%) |
+| ScheduledSequentialCil | 164/169 | 305/332 (91.87%) |
+
+Collected production-assembly coverage: 69.92% line, Windows 56.98% branch / Linux
+56.96% branch. This excludes test fixtures deliberately (instrumenting CIL fixtures
+changes the tested program), shell scripts and unexecuted projects. Coverage alone
+is not correctness. Earlier reports have different scopes and are not comparisons.
+The initial broad source-map test exposed the new synthetic fault-state count;
+the test now requires its explicit null source and exclusion from original IL offsets.
+
+Seven-gap raw mutation summary is retained with SHA-256. Seven executable selected
+mutants were killed; eight instrumentation compile exclusions and 251 ignored
+entries in that source file were not executed. The archived configuration is
+now docs/verification/stryker-alias-gaps-59425de.json; use the recorded revision.
+
+Documentation parser regressions also pass 4/4 on Linux. CI permissions were
+queried and remain disabled; no workflow was enabled or dispatched. Local item
+commits: 59425de (seven gaps), 31e9a3b (null refinement), ca3d326 (multiple RAMs),
+69d8970 (native asset diagnostics). The final evidence commit follows these items.
+CIL-GAPS-001 is verified_bounded; CIL-NULL-001 and CIL-RAMS-001 remain partial
+because the stated relational/general pointer and sequential-proof limitations
+are not closed by this finite qualification. The existing requirements stay open
+where prior evidence did not establish closure.
+
+Helper Stryker campaign completed: 62 executable mutants, 37 killed, nine timeout,
+16 survived; tool-reported score 74.19% counts timeout as detection. One selected
+helper compile exclusion and two ignored entries are separate. Existing large
+frontend Safe Mode exclusions are outside this scope. Timeouts have not been
+individually adjudicated. This campaign is not a whole-validator mutation result.
+The retained JSON includes every survivor location/replacement and a review:
+redundant private admission/depth checks, actionable diagnostic text, empty/invalid
+initialization dictionaries, endpoint depths, older stack provenance precision and
+asymmetric optional-fact joins. These are new qualification limitations, not a
+claim that the seven original executable mutation gaps remain open. No new test
+or proof closure is claimed from a source-only survivor review.

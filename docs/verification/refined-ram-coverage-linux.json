@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "inputSha256": "EC2F4CCE9FC258EE9D313F86386D80A2D66AEA7202B8A924E791E0ED42F74437",
+  "overall": {
+    "lineRate": "0.6992",
+    "branchRate": "0.5696"
+  },
+  "scope": "Unique source lines; summed Cobertura class-entry branch counters, including generated methods. Overall is the collected production assembly set, not the whole repository.",
+  "files": [
+    {
+      "file": "mnt/c/Users/jeffd/Documents/Codex/2026-10-26/sharphdl-development-continuation-prompt-you-are/SharpHDL/src/SharpHDL/ScheduledCilRamBindings.cs",
+      "lines": 17,
+      "coveredLines": 17,
+      "branches": 38,
+      "coveredBranches": 35
+    },
+    {
+      "file": "mnt/c/Users/jeffd/Documents/Codex/2026-10-26/sharphdl-development-continuation-prompt-you-are/SharpHDL/src/SharpHDL/ScheduledCilReferenceFacts.cs",
+      "lines": 6,
+      "coveredLines": 6,
+      "branches": 18,
+      "coveredBranches": 12
+    },
+    {
+      "file": "mnt/c/Users/jeffd/Documents/Codex/2026-10-26/sharphdl-development-continuation-prompt-you-are/SharpHDL/src/SharpHDL/ScheduledCilRefinedValidation.cs",
+      "lines": 102,
+      "coveredLines": 102,
+      "branches": 228,
+      "coveredBranches": 215
+    },
+    {
+      "file": "mnt/c/Users/jeffd/Documents/Codex/2026-10-26/sharphdl-development-continuation-prompt-you-are/SharpHDL/src/SharpHDL/ScheduledCilStackValidation.cs",
+      "lines": 1,
+      "coveredLines": 1,
+      "branches": 2,
+      "coveredBranches": 1
+    },
+    {
+      "file": "mnt/c/Users/jeffd/Documents/Codex/2026-10-26/sharphdl-development-continuation-prompt-you-are/SharpHDL/src/SharpHDL/ScheduledSequentialCil.cs",
+      "lines": 169,
+      "coveredLines": 164,
+      "branches": 332,
+      "coveredBranches": 305
+    }
+  ]
+}

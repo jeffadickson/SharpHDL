@@ -1,0 +1,186 @@
+{
+  "date": "2026-10-28",
+  "baseline": "cbd87819880adba35603f13ba7631ac5a4f252ea",
+  "implementationRevision": "ca3d326",
+  "toolingRevision": "69d8970",
+  "sourceQualification": "Tests executed on combined source subsequently committed as ca3d326; final ScheduledSequentialCil edit is indentation only. Final snapshot hashes reflect current files; metric helper is JIT and separately run on both XML files with missing-file negative check.",
+  "platformSdks": {
+    "linux": "10.0.402",
+    "windows": "10.0.403"
+  },
+  "tests": {
+    "linuxNative": 62,
+    "windowsFast": 396,
+    "windowsDocumentation": 4,
+    "skipped": 0,
+    "windowsNative": 62,
+    "linuxDocumentation": 4,
+    "linuxFast": 396
+  },
+  "independentHdl": {
+    "icarusEdges": 183,
+    "yosys": "generic synthesis passed; no FPGA timing qualification",
+    "verilatorEdges": 183,
+    "design": "ScheduledGuardedRams"
+  },
+  "fuzz": {
+    "executions": 1474,
+    "savedHangs": 0,
+    "tool": "SharpFuzz 2.2.0 / AFL++4.09c",
+    "seconds": 60,
+    "savedCrashes": 0,
+    "seed": 261026
+  },
+  "coverage": "Separate source-scoped JSON files retain raw Cobertura digests and precise count conventions.",
+  "limitations": [
+    "CI disabled, never dispatched",
+    "Native AOT deferred",
+    "Full historical Z80 vectors not rerun",
+    "No full sequential proof or FPGA readiness claim",
+    "Nine helper mutation timeouts and sixteen survivors retained/open"
+  ],
+  "logs": [
+    {
+      "sha256": "F7FCFAD65A89CE93F2D2D3680F9371B296DF6CA9B8BA468C9792CE5F4ED7299F",
+      "path": "build/verification/refined-corrected-windows.log"
+    },
+    {
+      "sha256": "A045A2E52CDDD2A9FDCF79982FFF1D033FF92664364967EFF52A2C5A1E2E0992",
+      "path": "build/verification/refined-final-linux.log"
+    },
+    {
+      "sha256": "D4790E49B8E5FD0050B926E6FCB8432B3302F75EC9B545F44D3A8A10F54FCFA9",
+      "path": "build/verification/refined-native-windows.log"
+    },
+    {
+      "sha256": "2BE74D3A524ED41CE767D6CF99D8FE29F7C4A95DD2D0AFBA894FF8A4D6EDE5F4",
+      "path": "build/verification/refined-native-linux.log"
+    },
+    {
+      "sha256": "535FE7B53890DE3BC7457C9F328A22E1E3163D60E28F099463A885DAB71C5069",
+      "path": "build/verification/refined-doc-tests.log"
+    },
+    {
+      "sha256": "4E37C6814F16382E9B6EE71536B5B08FF3998EBFFF6B719E8BAC5808E85DED3F",
+      "path": "build/verification/refined-doc-linux.log"
+    },
+    {
+      "sha256": "EC4F3F948DBF1A323936AB2979712AD2959CF395C42CDA83AFAAAAFA03128AF4",
+      "path": "build/verification/refined-rtl.log"
+    },
+    {
+      "sha256": "54765C5877F746A11FFEC39C016F83950D8159E3EEDED673A8B8D2039B6FEEB7",
+      "path": "build/verification/refined-ram-fuzz.log"
+    },
+    {
+      "sha256": "12F0495E8029611CEF8E117F3FC8FB4FFFF0AE1289B6606B5A9874971F221BFE",
+      "path": "build/verification/refined-z3-negative.log"
+    }
+  ],
+  "sources": [
+    {
+      "sha256": "EFD97A323E081767CC53190796B90A4310D7F020DA2910630095A5026E39EAFE",
+      "path": "examples/ScheduledMultiRam.cs"
+    },
+    {
+      "sha256": "0F2671C183792B4D21BF6DF75BBAB40C641D4D6BA1903482F6079CF56FEE7DB4",
+      "path": "src/SharpHDL/ScheduledCilRamBindings.cs"
+    },
+    {
+      "sha256": "781A365DB58D91EEAF0571FD485212B2D65E5E6B87266A229BCF6F75A3F62CCC",
+      "path": "src/SharpHDL/ScheduledCilReferenceFacts.cs"
+    },
+    {
+      "sha256": "CAF0A9EC1C59B4054498527A536AA04DDB2C113788F967DF746C98CA2C0F2A00",
+      "path": "src/SharpHDL/ScheduledCilRefinedValidation.cs"
+    },
+    {
+      "sha256": "94A62054C1A940C2C00C31F5020C62D024AED7A9184A6FE52FD5367ED0C33DDC",
+      "path": "src/SharpHDL/ScheduledCilStackValidation.cs"
+    },
+    {
+      "sha256": "A2D5CCFCF148807CE9683F02B9DC028332A129F7EFC2D5AD14E866D207EE096B",
+      "path": "src/SharpHDL/ScheduledSequentialCil.cs"
+    },
+    {
+      "sha256": "7540FE3864C3EF8E0A9F7B007A61AB756C8EFB7F4147C70BBA2F0E4311D4423F",
+      "path": "src/SharpHDL/SequentialCil.cs"
+    },
+    {
+      "sha256": "178CAB966D8316B8C1BE4CAAF679DA026AD63F3B5AE6E20589F39FD106DB4F2A",
+      "path": "tests/Shared/TypedCilFixture.cs"
+    },
+    {
+      "sha256": "46762E0D513C78BFF74AEA999EAA96667238CCE01AD5FB393ED347FCD17C1E6D",
+      "path": "tests/SharpHDL.UnitTests/ScheduledAliasGapTests.cs"
+    },
+    {
+      "sha256": "B925D24B22AAB1D041D41EDDF31DC3A98E818BC51D474B017F611D9AB54545A2",
+      "path": "tests/SharpHDL.UnitTests/ScheduledMultipleRamTests.cs"
+    },
+    {
+      "sha256": "B64322497933FD4E312FF669F99F1C0C561BE01D81EA3044D949DE0722BFA791",
+      "path": "tests/SharpHDL.UnitTests/ScheduledNullRefinementTests.cs"
+    },
+    {
+      "sha256": "5ACDF1C69A05B2051D434E16FD3612AA0CCF02F455D03E04E89FE646022466FA",
+      "path": "tests/SharpHDL.UnitTests/ScheduledSourceMapTests.cs"
+    },
+    {
+      "sha256": "D7C664E6050E67A8F4CC0D8BBEDD84759DE48DBEBB38AE70B0632B9D4990FA55",
+      "path": "tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj"
+    },
+    {
+      "sha256": "0DE953A11B233262DA95E2E5BECBDB020A5E480209FA12B55FEF6AAF9004E56A",
+      "path": "tests/SharpHDL.UnitTests/stryker-refined-ram.json"
+    },
+    {
+      "sha256": "500529B83805CC3CC8F29588CD76B8F105D22878A41C31B7FA8B5DB4274E4DC4",
+      "path": "tools/SharpHDL.AxiFirRtlDemo/ScheduledSuiteReplay.cs"
+    },
+    {
+      "sha256": "68418DFA098D8943E04368BC3D96FC2528D5E7ECA14FEF073727616A43FFCFF6",
+      "path": "tools/SharpHDL.AxiFirRtlDemo/SharpHDL.AxiFirRtlDemo.csproj"
+    },
+    {
+      "sha256": "7DE8207631FE950A6F7394A81253562FBD7395E9EF4C750321B1E932D0D16876",
+      "path": "tools/SharpHDL.DocBuilder/Program.cs"
+    },
+    {
+      "sha256": "12995FD71D2C06C62799C65A428FD5B97CA08135509434E223AC1E81CE2B92E1",
+      "path": "tools/SharpHDL.ScheduledFuzz/GuardedRamFuzz.cs"
+    },
+    {
+      "sha256": "791469F90F12758373092340C7413C576E660E3DAF55C7786D6B71AC75357076",
+      "path": "tools/SharpHDL.ScheduledFuzz/Program.cs"
+    },
+    {
+      "sha256": "5FEBDDE57FE3FC0EECD8D7D1AB36E17B7564792DAF276D49187A6AADD7BB08A9",
+      "path": "tools/SharpHDL.ScheduledFuzz/SharpHDL.ScheduledFuzz.csproj"
+    },
+    {
+      "sha256": "7A51701BBC00F677CBBC235CD834B07D4DE2F5C70CBE6D396C47631556C2741C",
+      "path": "tools/SharpHDL.ScheduledFuzz/corpus/guarded-left-boundary"
+    },
+    {
+      "sha256": "C5EE3C513A94B00A3E8AD110FD823EF89D8E55E3A26BBF2B6C7EC08F678B43AC",
+      "path": "tools/SharpHDL.ScheduledFuzz/corpus/guarded-right-valid"
+    },
+    {
+      "sha256": "41F502E23C9543CAFD206B812A5A6ACB95471441ABD3F194A98221C385140627",
+      "path": "tools/SummarizeRefinedRamCoverage.cs"
+    },
+    {
+      "sha256": "3D734232269B5F2904D871D0A6BE91D2C2646ED7E64D02C42A1D56AC55B86D78",
+      "path": "tools/check-z3-paths-linux.sh"
+    },
+    {
+      "sha256": "AE38B149DE23EBEAB1C2F2E039C82F035F2C7BF5E0F54C6231BF6A7575DACBCD",
+      "path": "tools/run-scheduled-rtl.sh"
+    },
+    {
+      "sha256": "FEF658F2935F139808CC980E8034B43814DC6EDAEB947C7AF88492E9EDA1119F",
+      "path": "tools/setup-z3-linux.sh"
+    }
+  ]
+}

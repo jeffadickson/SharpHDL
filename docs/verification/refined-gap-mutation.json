@@ -1,0 +1,13 @@
+{
+  "tool": "Stryker.NET 5.0.0",
+  "sourceRevision": "59425de",
+  "rawPath": "build/verification/alias-gaps-mutation/reports/mutation-report.json",
+  "rawSha256": "8B3F8411811A4B704370F1AB84762D6E933C39598A4597DCF907986BEF7E92AC",
+  "scope": "Seven retained gap locations; configuration must be replayed on baseline revision before validator refactoring.",
+  "counts": {
+    "CompileError": 8,
+    "Ignored": 251,
+    "Killed": 7
+  },
+  "interpretation": "All seven executable selected mutants killed; eight instrumentation compile exclusions and 251 ignored entries are not detected defects or executed tests."
+}

@@ -1,0 +1,15 @@
+{
+  "summary": {
+    "createdUtc": "2026-10-29T05:29:00.6828289Z",
+    "requirements": 53,
+    "mapped": 37,
+    "unmapped": 16,
+    "apiAssemblies": 7,
+    "engineeringPages": 13,
+    "statusPolicy": "Manual bounded statuses preserved; link validation is not requirement closure."
+  },
+  "driverLogSha256": "67B0AA4FC11E74BD48540B05D7447F20062AFB1F1411E9D2698DD61B20AE6354",
+  "refreshLogSha256": "93BB561FC27CD893DAB99E1FEE7F7ABB6C3B8D77C023B6D18D3FA0114AFC865D",
+  "refresh": "Late mutation/coverage evidence copied into raw/site and rendered with sphinx -W -n; retained tool-run manifest under runs/011-final-evidence-refresh.",
+  "limitations": "Compiler-emitted public XML comments only; legacy undocumented APIs and offline Mermaid rendering remain unqualified."
+}
