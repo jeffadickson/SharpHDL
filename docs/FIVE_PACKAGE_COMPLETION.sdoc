@@ -1,0 +1,50 @@
+[DOCUMENT]
+TITLE: Five-package compiler and memory qualification
+
+[REQUIREMENT]
+UID: RAM-QUAL-001
+TITLE: Reviewed mutation qualification
+STATEMENT: >>>
+Exercise initialization dictionary failures, actionable diagnostics, admitted depth
+endpoints, unrelated stack writes and asymmetric optional predicate joins. Replay
+the helper mutation campaign with explicit timeout dispositions and retained scope.
+<<<
+
+[REQUIREMENT]
+UID: RAM-REL-001
+TITLE: Relational local alias guards
+STATEMENT: >>>
+Track proven equality between copied reference locals. Intersect relations at
+joins, detach overwritten locals, and propagate null guards only through proven
+equal current values. Reject stale or one-path-only relations before lowering.
+<<<
+
+[REQUIREMENT]
+UID: RAM-SHARE-001
+TITLE: Explicit physical resource alias groups
+STATEMENT: >>>
+Allow uint[] parameters to bind explicitly to a canonical physical resource.
+Require consistent depth/initialization, reject cycles and invalid targets, and
+make reference equality and writes observe the shared resource. Unspecified
+parameters remain distinct. No automatic inference from caller object identity.
+<<<
+
+[REQUIREMENT]
+UID: RAM-STEP-001
+TITLE: Bounded memory transition equivalence
+STATEMENT: >>>
+Verify a declared bounded memory transition profile with native Z3, independently
+replay SAT witnesses, and retain SMT and valuations. Reject unsupported memory
+semantics/budgets and distinguish unknown, cancelled and unavailable from proof.
+This is a one-edge transition check, not unbounded whole-design equivalence.
+<<<
+
+[REQUIREMENT]
+UID: RAM-HDL-001
+TITLE: Independent memory qualification
+STATEMENT: >>>
+Compare shared/multiple memories, reset and read/write collision behavior against
+independent references using Core and installed HDL tools. Retain replay artifacts
+and generic synthesis evidence. Do not imply FPGA timing/placement qualification
+without a real target, constraints and successful tool evidence.
+<<<
