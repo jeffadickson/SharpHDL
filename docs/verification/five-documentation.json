@@ -1,0 +1,15 @@
+{
+  "summary": {
+    "createdUtc": "2026-10-29T06:51:46.3100122Z",
+    "requirements": 58,
+    "mapped": 42,
+    "unmapped": 16,
+    "apiAssemblies": 7,
+    "engineeringPages": 14,
+    "statusPolicy": "Manual bounded statuses preserved; link validation is not requirement closure."
+  },
+  "driverLogSha256": "A676FD41EAE1F3D5458CB53A897B6CE6C1E097F29714D1E9ED6EB8D63A0DE474",
+  "refreshLogSha256": "092BD0B54C6FC63CD4464964CE41D61EEE871DA93CF6DB63DB8BCA299AEA92BD",
+  "refresh": "Late example/help evidence refreshed with real sphinx -W -n through retained HdlToolRunner manifest runs/011-final-refresh.",
+  "limits": "Compiler-emitted documented API members only. Legacy missing comments and offline Mermaid rendering are not qualified."
+}

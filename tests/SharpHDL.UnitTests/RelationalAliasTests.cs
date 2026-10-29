@@ -8,6 +8,35 @@ namespace SharpHDL.UnitTests;
 /// <summary>Guard facts follow proven copies, never copies that differ on another path.</summary>
 public sealed class RelationalAliasTests
 {
+    [Theory][InlineData(false)][InlineData(true)]
+    public void Guard_propagates_in_both_copy_directions(bool original)
+    {
+        var m=TypedCilFixture.Create(il=>
+        {
+            var join=il.DefineLabel();var missing=il.DefineLabel();
+            il.Emit(OpCodes.Ldarg_1);il.Emit(OpCodes.Brfalse,join);il.Emit(OpCodes.Ldarg_0);il.Emit(OpCodes.Stloc_0);il.MarkLabel(join);
+            il.Emit(OpCodes.Ldloc_0);il.Emit(OpCodes.Stloc_1);
+            il.Emit(original?OpCodes.Ldloc_0:OpCodes.Ldloc_1);il.Emit(OpCodes.Brfalse,missing);
+            il.Emit(original?OpCodes.Ldloc_1:OpCodes.Ldloc_0);il.Emit(OpCodes.Ldlen);il.Emit(OpCodes.Conv_U4);il.Emit(OpCodes.Ret);
+            il.MarkLabel(missing);il.Emit(OpCodes.Ldc_I4_0);il.Emit(OpCodes.Ret);
+        },typeof(uint[]),typeof(uint[]));
+        Assert.NotNull(CilCompiler.BuildScheduledSequential(m,"Bidirectional"));
+    }
+
+    [Theory][InlineData(false)][InlineData(true)]
+    public void Self_assignment_retains_its_own_guard_relation(bool guardCopy)
+    {
+        var m=TypedCilFixture.Create(il=>
+        {
+            var join=il.DefineLabel();var missing=il.DefineLabel();
+            il.Emit(OpCodes.Ldarg_1);il.Emit(OpCodes.Brfalse,join);il.Emit(OpCodes.Ldarg_0);il.Emit(OpCodes.Stloc_0);il.MarkLabel(join);
+            il.Emit(OpCodes.Ldloc_0);il.Emit(OpCodes.Stloc_1);il.Emit(OpCodes.Ldloc_0);il.Emit(OpCodes.Stloc_0);
+            il.Emit(guardCopy?OpCodes.Ldloc_1:OpCodes.Ldloc_0);il.Emit(OpCodes.Brfalse,missing);il.Emit(OpCodes.Ldloc_0);il.Emit(OpCodes.Ldlen);il.Emit(OpCodes.Conv_U4);il.Emit(OpCodes.Ret);
+            il.MarkLabel(missing);il.Emit(OpCodes.Ldc_I4_0);il.Emit(OpCodes.Ret);
+        },typeof(uint[]),typeof(uint[]));
+        Assert.NotNull(CilCompiler.BuildScheduledSequential(m,"SelfCopy"));
+    }
+
     [Theory][InlineData(-1)][InlineData(0)][InlineData(1)]
     public void Copied_nullable_guard_refines_only_current_equal_locals(int overwrite)
     {

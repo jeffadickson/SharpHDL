@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "tool": "Stryker.NET 5.0.0",
+  "rawPath": "build/verification/five-relations-replay/reports/mutation-report.json",
+  "rawSha256": "241ED0CEDEC62C67E0B74F82CDA86159D88AE39F42208E379FEC53B71D51FA2F",
+  "scope": "ScheduledCilRelations",
+  "policy": "Separate executions; never combine scores. File-wide CompileError/Ignored counts are not executed tests. Timeout is distinct from an ordinary kill. Survivor dispositions require explicit review.",
+  "files": [
+    {
+      "file": "ScheduledCilRelations.cs",
+      "sourceSha256": "375236BBE1AD5ACE2A732A825DED6BACB46A6B46092FF94AA49C82B48CD9C128",
+      "counts": {
+        "Ignored": 21,
+        "Killed": 2
+      },
+      "remaining": []
+    }
+  ]
+}

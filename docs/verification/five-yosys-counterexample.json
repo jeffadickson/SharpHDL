@@ -1,0 +1,29 @@
+{ "signal": [
+    { "name": "write", "wave": "4010" },
+    { "name": "same", "wave": "4010" },
+    { "name": "rst", "wave": "410." },
+    { "name": "right", "wave": "4=..", "data": ["", "0000"] },
+    { "name": "left", "wave": "4=..", "data": ["", "0000"] },
+    { "name": "clk", "wave": "40.." },
+    { "name": "address", "wave": "4==.", "data": ["", "11", "01"] },
+    { "name": "reference.r[2]", "wave": "=444", "data": ["1001", "", "", ""] },
+    { "name": "reference.r[1]", "wave": "=444", "data": ["1000", "", "", ""] },
+    { "name": "reference.r[0]", "wave": "=444", "data": ["0111", "", "", ""] },
+    { "name": "reference.out_right", "wave": "=444", "data": ["0000", "", "", ""] },
+    { "name": "reference.out_left", "wave": "=444", "data": ["0010", "", "", ""] },
+    { "name": "reference.l[2]", "wave": "=444", "data": ["0011", "", "", ""] },
+    { "name": "reference.l[1]", "wave": "=444", "data": ["0010", "", "", ""] },
+    { "name": "reference.l[0]", "wave": "=444", "data": ["0001", "", "", ""] },
+    { "name": "dut.s_saved_right", "wave": "=444", "data": ["0110", "", "", ""] },
+    { "name": "dut.s_saved_left", "wave": "=444", "data": ["0001", "", "", ""] },
+    { "name": "dut.mem_right_ram[2]", "wave": "=444", "data": ["1001", "", "", ""] },
+    { "name": "dut.mem_right_ram[1]", "wave": "=444", "data": ["1000", "", "", ""] },
+    { "name": "dut.mem_right_ram[0]", "wave": "=444", "data": ["0111", "", "", ""] },
+    { "name": "dut.mem_left_ram[2]", "wave": "=444", "data": ["0011", "", "", ""] },
+    { "name": "dut.mem_left_ram[1]", "wave": "=444", "data": ["0010", "", "", ""] },
+    { "name": "dut.mem_left_ram[0]", "wave": "=444", "data": ["0001", "", "", ""] }
+  ],
+  "config": {
+    "hscale": 1.00
+  }
+}

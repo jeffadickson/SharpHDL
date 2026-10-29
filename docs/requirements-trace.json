@@ -767,7 +767,7 @@
     },
     {
       "uid": "RAM-QUAL-001",
-      "status": "partial",
+      "status": "verified_bounded",
       "implementation": [
         "src/SharpHDL/ScheduledCilReferenceFacts.cs"
       ],
@@ -780,7 +780,7 @@
       "evidence": [
         "docs/FIVE_PACKAGE_COMPLETION_2026-10-28.md"
       ],
-      "limitations": "Mutation checks are scope-specific; final replay evidence retained separately."
+      "limitations": "Scope-specific mutation replays; expected loop timeouts and a reviewed equivalent extra iteration are separate from ordinary kills. No whole-compiler score."
     },
     {
       "uid": "RAM-REL-001",

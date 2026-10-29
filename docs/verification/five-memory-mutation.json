@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "tool": "Stryker.NET 5.0.0",
+  "rawPath": "build/verification/five-memory-mutation/reports/mutation-report.json",
+  "rawSha256": "B94101F40981724E7C4F6DCE5FB38630FABB139A9EB74CBF8A3572A32D3315F3",
+  "scope": "MemoryTransitionEquivalence",
+  "policy": "Separate executions; never combine scores. File-wide CompileError/Ignored counts are not executed tests. Timeout is distinct from an ordinary kill. Survivor dispositions require explicit review.",
+  "files": [
+    {
+      "file": "MemoryTransitionEquivalence.cs",
+      "sourceSha256": "B8A8F148C85BDE4CAC539EF96C8BEA7DF70D722B55C5337B4F8C32F6A811D041",
+      "counts": {
+        "Ignored": 141,
+        "CompileError": 27,
+        "Killed": 14,
+        "Survived": 3
+      },
+      "remaining": [
+        {
+          "id": "230",
+          "status": "Survived",
+          "location": {
+            "start": {
+              "line": 61,
+              "column": 32
+            },
+            "end": {
+              "line": 61,
+              "column": 43
+            }
+          },
+          "replacement": "outputs.All"
+        },
+        {
+          "id": "317",
+          "status": "Survived",
+          "location": {
+            "start": {
+              "line": 89,
+              "column": 12
+            },
+            "end": {
+              "line": 89,
+              "column": 19
+            }
+          },
+          "replacement": "bits\u003E=64"
+        },
+        {
+          "id": "362",
+          "status": "Survived",
+          "location": {
+            "start": {
+              "line": 122,
+              "column": 51
+            },
+            "end": {
+              "line": 122,
+              "column": 71
+            }
+          },
+          "replacement": ";"
+        }
+      ]
+    }
+  ]
+}

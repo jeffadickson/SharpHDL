@@ -70,3 +70,95 @@ Final regression with all strengthened cases follows in separate artifact roots.
 The engineering/API build passes real StrictDoc/Sphinx: 58 requirements, 42 mapped,
 16 unmapped, seven API assemblies, fourteen engineering pages. Mapping is not
 closure; legacy undocumented APIs and offline Mermaid rendering remain limitations.
+
+## Final results and acceptance
+
+All five packages meet their declared bounded acceptance contracts. Final gates:
+420 fast tests and 74 native verification tests pass on Windows and Linux; four
+documentation tests pass per OS, zero skipped. Full historical Z80 vector campaigns
+were not rerun. CI remains disabled and Native AOT deferred. No performance claim.
+The per-item local commits are d2fe9e4, e875def, c2436ec, ea4ca49 and 9a05e25;
+0208ae4 and 1a27c1a strengthen the qualification. Final evidence commits follow.
+
+Mutation evidence is deliberately separate:
+
+* RAM/reference replay: 51 killed, three width-loop timeouts, eight survivors.
+  The duplicate count guard was removed; predicate follow-up closes its six gaps.
+* Reference facts: all 18 mutants killed in the combined facts/relation execution.
+* Relation helper: 18 killed, one timeout, three survivors; two shift-direction
+  survivors are killed in the final two-mutant replay after testing reciprocal
+  relations through self-copy. The remaining i<=length iteration cannot access
+  the array: membership bits are strictly below length, so its body is false at
+  i==length. This is a source-invariant equivalence review, not a solver proof.
+  The i-- mutation takes a pathological negative-index loop until integer wrap;
+  its timeout is expected and retained separately, not called an ordinary kill.
+* Memory transition critical scope: 14 killed/three survived, then all five focused
+  replay mutants killed after maximum-state, multiple-output and unequal write
+  address-width cases. No combined/full-file score is manufactured.
+
+File-wide instrumenter CompileError/Ignored counts remain in the JSON summaries;
+these are not executed tests. Main frontend CS0165 Safe Mode exclusions persist.
+The final replays are not replacements for a future broad compiler mutation run.
+
+New source coverage (Windows scopes; Linux counts are separately retained):
+
+| Source | Lines | Branches |
+| --- | ---: | ---: |
+| Refined stack validator | 105/105 | 226/240 |
+| Equality relation helper | 7/7 | 8/8 |
+| Shared binding planner | 19/19 | 25/26 |
+| Memory transition checker, native suite | 72/75 | 86/112 |
+
+Counts include compiler-generated method branch counters and unique source lines.
+Raw Cobertura digests and collection-wide rates are in five-coverage-*.json; the
+fast/native scopes differ and must not be averaged. Test CIL fixtures deliberately
+remain uninstrumented, and shell/HDL tooling is outside managed coverage. Unexecuted
+exception/replay-failure and unsupported-profile arms remain limitations.
+
+The formal profile uses 1..8-bit Core RAM words. It does not yet prove the 32-bit
+scheduled CIL RAM examples: those have independent CLR/Core/HDL replay and synthesis
+qualification. Pre-edge Core reads and one synchronous write interface are modeled;
+physical port scheduling and inference are separate responsibilities. FPGA evidence
+is xc7 synthesis/resource mapping only, without device placement, routing or timing.
+
+## Reproduction and continuation
+
+From an existing checkout, with the pinned .NET/native/documentation tools:
+
+```text
+dotnet test tests/SharpHDL.UnitTests -c Release -m:1 -nr:false -p:UseSharedCompilation=false -warnaserror --filter FullyQualifiedName!~Z80Tests --settings tests/SharpHDL.UnitTests/coverage.runsettings --collect:"XPlat Code Coverage"
+bash tools/run-workpackages-linux.sh five-complete
+bash tools/run-verification-linux.sh
+bash tools/run-scheduled-rtl.sh memory-qualification
+bash tools/qualify-memory-hardware-linux.sh <existing-absolute-retained-RTL-campaign>
+bash tools/run-scheduled-fuzz.sh 60
+```
+
+Use a fresh SHARPHDL_PROOF_EVIDENCE directory for every native run; existing proof
+files reject overwrite. Memory SMT/witness files and the independent Yosys WaveJSON
+counterexample are version-controlled under docs/verification/five-memory-proofs
+and five-yosys-counterexample.json. Raw campaigns remain local. Stryker configurations
+under the two test projects describe whole-helper and focused replay scopes; spans
+are tied to the retained source hashes. Reproduce summary JSON with the checked-in
+JIT C# tools SummarizeMutationEvidence.cs and SummarizeRefinedRamCoverage.cs.
+
+Highest-value next work: widen transition proof to 32-bit CIL RAM/control state;
+qualify a real FPGA part/clock/pin constraint set through place/route; remove broad
+frontend mutation instrumentation exclusions; refresh full Z80 qualification; and
+complete the 16 unmapped requirements plus legacy API/offline documentation gaps.
+
+Example binding (the source is linked by the replay demo, unit suite and fuzz tool):
+
+```csharp
+var compiled = CilCompiler.BuildScheduledSequential(
+    typeof(ScheduledSharedRam).GetMethod(nameof(ScheduledSharedRam.Update))!,
+    "Shared", new SequentialOptions {
+        MemoryDepth = 3,
+        RamAliases = new Dictionary<int, int> { [1] = 0 }
+    });
+```
+
+`ramstateM_C` in a solver witness means cell C in RAM M, with RAM names sorted
+ordinally. Original input names remain in the same valuation. Final documentation
+rebuild preserves all five new manually reviewed bounded statuses. CLI rejection
+of an extra RTL-profile argument also passed and advertises memory-qualification.

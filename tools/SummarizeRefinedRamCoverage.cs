@@ -32,7 +32,7 @@ var results = files.Select(file =>
     }
     return new
     {
-        file = file.Key, lines = lines.Length,
+        file = Normalize(file.Key), lines = lines.Length,
         coveredLines = lines.Count(g => g.Any(l => (int)l.Attribute("hits")! > 0)),
         branches, coveredBranches
     };
@@ -45,3 +45,10 @@ Console.WriteLine(JsonSerializer.Serialize(new
     scope = "Unique source lines; summed Cobertura class-entry branch counters, including generated methods. Overall is the collected production assembly set, not the whole repository.",
     files = results
 }, new JsonSerializerOptions { WriteIndented = true, TypeInfoResolver = new System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver() }));
+
+// Normalize only the repository prefix, keeping source-relative identities comparable across hosts.
+static string Normalize(string value)
+{
+    string path=value.Replace('\\','/');int offset=path.IndexOf("/src/",StringComparison.Ordinal);
+    return offset<0?path:path[(offset+1)..];
+}

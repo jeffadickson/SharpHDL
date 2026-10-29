@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "inputSha256": "96C07CDA1175F8A721D64D6B3F2F113E0D22676B08C051BE190F6A3A894A8450",
+  "overall": {
+    "lineRate": "0.0901",
+    "branchRate": "0.07780000000000001"
+  },
+  "scope": "Unique source lines; summed Cobertura class-entry branch counters, including generated methods. Overall is the collected production assembly set, not the whole repository.",
+  "files": [
+    {
+      "file": "SharpHDL/ScheduledCilRamBindings.cs",
+      "lines": 17,
+      "coveredLines": 0,
+      "branches": 36,
+      "coveredBranches": 0
+    },
+    {
+      "file": "SharpHDL/ScheduledCilReferenceFacts.cs",
+      "lines": 6,
+      "coveredLines": 0,
+      "branches": 18,
+      "coveredBranches": 0
+    },
+    {
+      "file": "SharpHDL/ScheduledCilRefinedValidation.cs",
+      "lines": 105,
+      "coveredLines": 0,
+      "branches": 240,
+      "coveredBranches": 0
+    },
+    {
+      "file": "SharpHDL/ScheduledCilRelations.cs",
+      "lines": 7,
+      "coveredLines": 0,
+      "branches": 8,
+      "coveredBranches": 0
+    },
+    {
+      "file": "SharpHDL/ScheduledCilSharedBindings.cs",
+      "lines": 19,
+      "coveredLines": 0,
+      "branches": 26,
+      "coveredBranches": 0
+    },
+    {
+      "file": "SharpHDL/ScheduledCilStackValidation.cs",
+      "lines": 1,
+      "coveredLines": 0,
+      "branches": 2,
+      "coveredBranches": 0
+    },
+    {
+      "file": "SharpHDL/ScheduledSequentialCil.cs",
+      "lines": 169,
+      "coveredLines": 0,
+      "branches": 332,
+      "coveredBranches": 0
+    },
+    {
+      "file": "SharpHDL.Verification/MemoryTransitionEquivalence.cs",
+      "lines": 75,
+      "coveredLines": 72,
+      "branches": 112,
+      "coveredBranches": 86
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "stryker-config": {
+    "project": "SharpHDL.csproj",
+    "additional-timeout": 5000,
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "coverage-analysis": "off",
+    "test-case-filter": "FullyQualifiedName~RelationalAliasTests.Self_assignment_retains_its_own_guard_relation",
+    "concurrency": 1,
+    "mutate": [
+      "**/ScheduledCilRelations.cs{652..669}"
+    ]
+  }
+}

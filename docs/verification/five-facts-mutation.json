@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "tool": "Stryker.NET 5.0.0",
+  "rawPath": "build/verification/five-facts-mutation/reports/mutation-report.json",
+  "rawSha256": "BB31DE0BC80E715A443EB0D18B42DBBCF61EAD3B594B86843FCFEB4967FA1C73",
+  "scope": "ScheduledCil(ReferenceFacts|Relations)",
+  "policy": "Separate executions; never combine scores. File-wide CompileError/Ignored counts are not executed tests. Timeout is distinct from an ordinary kill. Survivor dispositions require explicit review.",
+  "files": [
+    {
+      "file": "ScheduledCilReferenceFacts.cs",
+      "sourceSha256": "781A365DB58D91EEAF0571FD485212B2D65E5E6B87266A229BCF6F75A3F62CCC",
+      "counts": {
+        "Killed": 18
+      },
+      "remaining": []
+    },
+    {
+      "file": "ScheduledCilRelations.cs",
+      "sourceSha256": "375236BBE1AD5ACE2A732A825DED6BACB46A6B46092FF94AA49C82B48CD9C128",
+      "counts": {
+        "Ignored": 1,
+        "Killed": 14,
+        "Survived": 7,
+        "Timeout": 1
+      },
+      "remaining": [
+        {
+          "id": "8427",
+          "status": "Survived",
+          "location": {
+            "start": {
+              "line": 13,
+              "column": 24
+            },
+            "end": {
+              "line": 13,
+              "column": 46
+            }
+          },
+          "replacement": "BigInteger.One\u003E\u003Etarget"
+        },
+        {
+          "id": "8428",
+          "status": "Survived",
+          "location": {
+            "start": {
+              "line": 13,
+              "column": 24
+            },
+            "end": {
+              "line": 13,
+              "column": 46
+            }
+          },
+          "replacement": "BigInteger.One\u003E\u003E\u003Etarget"
+        },
+        {
+          "id": "8436",
+          "status": "Survived",
+          "location": {
+            "start": {
+              "line": 16,
+              "column": 21
+            },
+            "end": {
+              "line": 16,
+              "column": 39
+            }
+          },
+          "replacement": "i\u003Erelations.Length"
+        },
+        {
+          "id": "8437",
+          "status": "Survived",
+          "location": {
+            "start": {
+              "line": 16,
+              "column": 21
+            },
+            "end": {
+              "line": 16,
+              "column": 39
+            }
+          },
+          "replacement": "i\u003C=relations.Length"
+        },
+        {
+          "id": "8438",
+          "status": "Timeout",
+          "location": {
+            "start": {
+              "line": 16,
+              "column": 40
+            },
+            "end": {
+              "line": 16,
+              "column": 43
+            }
+          },
+          "replacement": "i--"
+        },
+        {
+          "id": "8441",
+          "status": "Survived",
+          "location": {
+            "start": {
+              "line": 17,
+              "column": 26
+            },
+            "end": {
+              "line": 17,
+              "column": 43
+            }
+          },
+          "replacement": "BigInteger.One\u003E\u003Ei"
+        },
+        {
+          "id": "8442",
+          "status": "Survived",
+          "location": {
+            "start": {
+              "line": 17,
+              "column": 26
+            },
+            "end": {
+              "line": 17,
+              "column": 43
+            }
+          },
+          "replacement": "BigInteger.One\u003E\u003E\u003Ei"
+        },
+        {
+          "id": "8444",
+          "status": "Survived",
+          "location": {
+            "start": {
+              "line": 17,
+              "column": 49
+            },
+            "end": {
+              "line": 17,
+              "column": 66
+            }
+          },
+          "replacement": "relations[i]^=bit"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "stryker-config": {
+    "concurrency": 1,
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "additional-timeout": 15000,
+    "test-case-filter": "FullyQualifiedName~MemoryTransitionEquivalenceTests",
+    "coverage-analysis": "off",
+    "project": "SharpHDL.Verification.csproj",
+    "mutate": [
+      "**/MemoryTransitionEquivalence.cs{4579..4693}",
+      "**/MemoryTransitionEquivalence.cs{5024..5102}",
+      "**/MemoryTransitionEquivalence.cs{6766..6823}",
+      "**/MemoryTransitionEquivalence.cs{9156..9220}"
+    ]
+  }
+}

@@ -92,6 +92,20 @@ public sealed class MemoryTransitionEquivalenceTests
         Assert.Equal(EquivalenceStatus.Different,MemoryTransitionEquivalence.Check(Extra(a.Graph),a.Ports,a.Outputs,Extra(b.Graph),b.Ports,b.Outputs).Status);
     }
 
+    [Fact]
+    public void Different_write_address_widths_cannot_hide_a_last_cell()
+    {
+        var a=Design();var b=Design();
+        var narrow=a.Graph.Nodes.Select(n=>n.Id==0?n with{Type=new(1)}:n).ToArray();
+        var left=new HardwareGraph(narrow.Concat(new[]{new HardwareNode(6,HardwareOperation.Constant,new(1),[],0)}));
+        var right=new HardwareGraph(narrow.Concat(new[]{new HardwareNode(6,HardwareOperation.Constant,new(2),[],2)}));
+        // Independent pre-edge reads use the same narrow address; only the right
+        // write interface can reach cell two. All post-cells must still be compared.
+        a.Ports["ram"]=new("ram",2,0,6,1,[0,0,0]);b.Ports["ram"]=new("ram",2,6,2,1,[0,0,0]);
+        var r=MemoryTransitionEquivalence.Check(left,a.Ports,a.Outputs,right,b.Ports,b.Outputs);
+        Assert.Equal(EquivalenceStatus.Different,r.Status);Retain("different-address-width-defect",r);
+    }
+
     [Theory][InlineData(true,false)][InlineData(false,true)]
     public void Write_or_collision_defect_produces_an_original_Core_witness(bool invert,bool bypass)
     {

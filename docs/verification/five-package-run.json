@@ -1,0 +1,200 @@
+{
+  "baseline": "d9901393a1d316b6fa6b4e43ae9e855326c60b77",
+  "fastPerOS": 420,
+  "nativePerOS": 74,
+  "documentationPerOS": 4,
+  "skipped": 0,
+  "fuzz": {
+    "seed": 261026,
+    "executions": 518,
+    "hangs": 0,
+    "seconds": 60,
+    "crashes": 0
+  },
+  "hdlEdgesPerSimulator": 527,
+  "hdlDesigns": 5,
+  "genericSynthesis": 5,
+  "fpga": "Yosys xc7 mapping; XilinxBlock design uses two RAMB18E1; placement/routing/timing unverified",
+  "proofProfile": "Bounded one-edge Core memory/output transition; no whole scheduled CIL proof",
+  "coverage": "Separate fast/native JSON summaries, never averaged",
+  "logs": [
+    {
+      "path": "build\\verification\\five-qualified-windows.log",
+      "sha256": "64C32521C8091753544DEDF7986BD7C4B841F0914B6F1550A8200B8761B50F88"
+    },
+    {
+      "path": "build\\verification\\five-qualified-linux.log",
+      "sha256": "33EA273EB007A51EB029C05D9FA50E10F32850BE310917130210EFC98E7ACA79"
+    },
+    {
+      "path": "build\\verification\\five-qualified-native-windows.log",
+      "sha256": "F9FD1D36777828B3F8DF97CEBDEFA73E734016A6189702826C61314A0ADF0A5C"
+    },
+    {
+      "path": "build\\verification\\five-complete-native-linux.log",
+      "sha256": "30A25304ACAA316EB3FFC818ED4FB8AC7ABDED99AD096BF215C269B233228576"
+    },
+    {
+      "path": "build\\verification\\five-doc-tests-windows.log",
+      "sha256": "49DB10C1AC95C3F8977C265555CA5DCC8196E7189E72BE513A9F8ACDD3A26FC6"
+    },
+    {
+      "path": "build\\verification\\five-doc-tests-linux.log",
+      "sha256": "27BC34DAF9E33E073EB9ED8AA522A0D57696AD35C7DD0938A3C57AC93D2C96FB"
+    },
+    {
+      "path": "build\\verification\\five-05-rtl.log",
+      "sha256": "425F47D1A75A5C4AD96C91CE94650C0BD40A626027B9C311304D20117D61EDFD"
+    },
+    {
+      "path": "build\\verification\\five-05-hardware.log",
+      "sha256": "A4324C9B2FE69AEDD55FFCD11228BECB6481329F190A56032D8E43FBD5AE33E1"
+    },
+    {
+      "path": "build\\verification\\five-shared-fuzz.log",
+      "sha256": "615424743AF867000A1D211E0F975339478C016A0AE6167E2E838108A602811C"
+    }
+  ],
+  "sources": [
+    {
+      "path": "examples/MemoryCollisionExample.cs",
+      "sha256": "1ED7FE550873905491C6CCA48035727544DF08D140C616B5E04CA898093E1183"
+    },
+    {
+      "path": "examples/ScheduledSharedRam.cs",
+      "sha256": "6A3CC268F8A40EC8FD6805AA42DE5A59C2E5284BA9571C81F49A2563F7579132"
+    },
+    {
+      "path": "examples/SharpHDL.ScheduledExamples.csproj",
+      "sha256": "6C16E36A70775D70C0F0FF577F1A8756E4284A5B9891942D1B3A263F4B3708B5"
+    },
+    {
+      "path": "src/SharpHDL.Verification/MemoryTransitionEquivalence.cs",
+      "sha256": "B8A8F148C85BDE4CAC539EF96C8BEA7DF70D722B55C5337B4F8C32F6A811D041"
+    },
+    {
+      "path": "src/SharpHDL/ScheduledCilRamBindings.cs",
+      "sha256": "13E1571012B60CE116F6AB7417F5CD7F5B0C4072C47A2616F5859B865EB92F67"
+    },
+    {
+      "path": "src/SharpHDL/ScheduledCilRefinedValidation.cs",
+      "sha256": "DF0B0B5AE580B100EC2A1EF96B647A7F5C22A91DCCDB341FF4C51A9D6B6DA7EC"
+    },
+    {
+      "path": "src/SharpHDL/ScheduledCilRelations.cs",
+      "sha256": "375236BBE1AD5ACE2A732A825DED6BACB46A6B46092FF94AA49C82B48CD9C128"
+    },
+    {
+      "path": "src/SharpHDL/ScheduledCilSharedBindings.cs",
+      "sha256": "B6F085125337B5EC44DBAB01B5DBAC037BE84BB2135D7C040079DF18F06F121F"
+    },
+    {
+      "path": "src/SharpHDL/ScheduledSequentialCil.cs",
+      "sha256": "0DC71FC686CD84B70042515B266B1C44BBF4B7A1B9839A2F04387AC8571B47AB"
+    },
+    {
+      "path": "src/SharpHDL/SequentialCil.cs",
+      "sha256": "011243AAFE11E8FC3177303ED54AFCFCD6F039E57ABA4D100EBEA539DA72256F"
+    },
+    {
+      "path": "tests/Shared/MemoryCollisionCampaign.cs",
+      "sha256": "71613191FE1A41D7E15E2DFD25DC934077948EE188E3C2E52F690EC8F1AB2CA3"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/MemoryCollisionQualificationTests.cs",
+      "sha256": "7ECA3F3803720B2E890014CCC16DEF0041A63BDC9F89B2B74589AB24D4B48C4F"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/PredicateMutationRegressionTests.cs",
+      "sha256": "9E922BEB5FCC04D6A5CD4B44B9929596ABD7590843ACB14C3FD5B2D79C599733"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/RamQualificationTests.cs",
+      "sha256": "61355EE0620E48F8FF705FD29B6A432DB34D4E408659A68278CAC95D52FB7FAA"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/RelationalAliasTests.cs",
+      "sha256": "00F6073A8B07A26A0C75D1B9E023686CBC86CECF73FA348A0300582C7268BCCC"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/SharedRamBindingTests.cs",
+      "sha256": "6B687C0E88A43909101388B46F361C491526D5C8C64CDAFCED9CCB062D3C72F9"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/SharpHDL.UnitTests.csproj",
+      "sha256": "3A35AE2F0810A73DDD2D1C1F8E7D9BDAA3C7C7F09B8A3BC5D4DB66BDC38B7D8E"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/stryker-five-facts.json",
+      "sha256": "65A28D8711FD4122E2EA50AE56A9FED1A3701A6E180C66B64D732766AE15F687"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/stryker-five-qualification.json",
+      "sha256": "7EB26B34021578CA5A6D980C118CFC83073D77B4D779C1D44E532C11A5F8449B"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/stryker-five-relations.json",
+      "sha256": "7845D0355F28AEECDD13F028E00B34D2014C3DAA11952F69A3249867526198EE"
+    },
+    {
+      "path": "tests/SharpHDL.UnitTests/stryker-relations-replay.json",
+      "sha256": "C55F6563717E568DDCCACBAD63AECEDD112A2870DA36A6F50396F003D09F9F5C"
+    },
+    {
+      "path": "tests/SharpHDL.VerificationTests/MemoryTransitionEquivalenceTests.cs",
+      "sha256": "4AD6F4F798F799D55E7EE986A073B804E88E1A89341D91F16F516C35AF28C0B6"
+    },
+    {
+      "path": "tests/SharpHDL.VerificationTests/stryker-memory-replay.json",
+      "sha256": "3DA8BAEE9AE838D98225AC32CC30811FE3EFACAB191DD08C23FACDCAD4CBBB5A"
+    },
+    {
+      "path": "tests/SharpHDL.VerificationTests/stryker-memory-transition.json",
+      "sha256": "834E7A9F7776946CB7290FF9D77CE1E63D6EBB159F20EF8235CF2864C0F8F1A6"
+    },
+    {
+      "path": "tools/qualify-memory-hardware-linux.sh",
+      "sha256": "106A44D5E0BA5E175BF18AD3C0FF2B7AF6B51E80C46F33814B9F0804C423F2A3"
+    },
+    {
+      "path": "tools/run-scheduled-rtl.sh",
+      "sha256": "DE4BBCDB7359BAE1F5EF8EE4CA3D10B8CC85F3909132F9BEC16235E5964D49E1"
+    },
+    {
+      "path": "tools/SharpHDL.AxiFirRtlDemo/ScheduledSuiteReplay.cs",
+      "sha256": "0391F2F62A9C003B38D37121FFDC58535B39A94A1577D1EE7EC9C130D387BD7D"
+    },
+    {
+      "path": "tools/SharpHDL.AxiFirRtlDemo/SharpHDL.AxiFirRtlDemo.csproj",
+      "sha256": "6D8939696FBC8EBB477D920DCD0EE889611729C4CD148AB5A69CBC906CCAC599"
+    },
+    {
+      "path": "tools/SharpHDL.DocBuilder/Program.cs",
+      "sha256": "1D62394DA9C38E150B118FE435032C225C5CDFA1CF5199219D859E8D1BBE8F10"
+    },
+    {
+      "path": "tools/SharpHDL.ScheduledFuzz/corpus/shared-origin",
+      "sha256": "7A51701BBC00F677CBBC235CD834B07D4DE2F5C70CBE6D396C47631556C2741C"
+    },
+    {
+      "path": "tools/SharpHDL.ScheduledFuzz/Program.cs",
+      "sha256": "9AA9A8429B51E7B4426886AD05403E167DECC18BE62B3B4A716CE6E0A3D5DB51"
+    },
+    {
+      "path": "tools/SharpHDL.ScheduledFuzz/SharedRamFuzz.cs",
+      "sha256": "D7B9C5B483DC782CF4FEAF8142EE39BE324B1986B59A6F8BA82E725D8A8668AC"
+    },
+    {
+      "path": "tools/SharpHDL.ScheduledFuzz/SharpHDL.ScheduledFuzz.csproj",
+      "sha256": "4F4F675CC5357849480193D351B7F1B7F604583155DE0F4E36914FB53D55B666"
+    },
+    {
+      "path": "tools/SummarizeMutationEvidence.cs",
+      "sha256": "4908FD871294FB292CF58AE5DCD86CC6871D347CC8BAAA0139BEEF251C7B9E53"
+    },
+    {
+      "path": "tools/SummarizeRefinedRamCoverage.cs",
+      "sha256": "94C23E812EA65C0885DBB59A628EB9798673FE5916A4B347A5E293AB8942EB3C"
+    }
+  ]
+}

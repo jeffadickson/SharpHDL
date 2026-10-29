@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "tool": "Stryker.NET 5.0.0",
+  "rawPath": "build/verification/five-memory-replay/reports/mutation-report.json",
+  "rawSha256": "9D1BCAAA113C1C3CDF919E036DD86E31316D0A1E75B5A1872FCE4D28CAB1AC32",
+  "scope": "MemoryTransitionEquivalence",
+  "policy": "Separate executions; never combine scores. File-wide CompileError/Ignored counts are not executed tests. Timeout is distinct from an ordinary kill. Survivor dispositions require explicit review.",
+  "files": [
+    {
+      "file": "MemoryTransitionEquivalence.cs",
+      "sourceSha256": "B8A8F148C85BDE4CAC539EF96C8BEA7DF70D722B55C5337B4F8C32F6A811D041",
+      "counts": {
+        "Ignored": 153,
+        "CompileError": 27,
+        "Killed": 5
+      },
+      "remaining": []
+    }
+  ]
+}

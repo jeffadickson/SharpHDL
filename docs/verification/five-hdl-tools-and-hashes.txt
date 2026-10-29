@@ -1,0 +1,6 @@
+Icarus Verilog version 12.0 (stable) ()
+Verilator 5.020 2024-01-01 rev (Debian 5.020-1)
+Yosys 0.33 (git sha1 2584903a060)
+027d56f0d753eaf81cb2029ed57ec2753a4660543b7a3d7a53dd09ad4aad916a  /tmp/sharphdl-rtl-hugkNM/memory-hardware/MemoryCollisionAuto-xc7.json
+985669d7d544cb1379e30c8ef2e64bb2f853e510627aa6eab3579f9f01a2455b  /tmp/sharphdl-rtl-hugkNM/memory-hardware/MemoryCollisionXilinxBlock-xc7.json
+fc0a753ad358a6b645dfb1cf4d490074bfdb53ac5560018046ca89a034bfba65  /tmp/sharphdl-rtl-hugkNM/memory-hardware/collision-counterexample.json
