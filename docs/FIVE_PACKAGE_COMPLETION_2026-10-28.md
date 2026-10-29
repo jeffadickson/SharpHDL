@@ -16,3 +16,5 @@ and [Z3 .NET context APIs](https://z3prover.github.io/api/html/class_microsoft_1
 Timeout is not treated as an adjudicated kill. Finite HDL replay is not formal proof.
 
 Package 1 local gate: five new qualification cases pass (20 combined qualification/refinement/relational tests). Initial fixture mistakes (memory metadata property and depth/initializer mismatch) were corrected before this gate. Mutation replay follows with a larger timeout budget; no new score is claimed yet.
+
+Package 2 local gate: four new relational cases plus eleven existing guard cases pass within the combined 20-test gate. Relations use bounded BigInteger sets, intersect at joins, detach writes and refine current equal locals only. Positive copy guards execute against CLR/Core on repeated starts; overwritten/one-path relations reject.

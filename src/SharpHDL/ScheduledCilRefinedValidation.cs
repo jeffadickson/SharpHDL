@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Numerics;
 using SharpHDL.HLS;
 
 namespace SharpHDL;
 
 public static partial class CilCompiler
 {
-    private sealed record ScheduledRefinedFrame(ScheduledStackValue[] Stack,ScheduledStackKind[] Locals,ScheduledNullTest?[] Tests);
+    private sealed record ScheduledRefinedFrame(ScheduledStackValue[] Stack,ScheduledStackKind[] Locals,ScheduledNullTest?[] Tests,BigInteger[] Relations);
 
     private static Dictionary<int,ScheduledStackKind[]> ValidateRefinedScheduledStack(MethodInfo method,
         IReadOnlyList<Instruction> instructions,InstructionControlFlow flow)
@@ -34,7 +35,8 @@ public static partial class CilCompiler
         }
         var code=instructions.ToDictionary(i=>i.Offset);var entries=new Dictionary<int,ScheduledRefinedFrame>();
         var pending=new Queue<(int Offset,ScheduledRefinedFrame Frame)>();
-        pending.Enqueue((0,new(Array.Empty<ScheduledStackValue>(),locals.Select(l=>l.LocalType==typeof(uint[])?ScheduledStackKind.NullReference:ScheduledStackKind.Integer32).ToArray(),new ScheduledNullTest?[locals.Count])));
+        BigInteger initialAliases=BigInteger.Zero;foreach(var local in locals)if(local.LocalType==typeof(uint[]))initialAliases|=BigInteger.One<<local.LocalIndex;
+        pending.Enqueue((0,new(Array.Empty<ScheduledStackValue>(),locals.Select(l=>l.LocalType==typeof(uint[])?ScheduledStackKind.NullReference:ScheduledStackKind.Integer32).ToArray(),new ScheduledNullTest?[locals.Count],locals.Select(l=>l.LocalType==typeof(uint[])?initialAliases:BigInteger.Zero).ToArray())));
         while(pending.Count!=0)
         {
             var (offset,frame)=pending.Dequeue();
@@ -52,15 +54,16 @@ public static partial class CilCompiler
                     Join(previous.Stack[i].Kind,v.Kind),previous.Stack[i].Local==v.Local?v.Local:-1,
                     JoinScheduledTests(previous.Stack[i].Test,v.Test),previous.Stack[i].Boolean==v.Boolean?v.Boolean:null)).ToArray(),
                     frame.Locals.Select((k,i)=>Join(previous.Locals[i],k)).ToArray(),
-                    frame.Tests.Select((t,i)=>JoinScheduledTests(previous.Tests[i],t)).ToArray());
-                if(previous.Stack.SequenceEqual(merged.Stack)&&previous.Locals.SequenceEqual(merged.Locals)&&previous.Tests.SequenceEqual(merged.Tests))continue;
+                    frame.Tests.Select((t,i)=>JoinScheduledTests(previous.Tests[i],t)).ToArray(),
+                    frame.Relations.Select((r,i)=>r&previous.Relations[i]).ToArray());
+                if(previous.Stack.SequenceEqual(merged.Stack)&&previous.Locals.SequenceEqual(merged.Locals)&&previous.Tests.SequenceEqual(merged.Tests)&&previous.Relations.SequenceEqual(merged.Relations))continue;
                 frame=merged;
             }
             var ins=code[offset];string op=ins.Name;int count=PopCount(ins);
             if(frame.Stack.Length<count||frame.Stack.Length-count+PushCount(ins)>32||op=="ret"&&frame.Stack.Length!=1)
                 throw Error(method,offset,"Invalid/excessive evaluation stack.");
             entries[offset]=frame;
-            var localState=(ScheduledStackKind[])frame.Locals.Clone();var localTests=(ScheduledNullTest?[])frame.Tests.Clone();var stack=frame.Stack.ToList();
+            var localState=(ScheduledStackKind[])frame.Locals.Clone();var localTests=(ScheduledNullTest?[])frame.Tests.Clone();var relations=(BigInteger[])frame.Relations.Clone();var stack=frame.Stack.ToList();
             ScheduledStackValue Pop(){var v=stack[^1];stack.RemoveAt(stack.Count-1);return v;}
             void Require(ScheduledStackKind expected)
             {
@@ -89,7 +92,7 @@ public static partial class CilCompiler
             {
                 int i=VarIndex(ins,"stloc");var value=Pop();Invalidate(i);
                 if(locals[i].LocalType==typeof(uint[]))
-                {if(!IsScheduledReference(value.Kind))throw Error(method,offset,"Array alias storage requires a reference, not an integer.");localState[i]=value.Kind;}
+                {if(!IsScheduledReference(value.Kind))throw Error(method,offset,"Array alias storage requires a reference, not an integer.");localState[i]=value.Kind;AssignScheduledRelation(relations,i,value.Local);}
                 else
                 {if(value.Kind!=ScheduledStackKind.Integer32)throw Error(method,offset,$"{op} requires Integer32 on the typed stack.");localTests[i]=value.Test;}
             }
@@ -140,7 +143,7 @@ public static partial class CilCompiler
             }
             foreach(int next in flow.Successors[offset])
             {
-                var output=new ScheduledRefinedFrame(stack.ToArray(),(ScheduledStackKind[])localState.Clone(),(ScheduledNullTest?[])localTests.Clone());
+                var output=new ScheduledRefinedFrame(stack.ToArray(),(ScheduledStackKind[])localState.Clone(),(ScheduledNullTest?[])localTests.Clone(),(BigInteger[])relations.Clone());
                 // If target and fallthrough coincide, both outcomes reach the
                 // same block. Refining it as only the taken edge is unsound.
                 if(conditional&&(int)ins.Operand!=ins.Next)
@@ -154,8 +157,9 @@ public static partial class CilCompiler
                         if(narrowed==0)continue;
                         if(fact.Local>=0)
                         {
-                            output.Locals[fact.Local]=narrowed;
-                            for(int i=0;i<output.Stack.Length;i++)if(output.Stack[i].Local==fact.Local)output.Stack[i]=output.Stack[i] with{Kind=narrowed};
+                            var equal=relations[fact.Local];
+                            for(int i=0;i<output.Locals.Length;i++)if((equal&(BigInteger.One<<i))!=0)output.Locals[i]=narrowed;
+                            for(int i=0;i<output.Stack.Length;i++)if(output.Stack[i].Local>=0&&(equal&(BigInteger.One<<output.Stack[i].Local))!=0)output.Stack[i]=output.Stack[i] with{Kind=narrowed};
                         }
                     }
                 }
