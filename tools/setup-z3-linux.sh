@@ -10,8 +10,11 @@ if [[ -z ${SHARPHDL_Z3_NATIVE_DIR:-} ]]; then
   done
   SHARPHDL_Z3_NATIVE_DIR="$HOME/.cache/sharphdl/z3-4.12.2"
 fi
-test -d "$SHARPHDL_Z3_NATIVE_DIR"
 [[ "$SHARPHDL_Z3_NATIVE_DIR" == /* ]] || { echo 'Native asset directory must be absolute.' >&2; return 2 2>/dev/null || exit 2; }
+if [[ ! -d "$SHARPHDL_Z3_NATIVE_DIR" ]]; then
+  printf 'Pinned Z3 asset directory does not exist: %s\nUse the default verified cache or select an existing absolute directory.\n' "$SHARPHDL_Z3_NATIVE_DIR" >&2
+  return 2 2>/dev/null || exit 2
+fi
 if [[ ! -f "$SHARPHDL_Z3_NATIVE_DIR/libz3.so" ]]; then
   if [[ ! -f "$SHARPHDL_Z3_NATIVE_DIR/z3.zip" ]]; then
     curl -fL --retry 2 https://github.com/Z3Prover/z3/releases/download/z3-4.12.2/z3-4.12.2-x64-glibc-2.31.zip -o "$SHARPHDL_Z3_NATIVE_DIR/z3.zip.pending"

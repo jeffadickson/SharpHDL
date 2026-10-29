@@ -65,3 +65,45 @@ Library tradeoffs (primary sources checked 2026-10-28):
 * Retain Coverlet, xUnit and the pinned native Z3/Yosys integration. No new NuGet
   production dependency is needed. Native asset validation uses BCL/shell checks
   and the existing verified cache; an extra process wrapper would not fix a stale path.
+
+Final regression gates: 396 fast tests pass on each Windows/Linux platform (zero
+failures/skips), and 62 native verification tests pass per platform. An initial
+Linux run saw the new legacy-option assertion against a production assembly built
+before that guard was added; the isolated final rebuild passes all 396 tests.
+Windows documentation parser tests pass 4/4. Engineering/API build uses real
+StrictDoc and warning-failing Sphinx: 53 requirements, 37 mapped, 16 unmapped,
+seven API assemblies and thirteen engineering pages. Mapped does not mean closed.
+
+Other open work addressed: setup-z3-linux.sh rejects stale explicit native asset
+directories with status 2 and an actionable diagnostic; relative paths also reject
+with status 2. tools/check-z3-paths-linux.sh reproduces both negative checks without
+creating the missing target. Default-cache SHA validation and all 62 Linux native
+verification tests pass. The helper does not repair invalid caller paths silently.
+
+Reproduction (from an existing repository directory):
+
+```text
+dotnet test tests/SharpHDL.UnitTests -c Release -m:1 -nr:false -p:UseSharedCompilation=false -warnaserror --filter FullyQualifiedName!~Z80Tests --settings tests/SharpHDL.UnitTests/coverage.runsettings --collect:"XPlat Code Coverage"
+bash tools/run-workpackages-linux.sh refined-ram-final
+bash tools/run-verification-linux.sh
+bash tools/check-z3-paths-linux.sh
+bash tools/run-scheduled-rtl.sh guarded-rams
+bash tools/run-scheduled-fuzz.sh 60
+```
+
+Run Stryker from tests/SharpHDL.UnitTests using stryker-refined-ram.json and
+concurrency 1. The original seven-span gap configuration is baseline-specific:
+use source revision 59425de to replay it; the validator moved in the next item.
+Coverage inputs and scoped summaries are retained in docs/verification/refined-ram-coverage-*.json.
+Reproduce summaries with the checked-in C# file-based app (JIT; AOT disabled):
+`dotnet run tools/SummarizeRefinedRamCoverage.cs -- <existing-Cobertura-XML>`.
+Raw local artifacts remain under build/verification and private /tmp directories.
+No simulator performance optimization or new performance claim is included.
+
+Follow-up priorities:
+
+1. Resolve meaningful new helper mutation survivors with focused negative tests.
+2. Extend guarded facts across copied locals with sound relational invalidation.
+3. Specify explicit shared-resource alias groups before supporting parameter aliasing.
+4. Extend bounded bit-vector equivalence to selected memory transitions with honest unknown results.
+5. Qualify multi-memory reset/collision behavior across further HDL profiles and FPGA tools.
