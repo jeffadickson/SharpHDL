@@ -22,4 +22,4 @@ afl-fuzz -i "$repo/tools/SharpHDL.ScheduledFuzz/corpus" -o "$output/findings" -V
 printf 'Campaign retained at %s\n' "$output"
 cat "$output/findings/default/fuzzer_stats"
 # AFL can finish successfully despite retained crashes; make those fail verification.
-if find "$output/findings/default/crashes" -type f ! -name README.txt -print -quit | grep -q .; then exit 1; fi
+bash "$repo/tools/check-fuzz-crashes.sh" "$output/findings/default/crashes"

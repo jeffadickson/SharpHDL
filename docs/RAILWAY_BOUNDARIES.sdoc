@@ -1,0 +1,29 @@
+[DOCUMENT]
+TITLE: Railway build and command boundaries
+
+[REQUIREMENT]
+UID: RAIL-BUILD-001
+TITLE: Build and evidence failures propagate
+STATEMENT: >>>
+Retain benchmark logs while preserving a failing benchmark exit. Distinguish
+missing or failed fuzz evidence scans from clean scans and discovered crashes.
+<<<
+
+[REQUIREMENT]
+UID: RAIL-TOOL-001
+TITLE: Validated subprocess command and cleanup
+STATEMENT: >>>
+Validate ToolCli input before creating run artifacts. Resolve simple executable
+names through PATH. Accept explicit absolute executable paths. After launch,
+observe the process and pipe tasks on failure or cancellation and retain the
+failure diagnostic where the evidence destination remains writable.
+<<<
+
+[REQUIREMENT]
+UID: RAIL-CAMPAIGN-001
+TITLE: Structured campaign outcomes
+STATEMENT: >>>
+DocBuilder and EquivalenceCli shall propagate expected failures and cancellation
+through typed stage outcomes. Report a stable operation ID, failed stage and
+available evidence. Publish a completion record only after all stages succeed.
+<<<

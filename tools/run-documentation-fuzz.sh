@@ -17,4 +17,4 @@ export AFL_SKIP_BIN_CHECK=1 AFL_NO_UI=1 AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT
 afl-fuzz -i "$repo/tools/SharpHDL.DocumentationFuzz/corpus" -o "$output/findings" -V "$seconds" -s 261026 -t 5000 -m none -- dotnet "$output/publish/SharpHDL.DocumentationFuzz.dll"
 printf 'Documentation campaign retained at %s\n' "$output"
 cat "$output/findings/default/fuzzer_stats"
-if find "$output/findings/default/crashes" -type f ! -name README.txt -print -quit | grep -q .; then exit 1; fi
+bash "$repo/tools/check-fuzz-crashes.sh" "$output/findings/default/crashes"

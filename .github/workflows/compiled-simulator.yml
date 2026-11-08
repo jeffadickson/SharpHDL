@@ -51,6 +51,7 @@ jobs:
           export DOTNET_ROOT="$(dirname "$(readlink -f "$(command -v dotnet)")")"
           bash tests/benchmark-tinyrisc-backends.sh
       - name: Simple arithmetic steady-state throughput
+        shell: bash
         run: dotnet run --project tools/SharpHDL.SimulatorBench/SharpHDL.SimulatorBench.csproj -c Release -- 200000 | tee generated/tinyrisc/arithmetic-benchmark.log
       - name: Keep verification logs, raw timings and CPU RTL
         if: always()
