@@ -13,11 +13,22 @@
   "activationEvents": [
     "onDebugResolve:sharphdl",
     "onCommand:sharphdl.verilatorLint",
+    "onCommand:sharphdl.buildDesign",
+    "onCommand:sharphdl.runDesign",
     "onView:sharphdl.verification",
     "onView:sharphdl.projects"
   ],
   "main": "./extension.js",
   "contributes": {
+    "taskDefinitions": [
+      {
+        "type": "sharphdl-verilator",
+        "required": ["invocation"],
+        "properties": {
+          "invocation": { "type": "string" }
+        }
+      }
+    ],
     "debuggers": [
       {
         "type": "sharphdl",
@@ -54,11 +65,11 @@
         "title": "SharpHDL: Open Verification Artifact"
       },
       {
-        "command": "sharphdl.buildDesign",
+        "command": "sharphdl.selectAndBuildDesign",
         "title": "SharpHDL: Build Verilator Design"
       },
       {
-        "command": "sharphdl.runDesign",
+        "command": "sharphdl.selectAndRunDesign",
         "title": "SharpHDL: Run Verilator Test"
       },
       {

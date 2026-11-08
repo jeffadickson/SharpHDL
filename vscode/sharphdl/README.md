@@ -52,6 +52,12 @@ The repository's `sharphdl.project.json` lists multiple design/testbench configu
 
 **Go to Source / Generated RTL** uses an optional versioned provenance JSON mapping; it is not automatic until SharpHDL's CIL/Verilog compiler exports that mapping. The `sharphdl.verilator.runner` setting defaults to `docker`, using the `sharphdl-dev:local` image created by `make setup`. Set it to `host` to execute native Verilator, using `sharphdl.verilator.path` to select its executable. VS Code task problem matchers surface Verilator build errors in Problems. This is a multi-file RTL test runner, **not** a Verilator-backed DAP debugger or embedded waveform engine.
 
+Automation can call `sharphdl.buildDesign` or `sharphdl.runDesign` with
+`{ workspaceUri: folder.uri.toString(), projectId }` and an optional VS Code
+cancellation token. Both return a structured outcome. Without a selector they
+return `NeedsInput`. The palette commands can prompt for a project. See the
+[command contract](../../docs/RAILWAY_BOUNDARIES.md#editor-command-contract).
+
 Build/install the VSIX with `make vscode` (Node 22 container is pulled automatically). See [Getting started](../../docs/VSCODE_GETTING_STARTED.md) for Windows/WSL2, Linux, macOS, toolchain, first run and troubleshooting. The full GUI extension-host and cross-platform integration acceptance remains tracked in [issue #25](https://github.com/jeffadickson/SharpHDL/issues/25).
 
 ## Automatic CIL source provenance (v0.5)

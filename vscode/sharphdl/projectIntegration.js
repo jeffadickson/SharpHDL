@@ -1,6 +1,8 @@
 'use strict';
 const vscode=require('vscode');
 const path=require('node:path');
+const {randomUUID}=require('node:crypto');
+const {createDesignCommands}=require('./designCommands');
 const {parseProjectManifest,parseSourceMap,mappedLocation,relativePath,verilogArgs,executablePath}=require('./projectManifest');
 const MANIFEST='sharphdl.project.json';
 const {showWaveforms}=require('./waveformViewer');
@@ -20,30 +22,38 @@ async function discover() {
 function projectUri(folder,relative) {
   return vscode.Uri.joinPath(folder.uri,...relativePath(relative).split('/'));
 }
-async function taskProcess(folder,name,command,args) {
+async function taskProcess(folder,name,command,args,token,reveal=vscode.TaskRevealKind.Never) {
   const execution=new vscode.ProcessExecution(command,args,{cwd:folder.uri.fsPath});
-  const task=new vscode.Task({type:'sharphdl-verilator',name},folder,
+  const invocation=randomUUID();
+  const task=new vscode.Task({type:'sharphdl-verilator',name,invocation},folder,
     name,'SharpHDL Verilator',execution);
   task.problemMatchers=['$sharphdlVerilator'];
-  task.presentationOptions={reveal:vscode.TaskRevealKind.Always,panel:vscode.TaskPanelKind.Dedicated};
-  return new Promise(async(resolve,reject)=>{
-    let running,settled=false,grace=null;
+  task.presentationOptions={reveal,panel:vscode.TaskPanelKind.Dedicated};
+  return new Promise((resolve,reject)=>{
+    let running,cancelled,settled=false,grace=null;
     const done=(err,code)=>{
       if(settled)return;settled=true;
       if(grace!==null)clearTimeout(grace);
-      ended.dispose();terminated.dispose();
+      ended.dispose();terminated.dispose();cancelled?.dispose();
       if(err)reject(err);else resolve(code);
     };
     const ended=vscode.tasks.onDidEndTaskProcess(e=>{
-      if(e.execution===running)done(null,e.exitCode);
+      if(e.execution.task.definition.invocation===invocation)done(null,e.exitCode);
     });
     const terminated=vscode.tasks.onDidEndTask(e=>{
       // Task-end can arrive before the process-exit event. Give the latter a
       // short opportunity to report the actual exit code before failing.
-      if(e.execution===running&&!settled)
-        grace=setTimeout(()=>done(new Error(name+' ended without process exit status')),500);
+      if(e.execution.task.definition.invocation===invocation&&!settled&&grace===null)
+        grace=setTimeout(()=>done(null,undefined),500);
     });
-    try{running=await vscode.tasks.executeTask(task);}
+    try{
+      cancelled=token?.onCancellationRequested(()=>running?.terminate());
+      if(token?.isCancellationRequested){done(null,undefined);return;}
+      Promise.resolve(vscode.tasks.executeTask(task)).then(execution=>{
+        running=execution;
+        if(!settled&&token?.isCancellationRequested)running.terminate();
+      }).catch(done);
+    }
     catch(e){done(e);}
   });
 }
@@ -67,26 +77,32 @@ function executionCommand(folder,program,args) {
   dockerArgs.push('sharphdl-dev:local',program,...args);
   return {command:'docker',args:dockerArgs};
 }
-async function buildProject(entry) {
+async function buildProject(entry,token) {
   const {folder,project}=entry;
-  await validateInputs(folder,project);
+  if(token?.isCancellationRequested)return taskOutcome('build',undefined,token);
   await vscode.workspace.fs.createDirectory(projectUri(folder,project.outputDir));
   const executable=vscode.workspace.getConfiguration('sharphdl.verilator',folder.uri).get('path','verilator');
   const processArgs=executionCommand(folder,executable,verilogArgs(project));
-  const status=await taskProcess(folder,'Verilator build '+project.id,processArgs.command,processArgs.args);
-  if(status!==0)throw new Error('Verilator build failed for '+project.id+' (exit '+status+')');
+  const status=await taskProcess(folder,'Verilator build '+project.id,processArgs.command,processArgs.args,token);
+  return taskOutcome('build',status,token);
 }
-async function runProject(entry) {
-  if(entry.project.runnable===false)throw new Error('This source-mapped design has no testbench; build only.');
-  await buildProject(entry);
+async function runProject(entry,token) {
+  if(entry.project.runnable===false)return {status:'InvalidInput',stage:'validate',diagnostic:'This design has no testbench.'};
+  const build=await buildProject(entry,token);
+  if(build.status!=='Success')return build;
   const {folder,project}=entry;
   const binary=projectUri(folder,executablePath(project));
-  if(!await exists(binary))throw new Error('Verilator did not produce '+binary.fsPath);
+  if(!await exists(binary))return {status:'Failed',stage:'run',diagnostic:'Verilator did not produce '+binary.fsPath};
   const runner=vscode.workspace.getConfiguration('sharphdl.verilator',folder.uri).get('runner','docker');
   const program=runner==='docker'?'/workspace/'+executablePath(project).replaceAll('\\','/'):binary.fsPath;
   const processArgs=executionCommand(folder,program,[]);
-  const status=await taskProcess(folder,'Verilator test '+project.id,processArgs.command,[...processArgs.args,'+sharphdl_trace']);
-  if(status!==0)throw new Error('Verilator test failed for '+project.id+' (exit '+status+')');
+  const status=await taskProcess(folder,'Verilator test '+project.id,processArgs.command,[...processArgs.args,'+sharphdl_trace'],token);
+  return taskOutcome('run',status,token);
+}
+function taskOutcome(stage,exitCode,token) {
+  if(token?.isCancellationRequested)return {status:'Cancelled',stage,exitCode};
+  return exitCode===0?{status:'Success',stage,exitCode}:
+    {status:'Failed',stage,exitCode,diagnostic:'Verilator '+stage+' did not succeed. See the task terminal.'};
 }
 async function chooseProject() {
   const projects=await discover();
@@ -180,7 +196,7 @@ class ProjectExplorer {
         node.command={command:'sharphdl.generateProvenance',title:'Generate provenance'};
         actions.push(node);
       }
-      for(const [label,command] of [['Build Verilator design','sharphdl.buildDesign'],...(entry.project.runnable===false?[]:[['Run Verilator test','sharphdl.runDesign']]),['Go to mapped source / RTL','sharphdl.jumpToMapped'],['Find waveform signals','sharphdl.showMappedSignals'],['Open waveform cross-probe','sharphdl.openWaveforms']]){
+      for(const [label,command] of [['Build Verilator design','sharphdl.selectAndBuildDesign'],...(entry.project.runnable===false?[]:[['Run Verilator test','sharphdl.selectAndRunDesign']]),['Go to mapped source / RTL','sharphdl.jumpToMapped'],['Find waveform signals','sharphdl.showMappedSignals'],['Open waveform cross-probe','sharphdl.openWaveforms']]){
         const node=new vscode.TreeItem(label);
         node.iconPath=new vscode.ThemeIcon(command==='sharphdl.jumpToMapped'?'go-to-file':'play');
         node.command={title:label,command,arguments:[entry]};
@@ -203,6 +219,43 @@ class ProjectExplorer {
 function registerProjectIntegration(context) {
   const explorer=new ProjectExplorer();
   const view=vscode.window.createTreeView('sharphdl.projects',{treeDataProvider:explorer});
+  const activeOutputs=new Set();
+  const dispatch=createDesignCommands(async(operation,selector,token)=>{
+    const folder=(vscode.workspace.workspaceFolders||[]).find(f=>f.uri.toString()===selector.workspaceUri);
+    if(!folder)return {status:'InvalidInput',stage:'validate',diagnostic:'Workspace is not open.'};
+    let project;
+    try {
+      const uri=projectUri(folder,MANIFEST);
+      const manifest=parseProjectManifest(Buffer.from(await vscode.workspace.fs.readFile(uri)).toString('utf8'));
+      project=manifest.projects.find(p=>p.id===selector.projectId);
+      if(!project)return {status:'InvalidInput',stage:'validate',diagnostic:'Design is absent from the workspace manifest.'};
+      await validateInputs(folder,project);
+    }catch(error){return {status:'Failed',stage:'validate',diagnostic:String(error.message||error)};}
+    if(token?.isCancellationRequested)return {status:'Cancelled',stage:'validate'};
+    const outputPath=path.normalize(projectUri(folder,project.outputDir).fsPath);
+    const output=process.platform==='win32'?outputPath.toLowerCase():outputPath;
+    if(activeOutputs.has(output))return {status:'Busy',stage:'validate',diagnostic:'A command already owns this output directory.'};
+    activeOutputs.add(output);
+    try{
+      return await (operation==='sharphdl.runDesign'?runProject:buildProject)({folder,project},token);
+    }finally{
+      activeOutputs.delete(output);
+      explorer.refresh();
+    }
+  });
+  async function selectAndExecute(operation,entry) {
+    try {
+      const selected=entry||await chooseProject();
+      if(!selected)return {operation,status:'Cancelled',stage:'select'};
+      const result=await dispatch(operation,selected);
+      if(result.diagnostic&&result.status!=='Cancelled')void vscode.window.showErrorMessage('SharpHDL: '+result.diagnostic);
+      return result;
+    }catch(error){
+      const diagnostic=String(error.message||error);
+      void vscode.window.showErrorMessage('SharpHDL: '+diagnostic);
+      return {operation,status:'Failed',stage:'select',diagnostic};
+    }
+  }
   async function invoke(fn,entry) {
     try {
       const selected=entry||await chooseProject();
@@ -211,8 +264,10 @@ function registerProjectIntegration(context) {
     }catch(e){vscode.window.showErrorMessage('SharpHDL: '+e.message);}
   }
   context.subscriptions.push(explorer,view,
-    vscode.commands.registerCommand('sharphdl.buildDesign',entry=>invoke(buildProject,entry)),
-    vscode.commands.registerCommand('sharphdl.runDesign',entry=>invoke(runProject,entry)),
+    vscode.commands.registerCommand('sharphdl.buildDesign',(entry,token)=>dispatch('sharphdl.buildDesign',entry,token)),
+    vscode.commands.registerCommand('sharphdl.runDesign',(entry,token)=>dispatch('sharphdl.runDesign',entry,token)),
+    vscode.commands.registerCommand('sharphdl.selectAndBuildDesign',entry=>selectAndExecute('sharphdl.buildDesign',entry)),
+    vscode.commands.registerCommand('sharphdl.selectAndRunDesign',entry=>selectAndExecute('sharphdl.runDesign',entry)),
     vscode.commands.registerCommand('sharphdl.jumpToMapped',entry=>invoke(jumpToMapped,entry)),
     vscode.commands.registerCommand('sharphdl.showMappedSignals',entry=>invoke(showMappedSignals,entry)),
     vscode.commands.registerCommand('sharphdl.openWaveforms',entry=>invoke(openMappedWaveforms,entry)),
@@ -221,7 +276,8 @@ function registerProjectIntegration(context) {
       const folder=(vscode.workspace.workspaceFolders||[])[0];
       if(!folder)return vscode.window.showErrorMessage('Open the SharpHDL repository first');
       try {
-        const status=await taskProcess(folder,'Generate HLS source provenance','make',['vscode-provenance']);
+        const status=await taskProcess(folder,'Generate HLS source provenance','make',['vscode-provenance'],
+          undefined,vscode.TaskRevealKind.Always);
         explorer.refresh();
         if(status!==0)vscode.window.showErrorMessage('Provenance generation failed; see task terminal');
       }catch(e){vscode.window.showErrorMessage(String(e.message||e));}

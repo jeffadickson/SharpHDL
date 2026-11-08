@@ -28,6 +28,13 @@ async function run(){
   // Exercise a real VS Code webview with a deterministic VCD, not merely command registration.
   const folder=vscode.workspace.workspaceFolders?.[0];
   assert.ok(folder,'Test host needs the SharpHDL workspace');
+  for(const operation of ['sharphdl.buildDesign','sharphdl.runDesign']){
+    assert.equal((await vscode.commands.executeCommand(operation)).status,'NeedsInput');
+    assert.equal((await vscode.commands.executeCommand(operation,
+      {workspaceUri:folder.uri.toString(),projectId:'RailwayMissingProject'})).status,'InvalidInput');
+  }
+  assert.ok(commands.includes('sharphdl.selectAndBuildDesign'));
+  assert.ok(commands.includes('sharphdl.selectAndRunDesign'));
   const panel=await showWaveforms({folder,project:{
     label:'Waveform integration fixture',waveforms:['vscode/sharphdl/test/fixtures/crossprobe.vcd'],
     sourceMap:null
