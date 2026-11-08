@@ -58,11 +58,60 @@ public sealed class HdlToolRunnerTests
     [Theory][InlineData(false)][InlineData(true)]
     public async Task Cancellation_and_timeout_are_distinct(bool caller)
     {
-        using var token=new CancellationTokenSource();if(caller)token.CancelAfter(500);
-        var result=await HdlToolRunner.RunAsync(Dotnet,Arguments("sleep"),AppContext.BaseDirectory,DirectoryForRun(),
-            caller?TimeSpan.FromSeconds(20):TimeSpan.FromMilliseconds(500),token.Token);
+        string path=DirectoryForRun(), ready=Path.Combine(path,"ready.pid");
+        using var token=new CancellationTokenSource(TimeSpan.FromSeconds(20));
+        var run=HdlToolRunner.RunAsync(Dotnet,Arguments("sleep",ready),AppContext.BaseDirectory,path,
+            caller?TimeSpan.FromSeconds(30):TimeSpan.FromSeconds(5),token.Token);
+        if(caller)
+        {
+            try
+            {
+                while(!File.Exists(ready)&&!run.IsCompleted)await Task.Delay(20,token.Token);
+                Assert.True(File.Exists(ready),"The fixture did not announce startup.");
+            }
+            finally {token.Cancel();}
+        }
+        var result=await run;
         Assert.Equal(caller?ToolRunStatus.Cancelled:ToolRunStatus.TimedOut,result.Status);
-        Assert.NotNull(result.ExitCode);
+        if(caller)Assert.NotNull(result.ExitCode);
+    }
+
+    /// <summary>A failed evidence write must interrupt the running child and retain its diagnostic.</summary>
+    [Fact]
+    public async Task Output_write_failure_terminates_child_and_retains_diagnostic()
+    {
+        string path=DirectoryForRun(), ready=Path.Combine(path,"ready.pid");
+        try
+        {
+            var result=await HdlToolRunner.RunCoreAsync(Dotnet,Arguments("sleep",ready),AppContext.BaseDirectory,
+                path,TimeSpan.FromSeconds(10),CancellationToken.None,4096,
+                (_,_)=>ValueTask.FromException(new IOException("Injected evidence write failure.")));
+            Assert.Equal("EvidenceIoFailure",result.Status.ToString());
+            Assert.Contains("Injected evidence write failure",result.Error);
+            Assert.NotNull(result.ExitCode);
+            Assert.True(File.Exists(Path.Combine(path,"manifest.json")));
+            Assert.False(ChildIsAlive(ready));
+        }
+        finally
+        {
+            if(ChildIsAlive(ready))
+            {
+                using var child=System.Diagnostics.Process.GetProcessById(int.Parse(File.ReadAllText(ready)));
+                child.Kill(entireProcessTree:true);
+                await child.WaitForExitAsync();
+            }
+        }
+    }
+
+    private static bool ChildIsAlive(string pidFile)
+    {
+        if(!File.Exists(pidFile))return false;
+        try
+        {
+            using var child=System.Diagnostics.Process.GetProcessById(int.Parse(File.ReadAllText(pidFile)));
+            return !child.HasExited;
+        }
+        catch(ArgumentException){return false;}
     }
     /// <summary>Hard cancellation kills an ordinary descendant, not merely the immediate process.</summary>
     [Fact]

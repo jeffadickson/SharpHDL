@@ -5,7 +5,14 @@ switch(args[0])
 {
     case "echo":Console.Write(JsonSerializer.Serialize(args[1..]));Console.Error.Write("stderr evidence");return 0;
     case "fail":Console.Error.Write("expected failure");return 23;
-    case "sleep":await Task.Delay(TimeSpan.FromMinutes(5));return 0;
+    case "sleep":
+        if(args.Length==2)
+        {
+            await File.WriteAllTextAsync(args[1]+".pending",Environment.ProcessId.ToString(System.Globalization.CultureInfo.InvariantCulture));
+            File.Move(args[1]+".pending",args[1]);
+            Console.WriteLine("ready");
+        }
+        await Task.Delay(TimeSpan.FromMinutes(5));return 0;
     case "tree":
         var info=new System.Diagnostics.ProcessStartInfo(Environment.ProcessPath!){UseShellExecute=false,CreateNoWindow=true};
         foreach(string arg in new[]{"exec","--runtimeconfig",args[1],typeof(ToolFixtureMarker).Assembly.Location,"sleep"})info.ArgumentList.Add(arg);

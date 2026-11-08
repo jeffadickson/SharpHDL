@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text.Json;
@@ -23,7 +24,9 @@ public enum ToolRunStatus
     /// <summary>The OS rejected process creation.</summary>
     FailedToStart,
     /// <summary>One output stream exceeded its retained-byte budget.</summary>
-    OutputLimitExceeded
+    OutputLimitExceeded,
+    /// <summary>After launch, a process pipe or evidence stream could not be read or written.</summary>
+    EvidenceIoFailure
 }
 
 /// <summary>Serialized invocation snapshot. Arguments are recorded verbatim; environment values are not recorded. Budgets are milliseconds and bytes per stream.</summary>
@@ -39,11 +42,17 @@ public static class HdlToolRunner
     /// stderr.bin and manifest.json in a new directory whose parent must exist. Timeout includes
     /// output drainage. Cancellation kills the ordinary process tree; detached/reparented daemons
     /// are outside this contract. Output-limit truncation is a failure, never successful evidence.
-    /// IO/cleanup failures propagate. The token is reported in the manifest rather than thrown.
+    /// Pipe and evidence I/O failures after launch are reported when the manifest remains writable.
+    /// Setup, cleanup and manifest publication failures propagate.
     /// </summary>
-    public static async Task<ToolRunManifest> RunAsync(string executable,IReadOnlyList<string> arguments,
+    public static Task<ToolRunManifest> RunAsync(string executable,IReadOnlyList<string> arguments,
         string workingDirectory,string artifactDirectory,TimeSpan timeout,CancellationToken cancellationToken=default,
-        long maximumOutputBytes=1_048_576)
+        long maximumOutputBytes=1_048_576) =>
+        RunCoreAsync(executable,arguments,workingDirectory,artifactDirectory,timeout,cancellationToken,maximumOutputBytes);
+
+    internal static async Task<ToolRunManifest> RunCoreAsync(string executable,IReadOnlyList<string> arguments,
+        string workingDirectory,string artifactDirectory,TimeSpan timeout,CancellationToken cancellationToken,
+        long maximumOutputBytes,Func<ReadOnlyMemory<byte>,CancellationToken,ValueTask>? writeStdout=null)
     {
         ArgumentNullException.ThrowIfNull(arguments);
         string[] argv=arguments.ToArray();
@@ -56,8 +65,8 @@ public static class HdlToolRunner
         if(!Directory.Exists(Path.GetDirectoryName(artifactDirectory)))throw new DirectoryNotFoundException("Missing artifact parent.");
         if(Path.Exists(artifactDirectory))throw new IOException("Evidence directory must be new.");
         Directory.CreateDirectory(artifactDirectory);
-        using var stdout=new FileStream(Path.Combine(artifactDirectory,"stdout.bin"),FileMode.CreateNew,FileAccess.Write,FileShare.Read);
-        using var stderr=new FileStream(Path.Combine(artifactDirectory,"stderr.bin"),FileMode.CreateNew,FileAccess.Write,FileShare.Read);
+        using var stdout=new FileStream(Path.Combine(artifactDirectory,"stdout.bin"),FileMode.CreateNew,FileAccess.Write,FileShare.Read,bufferSize:1,useAsync:true);
+        using var stderr=new FileStream(Path.Combine(artifactDirectory,"stderr.bin"),FileMode.CreateNew,FileAccess.Write,FileShare.Read,bufferSize:1,useAsync:true);
         var timer=Stopwatch.StartNew();DateTime started=DateTime.UtcNow;
         ToolRunStatus status=ToolRunStatus.Success;int? exit=null;string? error=null,hash=null;long outCount=0,errCount=0;
         using var deadline=new CancellationTokenSource(timeout);
@@ -82,42 +91,95 @@ public static class HdlToolRunner
             catch(System.ComponentModel.Win32Exception ex){status=ToolRunStatus.FailedToStart;error=ex.Message;}
             if(running)
             {
-                process.StandardInput.Close();
+                var pipeFailure=new TaskCompletionSource<Exception>(TaskCreationOptions.RunContinuationsAsynchronously);
                 // Drain both pipes concurrently. Retain raw bytes and continue only until the
                 // first bounded-output violation; never buffer arbitrarily large output in RAM.
                 async Task Pump(Stream input,Stream output,bool isOut)
                 {
-                    byte[] buffer=new byte[8192];long count=0;
-                    while(true)
+                    try
                     {
-                        int read=await input.ReadAsync(buffer,linked.Token);if(read==0)break;
-                        int retained=(int)Math.Min(read,maximumOutputBytes-count);
-                        if(retained>0)await output.WriteAsync(buffer.AsMemory(0,retained),CancellationToken.None);
-                        count+=retained;if(isOut)outCount=count;else errCount=count;
-                        if(retained<read){overflow.Cancel();break;}
+                        byte[] buffer=new byte[8192];long count=0;
+                        while(true)
+                        {
+                            int read=await input.ReadAsync(buffer,linked.Token);if(read==0)break;
+                            int retained=(int)Math.Min(read,maximumOutputBytes-count);
+                            if(retained>0)
+                            {
+                                var bytes=buffer.AsMemory(0,retained);
+                                if(isOut&&writeStdout is not null)await writeStdout(bytes,linked.Token);
+                                else await output.WriteAsync(bytes,linked.Token);
+                            }
+                            count+=retained;if(isOut)outCount=count;else errCount=count;
+                            if(retained<read){overflow.Cancel();break;}
+                        }
+                    }
+                    catch(Exception failure) when(failure is not OperationCanceledException || !linked.IsCancellationRequested)
+                    {
+                        pipeFailure.TrySetResult(failure);
+                        throw;
                     }
                 }
-                var drains=Task.WhenAll(Pump(process.StandardOutput.BaseStream,stdout,true),Pump(process.StandardError.BaseStream,stderr,false));
-                try{await Task.WhenAll(process.WaitForExitAsync(linked.Token),drains).WaitAsync(linked.Token);}
-                catch(OperationCanceledException) when(linked.IsCancellationRequested)
+
+                Task completion=Task.CompletedTask;
+                try
                 {
-                    status=overflow.IsCancellationRequested?ToolRunStatus.OutputLimitExceeded:
-                        cancellationToken.IsCancellationRequested?ToolRunStatus.Cancelled:ToolRunStatus.TimedOut;
-                    if(!process.HasExited)
+                    completion=process.WaitForExitAsync();
+                    process.StandardInput.Close();
+                    completion=Task.WhenAll(completion,Pump(process.StandardOutput.BaseStream,stdout,true),
+                        Pump(process.StandardError.BaseStream,stderr,false));
+                    var first=await Task.WhenAny(completion,pipeFailure.Task).WaitAsync(linked.Token);
+                    if(first==pipeFailure.Task)ExceptionDispatchInfo.Throw(await pipeFailure.Task);
+                    await completion;
+                }
+                catch(Exception failure)
+                {
+                    bool cancelled=failure is OperationCanceledException&&linked.IsCancellationRequested;
+                    linked.Cancel();
+                    // A faulted pump cannot wait for normal child exit. Kill first, then
+                    // observe both pipes and process exit with a bounded cleanup budget.
+                    var cleanupErrors=new List<Exception>();
+                    try
                     {
-                        try{process.Kill(entireProcessTree:true);}
-                        catch(InvalidOperationException) when(process.HasExited){ /* Exit raced cancellation. */ }
+                        if(!process.HasExited)process.Kill(entireProcessTree:true);
                     }
-                    await process.WaitForExitAsync().WaitAsync(TimeSpan.FromSeconds(10));
-                    try{await drains.WaitAsync(TimeSpan.FromSeconds(10));}
-                    catch(OperationCanceledException) when(linked.IsCancellationRequested){ /* Both pumps are observed after cancellation. */ }
+                    catch(InvalidOperationException) when(process.HasExited){ /* Exit raced teardown. */ }
+                    catch(Exception cleanup){cleanupErrors.Add(cleanup);}
+                    try{await completion.WaitAsync(TimeSpan.FromSeconds(10));}
+                    catch(Exception) when(completion.IsFaulted||completion.IsCanceled){ /* Classified below. */ }
+                    catch(Exception cleanup){cleanupErrors.Add(cleanup);}
+
+                    var failures=completion.Exception?.Flatten().InnerExceptions.ToList()??[];
+                    if(!cancelled&&!failures.Contains(failure))failures.Add(failure);
+                    if(cleanupErrors.Count!=0)
+                        throw new AggregateException("Tool execution and cleanup failed.",failures.Append(failure).Concat(cleanupErrors).Distinct());
+                    if(failures.Count!=0)
+                    {
+                        if(failures.Any(e=>e is not (IOException or UnauthorizedAccessException)))
+                            throw new AggregateException("Unexpected tool execution failure.",failures);
+                        status=ToolRunStatus.EvidenceIoFailure;
+                        error=string.Join(Environment.NewLine,failures.Select(e=>e.Message));
+                    }
+                    else
+                    {
+                        status=overflow.IsCancellationRequested?ToolRunStatus.OutputLimitExceeded:
+                            cancellationToken.IsCancellationRequested?ToolRunStatus.Cancelled:ToolRunStatus.TimedOut;
+                    }
                 }
                 exit=process.ExitCode;
+                if(status==ToolRunStatus.Success&&overflow.IsCancellationRequested)status=ToolRunStatus.OutputLimitExceeded;
                 if(status==ToolRunStatus.Success&&exit!=0)status=ToolRunStatus.NonzeroExit;
             }
             else if(status==ToolRunStatus.Success)throw new InvalidOperationException("Process.Start returned false.");
         }
-        await stdout.FlushAsync();await stderr.FlushAsync();
+        foreach(var stream in new[]{stdout,stderr})
+        {
+            try{await stream.FlushAsync();}
+            catch(Exception failure) when(failure is IOException or UnauthorizedAccessException)
+            {
+                status=ToolRunStatus.EvidenceIoFailure;
+                error=error is null?failure.Message:error+Environment.NewLine+failure.Message;
+            }
+        }
         var manifest=new ToolRunManifest(executable,argv,Path.GetFullPath(workingDirectory),hash,started,timer.Elapsed.TotalMilliseconds,
             RuntimeInformation.OSDescription,Environment.Version.ToString(),status,exit,error,outCount,errCount,timeout.TotalMilliseconds,maximumOutputBytes);
         await using var record= new FileStream(Path.Combine(artifactDirectory,"manifest.json"),FileMode.CreateNew);
@@ -128,7 +190,7 @@ public static class HdlToolRunner
     /// <summary>Resolve a simple executable name using PATH; returns an absolute existing path or null. Shell scripts are not implicitly interpreted.</summary>
     public static string? FindExecutable(string name)
     {
-        if(string.IsNullOrWhiteSpace(name)||name.IndexOfAny([Path.DirectorySeparatorChar,Path.AltDirectorySeparatorChar])>=0)
+        if(string.IsNullOrWhiteSpace(name)||Path.IsPathRooted(name)||name.IndexOfAny(Path.GetInvalidFileNameChars())>=0)
             throw new ArgumentException("Expected a simple executable name.",nameof(name));
         foreach(string entry in (Environment.GetEnvironmentVariable("PATH")??"").Split(Path.PathSeparator))
         {
