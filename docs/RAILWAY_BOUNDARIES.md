@@ -41,3 +41,61 @@ test -d tests && test -d "$managed" && bash tests/check-railway-campaigns.sh "$m
 
 The verification record contains the run locations, measured coverage and scope.
 [Run evidence](verification/railway-run.json)
+
+## Editor command contract
+
+`sharphdl.buildDesign` and `sharphdl.runDesign` accept
+`{ workspaceUri, projectId }` and an optional VS Code cancellation token.
+They return `{ operation, status, stage, diagnostic?, exitCode? }`. Omit the
+selector to receive `NeedsInput`. The workspace must be open and local.
+The extension reads the project manifest from disk and validates its sources
+before creating the output directory. A run stops if its build fails.
+A second operation targeting the same output path in the same extension host
+returns `Busy`. This guard does not coordinate separate VS Code processes.
+
+The palette and Explorer use `sharphdl.selectAndBuildDesign` and
+`sharphdl.selectAndRunDesign`. These adapters can request input and present
+diagnostics. The shared operation uses VS Code ProcessExecution and its problem
+matcher. This retains terminal logs and Problems integration without introducing
+a subprocess dependency or duplicating the task lifecycle.
+[VS Code API](https://code.visualstudio.com/api/references/vscode-api)
+
+## Local gate and Dafny check
+
+From the repository root in PowerShell 7 on Windows, run the local gate with
+Node and WSL available. `$managed` is the absolute Linux path to the compiled
+Release artifacts described above.
+
+```powershell
+if (Test-Path -LiteralPath tests -PathType Container) {
+    ./tests/Check-RailwayLocal.ps1 -LinuxArtifacts $managed
+}
+```
+
+With the installed Windows VS Code CLI and .NET SDK, the separate host
+check starts a real task in an isolated workspace. It checks that a failing
+build reports its exit status and prevents the run task from starting.
+
+```powershell
+if ((Test-Path -LiteralPath tests -PathType Container) -and
+    (Test-Path -LiteralPath $evidence -PathType Container)) {
+    ./tests/Check-RailwayEditorHost.ps1 -EvidenceRoot $evidence
+}
+```
+
+The opt-in Dafny check proves the zero-exit invariant for the model and compiles
+the generated C# to compare against the production console on all current
+terminal outcomes and a representative unknown value. It does not prove
+publication, process cancellation or the C# implementation. Dafny 4.11.0
+and its generated runtime are confined to the check. The existing production
+switch remains the runtime implementation.
+[Dafny 4.11.0](https://github.com/dafny-lang/dafny/releases/tag/v4.11.0)
+
+```powershell
+if ((Test-Path -LiteralPath tests/dafny -PathType Container) -and
+    (Test-Path -LiteralPath $evidence -PathType Container)) {
+    ./tests/dafny/Check-CampaignExit.ps1 -Dafny $dafny -EvidenceRoot $evidence
+}
+```
+
+[Editor, local gate and proof evidence](verification/railway-followup.json)

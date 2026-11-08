@@ -900,6 +900,25 @@
       "limitations": "Local command qualification. Cancellation precedes the atomic completion rename. Partial diagnostic directories remain available.",
       "status": "verified_bounded",
       "uid": "RAIL-CAMPAIGN-001"
+    },
+    {
+      "uid": "RAIL-EDITOR-001",
+      "status": "partial",
+      "implementation": ["vscode/sharphdl/designCommands.js", "vscode/sharphdl/projectIntegration.js"],
+      "tests": [
+        {"file": "vscode/sharphdl/designCommands.test.js", "method": "missing and malformed selectors never start work"},
+        {"file": "vscode/sharphdl/test/designCommandsHost.test.js", "method": "run"}
+      ],
+      "evidence": ["docs/verification/railway-followup.json"],
+      "limitations": "The native interactive picker and in-flight cancellation require separate qualification."
+    },
+    {
+      "uid": "RAIL-EXIT-001",
+      "status": "verified_bounded",
+      "implementation": ["src/SharpHDL.Tooling/BuildCampaign.cs", "tests/dafny/CampaignExit.dfy"],
+      "tests": [{"file": "tests/dafny/Program.cs", "method": "BuildCampaign.RunConsoleAsync"}],
+      "evidence": ["docs/verification/railway-followup.json"],
+      "limitations": "Model theorem and conformance for all defined outcomes plus one unknown value. No C# lifecycle proof."
     }
   ],
   "schema": 1

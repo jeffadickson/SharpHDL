@@ -1,0 +1,57 @@
+{
+  "baseline": "16a28a0f5f846afe2bc57db2bb0f898c70669555",
+  "windowsArtifactRoot": "E:\\Artifacts\\SharpHDL-railway-next-eb8a3e388c294629ba58d1b15a094ae3",
+  "linuxArtifactRoot": "/tmp/sharphdl-railway-next-20261108",
+  "tools": {
+    "windowsSdk": "10.0.403",
+    "linuxSdk": "10.0.402",
+    "node": "24.20.0",
+    "vscode": "1.142.0",
+    "strictdoc": "0.30.4",
+    "sphinx": "9.2.0",
+    "dafny": "4.11.0+fcb2042d6d043a2634f0854338c08feeaaaf4ae2",
+    "z3": "4.12.2",
+    "yosys": "0.33"
+  },
+  "localGate": {
+    "command": "./tests/Check-RailwayLocal.ps1 -LinuxArtifacts /tmp/sharphdl-railway-next-20261108",
+    "node": {"passed": 15, "failed": 0, "skipped": 0},
+    "dispatcherCoverage": {"linePercent": 100, "branchPercent": 70.37},
+    "shellEvidence": "/tmp/sharphdl-shell-check-t4LBQZ",
+    "campaignEvidence": "/tmp/sharphdl-command-check-gcaVFX",
+    "independentSolverAndRtlCases": 44
+  },
+  "editorHost": {
+    "command": "./tests/Check-RailwayEditorHost.ps1 -EvidenceRoot <windowsArtifactRoot>",
+    "evidenceDirectory": "editor-host-79e3cd8baac44f8c9fd0b8f2c99dbdcf",
+    "exitCode": 0,
+    "scope": "Real VS Code task, nonzero process exit and no follow-on run task. Windows visual inspection could not activate the captured development window. Live cancellation and simultaneous submissions were not qualified. Node coverage excludes extension-host code."
+  },
+  "toolingRegression": {
+    "command": "dotnet test tests/SharpHDL.UnitTests -c Release -m:1 -nr:false --artifacts-path <windowsArtifactRoot>/managed-tests --filter 'FullyQualifiedName~BuildCampaignTests|FullyQualifiedName~HdlToolRunnerTests' --settings tests/SharpHDL.UnitTests/coverage.runsettings --collect:'XPlat Code Coverage' --results-directory <windowsArtifactRoot>/test-results",
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "toolingAssemblyCoverage": {"linePercent": 86.11, "branchPercent": 64.72},
+    "wholeInstrumentedScopeCoverage": {"linePercent": 13.52, "branchPercent": 2.68}
+  },
+  "proof": {
+    "command": "./tests/dafny/Check-CampaignExit.ps1 -Dafny <dafny.exe> -EvidenceRoot <windowsArtifactRoot>",
+    "evidenceDirectory": "campaign-exit-7b6d240a03914a0a980b13cc5e2c7b4f",
+    "verified": 1,
+    "errors": 0,
+    "productionBoundaryComparisons": 7,
+    "generatedRuntimeWarning": "CS8981 on Dafny's nat type"
+  },
+  "negativeControls": [
+    "Changing the Dafny catch-all exit to zero failed verification with an unproved postcondition.",
+    "Changing the dispatcher missing-selector outcome from NeedsInput to InvalidInput failed the targeted Node regression."
+  ],
+  "documentation": {
+    "command": "dotnet run --project tools/SharpHDL.DocBuilder -c Release --artifacts-path <windowsArtifactRoot>/doc-managed -- <repo> <windowsArtifactRoot>/engineering <sphinxPython> <strictdocPython>",
+    "status": "Success",
+    "requirements": 63,
+    "mapped": 47,
+    "apiAssemblies": 7
+  }
+}

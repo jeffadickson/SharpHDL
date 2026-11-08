@@ -27,3 +27,22 @@ DocBuilder and EquivalenceCli shall propagate expected failures and cancellation
 through typed stage outcomes. Report a stable operation ID, failed stage and
 available evidence. Publish a completion record only after all stages succeed.
 <<<
+
+[REQUIREMENT]
+UID: RAIL-EDITOR-001
+TITLE: Programmatic design commands return typed outcomes
+STATEMENT: >>>
+Programmatic design build and run commands shall validate their workspace and
+project selector, return a typed outcome without prompting, and stop before
+test execution when the build fails. Interactive adapters may prompt for a
+selector and shall dispatch the same design operation.
+<<<
+
+[REQUIREMENT]
+UID: RAIL-EXIT-001
+TITLE: Only successful campaigns exit zero
+STATEMENT: >>>
+The campaign console shall return zero exactly for a successful terminal
+outcome. Invalid input shall return 2, missing dependencies 127, cancellation
+130, and other terminal outcomes 1.
+<<<
