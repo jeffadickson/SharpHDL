@@ -16,3 +16,28 @@ domain-specific outcomes favor retaining the existing dependencies.
    at each stage. Retain failed run evidence and publish completion atomically.
 
 Verify each change locally and trace tests to the three StrictDoc requirements.
+
+DocBuilder reports the operation `sharphdl.documentation.build` and EquivalenceCli
+reports `sharphdl.equivalence.qualify`. Each emits a terminal JSON object with its
+status, stage, evidence directories and any underlying tool or solver outcome.
+Exit codes are 0 for success, 2 for invalid input, 127 for a missing dependency,
+130 for cancellation and 1 for other failures. Equivalence case progress can
+precede the terminal JSON line.
+
+Use `campaign-complete.json` as the completion record. Failed or cancelled runs
+retain `campaign-failure.json` when their evidence destination is writable.
+The stage directory can contain useful partial evidence. Interrupted publication
+can leave a `.pending` file. Reusing an existing run directory is rejected.
+
+The Linux regression scripts check the benchmark and fuzz scan exits and exercise
+the compiled campaign entry points. Run them from the repository root. For the
+campaign tests, use an existing absolute managed artifacts directory containing
+Release builds of DocBuilder and EquivalenceCli and the pinned native Z3 setup.
+
+```bash
+test -d tests && bash tests/check-railway-shell.sh
+test -d tests && test -d "$managed" && bash tests/check-railway-campaigns.sh "$managed"
+```
+
+The verification record contains the run locations, measured coverage and scope.
+[Run evidence](verification/railway-run.json)

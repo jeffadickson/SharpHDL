@@ -849,6 +849,57 @@
         "docs/FIVE_PACKAGE_COMPLETION_2026-10-28.md"
       ],
       "limitations": "Finite replay, three-step initialized SAT reference and xc7 mapping; no placement/routing/device timing."
+    },
+    {
+      "evidence": [
+        "docs/RAILWAY_BOUNDARIES.md"
+      ],
+      "implementation": [
+        "tools/check-fuzz-crashes.sh"
+      ],
+      "tests": [
+        {
+          "method": "benchmark evidence",
+          "file": "tests/check-railway-shell.sh"
+        }
+      ],
+      "limitations": "Local Bash regression. Dormant Actions configuration inspected and exercised through its shell step.",
+      "status": "verified_bounded",
+      "uid": "RAIL-BUILD-001"
+    },
+    {
+      "evidence": [
+        "docs/RAILWAY_BOUNDARIES.md"
+      ],
+      "implementation": [
+        "src/SharpHDL.Tooling/HdlToolRunner.cs"
+      ],
+      "tests": [
+        {
+          "method": "Output_write_failure_terminates_child_and_retains_diagnostic",
+          "file": "tests/SharpHDL.UnitTests/HdlToolRunnerTests.cs"
+        }
+      ],
+      "limitations": "Ordinary subprocess trees. Detached descendants and unwritable evidence destinations limit cleanup and persistence guarantees.",
+      "status": "verified_bounded",
+      "uid": "RAIL-TOOL-001"
+    },
+    {
+      "evidence": [
+        "docs/RAILWAY_BOUNDARIES.md"
+      ],
+      "implementation": [
+        "src/SharpHDL.Tooling/BuildCampaign.cs"
+      ],
+      "tests": [
+        {
+          "method": "Terminal_record_matches_command_outcome",
+          "file": "tests/SharpHDL.UnitTests/BuildCampaignTests.cs"
+        }
+      ],
+      "limitations": "Local command qualification. Cancellation precedes the atomic completion rename. Partial diagnostic directories remain available.",
+      "status": "verified_bounded",
+      "uid": "RAIL-CAMPAIGN-001"
     }
   ],
   "schema": 1

@@ -1,0 +1,18 @@
+{
+  "stryker-config": {
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "coverage-analysis": "off",
+    "additional-timeout": 10000,
+    "project": "SharpHDL.Tooling.csproj",
+    "concurrency": 1,
+    "mutate": [
+      "**/HdlToolRunner.cs{10118..10157}",
+      "**/BuildCampaign.cs{6633..6677}",
+      "**/BuildCampaign.cs{8470..8502}"
+    ],
+    "test-case-filter": "FullyQualifiedName~BuildCampaignTests|FullyQualifiedName~Output_write_failure_terminates_child"
+  }
+}

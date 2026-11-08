@@ -4,7 +4,7 @@ using System.Globalization;
 // Validate the whole request before resolving tools or opening the evidence directory.
 if (args.Length < 5 || args[0] != "run")
     return Fail("InvalidInput", "Usage: run <new-artifact-directory> <working-directory> <timeout-ms> <executable-or-name> [arguments...]", 2);
-if (!int.TryParse(args[3], NumberStyles.None, CultureInfo.InvariantCulture, out int timeout)
+if (!int.TryParse(args[3], NumberStyles.Integer, CultureInfo.InvariantCulture, out int timeout)
     || timeout is < 1 or > 3_600_000 || args.Any(arg => arg.Contains('\0')))
     return Fail("InvalidInput", "Use NUL-free arguments and a timeout in 1..3600000 milliseconds.", 2);
 

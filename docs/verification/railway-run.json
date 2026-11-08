@@ -1,0 +1,138 @@
+{
+  "baseline": "57f44947e5034ce2c03e66f243ed623f32acc414",
+  "buildCommits": [
+    "f153e13",
+    "b8e0705"
+  ],
+  "windowsArtifactRoot": "E:\\Artifacts\\SharpHDL-railway-win-2f4ebad38d8640a1a7e70b8933955d3e",
+  "linuxArtifactRoot": "/tmp/sharphdl-railway-linux-YfwLlN",
+  "windowsSdk": "10.0.403",
+  "linuxSdk": "10.0.402",
+  "testsPerOS": {
+    "documentation": 4,
+    "fast": 426,
+    "failed": 0,
+    "nativeVerification": 74,
+    "skipped": 0
+  },
+  "regressionScope": "Fast suite excludes historical Z80Tests. Native solver and documentation suites were also run on both hosts.",
+  "unitCommand": "dotnet test tests/SharpHDL.UnitTests -c Release -m:1 -nr:false -p:UseSharedCompilation=false -warnaserror --artifacts-path <run>/managed --filter FullyQualifiedName!~Z80Tests --settings tests/SharpHDL.UnitTests/coverage.runsettings --collect:XPlat Code Coverage --results-directory <run>/final-tests",
+  "redGreen": {
+    "red": "Injected evidence write fault waited for the deadline, threw IOException and produced no terminal manifest.",
+    "green": "Runner returned EvidenceIoFailure, retained the diagnostic and terminated the child. Startup synchronization replaced the fixed caller-cancel delay."
+  },
+  "campaign": {
+    "linuxZ3AndYosysCases": 44,
+    "windowsZ3OnlyCases": 44,
+    "linuxEvidence": "/tmp/sharphdl-command-check-Fi3bIs",
+    "verified": "Invalid inputs, missing dependencies, failed tool stage, cancellation after launch and retained success marker."
+  },
+  "shell": {
+    "evidence": "/tmp/sharphdl-shell-check-LDwQCi",
+    "observed": "Benchmark exit 23 preserved, clean scan exit 0, missing or failed scan exit 2, retained crash exit 1."
+  },
+  "strictdoc": {
+    "sphinx": "9.2.0",
+    "scope": "Two real engineering builds passed. The final site includes the railway guide and its linked evidence.",
+    "version": "0.30.4",
+    "requirements": 61,
+    "apiAssemblies": 7,
+    "pages": 15,
+    "mapped": 45,
+    "completionEvidence": "E:\\Artifacts\\SharpHDL-railway-win-2f4ebad38d8640a1a7e70b8933955d3e\\documentation-verified\\campaign-complete.json",
+    "completionSha256": "0C78275725307ABAB651308E0A558E85771344566446226B37ABB17B95D5A4F4"
+  },
+  "coverage": {
+    "windowsXml": "final-tests/ccef23a6-dc03-4d11-adfa-0b6b26591624/coverage.cobertura.xml",
+    "campaignLines": "45/85 both",
+    "runnerLines": "97/108 both",
+    "windowsSha256": "32A7A07CDB0A80C74BA92AC0B3A1952407BB627605F6D79048B9AA09BCC1D9F3",
+    "linuxXml": "final-tests/42cfb833-3580-416e-a7ba-040b26259a87/coverage.cobertura.xml",
+    "linuxSha256": "90AFDB1C83877F5EF88200FA029A2A44D0A8E6725661BCC6969EA4725647DDB0",
+    "campaignBranches": "10/32 both",
+    "scope": "Coverlet fast suite. Unique source lines and summed class-entry branch counters. CLI bodies and shell paths are outside this collection.",
+    "runnerBranches": "88/104 Windows, 87/104 Linux"
+  },
+  "mutation": {
+    "tool": "Stryker.NET 5.0.0",
+    "config": "tests/SharpHDL.UnitTests/stryker-railway.json",
+    "scope": "Two executable BuildCampaign mutants. Both killed. Runner condition mutations failed instrumentation compilation and the runner assignment replay selected no executable mutant. The runner has a separate injected red/green failure test.",
+    "sha256": "FC40C668D6872520019FF9B43C2D60DC4D0ABD14A3ABE12A11B527062599AC7D"
+  },
+  "fuzz": {
+    "seconds": 20,
+    "seed": 261026,
+    "crashes": 0,
+    "scope": "Documentation parser via SharpFuzz 2.2.0 and AFL++ 4.09c",
+    "hangs": 0,
+    "evidence": "/tmp/sharphdl-doc-fuzz-EuhNt0",
+    "executions": 140674
+  },
+  "property": {
+    "seed": "1145655947,296144285",
+    "scope": "Existing FsCheck subprocess argv transport property",
+    "maxTests": 20
+  },
+  "sources": [
+    {
+      "sha256": "481069F1FBA7B637417B08548438C8D8331E09689C8E09DF009DCF04C5E9B8F9",
+      "path": "src/SharpHDL.Tooling/BuildCampaign.cs"
+    },
+    {
+      "sha256": "E7AA7375899066F11B003B3501BBB46A2A4BA74A117D393691FD4E4E2883662A",
+      "path": "src/SharpHDL.Tooling/HdlToolRunner.cs"
+    },
+    {
+      "sha256": "41BA82AA2352D2577F27E673492DFFCFF00F0859FD35D5130AF4D47BB7C35781",
+      "path": "src/SharpHDL.Tooling/SharpHDL.Tooling.csproj"
+    },
+    {
+      "sha256": "BC84F30659E08AD10484236F1DE938F21BA9B08E5258936729E9EC932D8BA6F7",
+      "path": "tests/SharpHDL.ToolFixture/Program.cs"
+    },
+    {
+      "sha256": "4CC65FD9E205C0EB639D44B40C44E5CD427F8B59F839DF5B6FD8DAC4BF221E64",
+      "path": "tests/SharpHDL.UnitTests/BuildCampaignTests.cs"
+    },
+    {
+      "sha256": "559EDE843E140930C59A82939FE0A65FA8133379752CC7C930D0FC78732B1354",
+      "path": "tests/SharpHDL.UnitTests/HdlToolRunnerTests.cs"
+    },
+    {
+      "sha256": "021C1E4E44BFEFF0D96CA00CBEFC17806604FC5672C7AE65AB11B18B79E1D074",
+      "path": "tests/SharpHDL.UnitTests/stryker-railway.json"
+    },
+    {
+      "sha256": "2053990F0757991D6277E78A4AE32496A04E87DCA831471B685BA398D7D44875",
+      "path": "tests/check-railway-campaigns.sh"
+    },
+    {
+      "sha256": "F6E8854E034BADC2D4544CCF4935D86D8F8889E3C088C6880B8F4997034120D8",
+      "path": "tests/check-railway-shell.sh"
+    },
+    {
+      "sha256": "DE854646D799E1D9E0C3F0BAA7227124F85EA37CF5DC25C8134780F61B404B13",
+      "path": "tools/SharpHDL.DocBuilder/Program.cs"
+    },
+    {
+      "sha256": "83CE8BA9A95AC1B5463BF660EB74B7F6711EE961B0D77B3C3A771035D2121B3A",
+      "path": "tools/SharpHDL.EquivalenceCli/Program.cs"
+    },
+    {
+      "sha256": "B5ABDE08114504186111F46ACE1CCD9426F5F5A5B765A2C9441A7CE50FA840AB",
+      "path": "tools/SharpHDL.ToolCli/Program.cs"
+    },
+    {
+      "sha256": "2B1BB002ECCF1EFBB6376576B74BC1B57158DB412E582E6756B4368A9C96EC2A",
+      "path": "tools/check-fuzz-crashes.sh"
+    },
+    {
+      "sha256": "C1DE62EAC170EE0C57B25BD73738AD417C2990E24C59E4AAE86E0C2B42D54BC6",
+      "path": "tools/run-documentation-fuzz.sh"
+    },
+    {
+      "sha256": "94A9B72C2655A43615ADA3508613073644706719866C746980D0A8004D8DE5B4",
+      "path": "tools/run-scheduled-fuzz.sh"
+    }
+  ]
+}

@@ -69,7 +69,11 @@ public sealed class HdlToolRunnerTests
                 while(!File.Exists(ready)&&!run.IsCompleted)await Task.Delay(20,token.Token);
                 Assert.True(File.Exists(ready),"The fixture did not announce startup.");
             }
-            finally {token.Cancel();}
+            finally
+            {
+                token.Cancel();
+                await run;
+            }
         }
         var result=await run;
         Assert.Equal(caller?ToolRunStatus.Cancelled:ToolRunStatus.TimedOut,result.Status);

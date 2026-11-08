@@ -18,8 +18,10 @@ UID: TOOL-RUN-002
 TITLE: Cancellable ordinary process trees
 STATEMENT: >>>
 The runner shall distinguish caller cancellation from deadline expiry, terminate
-the ordinary process tree and observe pipe tasks before returning. Cleanup/IO
-errors shall propagate. Detached/reparented daemon containment is unsupported;
+the ordinary process tree and observe pipe tasks before returning. Post-launch
+pipe and evidence I/O failures shall retain a typed diagnostic where the manifest
+remains writable. Setup, cleanup and manifest publication failures shall propagate.
+Detached/reparented daemon containment is unsupported;
 the runner is not a sandbox. Evidence directories shall never be overwritten.
 Verification: Cancellation_terminates_an_ordinary_process_tree and timeout/limit tests.
 <<<
