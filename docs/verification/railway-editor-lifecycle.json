@@ -1,0 +1,31 @@
+{
+  "baseline": "97ebbab",
+  "date": "2026-11-10",
+  "host": "Windows VS Code 1.142.0",
+  "sdk": "10.0.403",
+  "command": "./tests/Check-RailwayEditorHost.ps1 -EvidenceRoot <artifactRoot>",
+  "evidenceDirectory": "editor-host-d4727a45f39745a6be20b0bf8b931e6d",
+  "hostExitCode": 0,
+  "checks": [
+    "A failed build preserved exit 23 and did not start the run task.",
+    "A different project targeting the same output returned Busy after the first build process started.",
+    "Caller cancellation returned Cancelled and the OS stopped reporting the fixture PID within the test bound.",
+    "A retry reacquired the output and ran the fixture."
+  ],
+  "mutation": {
+    "change": "In an isolated checkout copy, replace if(activeOutputs.has(output)) with if(false).",
+    "result": "The host test rejected Failed instead of Busy. One mutant tested and killed.",
+    "evidenceDirectory": "SharpHDL-editor-mutation-c4ecf20ea14f44ebaafe93d8ee15e890"
+  },
+  "node": {
+    "command": "node --experimental-test-coverage --test 'vscode/sharphdl/*.test.js'",
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "dispatcherLinePercent": 100,
+    "dispatcherBranchPercent": 70.37,
+    "scope": "The Node run excludes VS Code host code and the .NET subprocess fixture."
+  },
+  "strictdoc": "The railway requirements exported successfully to JSON using StrictDoc.",
+  "limitations": "Single-host Windows fixture. No descendant process, cross-host lock, picker visual, or fuzz campaign was exercised."
+}

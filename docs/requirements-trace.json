@@ -910,7 +910,23 @@
         {"file": "vscode/sharphdl/test/designCommandsHost.test.js", "method": "run"}
       ],
       "evidence": ["docs/verification/railway-followup.json"],
-      "limitations": "The native interactive picker and in-flight cancellation require separate qualification."
+      "limitations": "The native interactive picker visuals require separate qualification."
+    },
+    {
+      "uid": "RAIL-EDITOR-002",
+      "status": "verified_bounded",
+      "implementation": ["vscode/sharphdl/projectIntegration.js"],
+      "tests": [{"file": "vscode/sharphdl/test/designCommandsHost.test.js", "method": "waitForExit"}],
+      "evidence": ["docs/verification/railway-editor-lifecycle.json"],
+      "limitations": "One Windows extension host and a real subprocess fixture. Other hosts, path aliases and subprocess descendants were outside the check."
+    },
+    {
+      "uid": "RAIL-MCP-001",
+      "status": "draft",
+      "implementation": [],
+      "tests": [],
+      "evidence": [],
+      "limitations": "Command coverage inventory, shared registry across surfaces and MCP discovery and invocation remain open."
     },
     {
       "uid": "RAIL-EXIT-001",

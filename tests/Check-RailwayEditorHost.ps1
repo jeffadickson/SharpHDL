@@ -1,4 +1,4 @@
-# Exercise a real failed process task in an isolated VS Code workspace.
+# Exercise real failed and cancelled tasks in an isolated VS Code workspace.
 param([Parameter(Mandatory)][string] $EvidenceRoot)
 $ErrorActionPreference = 'Stop'
 if (!(Test-Path -LiteralPath $EvidenceRoot -PathType Container)) { throw 'Missing evidence root.' }
@@ -8,10 +8,16 @@ $workspace = Join-Path $run 'workspace'
 New-Item -ItemType Directory -Path $workspace | Out-Null
 $settings = Join-Path $workspace '.vscode'
 New-Item -ItemType Directory -Path $settings | Out-Null
-'{"version":1,"projects":[{"id":"RailwayFixture","top":"fixture","sources":["fixture.v"],"outputDir":"out"}]}' |
+'{"version":1,"projects":[{"id":"RailwayFixture","top":"fixture","sources":["fixture.v"],"outputDir":"out"},{"id":"Hold","top":"hold","sources":["fixture.v"],"outputDir":"out"},{"id":"Overlap","top":"fixture","sources":["fixture.v"],"outputDir":"out"}]}' |
     Set-Content -LiteralPath (Join-Path $workspace 'sharphdl.project.json')
 'module fixture; endmodule' | Set-Content -LiteralPath (Join-Path $workspace 'fixture.v')
-@{ 'sharphdl.verilator.runner' = 'host'; 'sharphdl.verilator.path' = (Get-Command dotnet).Source } |
+$fixture = Join-Path $PSScriptRoot 'SharpHDL.ToolFixture/SharpHDL.ToolFixture.csproj'
+$build = Join-Path $run 'managed'
+& dotnet build $fixture -c Release --artifacts-path $build -m:1 -nr:false
+if ($LASTEXITCODE -ne 0) { throw 'Could not build the subprocess fixture.' }
+$executable = Join-Path $build 'bin/SharpHDL.ToolFixture/release/SharpHDL.ToolFixture.exe'
+if (!(Test-Path -LiteralPath $executable -PathType Leaf)) { throw 'Missing fixture executable.' }
+@{ 'sharphdl.verilator.runner' = 'host'; 'sharphdl.verilator.path' = $executable } |
     ConvertTo-Json | Set-Content -LiteralPath (Join-Path $settings 'settings.json')
 
 $extension = Join-Path (Split-Path -Parent $PSScriptRoot) 'vscode/sharphdl'

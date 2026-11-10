@@ -3,6 +3,12 @@ using System.Text.Json;
 // Dedicated subprocess fixture; no external shell or mock process implementation.
 switch(args[0])
 {
+    case "--binary":
+        // The VS Code task passes Verilator arguments. Keep the first build
+        // alive long enough for the host test to cancel its actual process.
+        if (args.Contains("hold") && !File.Exists("allow-retry"))
+            await Task.Delay(TimeSpan.FromSeconds(20));
+        return 23;
     case "echo":Console.Write(JsonSerializer.Serialize(args[1..]));Console.Error.Write("stderr evidence");return 0;
     case "fail":Console.Error.Write("expected failure");return 23;
     case "sleep":

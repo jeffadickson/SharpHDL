@@ -39,6 +39,25 @@ selector and shall dispatch the same design operation.
 <<<
 
 [REQUIREMENT]
+UID: RAIL-EDITOR-002
+TITLE: Cancelled design builds release their output
+STATEMENT: >>>
+While a design build owns an output directory, the extension shall reject
+another design operation targeting that directory in the same extension host.
+A caller may cancel the active task and submit a new build for that directory.
+<<<
+
+[REQUIREMENT]
+UID: RAIL-MCP-001
+TITLE: Command discovery and invocation through MCP
+STATEMENT: >>>
+Supported application operations shall expose typed commands. MCP discovery and
+invocation shall use the same registry, validation and handlers as CLI and
+interactive adapters where those operations are exposed. Track operations
+without typed commands or MCP coverage until their adapters are implemented.
+<<<
+
+[REQUIREMENT]
 UID: RAIL-EXIT-001
 TITLE: Only successful campaigns exit zero
 STATEMENT: >>>

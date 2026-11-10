@@ -73,8 +73,11 @@ if (Test-Path -LiteralPath tests -PathType Container) {
 ```
 
 With the installed Windows VS Code CLI and .NET SDK, the separate host
-check starts a real task in an isolated workspace. It checks that a failing
-build reports its exit status and prevents the run task from starting.
+check builds the existing subprocess fixture and starts real tasks in an
+isolated workspace. It checks that a failing build reports its exit status
+and prevents the run task from starting. It also verifies rejection of a
+second project targeting the same output directory, caller cancellation,
+OS process exit and successful admission of a retry.
 
 ```powershell
 if ((Test-Path -LiteralPath tests -PathType Container) -and
@@ -99,3 +102,10 @@ if ((Test-Path -LiteralPath tests/dafny -PathType Container) -and
 ```
 
 [Editor, local gate and proof evidence](verification/railway-followup.json)
+
+[Editor lifecycle evidence](verification/railway-editor-lifecycle.json)
+
+`RAIL-MCP-001` tracks the open command inventory and MCP discovery and
+invocation work. The editor build and run handlers are shared within the
+extension. CLI campaigns have their own typed outcomes. A cross-surface
+registry and MCP adapter remain open.
