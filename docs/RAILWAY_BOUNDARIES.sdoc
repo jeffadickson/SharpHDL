@@ -68,6 +68,16 @@ cancellation shall preserve explicit outcomes and available process evidence.
 <<<
 
 [REQUIREMENT]
+UID: RAIL-CAMPAIGN-MCP-001
+TITLE: Shared documentation and qualification commands
+STATEMENT: >>>
+The documentation and bit-vector qualification CLIs and MCP tools shall invoke
+the same typed command registrations. Programmatic execution shall retain
+campaign outcomes and evidence without writing protocol stdout. Null or malformed
+inputs and cancellation before execution shall return explicit outcomes.
+<<<
+
+[REQUIREMENT]
 UID: RAIL-EXIT-001
 TITLE: Only successful campaigns exit zero
 STATEMENT: >>>

@@ -51,6 +51,7 @@ test ! -e "$out/cancelled/campaign-complete.json"
 
 source "$repo/tools/setup-z3-linux.sh"
 expect_exit 0 equiv-completed "$dotnet" "$equiv" "$out/completed"
+grep -Fq 'PASS add_equivalent: Z3 and Yosys agree.' "$out/equiv-completed.stdout"
 grep -Fq '"Status":"Success"' "$out/completed/campaign-complete.json"
 test ! -e "$out/completed/campaign-failure.json"
 expect_exit 2 equiv-existing "$dotnet" "$equiv" "$out/completed"

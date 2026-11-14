@@ -9,5 +9,7 @@
     <PackageReference Include="ModelContextProtocol" Version="2.4.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.14" />
     <ProjectReference Include="../../src/SharpHDL.Tooling/SharpHDL.Tooling.csproj" />
+    <ProjectReference Include="../SharpHDL.DocBuilder/SharpHDL.DocBuilder.csproj" />
+    <ProjectReference Include="../SharpHDL.EquivalenceCli/SharpHDL.EquivalenceCli.csproj" />
   </ItemGroup>
 </Project>

@@ -3,38 +3,47 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ModelContextProtocol.Server;
 using ModelContextProtocol.Protocol;
+using SharpHDL.Documentation;
+using SharpHDL.Qualification;
 using SharpHDL.Tooling;
 using System.Text.Json;
 using System.Text.Json.Schema;
 
 var builder = Host.CreateApplicationBuilder(args);
-// Stdout belongs exclusively to the MCP transport.
+// Stdout belongs exclusively to the MCP transport. The command registrations
+// hold the same delegates and metadata consumed by their console adapters.
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole(options => options.LogToStandardErrorThreshold = LogLevel.Trace);
-var tools = ToolCommandRegistry.Commands.Select(command =>
-    McpServerTool.Create(
-        async (ToolRunRequest request, CancellationToken token) =>
-        {
-            var result = await ToolCommandRegistry.InvokeAsync(command.Id, request, token);
-            var json = JsonSerializer.SerializeToElement(result, JsonSerializerOptions.Web);
-            return new CallToolResult
-            {
-                IsError = result.ExitCode != 0,
-                StructuredContent = json,
-                Content = [new TextContentBlock { Text = json.GetRawText() }]
-            };
-        },
-        new McpServerToolCreateOptions
-        {
-            Name = command.McpName,
-            Description = command.Description,
-            UseStructuredContent = true,
-            OutputSchema = JsonSerializer.SerializeToElement(
-                JsonSerializerOptions.Web.GetJsonSchemaAsNode(typeof(ToolCommandResult))),
-            ReadOnly = false,
-            Destructive = true,
-            Idempotent = false,
-            OpenWorld = true
-        })).ToArray();
+McpServerTool[] tools =
+[
+    CreateTool(ToolCommandRegistry.Command, result => result.ExitCode != 0),
+    CreateTool(DocumentationCommand.Command, result => result.Status != CampaignStatus.Success),
+    CreateTool(EquivalenceCommand.Command, result => result.Status != CampaignStatus.Success)
+];
 builder.Services.AddMcpServer().WithStdioServerTransport().WithTools(tools);
 await builder.Build().RunAsync();
+
+static McpServerTool CreateTool<TRequest, TResult>(RegisteredCommand<TRequest, TResult> command,
+    Func<TResult, bool> isError) =>
+    McpServerTool.Create(async (TRequest request, CancellationToken token) =>
+    {
+        var result = await command.InvokeAsync(request, token);
+        var json = JsonSerializer.SerializeToElement(result, JsonSerializerOptions.Web);
+        return new CallToolResult
+        {
+            IsError = isError(result),
+            StructuredContent = json,
+            Content = [new TextContentBlock { Text = json.GetRawText() }]
+        };
+    }, new McpServerToolCreateOptions
+    {
+        Name = command.Descriptor.McpName,
+        Description = command.Descriptor.Description,
+        UseStructuredContent = true,
+        OutputSchema = JsonSerializer.SerializeToElement(
+            JsonSerializerOptions.Web.GetJsonSchemaAsNode(typeof(TResult))),
+        ReadOnly = false,
+        Destructive = true,
+        Idempotent = false,
+        OpenWorld = true
+    });

@@ -16,5 +16,7 @@
     <ProjectReference Include="../../tools/SharpHDL.Mcp/SharpHDL.Mcp.csproj" />
     <ProjectReference Include="../../tools/SharpHDL.ToolCli/SharpHDL.ToolCli.csproj" />
     <ProjectReference Include="../SharpHDL.ToolFixture/SharpHDL.ToolFixture.csproj" />
+    <ProjectReference Include="../../tools/SharpHDL.DocBuilder/SharpHDL.DocBuilder.csproj" />
+    <ProjectReference Include="../../tools/SharpHDL.EquivalenceCli/SharpHDL.EquivalenceCli.csproj" />
   </ItemGroup>
 </Project>

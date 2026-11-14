@@ -1,0 +1,67 @@
+{
+  "baseline": "4d606d1",
+  "windowsArtifactRoot": "E:\\Artifacts\\SharpHDL-campaign-commands-41dd5ec06f8a4767bd293c0b91eacb5e",
+  "linuxArtifactRoot": "/tmp/sharphdl-campaign-commands-20261114",
+  "windowsSdk": "10.0.404",
+  "linuxSdk": "10.0.402",
+  "mcpSdk": "2.4.0",
+  "sourceSha256": {
+    "src/SharpHDL.Tooling/BuildCampaign.cs": "91C776D508DC427C027B571631F98769D89EC79502FD459C1C07CDE303F245AD",
+    "tools/SharpHDL.DocBuilder/DocumentationCommand.cs": "4599831AC77240E6AD63B2575A443838A0230EDB454C8C2D33D94A8C85F667EC",
+    "tools/SharpHDL.EquivalenceCli/EquivalenceCommand.cs": "7638783CEF84D04FC2E5C773F5ECBA6C26000E57F2372105EBCC0D02D3159E7B",
+    "tools/SharpHDL.Mcp/Program.cs": "D4238B9E1A81C805BB551BBBB91F6EBD7F58CA8ABA88BF30B1B7297859ABF3B5"
+  },
+  "linux": {
+    "command": "systemd-run --user --unit=sharphdl-campaign-commands-20261114-strengthened --wait --pipe -p MemoryMax=6G -p MemorySwapMax=0 -p OOMPolicy=kill /bin/bash <repo>/tests/check-campaign-commands-linux.sh /tmp/sharphdl-campaign-commands-20261114",
+    "commands": {"passed": 12, "failed": 0, "skipped": 0},
+    "solverOnlyMcpCases": 44,
+    "independentCliZ3AndYosysCases": 44,
+    "cliEvidence": "/tmp/sharphdl-command-check-TiBnN9",
+    "cliContracts": "Invalid input, missing dependencies, failed stage, in-flight cancellation, complete marker, protected existing evidence and stdout case progress.",
+    "controllerPeakBytes": 369831936,
+    "oomEvents": 0,
+    "outcome": "success"
+  },
+  "windows": {
+    "commands": {"passed": 12, "failed": 0, "skipped": 0},
+    "runnerAndCampaigns": {"passed": 35, "failed": 0, "skipped": 0},
+    "documentation": {"passed": 4, "failed": 0, "skipped": 0},
+    "commandLine": "dotnet test <project> -c Release -m:1 -nr:false -p:UseSharedCompilation=false --artifacts-path <run>/managed --collect:'XPlat Code Coverage' --results-directory <run>/<coverage-scope>",
+    "runnerFilter": "FullyQualifiedName~BuildCampaignTests|FullyQualifiedName~ToolCommandTests|FullyQualifiedName~HdlToolRunnerTests",
+    "mcpAdapterCoverage": {"linePercent": 100, "branchPercent": 100},
+    "qualificationAssemblyCoverage": {"linePercent": 55.28, "branchPercent": 59.92},
+    "documentationAssemblyInCommandTests": {"linePercent": 10.86, "branchPercent": 8.73},
+    "toolingAssemblyInRunnerTests": {"linePercent": 86.03, "branchPercent": 70.64}
+  },
+  "mutation": {
+    "command": "build/tools/dotnet-stryker.exe --config-file stryker-campaigns.json --output <run>/mutation-strengthened",
+    "workingDirectory": "tests/SharpHDL.CommandTests",
+    "scope": "DocumentationCommand input-validation expression only.",
+    "killed": 20, "survived": 0, "tested": 20, "timeouts": 0,
+    "scorePercent": 100,
+    "initialRun": "11 killed and 9 survived. An always-invalid handler survived the negative-only focused tests. Added a valid request that must reach dependency validation, then repeated the same mutation scope.",
+    "limitations": "Narrow boundary campaign. This score does not cover the documentation pipeline or all campaign code."
+  },
+  "documentationBuild": {
+    "command": "dotnet run --project tools/SharpHDL.DocBuilder -c Release --artifacts-path <run>/managed -- <repo> <run>/documentation <sphinxPython> <strictdocPython>",
+    "status": "Success", "requirements": 67, "mapped": 51, "apiAssemblies": 7,
+    "coverage": "Full documentation CLI execution was outside the instrumented tests."
+  },
+  "randomized": {
+    "framework": "FsCheck.Xunit 3.3.3",
+    "replay": "1145655947,296144285",
+    "existingCases": {"toolRequestTimeouts": 40, "literalArguments": 20, "documentationPaths": 100},
+    "newTests": "Deterministic malformed, null, cancellation and real protocol cases."
+  },
+  "memoryBudgets": {
+    "windowsProcessMiB": 4096, "windowsAggregateMiB": 8192, "reserveMiB": 4096,
+    "linuxProcessTreeBytes": 6442450944,
+    "linuxEnforcement": "systemd MemoryMax, MemorySwapMax=0 and OOMPolicy=kill. Script checks memory.max and memory.oom.group before work. Jobs serialized."
+  },
+  "limitations": [
+    "Full documentation generation is checked through the CLI. MCP documentation checks cover validation and missing dependencies.",
+    "Protocol qualification runs the existing 44-case Z3-only suite. Independent RTL checks run through the CLI.",
+    "No new formal proof, FPGA timing qualification or standalone fuzz campaign.",
+    "Live simulation, editor and remaining specialized operations still need command registrations."
+  ]
+}

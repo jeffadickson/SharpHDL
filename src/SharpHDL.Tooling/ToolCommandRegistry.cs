@@ -46,6 +46,10 @@ public static class ToolCommandRegistry
         new[] { new ToolCommandDescriptor(RunId, "sharphdl_tool_run",
             "Run a trusted local HDL tool with distinct arguments, a bounded timeout and retained evidence. Creates files and cannot be undone.") });
 
+    /// <summary>Typed registration consumed by protocol adapters.</summary>
+    public static RegisteredCommand<ToolRunRequest, ToolCommandResult> Command { get; } =
+        new(Commands[0], (request, token) => InvokeAsync(RunId, request, token));
+
     /// <summary>Validate the whole request before resolving executables or claiming evidence.</summary>
     public static async Task<ToolCommandResult> InvokeAsync(string commandId, ToolRunRequest? request,
         CancellationToken cancellationToken = default)

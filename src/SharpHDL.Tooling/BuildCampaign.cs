@@ -84,15 +84,27 @@ public sealed class BuildCampaign
         }, run.Error ?? $"Tool {run.Executable} ended with {run.Status}.", run.Status.ToString());
 
     /// <summary>Run a command with Ctrl+C propagation, atomically publish its terminal record and return a stable exit code.</summary>
-    public static async Task<int> RunConsoleAsync(string operation, Func<BuildCampaign, Task<CampaignResult>> execute)
+    public static Task<int> RunConsoleAsync(string operation, Func<BuildCampaign, Task<CampaignResult>> execute) =>
+        RunConsoleResultAsync(token => ExecuteAsync(operation, execute, token));
+
+    /// <summary>Execute a campaign without console interaction and retain its terminal outcome.</summary>
+    public static Task<CampaignResult> ExecuteAsync(string operation,
+        Func<BuildCampaign, Task<CampaignResult>> execute, CancellationToken token = default) =>
+        new BuildCampaign(operation, token).RunAsync(campaign =>
+        {
+            token.ThrowIfCancellationRequested();
+            return execute(campaign);
+        });
+
+    /// <summary>Adapt a typed command to Ctrl+C and the established JSON/exit-code console contract.</summary>
+    public static async Task<int> RunConsoleResultAsync(Func<CancellationToken, Task<CampaignResult>> execute)
     {
         using var cancellation = new CancellationTokenSource();
         ConsoleCancelEventHandler cancel = (_, args) => { args.Cancel = true; cancellation.Cancel(); };
         Console.CancelKeyPress += cancel;
         try
         {
-            var campaign = new BuildCampaign(operation, cancellation.Token);
-            var result = await campaign.RunAsync(execute);
+            var result = await execute(cancellation.Token);
             var output = result.Status == CampaignStatus.Success ? Console.Out : Console.Error;
             await output.WriteLineAsync(JsonSerializer.Serialize(result, CampaignJsonContext.Default.CampaignResult));
             return result.Status switch

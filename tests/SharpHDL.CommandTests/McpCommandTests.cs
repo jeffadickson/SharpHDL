@@ -2,6 +2,8 @@ using System.Text.Json;
 using ModelContextProtocol.Client;
 using ModelContextProtocol.Protocol;
 using SharpHDL.Tooling;
+using SharpHDL.Documentation;
+using SharpHDL.Qualification;
 using Xunit;
 
 namespace SharpHDL.CommandTests;
@@ -35,13 +37,61 @@ public sealed class McpCommandTests
         return JsonSerializer.SerializeToElement(result.StructuredContent);
     }
 
+    [Theory]
+    [InlineData("sharphdl_documentation_build")]
+    [InlineData("sharphdl_equivalence_qualify")]
+    public async Task Campaign_tools_reject_missing_input_without_breaking_the_session(string tool)
+    {
+        await using var client = await ConnectAsync();
+        var response = await client.CallToolAsync(tool,
+            new Dictionary<string, object?> { ["request"] = null });
+        Assert.True(response.IsError);
+        var result = Outcome(response);
+        Assert.Equal("InvalidInput", result.GetProperty("status").GetString());
+        Assert.Equal("validate", result.GetProperty("stage").GetString());
+        Assert.Equal(3, (await client.ListToolsAsync()).Count);
+    }
+
+    [Fact]
+    public async Task Documentation_missing_dependency_does_not_claim_output()
+    {
+        await using var client = await ConnectAsync();
+        string output = NewEvidence();
+        string absent = "SharpHDL_missing_python_" + Guid.NewGuid().ToString("N");
+        var response = await client.CallToolAsync("sharphdl_documentation_build",
+            new Dictionary<string, object?>
+            {
+                ["request"] = new DocumentationRequest(AppContext.BaseDirectory, output, absent, absent)
+            });
+        Assert.True(response.IsError);
+        Assert.Equal("MissingDependency", Outcome(response).GetProperty("status").GetString());
+        Assert.False(Directory.Exists(output));
+    }
+
+    [Fact]
+    public async Task Qualification_tool_retains_real_solver_results_and_completion()
+    {
+        await using var client = await ConnectAsync();
+        string output = NewEvidence();
+        var response = await client.CallToolAsync("sharphdl_equivalence_qualify",
+            new Dictionary<string, object?> { ["request"] = new EquivalenceRequest(output, SolverOnly: true) });
+        var result = Outcome(response);
+        Assert.False(response.IsError, result.GetRawText());
+        Assert.Equal("Success", result.GetProperty("status").GetString());
+        Assert.True(File.Exists(Path.Combine(output, "campaign-complete.json")));
+        Assert.Equal(44, Directory.GetFiles(output, "solver.json", SearchOption.AllDirectories).Length);
+        Assert.False(File.Exists(Path.Combine(output, "campaign-failure.json")));
+    }
+
     [Fact]
     public async Task Discovery_matches_registry_and_invocation_preserves_process_failures()
     {
         await using var client = await ConnectAsync();
         var tools = await client.ListToolsAsync();
-        Assert.Equal(ToolCommandRegistry.Commands.Select(item => item.McpName), tools.Select(item => item.Name));
-        Assert.Contains("request", tools.Single().JsonSchema.GetRawText());
+        var expected = new[] { ToolCommandRegistry.Command.Descriptor,
+            DocumentationCommand.Command.Descriptor, EquivalenceCommand.Command.Descriptor };
+        Assert.Equal(expected.Select(item => item.McpName).Order(), tools.Select(item => item.Name).Order());
+        Assert.All(tools, tool => Assert.Contains("request", tool.JsonSchema.GetRawText()));
         string cliEvidence = NewEvidence();
         var cli = await HdlToolRunner.RunAsync(Dotnet,
             ["exec", "--runtimeconfig", RuntimePath("SharpHDL.ToolCli"), AssemblyPath("SharpHDL.ToolCli"), "list"],
@@ -88,7 +138,7 @@ public sealed class McpCommandTests
         var result = Outcome(response);
         Assert.Equal("InvalidInput", result.GetProperty("status").GetString());
         Assert.False(Directory.Exists(output));
-        Assert.Single(await client.ListToolsAsync());
+        Assert.Equal(3, (await client.ListToolsAsync()).Count);
     }
 
     [Fact]
@@ -98,7 +148,7 @@ public sealed class McpCommandTests
         var response = await client.CallToolAsync("sharphdl_tool_run",
             new Dictionary<string, object?> { ["request"] = "not an object" });
         Assert.True(response.IsError);
-        Assert.Single(await client.ListToolsAsync());
+        Assert.Equal(3, (await client.ListToolsAsync()).Count);
     }
 
     [Fact]
@@ -124,7 +174,7 @@ public sealed class McpCommandTests
                 await Task.Delay(50);
             using var retained = JsonDocument.Parse(await File.ReadAllTextAsync(manifest));
             Assert.Equal("Cancelled", retained.RootElement.GetProperty("Status").GetString());
-            Assert.Single(await client.ListToolsAsync());
+            Assert.Equal(3, (await client.ListToolsAsync()).Count);
         }
         finally
         {

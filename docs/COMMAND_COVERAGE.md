@@ -6,8 +6,8 @@ from a shared registry or MCP adapter. Rows marked open require implementation.
 | Surface and operations | Current boundary | Shared registry / MCP |
 | --- | --- | --- |
 | ToolCli run, list | ToolCommandRegistry and HdlToolRunner manifest | Implemented with stdio MCP |
-| DocBuilder build | BuildCampaign typed terminal result | Open |
-| EquivalenceCli qualify | BuildCampaign typed terminal result | Open |
+| DocBuilder build | Shared typed registration and BuildCampaign terminal result | Implemented with stdio MCP |
+| EquivalenceCli qualify | Shared typed registration and BuildCampaign terminal result | Implemented with stdio MCP |
 | Provenance generation | Console arguments and file generation | Open |
 | Live /api/state, /api/reset, /api/stepBack, /api/step | Existing HTTP simulation endpoints and StepCommand | Shared registry / MCP open |
 | VS Code buildDesign, runDesign | Shared editor dispatcher, typed outcomes | Cross-process registry / MCP open |
@@ -66,3 +66,21 @@ This slice reuses the runner's existing semantics and tests its integration.
 
 The implemented adapter is documented with reproducible launch parameters.
 [MCP tool server](../tools/SharpHDL.Mcp/README.md)
+
+## Campaign registration continuation
+
+DocumentationCommand and EquivalenceCommand expose RegisteredCommand values
+containing a descriptor and a typed invocation delegate. Their console
+adapters call those delegates through the existing Ctrl+C/JSON/exit adapter.
+MCP generates tool metadata and invokes the same registrations through a
+generic protocol adapter. Campaign ownership, cancellation and atomic completion
+publication remain in BuildCampaign.
+
+The implementations remain in their existing managed tool assemblies, which
+MCP references directly. This preserves their dependency ownership and the
+existing DocumentationCatalog assembly identity. The MCP deployment now includes
+the documentation and qualification dependencies, including Z3. Core tooling
+continues to depend on the BCL. No new package was needed for this extension.
+The qualification CLI installs its own Trace listener to retain stdout case
+progress and the terminal JSON result. Programmatic execution uses Trace
+without installing a console listener, keeping protocol stdout clean.

@@ -923,10 +923,21 @@
     {
       "uid": "RAIL-MCP-001",
       "status": "partial",
-      "implementation": ["src/SharpHDL.Tooling/ToolCommandRegistry.cs", "tools/SharpHDL.Mcp/Program.cs"],
+      "implementation": ["src/SharpHDL.Tooling/ToolCommandRegistry.cs", "tools/SharpHDL.Mcp/Program.cs", "tools/SharpHDL.DocBuilder/DocumentationCommand.cs", "tools/SharpHDL.EquivalenceCli/EquivalenceCommand.cs"],
       "tests": [],
       "evidence": ["docs/COMMAND_COVERAGE.md"],
-      "limitations": "Tool execution is the first shared operation. Documentation, equivalence, live simulation and editor operations remain outside the managed registry and MCP adapter."
+      "limitations": "Tool execution, documentation and qualification have shared typed registrations. Live simulation, editor and remaining demonstration/campaign commands remain outside the managed registrations and MCP adapter."
+    },
+    {
+      "uid": "RAIL-CAMPAIGN-MCP-001",
+      "status": "verified_bounded",
+      "implementation": ["src/SharpHDL.Tooling/RegisteredCommand.cs", "src/SharpHDL.Tooling/BuildCampaign.cs", "tools/SharpHDL.DocBuilder/DocumentationCommand.cs", "tools/SharpHDL.EquivalenceCli/EquivalenceCommand.cs", "tools/SharpHDL.Mcp/Program.cs"],
+      "tests": [
+        {"file": "tests/SharpHDL.CommandTests/CampaignCommandTests.cs", "method": "Typed_campaigns_validate_before_creating_output"},
+        {"file": "tests/SharpHDL.CommandTests/McpCommandTests.cs", "method": "Qualification_tool_retains_real_solver_results_and_completion"}
+      ],
+      "evidence": ["docs/verification/campaign-command-slice.json"],
+      "limitations": "Typed API and stdio tests cover validation, pre-cancellation and real solver qualification. Documentation generation and in-flight campaign cancellation are checked through the CLI. Full application command coverage remains partial under RAIL-MCP-001."
     },
     {
       "uid": "RAIL-COMMAND-001",

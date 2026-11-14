@@ -1,0 +1,15 @@
+{
+  "stryker-config": {
+    "mutate": [
+      "**/DocumentationCommand.cs{1044..1503}"
+    ],
+    "project": "SharpHDL.DocBuilder.csproj",
+    "concurrency": 1,
+    "test-case-filter": "FullyQualifiedName~CampaignCommandTests",
+    "reporters": [
+      "json",
+      "progress"
+    ],
+    "additional-timeout": 10000
+  }
+}
