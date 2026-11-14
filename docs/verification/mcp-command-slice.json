@@ -1,0 +1,65 @@
+{
+  "baseline": "97aa8f5",
+  "sdk": "10.0.404",
+  "mcpSdk": "2.4.0",
+  "platform": "Windows",
+  "sourceSha256": {
+    "src/SharpHDL.Tooling/ToolCommandRegistry.cs": "1596C14A09E92A31315F72DEBDC273786A354165951CE0AB704A6D75ECE04612",
+    "src/SharpHDL.Tooling/HdlToolRunner.cs": "90609ABE0281B3602EE69277CF4DF07B9676FA518DDC91ED4327D7BC4589B066",
+    "tools/SharpHDL.Mcp/Program.cs": "DC0177A5F8F5977273ED1D13EF2158DE49071CD32F600555F15E4BC1BEC1FF88",
+    "tests/SharpHDL.CommandTests/McpCommandTests.cs": "77C43E82B8F02B619E64AC32E24486C6A62E3EBD8A43F5A91EC0E2407CA255AF"
+  },
+  "artifactRoot": "E:\\Artifacts\\SharpHDL-command-e86f2bc1e32749e9b9b333d5a30bb486",
+  "unit": {
+    "command": "dotnet test tests/SharpHDL.UnitTests -c Release -m:1 -nr:false -p:UseSharedCompilation=false --artifacts-path <run>/managed --filter 'FullyQualifiedName~ToolCommandTests|FullyQualifiedName~HdlToolRunnerTests' --collect:'XPlat Code Coverage' --settings tests/SharpHDL.UnitTests/coverage.runsettings --results-directory <run>/latest-coverage",
+    "passed": 30, "failed": 0, "skipped": 0,
+    "toolingAssemblyLinePercent": 60.83,
+    "toolingAssemblyBranchPercent": 61.29,
+    "scope": "Includes the new registry and existing process-runner regressions. Unexercised campaign code contributes to the assembly denominator."
+  },
+  "mcp": {
+    "command": "dotnet test tests/SharpHDL.CommandTests -c Release -m:1 -nr:false -p:UseSharedCompilation=false --artifacts-path <run>/mcp-managed --collect:'XPlat Code Coverage' --results-directory <run>/mcp-coverage",
+    "passed": 4, "failed": 0, "skipped": 0,
+    "adapterLinePercent": 100,
+    "adapterBranchPercent": 100,
+    "cliLinePercent": 87.5,
+    "cliBranchPercent": 78.57,
+    "scope": "Actual SDK stdio discovery, schema, malformed argument, literal argv, success, nonzero exit, matching CLI invocation, cancellation and retained manifest. Coverage was collected from the launched adapter."
+  },
+  "property": {
+    "framework": "FsCheck.Xunit 3.3.3",
+    "newCases": 40,
+    "replay": "1145655947,296144285"
+  },
+  "mutation": {
+    "command": "build/tools/dotnet-stryker.exe --config-file stryker-tool-command.json --output <run>/mutation-final",
+    "workingDirectory": "tests/SharpHDL.UnitTests",
+    "killed": 46,
+    "survived": 3,
+    "noCoverage": 3,
+    "compileError": 10,
+    "timeout": 0,
+    "scorePercent": 88.46,
+    "scope": "ToolCommandRegistry only. The filter excludes real-process registry cases. Remaining survivors affect diagnostic strings and absolute executable resolution. Uncovered mutants affect process-result diagnostics and evidence I/O recovery."
+  },
+  "watchdog": {
+    "processMiB": 4096, "aggregateMiB": 8192, "reserveMiB": 4096,
+    "enforcement": "Existing SharpUnits Invoke-Budgeted.ps1 copied into the run directory. Windows Job Object commit limits and serial admission. No source modifications to that repository.",
+    "evidence": ["complete-watch/watchdog.json", "qualified-watch/watchdog.json", "latest-unit-watch/watchdog.json"]
+  },
+  "documentation": {
+    "command": "dotnet run --project tools/SharpHDL.DocBuilder -c Release --artifacts-path <run>/doc-driver -- <repo> <run>/documentation <sphinxPython> <strictdocPython>",
+    "status": "Success",
+    "requirements": 66,
+    "mapped": 50,
+    "apiAssemblies": 7,
+    "strictdoc": "0.30.4",
+    "sphinx": "9.2.0"
+  },
+  "limitations": [
+    "No Linux qualification or full repository regression in this slice.",
+    "No separate fuzz campaign or new formal proof.",
+    "The managed registry and MCP adapter cover only local tool execution.",
+    "Normal tool permissions apply. Detached process cleanup and cross-host locking remain outside this slice."
+  ]
+}

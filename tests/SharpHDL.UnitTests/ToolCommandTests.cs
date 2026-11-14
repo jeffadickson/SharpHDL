@@ -12,7 +12,7 @@ public sealed class ToolCommandTests
         string output = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
         var request = new ToolRunRequest("dotnet", [], AppContext.BaseDirectory, output, timeout);
         var result = await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId, request);
-        return result.Status == "InvalidInput" && result.ExitCode == 2 && !Directory.Exists(output);
+        return result.Status == ToolCommandStatus.InvalidInput && result.ExitCode == 2 && !Directory.Exists(output);
     }
 
     [Theory]
@@ -28,9 +28,9 @@ public sealed class ToolCommandTests
             ["exec", "--runtimeconfig", Path.Combine(AppContext.BaseDirectory, "SharpHDL.ToolFixture.runtimeconfig.json"), fixture, mode],
             AppContext.BaseDirectory, output, 10000);
         var result = await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId, request);
-        Assert.Equal(status, result.Status);
+        Assert.Equal(status, result.Status.ToString());
         Assert.Equal(exit, result.ExitCode);
-        Assert.Equal(result.Manifest!.Status.ToString(), result.Status);
+        Assert.Equal(result.Manifest!.Status.ToString(), result.Status.ToString());
         Assert.True(File.Exists(Path.Combine(output, "manifest.json")));
     }
 
@@ -39,11 +39,16 @@ public sealed class ToolCommandTests
     {
         string output = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
         var request = new ToolRunRequest("missing", [], AppContext.BaseDirectory, output, 0);
-        Assert.Equal("InvalidInput", (await ToolCommandRegistry.InvokeAsync("unknown", request)).Status);
-        Assert.Equal("InvalidInput", (await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId, request)).Status);
-        Assert.Equal("InvalidInput", (await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId, null)).Status);
+        Assert.Equal(ToolCommandStatus.InvalidInput, (await ToolCommandRegistry.InvokeAsync("unknown", request)).Status);
+        Assert.Equal(ToolCommandStatus.InvalidInput, (await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId, request)).Status);
+        Assert.Equal(ToolCommandStatus.InvalidInput, (await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId, null)).Status);
         Assert.False(Directory.Exists(output));
         Assert.Single(ToolCommandRegistry.Commands);
+        Assert.All(ToolCommandRegistry.Commands, descriptor =>
+        {
+            Assert.False(string.IsNullOrWhiteSpace(descriptor.McpName));
+            Assert.False(string.IsNullOrWhiteSpace(descriptor.Description));
+        });
     }
 
     [Fact]
@@ -52,7 +57,7 @@ public sealed class ToolCommandTests
         string output = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
         var request = new ToolRunRequest("dotnet", [], AppContext.BaseDirectory, output, 1000);
         var result = await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId, request, new CancellationToken(true));
-        Assert.Equal("Cancelled", result.Status);
+        Assert.Equal(ToolCommandStatus.Cancelled, result.Status);
         Assert.Equal(130, result.ExitCode);
         Assert.False(Directory.Exists(output));
     }
@@ -67,10 +72,10 @@ public sealed class ToolCommandTests
         Assert.Equal(127, (await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId, request)).ExitCode);
         Assert.False(Directory.Exists(output));
         var existing = request with { EvidenceDirectory = AppContext.BaseDirectory };
-        Assert.Equal("InvalidInput", (await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId, existing)).Status);
-        Assert.Equal("InvalidInput", (await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId,
+        Assert.Equal(ToolCommandStatus.InvalidInput, (await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId, existing)).Status);
+        Assert.Equal(ToolCommandStatus.InvalidInput, (await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId,
             request with { EvidenceDirectory = "\0" })).Status);
-        Assert.Equal("InvalidInput", (await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId,
+        Assert.Equal(ToolCommandStatus.InvalidInput, (await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId,
             request with { Arguments = [null!] })).Status);
     }
 
@@ -84,4 +89,42 @@ public sealed class ToolCommandTests
     [InlineData(ToolRunStatus.EvidenceIoFailure, 23)]
     public void Exit_mapping_preserves_existing_cli_contract(ToolRunStatus status, int expected) =>
         Assert.Equal(expected, ToolCommandRegistry.ExitCode(status, 23));
+
+    [Theory]
+    [InlineData(-1, 1)]
+    [InlineData(0, 1)]
+    [InlineData(1, 1)]
+    [InlineData(123, 123)]
+    [InlineData(124, 1)]
+    [InlineData(null, 1)]
+    public void Reserved_process_exits_cannot_escape_mapping(int? processExit, int expected) =>
+        Assert.Equal(expected, ToolCommandRegistry.ExitCode(ToolRunStatus.NonzeroExit, processExit));
+
+    [Fact]
+    public async Task Input_shape_and_timeout_edges_are_validated_before_dispatch()
+    {
+        string output = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+        var request = new ToolRunRequest("SharpHDL_absent_" + Guid.NewGuid().ToString("N"),
+            [], AppContext.BaseDirectory, output, 1);
+        foreach (int timeout in new[] { 1, 3_600_000 })
+        {
+            var missing = await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId,
+                request with { TimeoutMilliseconds = timeout });
+            Assert.Equal(ToolCommandStatus.MissingExecutable, missing.Status);
+            Assert.Contains(request.Executable, missing.Diagnostic);
+        }
+        foreach (var malformed in new[]
+        {
+            request with { Executable = "" }, request with { Arguments = null! },
+            request with { WorkingDirectory = null! }, request with { EvidenceDirectory = null! },
+            request with { WorkingDirectory = Path.Combine(output, "absent") },
+            request with { TimeoutMilliseconds = 3_600_001 }
+        })
+        {
+            var rejected = await ToolCommandRegistry.InvokeAsync(ToolCommandRegistry.RunId, malformed);
+            Assert.Equal(ToolCommandStatus.InvalidInput, rejected.Status);
+            Assert.False(string.IsNullOrWhiteSpace(rejected.Diagnostic));
+        }
+        Assert.False(Directory.Exists(output));
+    }
 }

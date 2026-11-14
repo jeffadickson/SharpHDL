@@ -24,6 +24,10 @@ dependency; scheduling reuses QuikGraph and the AXI checkers use the BCL.
 shared cancellable HDL runner, retained execution manifests and subsequent
 equivalence/scheduling/performance/documentation qualification.
 
+The [local MCP tool server](tools/SharpHDL.Mcp/README.md) exposes HDL-tool
+execution through the same typed command registry as ToolCli.
+[Command coverage](docs/COMMAND_COVERAGE.md) tracks the remaining adapters.
+
 > **Development design:** [Feature parity and competitive coverage](docs/FEATURE_PARITY.md) · [Architecture and implementation record](docs/DESIGN.md) · [Product requirements](docs/PRODUCT_REQUIREMENTS.md) · [Testing strategy](docs/TEST_STRATEGY.md). Capability and performance claims require recorded execution evidence; dormant CI definitions do not constitute verification.
 
 A small, executable C# hardware-description library inspired by MyHDL.

@@ -58,6 +58,16 @@ without typed commands or MCP coverage until their adapters are implemented.
 <<<
 
 [REQUIREMENT]
+UID: RAIL-COMMAND-001
+TITLE: Shared local tool execution
+STATEMENT: >>>
+CLI tool execution and MCP tool invocation shall use the same typed request,
+validation, handler and exit mapping. Discovery shall derive from the command
+registry. Malformed input shall not create evidence. Tool failures and caller
+cancellation shall preserve explicit outcomes and available process evidence.
+<<<
+
+[REQUIREMENT]
 UID: RAIL-EXIT-001
 TITLE: Only successful campaigns exit zero
 STATEMENT: >>>

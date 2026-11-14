@@ -5,11 +5,11 @@ from a shared registry or MCP adapter. Rows marked open require implementation.
 
 | Surface and operations | Current boundary | Shared registry / MCP |
 | --- | --- | --- |
-| ToolCli run | Validated CLI arguments and HdlToolRunner manifest | Selected first slice |
+| ToolCli run, list | ToolCommandRegistry and HdlToolRunner manifest | Implemented with stdio MCP |
 | DocBuilder build | BuildCampaign typed terminal result | Open |
 | EquivalenceCli qualify | BuildCampaign typed terminal result | Open |
 | Provenance generation | Console arguments and file generation | Open |
-| Live simulation server | Existing HTTP simulation endpoints | Open |
+| Live /api/state, /api/reset, /api/stepBack, /api/step | Existing HTTP simulation endpoints and StepCommand | Shared registry / MCP open |
 | VS Code buildDesign, runDesign | Shared editor dispatcher, typed outcomes | Cross-process registry / MCP open |
 | VS Code selectAndBuildDesign, selectAndRunDesign | Interactive adapters to editor dispatcher | UI adapters |
 | VS Code verilatorLint | Task adapter | Typed command / MCP open |
@@ -19,8 +19,10 @@ from a shared registry or MCP adapter. Rows marked open require implementation.
 | VS Code jumpToMapped, showMappedSignals, openWaveforms | Interactive project adapters | Typed command / MCP open |
 | VS Code generateProvenance | Make task adapter | Typed command / MCP open |
 | VS Code addHardwareBreakpoint, clearHardwareBreakpoints | Extension callbacks | Typed command / MCP open |
-| DAP launch, continue, next, stepBack, pause, disconnect | Existing debug protocol handlers | Shared command coverage open |
-| Demo, benchmark and fuzz executables | Specialized console entry points | Inventory at individual-operation level open |
+| DAP initialize, launch, configurationDone, threads, stackTrace, scopes, variables, next, stepIn, stepOut, stepBack, continue, pause, setBreakpoints, disconnect | Existing debug protocol handlers | Shared command coverage open |
+| Z80Demo, CoreHlsDemo, CilCoreDemo, AxiFirRtlDemo | Specialized console entry points | Typed command / MCP open |
+| MultiplierBench, SimulatorBench, SimulatorBenchmarks, ScheduledBench, NativeTinyRisc | Benchmark entry points | Typed command / MCP open |
+| DocumentationFuzz, ScheduledFuzz, Z80Fuzz | Campaign entry points | Typed command / MCP open |
 
 The first shared command is `sharphdl.tool.run`. It accepts a typed request
 containing executable, distinct arguments, working directory, new evidence
@@ -40,12 +42,13 @@ those existing contracts and is unnecessary for this slice.
 Use the official ModelContextProtocol C# SDK for stdio transport, discovery,
 JSON schemas and protocol cancellation. Keep the SDK in the MCP adapter so
 core tooling and the CLI retain their current dependency boundary. The SDK
-uses an MIT license and introduces hosting and JSON dependencies in the adapter.
+2.4.0 package declares Apache-2.0 and introduces hosting and JSON dependencies in the adapter.
 Its version is pinned in the project file and exercised through a real client.
 Writing a JSON-RPC server would duplicate protocol behavior and increase the
 maintenance burden. HTTP hosting and remote authentication are outside this
 local stdio slice.
 [Official SDK](https://github.com/modelcontextprotocol/csharp-sdk)
+[Pinned package metadata](https://www.nuget.org/packages/ModelContextProtocol/2.4.0)
 
 ## Implementation and acceptance
 
@@ -60,3 +63,6 @@ local stdio slice.
 
 The Dafny exit-code experiment remains applicable to the campaign boundary.
 This slice reuses the runner's existing semantics and tests its integration.
+
+The implemented adapter is documented with reproducible launch parameters.
+[MCP tool server](../tools/SharpHDL.Mcp/README.md)

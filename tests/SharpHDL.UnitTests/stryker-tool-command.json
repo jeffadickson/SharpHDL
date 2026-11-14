@@ -1,0 +1,10 @@
+{
+  "stryker-config": {
+    "test-case-filter": "FullyQualifiedName~ToolCommandTests&FullyQualifiedName!~Registry_preserves_real_process_outcome",
+    "concurrency": 1,
+    "additional-timeout": 10000,
+    "mutate": ["**/ToolCommandRegistry.cs"],
+    "reporters": ["json", "progress"],
+    "project": "SharpHDL.Tooling.csproj"
+  }
+}

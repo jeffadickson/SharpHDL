@@ -922,11 +922,22 @@
     },
     {
       "uid": "RAIL-MCP-001",
-      "status": "draft",
-      "implementation": [],
+      "status": "partial",
+      "implementation": ["src/SharpHDL.Tooling/ToolCommandRegistry.cs", "tools/SharpHDL.Mcp/Program.cs"],
       "tests": [],
-      "evidence": [],
-      "limitations": "Command coverage inventory, shared registry across surfaces and MCP discovery and invocation remain open."
+      "evidence": ["docs/COMMAND_COVERAGE.md"],
+      "limitations": "Tool execution is the first shared operation. Documentation, equivalence, live simulation and editor operations remain outside the managed registry and MCP adapter."
+    },
+    {
+      "uid": "RAIL-COMMAND-001",
+      "status": "verified_bounded",
+      "implementation": ["src/SharpHDL.Tooling/ToolCommandRegistry.cs", "tools/SharpHDL.ToolCli/Program.cs", "tools/SharpHDL.Mcp/Program.cs"],
+      "tests": [
+        {"file": "tests/SharpHDL.UnitTests/ToolCommandTests.cs", "method": "Registry_rejects_unknown_and_malformed_requests_without_outputs"},
+        {"file": "tests/SharpHDL.CommandTests/McpCommandTests.cs", "method": "Protocol_cancellation_stops_the_tool_and_retains_cancelled_manifest"}
+      ],
+      "evidence": ["docs/verification/mcp-command-slice.json"],
+      "limitations": "Windows stdio integration and targeted registry/runner tests. Full operation coverage remains separately tracked by RAIL-MCP-001. Linux, full-repository tests and separate fuzzing were not run in this slice."
     },
     {
       "uid": "RAIL-EXIT-001",
