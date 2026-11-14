@@ -1,0 +1,18 @@
+{
+  "baseline": "34cb965",
+  "artifactRoot": "E:\\Artifacts\\SharpHDL-command-e86f2bc1e32749e9b9b333d5a30bb486",
+  "command": "dotnet test tests/SharpHDL.UnitTests -c Release -m:1 -nr:false -p:UseSharedCompilation=false --artifacts-path <run>/managed --filter FullyQualifiedName~ToolCommandTests|FullyQualifiedName~HdlToolRunnerTests --collect:XPlat Code Coverage --settings tests/SharpHDL.UnitTests/coverage.runsettings --results-directory <run>/final-coverage",
+  "passed": 23,
+  "failed": 0,
+  "skipped": 0,
+  "property": {"framework": "FsCheck.Xunit 3.3.3", "cases": 40, "replay": "1145655947,296144285"},
+  "coverage": {
+    "toolingAssemblyLinePercent": 60.83,
+    "toolingAssemblyBranchPercent": 59.35,
+    "registryAsyncHandlerLinePercent": 92.59,
+    "registryAsyncHandlerBranchPercent": 91.66
+  },
+  "scope": "Focused command and existing runner tests. The tooling assembly includes unexercised campaign code. Full repository and Linux regressions were not run.",
+  "regression": "MCP cancellation exposed a manifest read/write race. Publish the closed record by rename before observers discover manifest.json.",
+  "watchdog": {"processMiB": 4096, "aggregateMiB": 8192, "reserveMiB": 4096, "evidence": "atomic-watch/watchdog.json"}
+}

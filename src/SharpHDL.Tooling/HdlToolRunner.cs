@@ -182,8 +182,12 @@ public static class HdlToolRunner
         }
         var manifest=new ToolRunManifest(executable,argv,Path.GetFullPath(workingDirectory),hash,started,timer.Elapsed.TotalMilliseconds,
             RuntimeInformation.OSDescription,Environment.Version.ToString(),status,exit,error,outCount,errCount,timeout.TotalMilliseconds,maximumOutputBytes);
-        await using var record= new FileStream(Path.Combine(artifactDirectory,"manifest.json"),FileMode.CreateNew);
-        await JsonSerializer.SerializeAsync(record,manifest,ToolJsonContext.Default.ToolRunManifest);
+        string pending=Path.Combine(artifactDirectory,"manifest.json.pending");
+        await using (var record=new FileStream(pending,FileMode.CreateNew))
+            await JsonSerializer.SerializeAsync(record,manifest,ToolJsonContext.Default.ToolRunManifest);
+        // Observers can discover retained cancellation evidence before the
+        // command response. Existence must imply a closed, complete record.
+        File.Move(pending,Path.Combine(artifactDirectory,"manifest.json"));
         return manifest;
     }
 
