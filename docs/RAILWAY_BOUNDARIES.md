@@ -105,7 +105,4 @@ if ((Test-Path -LiteralPath tests/dafny -PathType Container) -and
 
 [Editor lifecycle evidence](verification/railway-editor-lifecycle.json)
 
-`RAIL-MCP-001` tracks the open command inventory and MCP discovery and
-invocation work. The editor build and run handlers are shared within the
-extension. CLI campaigns have their own typed outcomes. A cross-surface
-registry and MCP adapter remain open.
+`RAIL-MCP-001` is **partially implemented** as of the [2026-11-16 review](FEATURE_PARITY.md#review--2026-11-16): ToolCli, DocBuilder and EquivalenceCli now use shared typed command registrations through [the local stdio MCP adapter](../tools/SharpHDL.Mcp/README.md), with scoped [MCP](verification/mcp-command-slice.json) and [campaign](verification/campaign-command-slice.json) execution manifests. The editor build/run handlers are shared within the extension, not yet registered cross-process. Live/DAP, editor and remaining specialized commands, remote/authenticated hosting and general-purpose command interoperability are **open**. These are local retained test records rather than a new full CI qualification.
